@@ -8,27 +8,98 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { summarizeHistory, type StatRecord } from "@/lib/historyStats";
+import {
+  summarizeHistory,
+  executiveSummary,
+  comparePeriods,
+  comparisonLabel,
+  type StatRecord,
+} from "@/lib/historyStats";
+import {
+  filterByDateRange,
+  previousRange,
+  rangeLabelOf,
+} from "@/lib/periodFilter";
 import { exportStatsPDF } from "@/lib/exportStats";
-import { BarChart3, CalendarRange, Layers, TrendingUp, FileDown } from "lucide-react";
+import {
+  BarChart3,
+  CalendarRange,
+  Layers,
+  TrendingUp,
+  FileDown,
+  Copy,
+  Check,
+  ArrowUpRight,
+  ArrowDownRight,
+  Minus,
+} from "lucide-react";
 import { toast } from "sonner";
 
 interface HistoryStatsProps {
   records: StatRecord[];
   periodLabel?: string;
+  /** Full unfiltered record set, used to compute the previous comparison period. */
+  allRecords?: StatRecord[];
+  /** Active free-range bounds (YYYY-MM-DD); enables period-over-period comparison. */
+  rangeFrom?: string;
+  rangeTo?: string;
 }
 
-export function HistoryStats({ records, periodLabel }: HistoryStatsProps) {
+export function HistoryStats({
+  records,
+  periodLabel,
+  allRecords,
+  rangeFrom,
+  rangeTo,
+}: HistoryStatsProps) {
   const summary = useMemo(() => summarizeHistory(records), [records]);
   // "all" = export every procedure; otherwise a specific procedureId.
   const [exportProc, setExportProc] = useState("all");
+  const [copied, setCopied] = useState(false);
+
+  // Period-over-period comparison: only when a complete free range is active.
+  const comparison = useMemo(() => {
+    if (!allRecords || !rangeFrom || !rangeTo) return null;
+    const prev = previousRange(rangeFrom, rangeTo);
+    if (!prev) return null;
+    const previousRecords = filterByDateRange(allRecords, prev.from, prev.to);
+    return {
+      cmp: comparePeriods(records, previousRecords),
+      prevLabel: rangeLabelOf(prev.from, prev.to),
+    };
+  }, [allRecords, rangeFrom, rangeTo, records]);
+
+  const summaryText = useMemo(
+    () => executiveSummary(summary, { periodLabel }),
+    [summary, periodLabel],
+  );
 
   if (summary.total === 0) return null;
 
+  const handleCopySummary = async () => {
+    try {
+      await navigator.clipboard.writeText(summaryText);
+      setCopied(true);
+      toast.success("Resumo copiado para a área de transferência.");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("Não foi possível copiar o resumo.");
+    }
+  };
+
   const handleExportPDF = () => {
     try {
+      // Comparison only applies to the full (unscoped) export.
+      const comparisonText =
+        comparison
+          ? `${comparisonLabel(comparison.cmp)}${
+              comparison.prevLabel
+                ? ` (período anterior: ${comparison.prevLabel})`
+                : ""
+            }`
+          : undefined;
       if (exportProc === "all") {
-        exportStatsPDF(records, periodLabel);
+        exportStatsPDF(records, periodLabel, undefined, comparisonText);
       } else {
         const scoped = records.filter((r) => r.procedureId === exportProc);
         const label =
@@ -80,6 +151,20 @@ export function HistoryStats({ records, periodLabel }: HistoryStatsProps) {
             variant="outline"
             size="sm"
             className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+            onClick={handleCopySummary}
+            title="Copiar o resumo executivo como texto"
+          >
+            {copied ? (
+              <Check className="w-3 h-3 mr-1 text-emerald-400" />
+            ) : (
+              <Copy className="w-3 h-3 mr-1" />
+            )}
+            Copiar resumo
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
             onClick={handleExportPDF}
             title="Exportar estatísticas em PDF"
           >
@@ -88,6 +173,53 @@ export function HistoryStats({ records, periodLabel }: HistoryStatsProps) {
           </Button>
         </div>
       </div>
+
+      {/* Executive summary (auto-generated, copy-ready) */}
+      <Card className="p-3 bg-primary/5 border-primary/20">
+        <p className="text-[13px] leading-relaxed text-foreground/90">
+          {summaryText}
+        </p>
+      </Card>
+
+      {/* Period-over-period comparison (only with an active date range) */}
+      {comparison && (
+        <Card className="p-3 bg-card border-border flex items-center gap-3">
+          <div
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-bold shrink-0 ${
+              comparison.cmp.direction === "up"
+                ? "bg-emerald-500/10 text-emerald-400"
+                : comparison.cmp.direction === "down"
+                ? "bg-red-500/10 text-red-400"
+                : "bg-muted text-muted-foreground"
+            }`}
+          >
+            {comparison.cmp.direction === "up" ? (
+              <ArrowUpRight className="w-4 h-4" />
+            ) : comparison.cmp.direction === "down" ? (
+              <ArrowDownRight className="w-4 h-4" />
+            ) : (
+              <Minus className="w-4 h-4" />
+            )}
+            {comparison.cmp.pct === null
+              ? comparison.cmp.previous === 0 && comparison.cmp.current > 0
+                ? "Novo"
+                : "—"
+              : `${comparison.cmp.delta > 0 ? "+" : ""}${comparison.cmp.pct
+                  .toFixed(1)
+                  .replace(".", ",")}%`}
+          </div>
+          <div className="min-w-0">
+            <p className="text-[12px] text-foreground/90 leading-snug">
+              {comparisonLabel(comparison.cmp)}
+            </p>
+            {comparison.prevLabel && (
+              <p className="text-[10px] text-muted-foreground">
+                Período anterior: {comparison.prevLabel}
+              </p>
+            )}
+          </div>
+        </Card>
+      )}
 
       {/* Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">

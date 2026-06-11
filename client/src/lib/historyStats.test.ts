@@ -4,8 +4,17 @@ import {
   surgeriesByType,
   summarizeHistory,
   executiveSummary,
+  comparePeriods,
+  comparisonLabel,
   type StatRecord,
 } from "./historyStats";
+
+const rec = (n: number): StatRecord[] =>
+  Array.from({ length: n }, (_, i) => ({
+    procedureId: "x",
+    procedureName: "X",
+    date: `2026-01-${String((i % 28) + 1).padStart(2, "0")}`,
+  }));
 
 const sample: StatRecord[] = [
   { procedureId: "rtu-prostata", procedureName: "RTU de Próstata", date: "2026-06-01" },
@@ -157,5 +166,69 @@ describe("per-procedure scoped export", () => {
     const summary = summarizeHistory(scoped);
     expect(scoped).toHaveLength(0);
     expect(summary.total).toBe(0);
+  });
+});
+
+describe("comparePeriods", () => {
+  it("computes positive growth and percentage", () => {
+    const cmp = comparePeriods(rec(12), rec(8));
+    expect(cmp.current).toBe(12);
+    expect(cmp.previous).toBe(8);
+    expect(cmp.delta).toBe(4);
+    expect(cmp.pct).toBeCloseTo(50, 5);
+    expect(cmp.direction).toBe("up");
+  });
+
+  it("computes negative change", () => {
+    const cmp = comparePeriods(rec(6), rec(10));
+    expect(cmp.delta).toBe(-4);
+    expect(cmp.pct).toBeCloseTo(-40, 5);
+    expect(cmp.direction).toBe("down");
+  });
+
+  it("reports flat when equal", () => {
+    const cmp = comparePeriods(rec(5), rec(5));
+    expect(cmp.delta).toBe(0);
+    expect(cmp.pct).toBe(0);
+    expect(cmp.direction).toBe("flat");
+  });
+
+  it("returns null pct when previous period has no records", () => {
+    const cmp = comparePeriods(rec(3), rec(0));
+    expect(cmp.previous).toBe(0);
+    expect(cmp.pct).toBeNull();
+    expect(cmp.direction).toBe("up");
+  });
+});
+
+describe("comparisonLabel", () => {
+  it("labels growth with percentage and arrow figures", () => {
+    expect(comparisonLabel(comparePeriods(rec(12), rec(8)))).toBe(
+      "+50,0% frente ao período anterior (8 → 12).",
+    );
+  });
+
+  it("labels a drop with negative sign", () => {
+    expect(comparisonLabel(comparePeriods(rec(6), rec(10)))).toBe(
+      "-40,0% frente ao período anterior (10 → 6).",
+    );
+  });
+
+  it("labels no change", () => {
+    expect(comparisonLabel(comparePeriods(rec(5), rec(5)))).toBe(
+      "Sem alteração frente ao período anterior (5).",
+    );
+  });
+
+  it("labels a brand-new period (no previous records)", () => {
+    expect(comparisonLabel(comparePeriods(rec(5), rec(0)))).toBe(
+      "Novo: 5 cirurgias (período anterior sem registros).",
+    );
+  });
+
+  it("labels empty-vs-empty", () => {
+    expect(comparisonLabel(comparePeriods(rec(0), rec(0)))).toBe(
+      "Sem registros em ambos os períodos.",
+    );
   });
 });

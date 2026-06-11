@@ -157,3 +157,64 @@ export function executiveSummary(
 
   return sentences.join(" ");
 }
+
+
+export interface PeriodComparison {
+  /** Total in the current period. */
+  current: number;
+  /** Total in the previous period of equal length. */
+  previous: number;
+  /** current - previous. */
+  delta: number;
+  /**
+   * Percentage change vs. previous period.
+   * - null when previous is 0 and current is 0 (no basis, no change).
+   * - null when previous is 0 and current > 0 (infinite growth — render as "novo").
+   */
+  pct: number | null;
+  direction: "up" | "down" | "flat";
+}
+
+/**
+ * Compare two already-filtered record sets (current vs. a previous window of the
+ * same length). Pure and side-effect free.
+ */
+export function comparePeriods(
+  current: StatRecord[],
+  previous: StatRecord[],
+): PeriodComparison {
+  const c = current.length;
+  const p = previous.length;
+  const delta = c - p;
+  let pct: number | null;
+  if (p === 0) {
+    pct = c === 0 ? null : null; // no meaningful base; UI shows "novo"/"—"
+  } else {
+    pct = (delta / p) * 100;
+  }
+  const direction: "up" | "down" | "flat" = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+  return { current: c, previous: p, delta, pct, direction };
+}
+
+/**
+ * Human label for a comparison, ready to display or paste.
+ * Examples:
+ *  - "Sem alteração frente ao período anterior (0)."
+ *  - "+50,0% frente ao período anterior (8 → 12)."
+ *  - "Novo: 5 cirurgias (período anterior sem registros)."
+ */
+export function comparisonLabel(cmp: PeriodComparison): string {
+  if (cmp.previous === 0) {
+    if (cmp.current === 0) return "Sem registros em ambos os períodos.";
+    return `Novo: ${cmp.current} ${
+      cmp.current === 1 ? "cirurgia" : "cirurgias"
+    } (período anterior sem registros).`;
+  }
+  if (cmp.delta === 0) {
+    return `Sem alteração frente ao período anterior (${cmp.current}).`;
+  }
+  const sign = cmp.delta > 0 ? "+" : "";
+  const pctText =
+    cmp.pct === null ? "" : `${sign}${cmp.pct.toFixed(1).replace(".", ",")}% `;
+  return `${pctText}frente ao período anterior (${cmp.previous} → ${cmp.current}).`;
+}

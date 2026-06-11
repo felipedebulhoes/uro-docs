@@ -215,7 +215,13 @@ export default function HistoryPage() {
 
       <main className="flex-1 container py-4">
         {showStats && byPeriod.length > 0 && (
-          <HistoryStats records={byPeriod} periodLabel={periodLabel} />
+          <HistoryStats
+            records={byPeriod}
+            periodLabel={periodLabel}
+            allRecords={history}
+            rangeFrom={filterMode === "range" ? rangeFrom : ""}
+            rangeTo={filterMode === "range" ? rangeTo : ""}
+          />
         )}
         {history.length > 0 && (
           <div className="flex flex-col sm:flex-row gap-2 mb-4">

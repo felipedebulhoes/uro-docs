@@ -63,6 +63,81 @@ function svgBarChart(rows: BarRow[], opts: { labelWidth?: number } = {}): string
 }
 
 /**
+ * Build a monthly trend line chart as inline SVG. Plots the surgery count per
+ * month chronologically, with a baseline axis, gridlines, points and value
+ * labels. Prints reliably (no canvas/JS).
+ */
+function svgLineChart(rows: BarRow[]): string {
+  if (rows.length === 0) {
+    return `<p class="empty">Sem dados.</p>`;
+  }
+  if (rows.length === 1) {
+    // A single month: a line needs at least two points, so show a labelled dot.
+    return `<p class="empty">Apenas um mês com registros (${escapeHtml(
+      rows[0].label
+    )}: ${rows[0].count}). Tendência disponível a partir de dois meses.</p>`;
+  }
+
+  const W = 520;
+  const H = 200;
+  const padL = 32;
+  const padR = 16;
+  const padT = 16;
+  const padB = 34;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+  const max = Math.max(...rows.map((r) => r.count), 1);
+  const n = rows.length;
+
+  const x = (i: number) => padL + (n === 1 ? plotW / 2 : (i / (n - 1)) * plotW);
+  const y = (v: number) => padT + plotH - (v / max) * plotH;
+
+  // Horizontal gridlines (4 steps)
+  const gridSteps = 4;
+  const grid = Array.from({ length: gridSteps + 1 }, (_, i) => {
+    const v = (max / gridSteps) * i;
+    const gy = y(v);
+    return `<line x1="${padL}" y1="${gy}" x2="${W - padR}" y2="${gy}" class="grid" />
+      <text x="${padL - 6}" y="${gy + 3}" text-anchor="end" class="axis">${Math.round(v)}</text>`;
+  }).join("");
+
+  const linePath = rows
+    .map((r, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(r.count).toFixed(1)}`)
+    .join(" ");
+
+  // Area under the line (subtle fill)
+  const areaPath =
+    `M ${x(0).toFixed(1)} ${y(0).toFixed(1)} ` +
+    rows.map((r, i) => `L ${x(i).toFixed(1)} ${y(r.count).toFixed(1)}`).join(" ") +
+    ` L ${x(n - 1).toFixed(1)} ${y(0).toFixed(1)} Z`;
+
+  // Show at most ~8 x labels to avoid clutter
+  const labelEvery = Math.ceil(n / 8);
+  const points = rows
+    .map((r, i) => {
+      const cx = x(i);
+      const cy = y(r.count);
+      const showLabel = i % labelEvery === 0 || i === n - 1;
+      const xLabel = showLabel
+        ? `<text x="${cx}" y="${H - padB + 16}" text-anchor="middle" class="xlbl">${escapeHtml(
+            r.label
+          )}</text>`
+        : "";
+      return `<circle cx="${cx}" cy="${cy}" r="3" class="pt" />
+        <text x="${cx}" y="${cy - 6}" text-anchor="middle" class="ptval">${r.count}</text>
+        ${xLabel}`;
+    })
+    .join("");
+
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMin meet" role="img">
+    ${grid}
+    <path d="${areaPath}" class="area" />
+    <path d="${linePath}" class="line" fill="none" />
+    ${points}
+  </svg>`;
+}
+
+/**
  * Generate and open the statistics PDF.
  * @param records Already-filtered records (so the PDF matches the on-screen period).
  * @param periodLabel Optional human label of the active filter (e.g. "jun/2026" or "2026").
@@ -71,7 +146,8 @@ function svgBarChart(rows: BarRow[], opts: { labelWidth?: number } = {}): string
 export function exportStatsPDF(
   records: StatRecord[],
   periodLabel?: string,
-  procedureLabel?: string
+  procedureLabel?: string,
+  comparisonText?: string
 ): void {
   const summary = summarizeHistory(records);
   const stamp = new Date().toLocaleDateString("pt-BR");
@@ -117,10 +193,19 @@ ${INSTITUTION_HEADER_CSS}
   .card .s { font-size: 10px; color: #888; }
   .exec-summary { margin: 16px 0 4px; padding: 12px 14px; background: #faf6f1; border-left: 3px solid #B87333; border-radius: 4px; font-size: 12.5px; line-height: 1.5; color: #333; }
   .exec-summary .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; margin-bottom: 4px; font-weight: 700; }
+  .comparison { margin: 8px 0 4px; padding: 10px 14px; background: #f3f7f3; border-left: 3px solid #4b8b5a; border-radius: 4px; font-size: 12.5px; line-height: 1.5; color: #2c4a33; }
+  .comparison .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #3a6b46; margin-bottom: 4px; font-weight: 700; }
   svg .lbl { font-size: 11px; fill: #444; }
   svg .val { font-size: 11px; fill: #1a1a1a; font-weight: 600; }
   svg .track { fill: #efe6db; }
   svg .bar { fill: #B87333; }
+  svg .grid { stroke: #eee; stroke-width: 1; }
+  svg .axis { font-size: 9px; fill: #aaa; }
+  svg .xlbl { font-size: 9px; fill: #777; }
+  svg .line { stroke: #B87333; stroke-width: 2; }
+  svg .area { fill: rgba(184, 115, 51, 0.10); }
+  svg .pt { fill: #8a5523; }
+  svg .ptval { font-size: 9px; fill: #1a1a1a; font-weight: 600; }
   .empty { font-size: 12px; color: #999; }
   table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
   th { text-align: left; background: #f5efe8; color: #8a5523; padding: 7px 8px; border-bottom: 2px solid #e0d4c5; }
@@ -144,6 +229,14 @@ ${INSTITUTION_HEADER_CSS}
     ${escapeHtml(summaryText)}
   </div>
 
+  ${
+    comparisonText
+      ? `<div class="comparison"><span class="k">Comparativo entre períodos</span>${escapeHtml(
+          comparisonText
+        )}</div>`
+      : ""
+  }
+
   <div class="cards">
     <div class="card"><div class="k">Total</div><div class="v">${summary.total}</div><div class="s">cirurgias</div></div>
     <div class="card"><div class="k">Tipos</div><div class="v">${summary.distinctTypes}</div><div class="s">procedimentos distintos</div></div>
@@ -153,6 +246,11 @@ ${INSTITUTION_HEADER_CSS}
     <div class="card"><div class="k">Mês mais ativo</div><div class="v" style="font-size:13px">${escapeHtml(
       summary.busiestMonth?.label ?? "—"
     )}</div><div class="s">${summary.busiestMonth ? summary.busiestMonth.count + " cirurgias" : ""}</div></div>
+  </div>
+
+  <div class="chart-block">
+    <h2>Tendência mensal</h2>
+    ${svgLineChart(monthRows)}
   </div>
 
   <div class="chart-block">

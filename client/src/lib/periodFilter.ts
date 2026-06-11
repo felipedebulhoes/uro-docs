@@ -170,3 +170,47 @@ export const PERIOD_PRESETS: { key: PeriodPreset; label: string }[] = [
   { key: "last90", label: "Últimos 90 dias" },
   { key: "currentYear", label: "Ano corrente" },
 ];
+
+
+// --- Previous period (for period-over-period comparison) ---------------------
+
+/**
+ * Given an inclusive YYYY-MM-DD range, compute the immediately-preceding range
+ * of the same length. E.g. [01/04, 30/04] (30 days) → [02/03, 31/03].
+ * Returns null when either bound is missing (open ranges can't be shifted).
+ */
+export function previousRange(
+  from: string,
+  to: string
+): { from: string; to: string } | null {
+  const kf = dateKeyOf(from);
+  const kt = dateKeyOf(to);
+  if (!kf || !kt) return null;
+
+  const toDate = (k: string) => {
+    const [y, m, d] = k.split("-").map((n) => parseInt(n, 10));
+    return new Date(y, m - 1, d);
+  };
+  const fmt = (d: Date) => {
+    const y = d.getFullYear();
+    const mo = String(d.getMonth() + 1).padStart(2, "0");
+    const da = String(d.getDate()).padStart(2, "0");
+    return `${y}-${mo}-${da}`;
+  };
+
+  const start = toDate(kf);
+  const end = toDate(kt);
+  if (end < start) return null;
+
+  // Length in days (inclusive).
+  const msPerDay = 24 * 60 * 60 * 1000;
+  const lengthDays = Math.round((end.getTime() - start.getTime()) / msPerDay) + 1;
+
+  // Previous period ends the day before the current period starts.
+  const prevEnd = new Date(start);
+  prevEnd.setDate(prevEnd.getDate() - 1);
+  const prevStart = new Date(prevEnd);
+  prevStart.setDate(prevStart.getDate() - (lengthDays - 1));
+
+  return { from: fmt(prevStart), to: fmt(prevEnd) };
+}

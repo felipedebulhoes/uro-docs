@@ -10,6 +10,7 @@ import {
   formatDateKeyBR,
   rangeLabelOf,
   presetRange,
+  previousRange,
 } from "./periodFilter";
 
 const recs = [
@@ -150,5 +151,33 @@ describe("presetRange", () => {
     const { from, to } = presetRange("currentYear", new Date(2026, 0, 5));
     expect(from).toBe("2026-01-01");
     expect(to).toBe("2026-01-05");
+  });
+});
+
+describe("previousRange", () => {
+  it("shifts a 30-day April window to the preceding 30-day window", () => {
+    // 01/04 to 30/04 = 30 days → previous is 02/03 to 31/03
+    const prev = previousRange("2026-04-01", "2026-04-30");
+    expect(prev).toEqual({ from: "2026-03-02", to: "2026-03-31" });
+  });
+
+  it("shifts a single-day range to the previous day", () => {
+    const prev = previousRange("2026-06-10", "2026-06-10");
+    expect(prev).toEqual({ from: "2026-06-09", to: "2026-06-09" });
+  });
+
+  it("preserves length across month boundaries", () => {
+    // 7-day window 05/06–11/06 → previous 7-day 29/05–04/06
+    const prev = previousRange("2026-06-05", "2026-06-11");
+    expect(prev).toEqual({ from: "2026-05-29", to: "2026-06-04" });
+  });
+
+  it("returns null when a bound is missing", () => {
+    expect(previousRange("", "2026-06-11")).toBeNull();
+    expect(previousRange("2026-06-01", "")).toBeNull();
+  });
+
+  it("returns null when the range is inverted", () => {
+    expect(previousRange("2026-06-11", "2026-06-01")).toBeNull();
   });
 });

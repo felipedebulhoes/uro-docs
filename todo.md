@@ -31,3 +31,8 @@
 - [x] Resumo executivo automático no PDF de estatísticas (texto gerado: total, período, mais frequente)
 - [x] Predefinições de período no Histórico (Últimos 30 dias, Últimos 90 dias, Ano corrente)
 - [x] Testes vitest do resumo executivo e das predefinições; validação no navegador
+
+- [x] Botão "Copiar resumo" (texto puro) no painel de estatísticas
+- [x] Gráfico de tendência mensal (linha) no PDF de estatísticas
+- [x] Comparativo entre períodos com variação percentual (módulo + UI/PDF)
+- [x] Testes vitest de comparePeriods/comparisonLabel/previousRange; validação no navegador
