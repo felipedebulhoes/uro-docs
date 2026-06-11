@@ -1,6 +1,6 @@
-// Design: "Dark Clinical Dashboard — Surgical Command Center"
-// Typography: Space Grotesk (headings) + Inter (body)
-// Colors: Dark bg (#0F1419), cyan accent (#58A6FF), amber alerts
+// Identidade Visual: Dr. Felipe Bulhões
+// Navy escuro + Cobre/Dourado (#B87333) + Roboto
+// Estilo: Premium, sofisticado, dark navy com acentos cobre
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -29,24 +29,24 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/40 bg-card/60 backdrop-blur-md sticky top-0 z-50">
         <div className="container py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center border border-primary/30">
                 <Stethoscope className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h1 className="text-lg font-semibold tracking-tight font-[family-name:var(--font-heading)]">
+                <h1 className="text-lg font-bold tracking-tight">
                   UroDocx
                 </h1>
                 <p className="text-xs text-muted-foreground">
-                  Dr. Felipe Bulhões — Urologia / Andrologia
+                  Dr. Felipe Bulhões — Urologia & Andrologia
                 </p>
               </div>
             </div>
-            <Badge variant="outline" className="hidden sm:inline-flex text-xs text-muted-foreground border-border/50">
-              IDOR / TCBC
+            <Badge variant="outline" className="hidden sm:inline-flex text-xs text-primary/80 border-primary/30 bg-primary/5">
+              IDOR · TCBC
             </Badge>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Home() {
             placeholder="Buscar procedimento..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-card border-border/50 h-11"
+            className="pl-10 bg-card border-border/40 h-11 focus:border-primary/50 focus:ring-primary/20"
           />
         </div>
 
@@ -69,10 +69,10 @@ export default function Home() {
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
           <button
             onClick={() => setActiveCategory(null)}
-            className={`px-3 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 ${
+            className={`px-3.5 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 ${
               activeCategory === null
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
+                : "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:text-foreground"
             }`}
           >
             Todos
@@ -81,10 +81,10 @@ export default function Home() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 ${
+              className={`px-3.5 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                 activeCategory === cat
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:text-foreground"
               }`}
             >
               {cat}
@@ -97,15 +97,15 @@ export default function Home() {
           {filtered.map((procedure, index) => (
             <Link key={procedure.id} href={`/procedimento/${procedure.id}`}>
               <Card
-                className="p-4 bg-card border-border/50 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer group"
+                className="p-4 bg-card border-border/40 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer group"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition-transform duration-150">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-lg shrink-0 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-150">
                     {procedure.icon}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors duration-150 font-[family-name:var(--font-heading)]">
+                    <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors duration-150">
                       {procedure.shortName}
                     </h3>
                     <p className="text-xs text-muted-foreground mt-0.5 truncate">
@@ -113,7 +113,7 @@ export default function Home() {
                     </p>
                     <Badge
                       variant="outline"
-                      className="mt-2 text-[10px] border-border/50 text-muted-foreground"
+                      className="mt-2 text-[10px] border-primary/20 text-primary/70"
                     >
                       {procedure.category}
                     </Badge>
@@ -132,10 +132,10 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-4">
+      <footer className="border-t border-border/40 py-4">
         <div className="container">
           <p className="text-xs text-muted-foreground text-center">
-            Dr. Felipe Bulhões — Urologista (Instituto D'Or) · Cirurgião Geral TCBC · Foco em Andrologia
+            Dr. Felipe Bulhões — Urologista (Instituto D'Or) · Cirurgião Geral TCBC · CRM-SP 202.291
           </p>
         </div>
       </footer>

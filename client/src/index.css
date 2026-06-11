@@ -40,45 +40,64 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-heading: 'Space Grotesk', sans-serif;
+  --color-copper: var(--copper);
+  --font-heading: 'Roboto', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Roboto', system-ui, sans-serif;
 }
 
+/* 
+ * Identidade Visual: Dr. Felipe Bulhões
+ * Navy escuro (#1B3A4B) + Cobre/Dourado (#B87333)
+ * Fonte: Roboto (body + headings)
+ * Estilo: Premium, sofisticado, dark navy com acentos cobre
+ */
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.145 0.014 256);
-  --foreground: oklch(0.92 0.008 250);
-  --card: oklch(0.19 0.014 256);
-  --card-foreground: oklch(0.92 0.008 250);
-  --popover: oklch(0.19 0.014 256);
-  --popover-foreground: oklch(0.92 0.008 250);
-  --primary: oklch(0.72 0.14 230);
-  --primary-foreground: oklch(0.145 0.014 256);
-  --secondary: oklch(0.24 0.014 256);
-  --secondary-foreground: oklch(0.85 0.008 250);
-  --muted: oklch(0.22 0.012 256);
-  --muted-foreground: oklch(0.65 0.015 250);
-  --accent: oklch(0.24 0.014 256);
-  --accent-foreground: oklch(0.92 0.008 250);
+  /* Navy dark background */
+  --background: oklch(0.18 0.03 247);
+  --foreground: oklch(0.93 0.005 247);
+  /* Card: slightly lighter navy */
+  --card: oklch(0.22 0.028 247);
+  --card-foreground: oklch(0.93 0.005 247);
+  --popover: oklch(0.22 0.028 247);
+  --popover-foreground: oklch(0.93 0.005 247);
+  /* Primary: Copper/Gold accent - #B87333 */
+  --primary: oklch(0.618 0.117 60.4);
+  --primary-foreground: oklch(0.98 0 0);
+  /* Secondary: darker navy */
+  --secondary: oklch(0.25 0.025 247);
+  --secondary-foreground: oklch(0.85 0.008 247);
+  /* Muted */
+  --muted: oklch(0.24 0.02 247);
+  --muted-foreground: oklch(0.62 0.02 247);
+  /* Accent: copper tint */
+  --accent: oklch(0.28 0.03 60);
+  --accent-foreground: oklch(0.93 0.005 60);
+  /* Destructive */
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.28 0.012 256);
-  --input: oklch(0.28 0.012 256);
-  --ring: oklch(0.72 0.14 230);
-  --chart-1: oklch(0.72 0.14 230);
-  --chart-2: oklch(0.65 0.18 160);
-  --chart-3: oklch(0.7 0.15 80);
-  --chart-4: oklch(0.65 0.2 310);
-  --chart-5: oklch(0.7 0.18 30);
-  --sidebar: oklch(0.16 0.014 256);
-  --sidebar-foreground: oklch(0.92 0.008 250);
-  --sidebar-primary: oklch(0.72 0.14 230);
-  --sidebar-primary-foreground: oklch(0.145 0.014 256);
-  --sidebar-accent: oklch(0.22 0.014 256);
-  --sidebar-accent-foreground: oklch(0.92 0.008 250);
-  --sidebar-border: oklch(0.28 0.012 256);
-  --sidebar-ring: oklch(0.72 0.14 230);
+  /* Borders */
+  --border: oklch(0.30 0.02 247);
+  --input: oklch(0.30 0.02 247);
+  --ring: oklch(0.618 0.117 60.4);
+  /* Copper variable */
+  --copper: oklch(0.618 0.117 60.4);
+  /* Charts */
+  --chart-1: oklch(0.618 0.117 60.4);
+  --chart-2: oklch(0.55 0.1 60);
+  --chart-3: oklch(0.72 0.08 60);
+  --chart-4: oklch(0.45 0.06 247);
+  --chart-5: oklch(0.65 0.04 247);
+  /* Sidebar */
+  --sidebar: oklch(0.16 0.03 247);
+  --sidebar-foreground: oklch(0.93 0.005 247);
+  --sidebar-primary: oklch(0.618 0.117 60.4);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.24 0.025 247);
+  --sidebar-accent-foreground: oklch(0.93 0.005 247);
+  --sidebar-border: oklch(0.30 0.02 247);
+  --sidebar-ring: oklch(0.618 0.117 60.4);
 }
 
 @layer base {
@@ -91,6 +110,7 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    font-weight: 700;
   }
   code, pre, .font-mono {
     font-family: var(--font-mono);
