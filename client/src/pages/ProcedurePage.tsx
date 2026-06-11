@@ -1,4 +1,4 @@
-// Identidade Visual: felipebulhoes.com (dark mode)
+// Design: Azul do Nilo Dark Mode
 // Background: oklch(18% .04 247.3) | Card: oklch(22% .045 247.3)
 // Primary/Accent: oklch(61.8% .117 60.4) = Cobre #B87333
 
@@ -28,14 +28,16 @@ import {
   CheckCircle2,
   Copy,
   Save,
-  Timer,
   ClipboardList,
   Package,
   FlaskConical,
   FileCheck,
   ShieldCheck,
+  Download,
+  Pencil,
+  X,
 } from "lucide-react";
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { toast } from "sonner";
 
@@ -55,7 +57,6 @@ export default function ProcedurePage() {
     procedure.configFields.forEach((field) => {
       defaults[field.id] = field.defaultValue;
     });
-    // Add extra fields for patient info
     defaults.paciente = "";
     defaults.data_cirurgia = "";
     defaults.hospital = "";
@@ -80,6 +81,9 @@ export default function ProcedurePage() {
   });
 
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
+  const [editingTab, setEditingTab] = useState<string | null>(null);
+  const [editedTexts, setEditedTexts] = useState<Record<string, string>>({});
+  const editTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   const updateConfig = useCallback((fieldId: string, value: string) => {
     setConfig((prev) => ({ ...prev, [fieldId]: value }));
@@ -106,21 +110,35 @@ export default function ProcedurePage() {
     return { ...base, ...extra };
   }, [procedure, config, extraDocs]);
 
-  const copyToClipboard = useCallback((text: string, tabName: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopiedTab(tabName);
-      toast.success("Copiado!");
-      setTimeout(() => setCopiedTab(null), 2000);
-    });
-  }, []);
+  // Get the actual displayed text (edited or generated)
+  const getDocText = useCallback(
+    (tabId: string) => {
+      if (editedTexts[tabId] !== undefined) return editedTexts[tabId];
+      return documents?.[tabId as keyof typeof documents] || "";
+    },
+    [documents, editedTexts]
+  );
+
+  const copyToClipboard = useCallback(
+    (tabId: string) => {
+      const text = getDocText(tabId);
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedTab(tabId);
+        toast.success("Copiado!");
+        setTimeout(() => setCopiedTab(null), 2000);
+      });
+    },
+    [getDocText]
+  );
 
   const copyAll = useCallback(() => {
     if (!documents) return;
-    const allText = Object.values(documents).join("\n\n" + "═".repeat(60) + "\n\n");
+    const allTabs = Object.keys(documents);
+    const allText = allTabs.map((tabId) => getDocText(tabId)).join("\n\n" + "═".repeat(60) + "\n\n");
     navigator.clipboard.writeText(allText).then(() => {
       toast.success("Todos os documentos copiados!");
     });
-  }, [documents]);
+  }, [documents, getDocText]);
 
   const saveToHistory = useCallback(() => {
     if (!procedure) return;
@@ -133,11 +151,10 @@ export default function ProcedurePage() {
     });
     toast.success("Salvo no histórico!");
 
-    // Auto-create DJ timer if applicable
     if (config.duplo_j && config.duplo_j !== "Não implantado") {
       const insertionDate = config.data_cirurgia || new Date().toISOString().split("T")[0];
       const removalDate = new Date(insertionDate);
-      removalDate.setDate(removalDate.getDate() + 21); // 3 weeks default
+      removalDate.setDate(removalDate.getDate() + 21);
       addDJTimer({
         patientName: config.paciente || "Paciente",
         insertionDate,
@@ -148,6 +165,270 @@ export default function ProcedurePage() {
       toast.info("Timer de DJ criado (retirada em 3 semanas).");
     }
   }, [procedure, config]);
+
+  // Edit functionality
+  const startEditing = useCallback(
+    (tabId: string) => {
+      const currentText = getDocText(tabId);
+      setEditedTexts((prev) => ({ ...prev, [tabId]: currentText }));
+      setEditingTab(tabId);
+      setTimeout(() => editTextareaRef.current?.focus(), 100);
+    },
+    [getDocText]
+  );
+
+  const stopEditing = useCallback(() => {
+    setEditingTab(null);
+    toast.success("Alterações salvas!");
+  }, []);
+
+  const resetEdit = useCallback((tabId: string) => {
+    setEditedTexts((prev) => {
+      const next = { ...prev };
+      delete next[tabId];
+      return next;
+    });
+    setEditingTab(null);
+    toast.info("Texto restaurado ao original.");
+  }, []);
+
+  // PDF Export
+  const exportPDF = useCallback(
+    (tabId: string) => {
+      const text = getDocText(tabId);
+      const tabLabel =
+        allTabs.find((t) => t.id === tabId)?.label || tabId;
+
+      // Create a styled HTML document for printing
+      const printWindow = window.open("", "_blank");
+      if (!printWindow) {
+        toast.error("Popup bloqueado. Permita popups para exportar PDF.");
+        return;
+      }
+
+      const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>${tabLabel} - ${procedure?.shortName || ""}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding: 40px;
+      color: #1a1a1a;
+      line-height: 1.6;
+      font-size: 11pt;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #1C3D5A;
+      margin-bottom: 24px;
+    }
+    .header-left h1 {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #1C3D5A;
+    }
+    .header-left p {
+      font-size: 9pt;
+      color: #555;
+      margin-top: 2px;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 8pt;
+      color: #666;
+    }
+    .header-right .name {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #1C3D5A;
+    }
+    .document-title {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #B87333;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .content {
+      white-space: pre-wrap;
+      font-size: 10pt;
+      line-height: 1.7;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 12px;
+      border-top: 1px solid #ddd;
+      font-size: 8pt;
+      color: #888;
+      text-align: center;
+    }
+    @media print {
+      body { padding: 20px; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <h1>${procedure?.name || ""}</h1>
+      <p>${config.paciente ? "Paciente: " + config.paciente : ""}${config.data_cirurgia ? " | Data: " + new Date(config.data_cirurgia + "T12:00:00").toLocaleDateString("pt-BR") : ""}${config.hospital ? " | " + config.hospital : ""}</p>
+    </div>
+    <div class="header-right">
+      <div class="name">Dr. Felipe de Bulhões</div>
+      <div>CRM-SP 202.291 | RQE 146538</div>
+      <div>Urologista — Instituto D'Or de Ensino e Pesquisa</div>
+    </div>
+  </div>
+  <div class="document-title">${tabLabel}</div>
+  <div class="content">${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+  <div class="footer">
+    Dr. Felipe de Bulhões — CRM-SP 202.291 — Urologia & Andrologia — Instituto D'Or de Ensino e Pesquisa
+  </div>
+  <script>
+    window.onload = function() { window.print(); };
+  </script>
+</body>
+</html>`;
+
+      printWindow.document.write(htmlContent);
+      printWindow.document.close();
+      toast.success("PDF aberto para impressão!");
+    },
+    [getDocText, procedure, config]
+  );
+
+  const exportAllPDF = useCallback(() => {
+    if (!documents || !procedure) return;
+
+    const allTabsList = Object.keys(documents);
+    const allContent = allTabsList
+      .map((tabId) => {
+        const label = allTabs.find((t) => t.id === tabId)?.label || tabId;
+        const text = getDocText(tabId);
+        return `<div class="page-break"><div class="document-title">${label}</div><div class="content">${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div></div>`;
+      })
+      .join("");
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+      toast.error("Popup bloqueado. Permita popups para exportar PDF.");
+      return;
+    }
+
+    const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Documentos - ${procedure.shortName} - ${config.paciente || "Paciente"}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding: 40px;
+      color: #1a1a1a;
+      line-height: 1.6;
+      font-size: 11pt;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #1C3D5A;
+      margin-bottom: 24px;
+    }
+    .header-left h1 {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #1C3D5A;
+    }
+    .header-left p {
+      font-size: 9pt;
+      color: #555;
+      margin-top: 2px;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 8pt;
+      color: #666;
+    }
+    .header-right .name {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #1C3D5A;
+    }
+    .document-title {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #B87333;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .content {
+      white-space: pre-wrap;
+      font-size: 10pt;
+      line-height: 1.7;
+    }
+    .page-break {
+      page-break-before: always;
+      margin-top: 30px;
+      padding-top: 20px;
+    }
+    .page-break:first-child {
+      page-break-before: avoid;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 12px;
+      border-top: 1px solid #ddd;
+      font-size: 8pt;
+      color: #888;
+      text-align: center;
+    }
+    @media print {
+      body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <h1>${procedure.name}</h1>
+      <p>${config.paciente ? "Paciente: " + config.paciente : ""}${config.data_cirurgia ? " | Data: " + new Date(config.data_cirurgia + "T12:00:00").toLocaleDateString("pt-BR") : ""}${config.hospital ? " | " + config.hospital : ""}</p>
+    </div>
+    <div class="header-right">
+      <div class="name">Dr. Felipe de Bulhões</div>
+      <div>CRM-SP 202.291 | RQE 146538</div>
+      <div>Urologista — Instituto D'Or de Ensino e Pesquisa</div>
+    </div>
+  </div>
+  ${allContent}
+  <div class="footer">
+    Dr. Felipe de Bulhões — CRM-SP 202.291 — Urologia & Andrologia — Instituto D'Or de Ensino e Pesquisa
+  </div>
+  <script>
+    window.onload = function() { window.print(); };
+  </script>
+</body>
+</html>`;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+    toast.success("PDF com todos os documentos aberto!");
+  }, [documents, procedure, config, getDocText]);
 
   if (!procedure) {
     return (
@@ -213,6 +494,15 @@ export default function ProcedurePage() {
               >
                 <Copy className="w-3 h-3" />
                 <span className="hidden sm:inline">Copiar Todos</span>
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-7 text-xs gap-1 border-green-500/30 text-green-400 hover:bg-green-500/10"
+                onClick={exportAllPDF}
+              >
+                <Download className="w-3 h-3" />
+                <span className="hidden sm:inline">PDF</span>
               </Button>
               <Button
                 size="sm"
@@ -383,35 +673,94 @@ export default function ProcedurePage() {
                           <tab.icon className="w-3.5 h-3.5 text-primary" />
                         </div>
                         <span className="text-xs font-medium text-foreground">{tab.label}</span>
-                      </div>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="h-7 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
-                        onClick={() =>
-                          copyToClipboard(
-                            documents?.[tab.id as keyof typeof documents] || "",
-                            tab.id
-                          )
-                        }
-                      >
-                        {copiedTab === tab.id ? (
-                          <>
-                            <CheckCircle2 className="w-3 h-3" />
-                            Copiado
-                          </>
-                        ) : (
-                          <>
-                            <ClipboardCopy className="w-3 h-3" />
-                            Copiar
-                          </>
+                        {editedTexts[tab.id] !== undefined && (
+                          <Badge variant="outline" className="text-[9px] h-4 border-yellow-500/40 text-yellow-400">
+                            editado
+                          </Badge>
                         )}
-                      </Button>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        {/* Edit button */}
+                        {editingTab === tab.id ? (
+                          <div className="flex items-center gap-1">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs gap-1 border-red-500/30 text-red-400 hover:bg-red-500/10"
+                              onClick={() => resetEdit(tab.id)}
+                            >
+                              <X className="w-3 h-3" />
+                              Reset
+                            </Button>
+                            <Button
+                              size="sm"
+                              className="h-7 text-xs gap-1 bg-green-600 text-white hover:bg-green-700"
+                              onClick={stopEditing}
+                            >
+                              <CheckCircle2 className="w-3 h-3" />
+                              OK
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 text-xs gap-1 border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
+                            onClick={() => startEditing(tab.id)}
+                          >
+                            <Pencil className="w-3 h-3" />
+                            Editar
+                          </Button>
+                        )}
+                        {/* PDF button */}
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 text-xs gap-1 border-green-500/30 text-green-400 hover:bg-green-500/10"
+                          onClick={() => exportPDF(tab.id)}
+                        >
+                          <Download className="w-3 h-3" />
+                          PDF
+                        </Button>
+                        {/* Copy button */}
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
+                          onClick={() => copyToClipboard(tab.id)}
+                        >
+                          {copiedTab === tab.id ? (
+                            <>
+                              <CheckCircle2 className="w-3 h-3" />
+                              Copiado
+                            </>
+                          ) : (
+                            <>
+                              <ClipboardCopy className="w-3 h-3" />
+                              Copiar
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     </div>
                     <div className="p-4">
-                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-[oklch(16%_.035_247.3)] p-4 rounded-lg border border-border/50">
-                        {documents?.[tab.id as keyof typeof documents] || "Documento não disponível para este procedimento."}
-                      </pre>
+                      {editingTab === tab.id ? (
+                        <textarea
+                          ref={editTextareaRef}
+                          value={editedTexts[tab.id] ?? ""}
+                          onChange={(e) =>
+                            setEditedTexts((prev) => ({
+                              ...prev,
+                              [tab.id]: e.target.value,
+                            }))
+                          }
+                          className="w-full min-h-[400px] text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-[oklch(16%_.035_247.3)] p-4 rounded-lg border border-primary/30 focus:border-primary focus:outline-none resize-y"
+                        />
+                      ) : (
+                        <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-[oklch(16%_.035_247.3)] p-4 rounded-lg border border-border/50">
+                          {getDocText(tab.id) || "Documento não disponível para este procedimento."}
+                        </pre>
+                      )}
                     </div>
                   </Card>
                 </TabsContent>

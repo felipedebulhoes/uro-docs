@@ -1204,6 +1204,488 @@ SINAIS DE ALERTA (Procurar PS):
 RETORNO: ___ dias.`
     }
   },
+  // ═══════════════════════════════════════════════════════════════
+  // 16. NEFRECTOMIA RADICAL
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nefrectomia-radical",
+    name: "Nefrectomia Radical (Videolaparoscópica)",
+    shortName: "Nefrectomia Radical",
+    icon: "🫘",
+    category: "Oncologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à esquerda" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia geral", "anestesia geral + peridural"], defaultValue: "anestesia geral" },
+      { id: "via_acesso", label: "Via de Acesso", type: "select", options: ["Videolaparoscópica transperitoneal", "Videolaparoscópica retroperitoneal", "Aberta (lombotomia)", "Robótica"], defaultValue: "Videolaparoscópica transperitoneal" },
+      { id: "indicacao_nefr", label: "Indicação", type: "select", options: ["Carcinoma de Células Renais (CCR)", "Carcinoma Urotelial de pelve renal", "Rim não funcionante (pionefrose)", "Rim não funcionante (hidronefrose grau IV)"], defaultValue: "Carcinoma de Células Renais (CCR)" },
+      { id: "tamanho_tumor", label: "Tamanho do Tumor (cm)", type: "text", defaultValue: "6", placeholder: "Ex: 6" },
+      { id: "linfadenectomia", label: "Linfadenectomia", type: "select", options: ["Não realizada", "Hilar", "Hilar + para-aórtica/paracaval"], defaultValue: "Não realizada" },
+      { id: "adrenalectomia_conj", label: "Adrenalectomia Ipsilateral", type: "select", options: ["Não", "Sim (tumor polo superior >7cm)"], defaultValue: "Não" },
+      { id: "dreno", label: "Dreno", type: "select", options: ["Penrose no leito renal", "Blake 19Fr no leito renal", "Sem dreno"], defaultValue: "Penrose no leito renal" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento controlado", "Lesão de órgão adjacente"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Nefrectomia Radical ${c.lateralidade}
+Via: ${c.via_acesso}
+Anestesia: ${c.anestesia}
+
+1. Paciente em posição de decúbito lateral (lado contralateral) com coxim.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Pneumoperitônio com agulha de Veress (pressão 15mmHg).
+4. Inserção de trocateres: óptica 10mm (paraumbilical), 12mm (mão dominante), 5mm (auxiliar), 5mm (retração hepática/esplênica).
+5. Rebatimento do cólon (manobra de Cattell-Braasch ${c.lateralidade === "à direita" ? "à direita" : "à esquerda"}).
+6. Identificação e dissecção do pedículo renal.
+7. Ligadura da artéria renal com Hem-o-lok x3 (proximal) e x2 (distal), secção.
+8. Ligadura da veia renal com Hem-o-lok x3 e x2, secção.
+9. Dissecção do rim com gordura perirrenal (fáscia de Gerota íntegra).${c.linfadenectomia !== "Não realizada" ? `\n10. Linfadenectomia ${c.linfadenectomia}.` : ""}${c.adrenalectomia_conj === "Sim (tumor polo superior >7cm)" ? "\n11. Adrenalectomia ipsilateral (tumor polo superior >7cm)." : ""}
+12. Liberação do ureter até cruzamento com vasos ilíacos, clipagem e secção.
+13. Extração da peça em endobag pela ampliação do portal de 12mm.
+14. Revisão hemostática do leito operatório.
+15. ${c.dreno !== "Sem dreno" ? `Posicionamento de dreno ${c.dreno}.` : "Sem dreno."}
+16. Fechamento dos portais por planos.
+
+Peça cirúrgica: Rim ${c.lateralidade} com gordura perirrenal. Tumor de ${c.tamanho_tumor} cm.
+Intercorrências: ${c.complicacoes}.`,
+
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO
+
+1. Dieta zero por 6h → líquida clara → branda conforme aceitação.
+2. SF 0,9% 1000mL IV em 8h + RL 1000mL IV em 12h.
+3. Dipirona 1g IV 6/6h.
+4. Cetoprofeno 100mg IV 12/12h.
+5. Tramadol 100mg IV (diluído em 100mL SF) 8/8h se dor refratária.
+6. Ondansetrona 4mg IV 8/8h se náuseas.
+7. Enoxaparina 40mg SC 1x/dia (iniciar 12h pós-op).
+8. Omeprazol 40mg IV 1x/dia.
+9. Cefazolina 1g IV 8/8h por 24h.
+10. SSVV 4/4h + controle de diurese.
+11. Manter SVD por 24h.
+12. Débito do dreno: anotar volume e aspecto 6/6h.
+13. Deambulação precoce (D1 PO).
+14. HMG controle em 6h e D1 PO.`,
+
+      receitaAlta: (c) => `RECEITA DE ALTA
+
+1. Dipirona 1g VO 6/6h por 5 dias.
+2. Cetoprofeno 100mg VO 12/12h por 5 dias (após refeições).
+3. Tramadol 50mg VO 8/8h se dor intensa (máx 5 dias).
+4. Omeprazol 20mg VO 1x/dia em jejum por 14 dias.
+5. Enoxaparina 40mg SC 1x/dia por 7 dias (se oncológico).
+6. Lactulose 15mL VO 12/12h se constipação.`,
+
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — NEFRECTOMIA RADICAL
+
+CUIDADOS GERAIS:
+• Repouso relativo por 30 dias. Evitar esforço físico e carregar peso >5kg.
+• Caminhadas leves a partir de D3 PO.
+• Retorno às atividades laborais em 30-45 dias (sem esforço físico).
+• Retorno ao exercício físico em 6-8 semanas.
+
+CUIDADOS COM A FERIDA:
+• Manter curativos limpos e secos por 48h.
+• Após 48h, lavar com água e sabão neutro.
+• Retirada de pontos em 10-14 dias.
+
+DIETA:
+• Dieta leve nos primeiros 5 dias.
+• Hidratação abundante (>2L/dia).
+• Evitar alimentos flatulentos nos primeiros 7 dias.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Dor abdominal intensa ou distensão progressiva.
+• Sangramento ativo pela ferida ou hematúria franca.
+• Náuseas/vômitos persistentes.
+• Ausência de eliminação de gases >48h.
+
+RETORNO: ___ dias.
+Anatomopatológico: aguardar resultado em 15-20 dias.`
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // 17. NEFRECTOMIA PARCIAL
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nefrectomia-parcial",
+    name: "Nefrectomia Parcial (Videolaparoscópica/Robótica)",
+    shortName: "Nefrectomia Parcial",
+    icon: "🔪",
+    category: "Oncologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à esquerda" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia geral", "anestesia geral + peridural"], defaultValue: "anestesia geral" },
+      { id: "via_acesso", label: "Via de Acesso", type: "select", options: ["Videolaparoscópica transperitoneal", "Robótica (Da Vinci)", "Aberta (lombotomia)"], defaultValue: "Robótica (Da Vinci)" },
+      { id: "tamanho_tumor", label: "Tamanho do Tumor (cm)", type: "text", defaultValue: "3", placeholder: "Ex: 3" },
+      { id: "localizacao_tumor", label: "Localização do Tumor", type: "select", options: ["Polo superior", "Mesorrenal", "Polo inferior", "Face anterior", "Face posterior", "Hilar"], defaultValue: "Polo inferior" },
+      { id: "renal_score", label: "RENAL Score", type: "text", defaultValue: "6", placeholder: "Ex: 6" },
+      { id: "tempo_isquemia", label: "Tempo de Isquemia (min)", type: "text", defaultValue: "18", placeholder: "Ex: 18" },
+      { id: "tipo_isquemia", label: "Tipo de Isquemia", type: "select", options: ["Isquemia quente (clamp arterial)", "Zero isquemia (sem clamp)", "Isquemia parcial (clamp seletivo)"], defaultValue: "Isquemia quente (clamp arterial)" },
+      { id: "dreno", label: "Dreno", type: "select", options: ["Penrose no leito", "Blake 19Fr", "Sem dreno"], defaultValue: "Penrose no leito" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento controlado", "Abertura de via coletora (rafia)"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Nefrectomia Parcial ${c.lateralidade}
+Via: ${c.via_acesso}
+Anestesia: ${c.anestesia}
+
+1. Paciente em posição de decúbito lateral com coxim.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Pneumoperitônio (15mmHg). Inserção de trocateres conforme técnica habitual.
+4. Rebatimento do cólon e exposição do rim ${c.lateralidade}.
+5. Dissecção do pedículo renal com identificação da artéria renal.
+6. Desencapsulamento do rim na região do tumor.
+7. Demarcação da margem de ressecção com eletrocautério (margem de 5mm).
+8. Clampeamento da artéria renal (${c.tipo_isquemia}).
+9. Ressecção do tumor (${c.tamanho_tumor} cm em ${c.localizacao_tumor}). RENAL Score: ${c.renal_score}.
+10. Rafia do leito tumoral em camada interna (via coletora) com Vicryl 3-0 + Hem-o-lok.
+11. Rafia da cápsula renal com Vicryl 2-0 sobre Surgicel/bolsters + Hem-o-lok.
+12. Desclampeamento arterial. Tempo de isquemia: ${c.tempo_isquemia} minutos.
+13. Revisão hemostática. Hemostáticos tópicos (Floseal/Surgicel).
+14. ${c.dreno !== "Sem dreno" ? `Posicionamento de dreno ${c.dreno}.` : "Sem dreno."}
+15. Extração da peça em endobag.
+16. Fechamento dos portais por planos.
+
+Peça: Tumor renal ${c.lateralidade} (${c.tamanho_tumor} cm, ${c.localizacao_tumor}).
+Intercorrências: ${c.complicacoes}.`,
+
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO
+
+1. Dieta zero por 6h → líquida clara → branda conforme aceitação.
+2. SF 0,9% 1000mL IV em 8h + RL 1000mL IV em 12h.
+3. Dipirona 1g IV 6/6h.
+4. Cetoprofeno 100mg IV 12/12h.
+5. Tramadol 100mg IV 8/8h se dor refratária.
+6. Ondansetrona 4mg IV 8/8h se náuseas.
+7. Enoxaparina 40mg SC 1x/dia (iniciar 12h pós-op).
+8. Omeprazol 40mg IV 1x/dia.
+9. Cefazolina 1g IV 8/8h por 24h.
+10. SSVV 4/4h + controle de diurese.
+11. Manter SVD por 24h.
+12. Débito do dreno: anotar volume e aspecto 6/6h.
+13. Deambulação precoce (D1 PO).
+14. HMG + Cr + Ur controle em 6h e D1 PO.`,
+
+      receitaAlta: (c) => `RECEITA DE ALTA
+
+1. Dipirona 1g VO 6/6h por 5 dias.
+2. Cetoprofeno 100mg VO 12/12h por 5 dias (após refeições).
+3. Tramadol 50mg VO 8/8h se dor intensa (máx 5 dias).
+4. Omeprazol 20mg VO 1x/dia em jejum por 14 dias.
+5. Enoxaparina 40mg SC 1x/dia por 7 dias.
+6. Lactulose 15mL VO 12/12h se constipação.`,
+
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — NEFRECTOMIA PARCIAL
+
+CUIDADOS GERAIS:
+• Repouso relativo por 30 dias. Evitar esforço físico e carregar peso >5kg.
+• Caminhadas leves a partir de D3 PO.
+• Retorno às atividades laborais em 30-45 dias.
+• Retorno ao exercício físico em 6-8 semanas.
+
+CUIDADOS COM A FERIDA:
+• Manter curativos limpos e secos por 48h.
+• Após 48h, lavar com água e sabão neutro.
+• Retirada de pontos em 10-14 dias.
+
+FUNÇÃO RENAL:
+• Hidratação abundante (>2L/dia).
+• Evitar anti-inflamatórios (nefrotóxicos) — usar apenas se prescrito.
+• Creatinina de controle em 7 e 30 dias.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Dor lombar intensa ou abdominal progressiva.
+• Hematúria franca com coágulos.
+• Sangramento ativo pela ferida.
+• Náuseas/vômitos persistentes.
+
+RETORNO: ___ dias.
+Anatomopatológico: aguardar resultado em 15-20 dias.`
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // 18. ADRENALECTOMIA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adrenalectomia",
+    name: "Adrenalectomia Videolaparoscópica",
+    shortName: "Adrenalectomia",
+    icon: "🔶",
+    category: "Oncologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à esquerda" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia geral"], defaultValue: "anestesia geral" },
+      { id: "via_acesso", label: "Via de Acesso", type: "select", options: ["Transperitoneal lateral", "Retroperitoneal posterior"], defaultValue: "Transperitoneal lateral" },
+      { id: "indicacao_adr", label: "Indicação", type: "select", options: ["Feocromocitoma", "Adenoma produtor de aldosterona (Conn)", "Síndrome de Cushing", "Incidentaloma >4cm", "Metástase adrenal", "Carcinoma adrenocortical"], defaultValue: "Incidentaloma >4cm" },
+      { id: "tamanho_lesao", label: "Tamanho da Lesão (cm)", type: "text", defaultValue: "4.5", placeholder: "Ex: 4.5" },
+      { id: "dreno", label: "Dreno", type: "select", options: ["Penrose", "Blake 19Fr", "Sem dreno"], defaultValue: "Sem dreno" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento controlado", "Instabilidade hemodinâmica (feocromocitoma)"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Adrenalectomia ${c.lateralidade}
+Via: ${c.via_acesso}
+Anestesia: ${c.anestesia}
+Indicação: ${c.indicacao_adr}
+
+1. Paciente em posição de decúbito lateral com coxim.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Pneumoperitônio (12-15mmHg). Inserção de trocateres.
+4. ${c.lateralidade === "à direita" ? "Rebatimento hepático com afastador." : "Rebatimento do cólon esquerdo e cauda do pâncreas."}
+5. Identificação da glândula adrenal ${c.lateralidade}.
+6. Dissecção circunferencial da adrenal com preservação do rim.
+7. Identificação e clipagem da veia adrenal central (Hem-o-lok x2 proximal, x1 distal).
+8. Secção da veia adrenal.
+9. Ligadura dos ramos arteriais com clips/energia (LigaSure/Harmônico).
+10. Liberação completa da glândula.
+11. Extração da peça em endobag.
+12. Revisão hemostática do leito.
+13. ${c.dreno !== "Sem dreno" ? `Posicionamento de dreno ${c.dreno}.` : "Sem dreno."}
+14. Fechamento dos portais por planos.
+
+Peça: Glândula adrenal ${c.lateralidade} (${c.tamanho_lesao} cm).
+Intercorrências: ${c.complicacoes}.`,
+
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO
+
+1. Dieta zero por 4h → líquida → branda conforme aceitação.
+2. SF 0,9% 1000mL IV em 8h.
+3. Dipirona 1g IV 6/6h.
+4. Cetoprofeno 100mg IV 12/12h.
+5. Tramadol 50mg IV 8/8h se dor refratária.
+6. Ondansetrona 4mg IV 8/8h se náuseas.
+7. Enoxaparina 40mg SC 1x/dia (iniciar 12h pós-op).
+8. Omeprazol 40mg IV 1x/dia.
+9. Cefazolina 1g IV 8/8h por 24h.
+10. SSVV 2/2h nas primeiras 12h (PA rigorosa se feocromocitoma).
+11. ${c.indicacao_adr === "Feocromocitoma" ? "Monitorização em UTI por 24h. Controle pressórico rigoroso." : "Controle de PA 4/4h."}
+12. HMG controle em 6h.
+13. Deambulação precoce (D1 PO).`,
+
+      receitaAlta: (c) => `RECEITA DE ALTA
+
+1. Dipirona 1g VO 6/6h por 5 dias.
+2. Cetoprofeno 100mg VO 12/12h por 5 dias (após refeições).
+3. Tramadol 50mg VO 8/8h se dor intensa (máx 5 dias).
+4. Omeprazol 20mg VO 1x/dia em jejum por 14 dias.${c.indicacao_adr === "Feocromocitoma" ? "\n5. SUSPENDER alfa-bloqueador (Doxazosina) conforme orientação." : ""}${c.indicacao_adr === "Síndrome de Cushing" ? "\n5. Hidrocortisona conforme protocolo de desmame (endocrinologia)." : ""}`,
+
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — ADRENALECTOMIA
+
+CUIDADOS GERAIS:
+• Repouso relativo por 14-21 dias.
+• Caminhadas leves a partir de D2 PO.
+• Retorno às atividades laborais em 14-30 dias.
+
+CUIDADOS COM A FERIDA:
+• Manter curativos limpos e secos por 48h.
+• Retirada de pontos em 10 dias.
+
+ACOMPANHAMENTO HORMONAL:
+• ${c.indicacao_adr === "Feocromocitoma" ? "Metanefrinas urinárias/plasmáticas em 4 semanas." : c.indicacao_adr === "Síndrome de Cushing" ? "Cortisol sérico seriado. Desmame de corticoide conforme endocrinologia." : c.indicacao_adr.includes("Conn") ? "Potássio e aldosterona em 4 semanas. Avaliar suspensão de anti-hipertensivos." : "Seguimento conforme anatomopatológico."}
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Dor abdominal intensa.
+• Hipotensão ou tontura persistente.
+• Sangramento pela ferida.
+
+RETORNO: ___ dias.`
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // 19. PIELOPLASTIA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "pieloplastia",
+    name: "Pieloplastia (Videolaparoscópica/Robótica)",
+    shortName: "Pieloplastia",
+    icon: "🔧",
+    category: "Endourologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à esquerda" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia geral"], defaultValue: "anestesia geral" },
+      { id: "via_acesso", label: "Via de Acesso", type: "select", options: ["Videolaparoscópica transperitoneal", "Robótica (Da Vinci)"], defaultValue: "Robótica (Da Vinci)" },
+      { id: "tecnica", label: "Técnica", type: "select", options: ["Anderson-Hynes (desmembrada)", "Fenger (Y-V plasty)"], defaultValue: "Anderson-Hynes (desmembrada)" },
+      { id: "vaso_cruzamento", label: "Vaso Anômalo", type: "select", options: ["Sem vaso anômalo", "Vaso polar inferior (transposição anterior)"], defaultValue: "Sem vaso anômalo" },
+      { id: "duplo_j", label: "Cateter Duplo J", type: "select", options: ["Sim - 6Fr x 26cm", "Sim - 7Fr x 26cm"], defaultValue: "Sim - 6Fr x 26cm" },
+      { id: "dreno", label: "Dreno", type: "select", options: ["Penrose perianastomótico", "Blake 19Fr", "Sem dreno"], defaultValue: "Penrose perianastomótico" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento controlado", "Extravasamento mínimo"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Pieloplastia ${c.lateralidade} — Técnica de ${c.tecnica}
+Via: ${c.via_acesso}
+Anestesia: ${c.anestesia}
+
+1. Paciente em posição de decúbito lateral com coxim.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Pneumoperitônio (15mmHg). Inserção de trocateres.
+4. Rebatimento do cólon e exposição da JUP ${c.lateralidade}.
+5. Identificação da junção ureteropélvica (JUP) estenótica.${c.vaso_cruzamento !== "Sem vaso anômalo" ? `\n6. Identificação de ${c.vaso_cruzamento}.` : ""}
+7. Secção do ureter abaixo da estenose. Espatulação lateral do ureter proximal (2cm).
+8. Ressecção da pelve renal redundante.
+9. Anastomose pieloureteral com PDS 4-0 (sutura contínua posterior + anterior).
+10. Teste de estanqueidade da anastomose.
+11. Passagem anterógrada de cateter Duplo J (${c.duplo_j.replace("Sim - ", "")}).${c.vaso_cruzamento !== "Sem vaso anômalo" ? "\n12. Transposição da anastomose anterior ao vaso." : ""}
+13. ${c.dreno !== "Sem dreno" ? `Posicionamento de dreno ${c.dreno}.` : "Sem dreno."}
+14. Fechamento dos portais por planos.
+
+Intercorrências: ${c.complicacoes}.`,
+
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO
+
+1. Dieta zero por 6h → líquida clara → branda conforme aceitação.
+2. SF 0,9% 1000mL IV em 8h + RL 1000mL IV em 12h.
+3. Dipirona 1g IV 6/6h.
+4. Cetoprofeno 100mg IV 12/12h.
+5. Tramadol 50mg IV 8/8h se dor refratária.
+6. Ondansetrona 4mg IV 8/8h se náuseas.
+7. Cefazolina 1g IV 8/8h por 24h.
+8. Omeprazol 40mg IV 1x/dia.
+9. SSVV 4/4h + controle de diurese.
+10. Manter SVD por 48h.
+11. Débito do dreno: anotar volume 6/6h.
+12. Deambulação precoce (D1 PO).
+13. HMG + Cr controle D1 PO.`,
+
+      receitaAlta: (c) => `RECEITA DE ALTA
+
+1. Dipirona 1g VO 6/6h por 5 dias.
+2. Cetoprofeno 100mg VO 12/12h por 5 dias (após refeições).
+3. Tramadol 50mg VO 8/8h se dor intensa (máx 5 dias).
+4. Omeprazol 20mg VO 1x/dia em jejum por 14 dias.
+5. Ciprofloxacino 500mg VO 12/12h por 7 dias (profilaxia com DJ).`,
+
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — PIELOPLASTIA
+
+CUIDADOS GERAIS:
+• Repouso relativo por 21 dias. Evitar esforço físico.
+• Caminhadas leves a partir de D3 PO.
+• Retorno às atividades laborais em 21-30 dias.
+
+CATETER DUPLO J:
+• O cateter DJ será retirado em 4-6 semanas por cistoscopia.
+• Pode causar: urgência miccional, desconforto lombar ao urinar, hematúria leve.
+• Hidratação abundante (>2L/dia).
+
+CUIDADOS COM A FERIDA:
+• Manter curativos limpos e secos por 48h.
+• Retirada de pontos em 10-14 dias.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Dor lombar intensa ou abdominal.
+• Hematúria franca com coágulos.
+• Náuseas/vômitos persistentes.
+• Extravasamento de urina pela ferida.
+
+RETORNO: ___ dias.
+Retirada do DJ: agendar em 4-6 semanas.`
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // 20. REIMPLANTE URETERAL
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "reimplante-ureteral",
+    name: "Reimplante Ureterovesical (Videolaparoscópico/Robótico)",
+    shortName: "Reimplante Ureteral",
+    icon: "🔗",
+    category: "Endourologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["à direita", "à esquerda", "bilateral"], defaultValue: "à esquerda" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia geral"], defaultValue: "anestesia geral" },
+      { id: "via_acesso", label: "Via de Acesso", type: "select", options: ["Videolaparoscópica", "Robótica (Da Vinci)", "Aberta (Pfannenstiel)"], defaultValue: "Robótica (Da Vinci)" },
+      { id: "tecnica_reimp", label: "Técnica", type: "select", options: ["Lich-Gregoir (extravesical)", "Cohen (intravesical)", "Politano-Leadbetter", "Psoas hitch", "Boari flap"], defaultValue: "Lich-Gregoir (extravesical)" },
+      { id: "indicacao_reimp", label: "Indicação", type: "select", options: ["Estenose ureteral distal", "Lesão iatrogênica de ureter", "Refluxo vesicoureteral grau IV-V", "Reimplante pós-nefrectomia de doador"], defaultValue: "Estenose ureteral distal" },
+      { id: "duplo_j", label: "Cateter Duplo J", type: "select", options: ["Sim - 6Fr x 26cm", "Sim - 7Fr x 26cm"], defaultValue: "Sim - 6Fr x 26cm" },
+      { id: "dreno", label: "Dreno", type: "select", options: ["Penrose perivesical", "Blake 19Fr", "Sem dreno"], defaultValue: "Penrose perivesical" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento controlado", "Tensão na anastomose"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Reimplante Ureterovesical ${c.lateralidade} — Técnica de ${c.tecnica_reimp}
+Via: ${c.via_acesso}
+Anestesia: ${c.anestesia}
+Indicação: ${c.indicacao_reimp}
+
+1. Paciente em posição de litotomia/Trendelenburg.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. ${c.via_acesso.includes("Aberta") ? "Incisão de Pfannenstiel." : "Pneumoperitônio (15mmHg). Inserção de trocateres."}
+4. Identificação do ureter ${c.lateralidade} e dissecção até a porção saudável.
+5. Secção do ureter na zona de estenose/lesão. Espatulação.
+6. Mobilização da bexiga.${c.tecnica_reimp.includes("Psoas") ? "\n7. Fixação da bexiga ao tendão do psoas (Psoas hitch) com PDS 2-0." : ""}${c.tecnica_reimp.includes("Boari") ? "\n7. Confecção de flap de Boari (retalho vesical tubularizado)." : ""}
+8. Cistotomia/detrusorrafia conforme técnica de ${c.tecnica_reimp}.
+9. Anastomose ureterovesical com PDS 4-0 (pontos separados), mucosa-mucosa.
+10. Passagem de cateter Duplo J (${c.duplo_j.replace("Sim - ", "")}) anterógrado.
+11. Fechamento da bexiga em 2 planos (Vicryl 3-0 + PDS 2-0).
+12. Teste de estanqueidade vesical.
+13. ${c.dreno !== "Sem dreno" ? `Posicionamento de dreno ${c.dreno}.` : "Sem dreno."}
+14. Fechamento por planos.
+
+Intercorrências: ${c.complicacoes}.`,
+
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO
+
+1. Dieta zero por 6h → líquida → branda conforme aceitação.
+2. SF 0,9% 1000mL IV em 8h + RL 1000mL IV em 12h.
+3. Dipirona 1g IV 6/6h.
+4. Cetoprofeno 100mg IV 12/12h.
+5. Tramadol 50mg IV 8/8h se dor refratária.
+6. Ondansetrona 4mg IV 8/8h se náuseas.
+7. Cefazolina 1g IV 8/8h por 24h.
+8. Omeprazol 40mg IV 1x/dia.
+9. Enoxaparina 40mg SC 1x/dia.
+10. SSVV 4/4h + controle de diurese.
+11. Manter SVD por 7-10 dias (repouso vesical).
+12. Débito do dreno: anotar volume 6/6h.
+13. Deambulação precoce (D1 PO).
+14. HMG + Cr controle D1 PO.`,
+
+      receitaAlta: (c) => `RECEITA DE ALTA
+
+1. Dipirona 1g VO 6/6h por 5 dias.
+2. Cetoprofeno 100mg VO 12/12h por 5 dias (após refeições).
+3. Tramadol 50mg VO 8/8h se dor intensa (máx 5 dias).
+4. Omeprazol 20mg VO 1x/dia em jejum por 14 dias.
+5. Ciprofloxacino 500mg VO 12/12h enquanto SVD in situ.
+6. Manter SVD por ___ dias (retirar conforme orientação).`,
+
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — REIMPLANTE URETERAL
+
+CUIDADOS GERAIS:
+• Repouso relativo por 21-30 dias.
+• Evitar esforço físico e carregar peso >5kg.
+• Caminhadas leves a partir de D3 PO.
+
+SONDA VESICAL:
+• Manter SVD por 7-10 dias (repouso vesical para cicatrização).
+• Cuidados com a sonda: manter bolsa coletora abaixo da bexiga, higiene do meato.
+• Retirada conforme agendamento.
+
+CATETER DUPLO J:
+• Retirada por cistoscopia em 4-6 semanas.
+• Pode causar urgência miccional e desconforto.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Dor abdominal intensa.
+• Urina turva ou fétida.
+• Extravasamento de urina pela ferida.
+• Obstrução da sonda vesical.
+
+RETORNO: ___ dias.
+Retirada da SVD: ___.
+Retirada do DJ: 4-6 semanas.`
+    }
+  },
 ];
 
 export const categories = Array.from(new Set(procedures.map(p => p.category)));
