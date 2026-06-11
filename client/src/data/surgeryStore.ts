@@ -49,6 +49,13 @@ export function addToHistory(record: Omit<SurgeryRecord, "id" | "createdAt">): S
   return newRecord;
 }
 
+// Returns the most recent saved record for a given procedure, or null.
+export function getLastRecordForProcedure(procedureId: string): SurgeryRecord | null {
+  const history = getHistory();
+  // History is stored newest-first (unshift), so the first match is the latest.
+  return history.find((r) => r.procedureId === procedureId) ?? null;
+}
+
 export function removeFromHistory(id: string): void {
   const history = getHistory().filter((r) => r.id !== id);
   localStorage.setItem(HISTORY_KEY, JSON.stringify(history));

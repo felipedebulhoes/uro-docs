@@ -7,6 +7,7 @@ import {
   djTimers,
   userFavorites,
   hospitalPresets,
+  prescriptionTemplates,
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -214,6 +215,45 @@ export async function replaceHospitalPresets(userId: number, rows: PresetRow[]) 
       localId: r.localId,
       name: r.name,
       defaults: r.defaults ?? null,
+    }))
+  );
+}
+
+type PrescriptionTemplateRow = {
+  localId: string;
+  procedureId: string;
+  name: string;
+  content: string;
+  favorite?: boolean;
+};
+
+export async function getPrescriptionTemplates(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(prescriptionTemplates)
+    .where(eq(prescriptionTemplates.userId, userId));
+}
+
+export async function replacePrescriptionTemplates(
+  userId: number,
+  rows: PrescriptionTemplateRow[]
+) {
+  const db = await getDb();
+  if (!db) return;
+  await db
+    .delete(prescriptionTemplates)
+    .where(eq(prescriptionTemplates.userId, userId));
+  if (rows.length === 0) return;
+  await db.insert(prescriptionTemplates).values(
+    rows.map((r) => ({
+      userId,
+      localId: r.localId,
+      procedureId: r.procedureId,
+      name: r.name,
+      content: r.content,
+      favorite: r.favorite ?? false,
     }))
   );
 }

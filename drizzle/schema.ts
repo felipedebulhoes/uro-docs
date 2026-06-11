@@ -84,3 +84,20 @@ export const hospitalPresets = mysqlTable("hospital_presets", {
 
 export type HospitalPreset = typeof hospitalPresets.$inferSelect;
 export type InsertHospitalPreset = typeof hospitalPresets.$inferInsert;
+
+
+/** Custom prescription templates synced to the cloud. */
+export const prescriptionTemplates = mysqlTable("prescription_templates", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  localId: varchar("localId", { length: 64 }).notNull(),
+  procedureId: varchar("procedureId", { length: 128 }).notNull(),
+  name: text("name").notNull(),
+  content: text("content").notNull(),
+  favorite: boolean("favorite").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PrescriptionTemplate = typeof prescriptionTemplates.$inferSelect;
+export type InsertPrescriptionTemplate = typeof prescriptionTemplates.$inferInsert;

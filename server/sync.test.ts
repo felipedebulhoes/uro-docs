@@ -25,6 +25,8 @@ vi.mock("./db", () => {
     replaceDjTimers: vi.fn(async () => undefined),
     replaceFavorites: vi.fn(async () => undefined),
     replaceHospitalPresets: vi.fn(async () => undefined),
+    getPrescriptionTemplates: vi.fn(async () => []),
+    replacePrescriptionTemplates: vi.fn(async () => undefined),
   };
 });
 

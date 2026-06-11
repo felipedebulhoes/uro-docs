@@ -10,6 +10,10 @@ import {
 } from "@/data/surgeryStore";
 import { getPresets, type HospitalPreset } from "@/data/hospitalPresets";
 import {
+  getAllTemplates,
+  type PrescriptionTemplate,
+} from "@/data/prescriptionTemplates";
+import {
   detectSurgeryConflicts,
   detectPresetConflicts,
   mergeFavorites,
@@ -20,6 +24,7 @@ const HISTORY_KEY = "urodocx_history";
 const TIMERS_KEY = "urodocx_dj_timers";
 const FAVORITES_KEY = "urodocx_favorites";
 const PRESETS_KEY = "uro-docs-hospital-presets";
+const TEMPLATES_KEY = "urodocx_prescription_templates";
 const SYNCED_FLAG = "urodocx_cloud_pulled";
 
 /**
@@ -60,6 +65,7 @@ export function useCloudSync() {
   const pushTimers = trpc.sync.pushTimers.useMutation();
   const pushFavorites = trpc.sync.pushFavorites.useMutation();
   const pushPresets = trpc.sync.pushPresets.useMutation();
+  const pushTemplates = trpc.sync.pushPrescriptionTemplates.useMutation();
 
   // ---- Push helpers (mirror full local dataset to the cloud) -------------
   const syncSurgeries = useCallback(() => {
@@ -103,6 +109,18 @@ export function useCloudSync() {
     }));
     pushPresets.mutate({ rows });
   }, [isAuthenticated, pushPresets]);
+
+  const syncTemplates = useCallback(() => {
+    if (!isAuthenticated) return;
+    const rows = getAllTemplates().map((t) => ({
+      localId: t.id,
+      procedureId: t.procedureId,
+      name: t.name,
+      content: t.content,
+      favorite: t.favorite,
+    }));
+    pushTemplates.mutate({ rows });
+  }, [isAuthenticated, pushTemplates]);
 
   /**
    * Core merge routine. Pulls cloud data, merges non-conflicting records by
@@ -193,6 +211,31 @@ export function useCloudSync() {
         JSON.stringify([...localPresets, ...newPresets])
       );
 
+      // ---- Prescription templates (union by localId, no conflict UI) -----
+      const localTemplates = getAllTemplates();
+      const localTemplateIds = new Set(localTemplates.map((t) => t.id));
+      const cloudTemplates: PrescriptionTemplate[] = (
+        cloud.prescriptionTemplates || []
+      )
+        .filter((c: any) => !localTemplateIds.has(c.localId))
+        .map((c: any) => ({
+          id: c.localId,
+          procedureId: c.procedureId,
+          name: c.name,
+          content: c.content,
+          favorite: Boolean(c.favorite),
+          createdAt: c.createdAt
+            ? new Date(c.createdAt).toISOString()
+            : new Date().toISOString(),
+          updatedAt: c.updatedAt
+            ? new Date(c.updatedAt).toISOString()
+            : new Date().toISOString(),
+        }));
+      localStorage.setItem(
+        TEMPLATES_KEY,
+        JSON.stringify([...localTemplates, ...cloudTemplates])
+      );
+
       const ts = new Date().toISOString();
       localStorage.setItem(SYNCED_FLAG, ts);
       setLastSyncedAt(ts);
@@ -203,11 +246,12 @@ export function useCloudSync() {
         syncTimers();
         syncFavorites();
         syncPresets();
+        syncTemplates();
       }
 
       return detected;
     },
-    [utils, syncSurgeries, syncTimers, syncFavorites, syncPresets]
+    [utils, syncSurgeries, syncTimers, syncFavorites, syncPresets, syncTemplates]
   );
 
   /**
@@ -301,5 +345,6 @@ export function useCloudSync() {
     syncTimers,
     syncFavorites,
     syncPresets,
+    syncTemplates,
   };
 }

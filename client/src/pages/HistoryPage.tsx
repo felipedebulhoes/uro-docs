@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getHistory, removeFromHistory, clearHistory, type SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
-import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown } from "lucide-react";
+import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown, BarChart3 } from "lucide-react";
 import { useState, useMemo } from "react";
 import {
   AlertDialog,
@@ -20,12 +20,14 @@ import { Link } from "wouter";
 import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { exportHistoryCSV, exportHistoryPDF } from "@/lib/exportHistory";
+import { HistoryStats } from "@/components/HistoryStats";
 
 export default function HistoryPage() {
   const cloud = useCloudSync();
   const [history, setHistory] = useState<SurgeryRecord[]>(getHistory());
   const [search, setSearch] = useState("");
   const [clearOpen, setClearOpen] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   const filtered = useMemo(() => {
     if (!search) return history;
@@ -103,6 +105,16 @@ export default function HistoryPage() {
                 <Button
                   variant="outline"
                   size="sm"
+                  className={`text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10 ${showStats ? "border-primary/50 text-primary bg-primary/10" : ""}`}
+                  onClick={() => setShowStats((s) => !s)}
+                  title="Estatísticas"
+                >
+                  <BarChart3 className="w-3 h-3 mr-1" />
+                  <span className="hidden sm:inline">Estatísticas</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
                   className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
                   onClick={handleExportCSV}
                   title="Exportar CSV (Excel)"
@@ -136,6 +148,7 @@ export default function HistoryPage() {
       </header>
 
       <main className="flex-1 container py-4">
+        {showStats && history.length > 0 && <HistoryStats records={history} />}
         {history.length > 0 && (
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />

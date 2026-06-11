@@ -30,6 +30,14 @@ const presetSchema = z.object({
   defaults: z.any().optional(),
 });
 
+const prescriptionTemplateSchema = z.object({
+  localId: z.string(),
+  procedureId: z.string(),
+  name: z.string(),
+  content: z.string(),
+  favorite: z.boolean().optional(),
+});
+
 export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
@@ -48,13 +56,15 @@ export const appRouter = router({
   sync: router({
     pull: protectedProcedure.query(async ({ ctx }) => {
       const userId = ctx.user.id;
-      const [surgeries, timers, favorites, presets] = await Promise.all([
-        db.getSurgeryHistory(userId),
-        db.getDjTimers(userId),
-        db.getFavorites(userId),
-        db.getHospitalPresets(userId),
-      ]);
-      return { surgeries, timers, favorites, presets };
+      const [surgeries, timers, favorites, presets, prescriptionTemplates] =
+        await Promise.all([
+          db.getSurgeryHistory(userId),
+          db.getDjTimers(userId),
+          db.getFavorites(userId),
+          db.getHospitalPresets(userId),
+          db.getPrescriptionTemplates(userId),
+        ]);
+      return { surgeries, timers, favorites, presets, prescriptionTemplates };
     }),
 
     pushSurgeries: protectedProcedure
@@ -82,6 +92,13 @@ export const appRouter = router({
       .input(z.object({ rows: z.array(presetSchema) }))
       .mutation(async ({ ctx, input }) => {
         await db.replaceHospitalPresets(ctx.user.id, input.rows);
+        return { success: true } as const;
+      }),
+
+    pushPrescriptionTemplates: protectedProcedure
+      .input(z.object({ rows: z.array(prescriptionTemplateSchema) }))
+      .mutation(async ({ ctx, input }) => {
+        await db.replacePrescriptionTemplates(ctx.user.id, input.rows);
         return { success: true } as const;
       }),
   }),

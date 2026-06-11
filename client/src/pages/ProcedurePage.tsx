@@ -17,7 +17,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { procedures } from "@/data/procedures";
 import { getExtraDocs } from "@/data/extraDocuments";
-import { addToHistory, addDJTimer, addToRecents } from "@/data/surgeryStore";
+import { addToHistory, addDJTimer, addToRecents, getLastRecordForProcedure } from "@/data/surgeryStore";
 import { getPresets, savePreset, deletePreset, type HospitalPreset } from "@/data/hospitalPresets";
 import {
   ArrowLeft,
@@ -45,12 +45,14 @@ import {
   MicOff,
   CalendarPlus,
   Phone,
+  CopyPlus,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { toast } from "sonner";
 import { useSpeechDictation } from "@/hooks/useSpeechDictation";
 import { useCloudSync } from "@/hooks/useCloudSync";
+import { PrescriptionTemplates } from "@/components/PrescriptionTemplates";
 
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
@@ -99,6 +101,23 @@ export default function ProcedurePage() {
   const [presets, setPresets] = useState<HospitalPreset[]>(() => getPresets());
   const [showPresetSave, setShowPresetSave] = useState(false);
   const [presetName, setPresetName] = useState("");
+
+  // Duplicate the last saved record for this procedure into the current config.
+  const duplicateLast = useCallback(() => {
+    if (!procedure) return;
+    const last = getLastRecordForProcedure(procedure.id);
+    if (!last) {
+      toast.error("Nenhum registro anterior deste procedimento.");
+      return;
+    }
+    setConfig((prev) => ({ ...prev, ...last.config }));
+    setEditedTexts({});
+    toast.success(
+      last.patientName
+        ? `Dados de "${last.patientName}" carregados — ajuste o que precisar.`
+        : "Dados do último registro carregados."
+    );
+  }, [procedure]);
 
   const loadPreset = useCallback((preset: HospitalPreset) => {
     setConfig((prev) => ({ ...prev, ...preset.defaults }));
@@ -615,6 +634,16 @@ export default function ProcedurePage() {
               <Button
                 size="sm"
                 variant="outline"
+                className="h-7 text-xs gap-1 border-border text-muted-foreground hover:text-primary hover:border-primary/40"
+                onClick={duplicateLast}
+                title="Carregar os dados do último registro deste procedimento"
+              >
+                <CopyPlus className="w-3 h-3" />
+                <span className="hidden sm:inline">Duplicar último</span>
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
                 className="h-7 text-xs gap-1 border-primary/30 text-primary hover:bg-primary/10"
                 onClick={copyAll}
               >
@@ -1025,6 +1054,19 @@ export default function ProcedurePage() {
                         </Button>
                       </div>
                     </div>
+                    {tab.id === "receitaAlta" && (
+                      <PrescriptionTemplates
+                        procedureId={procedure.id}
+                        currentContent={getDocText("receitaAlta")}
+                        onApply={(content) =>
+                          setEditedTexts((prev) => ({
+                            ...prev,
+                            receitaAlta: content,
+                          }))
+                        }
+                        onChange={() => cloud.syncTemplates()}
+                      />
+                    )}
                     <div className="p-4">
                       {editingTab === tab.id ? (
                         <textarea

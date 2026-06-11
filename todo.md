@@ -9,3 +9,9 @@
 - [x] Campo de nome do paciente no topo dos modelos de receituário (inserção antes de copiar)
 - [x] Botões "Agendar pelo Doctoralia" e "Chamar no WhatsApp" nos scripts/indicações
 - [x] Suporte PWA: manifest, service worker, instalável e offline completo
+
+- [x] Modelos de prescrição personalizáveis por procedimento (criar/editar/favoritar, salvos localmente)
+- [x] Sincronizar modelos de prescrição personalizados na nuvem
+- [x] Painel de estatísticas no Histórico (cirurgias por mês e por tipo de procedimento)
+- [x] Atalho "duplicar último registro" para preencher cirurgia semelhante
+- [x] Testes vitest para nova lógica e validação no navegador
