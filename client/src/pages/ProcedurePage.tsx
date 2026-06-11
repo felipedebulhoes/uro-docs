@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { procedures } from "@/data/procedures";
+import { getExtraDocs } from "@/data/extraDocuments";
+import { addToHistory, addDJTimer, addToRecents } from "@/data/surgeryStore";
 import {
   ArrowLeft,
   ClipboardCopy,
@@ -24,14 +26,28 @@ import {
   Stethoscope,
   HeartPulse,
   CheckCircle2,
+  Copy,
+  Save,
+  Timer,
+  ClipboardList,
+  Package,
+  FlaskConical,
+  FileCheck,
+  ShieldCheck,
 } from "lucide-react";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { useParams, Link } from "wouter";
 import { toast } from "sonner";
 
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
   const procedure = procedures.find((p) => p.id === params.id);
+  const extraDocs = params.id ? getExtraDocs(params.id) : null;
+
+  // Mark as recent
+  useEffect(() => {
+    if (params.id) addToRecents(params.id);
+  }, [params.id]);
 
   const [config, setConfig] = useState<Record<string, string>>(() => {
     if (!procedure) return {};
@@ -39,6 +55,27 @@ export default function ProcedurePage() {
     procedure.configFields.forEach((field) => {
       defaults[field.id] = field.defaultValue;
     });
+    // Add extra fields for patient info
+    defaults.paciente = "";
+    defaults.data_cirurgia = "";
+    defaults.hospital = "";
+    defaults.convenio = "";
+    defaults.carteirinha = "";
+    defaults.data_nascimento = "";
+    defaults.cid = "";
+    defaults.indicacao = "";
+    defaults.historia_clinica = "";
+    defaults.exames_justificativa = "";
+    defaults.horario_internacao = "2h";
+    defaults.data_evolucao = "";
+    defaults.queixa_d1 = "";
+    defaults.ferida_operatoria = "";
+    defaults.diurese = "";
+    defaults.dreno = "";
+    defaults.plano_adicional = "";
+    defaults.numero_guia = "";
+    defaults.carater = "Eletivo";
+    defaults.regime = "Internação (hospital-dia)";
     return defaults;
   });
 
@@ -50,32 +87,73 @@ export default function ProcedurePage() {
 
   const documents = useMemo(() => {
     if (!procedure) return null;
-    return {
+    const base = {
       descricao: procedure.templates.descricao(config),
       posOperatorio: procedure.templates.posOperatorio(config),
       receitaAlta: procedure.templates.receitaAlta(config),
       orientacoes: procedure.templates.orientacoes(config),
     };
-  }, [procedure, config]);
+    const extra = extraDocs
+      ? {
+          preOperatorio: extraDocs.preOperatorio(config),
+          tcle: extraDocs.tcle(config),
+          evolucaoD1: extraDocs.evolucaoD1(config),
+          materiaisOPME: extraDocs.materiaisOPME(config),
+          examesPosOp: extraDocs.examesPosOp(config),
+          relatorioConvenio: extraDocs.relatorioConvenio(config),
+        }
+      : null;
+    return { ...base, ...extra };
+  }, [procedure, config, extraDocs]);
 
-  const copyToClipboard = useCallback(
-    (text: string, tabName: string) => {
-      navigator.clipboard.writeText(text).then(() => {
-        setCopiedTab(tabName);
-        toast.success("Copiado para a área de transferência!");
-        setTimeout(() => setCopiedTab(null), 2000);
+  const copyToClipboard = useCallback((text: string, tabName: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedTab(tabName);
+      toast.success("Copiado!");
+      setTimeout(() => setCopiedTab(null), 2000);
+    });
+  }, []);
+
+  const copyAll = useCallback(() => {
+    if (!documents) return;
+    const allText = Object.values(documents).join("\n\n" + "═".repeat(60) + "\n\n");
+    navigator.clipboard.writeText(allText).then(() => {
+      toast.success("Todos os documentos copiados!");
+    });
+  }, [documents]);
+
+  const saveToHistory = useCallback(() => {
+    if (!procedure) return;
+    addToHistory({
+      procedureId: procedure.id,
+      procedureName: procedure.name,
+      patientName: config.paciente || "Sem nome",
+      date: config.data_cirurgia || new Date().toISOString().split("T")[0],
+      config: { ...config },
+    });
+    toast.success("Salvo no histórico!");
+
+    // Auto-create DJ timer if applicable
+    if (config.duplo_j && config.duplo_j !== "Não implantado") {
+      const insertionDate = config.data_cirurgia || new Date().toISOString().split("T")[0];
+      const removalDate = new Date(insertionDate);
+      removalDate.setDate(removalDate.getDate() + 21); // 3 weeks default
+      addDJTimer({
+        patientName: config.paciente || "Paciente",
+        insertionDate,
+        removalDate: removalDate.toISOString().split("T")[0],
+        lateralidade: config.lateralidade || "",
+        procedureId: procedure.id,
       });
-    },
-    []
-  );
+      toast.info("Timer de DJ criado (retirada em 3 semanas).");
+    }
+  }, [procedure, config]);
 
   if (!procedure) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <p className="text-muted-foreground mb-4">
-            Procedimento não encontrado.
-          </p>
+          <p className="text-muted-foreground mb-4">Procedimento não encontrado.</p>
           <Link href="/">
             <Button variant="outline">Voltar ao Início</Button>
           </Link>
@@ -84,12 +162,25 @@ export default function ProcedurePage() {
     );
   }
 
-  const tabs = [
+  const baseTabs = [
     { id: "descricao", label: "Descrição", icon: FileText },
     { id: "posOperatorio", label: "PO Imediato", icon: HeartPulse },
     { id: "receitaAlta", label: "Receita", icon: Pill },
     { id: "orientacoes", label: "Orientações", icon: Stethoscope },
   ];
+
+  const extraTabs = extraDocs
+    ? [
+        { id: "preOperatorio", label: "Pré-Op", icon: ClipboardList },
+        { id: "tcle", label: "TCLE", icon: ShieldCheck },
+        { id: "evolucaoD1", label: "Evolução D1", icon: FileCheck },
+        { id: "materiaisOPME", label: "OPME", icon: Package },
+        { id: "examesPosOp", label: "Exames", icon: FlaskConical },
+        { id: "relatorioConvenio", label: "Convênio", icon: FileText },
+      ]
+    : [];
+
+  const allTabs = [...baseTabs, ...extraTabs];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -113,12 +204,25 @@ export default function ProcedurePage() {
                 </p>
               </div>
             </div>
-            <Badge
-              variant="outline"
-              className="ml-auto text-[10px] border-primary/30 text-primary bg-primary/5 shrink-0"
-            >
-              {procedure.category}
-            </Badge>
+            <div className="ml-auto flex items-center gap-2 shrink-0">
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-7 text-xs gap-1 border-primary/30 text-primary hover:bg-primary/10"
+                onClick={copyAll}
+              >
+                <Copy className="w-3 h-3" />
+                <span className="hidden sm:inline">Copiar Todos</span>
+              </Button>
+              <Button
+                size="sm"
+                className="h-7 text-xs gap-1 bg-primary text-white hover:bg-primary/90"
+                onClick={saveToHistory}
+              >
+                <Save className="w-3 h-3" />
+                <span className="hidden sm:inline">Salvar</span>
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -133,6 +237,46 @@ export default function ProcedurePage() {
                 Configuração
               </h2>
               <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-1">
+                {/* Patient Name */}
+                <div className="space-y-1.5 pb-3 border-b border-border/50">
+                  <Label className="text-xs text-primary font-semibold">
+                    Paciente
+                  </Label>
+                  <Input
+                    value={config.paciente || ""}
+                    onChange={(e) => updateConfig("paciente", e.target.value)}
+                    placeholder="Nome do paciente"
+                    className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+                  />
+                </div>
+
+                {/* Surgery Date */}
+                <div className="space-y-1.5 pb-3 border-b border-border/50">
+                  <Label className="text-xs text-primary font-semibold">
+                    Data da Cirurgia
+                  </Label>
+                  <Input
+                    type="date"
+                    value={config.data_cirurgia || ""}
+                    onChange={(e) => updateConfig("data_cirurgia", e.target.value)}
+                    className="h-9 text-xs bg-secondary border-border text-foreground"
+                  />
+                </div>
+
+                {/* Hospital */}
+                <div className="space-y-1.5 pb-3 border-b border-border/50">
+                  <Label className="text-xs text-muted-foreground font-medium">
+                    Hospital
+                  </Label>
+                  <Input
+                    value={config.hospital || ""}
+                    onChange={(e) => updateConfig("hospital", e.target.value)}
+                    placeholder="Nome do hospital"
+                    className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+                  />
+                </div>
+
+                {/* Procedure-specific fields */}
                 {procedure.configFields.map((field) => (
                   <div key={field.id} className="space-y-1.5">
                     <Label className="text-xs text-muted-foreground font-medium">
@@ -164,6 +308,51 @@ export default function ProcedurePage() {
                     )}
                   </div>
                 ))}
+
+                {/* Extra fields for convênio */}
+                <details className="pt-2 border-t border-border/50">
+                  <summary className="text-xs text-muted-foreground cursor-pointer hover:text-primary transition-colors">
+                    Campos adicionais (convênio, evolução...)
+                  </summary>
+                  <div className="space-y-3 mt-3">
+                    <div className="space-y-1.5">
+                      <Label className="text-xs text-muted-foreground font-medium">Convênio</Label>
+                      <Input
+                        value={config.convenio || ""}
+                        onChange={(e) => updateConfig("convenio", e.target.value)}
+                        placeholder="Operadora"
+                        className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label className="text-xs text-muted-foreground font-medium">Carteirinha</Label>
+                      <Input
+                        value={config.carteirinha || ""}
+                        onChange={(e) => updateConfig("carteirinha", e.target.value)}
+                        placeholder="Nº carteirinha"
+                        className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label className="text-xs text-muted-foreground font-medium">CID-10</Label>
+                      <Input
+                        value={config.cid || ""}
+                        onChange={(e) => updateConfig("cid", e.target.value)}
+                        placeholder="Ex: N20.1"
+                        className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label className="text-xs text-muted-foreground font-medium">Indicação Clínica</Label>
+                      <Input
+                        value={config.indicacao || ""}
+                        onChange={(e) => updateConfig("indicacao", e.target.value)}
+                        placeholder="Indicação do procedimento"
+                        className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
+                      />
+                    </div>
+                  </div>
+                </details>
               </div>
             </Card>
           </div>
@@ -171,23 +360,21 @@ export default function ProcedurePage() {
           {/* Documents Panel */}
           <div className="lg:col-span-8">
             <Tabs defaultValue="descricao" className="w-full">
-              <TabsList className="w-full bg-card border border-border h-auto p-1 grid grid-cols-4 gap-1">
-                {tabs.map((tab) => (
+              <TabsList className="w-full bg-card border border-border h-auto p-1 flex flex-wrap gap-1">
+                {allTabs.map((tab) => (
                   <TabsTrigger
                     key={tab.id}
                     value={tab.id}
-                    className="text-xs py-2 px-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:border-primary/30 flex flex-col sm:flex-row items-center gap-1 text-muted-foreground"
+                    className="text-[11px] py-1.5 px-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:border-primary/30 flex items-center gap-1 text-muted-foreground"
                   >
-                    <tab.icon className="w-3.5 h-3.5" />
+                    <tab.icon className="w-3 h-3" />
                     <span className="hidden sm:inline">{tab.label}</span>
-                    <span className="sm:hidden text-[10px]">
-                      {tab.label.split(" ")[0]}
-                    </span>
+                    <span className="sm:hidden">{tab.label.split(" ")[0].slice(0, 4)}</span>
                   </TabsTrigger>
                 ))}
               </TabsList>
 
-              {tabs.map((tab) => (
+              {allTabs.map((tab) => (
                 <TabsContent key={tab.id} value={tab.id} className="mt-4">
                   <Card className="bg-card border-border overflow-hidden">
                     <div className="flex items-center justify-between p-3 border-b border-border">
@@ -222,8 +409,8 @@ export default function ProcedurePage() {
                       </Button>
                     </div>
                     <div className="p-4">
-                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-nilo-dark p-4 rounded-lg border border-border/50">
-                        {documents?.[tab.id as keyof typeof documents]}
+                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-[oklch(16%_.035_247.3)] p-4 rounded-lg border border-border/50">
+                        {documents?.[tab.id as keyof typeof documents] || "Documento não disponível para este procedimento."}
                       </pre>
                     </div>
                   </Card>

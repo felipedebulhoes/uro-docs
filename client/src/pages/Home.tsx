@@ -1,19 +1,23 @@
 // Identidade Visual: felipebulhoes.com (dark mode)
 // Background: oklch(18% .04 247.3) | Card: oklch(22% .045 247.3)
 // Primary/Accent: oklch(61.8% .117 60.4) = Cobre #B87333
-// Font: Playfair Display (headings) + Roboto (body)
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { procedures, categories } from "@/data/procedures";
-import { Search, Stethoscope } from "lucide-react";
+import { getFavorites, toggleFavorite, getRecents, getDJTimers } from "@/data/surgeryStore";
+import { Search, Stethoscope, Star, Clock, History, Timer, AlertTriangle } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
+import { toast } from "sonner";
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [favorites, setFavorites] = useState<string[]>(getFavorites());
+  const recents = useMemo(() => getRecents(), []);
+  const activeTimers = useMemo(() => getDJTimers().filter((t) => !t.completed), []);
 
   const filtered = useMemo(() => {
     return procedures.filter((p) => {
@@ -27,9 +31,35 @@ export default function Home() {
     });
   }, [search, activeCategory]);
 
+  const favoriteProcedures = useMemo(
+    () => procedures.filter((p) => favorites.includes(p.id)),
+    [favorites]
+  );
+
+  const recentProcedures = useMemo(
+    () => recents.map((id) => procedures.find((p) => p.id === id)).filter(Boolean),
+    [recents]
+  );
+
+  const handleToggleFavorite = (e: React.MouseEvent, procedureId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const isFav = toggleFavorite(procedureId);
+    setFavorites(getFavorites());
+    toast.success(isFav ? "Adicionado aos favoritos" : "Removido dos favoritos");
+  };
+
+  const overdueTimers = activeTimers.filter((t) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const removal = new Date(t.removalDate);
+    removal.setHours(0, 0, 0, 0);
+    return removal.getTime() < today.getTime();
+  });
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Header — estilo do nav do site */}
+      {/* Header */}
       <header className="border-b border-border/50 sticky top-0 z-50 backdrop-blur-md bg-background/90">
         <div className="container py-4">
           <div className="flex items-center justify-between">
@@ -46,16 +76,84 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <Badge variant="outline" className="hidden sm:inline-flex text-xs text-primary border-primary/30 bg-primary/5 font-medium">
-              IDOR · TCBC
-            </Badge>
+            <div className="flex items-center gap-2">
+              <Link href="/timers">
+                <button className="relative w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150" title="Timers DJ">
+                  <Timer className="w-4 h-4 text-muted-foreground" />
+                  {activeTimers.length > 0 && (
+                    <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-[9px] font-bold text-white flex items-center justify-center">
+                      {activeTimers.length}
+                    </span>
+                  )}
+                </button>
+              </Link>
+              <Link href="/historico">
+                <button className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150" title="Histórico">
+                  <History className="w-4 h-4 text-muted-foreground" />
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Main */}
       <main className="flex-1 container py-6">
-        {/* Search — estilo input do site */}
+        {/* Alert for overdue timers */}
+        {overdueTimers.length > 0 && (
+          <Link href="/timers">
+            <Card className="p-3 mb-4 bg-destructive/10 border-destructive/30 cursor-pointer hover:bg-destructive/15 transition-colors">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-destructive shrink-0" />
+                <p className="text-xs text-destructive font-medium">
+                  {overdueTimers.length} DJ{overdueTimers.length > 1 ? "s" : ""} com retirada atrasada!
+                </p>
+              </div>
+            </Card>
+          </Link>
+        )}
+
+        {/* Favorites */}
+        {favoriteProcedures.length > 0 && !search && !activeCategory && (
+          <div className="mb-6">
+            <h2 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <Star className="w-3.5 h-3.5" />
+              Favoritos
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+              {favoriteProcedures.map((proc) => (
+                <Link key={proc.id} href={`/procedimento/${proc.id}`}>
+                  <Card className="p-2.5 bg-card border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">{proc.icon}</span>
+                      <span className="text-xs font-medium text-foreground truncate">{proc.shortName}</span>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Recents */}
+        {recentProcedures.length > 0 && !search && !activeCategory && (
+          <div className="mb-6">
+            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" />
+              Recentes
+            </h2>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {recentProcedures.map((proc) => proc && (
+                <Link key={proc.id} href={`/procedimento/${proc.id}`}>
+                  <Card className="p-2 px-3 bg-card border-border hover:border-primary/30 transition-all duration-150 cursor-pointer whitespace-nowrap">
+                    <span className="text-xs text-foreground">{proc.icon} {proc.shortName}</span>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Search */}
         <div className="relative mb-6">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
@@ -66,7 +164,7 @@ export default function Home() {
           />
         </div>
 
-        {/* Category Filters — estilo botões do site */}
+        {/* Category Filters */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
           <button
             onClick={() => setActiveCategory(null)}
@@ -93,18 +191,29 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Procedure Grid — cards estilo site (bg-card, border, shadow) */}
+        {/* Procedure Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((procedure) => (
             <Link key={procedure.id} href={`/procedimento/${procedure.id}`}>
-              <Card
-                className="p-4 bg-card border-border hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer group"
-              >
+              <Card className="p-4 bg-card border-border hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer group relative">
+                <button
+                  onClick={(e) => handleToggleFavorite(e, procedure.id)}
+                  className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors"
+                  title={favorites.includes(procedure.id) ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                >
+                  <Star
+                    className={`w-3.5 h-3.5 transition-colors ${
+                      favorites.includes(procedure.id)
+                        ? "text-primary fill-primary"
+                        : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                    }`}
+                  />
+                </button>
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-lg shrink-0 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-150">
                     {procedure.icon}
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 pr-6">
                     <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors duration-150">
                       {procedure.shortName}
                     </h3>
