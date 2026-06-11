@@ -1,6 +1,13 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { summarizeHistory, type StatRecord } from "@/lib/historyStats";
 import { exportStatsPDF } from "@/lib/exportStats";
 import { BarChart3, CalendarRange, Layers, TrendingUp, FileDown } from "lucide-react";
@@ -13,12 +20,22 @@ interface HistoryStatsProps {
 
 export function HistoryStats({ records, periodLabel }: HistoryStatsProps) {
   const summary = useMemo(() => summarizeHistory(records), [records]);
+  // "all" = export every procedure; otherwise a specific procedureId.
+  const [exportProc, setExportProc] = useState("all");
 
   if (summary.total === 0) return null;
 
   const handleExportPDF = () => {
     try {
-      exportStatsPDF(records, periodLabel);
+      if (exportProc === "all") {
+        exportStatsPDF(records, periodLabel);
+      } else {
+        const scoped = records.filter((r) => r.procedureId === exportProc);
+        const label =
+          summary.byType.find((t) => t.procedureId === exportProc)
+            ?.procedureName ?? undefined;
+        exportStatsPDF(scoped, periodLabel, label);
+      }
     } catch (err) {
       if (err instanceof Error && err.message === "popup-blocked") {
         toast.error("Permita pop-ups para gerar o PDF.");
@@ -36,21 +53,40 @@ export function HistoryStats({ records, periodLabel }: HistoryStatsProps) {
 
   return (
     <div className="space-y-4 mb-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
           <BarChart3 className="w-3.5 h-3.5" />
           Estatísticas{periodLabel ? ` — ${periodLabel}` : ""}
         </h2>
-        <Button
-          variant="outline"
-          size="sm"
-          className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
-          onClick={handleExportPDF}
-          title="Exportar estatísticas em PDF"
-        >
-          <FileDown className="w-3 h-3 mr-1" />
-          PDF
-        </Button>
+        <div className="flex items-center gap-2">
+          {/* Scope the PDF export to a single procedure (or all) */}
+          <Select value={exportProc} onValueChange={setExportProc}>
+            <SelectTrigger
+              className="h-8 w-[170px] bg-card border-border text-xs"
+              title="Escolher procedimento para o PDF"
+            >
+              <SelectValue placeholder="Procedimento" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos os procedimentos</SelectItem>
+              {summary.byType.map((t) => (
+                <SelectItem key={t.procedureId} value={t.procedureId}>
+                  {t.procedureName} ({t.count})
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+            onClick={handleExportPDF}
+            title="Exportar estatísticas em PDF"
+          >
+            <FileDown className="w-3 h-3 mr-1" />
+            PDF
+          </Button>
+        </div>
       </div>
 
       {/* Summary cards */}

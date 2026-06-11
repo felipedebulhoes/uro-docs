@@ -5,6 +5,10 @@
 
 import { summarizeHistory, type StatRecord } from "@/lib/historyStats";
 import { openPrintableDocument } from "@/lib/printDocument";
+import {
+  institutionHeaderHtml,
+  INSTITUTION_HEADER_CSS,
+} from "@/lib/institution";
 
 function escapeHtml(s: string): string {
   return s
@@ -58,8 +62,13 @@ function svgBarChart(rows: BarRow[], opts: { labelWidth?: number } = {}): string
  * Generate and open the statistics PDF.
  * @param records Already-filtered records (so the PDF matches the on-screen period).
  * @param periodLabel Optional human label of the active filter (e.g. "jun/2026" or "2026").
+ * @param procedureLabel Optional procedure name when the export is scoped to a single procedure.
  */
-export function exportStatsPDF(records: StatRecord[], periodLabel?: string): void {
+export function exportStatsPDF(
+  records: StatRecord[],
+  periodLabel?: string,
+  procedureLabel?: string
+): void {
   const summary = summarizeHistory(records);
   const stamp = new Date().toLocaleDateString("pt-BR");
 
@@ -93,10 +102,8 @@ export function exportStatsPDF(records: StatRecord[], periodLabel?: string): voi
 <style>
   * { box-sizing: border-box; }
   body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: #1a1a1a; margin: 32px; }
-  header { border-bottom: 2px solid #B87333; padding-bottom: 12px; margin-bottom: 20px; }
-  h1 { font-size: 20px; margin: 0 0 4px; color: #8a5523; }
+${INSTITUTION_HEADER_CSS}
   h2 { font-size: 14px; color: #8a5523; margin: 24px 0 8px; }
-  .meta { font-size: 12px; color: #666; }
   .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 8px; }
   .card { flex: 1 1 130px; border: 1px solid #e0d4c5; border-radius: 8px; padding: 10px 12px; background: #faf6f1; }
   .card .k { font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; }
@@ -117,10 +124,12 @@ export function exportStatsPDF(records: StatRecord[], periodLabel?: string): voi
 </style>
 </head>
 <body>
-  <header>
-    <h1>Estatísticas de Cirurgias</h1>
-    <div class="meta">Dr. Felipe Bulhões — Urologia &middot; Gerado em ${stamp} &middot; ${periodText}</div>
-  </header>
+  ${institutionHeaderHtml(
+    procedureLabel
+      ? `Estatísticas — ${escapeHtml(procedureLabel)}`
+      : "Estatísticas de Cirurgias",
+    `Gerado em ${stamp} &middot; ${periodText}`
+  )}
 
   <div class="cards">
     <div class="card"><div class="k">Total</div><div class="v">${summary.total}</div><div class="s">cirurgias</div></div>

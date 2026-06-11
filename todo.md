@@ -21,3 +21,8 @@
 - [x] Reordenar modelos de prescrição por arrastar (drag-and-drop)
 - [x] Testes vitest da nova lógica e validação no navegador
 - [x] Corrigir exportação PDF bloqueada por Trusted Types (usar Blob URL no lugar de document.write)
+
+- [x] Filtro por intervalo de datas livre (data inicial/final) no Histórico
+- [x] Cabeçalho institucional (nome, CRM, instituição) nos PDFs de histórico e estatísticas
+- [x] Filtro por procedimento na exportação de estatísticas em PDF
+- [x] Testes vitest do intervalo de datas e do escopo por procedimento; validação no navegador

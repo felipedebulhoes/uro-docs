@@ -92,3 +92,26 @@ describe("summarizeHistory", () => {
     expect(summary.byType).toEqual([]);
   });
 });
+
+describe("per-procedure scoped export", () => {
+  // Mirrors what HistoryStats does when the user scopes the PDF to a single
+  // procedure: filter by procedureId, then summarize the subset.
+  const scopeByProcedure = (recs: StatRecord[], procedureId: string) =>
+    recs.filter((r) => r.procedureId === procedureId);
+
+  it("summarizes only the selected procedure", () => {
+    const scoped = scopeByProcedure(sample, "rtu-prostata");
+    const summary = summarizeHistory(scoped);
+    expect(scoped).toHaveLength(3);
+    expect(summary.total).toBe(3);
+    expect(summary.distinctTypes).toBe(1);
+    expect(summary.topType?.procedureId).toBe("rtu-prostata");
+  });
+
+  it("yields an empty summary for a procedure with no records", () => {
+    const scoped = scopeByProcedure(sample, "inexistente");
+    const summary = summarizeHistory(scoped);
+    expect(scoped).toHaveLength(0);
+    expect(summary.total).toBe(0);
+  });
+});

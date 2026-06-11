@@ -1,6 +1,10 @@
 import type { SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
 import { openPrintableDocument } from "@/lib/printDocument";
+import {
+  institutionHeaderHtml,
+  INSTITUTION_HEADER_CSS,
+} from "@/lib/institution";
 
 /**
  * Export helpers for the surgery history.
@@ -83,8 +87,14 @@ export function exportHistoryCSV(records: SurgeryRecord[]): void {
   URL.revokeObjectURL(url);
 }
 
-export function exportHistoryPDF(records: SurgeryRecord[]): void {
+export function exportHistoryPDF(
+  records: SurgeryRecord[],
+  periodLabel?: string
+): void {
   const stamp = new Date().toLocaleDateString("pt-BR");
+  const periodText = periodLabel
+    ? `Período: ${escapeHtml(periodLabel)}`
+    : "Período: todos os registros";
   const rows = records
     .map((r) => {
       const config = Object.entries(r.config || {})
@@ -115,9 +125,7 @@ export function exportHistoryPDF(records: SurgeryRecord[]): void {
 <style>
   * { box-sizing: border-box; }
   body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: #1a1a1a; margin: 32px; }
-  header { border-bottom: 2px solid #B87333; padding-bottom: 12px; margin-bottom: 20px; }
-  h1 { font-size: 20px; margin: 0 0 4px; color: #8a5523; }
-  .meta { font-size: 12px; color: #666; }
+${INSTITUTION_HEADER_CSS}
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
   th { text-align: left; background: #f5efe8; color: #8a5523; padding: 8px; border-bottom: 2px solid #e0d4c5; }
   td { padding: 8px; border-bottom: 1px solid #eee; vertical-align: top; }
@@ -129,12 +137,10 @@ export function exportHistoryPDF(records: SurgeryRecord[]): void {
 </style>
 </head>
 <body>
-  <header>
-    <h1>Histórico de Cirurgias</h1>
-    <div class="meta">Dr. Felipe Bulhões — Urologia &middot; Gerado em ${stamp} &middot; ${
-    records.length
-  } registro(s)</div>
-  </header>
+  ${institutionHeaderHtml(
+    "Histórico de Cirurgias",
+    `Gerado em ${stamp} &middot; ${records.length} registro(s) &middot; ${periodText}`
+  )}
   <table>
     <thead>
       <tr><th>Procedimento</th><th>Paciente</th><th>Data</th><th>Configuração</th></tr>

@@ -78,4 +78,53 @@ export function periodLabelOf(year: string, month: string): string | undefined {
   return `${MONTH_LABELS[parseInt(month, 10) - 1]} (todos os anos)`;
 }
 
+// --- Custom date range (free interval) ---------------------------------------
+
+/** Normalize a date string to a comparable YYYY-MM-DD key, or null if invalid. */
+export function dateKeyOf(dateStr: string): string | null {
+  if (!dateStr) return null;
+  const m = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return null;
+  const y = d.getFullYear();
+  const mo = String(d.getMonth() + 1).padStart(2, "0");
+  const da = String(d.getDate()).padStart(2, "0");
+  return `${y}-${mo}-${da}`;
+}
+
+/**
+ * Filter records by a free date interval. `from`/`to` are YYYY-MM-DD strings
+ * (inclusive); either side may be empty ("") to leave that bound open.
+ */
+export function filterByDateRange<T extends HasDate>(
+  records: T[],
+  from: string,
+  to: string
+): T[] {
+  if (!from && !to) return records;
+  return records.filter((r) => {
+    const k = dateKeyOf(r.date);
+    if (!k) return false;
+    if (from && k < from) return false;
+    if (to && k > to) return false;
+    return true;
+  });
+}
+
+/** Format a YYYY-MM-DD string as DD/MM/YYYY for display. */
+export function formatDateKeyBR(key: string): string {
+  const m = key.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return key;
+  return `${m[3]}/${m[2]}/${m[1]}`;
+}
+
+/** Human label for an active date range, or undefined when both bounds empty. */
+export function rangeLabelOf(from: string, to: string): string | undefined {
+  if (!from && !to) return undefined;
+  if (from && to) return `${formatDateKeyBR(from)} a ${formatDateKeyBR(to)}`;
+  if (from) return `a partir de ${formatDateKeyBR(from)}`;
+  return `até ${formatDateKeyBR(to)}`;
+}
+
 export { MONTH_LABELS };

@@ -33,6 +33,8 @@ import {
   availableMonths as monthsOf,
   filterByPeriod,
   periodLabelOf,
+  filterByDateRange,
+  rangeLabelOf,
   MONTH_LABELS,
 } from "@/lib/periodFilter";
 
@@ -42,8 +44,11 @@ export default function HistoryPage() {
   const [search, setSearch] = useState("");
   const [clearOpen, setClearOpen] = useState(false);
   const [showStats, setShowStats] = useState(false);
+  const [filterMode, setFilterMode] = useState<"month" | "range">("month");
   const [periodYear, setPeriodYear] = useState("all");
   const [periodMonth, setPeriodMonth] = useState("all");
+  const [rangeFrom, setRangeFrom] = useState("");
+  const [rangeTo, setRangeTo] = useState("");
 
   // Years present in the history, descending.
   const availableYears = useMemo(() => yearsOf(history), [history]);
@@ -55,13 +60,19 @@ export default function HistoryPage() {
   );
 
   const byPeriod = useMemo(
-    () => filterByPeriod(history, periodYear, periodMonth),
-    [history, periodYear, periodMonth]
+    () =>
+      filterMode === "range"
+        ? filterByDateRange(history, rangeFrom, rangeTo)
+        : filterByPeriod(history, periodYear, periodMonth),
+    [history, filterMode, periodYear, periodMonth, rangeFrom, rangeTo]
   );
 
   const periodLabel = useMemo(
-    () => periodLabelOf(periodYear, periodMonth),
-    [periodYear, periodMonth]
+    () =>
+      filterMode === "range"
+        ? rangeLabelOf(rangeFrom, rangeTo)
+        : periodLabelOf(periodYear, periodMonth),
+    [filterMode, periodYear, periodMonth, rangeFrom, rangeTo]
   );
 
   const filtered = useMemo(() => {
@@ -91,9 +102,9 @@ export default function HistoryPage() {
   };
 
   const handleExportCSV = () => {
-    if (history.length === 0) return;
+    if (byPeriod.length === 0) return;
     try {
-      exportHistoryCSV(history);
+      exportHistoryCSV(byPeriod);
       toast.success("CSV exportado.");
     } catch {
       toast.error("Falha ao exportar CSV.");
@@ -101,9 +112,9 @@ export default function HistoryPage() {
   };
 
   const handleExportPDF = () => {
-    if (history.length === 0) return;
+    if (byPeriod.length === 0) return;
     try {
-      exportHistoryPDF(history);
+      exportHistoryPDF(byPeriod, periodLabel);
     } catch (err) {
       if (err instanceof Error && err.message === "popup-blocked") {
         toast.error("Permita pop-ups para gerar o PDF.");
@@ -199,42 +210,110 @@ export default function HistoryPage() {
                 className="pl-10 bg-card border-border h-10 text-foreground placeholder:text-muted-foreground text-sm"
               />
             </div>
-            <div className="flex gap-2">
-              <Select
-                value={periodMonth}
-                onValueChange={(v) => setPeriodMonth(v)}
-              >
-                <SelectTrigger className="h-10 w-[110px] bg-card border-border text-sm">
-                  <SelectValue placeholder="Mês" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Todo mês</SelectItem>
-                  {availableMonths.map((mm) => (
-                    <SelectItem key={mm} value={mm}>
-                      {MONTH_LABELS[parseInt(mm, 10) - 1]}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select
-                value={periodYear}
-                onValueChange={(v) => {
-                  setPeriodYear(v);
-                  setPeriodMonth("all");
-                }}
-              >
-                <SelectTrigger className="h-10 w-[110px] bg-card border-border text-sm">
-                  <SelectValue placeholder="Ano" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Todo ano</SelectItem>
-                  {availableYears.map((yy) => (
-                    <SelectItem key={yy} value={yy}>
-                      {yy}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Mode toggle: month/year vs free date range */}
+              <div className="flex rounded-md border border-border bg-card overflow-hidden h-10 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setFilterMode("month")}
+                  className={`px-3 text-xs font-medium transition-colors ${
+                    filterMode === "month"
+                      ? "bg-primary/15 text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  title="Filtrar por mês/ano"
+                >
+                  Mês/Ano
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFilterMode("range")}
+                  className={`px-3 text-xs font-medium border-l border-border transition-colors ${
+                    filterMode === "range"
+                      ? "bg-primary/15 text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  title="Filtrar por intervalo de datas"
+                >
+                  Intervalo
+                </button>
+              </div>
+
+              {filterMode === "month" ? (
+                <>
+                  <Select
+                    value={periodMonth}
+                    onValueChange={(v) => setPeriodMonth(v)}
+                  >
+                    <SelectTrigger className="h-10 w-[110px] bg-card border-border text-sm">
+                      <SelectValue placeholder="Mês" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todo mês</SelectItem>
+                      {availableMonths.map((mm) => (
+                        <SelectItem key={mm} value={mm}>
+                          {MONTH_LABELS[parseInt(mm, 10) - 1]}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    value={periodYear}
+                    onValueChange={(v) => {
+                      setPeriodYear(v);
+                      setPeriodMonth("all");
+                    }}
+                  >
+                    <SelectTrigger className="h-10 w-[110px] bg-card border-border text-sm">
+                      <SelectValue placeholder="Ano" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todo ano</SelectItem>
+                      {availableYears.map((yy) => (
+                        <SelectItem key={yy} value={yy}>
+                          {yy}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </>
+              ) : (
+                <div className="flex items-center gap-1.5">
+                  <div className="flex flex-col">
+                    <span className="text-[9px] uppercase tracking-wide text-muted-foreground/70 px-0.5">De</span>
+                    <Input
+                      type="date"
+                      value={rangeFrom}
+                      max={rangeTo || undefined}
+                      onChange={(e) => setRangeFrom(e.target.value)}
+                      className="h-8 w-[150px] bg-card border-border text-sm"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[9px] uppercase tracking-wide text-muted-foreground/70 px-0.5">Até</span>
+                    <Input
+                      type="date"
+                      value={rangeTo}
+                      min={rangeFrom || undefined}
+                      onChange={(e) => setRangeTo(e.target.value)}
+                      className="h-8 w-[150px] bg-card border-border text-sm"
+                    />
+                  </div>
+                  {(rangeFrom || rangeTo) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setRangeFrom("");
+                        setRangeTo("");
+                      }}
+                      className="self-end h-8 px-2 text-[11px] text-muted-foreground hover:text-primary transition-colors"
+                      title="Limpar intervalo"
+                    >
+                      Limpar
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}

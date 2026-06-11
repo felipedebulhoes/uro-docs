@@ -5,6 +5,10 @@ import {
   availableMonths,
   filterByPeriod,
   periodLabelOf,
+  dateKeyOf,
+  filterByDateRange,
+  formatDateKeyBR,
+  rangeLabelOf,
 } from "./periodFilter";
 
 const recs = [
@@ -67,5 +71,55 @@ describe("periodLabelOf", () => {
   });
   it("formats month across all years", () => {
     expect(periodLabelOf("all", "06")).toBe("jun (todos os anos)");
+  });
+});
+
+describe("dateKeyOf", () => {
+  it("normalizes leading YYYY-MM-DD", () => {
+    expect(dateKeyOf("2026-06-15T10:00:00Z")).toBe("2026-06-15");
+  });
+  it("returns null for invalid", () => {
+    expect(dateKeyOf("")).toBeNull();
+    expect(dateKeyOf("nope")).toBeNull();
+  });
+});
+
+describe("filterByDateRange", () => {
+  it("returns all when both bounds empty", () => {
+    expect(filterByDateRange(recs, "", "")).toHaveLength(5);
+  });
+  it("filters inclusive interval", () => {
+    // 2026-05-20 .. 2026-06-15 inclusive => 3 records
+    expect(filterByDateRange(recs, "2026-05-20", "2026-06-15")).toHaveLength(3);
+  });
+  it("respects open start bound (to only)", () => {
+    expect(filterByDateRange(recs, "", "2025-12-31")).toHaveLength(1);
+  });
+  it("respects open end bound (from only)", () => {
+    expect(filterByDateRange(recs, "2026-06-01", "")).toHaveLength(2);
+  });
+  it("excludes records with invalid dates", () => {
+    expect(filterByDateRange(recs, "2000-01-01", "2100-01-01")).toHaveLength(4);
+  });
+});
+
+describe("formatDateKeyBR", () => {
+  it("formats YYYY-MM-DD as DD/MM/YYYY", () => {
+    expect(formatDateKeyBR("2026-06-15")).toBe("15/06/2026");
+  });
+});
+
+describe("rangeLabelOf", () => {
+  it("is undefined when both empty", () => {
+    expect(rangeLabelOf("", "")).toBeUndefined();
+  });
+  it("formats full interval", () => {
+    expect(rangeLabelOf("2026-05-01", "2026-06-30")).toBe(
+      "01/05/2026 a 30/06/2026"
+    );
+  });
+  it("formats open-ended bounds", () => {
+    expect(rangeLabelOf("2026-05-01", "")).toBe("a partir de 01/05/2026");
+    expect(rangeLabelOf("", "2026-06-30")).toBe("até 30/06/2026");
   });
 });
