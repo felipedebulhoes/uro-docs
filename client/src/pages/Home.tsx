@@ -1,6 +1,6 @@
-// Identidade Visual: Dr. Felipe Bulhões
-// Navy escuro + Cobre/Dourado (#B87333) + Roboto
-// Estilo: Premium, sofisticado, dark navy com acentos cobre
+// Identidade Visual Oficial: Dr. Felipe de Bulhões (Agência POD)
+// Azul do Nilo + Tom de Nuvem + Branco | Playfair Display + Roboto
+// Tema CLARO, premium, institucional, sofisticado
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -27,17 +27,17 @@ export default function Home() {
   }, [search, activeCategory]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="border-b border-border/40 bg-card/60 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-border bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="container py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center border border-primary/30">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
                 <Stethoscope className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h1 className="text-lg font-bold tracking-tight">
+                <h1 className="text-xl font-bold tracking-tight text-primary font-[family-name:var(--font-heading)]">
                   UroDocx
                 </h1>
                 <p className="text-xs text-muted-foreground">
@@ -45,7 +45,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <Badge variant="outline" className="hidden sm:inline-flex text-xs text-primary/80 border-primary/30 bg-primary/5">
+            <Badge variant="outline" className="hidden sm:inline-flex text-xs text-primary border-primary/30 bg-primary/5 font-medium">
               IDOR · TCBC
             </Badge>
           </div>
@@ -61,7 +61,7 @@ export default function Home() {
             placeholder="Buscar procedimento..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-card border-border/40 h-11 focus:border-primary/50 focus:ring-primary/20"
+            className="pl-10 bg-white border-border h-11 shadow-sm focus:border-primary/50 focus:ring-primary/20"
           />
         </div>
 
@@ -71,8 +71,8 @@ export default function Home() {
             onClick={() => setActiveCategory(null)}
             className={`px-3.5 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 ${
               activeCategory === null
-                ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary"
             }`}
           >
             Todos
@@ -83,8 +83,8 @@ export default function Home() {
               onClick={() => setActiveCategory(cat)}
               className={`px-3.5 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                 activeCategory === cat
-                  ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:text-foreground"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary"
               }`}
             >
               {cat}
@@ -94,14 +94,13 @@ export default function Home() {
 
         {/* Procedure Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((procedure, index) => (
+          {filtered.map((procedure) => (
             <Link key={procedure.id} href={`/procedimento/${procedure.id}`}>
               <Card
-                className="p-4 bg-card border-border/40 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer group"
-                style={{ animationDelay: `${index * 50}ms` }}
+                className="p-4 bg-white border-border hover:border-primary/40 hover:shadow-md transition-all duration-200 cursor-pointer group"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-lg shrink-0 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-150">
+                  <div className="w-10 h-10 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center text-lg shrink-0 group-hover:bg-primary/12 group-hover:scale-105 transition-all duration-150">
                     {procedure.icon}
                   </div>
                   <div className="min-w-0">
@@ -132,7 +131,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 py-4">
+      <footer className="border-t border-border py-4 bg-white/50">
         <div className="container">
           <p className="text-xs text-muted-foreground text-center">
             Dr. Felipe Bulhões — Urologista (Instituto D'Or) · Cirurgião Geral TCBC · CRM-SP 202.291

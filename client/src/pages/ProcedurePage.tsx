@@ -1,5 +1,5 @@
-// Identidade Visual: Dr. Felipe Bulhões
-// Navy escuro + Cobre/Dourado (#B87333) + Roboto
+// Identidade Visual Oficial: Dr. Felipe de Bulhões (Agência POD)
+// Azul do Nilo + Tom de Nuvem + Branco | Tema CLARO
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,7 +32,6 @@ export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
   const procedure = procedures.find((p) => p.id === params.id);
 
-  // Initialize config with default values
   const [config, setConfig] = useState<Record<string, string>>(() => {
     if (!procedure) return {};
     const defaults: Record<string, string> = {};
@@ -48,7 +47,6 @@ export default function ProcedurePage() {
     setConfig((prev) => ({ ...prev, [fieldId]: value }));
   }, []);
 
-  // Generate documents based on current config
   const documents = useMemo(() => {
     if (!procedure) return null;
     return {
@@ -72,7 +70,7 @@ export default function ProcedurePage() {
 
   if (!procedure) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <p className="text-muted-foreground mb-4">
             Procedimento não encontrado.
@@ -97,40 +95,40 @@ export default function ProcedurePage() {
       id: "posOperatorio",
       label: "PO Imediato",
       icon: HeartPulse,
-      color: "text-emerald-400",
-      bgColor: "bg-green-400/10",
+      color: "text-emerald-600",
+      bgColor: "bg-emerald-50",
     },
     {
       id: "receitaAlta",
       label: "Receita",
       icon: Pill,
-      color: "text-amber-400",
-      bgColor: "bg-amber-400/10",
+      color: "text-amber-600",
+      bgColor: "bg-amber-50",
     },
     {
       id: "orientacoes",
       label: "Orientações",
       icon: Stethoscope,
-      color: "text-sky-400",
-      bgColor: "bg-sky-400/10",
+      color: "text-sky-600",
+      bgColor: "bg-sky-50",
     },
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="border-b border-border/40 bg-card/60 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-border bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="container py-3">
           <div className="flex items-center gap-3">
             <Link href="/">
-              <button className="w-8 h-8 rounded-lg bg-secondary border border-border/40 flex items-center justify-center hover:bg-primary/10 hover:border-primary/30 transition-all duration-150">
-                <ArrowLeft className="w-4 h-4" />
+              <button className="w-8 h-8 rounded-lg bg-secondary border border-border flex items-center justify-center hover:bg-primary/10 hover:border-primary/30 transition-all duration-150">
+                <ArrowLeft className="w-4 h-4 text-foreground" />
               </button>
             </Link>
             <div className="flex items-center gap-2 min-w-0">
               <span className="text-xl">{procedure.icon}</span>
               <div className="min-w-0">
-                <h1 className="text-sm font-bold truncate">
+                <h1 className="text-sm font-bold truncate text-foreground font-[family-name:var(--font-heading)]">
                   {procedure.shortName}
                 </h1>
                 <p className="text-xs text-muted-foreground truncate">
@@ -140,7 +138,7 @@ export default function ProcedurePage() {
             </div>
             <Badge
               variant="outline"
-              className="ml-auto text-[10px] border-primary/30 text-primary/70 shrink-0"
+              className="ml-auto text-[10px] border-primary/30 text-primary shrink-0"
             >
               {procedure.category}
             </Badge>
@@ -152,15 +150,15 @@ export default function ProcedurePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Config Panel */}
           <div className="lg:col-span-4">
-            <Card className="p-4 bg-card border-border/40 sticky top-20">
-              <h2 className="text-sm font-bold mb-4 text-primary flex items-center gap-2">
+            <Card className="p-4 bg-white border-border shadow-sm sticky top-20">
+              <h2 className="text-sm font-bold mb-4 text-primary font-[family-name:var(--font-heading)] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-primary" />
                 Configuração
               </h2>
               <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-1">
                 {procedure.configFields.map((field) => (
                   <div key={field.id} className="space-y-1.5">
-                    <Label className="text-xs text-muted-foreground">
+                    <Label className="text-xs text-muted-foreground font-medium">
                       {field.label}
                     </Label>
                     {field.type === "select" && field.options ? (
@@ -168,7 +166,7 @@ export default function ProcedurePage() {
                         value={config[field.id] || field.defaultValue}
                         onValueChange={(val) => updateConfig(field.id, val)}
                       >
-                        <SelectTrigger className="h-9 text-xs bg-secondary border-border/40">
+                        <SelectTrigger className="h-9 text-xs bg-secondary/50 border-border">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -184,7 +182,7 @@ export default function ProcedurePage() {
                         value={config[field.id] || ""}
                         onChange={(e) => updateConfig(field.id, e.target.value)}
                         placeholder={field.placeholder}
-                        className="h-9 text-xs bg-secondary border-border/40"
+                        className="h-9 text-xs bg-secondary/50 border-border"
                       />
                     )}
                   </div>
@@ -196,12 +194,12 @@ export default function ProcedurePage() {
           {/* Documents Panel */}
           <div className="lg:col-span-8">
             <Tabs defaultValue="descricao" className="w-full">
-              <TabsList className="w-full bg-card border border-border/40 h-auto p-1 grid grid-cols-4 gap-1">
+              <TabsList className="w-full bg-white border border-border h-auto p-1 grid grid-cols-4 gap-1 shadow-sm">
                 {tabs.map((tab) => (
                   <TabsTrigger
                     key={tab.id}
                     value={tab.id}
-                    className="text-xs py-2 px-2 data-[state=active]:bg-secondary data-[state=active]:text-foreground flex flex-col sm:flex-row items-center gap-1"
+                    className="text-xs py-2 px-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:shadow-sm flex flex-col sm:flex-row items-center gap-1"
                   >
                     <tab.icon className={`w-3.5 h-3.5 ${tab.color}`} />
                     <span className="hidden sm:inline">{tab.label}</span>
@@ -214,15 +212,15 @@ export default function ProcedurePage() {
 
               {tabs.map((tab) => (
                 <TabsContent key={tab.id} value={tab.id} className="mt-4">
-                  <Card className="bg-card border-border/40 overflow-hidden">
-                    <div className="flex items-center justify-between p-3 border-b border-border/40">
+                  <Card className="bg-white border-border shadow-sm overflow-hidden">
+                    <div className="flex items-center justify-between p-3 border-b border-border">
                       <div className="flex items-center gap-2">
                         <div
                           className={`w-6 h-6 rounded flex items-center justify-center ${tab.bgColor}`}
                         >
                           <tab.icon className={`w-3.5 h-3.5 ${tab.color}`} />
                         </div>
-                        <span className="text-xs font-medium">{tab.label}</span>
+                        <span className="text-xs font-medium text-foreground">{tab.label}</span>
                       </div>
                       <Button
                         size="sm"
@@ -237,7 +235,7 @@ export default function ProcedurePage() {
                       >
                         {copiedTab === tab.id ? (
                           <>
-                            <CheckCircle2 className="w-3 h-3 text-green-400" />
+                            <CheckCircle2 className="w-3 h-3" />
                             Copiado
                           </>
                         ) : (
@@ -249,7 +247,7 @@ export default function ProcedurePage() {
                       </Button>
                     </div>
                     <div className="p-4">
-                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90">
+                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-secondary/30 p-4 rounded-lg border border-border/50">
                         {documents?.[tab.id as keyof typeof documents]}
                       </pre>
                     </div>
