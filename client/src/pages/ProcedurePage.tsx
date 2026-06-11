@@ -1,6 +1,6 @@
-// Identidade Visual Oficial: Dr. Felipe de Bulhões (Agência POD)
-// Azul do Nilo #1C3D5A (fundo) + Cobre #B87333 (accent)
-// Dark mode premium, institucional
+// Identidade Visual: felipebulhoes.com (dark mode)
+// Background: oklch(18% .04 247.3) | Card: oklch(22% .045 247.3)
+// Primary/Accent: oklch(61.8% .117 60.4) = Cobre #B87333
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -85,51 +85,27 @@ export default function ProcedurePage() {
   }
 
   const tabs = [
-    {
-      id: "descricao",
-      label: "Descrição",
-      icon: FileText,
-      color: "text-copper",
-      bgColor: "bg-copper/15",
-    },
-    {
-      id: "posOperatorio",
-      label: "PO Imediato",
-      icon: HeartPulse,
-      color: "text-emerald-400",
-      bgColor: "bg-emerald-400/15",
-    },
-    {
-      id: "receitaAlta",
-      label: "Receita",
-      icon: Pill,
-      color: "text-amber-400",
-      bgColor: "bg-amber-400/15",
-    },
-    {
-      id: "orientacoes",
-      label: "Orientações",
-      icon: Stethoscope,
-      color: "text-sky-400",
-      bgColor: "bg-sky-400/15",
-    },
+    { id: "descricao", label: "Descrição", icon: FileText },
+    { id: "posOperatorio", label: "PO Imediato", icon: HeartPulse },
+    { id: "receitaAlta", label: "Receita", icon: Pill },
+    { id: "orientacoes", label: "Orientações", icon: Stethoscope },
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-nilo-dark/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/50 sticky top-0 z-50 backdrop-blur-md bg-background/90">
         <div className="container py-3">
           <div className="flex items-center gap-3">
             <Link href="/">
-              <button className="w-8 h-8 rounded-lg bg-secondary border border-border flex items-center justify-center hover:bg-copper/15 hover:border-copper/30 transition-all duration-150">
+              <button className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150">
                 <ArrowLeft className="w-4 h-4 text-foreground" />
               </button>
             </Link>
             <div className="flex items-center gap-2 min-w-0">
               <span className="text-xl">{procedure.icon}</span>
               <div className="min-w-0">
-                <h1 className="text-sm font-bold truncate text-foreground font-[family-name:var(--font-heading)]">
+                <h1 className="text-sm font-bold truncate text-foreground">
                   {procedure.shortName}
                 </h1>
                 <p className="text-xs text-muted-foreground truncate">
@@ -139,7 +115,7 @@ export default function ProcedurePage() {
             </div>
             <Badge
               variant="outline"
-              className="ml-auto text-[10px] border-copper/30 text-copper shrink-0"
+              className="ml-auto text-[10px] border-primary/30 text-primary bg-primary/5 shrink-0"
             >
               {procedure.category}
             </Badge>
@@ -152,8 +128,8 @@ export default function ProcedurePage() {
           {/* Config Panel */}
           <div className="lg:col-span-4">
             <Card className="p-4 bg-card border-border sticky top-20">
-              <h2 className="text-sm font-bold mb-4 text-copper font-[family-name:var(--font-heading)] flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-copper" />
+              <h2 className="text-sm font-bold mb-4 text-primary flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary" />
                 Configuração
               </h2>
               <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-1">
@@ -167,10 +143,10 @@ export default function ProcedurePage() {
                         value={config[field.id] || field.defaultValue}
                         onValueChange={(val) => updateConfig(field.id, val)}
                       >
-                        <SelectTrigger className="h-9 text-xs bg-secondary/50 border-border text-foreground">
+                        <SelectTrigger className="h-9 text-xs bg-secondary border-border text-foreground">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-card border-border">
+                        <SelectContent className="bg-card border-border text-foreground">
                           {field.options.map((opt) => (
                             <SelectItem key={opt} value={opt} className="text-xs">
                               {opt}
@@ -183,7 +159,7 @@ export default function ProcedurePage() {
                         value={config[field.id] || ""}
                         onChange={(e) => updateConfig(field.id, e.target.value)}
                         placeholder={field.placeholder}
-                        className="h-9 text-xs bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground"
+                        className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
                       />
                     )}
                   </div>
@@ -200,9 +176,9 @@ export default function ProcedurePage() {
                   <TabsTrigger
                     key={tab.id}
                     value={tab.id}
-                    className="text-xs py-2 px-2 data-[state=active]:bg-copper/15 data-[state=active]:text-copper data-[state=active]:shadow-sm flex flex-col sm:flex-row items-center gap-1 text-muted-foreground"
+                    className="text-xs py-2 px-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:border-primary/30 flex flex-col sm:flex-row items-center gap-1 text-muted-foreground"
                   >
-                    <tab.icon className={`w-3.5 h-3.5`} />
+                    <tab.icon className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline">{tab.label}</span>
                     <span className="sm:hidden text-[10px]">
                       {tab.label.split(" ")[0]}
@@ -216,17 +192,15 @@ export default function ProcedurePage() {
                   <Card className="bg-card border-border overflow-hidden">
                     <div className="flex items-center justify-between p-3 border-b border-border">
                       <div className="flex items-center gap-2">
-                        <div
-                          className={`w-6 h-6 rounded flex items-center justify-center ${tab.bgColor}`}
-                        >
-                          <tab.icon className={`w-3.5 h-3.5 ${tab.color}`} />
+                        <div className="w-6 h-6 rounded flex items-center justify-center bg-primary/10">
+                          <tab.icon className="w-3.5 h-3.5 text-primary" />
                         </div>
                         <span className="text-xs font-medium text-foreground">{tab.label}</span>
                       </div>
                       <Button
                         size="sm"
                         variant="outline"
-                        className="h-7 text-xs gap-1.5 border-copper/30 text-copper hover:bg-copper/15 hover:text-copper"
+                        className="h-7 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
                         onClick={() =>
                           copyToClipboard(
                             documents?.[tab.id as keyof typeof documents] || "",
@@ -248,7 +222,7 @@ export default function ProcedurePage() {
                       </Button>
                     </div>
                     <div className="p-4">
-                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-nilo-dark/50 p-4 rounded-lg border border-border/50">
+                      <pre className="text-xs leading-relaxed whitespace-pre-wrap font-[family-name:var(--font-mono)] text-foreground/90 bg-nilo-dark p-4 rounded-lg border border-border/50">
                         {documents?.[tab.id as keyof typeof documents]}
                       </pre>
                     </div>

@@ -43,66 +43,68 @@
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-sans: 'Roboto', system-ui, sans-serif;
-  /* Custom brand colors for direct use */
-  --color-nilo: oklch(0.32 0.06 240);
-  --color-nilo-light: oklch(0.38 0.07 240);
-  --color-nilo-dark: oklch(0.25 0.05 240);
-  --color-copper: oklch(0.60 0.13 55);
-  --color-copper-light: oklch(0.68 0.12 55);
+  /* Custom brand colors — extraídas de felipebulhoes.com dark mode */
+  --color-nilo: oklch(0.22 0.045 247.3);
+  --color-nilo-light: oklch(0.28 0.04 247.3);
+  --color-nilo-dark: oklch(0.18 0.04 247.3);
+  --color-copper: oklch(0.618 0.117 60.4);
+  --color-copper-light: oklch(0.70 0.10 60.4);
 }
 
 /* 
  * Identidade Visual Oficial: Dr. Felipe de Bulhões (Agência POD)
- * Azul do Nilo #1C3D5A (fundo principal) + Cobre #B87333 (accent/CTA)
- * Tom de Nuvem (cinza claro para textos secundários)
- * Tipografia: Calingstone/Playfair Display (display) + Roboto (corpo)
- * Estilo: Dark mode premium, institucional, sofisticado
- * Referência: felipebulhoes.com
+ * Cores OKLCH extraídas diretamente de felipebulhoes.com (dark mode)
+ * --background: oklch(18% .04 247.3) — navy profundo
+ * --card: oklch(22% .045 247.3) — navy card
+ * --foreground: oklch(95% .005 247.3) — branco azulado
+ * --primary/accent: oklch(61.8% .117 60.4) — Cobre #B87333
+ * --border: oklch(35% .04 247.3) — borda sutil
+ * Tipografia: Callingstone → Playfair Display (display) + Roboto (corpo)
  */
 :root {
   --radius: 0.5rem;
-  /* Fundo: Azul do Nilo escuro (#1C3D5A) */
-  --background: oklch(0.32 0.06 240);
-  --foreground: oklch(0.95 0.005 90);
-  /* Card: Azul do Nilo um pouco mais claro */
-  --card: oklch(0.28 0.05 240);
-  --card-foreground: oklch(0.93 0.005 90);
-  --popover: oklch(0.28 0.05 240);
-  --popover-foreground: oklch(0.93 0.005 90);
-  /* Primary: Cobre/Dourado (#B87333) — accent, CTAs */
-  --primary: oklch(0.60 0.13 55);
+  /* Fundo: oklch(18% .04 247.3) — Navy profundo do site */
+  --background: oklch(0.18 0.04 247.3);
+  --foreground: oklch(0.95 0.005 247.3);
+  /* Card: oklch(22% .045 247.3) */
+  --card: oklch(0.22 0.045 247.3);
+  --card-foreground: oklch(0.95 0.005 247.3);
+  --popover: oklch(0.22 0.045 247.3);
+  --popover-foreground: oklch(0.95 0.005 247.3);
+  /* Primary: oklch(61.8% .117 60.4) — Cobre */
+  --primary: oklch(0.618 0.117 60.4);
   --primary-foreground: oklch(0.99 0 0);
-  /* Secondary: Azul do Nilo mais claro */
-  --secondary: oklch(0.38 0.07 240);
-  --secondary-foreground: oklch(0.92 0.005 90);
-  /* Muted: Azul escuro mais suave */
-  --muted: oklch(0.35 0.05 240);
-  --muted-foreground: oklch(0.70 0.02 240);
-  /* Accent: Cobre mais suave */
-  --accent: oklch(0.55 0.10 55);
+  /* Secondary: oklch(28% .04 247.3) */
+  --secondary: oklch(0.28 0.04 247.3);
+  --secondary-foreground: oklch(0.95 0.005 247.3);
+  /* Muted: oklch(28% .04 247.3) */
+  --muted: oklch(0.28 0.04 247.3);
+  --muted-foreground: oklch(0.65 0.02 247.3);
+  /* Accent: Cobre */
+  --accent: oklch(0.618 0.117 60.4);
   --accent-foreground: oklch(0.99 0 0);
   /* Destructive */
   --destructive: oklch(0.60 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
-  /* Borders: linha sutil sobre fundo escuro */
-  --border: oklch(0.40 0.04 240);
-  --input: oklch(0.38 0.05 240);
-  --ring: oklch(0.60 0.13 55);
+  /* Borders: oklch(35% .04 247.3) */
+  --border: oklch(0.35 0.04 247.3);
+  --input: oklch(0.30 0.04 247.3);
+  --ring: oklch(0.618 0.117 60.4);
   /* Charts */
-  --chart-1: oklch(0.60 0.13 55);
-  --chart-2: oklch(0.50 0.08 240);
-  --chart-3: oklch(0.65 0.10 55);
-  --chart-4: oklch(0.45 0.06 240);
-  --chart-5: oklch(0.70 0.08 55);
+  --chart-1: oklch(0.618 0.117 60.4);
+  --chart-2: oklch(0.50 0.08 247.3);
+  --chart-3: oklch(0.70 0.10 60.4);
+  --chart-4: oklch(0.40 0.06 247.3);
+  --chart-5: oklch(0.75 0.08 60.4);
   /* Sidebar */
-  --sidebar: oklch(0.25 0.05 240);
-  --sidebar-foreground: oklch(0.93 0.005 90);
-  --sidebar-primary: oklch(0.60 0.13 55);
+  --sidebar: oklch(0.16 0.035 247.3);
+  --sidebar-foreground: oklch(0.95 0.005 247.3);
+  --sidebar-primary: oklch(0.618 0.117 60.4);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.35 0.05 240);
-  --sidebar-accent-foreground: oklch(0.93 0.005 90);
-  --sidebar-border: oklch(0.38 0.04 240);
-  --sidebar-ring: oklch(0.60 0.13 55);
+  --sidebar-accent: oklch(0.28 0.04 247.3);
+  --sidebar-accent-foreground: oklch(0.95 0.005 247.3);
+  --sidebar-border: oklch(0.35 0.04 247.3);
+  --sidebar-ring: oklch(0.618 0.117 60.4);
 }
 
 @layer base {
