@@ -7,12 +7,14 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { procedures, categories } from "@/data/procedures";
 import { getFavorites, toggleFavorite, getRecents, getDJTimers } from "@/data/surgeryStore";
-import { Search, Stethoscope, Star, Clock, History, Timer, AlertTriangle } from "lucide-react";
+import { Search, Stethoscope, Star, Clock, History, Timer, AlertTriangle, Cloud, CloudOff } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
+import { useCloudSync } from "@/hooks/useCloudSync";
 
 export default function Home() {
+  const cloud = useCloudSync();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
@@ -46,6 +48,7 @@ export default function Home() {
     e.stopPropagation();
     const isFav = toggleFavorite(procedureId);
     setFavorites(getFavorites());
+    cloud.syncFavorites();
     toast.success(isFav ? "Adicionado aos favoritos" : "Removido dos favoritos");
   };
 
@@ -77,6 +80,16 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center"
+                title={cloud.isAuthenticated ? "Sincronizado na nuvem" : "Apenas neste dispositivo (offline)"}
+              >
+                {cloud.isAuthenticated ? (
+                  <Cloud className="w-4 h-4 text-primary" />
+                ) : (
+                  <CloudOff className="w-4 h-4 text-muted-foreground/60" />
+                )}
+              </div>
               <Link href="/timers">
                 <button className="relative w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150" title="Timers DJ">
                   <Timer className="w-4 h-4 text-muted-foreground" />

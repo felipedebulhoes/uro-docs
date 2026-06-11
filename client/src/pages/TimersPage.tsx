@@ -6,8 +6,10 @@ import { ArrowLeft, Clock, CheckCircle2, Trash2, AlertTriangle, Timer } from "lu
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
+import { useCloudSync } from "@/hooks/useCloudSync";
 
 export default function TimersPage() {
+  const cloud = useCloudSync();
   const [timers, setTimers] = useState<DJTimer[]>(getDJTimers());
 
   const activeTimers = useMemo(() => timers.filter((t) => !t.completed), [timers]);
@@ -16,12 +18,14 @@ export default function TimersPage() {
   const handleComplete = (id: string) => {
     completeDJTimer(id);
     setTimers(getDJTimers());
+    cloud.syncTimers();
     toast.success("DJ marcado como retirado!");
   };
 
   const handleDelete = (id: string) => {
     removeDJTimer(id);
     setTimers(getDJTimers());
+    cloud.syncTimers();
     toast.success("Timer removido.");
   };
 

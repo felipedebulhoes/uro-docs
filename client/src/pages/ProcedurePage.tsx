@@ -40,15 +40,21 @@ import {
   Building2,
   Plus,
   Trash2,
+  MessageCircle,
+  Mic,
+  MicOff,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { toast } from "sonner";
+import { useSpeechDictation } from "@/hooks/useSpeechDictation";
+import { useCloudSync } from "@/hooks/useCloudSync";
 
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
   const procedure = procedures.find((p) => p.id === params.id);
   const extraDocs = params.id ? getExtraDocs(params.id) : null;
+  const cloud = useCloudSync();
 
   // Mark as recent
   useEffect(() => {
@@ -115,14 +121,16 @@ export default function ProcedurePage() {
     setPresets(getPresets());
     setPresetName("");
     setShowPresetSave(false);
+    cloud.syncPresets();
     toast.success(`Preset "${presetName.trim()}" salvo!`);
-  }, [presetName, config, procedure]);
+  }, [presetName, config, procedure, cloud]);
 
   const handleDeletePreset = useCallback((id: string) => {
     deletePreset(id);
     setPresets(getPresets());
+    cloud.syncPresets();
     toast.info("Preset removido.");
-  }, []);
+  }, [cloud]);
 
   const updateConfig = useCallback((fieldId: string, value: string) => {
     setConfig((prev) => ({ ...prev, [fieldId]: value }));
@@ -170,6 +178,42 @@ export default function ProcedurePage() {
     [getDocText]
   );
 
+  // Voice dictation
+  const dictation = useSpeechDictation("pt-BR");
+
+  const dictateField = useCallback(
+    (fieldId: string) => {
+      if (!dictation.supported) {
+        toast.error("Ditado por voz não suportado neste navegador. Use Chrome/Edge.");
+        return;
+      }
+      dictation.toggle(fieldId, (chunk) => {
+        setConfig((prev) => {
+          const existing = prev[fieldId] ? prev[fieldId] + " " : "";
+          return { ...prev, [fieldId]: existing + chunk };
+        });
+      });
+    },
+    [dictation]
+  );
+
+  // WhatsApp share (patient instructions)
+  const shareWhatsApp = useCallback(
+    (tabId: string) => {
+      const text = getDocText(tabId);
+      if (!text) {
+        toast.error("Nenhum conteúdo para compartilhar.");
+        return;
+      }
+      const header = `*${procedure?.name || "Orientações"}*${config.paciente ? "\nPaciente: " + config.paciente : ""}\n\n`;
+      const footer = `\n\n_Dr. Felipe de Bulhões — Urologia & Andrologia_\n_CRM-SP 202.291 — RQE 146538_`;
+      const message = encodeURIComponent(header + text + footer);
+      window.open(`https://wa.me/?text=${message}`, "_blank");
+      toast.success("Abrindo WhatsApp...");
+    },
+    [getDocText, procedure, config.paciente]
+  );
+
   const copyAll = useCallback(() => {
     if (!documents) return;
     const allTabs = Object.keys(documents);
@@ -201,9 +245,11 @@ export default function ProcedurePage() {
         lateralidade: config.lateralidade || "",
         procedureId: procedure.id,
       });
+      cloud.syncTimers();
       toast.info("Timer de DJ criado (retirada em 3 semanas).");
     }
-  }, [procedure, config]);
+    cloud.syncSurgeries();
+  }, [procedure, config, cloud]);
 
   // Edit functionality
   const startEditing = useCallback(
@@ -679,12 +725,36 @@ export default function ProcedurePage() {
                         </SelectContent>
                       </Select>
                     ) : (
-                      <Input
-                        value={config[field.id] || ""}
-                        onChange={(e) => updateConfig(field.id, e.target.value)}
-                        placeholder={field.placeholder}
-                        className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
-                      />
+                      <div className="flex items-center gap-1.5">
+                        <Input
+                          value={config[field.id] || ""}
+                          onChange={(e) => updateConfig(field.id, e.target.value)}
+                          placeholder={field.placeholder}
+                          className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground flex-1"
+                        />
+                        <Button
+                          type="button"
+                          size="icon"
+                          variant="outline"
+                          onClick={() => dictateField(field.id)}
+                          title={
+                            dictation.activeField === field.id
+                              ? "Parar ditado"
+                              : "Ditar por voz"
+                          }
+                          className={`h-9 w-9 shrink-0 ${
+                            dictation.activeField === field.id
+                              ? "border-red-500/60 text-red-400 bg-red-500/10 animate-pulse"
+                              : "border-border text-muted-foreground hover:text-primary hover:border-primary/40"
+                          }`}
+                        >
+                          {dictation.activeField === field.id ? (
+                            <MicOff className="w-4 h-4" />
+                          ) : (
+                            <Mic className="w-4 h-4" />
+                          )}
+                        </Button>
+                      </div>
                     )}
                   </div>
                 ))}
@@ -800,6 +870,18 @@ export default function ProcedurePage() {
                           >
                             <Pencil className="w-3 h-3" />
                             Editar
+                          </Button>
+                        )}
+                        {/* WhatsApp button (orientações, receita, pré-op) */}
+                        {["orientacoes", "receitaAlta", "preOperatorio"].includes(tab.id) && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 text-xs gap-1 border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/10"
+                            onClick={() => shareWhatsApp(tab.id)}
+                          >
+                            <MessageCircle className="w-3 h-3" />
+                            <span className="hidden sm:inline">WhatsApp</span>
                           </Button>
                         )}
                         {/* PDF button */}

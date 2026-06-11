@@ -8,8 +8,10 @@ import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList } from "lucide
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
+import { useCloudSync } from "@/hooks/useCloudSync";
 
 export default function HistoryPage() {
+  const cloud = useCloudSync();
   const [history, setHistory] = useState<SurgeryRecord[]>(getHistory());
   const [search, setSearch] = useState("");
 
@@ -27,6 +29,7 @@ export default function HistoryPage() {
   const handleDelete = (id: string) => {
     removeFromHistory(id);
     setHistory(getHistory());
+    cloud.syncSurgeries();
     toast.success("Registro removido.");
   };
 
@@ -34,6 +37,7 @@ export default function HistoryPage() {
     if (window.confirm("Tem certeza que deseja limpar todo o histórico?")) {
       clearHistory();
       setHistory([]);
+      cloud.syncSurgeries();
       toast.success("Histórico limpo.");
     }
   };
