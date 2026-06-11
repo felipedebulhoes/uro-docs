@@ -43,6 +43,8 @@ import {
   MessageCircle,
   Mic,
   MicOff,
+  CalendarPlus,
+  Phone,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
@@ -136,17 +138,38 @@ export default function ProcedurePage() {
     setConfig((prev) => ({ ...prev, [fieldId]: value }));
   }, []);
 
+  // Documents that are handed directly to the patient should carry a clear
+  // patient-identification header at the top (name + date), so the printed/
+  // copied prescription is immediately personalized.
+  const PATIENT_HEADER_DOCS = ["receitaAlta", "orientacoes", "preOperatorio"];
+
+  const withPatientHeader = useCallback(
+    (docId: string, text: string): string => {
+      if (!PATIENT_HEADER_DOCS.includes(docId)) return text;
+      const name = (config.paciente || "").trim();
+      if (!name) return text;
+      const dateStr = config.data_cirurgia
+        ? new Date(config.data_cirurgia + "T12:00:00").toLocaleDateString("pt-BR")
+        : "";
+      const header =
+        `Paciente: ${name}` + (dateStr ? `   |   Data: ${dateStr}` : "");
+      const rule = "─".repeat(Math.min(48, Math.max(header.length, 24)));
+      return `${header}\n${rule}\n\n${text}`;
+    },
+    [config.paciente, config.data_cirurgia]
+  );
+
   const documents = useMemo(() => {
     if (!procedure) return null;
     const base = {
       descricao: procedure.templates.descricao(config),
       posOperatorio: procedure.templates.posOperatorio(config),
-      receitaAlta: procedure.templates.receitaAlta(config),
-      orientacoes: procedure.templates.orientacoes(config),
+      receitaAlta: withPatientHeader("receitaAlta", procedure.templates.receitaAlta(config)),
+      orientacoes: withPatientHeader("orientacoes", procedure.templates.orientacoes(config)),
     };
     const extra = extraDocs
       ? {
-          preOperatorio: extraDocs.preOperatorio(config),
+          preOperatorio: withPatientHeader("preOperatorio", extraDocs.preOperatorio(config)),
           tcle: extraDocs.tcle(config),
           evolucaoD1: extraDocs.evolucaoD1(config),
           materiaisOPME: extraDocs.materiaisOPME(config),
@@ -155,7 +178,7 @@ export default function ProcedurePage() {
         }
       : null;
     return { ...base, ...extra };
-  }, [procedure, config, extraDocs]);
+  }, [procedure, config, extraDocs, withPatientHeader]);
 
   // Get the actual displayed text (edited or generated)
   const getDocText = useCallback(
@@ -196,6 +219,24 @@ export default function ProcedurePage() {
     },
     [dictation]
   );
+
+  // Clinic scheduling shortcuts (Dr. Felipe Bulhões)
+  const DOCTORALIA_URL =
+    "https://www.doctoralia.com.br/felipe-de-bulhoes-ojeda-2/urologista/campinas";
+  const CLINIC_WHATSAPP = "5511981124455"; // 11 98112-4455
+
+  const openDoctoralia = useCallback(() => {
+    window.open(DOCTORALIA_URL, "_blank", "noopener,noreferrer");
+    toast.success("Abrindo agendamento no Doctoralia...");
+  }, []);
+
+  const openClinicWhatsApp = useCallback(() => {
+    const msg = encodeURIComponent(
+      `Olá! Sou ${config.paciente?.trim() || "paciente"} do Dr. Felipe Bulhões e gostaria de agendar um retorno.`
+    );
+    window.open(`https://wa.me/${CLINIC_WHATSAPP}?text=${msg}`, "_blank", "noopener,noreferrer");
+    toast.success("Abrindo WhatsApp do consultório...");
+  }, [config.paciente]);
 
   // WhatsApp share (patient instructions)
   const shareWhatsApp = useCallback(
@@ -809,6 +850,49 @@ export default function ProcedurePage() {
 
           {/* Documents Panel */}
           <div className="lg:col-span-8">
+            {/* Quick patient name field — editable here without scrolling the config panel */}
+            <Card className="p-3 mb-3 bg-card border-border">
+              <div className="flex items-center gap-2">
+                <Label className="text-xs text-primary font-semibold shrink-0">
+                  Paciente
+                </Label>
+                <div className="flex items-center gap-1.5 flex-1">
+                  <Input
+                    value={config.paciente || ""}
+                    onChange={(e) => updateConfig("paciente", e.target.value)}
+                    placeholder="Nome do paciente (aparece no topo das receitas e orientações)"
+                    className="h-8 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground flex-1"
+                  />
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="outline"
+                    onClick={() => dictateField("paciente")}
+                    title={
+                      dictation.activeField === "paciente"
+                        ? "Parar ditado"
+                        : "Ditar nome por voz"
+                    }
+                    className={`h-8 w-8 shrink-0 ${
+                      dictation.activeField === "paciente"
+                        ? "border-red-500/60 text-red-400 bg-red-500/10 animate-pulse"
+                        : "border-border text-muted-foreground hover:text-primary hover:border-primary/40"
+                    }`}
+                  >
+                    {dictation.activeField === "paciente" ? (
+                      <MicOff className="w-4 h-4" />
+                    ) : (
+                      <Mic className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
+              </div>
+              {!config.paciente?.trim() && (
+                <p className="text-[10px] text-yellow-400/80 mt-1.5">
+                  Sem nome preenchido — receitas e orientações sairão sem identificação do paciente.
+                </p>
+              )}
+            </Card>
             <Tabs defaultValue="descricao" className="w-full">
               <TabsList className="w-full bg-card border border-border h-auto p-1 flex flex-wrap gap-1">
                 {allTabs.map((tab) => (
@@ -872,17 +956,43 @@ export default function ProcedurePage() {
                             Editar
                           </Button>
                         )}
-                        {/* WhatsApp button (orientações, receita, pré-op) */}
+                        {/* WhatsApp share (orientações, receita, pré-op) */}
                         {["orientacoes", "receitaAlta", "preOperatorio"].includes(tab.id) && (
                           <Button
                             size="sm"
                             variant="outline"
                             className="h-7 text-xs gap-1 border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/10"
                             onClick={() => shareWhatsApp(tab.id)}
+                            title="Enviar documento ao paciente via WhatsApp"
                           >
                             <MessageCircle className="w-3 h-3" />
-                            <span className="hidden sm:inline">WhatsApp</span>
+                            <span className="hidden sm:inline">Enviar</span>
                           </Button>
+                        )}
+                        {/* Scheduling shortcuts (orientações) */}
+                        {tab.id === "orientacoes" && (
+                          <>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs gap-1 border-primary/40 text-primary hover:bg-primary/10"
+                              onClick={openDoctoralia}
+                              title="Agendar retorno pelo Doctoralia"
+                            >
+                              <CalendarPlus className="w-3 h-3" />
+                              <span className="hidden sm:inline">Doctoralia</span>
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs gap-1 border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/10"
+                              onClick={openClinicWhatsApp}
+                              title="Chamar o consultório no WhatsApp"
+                            >
+                              <Phone className="w-3 h-3" />
+                              <span className="hidden sm:inline">Consultório</span>
+                            </Button>
+                          </>
                         )}
                         {/* PDF button */}
                         <Button

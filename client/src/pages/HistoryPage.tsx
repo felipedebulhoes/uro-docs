@@ -4,16 +4,28 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getHistory, removeFromHistory, clearHistory, type SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
-import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList } from "lucide-react";
+import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown } from "lucide-react";
 import { useState, useMemo } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
+import { exportHistoryCSV, exportHistoryPDF } from "@/lib/exportHistory";
 
 export default function HistoryPage() {
   const cloud = useCloudSync();
   const [history, setHistory] = useState<SurgeryRecord[]>(getHistory());
   const [search, setSearch] = useState("");
+  const [clearOpen, setClearOpen] = useState(false);
 
   const filtered = useMemo(() => {
     if (!search) return history;
@@ -34,11 +46,33 @@ export default function HistoryPage() {
   };
 
   const handleClearAll = () => {
-    if (window.confirm("Tem certeza que deseja limpar todo o histórico?")) {
-      clearHistory();
-      setHistory([]);
-      cloud.syncSurgeries();
-      toast.success("Histórico limpo.");
+    clearHistory();
+    setHistory([]);
+    cloud.syncSurgeries();
+    setClearOpen(false);
+    toast.success("Histórico limpo.");
+  };
+
+  const handleExportCSV = () => {
+    if (history.length === 0) return;
+    try {
+      exportHistoryCSV(history);
+      toast.success("CSV exportado.");
+    } catch {
+      toast.error("Falha ao exportar CSV.");
+    }
+  };
+
+  const handleExportPDF = () => {
+    if (history.length === 0) return;
+    try {
+      exportHistoryPDF(history);
+    } catch (err) {
+      if (err instanceof Error && err.message === "popup-blocked") {
+        toast.error("Permita pop-ups para gerar o PDF.");
+      } else {
+        toast.error("Falha ao gerar PDF.");
+      }
     }
   };
 
@@ -65,15 +99,37 @@ export default function HistoryPage() {
               <p className="text-xs text-muted-foreground">{history.length} registros</p>
             </div>
             {history.length > 0 && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="ml-auto text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
-                onClick={handleClearAll}
-              >
-                <Trash2 className="w-3 h-3 mr-1" />
-                Limpar
-              </Button>
+              <div className="ml-auto flex items-center gap-1.5">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+                  onClick={handleExportCSV}
+                  title="Exportar CSV (Excel)"
+                >
+                  <FileSpreadsheet className="w-3 h-3 mr-1" />
+                  CSV
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+                  onClick={handleExportPDF}
+                  title="Exportar PDF"
+                >
+                  <FileDown className="w-3 h-3 mr-1" />
+                  PDF
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
+                  onClick={() => setClearOpen(true)}
+                  title="Limpar histórico"
+                >
+                  <Trash2 className="w-3 h-3" />
+                </Button>
+              </div>
             )}
           </div>
         </div>
@@ -153,6 +209,26 @@ export default function HistoryPage() {
           </div>
         )}
       </main>
+
+      <AlertDialog open={clearOpen} onOpenChange={setClearOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Limpar todo o histórico?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Esta ação remove todos os registros de cirurgias salvos localmente. Se você estiver logado, a remoção também será sincronizada na nuvem. Esta ação não pode ser desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleClearAll}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Limpar tudo
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
