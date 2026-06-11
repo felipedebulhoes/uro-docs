@@ -137,18 +137,35 @@ function svgLineChart(rows: BarRow[]): string {
   </svg>`;
 }
 
+export interface StatsPdfOptions {
+  /** Human label of the active filter (e.g. "jun/2026" or "2026"). */
+  periodLabel?: string;
+  /** Procedure name when the export is scoped to a single procedure. */
+  procedureLabel?: string;
+  /** Period-over-period summary line (totals + percentage). */
+  comparisonText?: string;
+  /** Per-procedure movers line (e.g. "RTU-P +2, Vasectomia -1"). */
+  procedureDeltaText?: string;
+  /** Monthly goal: when set, renders attainment vs. the busiest/last month. */
+  monthlyGoal?: number;
+}
+
 /**
  * Generate and open the statistics PDF.
  * @param records Already-filtered records (so the PDF matches the on-screen period).
- * @param periodLabel Optional human label of the active filter (e.g. "jun/2026" or "2026").
- * @param procedureLabel Optional procedure name when the export is scoped to a single procedure.
+ * @param options Optional labels and analytics (period, scope, comparison, deltas, goal).
  */
 export function exportStatsPDF(
   records: StatRecord[],
-  periodLabel?: string,
-  procedureLabel?: string,
-  comparisonText?: string
+  options: StatsPdfOptions = {}
 ): void {
+  const {
+    periodLabel,
+    procedureLabel,
+    comparisonText,
+    procedureDeltaText,
+    monthlyGoal,
+  } = options;
   const summary = summarizeHistory(records);
   const stamp = new Date().toLocaleDateString("pt-BR");
 
@@ -176,6 +193,21 @@ export function exportStatsPDF(
 
   const summaryText = executiveSummary(summary, { periodLabel, procedureLabel });
 
+  // Monthly goal attainment: compare the busiest month's volume to the goal.
+  let goalBlock = "";
+  if (typeof monthlyGoal === "number" && monthlyGoal > 0) {
+    const ref = summary.busiestMonth;
+    const achieved = ref?.count ?? 0;
+    const pct = Math.round((achieved / monthlyGoal) * 100);
+    const barPct = Math.min(pct, 100);
+    const refLabel = ref ? ref.label : "—";
+    const status = pct >= 100 ? "Meta atingida" : `${100 - Math.min(pct, 100)}% restante`;
+    goalBlock = `<div class="goal"><span class="k">Meta mensal</span>` +
+      `Meta de ${monthlyGoal} cirurgias/mês · melhor mês (${escapeHtml(refLabel)}): ` +
+      `${achieved} (${pct}% da meta — ${status}).` +
+      `<div class="bar"><span style="width:${barPct}%"></span></div></div>`;
+  }
+
   const html = `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -195,6 +227,12 @@ ${INSTITUTION_HEADER_CSS}
   .exec-summary .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; margin-bottom: 4px; font-weight: 700; }
   .comparison { margin: 8px 0 4px; padding: 10px 14px; background: #f3f7f3; border-left: 3px solid #4b8b5a; border-radius: 4px; font-size: 12.5px; line-height: 1.5; color: #2c4a33; }
   .comparison .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #3a6b46; margin-bottom: 4px; font-weight: 700; }
+  .deltas { margin: 8px 0 4px; padding: 10px 14px; background: #faf6f1; border-left: 3px solid #8a5523; border-radius: 4px; font-size: 12.5px; line-height: 1.5; color: #3a2c20; }
+  .deltas .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; margin-bottom: 4px; font-weight: 700; }
+  .goal { margin: 8px 0 4px; padding: 10px 14px; background: #f5f2fb; border-left: 3px solid #6d4b91; border-radius: 4px; font-size: 12.5px; color: #3a2c4a; }
+  .goal .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #6d4b91; margin-bottom: 6px; font-weight: 700; }
+  .goal .bar { height: 10px; background: #e6ddf2; border-radius: 6px; overflow: hidden; margin-top: 4px; }
+  .goal .bar > span { display: block; height: 100%; background: #6d4b91; border-radius: 6px; }
   svg .lbl { font-size: 11px; fill: #444; }
   svg .val { font-size: 11px; fill: #1a1a1a; font-weight: 600; }
   svg .track { fill: #efe6db; }
@@ -236,6 +274,16 @@ ${INSTITUTION_HEADER_CSS}
         )}</div>`
       : ""
   }
+
+  ${
+    procedureDeltaText
+      ? `<div class="deltas"><span class="k">Variação por procedimento</span>${escapeHtml(
+          procedureDeltaText
+        )}</div>`
+      : ""
+  }
+
+  ${goalBlock}
 
   <div class="cards">
     <div class="card"><div class="k">Total</div><div class="v">${summary.total}</div><div class="s">cirurgias</div></div>

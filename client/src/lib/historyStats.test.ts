@@ -6,6 +6,8 @@ import {
   executiveSummary,
   comparePeriods,
   comparisonLabel,
+  compareProcedures,
+  procedureDeltaLabel,
   type StatRecord,
 } from "./historyStats";
 
@@ -230,5 +232,79 @@ describe("comparisonLabel", () => {
     expect(comparisonLabel(comparePeriods(rec(0), rec(0)))).toBe(
       "Sem registros em ambos os períodos.",
     );
+  });
+});
+
+describe("compareProcedures", () => {
+  const current: StatRecord[] = [
+    { procedureId: "rtu-prostata", procedureName: "RTU de Próstata", date: "2026-06-01" },
+    { procedureId: "rtu-prostata", procedureName: "RTU de Próstata", date: "2026-06-10" },
+    { procedureId: "rtu-prostata", procedureName: "RTU de Próstata", date: "2026-06-20" },
+    { procedureId: "nefrectomia", procedureName: "Nefrectomia", date: "2026-06-05" },
+  ];
+  const previous: StatRecord[] = [
+    { procedureId: "rtu-prostata", procedureName: "RTU de Próstata", date: "2026-05-01" },
+    { procedureId: "vasectomia", procedureName: "Vasectomia", date: "2026-05-03" },
+  ];
+
+  it("computes per-procedure deltas across both periods", () => {
+    const deltas = compareProcedures(current, previous);
+    const byId = Object.fromEntries(deltas.map((d) => [d.procedureId, d]));
+
+    expect(byId["rtu-prostata"]).toMatchObject({
+      current: 3,
+      previous: 1,
+      delta: 2,
+      direction: "up",
+    });
+    expect(byId["nefrectomia"]).toMatchObject({
+      current: 1,
+      previous: 0,
+      delta: 1,
+      direction: "up",
+    });
+    expect(byId["vasectomia"]).toMatchObject({
+      current: 0,
+      previous: 1,
+      delta: -1,
+      direction: "down",
+    });
+  });
+
+  it("sorts by largest absolute movement first", () => {
+    const deltas = compareProcedures(current, previous);
+    expect(deltas[0].procedureId).toBe("rtu-prostata"); // |+2| is the biggest mover
+  });
+
+  it("handles empty periods without throwing", () => {
+    expect(compareProcedures([], [])).toEqual([]);
+  });
+});
+
+describe("procedureDeltaLabel", () => {
+  it("returns a friendly message when nothing changed", () => {
+    const current: StatRecord[] = [
+      { procedureId: "a", procedureName: "A", date: "2026-06-01" },
+    ];
+    const previous: StatRecord[] = [
+      { procedureId: "a", procedureName: "A", date: "2026-05-01" },
+    ];
+    expect(procedureDeltaLabel(compareProcedures(current, previous))).toBe(
+      "Sem variações por procedimento.",
+    );
+  });
+
+  it("formats movers with signs and truncates extras", () => {
+    const deltas = [
+      { procedureId: "a", procedureName: "RTU-P", current: 3, previous: 1, delta: 2, direction: "up" as const },
+      { procedureId: "b", procedureName: "Vasectomia", current: 0, previous: 1, delta: -1, direction: "down" as const },
+      { procedureId: "c", procedureName: "Nefrectomia", current: 1, previous: 0, delta: 1, direction: "up" as const },
+      { procedureId: "d", procedureName: "Sling", current: 2, previous: 1, delta: 1, direction: "up" as const },
+      { procedureId: "e", procedureName: "NLP", current: 1, previous: 0, delta: 1, direction: "up" as const },
+    ];
+    const label = procedureDeltaLabel(deltas, 4);
+    expect(label).toContain("RTU-P +2");
+    expect(label).toContain("Vasectomia -1");
+    expect(label).toContain("e mais 1");
   });
 });

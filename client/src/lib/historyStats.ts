@@ -218,3 +218,83 @@ export function comparisonLabel(cmp: PeriodComparison): string {
     cmp.pct === null ? "" : `${sign}${cmp.pct.toFixed(1).replace(".", ",")}% `;
   return `${pctText}frente ao período anterior (${cmp.previous} → ${cmp.current}).`;
 }
+
+
+export interface ProcedureDelta {
+  procedureId: string;
+  procedureName: string;
+  current: number;
+  previous: number;
+  delta: number;
+  direction: "up" | "down" | "flat";
+}
+
+/**
+ * Per-procedure comparison between the current and previous period.
+ * Returns every procedure present in either set, sorted by absolute delta
+ * (largest movers first), then by current count.
+ */
+export function compareProcedures(
+  current: StatRecord[],
+  previous: StatRecord[],
+): ProcedureDelta[] {
+  const map = new Map<string, { name: string; cur: number; prev: number }>();
+  const tally = (records: StatRecord[], field: "cur" | "prev") => {
+    for (const r of records) {
+      const entry = map.get(r.procedureId);
+      if (entry) {
+        entry[field] += 1;
+        if (!entry.name && r.procedureName) entry.name = r.procedureName;
+      } else {
+        map.set(r.procedureId, {
+          name: r.procedureName || r.procedureId,
+          cur: field === "cur" ? 1 : 0,
+          prev: field === "prev" ? 1 : 0,
+        });
+      }
+    }
+  };
+  tally(current, "cur");
+  tally(previous, "prev");
+
+  return Array.from(map.entries())
+    .map(([procedureId, v]) => {
+      const delta = v.cur - v.prev;
+      const direction: "up" | "down" | "flat" =
+        delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+      return {
+        procedureId,
+        procedureName: v.name,
+        current: v.cur,
+        previous: v.prev,
+        delta,
+        direction,
+      };
+    })
+    .sort(
+      (a, b) =>
+        Math.abs(b.delta) - Math.abs(a.delta) ||
+        b.current - a.current ||
+        a.procedureName.localeCompare(b.procedureName),
+    );
+}
+
+/**
+ * Compact one-line label of the biggest movers between periods, ready to paste.
+ * Examples:
+ *  - "Sem variações por procedimento."
+ *  - "RTU de Próstata +2, Vasectomia -1, Nefrectomia +1."
+ */
+export function procedureDeltaLabel(
+  deltas: ProcedureDelta[],
+  maxItems = 4,
+): string {
+  const movers = deltas.filter((d) => d.delta !== 0);
+  if (movers.length === 0) return "Sem variações por procedimento.";
+  const parts = movers.slice(0, maxItems).map((d) => {
+    const sign = d.delta > 0 ? "+" : "";
+    return `${d.procedureName} ${sign}${d.delta}`;
+  });
+  const extra = movers.length > maxItems ? ` e mais ${movers.length - maxItems}` : "";
+  return `${parts.join(", ")}${extra}.`;
+}

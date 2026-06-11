@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -13,6 +14,8 @@ import {
   executiveSummary,
   comparePeriods,
   comparisonLabel,
+  compareProcedures,
+  procedureDeltaLabel,
   type StatRecord,
 } from "@/lib/historyStats";
 import {
@@ -21,19 +24,24 @@ import {
   rangeLabelOf,
 } from "@/lib/periodFilter";
 import { exportStatsPDF } from "@/lib/exportStats";
+import { exportTrendPng } from "@/lib/exportTrendImage";
 import {
   BarChart3,
   CalendarRange,
   Layers,
   TrendingUp,
   FileDown,
+  ImageDown,
   Copy,
   Check,
   ArrowUpRight,
   ArrowDownRight,
   Minus,
+  Target,
 } from "lucide-react";
 import { toast } from "sonner";
+
+const GOAL_KEY = "urodocx_monthly_goal";
 
 interface HistoryStatsProps {
   records: StatRecord[];
@@ -57,6 +65,25 @@ export function HistoryStats({
   const [exportProc, setExportProc] = useState("all");
   const [copied, setCopied] = useState(false);
 
+  // Persisted monthly goal (number of surgeries/month). 0/empty = disabled.
+  const [goal, setGoal] = useState<number>(() => {
+    try {
+      const raw = localStorage.getItem(GOAL_KEY);
+      const n = raw ? parseInt(raw, 10) : 0;
+      return Number.isFinite(n) && n > 0 ? n : 0;
+    } catch {
+      return 0;
+    }
+  });
+  useEffect(() => {
+    try {
+      if (goal > 0) localStorage.setItem(GOAL_KEY, String(goal));
+      else localStorage.removeItem(GOAL_KEY);
+    } catch {
+      /* ignore storage errors */
+    }
+  }, [goal]);
+
   // Period-over-period comparison: only when a complete free range is active.
   const comparison = useMemo(() => {
     if (!allRecords || !rangeFrom || !rangeTo) return null;
@@ -65,6 +92,7 @@ export function HistoryStats({
     const previousRecords = filterByDateRange(allRecords, prev.from, prev.to);
     return {
       cmp: comparePeriods(records, previousRecords),
+      deltas: compareProcedures(records, previousRecords),
       prevLabel: rangeLabelOf(prev.from, prev.to),
     };
   }, [allRecords, rangeFrom, rangeTo, records]);
@@ -73,6 +101,20 @@ export function HistoryStats({
     () => executiveSummary(summary, { periodLabel }),
     [summary, periodLabel],
   );
+
+  // Goal attainment vs. the busiest month in the current view.
+  const goalInfo = useMemo(() => {
+    if (goal <= 0) return null;
+    const achieved = summary.busiestMonth?.count ?? 0;
+    const pct = Math.round((achieved / goal) * 100);
+    return {
+      achieved,
+      pct,
+      barPct: Math.min(pct, 100),
+      refLabel: summary.busiestMonth?.label ?? "—",
+      reached: pct >= 100,
+    };
+  }, [goal, summary]);
 
   if (summary.total === 0) return null;
 
@@ -89,23 +131,34 @@ export function HistoryStats({
 
   const handleExportPDF = () => {
     try {
-      // Comparison only applies to the full (unscoped) export.
-      const comparisonText =
-        comparison
-          ? `${comparisonLabel(comparison.cmp)}${
-              comparison.prevLabel
-                ? ` (período anterior: ${comparison.prevLabel})`
-                : ""
-            }`
-          : undefined;
+      const comparisonText = comparison
+        ? `${comparisonLabel(comparison.cmp)}${
+            comparison.prevLabel
+              ? ` (período anterior: ${comparison.prevLabel})`
+              : ""
+          }`
+        : undefined;
+      const procedureDeltaText = comparison
+        ? procedureDeltaLabel(comparison.deltas)
+        : undefined;
+
       if (exportProc === "all") {
-        exportStatsPDF(records, periodLabel, undefined, comparisonText);
+        exportStatsPDF(records, {
+          periodLabel,
+          comparisonText,
+          procedureDeltaText,
+          monthlyGoal: goal > 0 ? goal : undefined,
+        });
       } else {
         const scoped = records.filter((r) => r.procedureId === exportProc);
         const label =
           summary.byType.find((t) => t.procedureId === exportProc)
             ?.procedureName ?? undefined;
-        exportStatsPDF(scoped, periodLabel, label);
+        exportStatsPDF(scoped, {
+          periodLabel,
+          procedureLabel: label,
+          monthlyGoal: goal > 0 ? goal : undefined,
+        });
       }
     } catch (err) {
       if (err instanceof Error && err.message === "popup-blocked") {
@@ -116,11 +169,28 @@ export function HistoryStats({
     }
   };
 
+  const handleExportPng = () => {
+    try {
+      exportTrendPng(summary.byMonth, {
+        subtitle: periodLabel ? `Período: ${periodLabel}` : undefined,
+      });
+      toast.success("Imagem da tendência baixada (PNG).");
+    } catch (err) {
+      if (err instanceof Error && err.message === "no-data") {
+        toast.error("A tendência precisa de pelo menos dois meses com registros.");
+      } else {
+        toast.error("Falha ao gerar a imagem da tendência.");
+      }
+    }
+  };
+
   const maxMonth = Math.max(...summary.byMonth.map((m) => m.count), 1);
   const maxType = Math.max(...summary.byType.map((t) => t.count), 1);
-  // Show most recent 12 months chronologically
   const months = summary.byMonth.slice(-12);
   const topTypes = summary.byType.slice(0, 8);
+  const movers = comparison
+    ? comparison.deltas.filter((d) => d.delta !== 0).slice(0, 6)
+    : [];
 
   return (
     <div className="space-y-4 mb-6">
@@ -129,7 +199,28 @@ export function HistoryStats({
           <BarChart3 className="w-3.5 h-3.5" />
           Estatísticas{periodLabel ? ` — ${periodLabel}` : ""}
         </h2>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Monthly goal */}
+          <div
+            className="flex items-center gap-1.5 h-8 px-2 rounded-md border border-border bg-card"
+            title="Meta de cirurgias por mês (deixe vazio para desativar)"
+          >
+            <Target className="w-3 h-3 text-primary" />
+            <span className="text-[10px] text-muted-foreground uppercase tracking-wider">
+              Meta/mês
+            </span>
+            <Input
+              type="number"
+              min={0}
+              value={goal > 0 ? goal : ""}
+              onChange={(e) => {
+                const n = parseInt(e.target.value, 10);
+                setGoal(Number.isFinite(n) && n > 0 ? n : 0);
+              }}
+              placeholder="—"
+              className="h-6 w-14 px-1 text-xs text-center border-0 bg-transparent focus-visible:ring-0"
+            />
+          </div>
           {/* Scope the PDF export to a single procedure (or all) */}
           <Select value={exportProc} onValueChange={setExportProc}>
             <SelectTrigger
@@ -165,6 +256,16 @@ export function HistoryStats({
             variant="outline"
             size="sm"
             className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+            onClick={handleExportPng}
+            title="Baixar a tendência mensal como imagem PNG"
+          >
+            <ImageDown className="w-3 h-3 mr-1" />
+            PNG
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
             onClick={handleExportPDF}
             title="Exportar estatísticas em PDF"
           >
@@ -181,43 +282,107 @@ export function HistoryStats({
         </p>
       </Card>
 
+      {/* Monthly goal attainment */}
+      {goalInfo && (
+        <Card className="p-3 bg-card border-border">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1.5 font-bold">
+              <Target className="w-3 h-3" />
+              Meta mensal
+            </span>
+            <span
+              className={`text-xs font-bold ${
+                goalInfo.reached ? "text-emerald-400" : "text-foreground"
+              }`}
+            >
+              {goalInfo.pct}% da meta
+            </span>
+          </div>
+          <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
+            <div
+              className={`h-full rounded-full transition-all duration-500 ease-out ${
+                goalInfo.reached ? "bg-emerald-500" : "bg-primary"
+              }`}
+              style={{ width: `${goalInfo.barPct}%` }}
+            />
+          </div>
+          <p className="text-[10px] text-muted-foreground mt-1.5">
+            Meta de {goal} cirurgias/mês · melhor mês ({goalInfo.refLabel}):{" "}
+            {goalInfo.achieved} ·{" "}
+            {goalInfo.reached ? "meta atingida" : `${100 - goalInfo.barPct}% restante`}
+          </p>
+        </Card>
+      )}
+
       {/* Period-over-period comparison (only with an active date range) */}
       {comparison && (
-        <Card className="p-3 bg-card border-border flex items-center gap-3">
-          <div
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-bold shrink-0 ${
-              comparison.cmp.direction === "up"
-                ? "bg-emerald-500/10 text-emerald-400"
-                : comparison.cmp.direction === "down"
-                ? "bg-red-500/10 text-red-400"
-                : "bg-muted text-muted-foreground"
-            }`}
-          >
-            {comparison.cmp.direction === "up" ? (
-              <ArrowUpRight className="w-4 h-4" />
-            ) : comparison.cmp.direction === "down" ? (
-              <ArrowDownRight className="w-4 h-4" />
-            ) : (
-              <Minus className="w-4 h-4" />
-            )}
-            {comparison.cmp.pct === null
-              ? comparison.cmp.previous === 0 && comparison.cmp.current > 0
-                ? "Novo"
-                : "—"
-              : `${comparison.cmp.delta > 0 ? "+" : ""}${comparison.cmp.pct
-                  .toFixed(1)
-                  .replace(".", ",")}%`}
-          </div>
-          <div className="min-w-0">
-            <p className="text-[12px] text-foreground/90 leading-snug">
-              {comparisonLabel(comparison.cmp)}
-            </p>
-            {comparison.prevLabel && (
-              <p className="text-[10px] text-muted-foreground">
-                Período anterior: {comparison.prevLabel}
+        <Card className="p-3 bg-card border-border">
+          <div className="flex items-center gap-3">
+            <div
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-bold shrink-0 ${
+                comparison.cmp.direction === "up"
+                  ? "bg-emerald-500/10 text-emerald-400"
+                  : comparison.cmp.direction === "down"
+                  ? "bg-red-500/10 text-red-400"
+                  : "bg-muted text-muted-foreground"
+              }`}
+            >
+              {comparison.cmp.direction === "up" ? (
+                <ArrowUpRight className="w-4 h-4" />
+              ) : comparison.cmp.direction === "down" ? (
+                <ArrowDownRight className="w-4 h-4" />
+              ) : (
+                <Minus className="w-4 h-4" />
+              )}
+              {comparison.cmp.pct === null
+                ? comparison.cmp.previous === 0 && comparison.cmp.current > 0
+                  ? "Novo"
+                  : "—"
+                : `${comparison.cmp.delta > 0 ? "+" : ""}${comparison.cmp.pct
+                    .toFixed(1)
+                    .replace(".", ",")}%`}
+            </div>
+            <div className="min-w-0">
+              <p className="text-[12px] text-foreground/90 leading-snug">
+                {comparisonLabel(comparison.cmp)}
               </p>
-            )}
+              {comparison.prevLabel && (
+                <p className="text-[10px] text-muted-foreground">
+                  Período anterior: {comparison.prevLabel}
+                </p>
+              )}
+            </div>
           </div>
+
+          {/* Per-procedure movers */}
+          {movers.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-border">
+              <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">
+                Variação por procedimento
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {movers.map((d) => (
+                  <span
+                    key={d.procedureId}
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium ${
+                      d.delta > 0
+                        ? "bg-emerald-500/10 text-emerald-400"
+                        : "bg-red-500/10 text-red-400"
+                    }`}
+                    title={`${d.procedureName}: ${d.previous} → ${d.current}`}
+                  >
+                    {d.delta > 0 ? (
+                      <ArrowUpRight className="w-3 h-3" />
+                    ) : (
+                      <ArrowDownRight className="w-3 h-3" />
+                    )}
+                    {d.procedureName} {d.delta > 0 ? "+" : ""}
+                    {d.delta}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </Card>
       )}
 

@@ -36,3 +36,8 @@
 - [x] Gráfico de tendência mensal (linha) no PDF de estatísticas
 - [x] Comparativo entre períodos com variação percentual (módulo + UI/PDF)
 - [x] Testes vitest de comparePeriods/comparisonLabel/previousRange; validação no navegador
+
+- [x] Comparativo por procedimento (deltas individuais) entre períodos (módulo, UI e PDF)
+- [x] Metas mensais com % de atingimento (config local, painel e PDF)
+- [x] Exportar gráfico de tendência mensal como imagem PNG
+- [x] Testes vitest de compareProcedures/procedureDeltaLabel/renderTrendPng; validação no navegador
