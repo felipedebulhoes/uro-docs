@@ -177,9 +177,77 @@ export function annualPaceAlert(pace: AnnualPace): string | null {
   return `No ritmo esperado para a meta anual: ${pace.progress.achieved}/${pace.progress.target} (${pace.progress.pct}%).`;
 }
 
+/** Number of days in the month of `ref`. */
+function daysInMonthOf(ref: Date): number {
+  return new Date(ref.getFullYear(), ref.getMonth() + 1, 0).getDate();
+}
+
+export interface MonthlyPace {
+  progress: GoalProgress;
+  /** Current day of month (1..31). */
+  dayOfMonth: number;
+  /** Total days in the current month. */
+  daysInMonth: number;
+  /**
+   * Expected achieved count by this day, assuming a linear daily pace
+   * (target * dayOfMonth / daysInMonth), rounded.
+   */
+  expected: number;
+  /** achieved - expected. Negative = behind the daily pace. */
+  paceDelta: number;
+  /** "ahead" | "on" | "behind" relative to the linear daily pace. */
+  status: "ahead" | "on" | "behind";
+  /** Surgeries/day needed in remaining days to still hit the monthly goal. */
+  neededPerRemainingDay: number | null;
+}
+
 /**
- * Monthly goal alert for a given year-month, or null when there is no monthly
- * goal. Compares the achieved count in that month against the monthly target.
+ * Compute the monthly pace for the month of `ref`, comparing the achieved
+ * count against the expected linear daily pace (proportional to the day of
+ * the month). Deterministic given an explicit `ref`.
+ */
+export function monthlyPace(
+  records: StatRecord[],
+  monthlyTarget: number,
+  ref: Date = new Date(),
+): MonthlyPace {
+  const year = String(ref.getFullYear());
+  const month = String(ref.getMonth() + 1).padStart(2, "0");
+  const achieved = countInMonth(records, year, month);
+  const progress = goalProgress(monthlyTarget, achieved);
+
+  const dayOfMonth = ref.getDate();
+  const daysInMonth = daysInMonthOf(ref);
+  const expected = Math.round((progress.target * dayOfMonth) / daysInMonth);
+  const paceDelta = achieved - expected;
+  const status: "ahead" | "on" | "behind" =
+    paceDelta > 0 ? "ahead" : paceDelta < 0 ? "behind" : "on";
+
+  const remainingDays = daysInMonth - dayOfMonth;
+  let neededPerRemainingDay: number | null = null;
+  if (!progress.reached && remainingDays > 0) {
+    neededPerRemainingDay =
+      Math.round((progress.remaining / remainingDays) * 10) / 10;
+  } else if (!progress.reached && remainingDays === 0) {
+    neededPerRemainingDay = progress.remaining; // all due today
+  }
+
+  return {
+    progress,
+    dayOfMonth,
+    daysInMonth,
+    expected,
+    paceDelta,
+    status,
+    neededPerRemainingDay,
+  };
+}
+
+/**
+ * Human-readable monthly pace alert, or null when there is no monthly goal.
+ * Unlike a neutral progress label, this compares the achieved count against
+ * the expected daily pace and explicitly flags when the current month is
+ * behind what is needed proportionally to the day of the month.
  */
 export function monthlyGoalAlert(
   records: StatRecord[],
@@ -187,12 +255,22 @@ export function monthlyGoalAlert(
   ref: Date = new Date(),
 ): string | null {
   if (!monthlyTarget || monthlyTarget <= 0) return null;
-  const year = String(ref.getFullYear());
-  const month = String(ref.getMonth() + 1).padStart(2, "0");
-  const achieved = countInMonth(records, year, month);
-  const progress = goalProgress(monthlyTarget, achieved);
+  const pace = monthlyPace(records, monthlyTarget, ref);
+  const { progress, expected, paceDelta, dayOfMonth, daysInMonth } = pace;
+
   if (progress.reached) {
-    return `Meta do mês atingida: ${achieved}/${progress.target} (${progress.pct}%).`;
+    return `Meta do mês atingida: ${progress.achieved}/${progress.target} (${progress.pct}%).`;
   }
-  return `Mês corrente: ${achieved}/${progress.target} (${progress.pct}%) — faltam ${progress.remaining}.`;
+  if (pace.status === "behind") {
+    const behindBy = Math.abs(paceDelta);
+    const needPart =
+      pace.neededPerRemainingDay != null
+        ? ` Para alcançar a meta, ~${pace.neededPerRemainingDay} cirurgia(s)/dia no restante do mês.`
+        : "";
+    return `Ritmo abaixo do esperado para a meta mensal: ${progress.achieved} de ${expected} previstos até o dia ${dayOfMonth}/${daysInMonth} (${behindBy} abaixo).${needPart}`;
+  }
+  if (pace.status === "ahead") {
+    return `Ritmo acima do esperado para a meta mensal: ${progress.achieved} vs. ${expected} previstos até o dia ${dayOfMonth}/${daysInMonth} (+${paceDelta}).`;
+  }
+  return `No ritmo esperado para a meta mensal: ${progress.achieved}/${progress.target} (${progress.pct}%) até o dia ${dayOfMonth}/${daysInMonth}.`;
 }

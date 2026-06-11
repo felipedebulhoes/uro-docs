@@ -394,6 +394,27 @@ export function HistoryStats({
                 ? "meta atingida"
                 : `faltam ${monthlyProgress.target - monthlyProgress.achieved}`}
             </p>
+            {/* Daily-pace alert (explicitly flags when behind for the month) */}
+            {monthlyAlert && (
+              <div
+                className={`mt-2 flex items-start gap-1.5 px-2 py-1.5 rounded text-[11px] leading-snug ${
+                  monthlyProgress.reached || monthlyAlert.includes("acima")
+                    ? "bg-emerald-500/10 text-emerald-300"
+                    : monthlyAlert.includes("abaixo")
+                    ? "bg-amber-500/10 text-amber-300"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {monthlyProgress.reached || monthlyAlert.includes("acima") ? (
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-px" />
+                ) : monthlyAlert.includes("abaixo") ? (
+                  <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-px" />
+                ) : (
+                  <Minus className="w-3.5 h-3.5 shrink-0 mt-px" />
+                )}
+                <span>{monthlyAlert}</span>
+              </div>
+            )}
           </Card>
         )}
 

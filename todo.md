@@ -43,7 +43,7 @@
 - [x] Testes vitest de compareProcedures/procedureDeltaLabel/renderTrendPng; validação no navegador
 
 - [x] Incluir novos procedimentos: BipoLEP, HoLEP, Rezūm, preenchimento peniano com ácido hialurônico
-- [ ] Meta anual com barra de progresso acumulada do ano corrente
-- [ ] Alertas de ritmo de meta (mês corrente abaixo do necessário)
-- [ ] Exportar painel completo de estatísticas como PNG
-- [ ] Testes vitest das novas funções; validação no navegador
+- [x] Meta anual com barra de progresso acumulada do ano corrente
+- [x] Alertas de ritmo de meta (mês corrente abaixo do necessário)
+- [x] Exportar painel completo de estatísticas como PNG (Canvas 2D, CSP-seguro)
+- [x] Testes vitest das novas funções (goals, exportPanelImage); validação no navegador

@@ -7,6 +7,7 @@ import {
   annualPace,
   annualPaceAlert,
   monthlyGoalAlert,
+  monthlyPace,
 } from "./goals";
 
 function rec(date: string, id = "rtu-p", name = "RTU de Próstata"): StatRecord {
@@ -100,17 +101,58 @@ describe("annualPaceAlert", () => {
   });
 });
 
+describe("monthlyPace", () => {
+  it("computes expected by day and flags behind the daily pace", () => {
+    // Goal 30 in June (30 days). On day 15 → expected 15. Achieved 5 → behind.
+    const records = Array.from({ length: 5 }, () => rec("2026-06-03"));
+    const ref = new Date(2026, 5, 15);
+    const pace = monthlyPace(records, 30, ref);
+    expect(pace.dayOfMonth).toBe(15);
+    expect(pace.daysInMonth).toBe(30);
+    expect(pace.progress.achieved).toBe(5);
+    expect(pace.expected).toBe(15);
+    expect(pace.paceDelta).toBe(-10);
+    expect(pace.status).toBe("behind");
+    // remaining 25 over 15 remaining days → ~1.7/day
+    expect(pace.neededPerRemainingDay).toBeCloseTo(1.7, 1);
+  });
+
+  it("flags ahead of the daily pace", () => {
+    // Goal 30, day 10 of June → expected 10. Achieved 20 → ahead.
+    const records = Array.from({ length: 20 }, () => rec("2026-06-02"));
+    const ref = new Date(2026, 5, 10);
+    const pace = monthlyPace(records, 30, ref);
+    expect(pace.expected).toBe(10);
+    expect(pace.paceDelta).toBe(10);
+    expect(pace.status).toBe("ahead");
+  });
+});
+
 describe("monthlyGoalAlert", () => {
   it("returns null without a monthly goal", () => {
     expect(monthlyGoalAlert([], 0)).toBeNull();
   });
-  it("reports remaining when below the monthly goal", () => {
-    const records = [rec("2026-06-01"), rec("2026-06-02")];
+
+  it("emits an explicit behind-the-daily-pace alert with guidance", () => {
+    // Goal 4, June (30 days), day 15 → expected 2. Achieved 1 → behind.
+    const records = [rec("2026-06-02")];
     const ref = new Date(2026, 5, 15);
-    const alert = monthlyGoalAlert(records, 10, ref);
-    expect(alert).toMatch(/2\/10/);
-    expect(alert).toMatch(/faltam 8/);
+    const alert = monthlyGoalAlert(records, 4, ref);
+    expect(alert).toMatch(/Ritmo abaixo do esperado para a meta mensal/);
+    expect(alert).toMatch(/1 de 2 previstos até o dia 15\/30/);
+    expect(alert).toMatch(/1 abaixo/);
+    expect(alert).toMatch(/cirurgia\(s\)\/dia/);
   });
+
+  it("emits a positive message when ahead of the daily pace", () => {
+    // Goal 10, June day 10 → expected ~3. Achieved 8 → ahead.
+    const records = Array.from({ length: 8 }, () => rec("2026-06-02"));
+    const ref = new Date(2026, 5, 10);
+    const alert = monthlyGoalAlert(records, 10, ref);
+    expect(alert).toMatch(/Ritmo acima do esperado para a meta mensal/);
+    expect(alert).not.toMatch(/abaixo/);
+  });
+
   it("reports reached when at/above the monthly goal", () => {
     const records = Array.from({ length: 12 }, () => rec("2026-06-03"));
     const ref = new Date(2026, 5, 15);
