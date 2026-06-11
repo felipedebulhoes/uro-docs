@@ -146,8 +146,8 @@ export interface StatsPdfOptions {
   comparisonText?: string;
   /** Per-procedure movers line (e.g. "RTU-P +2, Vasectomia -1"). */
   procedureDeltaText?: string;
-  /** Monthly goal: when set, renders attainment vs. the busiest/last month. */
-  monthlyGoal?: number;
+  /** Goal status text (monthly + annual pace), produced by the goals module. */
+  goalText?: string;
 }
 
 /**
@@ -164,7 +164,7 @@ export function exportStatsPDF(
     procedureLabel,
     comparisonText,
     procedureDeltaText,
-    monthlyGoal,
+    goalText,
   } = options;
   const summary = summarizeHistory(records);
   const stamp = new Date().toLocaleDateString("pt-BR");
@@ -193,19 +193,12 @@ export function exportStatsPDF(
 
   const summaryText = executiveSummary(summary, { periodLabel, procedureLabel });
 
-  // Monthly goal attainment: compare the busiest month's volume to the goal.
+  // Goal status: render the text produced by the goals module (monthly + annual).
   let goalBlock = "";
-  if (typeof monthlyGoal === "number" && monthlyGoal > 0) {
-    const ref = summary.busiestMonth;
-    const achieved = ref?.count ?? 0;
-    const pct = Math.round((achieved / monthlyGoal) * 100);
-    const barPct = Math.min(pct, 100);
-    const refLabel = ref ? ref.label : "—";
-    const status = pct >= 100 ? "Meta atingida" : `${100 - Math.min(pct, 100)}% restante`;
-    goalBlock = `<div class="goal"><span class="k">Meta mensal</span>` +
-      `Meta de ${monthlyGoal} cirurgias/mês · melhor mês (${escapeHtml(refLabel)}): ` +
-      `${achieved} (${pct}% da meta — ${status}).` +
-      `<div class="bar"><span style="width:${barPct}%"></span></div></div>`;
+  if (goalText && goalText.trim()) {
+    goalBlock = `<div class="goal"><span class="k">Metas</span>${escapeHtml(
+      goalText
+    )}</div>`;
   }
 
   const html = `<!DOCTYPE html>

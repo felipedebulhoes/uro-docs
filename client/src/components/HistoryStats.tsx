@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,8 +23,17 @@ import {
   previousRange,
   rangeLabelOf,
 } from "@/lib/periodFilter";
+import {
+  loadGoals,
+  saveGoals,
+  annualPace,
+  annualPaceAlert,
+  monthlyGoalAlert,
+  type GoalConfig,
+} from "@/lib/goals";
 import { exportStatsPDF } from "@/lib/exportStats";
 import { exportTrendPng } from "@/lib/exportTrendImage";
+import { exportPanelPng } from "@/lib/exportPanelImage";
 import {
   BarChart3,
   CalendarRange,
@@ -38,15 +47,17 @@ import {
   ArrowDownRight,
   Minus,
   Target,
+  CalendarClock,
+  AlertTriangle,
+  CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
-
-const GOAL_KEY = "urodocx_monthly_goal";
 
 interface HistoryStatsProps {
   records: StatRecord[];
   periodLabel?: string;
-  /** Full unfiltered record set, used to compute the previous comparison period. */
+  /** Full unfiltered record set, used to compute the previous comparison period
+   *  and the year-to-date annual progress (independent of the active filter). */
   allRecords?: StatRecord[];
   /** Active free-range bounds (YYYY-MM-DD); enables period-over-period comparison. */
   rangeFrom?: string;
@@ -64,25 +75,26 @@ export function HistoryStats({
   // "all" = export every procedure; otherwise a specific procedureId.
   const [exportProc, setExportProc] = useState("all");
   const [copied, setCopied] = useState(false);
+  const [exportingPanel, setExportingPanel] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
-  // Persisted monthly goal (number of surgeries/month). 0/empty = disabled.
-  const [goal, setGoal] = useState<number>(() => {
-    try {
-      const raw = localStorage.getItem(GOAL_KEY);
-      const n = raw ? parseInt(raw, 10) : 0;
-      return Number.isFinite(n) && n > 0 ? n : 0;
-    } catch {
-      return 0;
-    }
-  });
+  // Persisted goals (monthly + annual). 0/empty = disabled.
+  const [goals, setGoals] = useState<GoalConfig>(() => loadGoals());
   useEffect(() => {
-    try {
-      if (goal > 0) localStorage.setItem(GOAL_KEY, String(goal));
-      else localStorage.removeItem(GOAL_KEY);
-    } catch {
-      /* ignore storage errors */
-    }
-  }, [goal]);
+    saveGoals(goals);
+  }, [goals]);
+
+  const updateGoal = (key: keyof GoalConfig, value: string) => {
+    const n = parseInt(value, 10);
+    setGoals((g) => ({ ...g, [key]: Number.isFinite(n) && n > 0 ? n : undefined }));
+  };
+
+  // Stable reference date so memos don't refetch on every render.
+  const [refDate] = useState(() => new Date());
+
+  // Records used for year-to-date / monthly pace: prefer the full set so goals
+  // reflect real production regardless of the active view filter.
+  const goalRecords = allRecords && allRecords.length > 0 ? allRecords : records;
 
   // Period-over-period comparison: only when a complete free range is active.
   const comparison = useMemo(() => {
@@ -102,19 +114,26 @@ export function HistoryStats({
     [summary, periodLabel],
   );
 
-  // Goal attainment vs. the busiest month in the current view.
-  const goalInfo = useMemo(() => {
-    if (goal <= 0) return null;
-    const achieved = summary.busiestMonth?.count ?? 0;
-    const pct = Math.round((achieved / goal) * 100);
-    return {
-      achieved,
-      pct,
-      barPct: Math.min(pct, 100),
-      refLabel: summary.busiestMonth?.label ?? "—",
-      reached: pct >= 100,
-    };
-  }, [goal, summary]);
+  // Monthly goal attainment (current calendar month, from the full set).
+  const monthlyAlert = useMemo(() => {
+    if (!goals.monthly) return null;
+    return monthlyGoalAlert(goalRecords, goals.monthly, refDate);
+  }, [goals.monthly, goalRecords, refDate]);
+
+  const monthlyProgress = useMemo(() => {
+    if (!goals.monthly) return null;
+    const y = String(refDate.getFullYear());
+    const mo = String(refDate.getMonth() + 1).padStart(2, "0");
+    const achieved = goalRecords.filter((r) => r.date.startsWith(`${y}-${mo}`)).length;
+    const pct = Math.round((achieved / goals.monthly) * 100);
+    return { achieved, target: goals.monthly, pct, barPct: Math.min(pct, 100), reached: pct >= 100 };
+  }, [goals.monthly, goalRecords, refDate]);
+
+  // Annual pace + accumulated progress (year-to-date).
+  const annual = useMemo(() => {
+    if (!goals.annual) return null;
+    return annualPace(goalRecords, goals.annual, refDate);
+  }, [goals.annual, goalRecords, refDate]);
 
   if (summary.total === 0) return null;
 
@@ -129,6 +148,16 @@ export function HistoryStats({
     }
   };
 
+  const buildGoalText = (): string | undefined => {
+    const lines: string[] = [];
+    if (monthlyAlert) lines.push(monthlyAlert);
+    if (annual) {
+      const a = annualPaceAlert(annual);
+      if (a) lines.push(a);
+    }
+    return lines.length > 0 ? lines.join(" ") : undefined;
+  };
+
   const handleExportPDF = () => {
     try {
       const comparisonText = comparison
@@ -141,13 +170,14 @@ export function HistoryStats({
       const procedureDeltaText = comparison
         ? procedureDeltaLabel(comparison.deltas)
         : undefined;
+      const goalText = buildGoalText();
 
       if (exportProc === "all") {
         exportStatsPDF(records, {
           periodLabel,
           comparisonText,
           procedureDeltaText,
-          monthlyGoal: goal > 0 ? goal : undefined,
+          goalText,
         });
       } else {
         const scoped = records.filter((r) => r.procedureId === exportProc);
@@ -157,7 +187,7 @@ export function HistoryStats({
         exportStatsPDF(scoped, {
           periodLabel,
           procedureLabel: label,
-          monthlyGoal: goal > 0 ? goal : undefined,
+          goalText,
         });
       }
     } catch (err) {
@@ -184,6 +214,31 @@ export function HistoryStats({
     }
   };
 
+  const handleExportPanelPng = () => {
+    setExportingPanel(true);
+    try {
+      const monthlyGoalText = monthlyProgress
+        ? `${monthlyProgress.achieved} de ${monthlyProgress.target} cirurgias neste mês · ${monthlyProgress.pct}%`
+        : undefined;
+      const annualGoalText = annual
+        ? `${annual.progress.achieved} de ${annual.progress.target} cirurgias no ano · ${annual.progress.pct}%`
+        : undefined;
+      exportPanelPng(summary, {
+        subtitle: periodLabel ? `Período: ${periodLabel}` : undefined,
+        summaryText,
+        monthlyGoalText,
+        annualGoalText,
+        alertText: buildGoalText(),
+        fileName: "painel-estatisticas",
+      });
+      toast.success("Painel exportado como imagem (PNG).");
+    } catch {
+      toast.error("Falha ao exportar o painel como imagem.");
+    } finally {
+      setExportingPanel(false);
+    }
+  };
+
   const maxMonth = Math.max(...summary.byMonth.map((m) => m.count), 1);
   const maxType = Math.max(...summary.byType.map((t) => t.count), 1);
   const months = summary.byMonth.slice(-12);
@@ -200,10 +255,10 @@ export function HistoryStats({
           Estatísticas{periodLabel ? ` — ${periodLabel}` : ""}
         </h2>
         <div className="flex flex-wrap items-center gap-2">
-          {/* Monthly goal */}
+          {/* Goals: monthly + annual */}
           <div
             className="flex items-center gap-1.5 h-8 px-2 rounded-md border border-border bg-card"
-            title="Meta de cirurgias por mês (deixe vazio para desativar)"
+            title="Meta de cirurgias por mês (vazio = desativar)"
           >
             <Target className="w-3 h-3 text-primary" />
             <span className="text-[10px] text-muted-foreground uppercase tracking-wider">
@@ -212,11 +267,25 @@ export function HistoryStats({
             <Input
               type="number"
               min={0}
-              value={goal > 0 ? goal : ""}
-              onChange={(e) => {
-                const n = parseInt(e.target.value, 10);
-                setGoal(Number.isFinite(n) && n > 0 ? n : 0);
-              }}
+              value={goals.monthly ?? ""}
+              onChange={(e) => updateGoal("monthly", e.target.value)}
+              placeholder="—"
+              className="h-6 w-12 px-1 text-xs text-center border-0 bg-transparent focus-visible:ring-0"
+            />
+          </div>
+          <div
+            className="flex items-center gap-1.5 h-8 px-2 rounded-md border border-border bg-card"
+            title="Meta de cirurgias por ano (vazio = desativar)"
+          >
+            <CalendarClock className="w-3 h-3 text-primary" />
+            <span className="text-[10px] text-muted-foreground uppercase tracking-wider">
+              Meta/ano
+            </span>
+            <Input
+              type="number"
+              min={0}
+              value={goals.annual ?? ""}
+              onChange={(e) => updateGoal("annual", e.target.value)}
               placeholder="—"
               className="h-6 w-14 px-1 text-xs text-center border-0 bg-transparent focus-visible:ring-0"
             />
@@ -260,7 +329,18 @@ export function HistoryStats({
             title="Baixar a tendência mensal como imagem PNG"
           >
             <ImageDown className="w-3 h-3 mr-1" />
-            PNG
+            Tendência PNG
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+            onClick={handleExportPanelPng}
+            disabled={exportingPanel}
+            title="Exportar todo o painel como imagem PNG"
+          >
+            <ImageDown className="w-3 h-3 mr-1" />
+            {exportingPanel ? "Gerando…" : "Painel PNG"}
           </Button>
           <Button
             variant="outline"
@@ -275,216 +355,291 @@ export function HistoryStats({
         </div>
       </div>
 
-      {/* Executive summary (auto-generated, copy-ready) */}
-      <Card className="p-3 bg-primary/5 border-primary/20">
-        <p className="text-[13px] leading-relaxed text-foreground/90">
-          {summaryText}
-        </p>
-      </Card>
-
-      {/* Monthly goal attainment */}
-      {goalInfo && (
-        <Card className="p-3 bg-card border-border">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1.5 font-bold">
-              <Target className="w-3 h-3" />
-              Meta mensal
-            </span>
-            <span
-              className={`text-xs font-bold ${
-                goalInfo.reached ? "text-emerald-400" : "text-foreground"
-              }`}
-            >
-              {goalInfo.pct}% da meta
-            </span>
-          </div>
-          <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
-            <div
-              className={`h-full rounded-full transition-all duration-500 ease-out ${
-                goalInfo.reached ? "bg-emerald-500" : "bg-primary"
-              }`}
-              style={{ width: `${goalInfo.barPct}%` }}
-            />
-          </div>
-          <p className="text-[10px] text-muted-foreground mt-1.5">
-            Meta de {goal} cirurgias/mês · melhor mês ({goalInfo.refLabel}):{" "}
-            {goalInfo.achieved} ·{" "}
-            {goalInfo.reached ? "meta atingida" : `${100 - goalInfo.barPct}% restante`}
+      {/* Everything inside panelRef is captured by "Painel PNG" */}
+      <div ref={panelRef} className="space-y-4 bg-background p-1 rounded-lg">
+        {/* Executive summary (auto-generated, copy-ready) */}
+        <Card className="p-3 bg-primary/5 border-primary/20">
+          <p className="text-[13px] leading-relaxed text-foreground/90">
+            {summaryText}
           </p>
         </Card>
-      )}
 
-      {/* Period-over-period comparison (only with an active date range) */}
-      {comparison && (
-        <Card className="p-3 bg-card border-border">
-          <div className="flex items-center gap-3">
+        {/* Monthly goal attainment (current month) */}
+        {monthlyProgress && (
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1.5 font-bold">
+                <Target className="w-3 h-3" />
+                Meta mensal (mês corrente)
+              </span>
+              <span
+                className={`text-xs font-bold ${
+                  monthlyProgress.reached ? "text-emerald-400" : "text-foreground"
+                }`}
+              >
+                {monthlyProgress.pct}%
+              </span>
+            </div>
+            <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all duration-500 ease-out ${
+                  monthlyProgress.reached ? "bg-emerald-500" : "bg-primary"
+                }`}
+                style={{ width: `${monthlyProgress.barPct}%` }}
+              />
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-1.5">
+              {monthlyProgress.achieved} de {monthlyProgress.target} cirurgias neste mês ·{" "}
+              {monthlyProgress.reached
+                ? "meta atingida"
+                : `faltam ${monthlyProgress.target - monthlyProgress.achieved}`}
+            </p>
+          </Card>
+        )}
+
+        {/* Annual goal: accumulated progress + pace alert */}
+        {annual && (
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1.5 font-bold">
+                <CalendarClock className="w-3 h-3" />
+                Meta anual ({refDate.getFullYear()}) — acumulado
+              </span>
+              <span
+                className={`text-xs font-bold ${
+                  annual.progress.reached ? "text-emerald-400" : "text-foreground"
+                }`}
+              >
+                {annual.progress.pct}%
+              </span>
+            </div>
+            {/* Accumulated bar with an "expected pace" marker */}
+            <div className="relative h-2.5 bg-secondary rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all duration-500 ease-out ${
+                  annual.progress.reached
+                    ? "bg-emerald-500"
+                    : annual.status === "behind"
+                    ? "bg-amber-500"
+                    : "bg-primary"
+                }`}
+                style={{ width: `${Math.min(annual.progress.pct, 100)}%` }}
+              />
+              {/* Expected-pace marker */}
+              {!annual.progress.reached && (
+                <div
+                  className="absolute top-0 bottom-0 w-0.5 bg-foreground/60"
+                  style={{
+                    left: `${Math.min(
+                      Math.round((annual.expected / annual.progress.target) * 100),
+                      100,
+                    )}%`,
+                  }}
+                  title={`Ritmo esperado até aqui: ${annual.expected}`}
+                />
+              )}
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-1.5">
+              {annual.progress.achieved} de {annual.progress.target} cirurgias no ano ·{" "}
+              esperado até aqui: {annual.expected} ·{" "}
+              {annual.progress.reached
+                ? "meta atingida"
+                : `faltam ${annual.progress.remaining}`}
+            </p>
+            {/* Pace alert */}
             <div
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-bold shrink-0 ${
-                comparison.cmp.direction === "up"
-                  ? "bg-emerald-500/10 text-emerald-400"
-                  : comparison.cmp.direction === "down"
-                  ? "bg-red-500/10 text-red-400"
+              className={`mt-2 flex items-start gap-1.5 px-2 py-1.5 rounded text-[11px] leading-snug ${
+                annual.progress.reached || annual.status === "ahead"
+                  ? "bg-emerald-500/10 text-emerald-300"
+                  : annual.status === "behind"
+                  ? "bg-amber-500/10 text-amber-300"
                   : "bg-muted text-muted-foreground"
               }`}
             >
-              {comparison.cmp.direction === "up" ? (
-                <ArrowUpRight className="w-4 h-4" />
-              ) : comparison.cmp.direction === "down" ? (
-                <ArrowDownRight className="w-4 h-4" />
+              {annual.progress.reached || annual.status === "ahead" ? (
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-px" />
+              ) : annual.status === "behind" ? (
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-px" />
               ) : (
-                <Minus className="w-4 h-4" />
+                <Minus className="w-3.5 h-3.5 shrink-0 mt-px" />
               )}
-              {comparison.cmp.pct === null
-                ? comparison.cmp.previous === 0 && comparison.cmp.current > 0
-                  ? "Novo"
-                  : "—"
-                : `${comparison.cmp.delta > 0 ? "+" : ""}${comparison.cmp.pct
-                    .toFixed(1)
-                    .replace(".", ",")}%`}
+              <span>{annualPaceAlert(annual)}</span>
             </div>
-            <div className="min-w-0">
-              <p className="text-[12px] text-foreground/90 leading-snug">
-                {comparisonLabel(comparison.cmp)}
-              </p>
-              {comparison.prevLabel && (
-                <p className="text-[10px] text-muted-foreground">
-                  Período anterior: {comparison.prevLabel}
+          </Card>
+        )}
+
+        {/* Period-over-period comparison (only with an active date range) */}
+        {comparison && (
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center gap-3">
+              <div
+                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-sm font-bold shrink-0 ${
+                  comparison.cmp.direction === "up"
+                    ? "bg-emerald-500/10 text-emerald-400"
+                    : comparison.cmp.direction === "down"
+                    ? "bg-red-500/10 text-red-400"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {comparison.cmp.direction === "up" ? (
+                  <ArrowUpRight className="w-4 h-4" />
+                ) : comparison.cmp.direction === "down" ? (
+                  <ArrowDownRight className="w-4 h-4" />
+                ) : (
+                  <Minus className="w-4 h-4" />
+                )}
+                {comparison.cmp.pct === null
+                  ? comparison.cmp.previous === 0 && comparison.cmp.current > 0
+                    ? "Novo"
+                    : "—"
+                  : `${comparison.cmp.delta > 0 ? "+" : ""}${comparison.cmp.pct
+                      .toFixed(1)
+                      .replace(".", ",")}%`}
+              </div>
+              <div className="min-w-0">
+                <p className="text-[12px] text-foreground/90 leading-snug">
+                  {comparisonLabel(comparison.cmp)}
                 </p>
-              )}
+                {comparison.prevLabel && (
+                  <p className="text-[10px] text-muted-foreground">
+                    Período anterior: {comparison.prevLabel}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* Per-procedure movers */}
-          {movers.length > 0 && (
-            <div className="mt-3 pt-3 border-t border-border">
-              <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">
-                Variação por procedimento
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {movers.map((d) => (
-                  <span
-                    key={d.procedureId}
-                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium ${
-                      d.delta > 0
-                        ? "bg-emerald-500/10 text-emerald-400"
-                        : "bg-red-500/10 text-red-400"
-                    }`}
-                    title={`${d.procedureName}: ${d.previous} → ${d.current}`}
-                  >
-                    {d.delta > 0 ? (
-                      <ArrowUpRight className="w-3 h-3" />
-                    ) : (
-                      <ArrowDownRight className="w-3 h-3" />
-                    )}
-                    {d.procedureName} {d.delta > 0 ? "+" : ""}
-                    {d.delta}
+            {/* Per-procedure movers */}
+            {movers.length > 0 && (
+              <div className="mt-3 pt-3 border-t border-border">
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">
+                  Variação por procedimento
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {movers.map((d) => (
+                    <span
+                      key={d.procedureId}
+                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium ${
+                        d.delta > 0
+                          ? "bg-emerald-500/10 text-emerald-400"
+                          : "bg-red-500/10 text-red-400"
+                      }`}
+                      title={`${d.procedureName}: ${d.previous} → ${d.current}`}
+                    >
+                      {d.delta > 0 ? (
+                        <ArrowUpRight className="w-3 h-3" />
+                      ) : (
+                        <ArrowDownRight className="w-3 h-3" />
+                      )}
+                      {d.procedureName} {d.delta > 0 ? "+" : ""}
+                      {d.delta}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </Card>
+        )}
+
+        {/* Summary cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center gap-2 text-muted-foreground mb-1">
+              <BarChart3 className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[10px] uppercase tracking-wider">Total</span>
+            </div>
+            <p className="text-2xl font-bold text-foreground">{summary.total}</p>
+            <p className="text-[10px] text-muted-foreground">cirurgias registradas</p>
+          </Card>
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center gap-2 text-muted-foreground mb-1">
+              <Layers className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[10px] uppercase tracking-wider">Tipos</span>
+            </div>
+            <p className="text-2xl font-bold text-foreground">{summary.distinctTypes}</p>
+            <p className="text-[10px] text-muted-foreground">procedimentos distintos</p>
+          </Card>
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center gap-2 text-muted-foreground mb-1">
+              <TrendingUp className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[10px] uppercase tracking-wider">Mais frequente</span>
+            </div>
+            <p className="text-sm font-bold text-foreground truncate" title={summary.topType?.procedureName}>
+              {summary.topType?.procedureName ?? "—"}
+            </p>
+            <p className="text-[10px] text-muted-foreground">
+              {summary.topType ? `${summary.topType.count}x` : ""}
+            </p>
+          </Card>
+          <Card className="p-3 bg-card border-border">
+            <div className="flex items-center gap-2 text-muted-foreground mb-1">
+              <CalendarRange className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[10px] uppercase tracking-wider">Mês mais ativo</span>
+            </div>
+            <p className="text-sm font-bold text-foreground">
+              {summary.busiestMonth?.label ?? "—"}
+            </p>
+            <p className="text-[10px] text-muted-foreground">
+              {summary.busiestMonth ? `${summary.busiestMonth.count} cirurgias` : ""}
+            </p>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* By month */}
+          <Card className="p-4 bg-card border-border">
+            <h3 className="text-xs font-bold text-primary mb-3 flex items-center gap-1.5">
+              <CalendarRange className="w-3.5 h-3.5" />
+              Cirurgias por mês
+            </h3>
+            <div className="space-y-2">
+              {months.map((m) => (
+                <div key={m.key} className="flex items-center gap-2">
+                  <span className="text-[10px] text-muted-foreground w-16 shrink-0 text-right">
+                    {m.label}
                   </span>
-                ))}
-              </div>
+                  <div className="flex-1 h-5 bg-secondary rounded overflow-hidden">
+                    <div
+                      className="h-full bg-primary/70 rounded transition-all duration-500 ease-out"
+                      style={{ width: `${(m.count / maxMonth) * 100}%` }}
+                    />
+                  </div>
+                  <span className="text-[10px] font-medium text-foreground w-5 shrink-0">
+                    {m.count}
+                  </span>
+                </div>
+              ))}
             </div>
-          )}
-        </Card>
-      )}
+          </Card>
 
-      {/* Summary cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <Card className="p-3 bg-card border-border">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <BarChart3 className="w-3.5 h-3.5 text-primary" />
-            <span className="text-[10px] uppercase tracking-wider">Total</span>
-          </div>
-          <p className="text-2xl font-bold text-foreground">{summary.total}</p>
-          <p className="text-[10px] text-muted-foreground">cirurgias registradas</p>
-        </Card>
-        <Card className="p-3 bg-card border-border">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <Layers className="w-3.5 h-3.5 text-primary" />
-            <span className="text-[10px] uppercase tracking-wider">Tipos</span>
-          </div>
-          <p className="text-2xl font-bold text-foreground">{summary.distinctTypes}</p>
-          <p className="text-[10px] text-muted-foreground">procedimentos distintos</p>
-        </Card>
-        <Card className="p-3 bg-card border-border">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <TrendingUp className="w-3.5 h-3.5 text-primary" />
-            <span className="text-[10px] uppercase tracking-wider">Mais frequente</span>
-          </div>
-          <p className="text-sm font-bold text-foreground truncate" title={summary.topType?.procedureName}>
-            {summary.topType?.procedureName ?? "—"}
-          </p>
-          <p className="text-[10px] text-muted-foreground">
-            {summary.topType ? `${summary.topType.count}x` : ""}
-          </p>
-        </Card>
-        <Card className="p-3 bg-card border-border">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <CalendarRange className="w-3.5 h-3.5 text-primary" />
-            <span className="text-[10px] uppercase tracking-wider">Mês mais ativo</span>
-          </div>
-          <p className="text-sm font-bold text-foreground">
-            {summary.busiestMonth?.label ?? "—"}
-          </p>
-          <p className="text-[10px] text-muted-foreground">
-            {summary.busiestMonth ? `${summary.busiestMonth.count} cirurgias` : ""}
-          </p>
-        </Card>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* By month */}
-        <Card className="p-4 bg-card border-border">
-          <h3 className="text-xs font-bold text-primary mb-3 flex items-center gap-1.5">
-            <CalendarRange className="w-3.5 h-3.5" />
-            Cirurgias por mês
-          </h3>
-          <div className="space-y-2">
-            {months.map((m) => (
-              <div key={m.key} className="flex items-center gap-2">
-                <span className="text-[10px] text-muted-foreground w-16 shrink-0 text-right">
-                  {m.label}
-                </span>
-                <div className="flex-1 h-5 bg-secondary rounded overflow-hidden">
-                  <div
-                    className="h-full bg-primary/70 rounded transition-all duration-500 ease-out"
-                    style={{ width: `${(m.count / maxMonth) * 100}%` }}
-                  />
+          {/* By type */}
+          <Card className="p-4 bg-card border-border">
+            <h3 className="text-xs font-bold text-primary mb-3 flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5" />
+              Cirurgias por tipo
+            </h3>
+            <div className="space-y-2">
+              {topTypes.map((t) => (
+                <div key={t.procedureId} className="flex items-center gap-2">
+                  <span
+                    className="text-[10px] text-muted-foreground w-24 shrink-0 text-right truncate"
+                    title={t.procedureName}
+                  >
+                    {t.procedureName}
+                  </span>
+                  <div className="flex-1 h-5 bg-secondary rounded overflow-hidden">
+                    <div
+                      className="h-full bg-primary/70 rounded transition-all duration-500 ease-out"
+                      style={{ width: `${(t.count / maxType) * 100}%` }}
+                    />
+                  </div>
+                  <span className="text-[10px] font-medium text-foreground w-5 shrink-0">
+                    {t.count}
+                  </span>
                 </div>
-                <span className="text-[10px] font-medium text-foreground w-5 shrink-0">
-                  {m.count}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* By type */}
-        <Card className="p-4 bg-card border-border">
-          <h3 className="text-xs font-bold text-primary mb-3 flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5" />
-            Cirurgias por tipo
-          </h3>
-          <div className="space-y-2">
-            {topTypes.map((t) => (
-              <div key={t.procedureId} className="flex items-center gap-2">
-                <span
-                  className="text-[10px] text-muted-foreground w-24 shrink-0 text-right truncate"
-                  title={t.procedureName}
-                >
-                  {t.procedureName}
-                </span>
-                <div className="flex-1 h-5 bg-secondary rounded overflow-hidden">
-                  <div
-                    className="h-full bg-primary/70 rounded transition-all duration-500 ease-out"
-                    style={{ width: `${(t.count / maxType) * 100}%` }}
-                  />
-                </div>
-                <span className="text-[10px] font-medium text-foreground w-5 shrink-0">
-                  {t.count}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Card>
+              ))}
+            </div>
+          </Card>
+        </div>
       </div>
     </div>
   );

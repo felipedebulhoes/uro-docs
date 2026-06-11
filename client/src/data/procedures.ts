@@ -1856,5 +1856,320 @@ Retirada da sonda: ___ dias.
 Urofluxometria de controle: 30-60 dias.`
     }
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // ENUCLEAÇÃO PROSTÁTICA BIPOLAR (BipoLEP)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "bipolep",
+    name: "Enucleação Bipolar da Próstata (BipoLEP)",
+    shortName: "BipoLEP",
+    icon: "⚡",
+    category: "Próstata",
+    configFields: [
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["raquianestesia", "anestesia geral"], defaultValue: "raquianestesia" },
+      { id: "volume_prostata", label: "Volume Prostático (g)", type: "text", defaultValue: "80", placeholder: "Ex: 80" },
+      { id: "lobos", label: "Lobos Enucleados", type: "select", options: ["lobos laterais e mediano", "lobos laterais", "lobo mediano predominante"], defaultValue: "lobos laterais e mediano" },
+      { id: "peso_morcelado", label: "Peso do Tecido Morcelado (g)", type: "text", defaultValue: "55", placeholder: "Ex: 55" },
+      { id: "morcelacao", label: "Morcelação", type: "select", options: ["morcelador mecânico transuretral", "ressecção dos fragmentos (loop bipolar)"], defaultValue: "morcelador mecânico transuretral" },
+      { id: "svd", label: "Sonda Vesical", type: "select", options: ["SVD 22Fr 3 vias", "SVD 20Fr 3 vias", "SVD 24Fr 3 vias"], defaultValue: "SVD 22Fr 3 vias" },
+      { id: "irrigacao", label: "Irrigação Vesical Contínua", type: "select", options: ["Sim - SF 0,9%", "Não necessária"], defaultValue: "Sim - SF 0,9%" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento moderado controlado", "Lesão capsular", "Conversão para RTU-P"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Enucleação Bipolar da Próstata (BipoLEP)
+Anestesia: ${c.anestesia}
+Volume prostático estimado: ${c.volume_prostata} g
+
+1. Paciente em posição de litotomia.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Introdução do ressectoscópio bipolar com óptica de 30°, sob irrigação com SF 0,9%.
+4. Inspeção: ${c.lobos} adenomatosos obstruindo o colo vesical. Meatos ureterais e veru montanum identificados.
+5. Incisão da mucosa proximal ao veru montanum, identificando o plano cirúrgico entre adenoma e cápsula.
+6. Enucleação dos ${c.lobos} com energia bipolar, em plano capsular, com hemostasia progressiva.
+7. Liberação dos adenomas para a bexiga.
+8. ${c.morcelacao === "morcelador mecânico transuretral" ? "Morcelação mecânica transuretral do tecido adenomatoso intravesical." : "Ressecção dos fragmentos adenomatosos com loop bipolar."} Tecido recuperado: ${c.peso_morcelado} g (enviado para anatomopatológico).
+9. Revisão da loja: hemostasia minuciosa do leito prostático.
+10. Passagem de ${c.svd}.${c.irrigacao === "Sim - SF 0,9%" ? "\n11. Instalação de irrigação vesical contínua com SF 0,9%." : ""}
+
+Intercorrências: ${c.complicacoes}.`,
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO — BipoLEP
+
+1. Dieta zero por 4h → líquida → geral conforme aceitação.
+2. SF 0,9% 1000 mL IV em 12h.${c.irrigacao === "Sim - SF 0,9%" ? "\n3. Manter irrigação vesical contínua com SF 0,9% — ajustar gotejamento conforme aspecto da drenagem (manter rosa-claro)." : ""}
+4. Dipirona 1g IV 6/6h.
+5. Cetoprofeno 100mg IV 12/12h.
+6. Tramadol 50mg IV (diluído em 100mL SF) se dor refratária.
+7. Ácido tranexâmico 1g IV 8/8h por 24-48h (se sangramento).
+8. Escopolamina 20mg IV 8/8h se espasmos vesicais.
+9. Manter ${c.svd} em drenagem; tração suave nas primeiras horas se necessário.
+10. SSVV 4/4h; atenção a balanço hídrico e hematúria.
+11. Retirada da irrigação quando urina clara; SVD por 24-48h.`,
+      receitaAlta: (c) => `RECEITA DE ALTA — BipoLEP
+
+1. Dipirona 1g ––– 01 cp VO 6/6h se dor.
+2. Ibuprofeno 600mg ––– 01 cp VO 12/12h por 3-5 dias (com alimento).
+3. Ciprofloxacino 500mg ––– 01 cp VO 12/12h por 5 dias.
+4. Pyridium 100mg ––– 01 drágea VO 8/8h por 3 dias se ardência.
+5. Lactulose ou laxante osmótico se constipação (evitar esforço evacuatório).`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — BipoLEP
+
+Procedimento: Enucleação Bipolar da Próstata (BipoLEP).
+
+SINTOMAS ESPERADOS:
+• Urina rosada e ardência miccional por 1-3 semanas.
+• Urgência e aumento da frequência urinária que melhoram progressivamente.
+• Pequena perda de urina (incontinência) transitória pode ocorrer.
+
+CUIDADOS:
+• Hidratação 2-3 L/dia.
+• Evitar esforço físico, peso >5kg e atividade sexual por 3-4 semanas.
+• Evitar constipação (dieta com fibras).
+• A ejaculação retrógrada ("seca") é frequente após o procedimento — não é prejudicial à saúde.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C ou calafrios.
+• Sangramento intenso com coágulos / retenção urinária.
+• Impossibilidade de urinar.
+
+RETORNO: ___ dias (resultado do anatomopatológico).`
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // ENUCLEAÇÃO PROSTÁTICA A LASER DE HÓLMIO (HoLEP)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "holep",
+    name: "Enucleação da Próstata a Laser de Hólmio (HoLEP)",
+    shortName: "HoLEP",
+    icon: "🔦",
+    category: "Próstata",
+    configFields: [
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["raquianestesia", "anestesia geral"], defaultValue: "raquianestesia" },
+      { id: "volume_prostata", label: "Volume Prostático (g)", type: "text", defaultValue: "100", placeholder: "Ex: 100" },
+      { id: "lobos", label: "Técnica de Enucleação", type: "select", options: ["três lobos (laterais e mediano)", "dois lobos", "en bloc"], defaultValue: "três lobos (laterais e mediano)" },
+      { id: "energia_laser", label: "Energia do Laser", type: "text", defaultValue: "2,0 J / 40 Hz", placeholder: "Ex: 2,0 J / 40 Hz" },
+      { id: "peso_morcelado", label: "Peso do Tecido Morcelado (g)", type: "text", defaultValue: "70", placeholder: "Ex: 70" },
+      { id: "svd", label: "Sonda Vesical", type: "select", options: ["SVD 22Fr 3 vias", "SVD 20Fr 3 vias", "SVD 24Fr 3 vias"], defaultValue: "SVD 22Fr 3 vias" },
+      { id: "irrigacao", label: "Irrigação Vesical Contínua", type: "select", options: ["Sim - SF 0,9%", "Não necessária"], defaultValue: "Sim - SF 0,9%" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento leve controlado", "Lesão de mucosa vesical (morcelação)", "Conversão de técnica"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Enucleação da Próstata a Laser de Hólmio (HoLEP)
+Anestesia: ${c.anestesia}
+Volume prostático estimado: ${c.volume_prostata} g
+
+1. Paciente em posição de litotomia.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Introdução do ressectoscópio com fibra de laser de Hólmio (Ho:YAG, ${c.energia_laser}), sob irrigação com SF 0,9%.
+4. Inspeção endoscópica: adenoma obstrutivo. Veru montanum e meatos ureterais identificados.
+5. Incisões demarcatórias e identificação do plano cirúrgico capsular.
+6. Enucleação (${c.lobos}) do adenoma no plano da cápsula com laser de Hólmio, com hemostasia simultânea, deslocando o tecido para a bexiga.
+7. Hemostasia do leito com o laser.
+8. Morcelação mecânica transuretral do tecido adenomatoso intravesical. Tecido recuperado: ${c.peso_morcelado} g (enviado para anatomopatológico).
+9. Revisão endoscópica final — leito prostático amplo e hemostático.
+10. Passagem de ${c.svd}.${c.irrigacao === "Sim - SF 0,9%" ? "\n11. Instalação de irrigação vesical contínua com SF 0,9%." : ""}
+
+Intercorrências: ${c.complicacoes}.`,
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO — HoLEP
+
+1. Dieta zero por 4h → líquida → geral conforme aceitação.
+2. SF 0,9% 1000 mL IV em 12h.${c.irrigacao === "Sim - SF 0,9%" ? "\n3. Manter irrigação vesical contínua com SF 0,9% — ajustar conforme aspecto da drenagem." : ""}
+4. Dipirona 1g IV 6/6h.
+5. Cetoprofeno 100mg IV 12/12h.
+6. Tramadol 50mg IV se dor refratária.
+7. Escopolamina 20mg IV 8/8h se espasmos vesicais.
+8. Manter ${c.svd} em drenagem livre.
+9. SSVV 4/4h; atenção à hematúria.
+10. Retirada da irrigação quando urina clara; SVD habitualmente por 24h.`,
+      receitaAlta: (c) => `RECEITA DE ALTA — HoLEP
+
+1. Dipirona 1g ––– 01 cp VO 6/6h se dor.
+2. Ibuprofeno 600mg ––– 01 cp VO 12/12h por 3-5 dias (com alimento).
+3. Ciprofloxacino 500mg ––– 01 cp VO 12/12h por 5 dias.
+4. Pyridium 100mg ––– 01 drágea VO 8/8h por 3 dias se ardência.
+5. Laxante osmótico se constipação (evitar esforço evacuatório).`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — HoLEP
+
+Procedimento: Enucleação da Próstata a Laser de Hólmio (HoLEP).
+
+SINTOMAS ESPERADOS:
+• Urina rosada e ardência miccional por 1-3 semanas.
+• Urgência/frequência urinária que melhoram progressivamente.
+• Incontinência urinária transitória leve pode ocorrer nas primeiras semanas.
+
+CUIDADOS:
+• Hidratação 2-3 L/dia.
+• Evitar esforço físico, peso >5kg e atividade sexual por 3-4 semanas.
+• Evitar constipação.
+• A ejaculação retrógrada ("seca") é frequente após HoLEP — não prejudica a saúde.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C ou calafrios.
+• Sangramento intenso com coágulos / retenção urinária.
+• Impossibilidade de urinar.
+
+RETORNO: ___ dias (resultado do anatomopatológico).`
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // REZUM (TERMOTERAPIA POR VAPOR D'ÁGUA)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "rezum",
+    name: "Rezūm (Termoterapia Prostática por Vapor d'Água)",
+    shortName: "Rezūm",
+    icon: "💨",
+    category: "Próstata",
+    configFields: [
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["sedação + bloqueio prostático", "anestesia local + sedação leve", "raquianestesia"], defaultValue: "sedação + bloqueio prostático" },
+      { id: "volume_prostata", label: "Volume Prostático (g)", type: "text", defaultValue: "45", placeholder: "Ex: 45" },
+      { id: "lobo_mediano", label: "Lobo Mediano", type: "select", options: ["ausente", "presente (tratado)"], defaultValue: "ausente" },
+      { id: "injecoes_laterais", label: "Nº de Injeções (lobos laterais)", type: "text", defaultValue: "4", placeholder: "Ex: 4" },
+      { id: "injecoes_mediano", label: "Nº de Injeções (lobo mediano)", type: "text", defaultValue: "0", placeholder: "Ex: 1" },
+      { id: "sonda", label: "Sonda ao Final", type: "select", options: ["SVD 16Fr (3-7 dias)", "SVD 14Fr (3-7 dias)", "Sem sonda"], defaultValue: "SVD 16Fr (3-7 dias)" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Hematúria leve", "Desconforto local"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Rezūm — Termoterapia Prostática por Vapor d'Água
+Anestesia: ${c.anestesia}
+Volume prostático estimado: ${c.volume_prostata} g
+Lobo mediano: ${c.lobo_mediano}
+
+1. Paciente em posição de litotomia.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Introdução do aparelho de cistoscopia com o dispositivo Rezūm sob visão direta.
+4. Identificação do veru montanum, colo vesical e meatos ureterais (preservação).
+5. Aplicação de injeções de vapor d'água (energia térmica convectiva, ~9 segundos cada) nos lobos laterais: ${c.injecoes_laterais} injeções.${c.lobo_mediano === "presente (tratado)" ? `\n6. Tratamento do lobo mediano: ${c.injecoes_mediano} injeção(ões) de vapor.` : ""}
+7. Distribuição das aplicações respeitando o veru montanum (preservação da função ejaculatória).
+8. Revisão endoscópica — sem sangramento ativo.
+9. ${c.sonda === "Sem sonda" ? "Optado por não deixar sonda vesical." : `Passagem de ${c.sonda}.`}
+
+Intercorrências: ${c.complicacoes}.
+
+Obs.: O efeito de desobstrução é progressivo (necrose tecidual e reabsorção em semanas).`,
+      posOperatorio: (c) => `PÓS-OPERATÓRIO — Rezūm (ambulatorial/curta permanência)
+
+1. Observação por 1-3h.
+2. Dipirona 1g VO/IV se dor.
+3. Cetoprofeno se necessário.${c.sonda === "Sem sonda" ? "\n4. Liberar após micção espontânea." : `\n4. Manter ${c.sonda} em drenagem; orientar cuidados com a sonda.`}
+5. Orientar que a melhora dos sintomas é gradual (semanas).`,
+      receitaAlta: (c) => `RECEITA DE ALTA — Rezūm
+
+1. Dipirona 1g ––– 01 cp VO 6/6h se dor.
+2. Ibuprofeno 600mg ––– 01 cp VO 12/12h por 3-5 dias (com alimento).
+3. Tansulosina 0,4mg ––– 01 cáps VO ao dia, após jantar (por algumas semanas).
+4. Pyridium 100mg ––– 01 drágea VO 8/8h por 3 dias se ardência.
+5. Ciprofloxacino 500mg ––– 01 cp VO 12/12h por 3-5 dias${c.sonda === "Sem sonda" ? "" : " (enquanto com sonda)"}.`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — Rezūm
+
+Procedimento: Rezūm (vapor d'água prostático).
+
+IMPORTANTE — RESULTADO PROGRESSIVO:
+• A melhora do jato urinário é GRADUAL, ao longo de 2 a 6 semanas.
+• Nas primeiras semanas os sintomas urinários podem até piorar transitoriamente.
+
+SINTOMAS ESPERADOS:
+• Ardência, urgência e aumento da frequência urinária.
+• Urina rosada e eventual eliminação de pequenos fragmentos.
+${c.sonda === "Sem sonda" ? "" : "\nSONDA VESICAL:\n• Manter a sonda pelo período orientado (geralmente 3-7 dias).\n• Cuidados de higiene e bolsa coletora abaixo da bexiga.\n"}
+CUIDADOS:
+• Hidratação 2-3 L/dia.
+• Evitar esforço físico intenso por 1 semana.
+• Vantagem: preservação habitual da função ejaculatória e sexual.
+
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Retenção urinária (impossibilidade de urinar).
+• Sangramento intenso com coágulos.
+
+RETORNO: ___ dias (reavaliação de sintomas/urofluxometria).`
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PREENCHIMENTO PENIANO COM ÁCIDO HIALURÔNICO
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "preenchimento-peniano-ah",
+    name: "Preenchimento Peniano com Ácido Hialurônico",
+    shortName: "Preench. Peniano (AH)",
+    icon: "💉",
+    category: "Andrologia",
+    configFields: [
+      { id: "indicacao", label: "Indicação", type: "select", options: ["aumento de circunferência (estético)", "glandular (aumento da glande)", "ejaculação precoce (dessensibilização glandular)"], defaultValue: "aumento de circunferência (estético)" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["creme anestésico tópico + bloqueio peniano com lidocaína", "bloqueio peniano com lidocaína 2% s/ vasoconstritor", "apenas anestésico tópico"], defaultValue: "creme anestésico tópico + bloqueio peniano com lidocaína" },
+      { id: "produto", label: "Produto", type: "select", options: ["ácido hialurônico reticulado de alta densidade", "ácido hialurônico de média densidade"], defaultValue: "ácido hialurônico reticulado de alta densidade" },
+      { id: "volume", label: "Volume Total Aplicado (mL)", type: "text", defaultValue: "10", placeholder: "Ex: 10" },
+      { id: "plano", label: "Plano de Aplicação", type: "select", options: ["subcutâneo (entre dartos e fáscia de Buck)", "subcutâneo dorsal e lateral", "subglandular"], defaultValue: "subcutâneo (entre dartos e fáscia de Buck)" },
+      { id: "tecnica", label: "Técnica", type: "select", options: ["retroinjeção em leque com microcânula", "injeção com agulha em múltiplos pontos", "microcânula circunferencial"], defaultValue: "retroinjeção em leque com microcânula" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Equimose leve", "Edema moderado", "Assimetria leve corrigida com modelagem"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO DO PROCEDIMENTO
+
+Procedimento: Preenchimento Peniano com Ácido Hialurônico
+Indicação: ${c.indicacao}
+Anestesia: ${c.anestesia}
+Produto: ${c.produto}
+Volume total: ${c.volume} mL
+
+1. Paciente em decúbito dorsal. Antissepsia rigorosa da região genital e campos estéreis.
+2. Anestesia: ${c.anestesia}.
+3. Marcação dos pontos de entrada e da área a ser tratada.
+4. Aplicação de ${c.produto} no plano ${c.plano}, por meio de ${c.tecnica}.
+5. Distribuição homogênea do produto, com modelagem manual para uniformizar o contorno.
+6. Volume total aplicado: ${c.volume} mL.
+7. Compressão e curativo leve. Avaliação de simetria e perfusão da glande.
+
+Intercorrências: ${c.complicacoes}.
+
+Obs.: Procedimento estético, ambulatorial, reversível (hialuronidase, se necessário).`,
+      posOperatorio: (c) => `PÓS-PROCEDIMENTO IMEDIATO — Preenchimento Peniano (AH)
+
+1. Procedimento ambulatorial — observação por 30-60 min.
+2. Compressas frias intermitentes nas primeiras horas (reduzir edema/equimose).
+3. Analgesia: Dipirona 1g VO se dor.
+4. Orientar modelagem suave conforme instrução, se indicado.
+5. Liberação após avaliação de perfusão da glande (sem sinais de isquemia).`,
+      receitaAlta: (c) => `RECEITA / ORIENTAÇÃO DE MEDICAÇÃO — Preenchimento Peniano (AH)
+
+1. Dipirona 1g ––– 01 cp VO 6/6h se dor.
+2. Arnica (gel/comprimido) ––– conforme bula, auxílio na equimose (opcional).
+3. Evitar anti-inflamatórios nas primeiras 24-48h (favorecem equimose), salvo orientação.
+4. Cefalexina 500mg ––– 01 cp VO 6/6h por 5 dias (se profilaxia antibiótica indicada).`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-PROCEDIMENTO — Preenchimento Peniano (AH)
+
+Indicação: ${c.indicacao}.
+
+SINTOMAS ESPERADOS:
+• Edema (inchaço), equimoses (roxos) e leve desconforto por alguns dias.
+• Sensação de produto/relevo, que se uniformiza nas semanas seguintes.
+
+CUIDADOS:
+• Higiene local suave; manter a área limpa e seca.
+• Compressas frias nas primeiras 24-48h.
+• ABSTINÊNCIA SEXUAL e masturbação por 7-14 dias (conforme orientação).
+• Evitar exercícios físicos intensos, sauna e sol direto na região por 1-2 semanas.
+• Não manipular/massagear sem orientação.
+
+SINAIS DE ALERTA (Procurar atendimento IMEDIATO):
+• Dor intensa e progressiva, palidez ou coloração arroxeada/escurecida da glande (sinal de isquemia).
+• Febre, secreção purulenta, vermelhidão que se espalha (infecção).
+• Estes sinais podem exigir aplicação de hialuronidase de urgência.
+
+RESULTADO: O resultado é temporário (em média 12-18 meses), variando conforme o produto e o metabolismo individual.
+
+RETORNO: ___ dias (reavaliação e modelagem).`
+    }
+  },
 ];
 export const categories = Array.from(new Set(procedures.map(p => p.category)));

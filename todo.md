@@ -41,3 +41,9 @@
 - [x] Metas mensais com % de atingimento (config local, painel e PDF)
 - [x] Exportar gráfico de tendência mensal como imagem PNG
 - [x] Testes vitest de compareProcedures/procedureDeltaLabel/renderTrendPng; validação no navegador
+
+- [x] Incluir novos procedimentos: BipoLEP, HoLEP, Rezūm, preenchimento peniano com ácido hialurônico
+- [ ] Meta anual com barra de progresso acumulada do ano corrente
+- [ ] Alertas de ritmo de meta (mês corrente abaixo do necessário)
+- [ ] Exportar painel completo de estatísticas como PNG
+- [ ] Testes vitest das novas funções; validação no navegador
