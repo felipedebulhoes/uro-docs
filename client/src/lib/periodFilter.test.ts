@@ -9,6 +9,7 @@ import {
   filterByDateRange,
   formatDateKeyBR,
   rangeLabelOf,
+  presetRange,
 } from "./periodFilter";
 
 const recs = [
@@ -121,5 +122,33 @@ describe("rangeLabelOf", () => {
   it("formats open-ended bounds", () => {
     expect(rangeLabelOf("2026-05-01", "")).toBe("a partir de 01/05/2026");
     expect(rangeLabelOf("", "2026-06-30")).toBe("até 30/06/2026");
+  });
+});
+
+describe("presetRange", () => {
+  const ref = new Date(2026, 5, 11); // 11/06/2026 (month is 0-indexed)
+
+  it("computes the last 30 days inclusive of today", () => {
+    const { from, to } = presetRange("last30", ref);
+    expect(to).toBe("2026-06-11");
+    expect(from).toBe("2026-05-13"); // 11 Jun minus 29 days
+  });
+
+  it("computes the last 90 days inclusive of today", () => {
+    const { from, to } = presetRange("last90", ref);
+    expect(to).toBe("2026-06-11");
+    expect(from).toBe("2026-03-14"); // 11 Jun minus 89 days
+  });
+
+  it("computes the current year from Jan 1st to today", () => {
+    const { from, to } = presetRange("currentYear", ref);
+    expect(from).toBe("2026-01-01");
+    expect(to).toBe("2026-06-11");
+  });
+
+  it("pads single-digit month and day", () => {
+    const { from, to } = presetRange("currentYear", new Date(2026, 0, 5));
+    expect(from).toBe("2026-01-01");
+    expect(to).toBe("2026-01-05");
   });
 });

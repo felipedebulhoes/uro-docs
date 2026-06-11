@@ -35,6 +35,8 @@ import {
   periodLabelOf,
   filterByDateRange,
   rangeLabelOf,
+  presetRange,
+  PERIOD_PRESETS,
   MONTH_LABELS,
 } from "@/lib/periodFilter";
 
@@ -123,6 +125,22 @@ export default function HistoryPage() {
       }
     }
   };
+
+  const applyPreset = (preset: "last30" | "last90" | "currentYear") => {
+    const { from, to } = presetRange(preset);
+    setFilterMode("range");
+    setRangeFrom(from);
+    setRangeTo(to);
+  };
+
+  const activePreset = useMemo(() => {
+    if (filterMode !== "range" || (!rangeFrom && !rangeTo)) return null;
+    for (const p of PERIOD_PRESETS) {
+      const r = presetRange(p.key);
+      if (r.from === rangeFrom && r.to === rangeTo) return p.key;
+    }
+    return null;
+  }, [filterMode, rangeFrom, rangeTo]);
 
   const formatDate = (dateStr: string) => {
     try {
@@ -278,7 +296,24 @@ export default function HistoryPage() {
                   </Select>
                 </>
               ) : (
-                <div className="flex items-center gap-1.5">
+                <div className="flex flex-wrap items-end gap-1.5">
+                  <div className="flex items-center gap-1">
+                    {PERIOD_PRESETS.map((p) => (
+                      <button
+                        key={p.key}
+                        type="button"
+                        onClick={() => applyPreset(p.key)}
+                        className={`h-8 px-2.5 rounded-md text-[11px] font-medium border transition-colors ${
+                          activePreset === p.key
+                            ? "border-primary/50 bg-primary/15 text-primary"
+                            : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                        }`}
+                        title={`Definir intervalo: ${p.label}`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
                   <div className="flex flex-col">
                     <span className="text-[9px] uppercase tracking-wide text-muted-foreground/70 px-0.5">De</span>
                     <Input

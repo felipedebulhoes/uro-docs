@@ -103,3 +103,57 @@ export function summarizeHistory(records: StatRecord[]): HistorySummary {
     byType,
   };
 }
+
+/**
+ * Build an automatic executive-summary sentence from a HistorySummary, ready to
+ * paste into reports. Optionally include the period and procedure scope labels.
+ *
+ * Examples:
+ *  - "Nenhuma cirurgia registrada no período."
+ *  - "12 cirurgias registradas em 4 meses, distribuídas em 5 procedimentos
+ *     distintos. Procedimento mais frequente: RTU de Próstata (5). Mês mais
+ *     ativo: jun/2026 (4)."
+ */
+export function executiveSummary(
+  summary: HistorySummary,
+  opts: { periodLabel?: string; procedureLabel?: string } = {},
+): string {
+  const scope: string[] = [];
+  if (opts.procedureLabel) scope.push(`procedimento: ${opts.procedureLabel}`);
+  if (opts.periodLabel) scope.push(`período: ${opts.periodLabel}`);
+  const scopeSuffix = scope.length > 0 ? ` (${scope.join("; ")})` : "";
+
+  if (summary.total === 0) {
+    return `Nenhuma cirurgia registrada${scopeSuffix ? scopeSuffix : ""}.`;
+  }
+
+  const surgeryWord = summary.total === 1 ? "cirurgia registrada" : "cirurgias registradas";
+  const monthsCount = summary.byMonth.length;
+  const monthsPart =
+    monthsCount > 0
+      ? ` em ${monthsCount} ${monthsCount === 1 ? "mês" : "meses"}`
+      : "";
+
+  const typesPart =
+    summary.distinctTypes > 0
+      ? `, distribuídas em ${summary.distinctTypes} ${
+          summary.distinctTypes === 1 ? "procedimento distinto" : "procedimentos distintos"
+        }`
+      : "";
+
+  const sentences: string[] = [];
+  sentences.push(`${summary.total} ${surgeryWord}${monthsPart}${typesPart}${scopeSuffix}.`);
+
+  if (summary.topType) {
+    sentences.push(
+      `Procedimento mais frequente: ${summary.topType.procedureName} (${summary.topType.count}).`,
+    );
+  }
+  if (summary.busiestMonth) {
+    sentences.push(
+      `Mês mais ativo: ${summary.busiestMonth.label} (${summary.busiestMonth.count}).`,
+    );
+  }
+
+  return sentences.join(" ");
+}

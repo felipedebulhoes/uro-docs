@@ -3,7 +3,11 @@
 // document with inline SVG bar charts and opens the native print dialog, where
 // the user chooses "Save as PDF". Keeps the bundle light (no PDF libraries).
 
-import { summarizeHistory, type StatRecord } from "@/lib/historyStats";
+import {
+  summarizeHistory,
+  executiveSummary,
+  type StatRecord,
+} from "@/lib/historyStats";
 import { openPrintableDocument } from "@/lib/printDocument";
 import {
   institutionHeaderHtml,
@@ -94,6 +98,8 @@ export function exportStatsPDF(
     ? `Período: ${escapeHtml(periodLabel)}`
     : "Período: todos os registros";
 
+  const summaryText = executiveSummary(summary, { periodLabel, procedureLabel });
+
   const html = `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -109,6 +115,8 @@ ${INSTITUTION_HEADER_CSS}
   .card .k { font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; }
   .card .v { font-size: 20px; font-weight: 700; margin-top: 2px; }
   .card .s { font-size: 10px; color: #888; }
+  .exec-summary { margin: 16px 0 4px; padding: 12px 14px; background: #faf6f1; border-left: 3px solid #B87333; border-radius: 4px; font-size: 12.5px; line-height: 1.5; color: #333; }
+  .exec-summary .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; margin-bottom: 4px; font-weight: 700; }
   svg .lbl { font-size: 11px; fill: #444; }
   svg .val { font-size: 11px; fill: #1a1a1a; font-weight: 600; }
   svg .track { fill: #efe6db; }
@@ -130,6 +138,11 @@ ${INSTITUTION_HEADER_CSS}
       : "Estatísticas de Cirurgias",
     `Gerado em ${stamp} &middot; ${periodText}`
   )}
+
+  <div class="exec-summary">
+    <span class="k">Resumo executivo</span>
+    ${escapeHtml(summaryText)}
+  </div>
 
   <div class="cards">
     <div class="card"><div class="k">Total</div><div class="v">${summary.total}</div><div class="s">cirurgias</div></div>

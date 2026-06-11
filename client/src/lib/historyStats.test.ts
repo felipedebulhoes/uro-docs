@@ -3,6 +3,7 @@ import {
   surgeriesByMonth,
   surgeriesByType,
   summarizeHistory,
+  executiveSummary,
   type StatRecord,
 } from "./historyStats";
 
@@ -90,6 +91,49 @@ describe("summarizeHistory", () => {
     expect(summary.topType).toBeNull();
     expect(summary.byMonth).toEqual([]);
     expect(summary.byType).toEqual([]);
+  });
+});
+
+describe("executiveSummary", () => {
+  it("returns a no-data sentence for empty history", () => {
+    const text = executiveSummary(summarizeHistory([]));
+    expect(text).toBe("Nenhuma cirurgia registrada.");
+  });
+
+  it("includes scope in the no-data sentence when provided", () => {
+    const text = executiveSummary(summarizeHistory([]), {
+      periodLabel: "jun/2026",
+    });
+    expect(text).toContain("período: jun/2026");
+  });
+
+  it("summarizes total, months, types, top type and busiest month", () => {
+    const text = executiveSummary(summarizeHistory(sample));
+    expect(text).toContain("5 cirurgias registradas");
+    expect(text).toContain("3 meses");
+    expect(text).toContain("3 procedimentos distintos");
+    expect(text).toContain("Procedimento mais frequente: RTU de Próstata (3)");
+    expect(text).toMatch(/Mês mais ativo: (mai|jun)\/2026 \(2\)/);
+  });
+
+  it("uses singular wording for a single surgery in a single month", () => {
+    const text = executiveSummary(
+      summarizeHistory([
+        { procedureId: "x", procedureName: "X", date: "2026-03-01" },
+      ]),
+    );
+    expect(text).toContain("1 cirurgia registrada");
+    expect(text).toContain("em 1 mês");
+    expect(text).toContain("1 procedimento distinto");
+  });
+
+  it("appends procedure and period scope when provided", () => {
+    const text = executiveSummary(summarizeHistory(sample), {
+      periodLabel: "2026",
+      procedureLabel: "RTU de Próstata",
+    });
+    expect(text).toContain("procedimento: RTU de Próstata");
+    expect(text).toContain("período: 2026");
   });
 });
 

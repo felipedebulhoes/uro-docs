@@ -128,3 +128,45 @@ export function rangeLabelOf(from: string, to: string): string | undefined {
 }
 
 export { MONTH_LABELS };
+
+// --- Period presets (quick ranges) -------------------------------------------
+
+export type PeriodPreset = "last30" | "last90" | "currentYear";
+
+/**
+ * Compute a { from, to } YYYY-MM-DD range for a quick preset, relative to a
+ * reference date (defaults to today). "to" is the reference day (inclusive).
+ *  - last30: the last 30 days (today included)
+ *  - last90: the last 90 days (today included)
+ *  - currentYear: from Jan 1st of the reference year to the reference day
+ */
+export function presetRange(
+  preset: PeriodPreset,
+  ref: Date = new Date()
+): { from: string; to: string } {
+  const fmt = (d: Date) => {
+    const y = d.getFullYear();
+    const mo = String(d.getMonth() + 1).padStart(2, "0");
+    const da = String(d.getDate()).padStart(2, "0");
+    return `${y}-${mo}-${da}`;
+  };
+
+  const to = new Date(ref.getFullYear(), ref.getMonth(), ref.getDate());
+
+  if (preset === "currentYear") {
+    const from = new Date(ref.getFullYear(), 0, 1);
+    return { from: fmt(from), to: fmt(to) };
+  }
+
+  // last30 includes today + 29 previous days; last90 includes today + 89.
+  const days = preset === "last30" ? 29 : 89;
+  const from = new Date(to);
+  from.setDate(from.getDate() - days);
+  return { from: fmt(from), to: fmt(to) };
+}
+
+export const PERIOD_PRESETS: { key: PeriodPreset; label: string }[] = [
+  { key: "last30", label: "Últimos 30 dias" },
+  { key: "last90", label: "Últimos 90 dias" },
+  { key: "currentYear", label: "Ano corrente" },
+];

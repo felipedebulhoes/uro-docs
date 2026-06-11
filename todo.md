@@ -26,3 +26,8 @@
 - [x] Cabeçalho institucional (nome, CRM, instituição) nos PDFs de histórico e estatísticas
 - [x] Filtro por procedimento na exportação de estatísticas em PDF
 - [x] Testes vitest do intervalo de datas e do escopo por procedimento; validação no navegador
+
+- [x] Logotipo gráfico (imagem) no cabeçalho dos PDFs de histórico e estatísticas
+- [x] Resumo executivo automático no PDF de estatísticas (texto gerado: total, período, mais frequente)
+- [x] Predefinições de período no Histórico (Últimos 30 dias, Últimos 90 dias, Ano corrente)
+- [x] Testes vitest do resumo executivo e das predefinições; validação no navegador
