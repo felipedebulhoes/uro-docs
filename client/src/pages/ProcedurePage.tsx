@@ -18,6 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { procedures } from "@/data/procedures";
 import { getExtraDocs } from "@/data/extraDocuments";
 import { addToHistory, addDJTimer, addToRecents } from "@/data/surgeryStore";
+import { getPresets, savePreset, deletePreset, type HospitalPreset } from "@/data/hospitalPresets";
 import {
   ArrowLeft,
   ClipboardCopy,
@@ -36,6 +37,9 @@ import {
   Download,
   Pencil,
   X,
+  Building2,
+  Plus,
+  Trash2,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
@@ -84,6 +88,41 @@ export default function ProcedurePage() {
   const [editingTab, setEditingTab] = useState<string | null>(null);
   const [editedTexts, setEditedTexts] = useState<Record<string, string>>({});
   const editTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const [presets, setPresets] = useState<HospitalPreset[]>(() => getPresets());
+  const [showPresetSave, setShowPresetSave] = useState(false);
+  const [presetName, setPresetName] = useState("");
+
+  const loadPreset = useCallback((preset: HospitalPreset) => {
+    setConfig((prev) => ({ ...prev, ...preset.defaults }));
+    toast.success(`Preset "${preset.name}" carregado!`);
+  }, []);
+
+  const handleSavePreset = useCallback(() => {
+    if (!presetName.trim()) {
+      toast.error("Digite um nome para o preset.");
+      return;
+    }
+    const fieldsToSave: Record<string, string> = {};
+    // Save hospital and procedure-specific config fields
+    if (config.hospital) fieldsToSave.hospital = config.hospital;
+    if (config.convenio) fieldsToSave.convenio = config.convenio;
+    if (procedure) {
+      procedure.configFields.forEach((field) => {
+        if (config[field.id]) fieldsToSave[field.id] = config[field.id];
+      });
+    }
+    savePreset({ name: presetName.trim(), defaults: fieldsToSave });
+    setPresets(getPresets());
+    setPresetName("");
+    setShowPresetSave(false);
+    toast.success(`Preset "${presetName.trim()}" salvo!`);
+  }, [presetName, config, procedure]);
+
+  const handleDeletePreset = useCallback((id: string) => {
+    deletePreset(id);
+    setPresets(getPresets());
+    toast.info("Preset removido.");
+  }, []);
 
   const updateConfig = useCallback((fieldId: string, value: string) => {
     setConfig((prev) => ({ ...prev, [fieldId]: value }));
@@ -527,6 +566,57 @@ export default function ProcedurePage() {
                 Configuração
               </h2>
               <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-1">
+                {/* Hospital Presets */}
+                <div className="space-y-1.5 pb-3 border-b border-border/50">
+                  <Label className="text-xs text-muted-foreground font-medium flex items-center gap-1">
+                    <Building2 className="w-3 h-3" />
+                    Presets de Hospital
+                  </Label>
+                  <div className="flex flex-wrap gap-1">
+                    {presets.map((preset) => (
+                      <div key={preset.id} className="flex items-center gap-0.5">
+                        <button
+                          onClick={() => loadPreset(preset)}
+                          className="text-[10px] px-2 py-1 rounded bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors"
+                        >
+                          {preset.name}
+                        </button>
+                        <button
+                          onClick={() => handleDeletePreset(preset.id)}
+                          className="w-4 h-4 flex items-center justify-center rounded text-red-400/60 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                        >
+                          <Trash2 className="w-2.5 h-2.5" />
+                        </button>
+                      </div>
+                    ))}
+                    {!showPresetSave ? (
+                      <button
+                        onClick={() => setShowPresetSave(true)}
+                        className="text-[10px] px-2 py-1 rounded border border-dashed border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors flex items-center gap-0.5"
+                      >
+                        <Plus className="w-2.5 h-2.5" />
+                        Salvar atual
+                      </button>
+                    ) : (
+                      <div className="flex items-center gap-1 w-full mt-1">
+                        <Input
+                          value={presetName}
+                          onChange={(e) => setPresetName(e.target.value)}
+                          placeholder="Nome do hospital"
+                          className="h-7 text-[10px] bg-secondary border-border text-foreground placeholder:text-muted-foreground flex-1"
+                          onKeyDown={(e) => e.key === "Enter" && handleSavePreset()}
+                        />
+                        <Button size="sm" className="h-7 text-[10px] px-2 bg-primary text-white" onClick={handleSavePreset}>
+                          Salvar
+                        </Button>
+                        <Button size="sm" variant="outline" className="h-7 text-[10px] px-2" onClick={() => setShowPresetSave(false)}>
+                          <X className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
                 {/* Patient Name */}
                 <div className="space-y-1.5 pb-3 border-b border-border/50">
                   <Label className="text-xs text-primary font-semibold">

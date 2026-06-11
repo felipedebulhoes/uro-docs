@@ -1685,7 +1685,176 @@ RETORNO: ___ dias.
 Retirada da SVD: ___.
 Retirada do DJ: 4-6 semanas.`
     }
+    },
+  // ═══════════════════════════════════════════════════════════════
+  // 21. NEFROURETERECTOMIA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nefroureterectomia",
+    name: "Nefroureterectomia Radical (Videolaparoscópica)",
+    shortName: "Nefroureterectomia",
+    icon: "🔴",
+    category: "Oncologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à esquerda" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia geral", "anestesia geral + peridural"], defaultValue: "anestesia geral" },
+      { id: "via_acesso", label: "Via de Acesso", type: "select", options: ["Videolaparoscópica", "Robótica (Da Vinci)", "Aberta"], defaultValue: "Videolaparoscópica" },
+      { id: "indicacao", label: "Indicação", type: "select", options: ["Carcinoma urotelial de pelve renal", "Carcinoma urotelial de ureter", "Tumor de pelve renal de alto grau"], defaultValue: "Carcinoma urotelial de pelve renal" },
+      { id: "cuff_vesical", label: "Cuff Vesical", type: "select", options: ["Sim — excisão do cuff vesical", "Não realizado"], defaultValue: "Sim — excisão do cuff vesical" },
+      { id: "dreno", label: "Dreno", type: "select", options: ["Penrose em loja renal", "Blake 19Fr em loja renal", "Sem dreno"], defaultValue: "Blake 19Fr em loja renal" },
+      { id: "svd", label: "Sonda Vesical", type: "select", options: ["SVD 16Fr", "SVD 18Fr", "SVD 20Fr"], defaultValue: "SVD 18Fr" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento controlado", "Lesão de órgão adjacente"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Nefroureterectomia Radical ${c.lateralidade} com excisão de cuff vesical
+Via: ${c.via_acesso}
+Anestesia: ${c.anestesia}
+Indicação: ${c.indicacao}
+
+1. Paciente em posição de decúbito lateral modificado (${c.lateralidade === "à direita" ? "esquerdo" : "direito"}).
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Passagem de ${c.svd}.
+4. Pneumoperitônio (15mmHg). Inserção de trocateres (4 portais).
+5. Rebatimento do cólon ${c.lateralidade === "à direita" ? "direito" : "esquerdo"}.
+6. Identificação e ligadura da artéria e veia renal com Hem-o-lok/grampeador vascular.
+7. Liberação completa do rim com gordura perirrenal (nefrectomia radical).
+8. Dissecção do ureter em toda sua extensão até a junção ureterovesical.
+9. ${c.cuff_vesical === "Sim — excisão do cuff vesical" ? "Excisão do cuff vesical com grampeador endoscópico ou sutura manual." : "Ligadura e secção do ureter distal."}
+10. Sutura vesical em 2 planos (Vicryl 3-0 + PDS 2-0).
+11. Revisão de hemostasia.
+12. ${c.dreno !== "Sem dreno" ? `Posicionamento de ${c.dreno}.` : "Sem dreno."}
+13. Retirada da peça em endobag por incisão de Pfannenstiel.
+14. Fechamento por planos.
+
+Intercorrências: ${c.complicacoes}.
+Peça enviada para anatomopatológico.`,
+      posOperatorio: (c) => `PÓS-OPERATÓRIO IMEDIATO — NEFROURETERECTOMIA RADICAL
+
+1. Dieta zero por 6h → líquidos claros → dieta branda.
+2. SF 0,9% 1000mL IV (8/8h) — suspender quando boa aceitação VO.
+3. Dipirona 1g IV 6/6h.
+4. Tramadol 100mg IV 8/8h (se dor moderada/intensa).
+5. Cetoprofeno 100mg IV 12/12h.
+6. Ondansetrona 8mg IV 8/8h (se náuseas).
+7. Enoxaparina 40mg SC 1x/dia (tromboprofilaxia).
+8. Omeprazol 40mg IV 1x/dia.
+9. Cuidados com ${c.dreno} — anotar débito.
+10. Manter ${c.svd} em drenagem livre.
+11. Deambulação precoce (6-12h PO).
+12. Controle de diurese.
+13. Exames D1: hemograma, creatinina, eletrólitos.`,
+      receitaAlta: (c) => `RECEITA DE ALTA — NEFROURETERECTOMIA
+
+1. Dipirona 1g VO 6/6h por 5 dias.
+2. Cetoprofeno 100mg VO 12/12h por 5 dias (após refeições).
+3. Tramadol 50mg VO 8/8h se dor intensa (por 3 dias — SOS).
+4. Omeprazol 20mg VO 1x/dia em jejum por 10 dias.
+5. Enoxaparina 40mg SC 1x/dia por 14-28 dias (conforme risco).
+6. Lactulose 15mL VO 12/12h se constipação.`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — NEFROURETERECTOMIA
+
+CUIDADOS GERAIS:
+• Repouso relativo por 30 dias.
+• Evitar esforço físico e carregar peso >5kg por 6 semanas.
+• Caminhadas leves a partir de D3 PO.
+• Manter boa hidratação.
+FERIDA OPERATÓRIA:
+• Manter curativo limpo e seco por 48h.
+• Após 48h, lavar com água e sabão.
+• Retirar pontos em 10-14 dias.
+DRENO:
+• ${c.dreno !== "Sem dreno" ? "Retirada conforme débito (<50mL/24h)." : "Não aplicável."}
+SONDA VESICAL:
+• Manter ${c.svd} por 7-10 dias (cicatrização do cuff vesical).
+• Retirada conforme agendamento.
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Dor abdominal intensa ou distensão.
+• Sangramento ativo pela ferida ou urina.
+• Extravasamento de urina.
+• Náuseas/vômitos persistentes.
+RETORNO: ___ dias.
+Anatomopatológico: aguardar resultado em 15-20 dias.`
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // 22. URETROTOMIA INTERNA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "uretrotomia-interna",
+    name: "Uretrotomia Interna (Sachse)",
+    shortName: "Uretrotomia Interna",
+    icon: "🔓",
+    category: "Funcional",
+    configFields: [
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["raquianestesia", "anestesia geral"], defaultValue: "raquianestesia" },
+      { id: "localizacao", label: "Localização da Estenose", type: "select", options: ["uretra bulbar", "uretra peniana", "uretra membranosa", "meato uretral", "colo vesical"], defaultValue: "uretra bulbar" },
+      { id: "extensao", label: "Extensão da Estenose", type: "select", options: ["<1cm", "1-2cm", ">2cm"], defaultValue: "<1cm" },
+      { id: "grau", label: "Grau da Estenose", type: "select", options: ["parcial (filiforme)", "subtotal", "completa"], defaultValue: "parcial (filiforme)" },
+      { id: "tecnica", label: "Técnica", type: "select", options: ["Cold knife (Sachse) às 12h", "Cold knife (Sachse) às 12h + balão dilatador", "Laser Holmium"], defaultValue: "Cold knife (Sachse) às 12h" },
+      { id: "svd", label: "Sonda Vesical", type: "select", options: ["SVD 18Fr", "SVD 20Fr", "SVD 16Fr"], defaultValue: "SVD 18Fr" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento leve controlado", "Falso trajeto — corrigido"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Uretrotomia Interna — ${c.tecnica}
+Anestesia: ${c.anestesia}
+Indicação: Estenose de ${c.localizacao} (${c.extensao}, ${c.grau})
+
+1. Paciente em posição de litotomia.
+2. Antissepsia, assepsia e colocação de campos estéreis.
+3. Introdução do uretrotomo de Sachse sob visão direta.
+4. Identificação da estenose em ${c.localizacao} — ${c.grau}, extensão ${c.extensao}.
+5. Incisão da estenose às 12h com lâmina fria (cold knife) sob visão direta.
+6. Progressão do uretrotomo até a bexiga, confirmando perviedade uretral.
+7. Revisão endoscópica — hemostasia adequada.
+8. Passagem de ${c.svd} sob visão.
+9. Fixação da sonda.
+
+Intercorrências: ${c.complicacoes}.`,
+      posOperatorio: (c) => `PÓS-OPERATÓRIO IMEDIATO — URETROTOMIA INTERNA
+
+1. Dieta livre após recuperação anestésica.
+2. SF 0,9% 500mL IV (manutenção até alta).
+3. Dipirona 1g IV 6/6h.
+4. Cetoprofeno 100mg IV 12/12h (se necessário).
+5. Manter ${c.svd} em drenagem livre.
+6. Observar hematúria (esperada nas primeiras horas).
+7. Alta hospitalar em 12-24h se estável.`,
+      receitaAlta: (c) => `RECEITA DE ALTA — URETROTOMIA INTERNA
+
+1. Dipirona 1g VO 6/6h por 3 dias.
+2. Cetoprofeno 100mg VO 12/12h por 3 dias (após refeições).
+3. Norfloxacino 400mg VO 12/12h por 5 dias (profilaxia com sonda).
+4. Omeprazol 20mg VO 1x/dia em jejum por 5 dias.
+5. Fenazopiridina 200mg VO 8/8h por 3 dias (se disúria após retirada da sonda).`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — URETROTOMIA INTERNA
+
+CUIDADOS GERAIS:
+• Repouso relativo por 7 dias.
+• Evitar esforço físico por 14 dias.
+• Boa hidratação (>2L/dia).
+SONDA VESICAL:
+• Manter ${c.svd} por 3-7 dias (conforme extensão da estenose).
+• Cuidados: manter bolsa coletora abaixo da bexiga, higiene do meato.
+• Retirada conforme agendamento.
+APÓS RETIRADA DA SONDA:
+• Pode haver ardência/desconforto miccional por 2-3 dias.
+• Observar jato urinário — deve ser forte e contínuo.
+• Autodilatação com cateter (se prescrita): conforme orientação médica.
+SINAIS DE ALERTA (Procurar PS):
+• Febre >38°C.
+• Impossibilidade de urinar (retenção).
+• Jato urinário muito fraco ou em gotejamento.
+• Sangramento intenso.
+• Dor intensa.
+RETORNO: ___ dias.
+Retirada da sonda: ___ dias.
+Urofluxometria de controle: 30-60 dias.`
+    }
   },
 ];
-
 export const categories = Array.from(new Set(procedures.map(p => p.category)));
