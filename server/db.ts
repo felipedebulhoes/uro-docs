@@ -225,6 +225,7 @@ type PrescriptionTemplateRow = {
   name: string;
   content: string;
   favorite?: boolean;
+  sortOrder?: number;
 };
 
 export async function getPrescriptionTemplates(userId: number) {
@@ -254,6 +255,7 @@ export async function replacePrescriptionTemplates(
       name: r.name,
       content: r.content,
       favorite: r.favorite ?? false,
+      sortOrder: r.sortOrder ?? 0,
     }))
   );
 }

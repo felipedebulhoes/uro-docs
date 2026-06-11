@@ -28,8 +28,9 @@ import {
   Plus,
   Check,
   Pencil,
+  GripVertical,
 } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import {
   getTemplatesForProcedure,
@@ -37,6 +38,7 @@ import {
   updateTemplate,
   toggleTemplateFavorite,
   deleteTemplate,
+  reorderTemplates,
   type PrescriptionTemplate,
 } from "@/data/prescriptionTemplates";
 
@@ -64,6 +66,9 @@ export function PrescriptionTemplates({
   const [renameId, setRenameId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState("");
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [overId, setOverId] = useState<string | null>(null);
+  const touchOrderRef = useRef<string[] | null>(null);
 
   const refresh = useCallback(() => {
     setTemplates(getTemplatesForProcedure(procedureId));
@@ -134,6 +139,48 @@ export function PrescriptionTemplates({
     toast.info("Modelo removido.");
   }, [deleteId, refresh]);
 
+  // Reorder the current procedure's templates by moving `sourceId` to the
+  // position of `targetId`. Persists and refreshes from the store.
+  const moveTemplate = useCallback(
+    (sourceId: string, targetId: string) => {
+      if (sourceId === targetId) return;
+      const ids = templates.map((t) => t.id);
+      const from = ids.indexOf(sourceId);
+      const to = ids.indexOf(targetId);
+      if (from < 0 || to < 0) return;
+      ids.splice(to, 0, ids.splice(from, 1)[0]);
+      reorderTemplates(procedureId, ids);
+      refresh();
+    },
+    [templates, procedureId, refresh]
+  );
+
+  // --- Touch drag (mobile): track the element under the finger and reorder ---
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent, sourceId: string) => {
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      const chip = el?.closest("[data-template-id]") as HTMLElement | null;
+      const targetId = chip?.dataset.templateId;
+      if (targetId && targetId !== sourceId) {
+        setOverId(targetId);
+      }
+    },
+    []
+  );
+
+  const handleTouchEnd = useCallback(
+    (sourceId: string) => {
+      if (overId && overId !== sourceId) {
+        moveTemplate(sourceId, overId);
+      }
+      setDragId(null);
+      setOverId(null);
+      touchOrderRef.current = null;
+    },
+    [overId, moveTemplate]
+  );
+
   return (
     <div className="px-3 py-2.5 border-b border-border bg-[oklch(20%_.04_247.3)]">
       <div className="flex items-center justify-between mb-2">
@@ -162,8 +209,38 @@ export function PrescriptionTemplates({
           {templates.map((t) => (
             <div
               key={t.id}
-              className="flex items-center gap-0.5 rounded-md border border-border bg-card pl-1"
+              data-template-id={t.id}
+              draggable
+              onDragStart={() => setDragId(t.id)}
+              onDragOver={(e) => {
+                e.preventDefault();
+                if (dragId && dragId !== t.id) setOverId(t.id);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                if (dragId) moveTemplate(dragId, t.id);
+                setDragId(null);
+                setOverId(null);
+              }}
+              onDragEnd={() => {
+                setDragId(null);
+                setOverId(null);
+              }}
+              className={`flex items-center gap-0.5 rounded-md border bg-card pl-0.5 transition-all duration-150 ${
+                overId === t.id && dragId !== t.id
+                  ? "border-primary ring-1 ring-primary/40"
+                  : "border-border"
+              } ${dragId === t.id ? "opacity-50" : ""}`}
             >
+              <span
+                onTouchStart={() => setDragId(t.id)}
+                onTouchMove={(e) => handleTouchMove(e, t.id)}
+                onTouchEnd={() => handleTouchEnd(t.id)}
+                title="Arraste para reordenar"
+                className="w-4 h-5 flex items-center justify-center cursor-grab active:cursor-grabbing touch-none text-muted-foreground/40 hover:text-muted-foreground"
+              >
+                <GripVertical className="w-3 h-3" />
+              </span>
               <button
                 onClick={() => handleToggleFav(t.id)}
                 title={t.favorite ? "Remover dos favoritos" : "Favoritar"}

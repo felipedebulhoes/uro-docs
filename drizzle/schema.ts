@@ -95,6 +95,7 @@ export const prescriptionTemplates = mysqlTable("prescription_templates", {
   name: text("name").notNull(),
   content: text("content").notNull(),
   favorite: boolean("favorite").default(false).notNull(),
+  sortOrder: int("sortOrder").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

@@ -1,5 +1,6 @@
 import type { SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
+import { openPrintableDocument } from "@/lib/printDocument";
 
 /**
  * Export helpers for the surgery history.
@@ -145,13 +146,7 @@ export function exportHistoryPDF(records: SurgeryRecord[]): void {
 </body>
 </html>`;
 
-  const w = window.open("", "_blank");
-  if (!w) {
-    throw new Error("popup-blocked");
-  }
-  w.document.open();
-  w.document.write(html);
-  w.document.close();
+  openPrintableDocument(html);
 }
 
 function escapeHtml(s: string): string {

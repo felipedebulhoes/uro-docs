@@ -15,3 +15,9 @@
 - [x] Painel de estatísticas no Histórico (cirurgias por mês e por tipo de procedimento)
 - [x] Atalho "duplicar último registro" para preencher cirurgia semelhante
 - [x] Testes vitest para nova lógica e validação no navegador
+
+- [x] Exportar painel de estatísticas (gráficos + tabela) em PDF
+- [x] Filtro por período (mês/ano) no Histórico
+- [x] Reordenar modelos de prescrição por arrastar (drag-and-drop)
+- [x] Testes vitest da nova lógica e validação no navegador
+- [x] Corrigir exportação PDF bloqueada por Trusted Types (usar Blob URL no lugar de document.write)

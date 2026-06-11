@@ -36,6 +36,7 @@ const prescriptionTemplateSchema = z.object({
   name: z.string(),
   content: z.string(),
   favorite: z.boolean().optional(),
+  sortOrder: z.number().optional(),
 });
 
 export const appRouter = router({

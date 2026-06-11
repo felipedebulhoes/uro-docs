@@ -118,6 +118,7 @@ export function useCloudSync() {
       name: t.name,
       content: t.content,
       favorite: t.favorite,
+      sortOrder: t.sortOrder,
     }));
     pushTemplates.mutate({ rows });
   }, [isAuthenticated, pushTemplates]);
@@ -218,12 +219,13 @@ export function useCloudSync() {
         cloud.prescriptionTemplates || []
       )
         .filter((c: any) => !localTemplateIds.has(c.localId))
-        .map((c: any) => ({
+        .map((c: any, i: number) => ({
           id: c.localId,
           procedureId: c.procedureId,
           name: c.name,
           content: c.content,
           favorite: Boolean(c.favorite),
+          sortOrder: typeof c.sortOrder === "number" ? c.sortOrder : i,
           createdAt: c.createdAt
             ? new Date(c.createdAt).toISOString()
             : new Date().toISOString(),

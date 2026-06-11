@@ -2,6 +2,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { getHistory, removeFromHistory, clearHistory, type SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
 import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown, BarChart3 } from "lucide-react";
@@ -21,6 +28,13 @@ import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { exportHistoryCSV, exportHistoryPDF } from "@/lib/exportHistory";
 import { HistoryStats } from "@/components/HistoryStats";
+import {
+  availableYears as yearsOf,
+  availableMonths as monthsOf,
+  filterByPeriod,
+  periodLabelOf,
+  MONTH_LABELS,
+} from "@/lib/periodFilter";
 
 export default function HistoryPage() {
   const cloud = useCloudSync();
@@ -28,17 +42,38 @@ export default function HistoryPage() {
   const [search, setSearch] = useState("");
   const [clearOpen, setClearOpen] = useState(false);
   const [showStats, setShowStats] = useState(false);
+  const [periodYear, setPeriodYear] = useState("all");
+  const [periodMonth, setPeriodMonth] = useState("all");
+
+  // Years present in the history, descending.
+  const availableYears = useMemo(() => yearsOf(history), [history]);
+
+  // Months present for the selected year (or all years), ascending.
+  const availableMonths = useMemo(
+    () => monthsOf(history, periodYear),
+    [history, periodYear]
+  );
+
+  const byPeriod = useMemo(
+    () => filterByPeriod(history, periodYear, periodMonth),
+    [history, periodYear, periodMonth]
+  );
+
+  const periodLabel = useMemo(
+    () => periodLabelOf(periodYear, periodMonth),
+    [periodYear, periodMonth]
+  );
 
   const filtered = useMemo(() => {
-    if (!search) return history;
+    if (!search) return byPeriod;
     const q = search.toLowerCase();
-    return history.filter(
+    return byPeriod.filter(
       (r) =>
         r.patientName.toLowerCase().includes(q) ||
         r.procedureName.toLowerCase().includes(q) ||
         r.date.includes(q)
     );
-  }, [history, search]);
+  }, [byPeriod, search]);
 
   const handleDelete = (id: string) => {
     removeFromHistory(id);
@@ -98,7 +133,9 @@ export default function HistoryPage() {
             </Link>
             <div>
               <h1 className="text-sm font-bold text-foreground">Histórico de Cirurgias</h1>
-              <p className="text-xs text-muted-foreground">{history.length} registros</p>
+              <p className="text-xs text-muted-foreground">
+                {periodLabel ? `${byPeriod.length} de ${history.length} registros` : `${history.length} registros`}
+              </p>
             </div>
             {history.length > 0 && (
               <div className="ml-auto flex items-center gap-1.5">
@@ -148,16 +185,57 @@ export default function HistoryPage() {
       </header>
 
       <main className="flex-1 container py-4">
-        {showStats && history.length > 0 && <HistoryStats records={history} />}
+        {showStats && byPeriod.length > 0 && (
+          <HistoryStats records={byPeriod} periodLabel={periodLabel} />
+        )}
         {history.length > 0 && (
-          <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              placeholder="Buscar por paciente, procedimento ou data..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 bg-card border-border h-10 text-foreground placeholder:text-muted-foreground text-sm"
-            />
+          <div className="flex flex-col sm:flex-row gap-2 mb-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                placeholder="Buscar por paciente, procedimento ou data..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-10 bg-card border-border h-10 text-foreground placeholder:text-muted-foreground text-sm"
+              />
+            </div>
+            <div className="flex gap-2">
+              <Select
+                value={periodMonth}
+                onValueChange={(v) => setPeriodMonth(v)}
+              >
+                <SelectTrigger className="h-10 w-[110px] bg-card border-border text-sm">
+                  <SelectValue placeholder="Mês" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todo mês</SelectItem>
+                  {availableMonths.map((mm) => (
+                    <SelectItem key={mm} value={mm}>
+                      {MONTH_LABELS[parseInt(mm, 10) - 1]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select
+                value={periodYear}
+                onValueChange={(v) => {
+                  setPeriodYear(v);
+                  setPeriodMonth("all");
+                }}
+              >
+                <SelectTrigger className="h-10 w-[110px] bg-card border-border text-sm">
+                  <SelectValue placeholder="Ano" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todo ano</SelectItem>
+                  {availableYears.map((yy) => (
+                    <SelectItem key={yy} value={yy}>
+                      {yy}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         )}
 

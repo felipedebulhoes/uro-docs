@@ -1,0 +1,1 @@
+ALTER TABLE `prescription_templates` ADD `sortOrder` int DEFAULT 0 NOT NULL;
