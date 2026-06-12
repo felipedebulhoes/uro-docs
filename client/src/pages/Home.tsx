@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { procedures, categories } from "@/data/procedures";
 import { getFavorites, toggleFavorite, getRecents, getDJTimers } from "@/data/surgeryStore";
-import { Search, Star, Clock, History, Timer, AlertTriangle } from "lucide-react";
+import { Search, Star, Clock, History, Timer, AlertTriangle, BookOpen } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
@@ -83,6 +83,11 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-2">
               <CloudSyncMenu />
+              <Link href="/atlas">
+                <button className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150" title="Atlas Cirúrgico">
+                  <BookOpen className="w-4 h-4 text-muted-foreground" />
+                </button>
+              </Link>
               <Link href="/timers">
                 <button className="relative w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150" title="Timers DJ">
                   <Timer className="w-4 h-4 text-muted-foreground" />
@@ -113,6 +118,25 @@ export default function Home() {
                 <p className="text-xs text-destructive font-medium">
                   {overdueTimers.length} DJ{overdueTimers.length > 1 ? "s" : ""} com retirada atrasada!
                 </p>
+              </div>
+            </Card>
+          </Link>
+        )}
+
+        {/* Atlas entry banner */}
+        {!search && !activeCategory && (
+          <Link href="/atlas">
+            <Card className="p-4 mb-6 bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 cursor-pointer hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-200 group">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0 group-hover:bg-primary/25 transition-colors">
+                  <BookOpen className="w-6 h-6 text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-base font-bold text-primary">Atlas Cirúrgico</h2>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Passo a passo técnico de 34 procedimentos de andrologia, estética genital e saúde do homem — baseado em evidências.
+                  </p>
+                </div>
               </div>
             </Card>
           </Link>

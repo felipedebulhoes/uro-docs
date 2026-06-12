@@ -16,12 +16,14 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { procedures } from "@/data/procedures";
+import { atlasToProcedure } from "@/data/atlasData";
 import { getExtraDocs } from "@/data/extraDocuments";
 import { addToHistory, addDJTimer, addToRecents, getLastRecordForProcedure } from "@/data/surgeryStore";
 import { getPresets, savePreset, deletePreset, type HospitalPreset } from "@/data/hospitalPresets";
 import { LOGO_SVG } from "@/lib/institution";
 import {
   ArrowLeft,
+  BookOpen,
   ClipboardCopy,
   FileText,
   Pill,
@@ -59,6 +61,10 @@ import { todayLocalISO, addDaysISO, formatBR } from "@/lib/dateLocal";
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
   const procedure = procedures.find((p) => p.id === params.id);
+  // primeira entrada do Atlas que aponta para este procedimento (link reverso)
+  const atlasEntryId = procedure
+    ? Object.keys(atlasToProcedure).find((k) => atlasToProcedure[k] === procedure.id)
+    : undefined;
   const extraDocs = params.id ? getExtraDocs(params.id) : null;
   const cloud = useCloudSync();
 
@@ -638,6 +644,19 @@ export default function ProcedurePage() {
               </div>
             </div>
             <div className="ml-auto flex items-center gap-2 shrink-0">
+              {atlasEntryId && (
+                <Link href={`/atlas/${atlasEntryId}`}>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-7 text-xs gap-1 border-primary/30 text-primary hover:bg-primary/10"
+                    title="Ver técnica no Atlas Cirúrgico"
+                  >
+                    <BookOpen className="w-3 h-3" />
+                    <span className="hidden sm:inline">Atlas</span>
+                  </Button>
+                </Link>
+              )}
               <Button
                 size="sm"
                 variant="outline"

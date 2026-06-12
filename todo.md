@@ -56,3 +56,14 @@
 - [x] Permitir editar meta mensal por procedimento já criada (não só adicionar/remover)
 - [x] Adicionar campo configurável de pellets/dose no Implante de Testosterona (dose total calculada automaticamente; reflete em descrição e orientações)
 - [x] Adequar o app à identidade visual do Dr. Felipe e aplicar o logo (isótipo FB no app/PDFs/favicon, Roboto, azul petróleo)
+
+- [x] Atlas: definir lista final de procedimentos (andrologia, estética genital, saúde do homem) e pesquisar evidências/recomendações (34 dossiês)
+- [x] Atlas: curar figuras (133 figuras com legenda, descrição e termos de busca em inglês; placeholders informativos)
+- [x] Atlas: modelar dados (atlasData.ts: 34 entradas com seções markdown, figuras e referências)
+- [x] Atlas: construir UI (índice /atlas + página /atlas/:id com accordion, figuras e referências; banner e botão na Home)
+- [x] Atlas: helper de categoria/evidência (atlasMeta) e link cruzado Atlas→catálogo (atlasToProcedure)
+- [x] Atlas: testes vitest de integridade de dados/helpers (13 testes) — suíte completa 157 testes OK
+
+- [x] Atlas: validar no navegador os fluxos /atlas e /atlas/:id (conteúdo, figuras, referências)
+- [x] Atlas: link cruzado da página do procedimento (/procedimento/:id) para a entrada do Atlas correspondente
+- [x] Atlas: salvar checkpoint do projeto

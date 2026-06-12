@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import ProcedurePage from "./pages/ProcedurePage";
 import HistoryPage from "./pages/HistoryPage";
 import TimersPage from "./pages/TimersPage";
+import AtlasIndexPage from "./pages/AtlasIndexPage";
+import AtlasProcedurePage from "./pages/AtlasProcedurePage";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -16,6 +18,8 @@ function Router() {
       <Route path="/procedimento/:id" component={ProcedurePage} />
       <Route path="/historico" component={HistoryPage} />
       <Route path="/timers" component={TimersPage} />
+      <Route path="/atlas" component={AtlasIndexPage} />
+      <Route path="/atlas/:id" component={AtlasProcedurePage} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
