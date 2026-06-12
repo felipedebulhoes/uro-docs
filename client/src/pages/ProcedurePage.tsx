@@ -19,6 +19,7 @@ import { procedures } from "@/data/procedures";
 import { getExtraDocs } from "@/data/extraDocuments";
 import { addToHistory, addDJTimer, addToRecents, getLastRecordForProcedure } from "@/data/surgeryStore";
 import { getPresets, savePreset, deletePreset, type HospitalPreset } from "@/data/hospitalPresets";
+import { LOGO_SVG } from "@/lib/institution";
 import {
   ArrowLeft,
   ClipboardCopy,
@@ -53,6 +54,7 @@ import { toast } from "sonner";
 import { useSpeechDictation } from "@/hooks/useSpeechDictation";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { PrescriptionTemplates } from "@/components/PrescriptionTemplates";
+import { todayLocalISO, addDaysISO, formatBR } from "@/lib/dateLocal";
 
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
@@ -168,7 +170,7 @@ export default function ProcedurePage() {
       const name = (config.paciente || "").trim();
       if (!name) return text;
       const dateStr = config.data_cirurgia
-        ? new Date(config.data_cirurgia + "T12:00:00").toLocaleDateString("pt-BR")
+        ? formatBR(config.data_cirurgia)
         : "";
       const header =
         `Paciente: ${name}` + (dateStr ? `   |   Data: ${dateStr}` : "");
@@ -289,19 +291,18 @@ export default function ProcedurePage() {
       procedureId: procedure.id,
       procedureName: procedure.name,
       patientName: config.paciente || "Sem nome",
-      date: config.data_cirurgia || new Date().toISOString().split("T")[0],
+      date: config.data_cirurgia || todayLocalISO(),
       config: { ...config },
     });
     toast.success("Salvo no histórico!");
 
     if (config.duplo_j && config.duplo_j !== "Não implantado") {
-      const insertionDate = config.data_cirurgia || new Date().toISOString().split("T")[0];
-      const removalDate = new Date(insertionDate);
-      removalDate.setDate(removalDate.getDate() + 21);
+      const insertionDate = config.data_cirurgia || todayLocalISO();
+      const removalDate = addDaysISO(insertionDate, 21);
       addDJTimer({
         patientName: config.paciente || "Paciente",
         insertionDate,
-        removalDate: removalDate.toISOString().split("T")[0],
+        removalDate,
         lateralidade: config.lateralidade || "",
         procedureId: procedure.id,
       });
@@ -423,9 +424,12 @@ export default function ProcedurePage() {
 </head>
 <body>
   <div class="header">
-    <div class="header-left">
-      <h1>${procedure?.name || ""}</h1>
-      <p>${config.paciente ? "Paciente: " + config.paciente : ""}${config.data_cirurgia ? " | Data: " + new Date(config.data_cirurgia + "T12:00:00").toLocaleDateString("pt-BR") : ""}${config.hospital ? " | " + config.hospital : ""}</p>
+    <div class="header-left" style="display:flex;align-items:center;gap:12px;">
+      ${LOGO_SVG}
+      <div>
+        <h1>${procedure?.name || ""}</h1>
+        <p>${config.paciente ? "Paciente: " + config.paciente : ""}${config.data_cirurgia ? " | Data: " + formatBR(config.data_cirurgia) : ""}${config.hospital ? " | " + config.hospital : ""}</p>
+      </div>
     </div>
     <div class="header-right">
       <div class="name">Dr. Felipe de Bulhões</div>
@@ -550,9 +554,12 @@ export default function ProcedurePage() {
 </head>
 <body>
   <div class="header">
-    <div class="header-left">
-      <h1>${procedure.name}</h1>
-      <p>${config.paciente ? "Paciente: " + config.paciente : ""}${config.data_cirurgia ? " | Data: " + new Date(config.data_cirurgia + "T12:00:00").toLocaleDateString("pt-BR") : ""}${config.hospital ? " | " + config.hospital : ""}</p>
+    <div class="header-left" style="display:flex;align-items:center;gap:12px;">
+      ${LOGO_SVG}
+      <div>
+        <h1>${procedure.name}</h1>
+        <p>${config.paciente ? "Paciente: " + config.paciente : ""}${config.data_cirurgia ? " | Data: " + formatBR(config.data_cirurgia) : ""}${config.hospital ? " | " + config.hospital : ""}</p>
+      </div>
     </div>
     <div class="header-right">
       <div class="name">Dr. Felipe de Bulhões</div>

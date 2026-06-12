@@ -7,7 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { procedures, categories } from "@/data/procedures";
 import { getFavorites, toggleFavorite, getRecents, getDJTimers } from "@/data/surgeryStore";
-import { Search, Stethoscope, Star, Clock, History, Timer, AlertTriangle } from "lucide-react";
+import { Search, Star, Clock, History, Timer, AlertTriangle } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
@@ -68,8 +69,8 @@ export default function Home() {
         <div className="container py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
-                <Stethoscope className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-lg bg-nilo-dark flex items-center justify-center border border-primary/30 shadow-sm">
+                <BrandLogo className="h-5 w-auto" />
               </div>
               <div>
                 <h1 className="text-xl font-bold tracking-tight text-primary">

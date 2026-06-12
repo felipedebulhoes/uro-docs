@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getDJTimers, completeDJTimer, removeDJTimer, type DJTimer } from "@/data/surgeryStore";
 import { ArrowLeft, Clock, CheckCircle2, Trash2, AlertTriangle, Timer } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
+import { formatBR } from "@/lib/dateLocal";
 import { useCloudSync } from "@/hooks/useCloudSync";
 
 export default function TimersPage() {
@@ -64,7 +66,7 @@ export default function TimersPage() {
 
   const formatDate = (dateStr: string) => {
     try {
-      return new Date(dateStr).toLocaleDateString("pt-BR");
+      return formatBR(dateStr);
     } catch {
       return dateStr;
     }
@@ -80,6 +82,9 @@ export default function TimersPage() {
                 <ArrowLeft className="w-4 h-4 text-foreground" />
               </button>
             </Link>
+            <div className="w-8 h-8 rounded-lg bg-nilo-dark flex items-center justify-center border border-primary/30 shadow-sm">
+              <BrandLogo className="h-4 w-auto" />
+            </div>
             <div>
               <h1 className="text-sm font-bold text-foreground">Timers de Duplo J</h1>
               <p className="text-xs text-muted-foreground">{activeTimers.length} ativos</p>

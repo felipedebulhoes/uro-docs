@@ -12,6 +12,7 @@ import {
 import { getHistory, removeFromHistory, clearHistory, type SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
 import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown, BarChart3 } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { useState, useMemo } from "react";
 import {
   AlertDialog,
@@ -27,6 +28,7 @@ import { Link } from "wouter";
 import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { exportHistoryCSV, exportHistoryPDF } from "@/lib/exportHistory";
+import { formatBR } from "@/lib/dateLocal";
 import { HistoryStats } from "@/components/HistoryStats";
 import { PaceBadge } from "@/components/PaceBadge";
 import {
@@ -145,7 +147,7 @@ export default function HistoryPage() {
 
   const formatDate = (dateStr: string) => {
     try {
-      return new Date(dateStr).toLocaleDateString("pt-BR");
+      return formatBR(dateStr);
     } catch {
       return dateStr;
     }
@@ -161,6 +163,9 @@ export default function HistoryPage() {
                 <ArrowLeft className="w-4 h-4 text-foreground" />
               </button>
             </Link>
+            <div className="w-8 h-8 rounded-lg bg-nilo-dark flex items-center justify-center border border-primary/30 shadow-sm">
+              <BrandLogo className="h-4 w-auto" />
+            </div>
             <div>
               <h1 className="text-sm font-bold text-foreground">Histórico de Cirurgias</h1>
               <p className="text-xs text-muted-foreground">

@@ -54,6 +54,7 @@ import {
   CheckCircle2,
   Plus,
   X,
+  Pencil,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -148,6 +149,8 @@ export function HistoryStats({
   // Draft inputs for adding a new per-procedure monthly goal.
   const [newProcId, setNewProcId] = useState("");
   const [newProcTarget, setNewProcTarget] = useState("");
+  const [editProcId, setEditProcId] = useState<string | null>(null);
+  const [editProcTarget, setEditProcTarget] = useState("");
 
   // Monthly pace status drives the color of the highlighted PDF banner.
   const monthlyAlertStatus = useMemo<
@@ -195,6 +198,31 @@ export function HistoryStats({
     setNewProcId("");
     setNewProcTarget("");
     toast.success("Meta mensal do procedimento adicionada.");
+  };
+
+  const startEditProcedureGoal = (procedureId: string, current: number) => {
+    setEditProcId(procedureId);
+    setEditProcTarget(String(current));
+  };
+
+  const cancelEditProcedureGoal = () => {
+    setEditProcId(null);
+    setEditProcTarget("");
+  };
+
+  const saveEditProcedureGoal = (procedureId: string) => {
+    const target = parseInt(editProcTarget, 10);
+    if (!Number.isFinite(target) || target <= 0) {
+      toast.error("Informe uma meta válida (> 0).");
+      return;
+    }
+    setGoals((g) => ({
+      ...g,
+      perProcedureMonthly: { ...(g.perProcedureMonthly ?? {}), [procedureId]: target },
+    }));
+    setEditProcId(null);
+    setEditProcTarget("");
+    toast.success("Meta mensal do procedimento atualizada.");
   };
 
   const removeProcedureGoal = (procedureId: string) => {
@@ -542,22 +570,73 @@ export function HistoryStats({
                         {procedureName}
                       </span>
                       <div className="flex items-center gap-2 shrink-0">
-                        <span
-                          className={`text-[11px] font-bold ${
-                            reached ? "text-emerald-400" : "text-foreground"
-                          }`}
-                        >
-                          {pace.progress.achieved}/{pace.progress.target} ({pace.progress.pct}%)
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => removeProcedureGoal(procedureId)}
-                          className="text-muted-foreground hover:text-destructive transition-colors"
-                          title="Remover meta"
-                          aria-label={`Remover meta de ${procedureName}`}
-                        >
-                          <X className="w-3.5 h-3.5" />
-                        </button>
+                        {editProcId === procedureId ? (
+                          <>
+                            <Input
+                              type="number"
+                              min={1}
+                              value={editProcTarget}
+                              onChange={(e) => setEditProcTarget(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") saveEditProcedureGoal(procedureId);
+                                if (e.key === "Escape") cancelEditProcedureGoal();
+                              }}
+                              autoFocus
+                              className="h-6 w-16 text-[11px] px-1.5"
+                              aria-label={`Nova meta mensal de ${procedureName}`}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => saveEditProcedureGoal(procedureId)}
+                              className="text-emerald-500 hover:text-emerald-400 transition-colors"
+                              title="Salvar meta"
+                              aria-label={`Salvar meta de ${procedureName}`}
+                            >
+                              <Check className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={cancelEditProcedureGoal}
+                              className="text-muted-foreground hover:text-foreground transition-colors"
+                              title="Cancelar"
+                              aria-label="Cancelar edição"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() => startEditProcedureGoal(procedureId, pace.progress.target)}
+                              className={`text-[11px] font-bold hover:underline ${
+                                reached ? "text-emerald-400" : "text-foreground"
+                              }`}
+                              title="Editar meta"
+                              aria-label={`Editar meta de ${procedureName}`}
+                            >
+                              {pace.progress.achieved}/{pace.progress.target} ({pace.progress.pct}%)
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => startEditProcedureGoal(procedureId, pace.progress.target)}
+                              className="text-muted-foreground hover:text-primary transition-colors"
+                              title="Editar meta"
+                              aria-label={`Editar meta de ${procedureName}`}
+                            >
+                              <Pencil className="w-3 h-3" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => removeProcedureGoal(procedureId)}
+                              className="text-muted-foreground hover:text-destructive transition-colors"
+                              title="Remover meta"
+                              aria-label={`Remover meta de ${procedureName}`}
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="relative h-2 bg-secondary rounded-full overflow-hidden">

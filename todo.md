@@ -52,3 +52,7 @@
 - [x] Meta mensal por procedimento (além da meta global)
 - [x] Semáforo de ritmo (verde/âmbar/vermelho) no topo do Histórico
 - [x] Testes vitest das novas funções (paceSignal, perProcedureMonthlyPaces, load/save); validação no navegador
+- [x] Corrigir deslocamento de fuso ao salvar/exibir datas (data local, sem UTC)
+- [x] Permitir editar meta mensal por procedimento já criada (não só adicionar/remover)
+- [x] Adicionar campo configurável de pellets/dose no Implante de Testosterona (dose total calculada automaticamente; reflete em descrição e orientações)
+- [x] Adequar o app à identidade visual do Dr. Felipe e aplicar o logo (isótipo FB no app/PDFs/favicon, Roboto, azul petróleo)

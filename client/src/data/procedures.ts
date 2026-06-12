@@ -2186,19 +2186,22 @@ RETORNO: ___ dias (reavaliação e modelagem).`
       { id: "local", label: "Local do Implante", type: "select", options: ["quadrante súpero-lateral da região glútea", "parede abdominal inferior", "flanco/região do quadril"], defaultValue: "quadrante súpero-lateral da região glútea" },
       { id: "lado", label: "Lado", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à direita" },
       { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia local (lidocaína 1% sem vasoconstritor)", "anestesia local (lidocaína 2% sem vasoconstritor)"], defaultValue: "anestesia local (lidocaína 2% sem vasoconstritor)" },
-      { id: "dose_pellet", label: "Dose por Pellet", type: "select", options: ["75 mg (Testopel)", "100 mg", "200 mg"], defaultValue: "100 mg" },
-      { id: "num_pellets", label: "Número de Pellets", type: "text", defaultValue: "6", placeholder: "Ex: 6" },
-      { id: "dose_total", label: "Dose Total (mg)", type: "text", defaultValue: "600", placeholder: "Ex: 600" },
+      { id: "dose_pellet", label: "Dose por Pellet", type: "select", options: ["75 mg (Testopel)", "100 mg", "150 mg", "200 mg"], defaultValue: "75 mg (Testopel)" },
+      { id: "num_pellets", label: "Número de Pellets", type: "text", defaultValue: "4", placeholder: "Ex: 4 a 6" },
       { id: "trocarte", label: "Trocarte", type: "select", options: ["trocarte descartável com mandril cortante e obturador rombo", "trocarte reutilizável (kit de implante)"], defaultValue: "trocarte descartável com mandril cortante e obturador rombo" },
       { id: "sintese", label: "Síntese", type: "select", options: ["aproximada com Steri-Strip (sem sutura)", "01 ponto simples com Nylon 4-0", "adesivo cutâneo"], defaultValue: "aproximada com Steri-Strip (sem sutura)" },
       { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento leve controlado", "Equimose local"], defaultValue: "Sem intercorrências" },
     ],
     templates: {
-      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+      descricao: (c) => {
+        const mgPorPellet = parseInt((c.dose_pellet || "").replace(/[^0-9]/g, ""), 10) || 0;
+        const qtd = parseInt((c.num_pellets || "").replace(/[^0-9]/g, ""), 10) || 0;
+        const doseTotal = mgPorPellet && qtd ? `${mgPorPellet * qtd} mg` : "a definir";
+        return `DESCRIÇÃO CIRÚRGICA
 
 Procedimento: Implante Subcutâneo de Testosterona (pellets)
 Indicação: ${c.indicacao_trt}
-Dose: ${c.num_pellets} pellets de ${c.dose_pellet} (dose total ${c.dose_total} mg)
+Dose: ${c.num_pellets} pellets de ${c.dose_pellet} (dose total ${doseTotal})
 Local: ${c.local} ${c.lado}
 Anestesia: ${c.anestesia}
 
@@ -2212,7 +2215,8 @@ Anestesia: ${c.anestesia}
 8. Compressão local para hemostasia; ${c.sintese}.
 9. Curativo compressivo.
 
-Intercorrências: ${c.complicacoes}.`,
+Intercorrências: ${c.complicacoes}.`;
+      },
 
       posOperatorio: (c) => `PÓS-PROCEDIMENTO IMEDIATO — Implante de Testosterona
 
@@ -2224,7 +2228,13 @@ Procedimento ambulatorial.
 4. Orientar repouso relativo e evitar esforço sobre o local nas primeiras 48h (reduz risco de extrusão do pellet).
 5. Alta com orientações e agendamento de reavaliação laboratorial.`,
 
-      receitaAlta: (c) => `RECEITA DE ALTA — Implante de Testosterona
+      receitaAlta: (c) => {
+        const mgPorPellet = parseInt((c.dose_pellet || "").replace(/[^0-9]/g, ""), 10) || 0;
+        const qtd = parseInt((c.num_pellets || "").replace(/[^0-9]/g, ""), 10) || 0;
+        const doseTotal = mgPorPellet && qtd ? `${mgPorPellet * qtd} mg` : "a definir";
+        return `RECEITA DE ALTA — Implante de Testosterona
+
+Procedimento realizado: implante de ${c.num_pellets} pellets de ${c.dose_pellet} (dose total ${doseTotal}).
 
 1. Dipirona 1g ––– 01 cp VO 6/6h se dor, por 2-3 dias.
 2. Paracetamol 750mg ––– 01 cp VO 6/6h se dor (alternativa à dipirona).
@@ -2232,12 +2242,17 @@ Procedimento ambulatorial.
 Observação: evitar anti-inflamatórios não esteroidais de rotina; usar apenas se orientado.
 
 Uso Tópico (se houver ponto/incisão):
-3. Mupirocina pomada ––– aplicar fina camada 2x/dia sobre a incisão, após higiene, por 5 dias.`,
+3. Mupirocina pomada ––– aplicar fina camada 2x/dia sobre a incisão, após higiene, por 5 dias.`;
+      },
 
-      orientacoes: (c) => `ORIENTAÇÕES PÓS-PROCEDIMENTO — Implante de Testosterona
+      orientacoes: (c) => {
+        const mgPorPellet = parseInt((c.dose_pellet || "").replace(/[^0-9]/g, ""), 10) || 0;
+        const qtd = parseInt((c.num_pellets || "").replace(/[^0-9]/g, ""), 10) || 0;
+        const doseTotal = mgPorPellet && qtd ? `${mgPorPellet * qtd} mg` : "a definir";
+        return `ORIENTAÇÕES PÓS-PROCEDIMENTO — Implante de Testosterona
 
 Indicação: ${c.indicacao_trt}.
-Foram implantados ${c.num_pellets} pellets de ${c.dose_pellet} (total ${c.dose_total} mg) em ${c.local} ${c.lado}.
+Foram implantados ${c.num_pellets} pellets de ${c.dose_pellet} (total ${doseTotal}) em ${c.local} ${c.lado}.
 
 CURATIVO: Manter seco e intacto por 24-48h. Após, pode retirar e tomar banho normalmente.
 
@@ -2254,7 +2269,8 @@ SINAIS DE ALERTA (Procurar atendimento):
 
 SEGUIMENTO: Reavaliação laboratorial (testosterona total, hematócrito/hemoglobina e PSA conforme protocolo) antes da próxima aplicação. Reimplante habitualmente a cada 3-6 meses, ajustando a dose conforme resposta clínica e exames.
 
-RETORNO: ___ dias.`
+RETORNO: ___ dias.`;
+      }
     }
   },
 ];
