@@ -47,3 +47,8 @@
 - [x] Alertas de ritmo de meta (mês corrente abaixo do necessário)
 - [x] Exportar painel completo de estatísticas como PNG (Canvas 2D, CSP-seguro)
 - [x] Testes vitest das novas funções (goals, exportPanelImage); validação no navegador
+- [x] Incluir procedimento "Implante de Testosterona" (pellets subcutâneos) com modelos de documentos
+- [x] Alerta mensal de ritmo como linha destacada no topo do PDF de estatísticas
+- [x] Meta mensal por procedimento (além da meta global)
+- [x] Semáforo de ritmo (verde/âmbar/vermelho) no topo do Histórico
+- [x] Testes vitest das novas funções (paceSignal, perProcedureMonthlyPaces, load/save); validação no navegador

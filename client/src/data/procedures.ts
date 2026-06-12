@@ -2171,5 +2171,91 @@ RESULTADO: O resultado é temporário (em média 12-18 meses), variando conforme
 RETORNO: ___ dias (reavaliação e modelagem).`
     }
   },
+
+  // ════════════════════════════════════════════════════════════════
+  // IMPLANTE SUBCUTÂNEO DE TESTOSTERONA (PELLETS)
+  // ════════════════════════════════════════════════════════════════
+  {
+    id: "implante-testosterona",
+    name: "Implante Subcutâneo de Testosterona (Pellets)",
+    shortName: "Implante Testosterona",
+    icon: "\uD83D\uDC89",
+    category: "Andrologia",
+    configFields: [
+      { id: "indicacao_trt", label: "Indicação", type: "select", options: ["hipogonadismo masculino (testosterona total baixa confirmada em 2 dosagens matinais)", "hipogonadismo de início tardio", "reposição de testosterona (continuidade de TRT)"], defaultValue: "hipogonadismo masculino (testosterona total baixa confirmada em 2 dosagens matinais)" },
+      { id: "local", label: "Local do Implante", type: "select", options: ["quadrante súpero-lateral da região glútea", "parede abdominal inferior", "flanco/região do quadril"], defaultValue: "quadrante súpero-lateral da região glútea" },
+      { id: "lado", label: "Lado", type: "select", options: ["à direita", "à esquerda"], defaultValue: "à direita" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["anestesia local (lidocaína 1% sem vasoconstritor)", "anestesia local (lidocaína 2% sem vasoconstritor)"], defaultValue: "anestesia local (lidocaína 2% sem vasoconstritor)" },
+      { id: "dose_pellet", label: "Dose por Pellet", type: "select", options: ["75 mg (Testopel)", "100 mg", "200 mg"], defaultValue: "100 mg" },
+      { id: "num_pellets", label: "Número de Pellets", type: "text", defaultValue: "6", placeholder: "Ex: 6" },
+      { id: "dose_total", label: "Dose Total (mg)", type: "text", defaultValue: "600", placeholder: "Ex: 600" },
+      { id: "trocarte", label: "Trocarte", type: "select", options: ["trocarte descartável com mandril cortante e obturador rombo", "trocarte reutilizável (kit de implante)"], defaultValue: "trocarte descartável com mandril cortante e obturador rombo" },
+      { id: "sintese", label: "Síntese", type: "select", options: ["aproximada com Steri-Strip (sem sutura)", "01 ponto simples com Nylon 4-0", "adesivo cutâneo"], defaultValue: "aproximada com Steri-Strip (sem sutura)" },
+      { id: "complicacoes", label: "Complicações", type: "select", options: ["Sem intercorrências", "Sangramento leve controlado", "Equimose local"], defaultValue: "Sem intercorrências" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+
+Procedimento: Implante Subcutâneo de Testosterona (pellets)
+Indicação: ${c.indicacao_trt}
+Dose: ${c.num_pellets} pellets de ${c.dose_pellet} (dose total ${c.dose_total} mg)
+Local: ${c.local} ${c.lado}
+Anestesia: ${c.anestesia}
+
+1. Paciente em decúbito (lateral ou ventral conforme o local de implante).
+2. Antissepsia, assepsia e colocação de campos estéreis sobre ${c.local} ${c.lado}.
+3. Infiltração de ${c.anestesia} em botão dérmico e ao longo do trajeto subcutâneo (~5-7 cm).
+4. Incisão puntiforme (~5 mm) com lâmina 11.
+5. Introdução do ${c.trocarte} a 30-45°, avançando no plano subcutâneo (~2 cm de profundidade).
+6. Substituição do mandril cortante pelo obturador rombo; implante dos ${c.num_pellets} pellets, um a um, em trajetos divergentes (em leque), afastados do ponto de inserção.
+7. Conferência do número de pellets implantados e remoção do trocarte.
+8. Compressão local para hemostasia; ${c.sintese}.
+9. Curativo compressivo.
+
+Intercorrências: ${c.complicacoes}.`,
+
+      posOperatorio: (c) => `PÓS-PROCEDIMENTO IMEDIATO — Implante de Testosterona
+
+Procedimento ambulatorial.
+
+1. Observação por 30-60 min.
+2. Manter curativo compressivo seco e intacto.
+3. Analgesia: Dipirona 1g VO se dor.
+4. Orientar repouso relativo e evitar esforço sobre o local nas primeiras 48h (reduz risco de extrusão do pellet).
+5. Alta com orientações e agendamento de reavaliação laboratorial.`,
+
+      receitaAlta: (c) => `RECEITA DE ALTA — Implante de Testosterona
+
+1. Dipirona 1g ––– 01 cp VO 6/6h se dor, por 2-3 dias.
+2. Paracetamol 750mg ––– 01 cp VO 6/6h se dor (alternativa à dipirona).
+
+Observação: evitar anti-inflamatórios não esteroidais de rotina; usar apenas se orientado.
+
+Uso Tópico (se houver ponto/incisão):
+3. Mupirocina pomada ––– aplicar fina camada 2x/dia sobre a incisão, após higiene, por 5 dias.`,
+
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-PROCEDIMENTO — Implante de Testosterona
+
+Indicação: ${c.indicacao_trt}.
+Foram implantados ${c.num_pellets} pellets de ${c.dose_pellet} (total ${c.dose_total} mg) em ${c.local} ${c.lado}.
+
+CURATIVO: Manter seco e intacto por 24-48h. Após, pode retirar e tomar banho normalmente.
+
+ATIVIDADE FÍSICA: Evitar exercícios vigorosos, agachamentos e esforço sobre a região por 48-72h — isso reduz o risco de o pellet ser expelido (extrusão).
+
+SINTOMAS ESPERADOS: Leve dor, inchaço e equimose (roxo) no local por alguns dias.
+
+EFEITO: A testosterona é liberada de forma gradual; o efeito costuma durar de 3 a 6 meses, variando conforme o metabolismo. É normal sentir melhora progressiva de disposição, libido e bem-estar ao longo das primeiras semanas.
+
+SINAIS DE ALERTA (Procurar atendimento):
+• Vermelhidão que se espalha, calor, secreção purulenta ou febre >38°C (infecção).
+• Saída (extrusão) de um pellet pela incisão.
+• Sangramento que não cessa com compressão por 10 min.
+
+SEGUIMENTO: Reavaliação laboratorial (testosterona total, hematócrito/hemoglobina e PSA conforme protocolo) antes da próxima aplicação. Reimplante habitualmente a cada 3-6 meses, ajustando a dose conforme resposta clínica e exames.
+
+RETORNO: ___ dias.`
+    }
+  },
 ];
 export const categories = Array.from(new Set(procedures.map(p => p.category)));

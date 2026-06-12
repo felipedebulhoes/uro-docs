@@ -10,9 +10,22 @@ export interface GoalConfig {
   monthly?: number;
   /** Target number of surgeries per year (0 or undefined = no annual goal). */
   annual?: number;
+  /**
+   * Per-procedure monthly targets, keyed by procedureId. Lets the user set a
+   * specific monthly goal for a given procedure (e.g. RTU-P for a thesis),
+   * independent of the global monthly goal. Values <= 0 are dropped.
+   */
+  perProcedureMonthly?: Record<string, number>;
 }
 
 const LS_KEY = "urodocx_goals";
+
+/**
+ * Custom event dispatched on the window whenever goals are saved, so in-page
+ * listeners (e.g. the pace badge) can react immediately within the same tab
+ * (the native `storage` event only fires in *other* tabs).
+ */
+export const GOALS_CHANGED_EVENT = "urodocx:goals-changed";
 
 /** Read goal config from localStorage. Safe on server / missing storage. */
 export function loadGoals(): GoalConfig {
@@ -24,6 +37,7 @@ export function loadGoals(): GoalConfig {
     return {
       monthly: numOrUndefined(parsed.monthly),
       annual: numOrUndefined(parsed.annual),
+      perProcedureMonthly: sanitizePerProcedure(parsed.perProcedureMonthly),
     };
   } catch {
     return {};
@@ -39,8 +53,12 @@ export function saveGoals(config: GoalConfig): void {
       JSON.stringify({
         monthly: numOrUndefined(config.monthly),
         annual: numOrUndefined(config.annual),
+        perProcedureMonthly: sanitizePerProcedure(config.perProcedureMonthly),
       }),
     );
+    if (typeof window !== "undefined" && typeof window.dispatchEvent === "function") {
+      window.dispatchEvent(new Event(GOALS_CHANGED_EVENT));
+    }
   } catch {
     /* ignore */
   }
@@ -49,6 +67,23 @@ export function saveGoals(config: GoalConfig): void {
 function numOrUndefined(v: unknown): number | undefined {
   const n = typeof v === "string" ? parseInt(v, 10) : (v as number);
   return typeof n === "number" && isFinite(n) && n > 0 ? Math.floor(n) : undefined;
+}
+
+/**
+ * Keep only valid positive integer targets, dropping zero/negative/invalid
+ * entries. Returns undefined when nothing valid remains so the field can be
+ * omitted entirely.
+ */
+function sanitizePerProcedure(
+  map: Record<string, number> | undefined,
+): Record<string, number> | undefined {
+  if (!map || typeof map !== "object") return undefined;
+  const out: Record<string, number> = {};
+  for (const [id, value] of Object.entries(map)) {
+    const n = numOrUndefined(value);
+    if (id && n) out[id] = n;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
 }
 
 /** Count records that fall within a given year (YYYY). */
@@ -273,4 +308,82 @@ export function monthlyGoalAlert(
     return `Ritmo acima do esperado para a meta mensal: ${progress.achieved} vs. ${expected} previstos até o dia ${dayOfMonth}/${daysInMonth} (+${paceDelta}).`;
   }
   return `No ritmo esperado para a meta mensal: ${progress.achieved}/${progress.target} (${progress.pct}%) até o dia ${dayOfMonth}/${daysInMonth}.`;
+}
+
+/** Count records of a given procedureId within a year-month (YYYY, MM). */
+export function countProcedureInMonth(
+  records: StatRecord[],
+  procedureId: string,
+  year: string,
+  month: string,
+): number {
+  let n = 0;
+  for (const r of records) {
+    if (r.procedureId !== procedureId) continue;
+    const p = datePartsOf(r.date);
+    if (p && p.year === year && p.month === month) n += 1;
+  }
+  return n;
+}
+
+export interface ProcedureMonthlyPace {
+  procedureId: string;
+  /** Display name resolved from the records (or the id as a fallback). */
+  procedureName: string;
+  pace: MonthlyPace;
+}
+
+/**
+ * Compute the monthly pace for each procedure that has a configured target,
+ * for the month of `ref`. Returns an entry per configured procedure (even
+ * with zero achieved), sorted by procedure name for stable display.
+ */
+export function perProcedureMonthlyPaces(
+  records: StatRecord[],
+  perProcedureMonthly: Record<string, number> | undefined,
+  ref: Date = new Date(),
+): ProcedureMonthlyPace[] {
+  if (!perProcedureMonthly) return [];
+  const year = String(ref.getFullYear());
+  const month = String(ref.getMonth() + 1).padStart(2, "0");
+
+  const nameById = new Map<string, string>();
+  for (const r of records) {
+    if (!nameById.has(r.procedureId)) nameById.set(r.procedureId, r.procedureName);
+  }
+
+  const out: ProcedureMonthlyPace[] = [];
+  for (const [procedureId, target] of Object.entries(perProcedureMonthly)) {
+    const safeTarget = numOrUndefined(target);
+    if (!safeTarget) continue;
+    const achieved = countProcedureInMonth(records, procedureId, year, month);
+    const procRecords = records.filter((r) => r.procedureId === procedureId);
+    const pace = monthlyPace(procRecords, safeTarget, ref);
+    out.push({
+      procedureId,
+      procedureName: nameById.get(procedureId) ?? procedureId,
+      pace: { ...pace, progress: goalProgress(safeTarget, achieved) },
+    });
+  }
+  return out.sort((a, b) => a.procedureName.localeCompare(b.procedureName, "pt-BR"));
+}
+
+/**
+ * Traffic-light signal for the monthly pace. Maps a MonthlyPace to one of three
+ * explicit levels for at-a-glance reading:
+ * - "green"  → goal reached, ahead, or on the expected daily pace
+ * - "amber"  → moderately behind (achieved >= half of the expected so far)
+ * - "red"    → severely behind (achieved < half of the expected so far)
+ * The half-of-expected threshold makes "red" meaningful only once the month has
+ * progressed enough to expect at least one case.
+ */
+export function paceSignal(pace: MonthlyPace): "green" | "amber" | "red" {
+  if (pace.progress.reached || pace.status === "ahead" || pace.status === "on") {
+    return "green";
+  }
+  // status === "behind"
+  if (pace.expected > 0 && pace.progress.achieved * 2 < pace.expected) {
+    return "red";
+  }
+  return "amber";
 }

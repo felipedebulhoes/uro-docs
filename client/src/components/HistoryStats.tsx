@@ -29,6 +29,8 @@ import {
   annualPace,
   annualPaceAlert,
   monthlyGoalAlert,
+  monthlyPace,
+  perProcedureMonthlyPaces,
   type GoalConfig,
 } from "@/lib/goals";
 import { exportStatsPDF } from "@/lib/exportStats";
@@ -50,6 +52,8 @@ import {
   CalendarClock,
   AlertTriangle,
   CheckCircle2,
+  Plus,
+  X,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -135,6 +139,25 @@ export function HistoryStats({
     return annualPace(goalRecords, goals.annual, refDate);
   }, [goals.annual, goalRecords, refDate]);
 
+  // Per-procedure monthly goals: paces for each configured procedure.
+  const procedurePaces = useMemo(
+    () => perProcedureMonthlyPaces(goalRecords, goals.perProcedureMonthly, refDate),
+    [goalRecords, goals.perProcedureMonthly, refDate],
+  );
+
+  // Draft inputs for adding a new per-procedure monthly goal.
+  const [newProcId, setNewProcId] = useState("");
+  const [newProcTarget, setNewProcTarget] = useState("");
+
+  // Monthly pace status drives the color of the highlighted PDF banner.
+  const monthlyAlertStatus = useMemo<
+    "ahead" | "on" | "behind" | "reached" | undefined
+  >(() => {
+    if (!goals.monthly) return undefined;
+    const pace = monthlyPace(goalRecords, goals.monthly, refDate);
+    return pace.progress.reached ? "reached" : pace.status;
+  }, [goals.monthly, goalRecords, refDate]);
+
   if (summary.total === 0) return null;
 
   const handleCopySummary = async () => {
@@ -148,14 +171,41 @@ export function HistoryStats({
     }
   };
 
+  // Goal text for the PDF "Metas" block — annual only (monthly pace now has its
+  // own highlighted banner at the top of the PDF).
   const buildGoalText = (): string | undefined => {
     const lines: string[] = [];
-    if (monthlyAlert) lines.push(monthlyAlert);
     if (annual) {
       const a = annualPaceAlert(annual);
       if (a) lines.push(a);
     }
     return lines.length > 0 ? lines.join(" ") : undefined;
+  };
+
+  const addProcedureGoal = () => {
+    const target = parseInt(newProcTarget, 10);
+    if (!newProcId || !Number.isFinite(target) || target <= 0) {
+      toast.error("Escolha um procedimento e uma meta válida (> 0).");
+      return;
+    }
+    setGoals((g) => ({
+      ...g,
+      perProcedureMonthly: { ...(g.perProcedureMonthly ?? {}), [newProcId]: target },
+    }));
+    setNewProcId("");
+    setNewProcTarget("");
+    toast.success("Meta mensal do procedimento adicionada.");
+  };
+
+  const removeProcedureGoal = (procedureId: string) => {
+    setGoals((g) => {
+      const next = { ...(g.perProcedureMonthly ?? {}) };
+      delete next[procedureId];
+      return {
+        ...g,
+        perProcedureMonthly: Object.keys(next).length > 0 ? next : undefined,
+      };
+    });
   };
 
   const handleExportPDF = () => {
@@ -178,6 +228,8 @@ export function HistoryStats({
           comparisonText,
           procedureDeltaText,
           goalText,
+          monthlyAlertText: monthlyAlert ?? undefined,
+          monthlyAlertStatus,
         });
       } else {
         const scoped = records.filter((r) => r.procedureId === exportProc);
@@ -188,6 +240,8 @@ export function HistoryStats({
           periodLabel,
           procedureLabel: label,
           goalText,
+          monthlyAlertText: monthlyAlert ?? undefined,
+          monthlyAlertStatus,
         });
       }
     } catch (err) {
@@ -417,6 +471,126 @@ export function HistoryStats({
             )}
           </Card>
         )}
+
+        {/* Per-procedure monthly goals (e.g. a specific RTU-P target) */}
+        <Card className="p-3 bg-card border-border">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1.5 font-bold">
+              <Target className="w-3 h-3" />
+              Metas mensais por procedimento
+            </span>
+          </div>
+
+          {/* Add a new per-procedure monthly goal */}
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <Select value={newProcId} onValueChange={setNewProcId}>
+              <SelectTrigger
+                className="h-8 flex-1 min-w-[160px] bg-background border-border text-xs"
+                title="Escolher procedimento"
+              >
+                <SelectValue placeholder="Escolher procedimento…" />
+              </SelectTrigger>
+              <SelectContent>
+                {summary.byType
+                  .filter((t) => !goals.perProcedureMonthly?.[t.procedureId])
+                  .map((t) => (
+                    <SelectItem key={t.procedureId} value={t.procedureId}>
+                      {t.procedureName}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+            <Input
+              type="number"
+              min={1}
+              value={newProcTarget}
+              onChange={(e) => setNewProcTarget(e.target.value)}
+              placeholder="Meta/mês"
+              className="h-8 w-24 px-2 text-xs text-center bg-background border-border"
+            />
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 text-xs border-border bg-card hover:border-primary/40 hover:bg-primary/10"
+              onClick={addProcedureGoal}
+              title="Adicionar meta mensal para o procedimento"
+            >
+              <Plus className="w-3 h-3 mr-1" />
+              Adicionar
+            </Button>
+          </div>
+
+          {procedurePaces.length === 0 ? (
+            <p className="text-[11px] text-muted-foreground">
+              Nenhuma meta por procedimento definida. Útil para acompanhar um
+              procedimento específico (ex.: RTU-P para o mestrado).
+            </p>
+          ) : (
+            <div className="space-y-2.5">
+              {procedurePaces.map(({ procedureId, procedureName, pace }) => {
+                const reached = pace.progress.reached;
+                const behind = pace.status === "behind";
+                const barColor = reached
+                  ? "bg-emerald-500"
+                  : behind
+                  ? "bg-amber-500"
+                  : "bg-primary";
+                return (
+                  <div key={procedureId} className="rounded-md border border-border/60 bg-background/60 p-2.5">
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-[11px] font-semibold text-foreground truncate">
+                        {procedureName}
+                      </span>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span
+                          className={`text-[11px] font-bold ${
+                            reached ? "text-emerald-400" : "text-foreground"
+                          }`}
+                        >
+                          {pace.progress.achieved}/{pace.progress.target} ({pace.progress.pct}%)
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => removeProcedureGoal(procedureId)}
+                          className="text-muted-foreground hover:text-destructive transition-colors"
+                          title="Remover meta"
+                          aria-label={`Remover meta de ${procedureName}`}
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="relative h-2 bg-secondary rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all duration-500 ease-out ${barColor}`}
+                        style={{ width: `${Math.min(pace.progress.pct, 100)}%` }}
+                      />
+                      {!reached && (
+                        <div
+                          className="absolute top-0 bottom-0 w-0.5 bg-foreground/60"
+                          style={{
+                            left: `${Math.min(
+                              Math.round((pace.expected / pace.progress.target) * 100),
+                              100,
+                            )}%`,
+                          }}
+                          title={`Ritmo esperado até o dia ${pace.dayOfMonth}/${pace.daysInMonth}: ${pace.expected}`}
+                        />
+                      )}
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mt-1">
+                      {reached
+                        ? "Meta do mês atingida."
+                        : behind
+                        ? `Abaixo do ritmo: ${pace.progress.achieved} de ${pace.expected} previstos até o dia ${pace.dayOfMonth}/${pace.daysInMonth} (faltam ${pace.progress.remaining}).`
+                        : `No ritmo: ${pace.progress.achieved} de ${pace.expected} previstos até o dia ${pace.dayOfMonth}/${pace.daysInMonth} (faltam ${pace.progress.remaining}).`}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </Card>
 
         {/* Annual goal: accumulated progress + pace alert */}
         {annual && (

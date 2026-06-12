@@ -148,23 +148,28 @@ export interface StatsPdfOptions {
   procedureDeltaText?: string;
   /** Goal status text (monthly + annual pace), produced by the goals module. */
   goalText?: string;
+  /** Highlighted monthly pace alert, shown as a prominent banner near the top. */
+  monthlyAlertText?: string;
+  /** Status of the monthly pace, controls the banner color. */
+  monthlyAlertStatus?: "ahead" | "on" | "behind" | "reached";
 }
 
 /**
- * Generate and open the statistics PDF.
- * @param records Already-filtered records (so the PDF matches the on-screen period).
- * @param options Optional labels and analytics (period, scope, comparison, deltas, goal).
+ * Build the printable statistics HTML document (pure function, no side effects).
+ * Exposed separately so it can be unit-tested without opening a print window.
  */
-export function exportStatsPDF(
+export function buildStatsHtml(
   records: StatRecord[],
   options: StatsPdfOptions = {}
-): void {
+): string {
   const {
     periodLabel,
     procedureLabel,
     comparisonText,
     procedureDeltaText,
     goalText,
+    monthlyAlertText,
+    monthlyAlertStatus,
   } = options;
   const summary = summarizeHistory(records);
   const stamp = new Date().toLocaleDateString("pt-BR");
@@ -192,6 +197,17 @@ export function exportStatsPDF(
     : "Período: todos os registros";
 
   const summaryText = executiveSummary(summary, { periodLabel, procedureLabel });
+
+  // Highlighted monthly pace banner (separate from the combined "Metas" block).
+  let monthlyBanner = "";
+  if (monthlyAlertText && monthlyAlertText.trim()) {
+    const behind = monthlyAlertStatus === "behind";
+    const cls = behind ? "pace-banner behind" : "pace-banner ok";
+    const icon = behind ? "\u26A0" : "\u2714";
+    monthlyBanner = `<div class="${cls}"><span class="ico">${icon}</span><span><span class="k">Ritmo da meta mensal</span>${escapeHtml(
+      monthlyAlertText,
+    )}</span></div>`;
+  }
 
   // Goal status: render the text produced by the goals module (monthly + annual).
   let goalBlock = "";
@@ -222,6 +238,13 @@ ${INSTITUTION_HEADER_CSS}
   .comparison .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #3a6b46; margin-bottom: 4px; font-weight: 700; }
   .deltas { margin: 8px 0 4px; padding: 10px 14px; background: #faf6f1; border-left: 3px solid #8a5523; border-radius: 4px; font-size: 12.5px; line-height: 1.5; color: #3a2c20; }
   .deltas .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #8a5523; margin-bottom: 4px; font-weight: 700; }
+  .pace-banner { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 4px; padding: 12px 16px; border-radius: 6px; font-size: 13px; line-height: 1.5; font-weight: 500; }
+  .pace-banner .ico { font-size: 16px; line-height: 1.3; }
+  .pace-banner .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; font-weight: 700; }
+  .pace-banner.behind { background: #fdf3e7; border: 1px solid #f0c896; color: #8a5523; }
+  .pace-banner.behind .ico { color: #c77d2a; }
+  .pace-banner.ok { background: #eef7f0; border: 1px solid #bcdcc4; color: #2c5338; }
+  .pace-banner.ok .ico { color: #3a8c54; }
   .goal { margin: 8px 0 4px; padding: 10px 14px; background: #f5f2fb; border-left: 3px solid #6d4b91; border-radius: 4px; font-size: 12.5px; color: #3a2c4a; }
   .goal .k { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #6d4b91; margin-bottom: 6px; font-weight: 700; }
   .goal .bar { height: 10px; background: #e6ddf2; border-radius: 6px; overflow: hidden; margin-top: 4px; }
@@ -254,6 +277,8 @@ ${INSTITUTION_HEADER_CSS}
       : "Estatísticas de Cirurgias",
     `Gerado em ${stamp} &middot; ${periodText}`
   )}
+
+  ${monthlyBanner}
 
   <div class="exec-summary">
     <span class="k">Resumo executivo</span>
@@ -319,5 +344,17 @@ ${INSTITUTION_HEADER_CSS}
 </body>
 </html>`;
 
-  openPrintableDocument(html);
+  return html;
+}
+
+/**
+ * Generate and open the statistics PDF.
+ * @param records Already-filtered records (so the PDF matches the on-screen period).
+ * @param options Optional labels and analytics (period, scope, comparison, deltas, goal).
+ */
+export function exportStatsPDF(
+  records: StatRecord[],
+  options: StatsPdfOptions = {}
+): void {
+  openPrintableDocument(buildStatsHtml(records, options));
 }

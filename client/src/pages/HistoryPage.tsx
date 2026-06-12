@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { exportHistoryCSV, exportHistoryPDF } from "@/lib/exportHistory";
 import { HistoryStats } from "@/components/HistoryStats";
+import { PaceBadge } from "@/components/PaceBadge";
 import {
   availableYears as yearsOf,
   availableMonths as monthsOf,
@@ -168,6 +169,7 @@ export default function HistoryPage() {
             </div>
             {history.length > 0 && (
               <div className="ml-auto flex items-center gap-1.5">
+                <PaceBadge records={history} />
                 <Button
                   variant="outline"
                   size="sm"
