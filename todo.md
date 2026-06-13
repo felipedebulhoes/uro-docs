@@ -104,3 +104,11 @@
 - [x] Renderizar páginas, selecionar e recortar figuras (300 DPI) com validação visual (16 recortes, 4 duplicatas descartadas)
 - [x] Ingerir figuras no storage + DB com crédito Hinman's completo (16/16 OK; total 114 imagens)
 - [x] Validar testes (172 OK), storage (PNG íntegro) e PDF (embute imagens); checkpoint e reportar ao usuário
+
+## Lote Hinman 3 (pediátricos/funcionais — figura secundária)
+- [x] Identificar procedimentos sem figura secundária e mapear capítulos no Hinman's (offset corrigido via bookmarks)
+- [x] Renderizar páginas, selecionar e recortar figuras (300 DPI) com validação visual (7 recortes, 121.8 re-recortada)
+- [x] Ingerir figuras no storage + DB com crédito Hinman's completo (7/7 OK; total 121 imagens)
+- [x] Validar testes (172 OK), storage (PNG íntegro) e PDF (embute imagens); checkpoint e reportar ao usuário
+- Procedimentos: uretrotomia interna (92.4), orquiectomia simples/subcapsular (109.2), orquidopexia/criptorquidia (114.3), postectomia adulto (120.1), circuncisão estética/revisão (120.3), curvatura peniana congênita/plicatura (121.8), prótese peniana na Peyronie grave (123.15)
+- Nota: hidrocelectomia e prótese testicular não têm capítulo ilustrado dedicado no Hinman's — sugeridos para rodada Open Access futura
