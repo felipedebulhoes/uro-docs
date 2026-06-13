@@ -102,3 +102,31 @@ export const prescriptionTemplates = mysqlTable("prescription_templates", {
 
 export type PrescriptionTemplate = typeof prescriptionTemplates.$inferSelect;
 export type InsertPrescriptionTemplate = typeof prescriptionTemplates.$inferInsert;
+
+/**
+ * Imagens reais (atlas/artigos) anexadas às figuras do Atlas Cirúrgico.
+ * Conteúdo protegido por direito autoral — uso pessoal/educacional.
+ * Servido apenas a usuários autenticados (protectedProcedure).
+ * Os bytes ficam no storage do app; aqui guardamos apenas metadados + referência.
+ */
+export const atlasFigureImages = mysqlTable("atlas_figure_images", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Slug da entrada do Atlas (ex.: "varicocelectomia-subinguinal-microcirurgica"). */
+  atlasId: varchar("atlasId", { length: 128 }).notNull(),
+  /** Índice da figura dentro da entrada (0-based). */
+  figureIndex: int("figureIndex").notNull(),
+  /** Chave do objeto no storage (retornada por storagePut). */
+  storageKey: text("storageKey").notNull(),
+  /** URL servida pelo app (/manus-storage/...). */
+  url: text("url").notNull(),
+  /** Crédito completo da fonte (autor, obra/artigo, ano, editora). */
+  credit: text("credit").notNull(),
+  /** URL/DOI da fonte original (opcional). */
+  sourceUrl: text("sourceUrl"),
+  mimeType: varchar("mimeType", { length: 64 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AtlasFigureImage = typeof atlasFigureImages.$inferSelect;
+export type InsertAtlasFigureImage = typeof atlasFigureImages.$inferInsert;

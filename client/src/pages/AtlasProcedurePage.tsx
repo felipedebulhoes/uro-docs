@@ -29,6 +29,7 @@ import {
   Check,
   ExternalLink,
   Printer,
+  ImagePlus,
 } from "lucide-react";
 import {
   clinicalKeySearchUrl,
@@ -36,10 +37,21 @@ import {
   openInNewTab,
 } from "@/lib/atlasSearch";
 import { exportAtlasPdf } from "@/lib/atlasPdf";
+import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { useMemo, useState } from "react";
 import { useParams, Link } from "wouter";
 import { Streamdown } from "streamdown";
 import { toast } from "sonner";
+
+type AtlasImage = {
+  atlasId: string;
+  figureIndex: number;
+  url: string;
+  credit: string;
+  sourceUrl: string | null;
+  mimeType: string | null;
+};
 
 export default function AtlasProcedurePage() {
   const params = useParams<{ id: string }>();
@@ -53,6 +65,22 @@ export default function AtlasProcedurePage() {
         : undefined,
     [linkedProcedureId]
   );
+
+  const { isAuthenticated, user } = useAuth();
+  // Imagens reais (protegidas): só buscamos quando o usuário está logado.
+  const { data: atlasImages } = trpc.atlas.images.useQuery(undefined, {
+    enabled: isAuthenticated,
+    staleTime: 5 * 60 * 1000,
+  });
+  const imageByIndex = useMemo(() => {
+    const map = new Map<number, AtlasImage>();
+    if (entry && atlasImages) {
+      for (const img of atlasImages as AtlasImage[]) {
+        if (img.atlasId === entry.id) map.set(img.figureIndex, img);
+      }
+    }
+    return map;
+  }, [entry, atlasImages]);
 
   if (!entry) {
     return (
@@ -162,6 +190,18 @@ export default function AtlasProcedurePage() {
               <Printer className="w-3.5 h-3.5" />
               Exportar PDF
             </Button>
+            {user?.role === "admin" && (
+              <Link href="/atlas/admin">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-8 text-xs gap-1.5 border-amber-500/40 text-amber-400 hover:bg-amber-500/10"
+                >
+                  <ImagePlus className="w-3.5 h-3.5" />
+                  Gerenciar imagens
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -211,7 +251,12 @@ export default function AtlasProcedurePage() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {entry.figures.map((fig, i) => (
-                <FigureCard key={i} fig={fig} index={i + 1} />
+                <FigureCard
+                  key={i}
+                  fig={fig}
+                  index={i + 1}
+                  dbImage={imageByIndex.get(i)}
+                />
               ))}
             </div>
           </section>
@@ -255,11 +300,23 @@ export default function AtlasProcedurePage() {
   );
 }
 
-function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
+function FigureCard({
+  fig,
+  index,
+  dbImage,
+}: {
+  fig: AtlasFigure;
+  index: number;
+  dbImage?: AtlasImage;
+}) {
   const [copied, setCopied] = useState(false);
   // se a imagem (quando houver) falhar ao carregar, cai no placeholder informativo
   const [imgError, setImgError] = useState(false);
-  const showImage = Boolean(fig.imageUrl) && !imgError;
+  // Preferência: imagem real do banco (protegida) > imageUrl estático do dado.
+  const effectiveUrl = dbImage?.url || fig.imageUrl;
+  const effectiveCredit = dbImage?.credit || fig.credit;
+  const effectiveSourceUrl = dbImage?.sourceUrl || fig.sourceUrl;
+  const showImage = Boolean(effectiveUrl) && !imgError;
 
   const copyTerms = () => {
     navigator.clipboard
@@ -277,11 +334,11 @@ function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
       {/* Espaço da imagem (placeholder informativo) */}
       {showImage ? (
         <img
-          src={fig.imageUrl}
+          src={effectiveUrl}
           alt={fig.caption}
           loading="lazy"
           onError={() => setImgError(true)}
-          className="w-full aspect-video object-cover bg-nilo-dark"
+          className="w-full aspect-video object-contain bg-nilo-dark"
         />
       ) : (
         <div className="w-full aspect-video bg-nilo-dark/60 border-b border-border flex flex-col items-center justify-center text-muted-foreground/60 gap-1">
@@ -300,9 +357,9 @@ function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
             {fig.description}
           </p>
         )}
-        {fig.credit && (
+        {effectiveCredit && (
           <p className="text-[10px] text-muted-foreground/70 italic">
-            Crédito: {fig.credit}
+            Crédito: {effectiveCredit}
           </p>
         )}
         <div className="mt-1 flex items-start gap-2">
@@ -346,9 +403,9 @@ function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
             <ExternalLink className="w-3 h-3" />
             CAPES
           </button>
-          {fig.sourceUrl && (
+          {effectiveSourceUrl && (
             <button
-              onClick={() => openInNewTab(fig.sourceUrl!)}
+              onClick={() => openInNewTab(effectiveSourceUrl!)}
               className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-card border border-border text-[10px] font-medium text-foreground/80 hover:border-primary/40 hover:text-primary transition-colors"
               title="Abrir a fonte original desta figura"
             >

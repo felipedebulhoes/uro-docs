@@ -8,6 +8,7 @@ import {
   userFavorites,
   hospitalPresets,
   prescriptionTemplates,
+  atlasFigureImages,
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -262,3 +263,89 @@ export async function replacePrescriptionTemplates(
 
 // Suppress unused import warning if `and` is not used elsewhere.
 void and;
+
+
+// ---- Atlas figure images (protected content) ----
+
+export type AtlasImageInput = {
+  atlasId: string;
+  figureIndex: number;
+  storageKey: string;
+  url: string;
+  credit: string;
+  sourceUrl?: string | null;
+  mimeType?: string | null;
+};
+
+/** Lista todas as imagens do Atlas (uso autenticado). */
+export async function getAllAtlasImages() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(atlasFigureImages);
+}
+
+/** Lista imagens de uma entrada específica do Atlas. */
+export async function getAtlasImagesByEntry(atlasId: string) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(atlasFigureImages)
+    .where(eq(atlasFigureImages.atlasId, atlasId));
+}
+
+/** Insere ou atualiza a imagem de uma figura (chave: atlasId + figureIndex). */
+export async function upsertAtlasImage(input: AtlasImageInput) {
+  const db = await getDb();
+  if (!db) return;
+  const existing = await db
+    .select()
+    .from(atlasFigureImages)
+    .where(
+      and(
+        eq(atlasFigureImages.atlasId, input.atlasId),
+        eq(atlasFigureImages.figureIndex, input.figureIndex)
+      )
+    );
+  if (existing.length > 0) {
+    await db
+      .update(atlasFigureImages)
+      .set({
+        storageKey: input.storageKey,
+        url: input.url,
+        credit: input.credit,
+        sourceUrl: input.sourceUrl ?? null,
+        mimeType: input.mimeType ?? null,
+      })
+      .where(
+        and(
+          eq(atlasFigureImages.atlasId, input.atlasId),
+          eq(atlasFigureImages.figureIndex, input.figureIndex)
+        )
+      );
+  } else {
+    await db.insert(atlasFigureImages).values({
+      atlasId: input.atlasId,
+      figureIndex: input.figureIndex,
+      storageKey: input.storageKey,
+      url: input.url,
+      credit: input.credit,
+      sourceUrl: input.sourceUrl ?? null,
+      mimeType: input.mimeType ?? null,
+    });
+  }
+}
+
+/** Remove a imagem de uma figura. */
+export async function deleteAtlasImage(atlasId: string, figureIndex: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db
+    .delete(atlasFigureImages)
+    .where(
+      and(
+        eq(atlasFigureImages.atlasId, atlasId),
+        eq(atlasFigureImages.figureIndex, figureIndex)
+      )
+    );
+}

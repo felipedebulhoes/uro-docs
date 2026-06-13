@@ -2,8 +2,14 @@ import { COOKIE_NAME } from "@shared/const";
 import { z } from "zod";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
+import {
+  adminProcedure,
+  protectedProcedure,
+  publicProcedure,
+  router,
+} from "./_core/trpc";
 import * as db from "./db";
+import { storagePut, storageGetSignedUrl } from "./storage";
 
 const surgerySchema = z.object({
   localId: z.string(),
@@ -51,6 +57,75 @@ export const appRouter = router({
         success: true,
       } as const;
     }),
+  }),
+
+  // Atlas Cirúrgico: imagens reais (atlas/artigos) protegidas por login
+  atlas: router({
+    // Lista todas as imagens com URL assinada de curta duração (apenas autenticados).
+    images: protectedProcedure.query(async () => {
+      const rows = await db.getAllAtlasImages();
+      const out = await Promise.all(
+        rows.map(async (r) => {
+          let signedUrl = r.url;
+          try {
+            signedUrl = await storageGetSignedUrl(r.storageKey);
+          } catch {
+            // mantém /manus-storage como fallback
+          }
+          return {
+            atlasId: r.atlasId,
+            figureIndex: r.figureIndex,
+            url: signedUrl,
+            credit: r.credit,
+            sourceUrl: r.sourceUrl,
+            mimeType: r.mimeType,
+          };
+        })
+      );
+      return out;
+    }),
+
+    // Upload de imagem (somente admin/dono). Recebe base64 (data URL ou puro).
+    uploadImage: adminProcedure
+      .input(
+        z.object({
+          atlasId: z.string().min(1),
+          figureIndex: z.number().int().min(0),
+          base64: z.string().min(1),
+          mimeType: z.string().min(1),
+          credit: z.string().min(1),
+          sourceUrl: z.string().nullable().optional(),
+          ext: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const raw = input.base64.includes(",")
+          ? input.base64.slice(input.base64.indexOf(",") + 1)
+          : input.base64;
+        const buffer = Buffer.from(raw, "base64");
+        const ext = (input.ext || input.mimeType.split("/")[1] || "jpg")
+          .replace(/[^a-z0-9]/gi, "")
+          .toLowerCase();
+        const relKey = `atlas/${input.atlasId}/fig-${input.figureIndex}.${ext}`;
+        const { key, url } = await storagePut(relKey, buffer, input.mimeType);
+        await db.upsertAtlasImage({
+          atlasId: input.atlasId,
+          figureIndex: input.figureIndex,
+          storageKey: key,
+          url,
+          credit: input.credit,
+          sourceUrl: input.sourceUrl ?? null,
+          mimeType: input.mimeType,
+        });
+        return { success: true, key } as const;
+      }),
+
+    deleteImage: adminProcedure
+      .input(z.object({ atlasId: z.string(), figureIndex: z.number().int() }))
+      .mutation(async ({ input }) => {
+        await db.deleteAtlasImage(input.atlasId, input.figureIndex);
+        return { success: true } as const;
+      }),
   }),
 
   // Cloud sync for UroDocx personal data
