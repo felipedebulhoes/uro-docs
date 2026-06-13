@@ -86,6 +86,14 @@
 - [x] Atlas++: painel admin já gerencia imagens de todas as figuras (itera entry.figures, figureIndex 0..N)
 - [x] Atlas++: UI do dossiê já exibe imagem do banco em qualquer figura (imageByIndex por figureIndex)
 - [x] Atlas++: PDF exportado embute imagens cadastradas (data URI + crédito) quando logado; placeholder textual quando não há imagem
-- [ ] Atlas++: nova rodada de busca Open Access para as 14 figuras-chave faltantes + figuras 2-4 onde houver fonte CC
-- [ ] Atlas++: ingestão das novas imagens (storage + tabela, crédito/fonte)
-- [ ] Atlas++: testes, validação e checkpoint final
+- [x] Atlas++: nova rodada de busca Open Access — 7 fig0 faltantes resolvidas (54/54 com figura principal; 85 imagens no banco)
+- [x] Atlas++: ingestão das novas imagens (storage + tabela, crédito/fonte) — Lote 3 (7/7) OK
+- [x] Atlas++: testes (172 OK), validação e checkpoint
+
+## Lote Hinman (figuras do Hinman's Atlas — uso pessoal/privado, com crédito)
+- [ ] Mapear sumário/páginas dos procedimentos no Hinman's Atlas (1117 págs)
+- [ ] Definir prioridades (andrologia primeiro) e lista de procedimentos/figuras
+- [ ] Extrair e recortar figuras técnicas das páginas mapeadas
+- [ ] Ingerir figuras no storage + DB (fig0 ou fig 2-4) com crédito Hinman's completo
+- [ ] Validar testes, navegador e PDF (imagens embutidas)
+- [ ] Checkpoint e reportar ao usuário
