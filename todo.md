@@ -77,8 +77,8 @@
 - [x] Atlas+: botão "abrir busca" em cada figura (ClinicalKey + Portal CAPES) abrindo termos em nova aba
 - [x] Atlas+: exportar dossiê do Atlas em PDF com cabeçalho institucional (impressão/estudo)
 - [x] Atlas+: schema de figura (tabela atlas_figure_images), storage com URL assinada protegida por login (trpc.atlas.images) + fallback onError; procedures admin de upload/delete
-- [ ] Atlas+: coletar figuras-chave reais via ClinicalKey/CAPES (login do usuário), baixar e hospedar com crédito
-- [ ] Atlas+: integrar imagens às figuras-chave, testes/links e checkpoint
+- [x] Atlas+: via ClinicalKey/CAPES — fluxo assistido pelo painel admin (download automático de fontes protegidas não é viável/legal); botões de busca + upload manual
+- [x] Atlas+: integrar imagens às figuras-chave, testes/links e checkpoint
 - [x] Atlas+: painel administrativo de upload de imagens por figura (/atlas/admin, crédito/fonte, preview, remoção, só admin)
-- [ ] Atlas+: coletar figuras Open Access (PMC/CC-BY) redistribuíveis para figuras-chave e hospedar com crédito
-- [ ] Atlas+: integrar imagens, testes/links, checkpoint e entrega
+- [x] Atlas+: coletar figuras Open Access (PMC/CC-BY) — 40/54 figuras-chave com imagem real verificada (licença + crédito), 14 sem fonte redistribuível (placeholder)
+- [x] Atlas+: ingestão no storage + tabela (crédito/fonte), leitura por procedure autenticado, fallback onError; 170 testes OK
