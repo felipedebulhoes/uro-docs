@@ -112,3 +112,22 @@
 - [x] Validar testes (172 OK), storage (PNG íntegro) e PDF (embute imagens); checkpoint e reportar ao usuário
 - Procedimentos: uretrotomia interna (92.4), orquiectomia simples/subcapsular (109.2), orquidopexia/criptorquidia (114.3), postectomia adulto (120.1), circuncisão estética/revisão (120.3), curvatura peniana congênita/plicatura (121.8), prótese peniana na Peyronie grave (123.15)
 - Nota: hidrocelectomia e prótese testicular não têm capítulo ilustrado dedicado no Hinman's — sugeridos para rodada Open Access futura
+
+## Lote Open Access 4 + USG Doppler peniano
+- [ ] Buscar imagem Open Access (CC-BY/CC0) para hidrocelectomia (técnicas de Jaboulay e Lord)
+- [ ] Buscar imagem Open Access (CC-BY/CC0) para implante de prótese testicular
+- [ ] Buscar imagens Open Access (CC-BY/CC0) de USG peniano modo-B e Doppler (anatomia, cavernosas, espectral PSV/EDV/RI)
+- [ ] Validar licença/crédito e preparar as figuras
+- [ ] Criar dossiê "USG Doppler Peniano" no Atlas (atlasData) com passo a passo, parâmetros e referências
+- [x] Ingerir figuras no storage + DB (fig1 de hidrocele/prótese testicular; figuras do novo dossiê) com crédito
+- [x] Validar testes, storage, PDF e navegador; checkpoint e reportar ao usuário
+
+# Lote OA 4 (CC BY) + Atlas USG Doppler peniano
+- [x] Ingerir fig1 de Hidrocelectomia (PMC4757005, Int Braz J Urol, CC BY)
+- [x] Ingerir fig1 de Implante de prótese testicular (PMC12190729, Children/MDPI, CC BY)
+- [x] Criar nova entrada de Atlas `usg-doppler-peniano` (categoria Andrologia)
+- [x] Criar procedimento-catálogo `usg-doppler-peniano` em proceduresExtra.ts (laudo/solicitação/orientações)
+- [x] Mapear `usg-doppler-peniano` em atlasToProcedure
+- [x] Ingerir 5 figuras do dossiê USG (Radiologia Brasileira, CC BY 4.0)
+- [x] Atualizar asserts de contagem nos testes (atlas 55, procedures 53)
+- [x] Rodar pnpm test e validar storage/figuras (172/172 testes, storage 307->200)

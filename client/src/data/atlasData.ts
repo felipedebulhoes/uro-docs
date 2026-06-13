@@ -3674,6 +3674,74 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "testosterone pellet extrusion prevention; pellet distance from incision"
       }
     ]
+  },
+  {
+    "id": "usg-doppler-peniano",
+    "name": "Ultrassonografia com Doppler peniano (atlas com e sem Doppler)",
+    "category": "Andrologia",
+    "icon": "\uD83D\uDD0A",
+    "evidence": "Diretriz EAU Sexual & Reproductive Health 2024 + ISSM/AUA + Ensaio iconogr\u00e1fico Radiol Bras 2018 (CC BY) + Revis\u00f5es de consenso (PSV/EDV)",
+    "sections": [
+      {
+        "title": "Indica\u00e7\u00f5es e contraindica\u00e7\u00f5es",
+        "body": "A ultrassonografia peniana \u00e9 m\u00e9todo de imagem de primeira linha, bem tolerado e amplamente dispon\u00edvel, com grande aplicabilidade no trauma peniano, priapismo, doen\u00e7a de Peyronie e disfun\u00e7\u00e3o er\u00e9til (DE) [1].\n\n**Indica\u00e7\u00f5es do estudo em modo-B (sem Doppler):**\n- Avalia\u00e7\u00e3o de placas/calcifica\u00e7\u00f5es e curvatura na doen\u00e7a de Peyronie.\n- Suspeita de fratura peniana (interrup\u00e7\u00e3o da t\u00fanica albug\u00ednea) e hematomas.\n- Caracteriza\u00e7\u00e3o de massas, n\u00f3dulos e cole\u00e7\u00f5es.\n\n**Indica\u00e7\u00f5es do estudo com Doppler colorido/espectral:**\n- Investiga\u00e7\u00e3o vascular da DE (insufici\u00eancia arterial e disfun\u00e7\u00e3o venoclusiva) ap\u00f3s falha/escolha sobre terap\u00eautica oral [2] [3].\n- Diferencia\u00e7\u00e3o entre priapismo isqu\u00eamico (baixo fluxo) e n\u00e3o isqu\u00eamico (alto fluxo) [1].\n- Mapeamento de f\u00edstula arteriolacunar no priapismo de alto fluxo.\n\n**Contraindica\u00e7\u00f5es / cautelas (fase din\u00e2mica com droga vasoativa):**\nA inje\u00e7\u00e3o intracavernosa de prostaglandina E1 \u00e9 contraindicada em pacientes com predisposi\u00e7\u00e3o ao priapismo (ex.: anemia falciforme), deformidade anat\u00f4mica significativa ou implante peniano [1] [4]. Dist\u00farbios de coagula\u00e7\u00e3o e recusa do paciente tamb\u00e9m devem ser considerados. O exame em modo-B isolado n\u00e3o tem contraindica\u00e7\u00f5es relevantes."
+      },
+      {
+        "title": "Anatomia e considera\u00e7\u00f5es pr\u00e9-exame",
+        "body": "Os corpos cavernosos s\u00e3o estruturas cil\u00edndricas homog\u00eaneas e relativamente hipoecoicas, revestidas pela t\u00fanica albug\u00ednea \u2014 l\u00e2mina delgada de cerca de 2 mm no p\u00eanis fl\u00e1cido e cerca de 0,25 mm na ere\u00e7\u00e3o [1]. O corpo esponjoso, ventral e mediano, \u00e9 mais ecog\u00eanico, cont\u00e9m a uretra e dilata-se proximalmente (bulbo) e distalmente (glande). A f\u00e1scia de Buck \u00e9 superficial \u00e0 t\u00fanica albug\u00ednea [1].\n\nA drenagem venosa ocorre pelas veias dorsais profunda e superficial. As art\u00e9rias dorsais situam-se adjacentes \u00e0 veia dorsal profunda, e uma art\u00e9ria cavernosa percorre o centro de cada corpo cavernoso. No Doppler colorido, as art\u00e9rias cavernosas exibem fluxo monof\u00e1sico; no p\u00eanis fl\u00e1cido, o pico sist\u00f3lico normal situa-se entre 11 e 20 cm/s [1]. No in\u00edcio da ere\u00e7\u00e3o, fluxos sist\u00f3lico e diast\u00f3lico aumentam progressivamente; com a veno-oclus\u00e3o, o fluxo diast\u00f3lico diminui e torna-se negativo (reverso) na rigidez plena [1].\n\n**Preparo:** transdutor linear de alta frequ\u00eancia (12\u201315 MHz). O p\u00eanis \u00e9 posicionado em posi\u00e7\u00e3o anat\u00f4mica (sobre o abdome) e avaliado em cortes transversal e longitudinal, da glande \u00e0 base [1]. Na doen\u00e7a de Peyronie pode-se apoiar o p\u00eanis sobre a bolsa testicular e usar acesso lateral [1]."
+      },
+      {
+        "title": "Protocolo de aquisi\u00e7\u00e3o (modo-B e Doppler din\u00e2mico)",
+        "body": "**1. Modo-B basal (sem Doppler):** avaliar t\u00fanica albug\u00ednea, ecotextura dos corpos cavernosos, presen\u00e7a de placas/calcifica\u00e7\u00f5es, hematomas, n\u00f3dulos e aspecto das art\u00e9rias cavernosas (tortuosidade/ateromatose) antes do Doppler [1].\n\n**2. Doppler colorido e espectral basal:** localizar as art\u00e9rias cavernosas, ajustar \u00e2ngulo de insona\u00e7\u00e3o \u226460\u00b0, caixa de cor estreita e PRF/baseline adequados; documentar fluxo em repouso.\n\n**3. Fase din\u00e2mica (estudo vascular da DE):** inje\u00e7\u00e3o intracavernosa de 10\u201320 \u00b5g de prostaglandina E1 (frequentemente associada a fentolamina 2 mg), com avalia\u00e7\u00f5es seriadas do fluxo arterial a cada 5 minutos por 25\u201330 minutos [1]. Est\u00edmulo visual/t\u00e1til melhora a resposta [1]. Mede-se PSV (pico sist\u00f3lico) e EDV (diast\u00f3lico final) das art\u00e9rias cavernosas em cada tempo, correlacionando com o grau de rigidez obtido [1] [3].\n\n**4. Seguran\u00e7a:** orientar sobre risco de ere\u00e7\u00e3o prolongada/priapismo e fornecer plano de resgate. PGE1 contraindicada conforme acima [1] [4]."
+      },
+      {
+        "title": "Crit\u00e9rios diagn\u00f3sticos e valores de refer\u00eancia",
+        "body": "**Disfun\u00e7\u00e3o er\u00e9til (estudo din\u00e2mico p\u00f3s-vasoativo):**\n- **PSV** (inflow arterial): valores **>35 cm/s** indicam aus\u00eancia de doen\u00e7a arterial; **<25 cm/s** indicam insufici\u00eancia arterial; **25\u201335 cm/s** s\u00e3o indeterminados/pouco espec\u00edficos [1]. O consenso contempor\u00e2neo adota com frequ\u00eancia PSV **<30 cm/s** como ponto de corte para insufici\u00eancia arterial [2] [5].\n- **EDV** (outflow / mecanismo veno-oclusivo): com PSV normal, **EDV >5 cm/s** sugere insufici\u00eancia venog\u00eanica (disfun\u00e7\u00e3o veno-oclusiva / venous leak) [1] [2].\n- **\u00cdndice de resistividade (RI):** complementar; RI elevado (tipicamente **>0,9**) acompanha a ere\u00e7\u00e3o r\u00edgida com diastole reversa [5].\n- Os dados devem sempre ser correlacionados ao grau de ere\u00e7\u00e3o observado; resposta sub\u00f3tima pode refletir ansiedade e exigir redose/estimula\u00e7\u00e3o [1] [3].\n\n**Priapismo:** no **baixo fluxo (isqu\u00eamico)** h\u00e1 fluxo cavernoso reduzido/ausente, com aumento da ecogenicidade dos corpos cavernosos na evolu\u00e7\u00e3o; no **alto fluxo (n\u00e3o isqu\u00eamico)** observa-se fluxo normal/aumentado e turbilhonado, com cole\u00e7\u00e3o hipoecoica irregular correspondente \u00e0 f\u00edstula arteriolacunar [1].\n\n**Trauma:** descontinuidade da linha ecog\u00eanica da t\u00fanica albug\u00ednea \u00b1 hematoma define fratura; em 10\u201315% h\u00e1 les\u00e3o uretral associada (avaliar se houver sangue no meato) [1].\n\n**Peyronie:** espessamento focal hiperecoico da t\u00fanica; calcifica\u00e7\u00f5es geram sombra ac\u00fastica posterior. Hiperfluxo perilesional ao Doppler sugere atividade inflamat\u00f3ria; sua aus\u00eancia sugere estabilidade [1]."
+      },
+      {
+        "title": "Pontos-chave e dicas (pearls)",
+        "body": "- **Modo-B sempre antes do Doppler:** afaste placas, calcifica\u00e7\u00f5es, hematomas e massas, e avalie a morfologia arterial, antes de medir velocidades [1].\n- **\u00c2ngulo e ajustes:** mantenha \u00e2ngulo de insona\u00e7\u00e3o \u226460\u00b0 alinhado ao eixo da art\u00e9ria cavernosa; ajuste PRF/baseline para evitar aliasing e subestimar/superestimar velocidades.\n- **Timing importa:** o pico de PSV costuma ocorrer em diferentes tempos; medir at\u00e9 25\u201330 min evita falso-positivo de insufici\u00eancia arterial por subdose/avalia\u00e7\u00e3o precoce [1] [3].\n- **EDV depende do PSV:** s\u00f3 interprete venous leak (EDV >5 cm/s) quando o inflow arterial estiver adequado, sob risco de conclus\u00e3o err\u00f4nea [2].\n- **Peyronie:** examine com acesso lateral apoiando o p\u00eanis para melhor caracteriza\u00e7\u00e3o da placa e rela\u00e7\u00e3o com o feixe neurovascular [1].\n- **Seguran\u00e7a:** tenha protocolo de detumesc\u00eancia/priapismo dispon\u00edvel ao usar PGE1 [4]."
+      },
+      {
+        "title": "Aplica\u00e7\u00f5es cl\u00ednicas e seu manejo",
+        "body": "- **DE vasculog\u00eanica:** o estudo din\u00e2mico distingue componente arterial (PSV baixo) de veno-oclusivo (EDV alto), orientando a escolha entre terapias orais, inje\u00e7\u00e3o intracavernosa, dispositivos ou cirurgia [2] [3].\n- **Priapismo:** a diferencia\u00e7\u00e3o baixo vs. alto fluxo \u00e9 decisiva \u2014 o isqu\u00eamico \u00e9 emerg\u00eancia (aspira\u00e7\u00e3o/irriga\u00e7\u00e3o, simpaticomim\u00e9ticos), enquanto o de alto fluxo pode ser observado ou tratado por emboliza\u00e7\u00e3o seletiva [1].\n- **Trauma:** confirma\u00e7\u00e3o de fratura indica explora\u00e7\u00e3o cir\u00fargica precoce; RM \u00e9 \u00fatil quando o US \u00e9 inconclusivo [1].\n- **Peyronie:** mapeamento de placas e atividade auxilia no tempo cir\u00fargico e na escolha de plicatura vs. enxerto [1]."
+      },
+      {
+        "title": "Resultados/evid\u00eancia (acur\u00e1cia e desfechos)",
+        "body": "O Doppler colorido peniano \u00e9 o m\u00e9todo de imagem de escolha para a investiga\u00e7\u00e3o vascular da DE e para a diferencia\u00e7\u00e3o dos tipos de priapismo, por ser n\u00e3o invasivo, dispon\u00edvel e de alta sensibilidade [1] [2]. As diretrizes da EAU reconhecem o duplex peniano como ferramenta de segunda linha na avalia\u00e7\u00e3o vasculog\u00eanica selecionada da DE, quando o resultado altera a conduta [3]. A principal limita\u00e7\u00e3o \u00e9 a variabilidade de pontos de corte de PSV/EDV entre estudos e a influ\u00eancia de ansiedade/subdose sobre o resultado, o que refor\u00e7a a padroniza\u00e7\u00e3o t\u00e9cnica e a correla\u00e7\u00e3o cl\u00ednica [2] [5]."
+      },
+      {
+        "title": "Refer\u00eancias (com n\u00edvel de evid\u00eancia quando aplic\u00e1vel)",
+        "body": "[1] Mui\u00f1os Diaz Y, et al. Avalia\u00e7\u00e3o ultrassonogr\u00e1fica do p\u00eanis (ensaio iconogr\u00e1fico). *Radiologia Brasileira*. 2018;51(4):247-251. DOI 10.1590/0100-3984.2016.0152. (Licen\u00e7a CC BY 4.0; N\u00edvel 5 \u2014 revis\u00e3o iconogr\u00e1fica). Dispon\u00edvel em: https://www.scielo.br/j/rb/a/5vLy37MfqHvrdKn5y34rTqQ/?lang=pt\n[2] Sikka SC, Hellstrom WJG, Brock G, Morales AM. Standardization of vascular assessment of erectile dysfunction. *J Sex Med*. 2013;10(1):120-129. (Consenso ICSM \u2014 N\u00edvel 5/Recomenda\u00e7\u00e3o).\n[3] Salonia A, et al. EAU Guidelines on Sexual and Reproductive Health \u2014 Male Sexual Dysfunction. European Association of Urology, 2024. (Diretriz Cl\u00ednica \u2014 N\u00edvel 1-3). Dispon\u00edvel em: https://uroweb.org/guidelines/sexual-and-reproductive-health\n[4] Bivalacqua TJ, et al. AUA Guideline on Priapism. *J Urol*. 2021. (Diretriz Cl\u00ednica). \n[5] Pagano MJ, Stahl PJ. Variation in Penile Hemodynamics by Anatomic Location of Cavernosal Artery Imaging in Penile Duplex Doppler Ultrasound. *J Sex Med*. 2015;12(9):1911-1919. (Estudo observacional \u2014 N\u00edvel 3)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia peniana normal ao modo-B (corte transversal)",
+        "description": "Corte transversal por acesso ventral demonstrando os dois corpos cavernosos hipoecoicos (seta de duas pontas), as respectivas art\u00e9rias cavernosas (setas grossas), a t\u00fanica albug\u00ednea como linha ecog\u00eanica que os envolve (seta fina) e o corpo esponjoso adjacente (asterisco)",
+        "searchTerms": "Normal penile anatomy transverse B-mode ultrasound corpora cavernosa tunica albuginea"
+      },
+      {
+        "caption": "Fluxo da art\u00e9ria cavernosa em repouso (Doppler espectral e colorido)",
+        "description": "Acesso ventral, corte longitudinal com Doppler colorido e an\u00e1lise espectral mostrando o padr\u00e3o de fluxo da art\u00e9ria cavernosa com o p\u00eanis em estado fl\u00e1cido (pico sist\u00f3lico fisiologicamente baixo, diastole m\u00ednima)",
+        "searchTerms": "Penile color doppler spectral cavernosal artery flaccid flow waveform"
+      },
+      {
+        "caption": "Fases hemodin\u00e2micas da ere\u00e7\u00e3o ao Doppler espectral",
+        "description": "Gr\u00e1ficos do espectro Doppler das art\u00e9rias cavernosas: A fluxo monof\u00e1sico com diastole m\u00ednima/ausente no p\u00eanis fl\u00e1cido; B aumento de fluxo sist\u00f3lico e diast\u00f3lico ap\u00f3s droga vasoativa; C fluxo sist\u00f3lico aumentado com diastole reversa na ere\u00e7\u00e3o r\u00edgida",
+        "searchTerms": "Penile doppler erection phases spectral waveform PSV EDV vasoactive injection"
+      },
+      {
+        "caption": "Priapismo de alto fluxo ao Doppler colorido",
+        "description": "Doppler colorido demonstrando cole\u00e7\u00e3o hipoecoica correspondente a hematoma com f\u00edstula arteriovenosa/arteriolacunar secund\u00e1ria a trauma peniano, com fluxo turbilhonado \u2014 padr\u00e3o de priapismo de alto fluxo (n\u00e3o isqu\u00eamico)",
+        "searchTerms": "High flow priapism color doppler arteriolacunar fistula cavernosal"
+      },
+      {
+        "caption": "Doen\u00e7a de Peyronie: placa calcificada ao modo-B",
+        "description": "Corte transversal na por\u00e7\u00e3o m\u00e9dia do p\u00eanis com imagem ecog\u00eanica e sombra ac\u00fastica posterior no corpo cavernoso, correspondente a calcifica\u00e7\u00e3o de placa de Peyronie (seta)",
+        "searchTerms": "Peyronie disease calcified plaque B-mode ultrasound acoustic shadowing tunica"
+      }
+    ]
   }
 ];
 
@@ -3771,6 +3839,7 @@ export const atlasToProcedure: Record<string, string> = {
   "ureterolitotripsia-flexivel": "ureterolitotripsia-flexivel",
   "ureterolitotripsia-rigida": "ureterolitotripsia-rigida",
   "uretrotomia-interna": "uretrotomia-interna",
+  "usg-doppler-peniano": "usg-doppler-peniano",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
 };

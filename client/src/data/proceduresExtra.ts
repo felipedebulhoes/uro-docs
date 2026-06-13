@@ -1885,4 +1885,66 @@ RETORNO:
 - Retorno agendado no consultório em 7 a 14 dias para reavaliação. Em caso de dúvidas, entrar em contato com a equipe médica.`,
     },
   },
+  {
+    id: "usg-doppler-peniano",
+    name: "Ultrassonografia com Doppler peniano (estudo vascular)",
+    shortName: "USG Doppler peniano",
+    icon: "\uD83D\uDD0A",
+    category: "Andrologia",
+    configFields: [
+      { id: "indicacao", label: "Indica\u00e7\u00e3o", type: "select", options: ["Disfun\u00e7\u00e3o er\u00e9til (estudo vascular)", "Doen\u00e7a de Peyronie", "Priapismo", "Trauma peniano / fratura", "Curvatura peniana"], defaultValue: "Disfun\u00e7\u00e3o er\u00e9til (estudo vascular)" },
+      { id: "vasoativo", label: "Droga vasoativa", type: "select", options: ["Prostaglandina E1 (alprostadil) 10 \u00b5g", "Prostaglandina E1 (alprostadil) 20 \u00b5g", "Trimix (PGE1 + papaverina + fentolamina)", "Sem inje\u00e7\u00e3o (apenas modo-B)"], defaultValue: "Prostaglandina E1 (alprostadil) 10 \u00b5g" },
+      { id: "transdutor", label: "Transdutor", type: "select", options: ["Linear de alta frequ\u00eancia (12-15 MHz)", "Linear (7-12 MHz)"], defaultValue: "Linear de alta frequ\u00eancia (12-15 MHz)" },
+      { id: "psv", label: "PSV m\u00e1ximo (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 38" },
+      { id: "edv", label: "EDV (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 3" },
+      { id: "ri", label: "\u00cdndice de resistividade (RI)", type: "text", defaultValue: "", placeholder: "Ex.: 0,95" },
+      { id: "achados", label: "Achados relevantes", type: "text", defaultValue: "Sem altera\u00e7\u00f5es estruturais significativas", placeholder: "Placas, calcifica\u00e7\u00f5es, hematoma, f\u00edstula" },
+    ],
+    templates: {
+      descricao: (c) => `LAUDO \u2014 ULTRASSONOGRAFIA PENIANA COM DOPPLER
+Indica\u00e7\u00e3o: ${c.indicacao}
+T\u00e9cnica: Estudo realizado com transdutor ${c.transdutor}, em cortes transversal e longitudinal, da glande \u00e0 base do p\u00eanis.${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "" : `\nFase din\u00e2mica: inje\u00e7\u00e3o intracavernosa de ${c.vasoativo}, com avalia\u00e7\u00f5es seriadas do fluxo das art\u00e9rias cavernosas a cada 5 minutos por 25-30 minutos.`}
+
+MODO-B:
+- Corpos cavernosos com ecotextura preservada e sim\u00e9trica.
+- T\u00fanica albug\u00ednea \u00edntegra, sem solu\u00e7\u00e3o de continuidade.
+- Corpo esponjoso e uretra sem altera\u00e7\u00f5es.
+- ${c.achados}.
+${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "" : `
+DOPPLER ESPECTRAL (art\u00e9rias cavernosas, ap\u00f3s vasoativo):
+- Pico sist\u00f3lico (PSV) m\u00e1ximo: ${c.psv || "____"} cm/s.
+- Velocidade diast\u00f3lica final (EDV): ${c.edv || "____"} cm/s.
+- \u00cdndice de resistividade (RI): ${c.ri || "____"}.
+
+PAR\u00c2METROS DE REFER\u00caNCIA (correlacionar com a cl\u00ednica):
+- PSV > 35 cm/s: ausencia de doen\u00e7a arterial. PSV < 25 cm/s: insufici\u00eancia arterial. 25-35 cm/s: indeterminado.
+- EDV > 5 cm/s com PSV normal: sugere disfun\u00e7\u00e3o veno-oclusiva (venous leak).`}
+
+IMPRESS\u00c3O:
+- Correlacionar os achados hemodin\u00e2micos com o quadro cl\u00ednico. Estudo a ser interpretado em conjunto com a avalia\u00e7\u00e3o do especialista.`,
+      posOperatorio: (c) => `ORIENTA\u00c7\u00d5ES IMEDIATAS AP\u00d3S O EXAME${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? " (modo-B, sem inje\u00e7\u00e3o)" : " COM DROGA VASOATIVA"}
+${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "1. Exame n\u00e3o invasivo, sem restri\u00e7\u00f5es. Pode retomar atividades habituais imediatamente." : `1. Observa\u00e7\u00e3o do paciente at\u00e9 detumesc\u00eancia adequada antes da libera\u00e7\u00e3o.
+2. Orientar que a ere\u00e7\u00e3o induzida pode persistir por algum tempo ap\u00f3s o exame.
+3. ALERTA DE PRIAPISMO: se a ere\u00e7\u00e3o persistir por mais de 3-4 horas e/ou houver dor, procurar pronto-socorro imediatamente (emerg\u00eancia urol\u00f3gica).
+4. Compress\u00e3o local breve no s\u00edtio de pun\u00e7\u00e3o; pequeno hematoma local \u00e9 poss\u00edvel.`}`,
+      receitaAlta: (c) => `RECOMENDA\u00c7\u00d5ES
+${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "Nenhuma medica\u00e7\u00e3o necess\u00e1ria ap\u00f3s o exame." : `Em caso de ere\u00e7\u00e3o prolongada (acima de 3-4 horas), procurar pronto atendimento. N\u00e3o utilizar medicamentos para detumesc\u00eancia por conta pr\u00f3pria.`}
+Retornar com o resultado do exame para avalia\u00e7\u00e3o e defini\u00e7\u00e3o de conduta com o urologista.`,
+      orientacoes: (c) => `ORIENTA\u00c7\u00d5ES SOBRE O EXAME \u2014 USG DOPPLER PENIANO
+O QUE \u00c9:
+- Exame de imagem que avalia a anatomia do p\u00eanis (modo-B) e, quando indicado, o fluxo sangu\u00edneo das art\u00e9rias do p\u00eanis (Doppler colorido e espectral).
+- \u00c9 o m\u00e9todo de escolha para investigar a causa vascular da disfun\u00e7\u00e3o er\u00e9til, diferenciar tipos de priapismo, avaliar a doen\u00e7a de Peyronie e o trauma peniano.
+
+COMO \u00c9 FEITO:
+${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "- Estudo apenas com o transdutor sobre o p\u00eanis, sem inje\u00e7\u00f5es. Indolor e r\u00e1pido." : `- Para o estudo vascular, \u00e9 aplicada uma pequena inje\u00e7\u00e3o de medicamento (${c.vasoativo}) na lateral do p\u00eanis para induzir a ere\u00e7\u00e3o e permitir a medida do fluxo sangu\u00edneo.
+- S\u00e3o feitas medidas seriadas por cerca de 25-30 minutos.`}
+
+PREPARO:
+- N\u00e3o \u00e9 necess\u00e1rio jejum. Manter as medica\u00e7\u00f5es de uso habitual, salvo orienta\u00e7\u00e3o m\u00e9dica.
+
+AP\u00d3S O EXAME (PONTOS DE ATEN\u00c7\u00c3O):
+${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "- Sem restri\u00e7\u00f5es. Pode retornar \u00e0s atividades normais." : `- Pode haver leve desconforto ou pequeno hematoma no local da inje\u00e7\u00e3o.
+- SINAL DE ALERTA: se a ere\u00e7\u00e3o persistir por mais de 3-4 horas ou houver dor importante, procure um pronto-socorro imediatamente.`}`,
+    },
+  },
 ];
