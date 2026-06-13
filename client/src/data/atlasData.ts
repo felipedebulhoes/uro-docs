@@ -2288,6 +2288,1391 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Frenuloplasty with circumcision; circumcision ventral view frenulum; frenulectomy surgical technique"
       }
     ]
+  },
+  {
+    "id": "ureterolitotripsia-rigida",
+    "name": "Ureterolitotripsia Rígida (litotripsia ureteroscópica semirrígida com laser/balístico)",
+    "category": "Endourologia",
+    "icon": "⚡",
+    "evidence": "Diretrizes EAU/AUA + Campbell-Walsh-Wein 13ª ed. + Revisões Sistemáticas",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Cálculos ureterais distais e médios (terapia de primeira linha, especialmente para cálculos > 10 mm, segundo as diretrizes da EAU e AUA).\n- Cálculos ureterais < 10 mm refratários ao tratamento conservador (terapia expulsiva) ou à litotripsia extracorpórea por ondas de choque (LECO).\n- Pacientes com contraindicação à LECO (ex.: obesidade mórbida, distúrbios de coagulação, gravidez).\n- Necessidade de resolução rápida (ex.: dor intratável, obstrução em rim único, profissões de risco).\n\n**Contraindicações:**\n- *Absolutas:* Infecção do trato urinário (ITU) ativa não tratada, sepse urinária (requer desobstrução prévia com duplo J ou nefrostomia).\n- *Relativas:* Distúrbios de coagulação não corrigidos (embora a URS seja considerada segura em pacientes anticoagulados, deve-se ter cautela), estenose ureteral severa ou tortuosidade que impeça a progressão do ureteroscópio, hiperplasia prostática benigna volumosa que dificulte o acesso aos meatos."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\nO ureter possui três estreitamentos anatômicos naturais: a junção ureteropélvica (JUP), o cruzamento sobre os vasos ilíacos e a junção ureterovesical (JUV). O ureteroscópio semirrígido é ideal para o ureter distal e médio (abaixo dos vasos ilíacos), pois a pelve óssea e a curvatura do ureter proximal limitam a progressão do aparelho rígido até o rim.\n\n**Considerações pré-operatórias:**\n- **Imagem:** Tomografia computadorizada (TC) de abdome e pelve sem contraste é o padrão-ouro para avaliar o tamanho, densidade (Unidades Hounsfield) e localização do cálculo, além da anatomia ureteral.\n- **Laboratório:** Urocultura obrigatória (deve ser negativa ou tratada com antibiótico guiado por antibiograma), hemograma, função renal e coagulograma.\n- **Profilaxia:** Antibioticoprofilaxia em dose única (ex.: cefazolina ou fluoroquinolona) administrada 30 a 60 minutos antes da incisão/procedimento."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Posicionamento:**\nO paciente é colocado em posição de litotomia modificada (pernas apoiadas em perneiras, com os joelhos levemente fletidos e abduzidos), permitindo acesso simultâneo à uretra e ao fluoroscópio (arco em C).\n\n**Anestesia:**\nPode ser realizada sob raquianestesia ou anestesia geral. A anestesia geral é frequentemente preferida para garantir o controle da respiração e evitar movimentos do paciente durante a litotripsia.\n\n**Instrumental:**\n- Cistoscópio (17 a 22 Fr) para acesso inicial e passagem de fios-guia.\n- Ureteroscópio semirrígido (calibres variam de 6/7.5 Fr a 8/9.8 Fr).\n- Fios-guia: hidrofílicos e teflonados (0.035\" ou 0.038\") com ponta flexível.\n- Fonte de energia: Laser Holmium:YAG, Thulium Fiber Laser (TFL) ou litotritor balístico/pneumático.\n- Fibras de laser (200 a 272 µm) ou hastes metálicas para litotripsia balística.\n- Cestas de extração de nitinol (*baskets* tipo Dormia, zero-tip).\n- Dispositivos anti-retropulsão (opcional).\n- Cateteres duplo J (4.8 a 6 Fr) e empurradores.\n- Sistema de irrigação (bomba manual ou por gravidade).\n- Fluoroscopia (arco em C) e meio de contraste."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Cistoscopia inicial:** Introdução do cistoscópio na bexiga, inspeção vesical e identificação dos meatos ureterais.\n2. **Passagem do fio-guia de segurança:** Inserção de um fio-guia teflonado ou hidrofílico (0.035\" ou 0.038\") pelo meato ureteral ipsilateral até a pelve renal, sob controle fluoroscópico.\n3. **Dilatação do meato (se necessário):** Caso o meato seja estreito, realiza-se a dilatação com dilatadores coaxiais, balão de dilatação ureteral ou utilizando o próprio ureteroscópio de forma cuidadosa.\n4. **Introdução do ureteroscópio:** O ureteroscópio semirrígido é introduzido no meato ureteral sob visão direta, deslizando paralelamente ou sobre o fio-guia de segurança.\n5. **Progressão ureteral:** Avanço lento e cuidadoso do ureteroscópio pelo ureter distal e médio, mantendo a luz no centro da tela e utilizando irrigação sob baixa pressão para melhorar a visibilidade.\n6. **Identificação do cálculo:** Localização do cálculo e avaliação do espaço ao redor para passagem de instrumentos.\n7. **Prevenção de retropulsão:** Se o ureter for dilatado proximalmente, pode-se posicionar um dispositivo anti-retropulsão (ex.: *Stone Cone*, *N-Trap*) ou instilar gel de lidocaína acima do cálculo para evitar sua migração para o rim.\n8. **Litotripsia:** Introdução da fibra de laser ou haste balística. Para o laser Holmium, ajustam-se os parâmetros para fragmentação (alta energia, baixa frequência: ex. 0.8-1.2 J / 5-10 Hz) ou *dusting* (baixa energia, alta frequência: ex. 0.2-0.5 J / 20-50 Hz). A litotripsia balística é usada apenas para fragmentação grosseira.\n9. **Extração de fragmentos:** Remoção dos fragmentos maiores (> 2-3 mm) utilizando cestas de nitinol (*baskets*). Fragmentos em pó (*dust*) são deixados para eliminação espontânea.\n10. **Revisão endoscópica:** Inspeção cuidadosa do ureter tratado para confirmar o status *stone-free* e descartar lesões da mucosa ou perfurações.\n11. **Posicionamento do cateter duplo J:** Inserção de um cateter duplo J sobre o fio-guia, sob fluoroscopia, especialmente se houve trauma ureteral, edema significativo, litotripsia prolongada, fragmentos residuais ou se o paciente tiver rim único.\n12. **Retirada do instrumental:** Remoção do fio-guia de segurança, esvaziamento da bexiga e término do procedimento."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Fio-guia de segurança:** O uso rotineiro do fio-guia de segurança é fortemente recomendado para manter o acesso ao trato urinário superior em caso de complicações ou perda de visão.\n- **Controle da irrigação:** Mantenha a pressão de irrigação a mais baixa possível para evitar a retropulsão do cálculo para a pelve renal e minimizar o risco de refluxo pielovenoso e sepse.\n- **Regra do \"não forçar\":** Se o ureteroscópio não progredir facilmente, não force. O risco de avulsão ou perfuração é alto. A conduta correta é colocar um cateter duplo J e reabordar em 1 a 2 semanas (pré-stenting passivo).\n- **Laser vs. Balístico:** O laser (Holmium ou TFL) é superior ao balístico, pois fragmenta cálculos de qualquer composição e tem menor taxa de retropulsão. O balístico é mais barato, mas ineficaz contra cálculos muito duros (ex.: cistina, monoidratado de oxalato de cálcio) e empurra o cálculo proximalmente."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Perfuração ureteral:** Geralmente identificada por extravasamento de contraste ou visualização de gordura periureteral. Manejo: abortar o procedimento e posicionar um cateter duplo J por 4 a 6 semanas.\n- **Avulsão ureteral:** Complicação rara (< 1%), mas catastrófica, geralmente causada por tração excessiva de um *basket* impactado. Manejo: requer reparo cirúrgico imediato (reimplante ureteral, retalho de Boari, interposição ileal) ou nefrostomia percutânea de urgência.\n- **Migração do cálculo:** Se o cálculo migrar para o rim, pode-se tentar alcançá-lo com um ureteroscópio flexível no mesmo tempo cirúrgico, ou colocar um duplo J e programar LECO ou URS flexível posteriormente.\n- **Estenose ureteral tardia:** Ocorre em 1-4% dos casos devido a isquemia ou trauma térmico/mecânico. Tratamento: dilatação com balão, endoureterotomia ou reconstrução cirúrgica.\n- **Sepse urinária:** Prevenida com urocultura negativa e profilaxia. Se ocorrer, requer internação, antibióticos de amplo espectro intravenosos e suporte hemodinâmico."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Recuperação:** A maioria dos pacientes recebe alta no mesmo dia (ambulatorial) ou na manhã seguinte.\n- **Manejo do cateter duplo J:** Se deixado, o duplo J é tipicamente removido em consultório após 1 a 2 semanas. Medicações como alfa-bloqueadores (ex.: tansulosina) e anticolinérgicos podem ser prescritas para aliviar os sintomas relacionados ao *stent*.\n- **Seguimento de imagem:** Recomenda-se realizar uma imagem de controle (TC sem contraste de baixa dose ou USG + RX de abdome) 1 a 3 meses após o procedimento para confirmar a ausência de fragmentos residuais (*stone-free*) e descartar hidronefrose silenciosa secundária a estenose.\n- **Avaliação metabólica:** Indicada para pacientes de alto risco ou formadores recorrentes de cálculos."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- A ureterolitotripsia semirrígida apresenta taxas de sucesso (*stone-free rate*) superiores a 90-95% para cálculos ureterais distais, sendo superior à LECO nesta topografia.\n- Para cálculos do ureter médio, a taxa de sucesso é de aproximadamente 85-90%.\n- As diretrizes da EAU (2024) e AUA (2020) recomendam a URS como tratamento de primeira linha para cálculos ureterais distais > 10 mm (Grau de Recomendação Forte / Nível de Evidência 1a).\n- O uso de laser Holmium:YAG ou TFL demonstra superioridade em relação aos litotritores pneumáticos/balísticos em termos de taxa de fragmentação e menor retropulsão (Nível de Evidência 1b)."
+      },
+      {
+        "title": "Referências",
+        "body": "1. [1] Türk C, Petřík A, Sarica K, et al. EAU Guidelines on Diagnosis and Conservative Management of Urolithiasis. Eur Urol. 2016;69(3):468-474. (Diretrizes Clínicas / Nível de evidência 1a).\n2. [2] Assimos D, Krambeck A, Miller NL, et al. Surgical Management of Stones: American Urological Association/Endourological Society Guideline, PART I. J Urol. 2016;196(4):1153-1160. (Diretrizes Clínicas / Nível de evidência 1a).\n3. [3] Drake T, Grivas N, Dabestani S, et al. What are the Benefits and Harms of Ureteroscopy Compared with Shock-wave Lithotripsy in the Treatment of Upper Ureteral Stones? A Systematic Review. Eur Urol. 2017;72(5):772-786. (Revisão Sistemática / Nível de evidência 1a).\n4. [4] Somani BK, Giusti G, Sun Y, et al. Complications associated with ureterorenoscopy (URS) related to treatment of urolithiasis: the Clinical Research Office of Endourological Society URS Global study. World J Urol. 2017;35(4):675-681. (Estudo de Coorte / Nível de evidência 2b)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia do ureter e posicionamento do ureteroscópio",
+        "description": "Ilustração anatômica do trato urinário destacando o ureter distal e a inserção do ureteroscópio semirrígido através da uretra e bexiga até o cálculo",
+        "searchTerms": "semirigid ureteroscopy anatomy; distal ureteral stone endoscopic view"
+      },
+      {
+        "caption": "Visão endoscópica da litotripsia a laser",
+        "description": "Fotografia endoscópica mostrando a ponta da fibra de laser em contato com um cálculo ureteral amarelado, com o fio-guia de segurança visível ao lado",
+        "searchTerms": "laser lithotripsy ureteroscopy; holmium laser stone fragmentation"
+      },
+      {
+        "caption": "Extração de fragmentos com cesta de nitinol",
+        "description": "Visão endoscópica de uma cesta de nitinol (basket) aberta capturando um fragmento de cálculo dentro da luz ureteral",
+        "searchTerms": "ureteroscopy stone basket extraction; nitinol basket ureteral stone"
+      },
+      {
+        "caption": "Posicionamento do cateter duplo J sob fluoroscopia",
+        "description": "Imagem radiográfica (fluoroscopia) demonstrando o cateter duplo J posicionado corretamente, com o curl superior na pelve renal e o curl inferior na bexiga",
+        "searchTerms": "double J stent fluoroscopy; ureteral stent placement X-ray"
+      }
+    ]
+  },
+  {
+    "id": "ureterolitotripsia-flexivel",
+    "name": "Ureterolitotripsia Flexível (ureterorrenoscopia flexível com laser Holmium/Thulium - RIRS)",
+    "category": "Endourologia",
+    "icon": "🔄",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Cálculos renais < 20 mm (primeira linha, juntamente com a LECO, porém com maiores taxas de *stone-free*).\n- Cálculos de polo inferior < 15 mm (primeira linha) ou > 15 mm (alternativa à nefrolitotripsia percutânea - NLP, dependendo da anatomia e preferência do paciente).\n- Cálculos renais em pacientes com diátese hemorrágica não corrigível ou em uso de anticoagulantes (a RIRS é o procedimento de escolha).\n- Cálculos em pacientes obesos, com deformidades esqueléticas ou rins ectópicos/ferradura, onde a LECO ou NLP são desafiadoras.\n- Falha de tratamentos prévios (LECO).\n- Cálculos ureterais proximais impactados ou associados a cálculos renais ipsilaterais.\n\n**Contraindicações:**\n- *Absolutas:* Infecção do trato urinário (ITU) ativa não tratada, sepse urinária.\n- *Relativas:* Estenose ureteral severa que impeça o acesso (pode requerer colocação prévia de cateter duplo J - *pre-stenting*), gravidez (preferível apenas passagem de duplo J, embora a RIRS sem fluoroscopia seja factível em centros de excelência), próstatas muito volumosas ou reconstruções do trato urinário inferior que dificultem o acesso uretral."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "- **Avaliação Anatômica:** A tomografia computadorizada (TC) de abdome e pelve sem contraste é o padrão-ouro. Deve-se avaliar a densidade do cálculo (Unidades Hounsfield - UH), distância pele-cálculo e a anatomia do sistema coletor.\n- **Anatomia do Polo Inferior:** Fatores desfavoráveis para o sucesso da RIRS no polo inferior incluem: ângulo infundíbulo-pélvico (IPA) agudo (< 30 graus), infundíbulo longo (> 3 cm) e infundíbulo estreito (< 5 mm). Nestes casos, a taxa de *stone-free* diminui e o risco de dano ao aparelho aumenta.\n- **Preparo Pré-operatório:** Urocultura obrigatória. Em caso de urocultura positiva, tratar com antibioticoterapia guiada por antibiograma por pelo menos 5-7 dias antes do procedimento. Profilaxia antimicrobiana no momento da indução anestésica é recomendada para todos os pacientes.\n- **Pre-stenting:** A colocação prévia de cateter duplo J (1-2 semanas antes) não é obrigatória de rotina, mas facilita a dilatação passiva do ureter, aumenta a taxa de sucesso na passagem da bainha de acesso ureteral (UAS) e reduz complicações, sendo útil em ureteres estreitos."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "- **Anestesia:** Anestesia geral é preferível para garantir o controle da respiração (apneia induzida durante a litotripsia em cálices difíceis) e evitar movimentos do paciente. Raquianestesia é uma alternativa viável.\n- **Posicionamento:** Posição de litotomia dorsal (posição de Galdakao ou litotomia padrão), com as pernas bem acolchoadas. O cirurgião senta-se entre as pernas do paciente. O monitor de fluoroscopia e a torre de vídeo devem estar posicionados de forma ergonômica.\n- **Instrumental Básico:**\n  - Cistoscópio rígido (17-22 Fr) ou semirrígido (6/7.5 Fr).\n  - Fios-guia: hidrofílicos (0.035\" ou 0.032\") e teflonados/rígidos (Amplatz Super Stiff ou Bentson).\n  - Bainha de acesso ureteral (UAS): calibres 10/12 Fr, 11/13 Fr ou 12/14 Fr, com comprimento adequado (35 cm para mulheres, 45 cm para homens).\n  - Ureteroscópio flexível: digital (melhor qualidade de imagem) ou de fibra óptica (menor calibre).\n  - Fibras de laser: 200 a 272 micra.\n  - Gerador de Laser: Holmium:YAG (Ho:YAG) ou Thulium Fiber Laser (TFL).\n  - Cestas extratoras de nitinol (*zero-tip*, 1.5 a 1.9 Fr).\n  - Contraste iodado diluído e bomba de irrigação manual ou automatizada com controle de pressão."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Cistoscopia Inicial:** Realizar cistoscopia para inspecionar a bexiga, identificar os meatos ureterais e descartar patologias vesicais.\n2. **Passagem do Fio-guia:** Inserir um fio-guia hidrofílico ou teflonado pelo meato ureteral ipsilateral até a pelve renal, sob controle fluoroscópico.\n3. **Pielografia Retrógrada (Opcional):** Injetar contraste diluído para delinear a anatomia do sistema coletor e confirmar a posição do cálculo.\n4. **Passagem da Bainha de Acesso Ureteral (UAS):** Introduzir a UAS sobre o fio-guia sob visão fluoroscópica. A progressão deve ser suave; se houver resistência, não forçar (risco de avulsão ou perfuração). Se não progredir, realizar dilatação ativa ou optar por *pre-stenting* e adiar o procedimento.\n5. **Introdução do Ureteroscópio Flexível:** Inserir o ureteroscópio flexível através da UAS. Manter a irrigação em fluxo contínuo e controlado para garantir boa visibilidade sem elevar excessivamente a pressão intrarrenal.\n6. **Inspeção Sistemática:** Explorar sistematicamente a pelve renal e todos os cálices (superior, médio e inferior) para localizar o(s) cálculo(s).\n7. **Relocação do Cálculo (se necessário):** Para cálculos no polo inferior, utilizar uma cesta de nitinol para capturar e reposicionar o cálculo em um cálice superior ou na pelve renal. Isso facilita a litotripsia, melhora a drenagem de fragmentos e protege a deflexão do ureteroscópio.\n8. **Configuração do Laser:**\n   - *Dusting* (Pulverização): Alta frequência e baixa energia (Ho:YAG: 0.2-0.5 J / 50-80 Hz; TFL: 0.05-0.15 J / 100-200 Hz). Ideal para cálculos grandes, reduzindo a necessidade de extração.\n   - *Fragmentation* (Fragmentação): Baixa frequência e alta energia (Ho:YAG: 0.8-1.5 J / 5-15 Hz; TFL: 0.5-1.0 J / 10-20 Hz). Ideal para cálculos duros, seguido de extração.\n   - *Popcorning*: Energia moderada/alta e frequência moderada no interior de um cálice para pulverizar múltiplos fragmentos residuais.\n9. **Litotripsia a Laser:** Iniciar a fragmentação ou pulverização do cálculo, mantendo a ponta da fibra visível e a uma distância segura da mucosa e da lente do aparelho.\n10. **Extração de Fragmentos:** Utilizar a cesta de nitinol para remover fragmentos maiores que 2-3 mm através da UAS.\n11. **Revisão Final:** Inspecionar todo o sistema coletor para garantir o status *stone-free* e verificar a ausência de sangramentos ativos ou lesões uroteliais.\n12. **Retirada do Ureteroscópio e UAS:** Remover o aparelho e, em seguida, retirar a UAS sob visão fluoroscópica ou endoscópica (com o ureteroscópio dentro da bainha) para avaliar lesões da parede ureteral (classificação de Traxer).\n13. **Passagem de Cateter Duplo J:** Inserir um cateter duplo J (geralmente 4.8 ou 6.0 Fr) sobre o fio-guia. A colocação é recomendada na maioria dos casos, especialmente se houve uso de UAS, litotripsia prolongada, edema ureteral ou fragmentos residuais.\n14. **Sondagem Vesical:** Posicionar uma sonda de Foley para drenagem vesical e evitar refluxo imediato pelo duplo J."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Controle de Pressão Intrarrenal:** Manter a pressão de irrigação a mais baixa possível para evitar refluxo pielovenoso, sepse e ruptura de fórnice. O uso de UAS ajuda a manter a pressão intrarrenal baixa ao permitir o efluxo do fluido.\n- **Proteção do Aparelho:** Nunca disparar o laser se a ponta da fibra não estiver claramente visível e estendida além da lente do ureteroscópio (pelo menos 2-3 mm). Evitar deflexão máxima com a fibra de laser ou ferramentas inseridas no canal de trabalho, pois isso pode danificar o canal.\n- **Efeito \"Snowstorm\" (Tempestade de Neve):** Durante o *dusting*, a poeira do cálculo pode obscurecer a visão. Pausar a irrigação brevemente ou mudar para um cálice adjacente pode ajudar a clarear o campo.\n- **Thulium Fiber Laser (TFL):** O TFL produz fragmentos significativamente menores (poeira mais fina) e possui menor retropulsão em comparação ao Ho:YAG, sendo excelente para a técnica de *dusting*."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Lesão Ureteral (Mucosa, Falsa Via, Perfuração):** Avaliada pela classificação de Traxer (0 a 4). Lesões de baixo grau (0-2) são manejadas apenas com cateter duplo J. Perfurações maiores (grau 3-4) exigem duplo J prolongado (4-6 semanas) e, raramente, nefrostomia percutânea.\n- **Avulsão Ureteral:** Complicação gravíssima e rara. Ocorre geralmente ao forçar a UAS ou extrair cálculos grandes sem fragmentação. Manejo imediato com nefrostomia percutânea e reconstrução cirúrgica tardia (ex: reimplante ureteral, interposição ileal ou autotransplante).\n- **Sepse de Foco Urinário / SIRS:** Prevenida com urocultura negativa pré-operatória, antibioticoprofilaxia e controle da pressão intrarrenal. Se ocorrer, requer internação em UTI, antibióticos de amplo espectro intravenosos e suporte hemodinâmico.\n- **Estenose Ureteral Tardia:** Pode ocorrer meses após o procedimento devido a isquemia ou trauma térmico/mecânico. O seguimento com imagem é crucial. Tratamento pode envolver dilatação por balão, endoureterotomia ou reconstrução cirúrgica.\n- **Hematoma Subcapsular Renal:** Raro, associado a alta pressão de irrigação ou trauma pelo fio-guia. Manejo geralmente conservador com repouso e analgesia; intervenção apenas se instabilidade hemodinâmica."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Pós-operatório Imediato:** A sonda de Foley é geralmente removida no 1º dia de pós-operatório (PO) ou algumas horas após a cirurgia. Alta hospitalar no mesmo dia ou no 1º PO, dependendo da recuperação clínica e dor.\n- **Manejo do Duplo J:** O cateter duplo J é tipicamente removido entre 1 a 2 semanas de pós-operatório, via cistoscopia flexível ambulatorial ou por fio extrator (se deixado exteriorizado). Pacientes devem ser alertados sobre sintomas irritativos vesicais e hematúria leve associados ao cateter.\n- **Seguimento de Imagem:** Realizar TC de abdome sem contraste ou USG de vias urinárias + Raio-X de abdome (KUB) entre 1 a 3 meses após a cirurgia para avaliar o status *stone-free* e descartar hidronefrose silenciosa (sugestiva de estenose ureteral).\n- **Avaliação Metabólica:** Recomendada para pacientes de alto risco (formadores recorrentes, múltiplos cálculos, história familiar, comorbidades) após 1-2 meses do estado *stone-free*."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- A RIRS apresenta taxas de *stone-free* variando de 80% a 95% para cálculos renais < 20 mm, dependendo da localização (menor no polo inferior) e composição do cálculo.\n- O uso do Thulium Fiber Laser (TFL) tem demonstrado superioridade em estudos recentes quanto ao tempo operatório e qualidade da pulverização (*dusting*) em comparação ao Ho:YAG tradicional, com perfil de segurança semelhante.\n- A taxa de complicações maiores (Clavien-Dindo III-V) é baixa (1-3%), sendo a sepse e a estenose ureteral as mais temidas.\n- Diretrizes da EAU e AUA recomendam fortemente a RIRS como tratamento de primeira linha para cálculos renais < 2 cm e como opção viável para cálculos maiores em casos selecionados."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Türk C, et al. EAU Guidelines on Diagnosis and Conservative Management of Urolithiasis. Eur Urol. 2016;69(3):468-474. (Diretrizes / Nível de evidência 1A).\n[2] Assimos D, et al. Surgical Management of Stones: American Urological Association/Endourological Society Guideline, PART I. J Urol. 2016;196(4):1153-1160. (Diretrizes / Nível de evidência 1A).\n[3] Partin AW, et al. Campbell-Walsh-Wein Urology. Elsevier. 2024;13(1):1-10. (Livro-texto / Nível de evidência 4).\n[4] Traxer O, Thomas A. Prospective evaluation and classification of ureteral wall injuries resulting from insertion of a ureteral access sheath during retrograde intrarenal surgery. J Urol. 2013;189(2):580-584. (Estudo prospectivo / Nível de evidência 2B).\n[5] Kronenberg P, Traxer O. The laser of the future: reality and expectations about the new thulium fiber laser—a systematic review. Transl Androl Urol. 2019;8(4):398-417. (Revisão Sistemática / Nível de evidência 2A)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia do polo inferior e fatores preditivos",
+        "description": "Ilustração do ângulo infundíbulo-pélvico (IPA), comprimento e largura do infundíbulo, demonstrando anatomia favorável e desfavorável para RIRS",
+        "searchTerms": "infundibulopelvic angle RIRS; lower pole renal anatomy kidney stones"
+      },
+      {
+        "caption": "Posicionamento e sala operatória para RIRS",
+        "description": "Paciente em posição de litotomia dorsal com pernas acolchoadas, disposição do arco em C (fluoroscopia), torre de vídeo e posição do cirurgião",
+        "searchTerms": "retrograde intrarenal surgery operating room setup; RIRS patient positioning"
+      },
+      {
+        "caption": "Bainha de acesso ureteral e ureteroscópio flexível",
+        "description": "Imagem esquemática ou fotográfica da bainha de acesso ureteral (UAS) posicionada no ureter com o ureteroscópio flexível passando em seu interior até a pelve renal",
+        "searchTerms": "ureteral access sheath RIRS; flexible ureteroscope insertion"
+      },
+      {
+        "caption": "Relocação de cálculo do polo inferior",
+        "description": "Sequência endoscópica ou ilustrativa de um cálculo sendo capturado por uma cesta de nitinol no polo inferior e reposicionado para um cálice superior ou pelve renal",
+        "searchTerms": "stone relocation lower pole RIRS; nitinol basket flexible ureteroscopy"
+      },
+      {
+        "caption": "Técnicas de litotripsia a laser (Dusting vs. Fragmentation)",
+        "description": "Comparação visual entre a técnica de pulverização (dusting) criando poeira fina e a técnica de fragmentação criando pedaços maiores que necessitam de extração",
+        "searchTerms": "laser lithotripsy dusting vs fragmentation; Holmium Thulium laser kidney stones"
+      }
+    ]
+  },
+  {
+    "id": "cistoscopia",
+    "name": "Cistoscopia diagnóstica e retirada de cateter duplo J",
+    "category": "Endourologia",
+    "icon": "🔍",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 12ª ed. + Ensaio Clínico Randomizado",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A cistoscopia diagnóstica associada à retirada de cateter duplo J é um procedimento endourológico amplamente realizado em regime ambulatorial. As principais indicações incluem a necessidade de remoção de um cateter ureteral previamente inserido (seja por litíase, estenose, pós-operatório de cirurgias urológicas ou transplante renal) e a avaliação concomitante do trato urinário inferior para descartar anormalidades anatômicas, tumores vesicais, estenoses uretrais ou fontes de hematúria [1] [2]. \n\nAs contraindicações absolutas são raras, mas incluem infecção do trato urinário (ITU) ativa e não tratada, devido ao risco de sepse urológica com a manipulação. Contraindicações relativas envolvem coagulopatias severas não corrigidas, trauma uretral agudo e incapacidade de posicionamento adequado do paciente. Em pacientes com próteses ortopédicas recentes ou valvopatias específicas, a profilaxia para endocardite deve ser considerada conforme as diretrizes cardiológicas vigentes [3]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O conhecimento detalhado da anatomia uretral e vesical é fundamental. No homem, a uretra é dividida em porções prostática, membranosa, bulbar e peniana, apresentando curvaturas naturais que exigem manobras específicas durante a introdução do cistoscópio rígido. Na mulher, a uretra é mais curta e retilínea, facilitando o acesso. O trígono vesical, delimitado pelos meatos ureterais e pelo colo vesical, é a principal área de interesse para a localização da extremidade distal do cateter duplo J [4].\n\nNo pré-operatório, é imperativo confirmar a presença e a posição do cateter duplo J por meio de radiografia simples de abdome (KUB) ou ultrassonografia, descartando migração proximal ou calcificações severas que possam impedir a remoção endoscópica simples. A avaliação laboratorial básica inclui urinálise e urocultura. Segundo as diretrizes da European Association of Urology (EAU) e da American Urological Association (AUA), a profilaxia antibiótica de rotina não é recomendada para cistoscopia simples em pacientes de baixo risco, mas deve ser considerada em casos de manipulação (como a retirada do stent) ou em pacientes com fatores de risco para infecção [5] [6]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O paciente é posicionado em litotomia dorsal (posição ginecológica), com os membros inferiores apoiados em perneiras, garantindo conforto e evitando compressão de feixes nervosos (como o nervo fibular comum). A assepsia e antissepsia da genitália externa e do períneo são realizadas com soluções padronizadas (ex.: clorexidina aquosa).\n\nA anestesia local com gel de lidocaína a 2% intrauretral é o padrão-ouro para o procedimento ambulatorial, proporcionando lubrificação e analgesia adequadas. O gel deve ser instilado e mantido por 3 a 5 minutos antes da instrumentação. Em casos de extrema ansiedade, estenose uretral conhecida ou necessidade de procedimentos adicionais, a sedação intravenosa ou anestesia regional/geral pode ser indicada [4].\n\nO instrumental básico inclui:\n- Cistoscópio rígido (17 a 22 Fr) com óptica de 30 ou 70 graus, ou cistoscópio flexível (15 a 16 Fr).\n- Pinça de apreensão endoscópica (tipo \"jacaré\" ou \"dente de rato\").\n- Fonte de luz fria e sistema de câmera de vídeo.\n- Sistema de irrigação com soro fisiológico 0,9% ou água destilada (se não houver uso de energia monopolar)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Preparo e anestesia:** Posicionamento em litotomia, assepsia, colocação de campos estéreis e instilação de 10 a 20 mL de gel de lidocaína a 2% na uretra, aguardando o tempo de latência.\n2. **Montagem do equipamento:** Conexão da óptica ao cistoscópio, acoplamento da fonte de luz, câmera e sistema de irrigação. Teste de fluxo e foco da imagem.\n3. **Introdução do cistoscópio:** Sob visão direta, introduzir o cistoscópio lubrificado pelo meato uretral. No homem, manter o pênis tracionado verticalmente para retificar a uretra anterior.\n4. **Navegação uretral:** Avançar o cistoscópio pela uretra peniana e bulbar. Ao atingir o esfíncter externo, solicitar ao paciente que relaxe a musculatura pélvica e abaixar o cistoscópio para ultrapassar a uretra membranosa e prostática.\n5. **Inspeção vesical:** Entrar na bexiga e iniciar a irrigação para distensão adequada. Realizar uma inspeção sistemática de todas as paredes vesicais, teto e fundo, avaliando a mucosa.\n6. **Identificação do trígono e meatos:** Localizar o trígono vesical e identificar ambos os meatos ureterais.\n7. **Localização do cateter:** Visualizar a extremidade distal (loop) do cateter duplo J, que geralmente repousa no assoalho vesical ou próximo ao meato correspondente.\n8. **Introdução da pinça:** Inserir a pinça de apreensão através do canal de trabalho do cistoscópio até que sua ponta seja visível na tela.\n9. **Apreensão do cateter:** Abrir a pinça, posicioná-la sobre o corpo do cateter (evitando a ponta do loop para não escorregar) e fechar firmemente.\n10. **Retirada do conjunto:** Tracionar o cateter suavemente e de forma contínua. Retirar o cistoscópio, a pinça e o cateter em bloco, mantendo a visão até a saída do meato uretral.\n11. **Inspeção final (opcional):** Se houver suspeita de sangramento ou lesão, reintroduzir o cistoscópio para revisão hemostática.\n12. **Esvaziamento vesical:** Drenar o fluido de irrigação residual da bexiga.\n13. **Término do procedimento:** Remover os campos, limpar o paciente e encaminhá-lo para recuperação."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Uso do cistoscópio flexível:** O cistoscópio flexível é associado a menor desconforto para o paciente, especialmente no sexo masculino, e permite a realização do procedimento em posição supina, sendo a escolha preferencial em muitos centros modernos [7].\n- **Apreensão correta:** Evite pinçar a extremidade enrolada do cateter; prefira a porção reta logo acima do loop para garantir uma tração alinhada com o eixo da uretra.\n- **Tração suave:** A resistência excessiva durante a tração pode indicar calcificação do cateter ou migração proximal. Nesses casos, interrompa o procedimento e reavalie com imagem, pois a tração forçada pode causar avulsão ureteral.\n- **Lubrificação adequada:** A instilação generosa de gel anestésico e o tempo de espera são cruciais para o sucesso do procedimento sob anestesia local."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "As complicações são geralmente leves e autolimitadas. As mais comuns incluem:\n- **Disúria e hematúria transitórias:** Ocorrem na maioria dos pacientes e resolvem-se em 24 a 48 horas com aumento da ingesta hídrica e analgésicos simples.\n- **Infecção do Trato Urinário (ITU):** A incidência é baixa, mas pode ocorrer. O manejo envolve antibioticoterapia guiada por urocultura. A profilaxia é reservada para casos de risco [5].\n- **Retenção urinária aguda:** Mais comum em homens com hiperplasia prostática benigna (HPB) prévia. Pode exigir cateterismo vesical de alívio ou demora temporário.\n- **Falha na remoção:** Devido a calcificações severas (stent esquecido) ou migração proximal. Requer programação de ureteroscopia rígida ou flexível com litotripsia a laser sob anestesia geral [4]."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O paciente é liberado imediatamente após o procedimento, desde que apresente micção espontânea e ausência de sangramento ativo. As orientações de alta incluem:\n- Aumento da ingesta hídrica (2 a 3 litros por dia) para \"lavar\" a via urinária e reduzir a disúria.\n- Uso de analgésicos (ex.: paracetamol, dipirona) ou antiespasmódicos (ex.: flavoxato, escopolamina) se necessário.\n- Sinais de alerta para retorno ao pronto-socorro: febre (>38°C), calafrios, hematúria macroscópica com coágulos ou incapacidade de urinar.\nO seguimento urológico subsequente dependerá da patologia de base que motivou a inserção do cateter (ex.: acompanhamento de litíase com exames de imagem)."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A remoção de cateter duplo J via cistoscopia é um procedimento altamente seguro e eficaz. Estudos demonstram taxas de sucesso superiores a 95% em casos não complicados. A transição do uso de cistoscópios rígidos para flexíveis tem mostrado uma redução significativa nos escores de dor (Escala Visual Analógica) relatados pelos pacientes, sem comprometer a eficácia da remoção [7]. As diretrizes da EAU e AUA reforçam a importância do uso racional de antibióticos profiláticos, limitando-os a pacientes com fatores de risco específicos, visando a redução da resistência antimicrobiana [5] [6]."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Wein AJ, Kavoussi LR, Partin AW, Peters CA. Campbell-Walsh-Wein Urology. 12th ed. Philadelphia: Elsevier; 2021. (Livro-texto / Nível de evidência 4).\n[2] European Association of Urology (EAU). EAU Guidelines on Urolithiasis. Arnhem, The Netherlands: EAU Guidelines Office; 2024. (Diretriz Clínica / Nível de evidência 1a).\n[3] American Urological Association (AUA). AUA Guidelines on the Management of Stones in the Ureter. Linthicum, MD: AUA; 2024. (Diretriz Clínica / Nível de evidência 1a).\n[4] Smith AD, Badlani GH, Preminger GM, Kavoussi LR. Smith's Textbook of Endourology. 4th ed. Hoboken: Wiley-Blackwell; 2019. (Livro-texto / Nível de evidência 4).\n[5] Bonkat G, Bartoletti R, Bruyère F, et al. EAU Guidelines on Urological Infections. Arnhem, The Netherlands: EAU Guidelines Office; 2024. (Diretriz Clínica / Nível de evidência 1a).\n[6] Lightner DJ, Wymer K, Sanchez J, Kavoussi L. Best Practice Statement on Urologic Procedures and Antimicrobial Prophylaxis. J Urol. 2020;203(2):351-356. (Diretriz Clínica / Nível de evidência 1a).\n[7] Bradshaw AW, Pe M, Bechis SK, et al. Antibiotics are not necessary during routine cystoscopic stent removal: a randomized controlled trial at UC San Diego. Urology. 2020;146:13-18. (Ensaio Clínico Randomizado / Nível de evidência 1b)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia uretral e posicionamento do cistoscópio",
+        "description": "Ilustração sagital da pelve masculina e feminina mostrando a curvatura da uretra e o ângulo correto de introdução do cistoscópio rígido",
+        "searchTerms": "male urethra anatomy cystoscopy; cystoscope insertion angle"
+      },
+      {
+        "caption": "Visão endoscópica do trígono e cateter duplo J",
+        "description": "Imagem endoscópica real ou ilustração do interior da bexiga, destacando o trígono vesical, os meatos ureterais e a extremidade enrolada (loop) do cateter duplo J repousando no assoalho",
+        "searchTerms": "endoscopic view double J stent bladder; cystoscopy ureteral orifice stent"
+      },
+      {
+        "caption": "Apreensão do cateter com pinça endoscópica",
+        "description": "Detalhe da ponta do cistoscópio com a pinça de apreensão (tipo jacaré) saindo do canal de trabalho e segurando firmemente o corpo do cateter duplo J, logo abaixo do loop",
+        "searchTerms": "cystoscopy grasping forceps double J stent; ureteral stent removal technique"
+      },
+      {
+        "caption": "Cistoscópio flexível vs. rígido",
+        "description": "Comparação visual entre um cistoscópio rígido tradicional e um cistoscópio flexível moderno, destacando a ponta defletível do modelo flexível",
+        "searchTerms": "flexible vs rigid cystoscope; digital flexible cystoscopy"
+      }
+    ]
+  },
+  {
+    "id": "rtu-bexiga",
+    "name": "Ressecção Transuretral de Bexiga (RTU-B) para tumor vesical",
+    "category": "Oncologia",
+    "icon": "🔬",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisões Sistemáticas",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Diagnóstico primário e estadiamento de lesões vesicais suspeitas de malignidade (tumor urotelial).\n- Tratamento curativo para câncer de bexiga não músculo-invasivo (NMIBC - Ta, T1, CIS).\n- Ressecção paliativa em pacientes com câncer de bexiga músculo-invasivo (MIBC) inaptos para cistectomia (controle de sangramento ou sintomas locais).\n- Re-ressecção (Second-look TURBT) indicada em casos de ressecção inicial incompleta, ausência de camada muscular na amostra (exceto Ta de baixo grau) ou tumores T1 de alto grau.\n\n**Contraindicações:**\n- Absolutas: Coagulopatia grave não corrigida, infecção do trato urinário (ITU) ativa não tratada, incapacidade de posicionamento em litotomia.\n- Relativas: Capacidade vesical extremamente reduzida, estenose uretral severa (pode exigir dilatação ou uretrotomia prévia), tumores muito volumosos onde a ressecção completa em um único tempo é inviável (risco de intoxicação hídrica ou sangramento excessivo)."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\n- A bexiga é um órgão pélvico extraperitoneal. A parede vesical é composta por mucosa (urotélio), submucosa (lâmina própria) e camada muscular (detrusor), revestida externamente por gordura perivesical e peritônio (na cúpula).\n- O trígono vesical é delimitado pelos dois meatos ureterais e pelo colo vesical. Lesões próximas aos meatos exigem cuidado para evitar estenose ou refluxo pós-operatório.\n- O nervo obturador passa próximo às paredes laterais da bexiga. A estimulação elétrica durante a ressecção lateral pode causar o reflexo do nervo obturador, resultando em adução brusca da coxa e risco de perfuração vesical.\n\n**Considerações pré-operatórias:**\n- Avaliação por cistoscopia prévia e exames de imagem do trato urinário superior (tomografia computadorizada com fase excretora - urotomografia) para descartar tumores uroteliais sincrônicos.\n- Suspensão de anticoagulantes/antiagregantes conforme protocolos institucionais.\n- Profilaxia antibiótica (ex.: cefazolina ou fluoroquinolona) conforme diretrizes (Grau de Recomendação A).\n- Avaliação cardiológica e anestésica."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Posicionamento:**\n- Posição de litotomia padrão (pernas em estribos), com leve sobreelevação da pelve se necessário.\n- Placa de bisturi elétrico bem acoplada (se energia monopolar).\n\n**Anestesia:**\n- Raquianestesia ou anestesia geral. A anestesia geral com bloqueio neuromuscular profundo é preferível para tumores em parede lateral para evitar o reflexo do nervo obturador (Grau de Recomendação B).\n\n**Instrumental:**\n- Ressectoscópio de fluxo contínuo (24 ou 26 Fr) com óptica de 12° ou 30°.\n- Alça de ressecção (monopolar ou bipolar).\n- Energia:\n  - Monopolar: requer irrigação com solução não condutora (glicina, manitol ou sorbitol).\n  - Bipolar: permite uso de soro fisiológico 0,9%, reduzindo o risco de síndrome de absorção hídrica (Síndrome de RTU) e minimizando o reflexo do obturador.\n- Evacuador de Ellik ou seringa de Toomey para retirada de fragmentos.\n- Cistoscópio flexível ou rígido para inspeção inicial.\n- Tecnologias de imagem avançada (opcional, mas recomendado pelas diretrizes EAU): Cistoscopia de luz azul (Hexaminolevulinato - HAL) ou Narrow Band Imaging (NBI) para melhor detecção de CIS e lesões satélites."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Inspeção inicial:** Realizar cistoscopia cuidadosa com óptica de 30° e 70° para mapear todas as lesões, documentando tamanho, número, localização e aspecto (papilífero, séssil, eritematoso).\n2. **Dilatação uretral:** Se necessário, calibrar e dilatar a uretra para permitir a passagem suave do ressectoscópio.\n3. **Introdução do ressectoscópio:** Inserir o ressectoscópio sob visão direta, utilizando o obturador visual.\n4. **Mapeamento e planejamento:** Identificar os meatos ureterais em relação ao tumor. Planejar a ressecção começando pelas lesões menores, se múltiplas.\n5. **Ressecção da porção exofítica:** Iniciar a ressecção da parte visível do tumor em fragmentos, do ápice para a base. Evitar encher excessivamente a bexiga para manter a parede mais espessa e reduzir o risco de perfuração.\n6. **Ressecção da base e margens:** Ressecar a base do tumor e as margens adjacentes (cerca de 1 cm ao redor). **Crucial:** Enviar a base do tumor em frasco separado para o patologista avaliar a presença de invasão da camada muscular (detrusor).\n7. **Manejo do reflexo do obturador:** Para tumores em parede lateral, reduzir a intensidade da corrente, evitar distensão vesical excessiva, usar energia bipolar ou solicitar bloqueio neuromuscular profundo ao anestesista.\n8. **Hemostasia:** Realizar hemostasia rigorosa do leito de ressecção utilizando a alça de ressecção ou eletrodo tipo \"rollerball\".\n9. **Evacuação dos fragmentos:** Retirar a óptica e utilizar o evacuador de Ellik ou seringa de Toomey para lavar a bexiga e remover todos os fragmentos tumorais. Inspecionar novamente para garantir que nenhum fragmento foi deixado.\n10. **Biópsias adicionais (se indicado):** Realizar biópsias da uretra prostática se houver suspeita de tumor no colo vesical, CIS difuso ou citologia positiva sem tumor visível. Biópsias randomizadas de mucosa normal são indicadas em casos de citologia positiva sem lesão evidente.\n11. **Revisão final:** Inspecionar o leito de ressecção com a bexiga pouco distendida para confirmar hemostasia e ausência de perfuração.\n12. **Sondagem vesical:** Passar sonda vesical de demora de 3 vias (20 a 22 Fr) e iniciar irrigação contínua com soro fisiológico se houver hematúria significativa."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Amostragem do detrusor:** A presença de músculo detrusor na amostra é o principal indicador de qualidade da RTU-B. Sem ele, o estadiamento é incompleto (exceto em tumores Ta de baixo grau evidentes).\n- **Frascos separados:** Sempre enviar a porção exofítica e a base profunda em frascos separados para facilitar a análise patológica.\n- **Prevenção de perfuração:** Evite ressecar com a bexiga muito cheia, pois a parede fica fina. Cuidado especial na cúpula (risco de perfuração intraperitoneal).\n- **Tumores próximos ao meato:** Ressecar com cautela. Evitar coagulação excessiva para prevenir estenose. O uso de energia bipolar pura de corte pode ser preferível.\n- **Instilação pós-operatória imediata:** Planejar a instilação de quimioterapia intravesical (ex.: Mitomicina C ou Gencitabina) nas primeiras 2 a 24 horas pós-RTU-B para reduzir recorrência, desde que não haja suspeita de perfuração profunda (Grau de Recomendação A)."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Sangramento/Hematúria:** Complicação mais comum. Manejo com irrigação contínua, tração da sonda, lavagem manual para retirar coágulos. Se refratário, reintervenção endoscópica para hemostasia.\n- **Perfuração vesical:**\n  - *Extraperitoneal:* Geralmente manejada conservadoramente com drenagem vesical prolongada (sonda por 7-10 dias).\n  - *Intraperitoneal:* Caracterizada por dor abdominal, distensão e dificuldade de retorno do líquido de irrigação. Requer exploração cirúrgica imediata (laparotomia ou laparoscopia) para rafia da bexiga.\n- **Síndrome de RTU (Intoxicação hídrica):** Rara com energia bipolar. Causada por absorção de líquido hipotônico (monopolar). Sintomas: confusão mental, bradicardia, hiponatremia. Manejo: interromper cirurgia, diuréticos (furosemida), suporte clínico e reposição de sódio se hiponatremia grave.\n- **Estenose de uretra ou meato ureteral:** Prevenção com uso de lubrificação adequada, calibração uretral e ressecção cuidadosa no trígono.\n- **Infecção do Trato Urinário (ITU):** Tratamento com antibioticoterapia guiada por cultura."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Pós-operatório imediato:** Irrigação contínua até clareamento da urina. Instilação de quimioterápico intravesical dose única imediata (se indicado e seguro). Retirada da sonda geralmente em 24 a 48 horas.\n- **Alta hospitalar:** Após retirada da sonda e micção espontânea clara.\n- **Seguimento (Follow-up):** Baseado no risco de recorrência e progressão (EAU/AUA risk groups).\n  - *Baixo risco:* Cistoscopia aos 3 meses e, se negativa, anualmente por 5 anos.\n  - *Risco intermediário/alto:* Cistoscopia e citologia aos 3 meses. Esquemas de indução e manutenção com BCG intravesical ou quimioterapia. Cistoscopias periódicas rigorosas (a cada 3-6 meses nos primeiros 2 anos).\n- **Re-ressecção (Second-look):** Deve ser realizada dentro de 2 a 6 semanas se a ressecção inicial foi incompleta, se não houver músculo na amostra (exceto Ta baixo grau) ou em todos os tumores T1."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- A RTU-B é o padrão-ouro para diagnóstico e tratamento inicial do NMIBC.\n- A qualidade da ressecção impacta diretamente nas taxas de recorrência e progressão. A ausência de músculo detrusor na amostra está associada a maior risco de subestadiamento (até 30% dos tumores T1 são upstaged para T2 na re-ressecção).\n- O uso de tecnologias de imagem (NBI, PDD/luz azul) aumenta a taxa de detecção de lesões (especialmente CIS) e reduz a recorrência em comparação com a cistoscopia de luz branca padrão (Nível de Evidência 1a).\n- A instilação pós-operatória imediata de quimioterapia reduz a taxa de recorrência em cerca de 35% em pacientes elegíveis (Nível de Evidência 1a)."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Babjuk M, Burger M, Capoun O, et al. European Association of Urology Guidelines on Non-muscle-invasive Bladder Cancer (Ta, T1, and Carcinoma In Situ). Eur Urol. 2024;85(1):69-84. (Diretrizes Clínicas / Nível de evidência 1a).\n2. Chang SS, Boorjian SA, Chou R, et al. Diagnosis and Treatment of Non-Muscle Invasive Bladder Cancer: AUA/SUO Guideline. J Urol. 2016;196(4):1021-1029. (Diretrizes Clínicas / Nível de evidência 1a).\n3. Partin AW, et al. Campbell-Walsh-Wein Urology. Elsevier. 2024;13(1):2340-2380. (Livro-texto / Nível de evidência 5).\n4. Sylvester RJ, Oosterlinck W, Holmang S, et al. Systematic Review and Individual Patient Data Meta-analysis of Randomized Trials Comparing a Single Immediate Instillation of Chemotherapy After Transurethral Resection with Transurethral Resection Alone in Patients with Stage pTa-pT1 Urothelial Carcinoma of the Bladder: Which Patients Benefit from the Instillation? Eur Urol. 2016;69(2):231-244. (Revisão Sistemática e Meta-análise / Nível de evidência 1a).\n5. Burger M, Grossman HB, Droller M, et al. Photodynamic Diagnosis of Non-muscle-invasive Bladder Cancer with Hexaminolevulinate Cystoscopy: A Meta-analysis of Detection and Recurrence Based on Raw Data. Eur Urol. 2013;64(5):846-854. (Meta-análise / Nível de evidência 1a)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia da bexiga e camadas da parede vesical",
+        "description": "Ilustração esquemática das camadas da bexiga (urotélio, lâmina própria, músculo detrusor, gordura perivesical) e a profundidade de invasão dos estágios Ta, T1 e T2",
+        "searchTerms": "bladder wall layers anatomy; bladder cancer staging Ta T1 T2"
+      },
+      {
+        "caption": "Posicionamento e inserção do ressectoscópio",
+        "description": "Paciente em posição de litotomia com o ressectoscópio inserido através da uretra até a bexiga, demonstrando a irrigação de fluxo contínuo",
+        "searchTerms": "TURBT patient positioning; resectoscope insertion bladder"
+      },
+      {
+        "caption": "Técnica de ressecção em frações",
+        "description": "Visão endoscópica esquemática demonstrando a ressecção da porção exofítica do tumor separada da ressecção da base profunda (músculo detrusor)",
+        "searchTerms": "TURBT fractional resection technique; bladder tumor resection base and exophytic"
+      },
+      {
+        "caption": "Reflexo do nervo obturador durante RTU-B",
+        "description": "Ilustração anatômica mostrando a proximidade do nervo obturador com a parede lateral da bexiga e o mecanismo de estimulação elétrica causando adução da perna",
+        "searchTerms": "obturator nerve reflex TURBT; bladder lateral wall obturator nerve anatomy"
+      },
+      {
+        "caption": "Cistoscopia de luz branca vs. luz azul",
+        "description": "Comparação lado a lado de uma imagem endoscópica de tumor vesical sob luz branca padrão e a mesma lesão com fluorescência sob luz azul",
+        "searchTerms": "blue light cystoscopy bladder cancer; PDD hexaminolevulinate TURBT"
+      }
+    ]
+  },
+  {
+    "id": "rtu-prostata",
+    "name": "Ressecção Transuretral da Próstata (RTU-P) monopolar/bipolar para HPB",
+    "category": "Próstata",
+    "icon": "♨️",
+    "evidence": "Diretrizes EAU 2024 / AUA 2023 + Campbell-Walsh-Wein 13ª ed. + Revisões Sistemáticas Cochrane",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Sintomas do trato urinário inferior (STUI) moderados a graves secundários à hiperplasia prostática benigna (HPB) refratários ou intolerantes ao tratamento clínico.\n- Retenção urinária aguda refratária (falha de teste sem sonda).\n- Retenção urinária crônica com repercussão no trato urinário superior (insuficiência renal pós-renal).\n- Infecções do trato urinário (ITU) de repetição secundárias à HPB.\n- Hematúria macroscópica recorrente de origem prostática.\n- Cálculos vesicais secundários à obstrução infravesical.\n- Divertículos vesicais sintomáticos ou com complicações.\n*Nota EAU/AUA:* A RTU-P é o tratamento cirúrgico de escolha (padrão-ouro) para próstatas com volume entre 30 e 80 mL.\n\n**Contraindicações:**\n- *Absolutas:* Coagulopatia não corrigida, infecção do trato urinário ativa não tratada, expectativa de vida muito curta ou risco cirúrgico inaceitável.\n- *Relativas:* Próstatas > 80-100 mL (risco aumentado de sangramento e síndrome de absorção na RTU-P monopolar; embora a bipolar permita ressecções maiores, a enucleação ou cirurgia aberta/robótica são preferíveis), próstatas < 30 mL sem lobo médio (incisão transuretral da próstata - ITUP pode ser mais adequada), estenose de uretra complexa prévia, incapacidade de posicionamento em litotomia."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\n- A próstata é dividida em zonas (classificação de McNeal); a HPB origina-se predominantemente na zona de transição.\n- Marcos anatômicos fundamentais durante a ressecção: colo vesical (limite proximal), verumontanum (limite distal, protege o esfíncter estriado), e cápsula cirúrgica (fibras circulares brilhantes, limite de profundidade).\n- Feixes neurovasculares localizam-se posterolateralmente à cápsula prostática.\n- Óstios ureterais: localizados no trígono vesical, devem ser identificados para evitar lesão inadvertida durante a ressecção do colo ou lobo médio.\n\n**Considerações pré-operatórias:**\n- Avaliação: História clínica, IPSS/QoL, toque retal, PSA, EAS e urocultura.\n- Exames complementares: Ultrassonografia de vias urinárias e próstata (avaliação de volume e resíduo pós-miccional), urofluxometria.\n- Estudo urodinâmico: Reservado para casos de dúvida diagnóstica (ex: suspeita de hipocontratilidade detrusora, disfunção neurogênica).\n- Suspensão de anticoagulantes/antiagregantes plaquetários conforme diretrizes cardiológicas e urológicas. A RTU-P bipolar tem menor risco de sangramento, mas a suspensão ainda é recomendada.\n- Profilaxia antimicrobiana: Cefalosporina de 1ª ou 2ª geração, ou sulfametoxazol-trimetoprima, conforme flora local (Grau de recomendação A)."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Posicionamento:**\n- Posição de litotomia (ginecológica) com perneiras adequadas (ex: tipo Allen) para evitar compressão nervosa (nervo fibular comum) e síndrome compartimental.\n- Placa de bisturi bem acoplada (para monopolar e alguns sistemas bipolares).\n\n**Anestesia:**\n- Raquianestesia (preferencial, permite monitorar o status mental do paciente para detecção precoce da Síndrome de RTU) ou anestesia geral.\n\n**Instrumental:**\n- Ressectoscópio: Camisa de fluxo contínuo (geralmente 24 a 26 Fr), elemento de trabalho (passivo ou ativo), ótica de 12° ou 30°.\n- Alças de ressecção: Alça de corte padrão.\n- Fonte de energia:\n  - *Monopolar:* Requer líquido de irrigação não condutor (glicina 1,5% ou manitol/sorbitol). Risco de Síndrome de RTU (hiponatremia dilucional).\n  - *Bipolar:* Utiliza solução salina (cloreto de sódio 0,9%), eliminando o risco de hiponatremia dilucional.\n- Sistema de irrigação e aspiração (ex: evacuador de Ellik ou Toomey).\n- Sonda vesical de demora (Foley) de 3 vias, 20 a 24 Fr, para irrigação contínua pós-operatória."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Cistoscopia inicial:** Inspeção da uretra, verumontanum, lobos prostáticos (laterais e médio), colo vesical, trígono, óstios ureterais e bexiga (descartar tumores ou cálculos).\n2. **Dilatação uretral (se necessário):** Passagem de sondas de Benique ou dilatadores para acomodar a camisa do ressectoscópio sem trauma, prevenindo estenose de uretra.\n3. **Introdução do ressectoscópio:** Inserção sob visão direta, utilizando o obturador visual, até a cavidade vesical.\n4. **Marcação dos limites anatômicos:** Identificação rigorosa do verumontanum (limite distal de segurança) e dos óstios ureterais (limite proximal no trígono).\n5. **Ressecção do lobo médio (se presente):** Inicia-se às 6 horas, do colo vesical em direção ao verumontanum, nivelando o assoalho prostático até visualizar as fibras circulares do colo.\n6. **Ressecção dos lobos laterais:** Realização de sulcos de marcação às 5 e 7 horas (isolando o assoalho) ou às 12 horas (isolando o teto). A ressecção prossegue do colo vesical em direção ao verumontanum.\n7. **Aprofundamento até a cápsula:** Ressecção sistemática do adenoma até a visualização das fibras transversais/circulares da cápsula cirúrgica, evitando perfuração (visualização de gordura periprostática ou seios venosos).\n8. **Ressecção apical:** Etapa crítica. Ressecção cuidadosa dos tecidos adjacentes ao verumontanum, preservando o esfíncter estriado distalmente para evitar incontinência.\n9. **Hemostasia rigorosa:** Revisão sistemática da loja prostática, coagulando vasos sangrantes com a alça de ressecção ou alça de rolete (rollerball), reduzindo a pressão de irrigação para identificar sangramentos venosos.\n10. **Evacuação dos fragmentos:** Uso do evacuador de Ellik ou seringa de Toomey para remover todos os fragmentos de tecido prostático da bexiga, prevenindo retenção por coágulos ou fragmentos.\n11. **Revisão final:** Inspeção da loja prostática com baixa pressão de irrigação para confirmar hemostasia adequada e ausência de fragmentos residuais.\n12. **Sondagem e irrigação:** Passagem de sonda Foley de 3 vias (20-24 Fr), insuflação do balão (30-50 mL) na bexiga, e início da irrigação contínua com soro fisiológico."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Regra de segurança:** Nunca ressecar distalmente ao verumontanum para evitar incontinência urinária por lesão esfincteriana.\n- **Síndrome de RTU:** Na RTU monopolar, limitar o tempo cirúrgico a 60-90 minutos. Monitorar sinais de hiponatremia (confusão mental, náuseas, bradicardia, hipertensão seguida de hipotensão).\n- **Controle de sangramento:** A hemostasia deve ser feita passo a passo. Sangramentos arteriais são pulsáteis e vermelhos vivos; venosos são contínuos e escuros. Se houver abertura de seio venoso, aumentar a pressão de irrigação não ajuda e piora a absorção de fluidos; deve-se terminar o procedimento rapidamente e usar tração da sonda.\n- **Preservação dos óstios:** Em lobos médios volumosos, identificar os óstios antes de iniciar a ressecção e evitar cauterização excessiva no colo vesical próximo ao trígono.\n- **Vantagem Bipolar:** Permite ressecções mais prolongadas e seguras em próstatas maiores, além de causar menos artefato térmico profundo."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Hemorragia intra/pós-operatória:** Complicação mais comum. Manejo: tração da sonda Foley, aumento da irrigação, lavagem manual para retirar coágulos. Se refratário, revisão endoscópica no centro cirúrgico.\n- **Síndrome de RTU (hiponatremia dilucional):** Exclusiva da RTU monopolar. Manejo: interrupção da cirurgia, diuréticos de alça (furosemida), suporte de O2 e, em casos graves (Na < 120 mEq/L ou sintomas neurológicos severos), reposição cuidadosa com salina hipertônica (3%).\n- **Retenção urinária pós-sondagem:** Pode ocorrer por edema, coágulos ou hipocontratilidade detrusora. Manejo: ressondagem e tentativa de retirada após alguns dias, associada a alfa-bloqueadores.\n- **Incontinência urinária:** Geralmente transitória (urgência). Incontinência de esforço por lesão esfincteriana é rara (< 1%). Manejo inicial conservador (fisioterapia pélvica).\n- **Estenose de uretra e esclerose de colo vesical:** Complicações tardias (2-10%). Manejo: uretrotomia interna, dilatação ou incisão do colo vesical.\n- **Disfunção erétil e Ejaculação retrógrada:** DE ocorre em até 10% dos casos. Ejaculação retrógrada é muito comum (65-75%), o paciente deve ser avisado no pré-operatório."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Irrigação contínua:** Mantida até o clareamento do efluente (geralmente 12 a 24 horas).\n- **Retirada da sonda:** Habitualmente entre o 1º e 3º dia de pós-operatório, após urina clara.\n- **Alta hospitalar:** Após micção espontânea satisfatória e avaliação do resíduo pós-miccional.\n- **Orientações de alta:** Ingestão hídrica adequada, evitar esforço físico intenso, constipação e atividade sexual por 4 a 6 semanas. Avisar sobre a possibilidade de hematúria leve e eliminação de escaras (tecido necrótico) entre a 2ª e 3ª semana.\n- **Seguimento:** Retorno em 1 a 2 semanas para avaliação inicial e resultado anatomopatológico. Reavaliação com IPSS, urofluxometria e resíduo pós-miccional em 3 a 6 meses."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- A RTU-P (monopolar e bipolar) demonstra melhora significativa e duradoura nos sintomas (redução do IPSS em 70%) e nos parâmetros urodinâmicos (aumento do Qmax em > 100%).\n- **Nível de Evidência 1A (EAU/AUA):** A RTU-P bipolar tem eficácia equivalente à monopolar, mas com perfil de segurança superior (menor risco de Síndrome de RTU, menor tempo de irrigação e de sondagem).\n- A taxa de retratamento a longo prazo (10 anos) é baixa, variando de 5 a 10%.\n- Permanece como o padrão de comparação (gold standard) para todas as novas tecnologias minimamente invasivas para próstatas de 30 a 80 mL."
+      },
+      {
+        "title": "Referências",
+        "body": "1. [1] Gravas S, Cornu JN, Gacci M, et al. EAU Guidelines on Management of Non-Neurogenic Male Lower Urinary Tract Symptoms (LUTS), incl. Benign Prostatic Obstruction (BPO). Eur Urol. 2024;85(4):320-335. (Diretriz Clínica / Nível de Evidência 1A).\n2. [2] Sandhu JS, Breyer B, Comiter C, et al. Surgical Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline. J Urol. 2023;210(3):415-424. (Diretriz Clínica / Nível de Evidência 1A).\n3. [3] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. Elsevier. 2024;13(1):3000-3050. (Livro-texto / Nível de Evidência 3).\n4. [4] Alexander CE, Scullion MM, Omar MI, et al. Bipolar versus monopolar transurethral resection of the prostate for lower urinary tract symptoms secondary to benign prostatic obstruction. Cochrane Database Syst Rev. 2019;12(12):CD009629. (Revisão Sistemática e Meta-análise / Nível de Evidência 1A).\n5. [5] Cornu JN, Ahyai S, Bachmann A, et al. A Systematic Review and Meta-analysis of Functional Outcomes and Complications Following Transurethral Procedures for Lower Urinary Tract Symptoms Resulting from Benign Prostatic Obstruction: An Update. Eur Urol. 2015;67(6):1066-1096. (Revisão Sistemática / Nível de Evidência 1A)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia endoscópica da próstata e marcos cirúrgicos",
+        "description": "Visão cistoscópica demonstrando os lobos laterais ocluindo a uretra prostática, o lobo médio e o verumontanum como limite distal de segurança",
+        "searchTerms": "TURP endoscopic anatomy; verumontanum prostate landmarks"
+      },
+      {
+        "caption": "Posicionamento e montagem do ressectoscópio",
+        "description": "Paciente em posição de litotomia com o ressectoscópio inserido, detalhando a camisa de fluxo contínuo, elemento de trabalho e alça de ressecção",
+        "searchTerms": "resectoscope assembly TURP; transurethral resection prostate setup"
+      },
+      {
+        "caption": "Passo a passo da ressecção prostática",
+        "description": "Ilustração esquemática dos sulcos iniciais de ressecção (ex: às 5 e 7 horas) e o aprofundamento até a cápsula cirúrgica",
+        "searchTerms": "TURP surgical steps illustration; prostate resection technique"
+      },
+      {
+        "caption": "Diferença entre energia monopolar e bipolar",
+        "description": "Diagrama comparando o circuito elétrico da RTU monopolar (corrente passando pelo corpo até a placa) e bipolar (corrente restrita à alça), com os respectivos fluidos de irrigação",
+        "searchTerms": "monopolar vs bipolar TURP diagram; bipolar resectoscope circuit"
+      },
+      {
+        "caption": "Loja prostática finalizada",
+        "description": "Visão endoscópica ao final do procedimento, mostrando uma loja prostática ampla, colo vesical aberto e cápsula cirúrgica preservada, com o verumontanum intacto",
+        "searchTerms": "TURP final cavity endoscopic view; post TURP prostatic fossa"
+      }
+    ]
+  },
+  {
+    "id": "nefrolitotripsia-percutanea",
+    "name": "Nefrolitotripsia Percutânea (NLP) para cálculo renal",
+    "category": "Endourologia",
+    "icon": "🪨",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisões Sistemáticas",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A Nefrolitotripsia Percutânea (NLP) é o padrão-ouro para o tratamento de cálculos renais complexos e de grande volume. Segundo as diretrizes da *European Association of Urology* (EAU) e da *American Urological Association* (AUA), as principais indicações incluem:\n- Cálculos renais maiores que 20 mm (indicação de primeira linha com forte recomendação) [1] [2].\n- Cálculos de polo inferior maiores que 15 mm (ou > 10 mm se fatores anatômicos desfavoráveis para litotripsia extracorpórea ou ureteroscopia flexível) [1] [3].\n- Cálculos coraliformes parciais ou completos [3].\n- Falha de tratamentos prévios (LECO ou RIRS) [1].\n- Anomalias anatômicas (ex.: rim em ferradura, divertículo calicinal) [3].\n\nAs contraindicações absolutas englobam:\n- Infecção do trato urinário (ITU) não tratada [1].\n- Coagulopatias não corrigidas ou uso de anticoagulantes/antiagregantes plaquetários sem possibilidade de suspensão [3].\n- Tumor no trajeto percutâneo [3].\n- Gravidez (contraindicação relativa/absoluta dependendo do trimestre e da técnica anestésica/radiológica) [1]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O acesso percutâneo seguro exige conhecimento profundo da anatomia renal e das estruturas adjacentes. O rim é um órgão retroperitoneal, com o eixo longitudinal paralelo à borda do músculo psoas. A linha avascular de Brödel, localizada na junção dos dois terços anteriores com o terço posterior do parênquima renal, é a zona de eleição para a punção, minimizando o risco de lesão vascular [3].\n\nA avaliação pré-operatória deve incluir:\n- Tomografia computadorizada (TC) sem contraste para avaliar a carga litiásica, densidade do cálculo (Unidades Hounsfield), anatomia calicinal e relação do rim com órgãos adjacentes (cólon, pleura, fígado, baço) [1] [3].\n- Urocultura recente (obrigatória). Em caso de positividade, tratar com antibioticoterapia guiada por antibiograma antes do procedimento [1].\n- Exames laboratoriais: hemograma, coagulograma e função renal [3].\n- Avaliação de risco cardiovascular e anestésico [3]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "A NLP é tradicionalmente realizada sob anestesia geral, embora a anestesia regional (raquianestesia ou peridural) possa ser utilizada em casos selecionados [3].\n\n**Posicionamento:**\n- **Prona:** Posição clássica, oferece ampla área para punção e menor risco de lesão esplâncnica. Requer cuidado com a proteção de proeminências ósseas e vias aéreas [3].\n- **Supina (ex.: Valdivia modificada):** Permite abordagem combinada anterógrada e retrógrada (ECIRS - *Endoscopic Combined Intrarenal Surgery*), melhor controle das vias aéreas e menor risco cardiovascular. Tem ganhado popularidade e apresenta taxas de *stone-free* comparáveis à posição prona [4].\n\n**Instrumental Básico:**\n- Agulha de punção (ex.: Chiba 18G).\n- Fios-guia (hidrofílico, teflonado, *Amplatz super stiff*).\n- Dilatadores (faciais, sequenciais de Alken, balão dilatador).\n- Bainha de acesso percutâneo (Amplatz).\n- Nefroscópio rígido (geralmente 24-26 Fr para NLP padrão) e/ou flexível.\n- Fonte de energia para litotripsia: ultrassônica, pneumática ou laser (Holmium:YAG ou Thulium Fiber Laser - TFL) [3].\n- Pinças de apreensão (grasper).\n- Equipamento de fluoroscopia (arco em C) e/ou ultrassonografia."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Cistoscopia e cateterismo ureteral:** Inserção de cateter ureteral (ex.: 5 ou 6 Fr) sob visão endoscópica para injeção de contraste/azul de metileno e distensão do sistema coletor.\n2. **Posicionamento do paciente:** Mudança para a posição prona ou ajuste na posição supina, com acolchoamento adequado.\n3. **Planejamento do acesso:** Identificação do cálice ideal (geralmente polo inferior ou médio, através da papila) utilizando fluoroscopia, ultrassonografia ou técnica combinada.\n4. **Punção renal:** Inserção da agulha 18G no cálice escolhido (técnica *bullseye* ou triangulação na fluoroscopia). Confirmação do acesso com saída de urina e injeção de contraste.\n5. **Passagem do fio-guia:** Inserção de um fio-guia hidrofílico ou teflonado através da agulha até o ureter ou pelve renal.\n6. **Dilatação do trajeto:** Incisão da pele e fáscia. Dilatação do trajeto sobre o fio-guia utilizando dilatadores sequenciais (faciais ou metálicos) ou balão dilatador sob visão fluoroscópica.\n7. **Posicionamento da bainha de Amplatz:** Inserção da bainha de acesso (ex.: 24-30 Fr para NLP padrão, 14-20 Fr para mini-NLP) sobre o dilatador.\n8. **Nefroscopia:** Introdução do nefroscópio rígido através da bainha. Inspeção do sistema coletor e identificação do cálculo.\n9. **Litotripsia:** Fragmentação do cálculo utilizando energia ultrassônica, pneumática ou laser.\n10. **Extração dos fragmentos:** Remoção dos fragmentos com pinças de apreensão ou por efeito de sucção (efeito *vacuum* ou bainhas com sucção integrada).\n11. **Revisão do sistema coletor:** Inspeção cuidadosa (frequentemente com nefroscópio flexível) para garantir a ausência de fragmentos residuais (*stone-free*).\n12. **Drenagem:** Decisão sobre a colocação de nefrostomia (tubo), cateter duplo J, ou técnica *tubeless* (sem nefrostomia, apenas duplo J) ou *totally tubeless* (sem nenhum dreno), dependendo do sangramento, perfuração do sistema coletor e carga residual [3].\n13. **Fechamento:** Retirada da bainha e fechamento da incisão da pele."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Acesso guiado por USG:** A ultrassonografia reduz a exposição à radiação e permite a identificação de estruturas interpostas (ex.: pleura, cólon), sendo fortemente recomendada [1].\n- **Punção papilar:** A punção deve ser sempre através da papila, no eixo do infundíbulo, para evitar lesão dos vasos interlobares e sangramento grave [3].\n- **Mini-NLP:** A utilização de trajetos menores (14-20 Fr) tem demonstrado taxas de sucesso semelhantes à NLP padrão para cálculos < 3 cm, com menor risco de sangramento e transfusão [5].\n- **Controle da pressão intra-renal:** Manter a pressão intra-renal baixa (< 30-40 cmH2O) é crucial para evitar refluxo pielovenoso e sepse. O uso de bainhas de acesso adequadas e fluxo de irrigação controlado é essencial [3]."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "A NLP é um procedimento seguro, mas pode apresentar complicações, com taxa global variando de 10 a 20% [6].\n- **Sangramento (7-11%):** A complicação mais temida. O manejo inicial inclui clampeamento da nefrostomia para tamponamento. Se refratário, está indicada a arteriografia com embolização superseletiva [3] [6].\n- **Infecção/Sepse (0,3-4,7%):** Prevenção com urocultura negativa e antibioticoterapia profilática. O manejo inclui suporte hemodinâmico, antibióticos de amplo espectro e garantia de drenagem adequada do sistema urinário [6].\n- **Lesão de órgãos adjacentes:**\n  - **Pleura (1-3%):** Mais comum em punções supracostais. Pode causar hidrotórax ou pneumotórax. Manejo com drenagem torácica se sintomático [3].\n  - **Cólon (<1%):** Raro, mais comum em rins em ferradura ou retrocolônicos. O manejo conservador com duplo J, nefrostomia e jejum pode ser tentado se o diagnóstico for precoce e o paciente estiver estável; caso contrário, exploração cirúrgica [3].\n- **Perfuração do sistema coletor:** Geralmente manejada conservadoramente com drenagem adequada (duplo J e nefrostomia) [3]."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Pós-operatório imediato:** Monitorização de sinais vitais, débito urinário e sangramento pela nefrostomia/sonda vesical. Analgesia otimizada.\n- **Alta hospitalar:** Geralmente em 1 a 3 dias, dependendo da evolução clínica e da técnica utilizada (procedimentos *day-case* estão se tornando mais comuns em centros de excelência) [7].\n- **Retirada de drenos:** A sonda vesical é retirada no 1º PO. A nefrostomia (se presente) pode ser retirada após 24-48h se a urina estiver clara. O cateter duplo J é retirado ambulatorialmente em 1 a 4 semanas.\n- **Seguimento:** TC sem contraste (padrão-ouro) ou USG + RX de abdome em 1 a 3 meses para avaliar o *stone-free status* [1].\n- **Prevenção secundária:** Avaliação metabólica (análise do cálculo, urina de 24h) para pacientes de alto risco, visando prevenir recorrências [1]."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A NLP apresenta as maiores taxas de *stone-free* (frequentemente > 85-90%) para cálculos renais complexos e > 20 mm, superando a LECO e a RIRS [1] [2]. Meta-análises recentes confirmam que a NLP padrão e a mini-NLP têm eficácia comparável, mas a mini-NLP apresenta menor morbidade (menor sangramento e tempo de internação) [5]. A abordagem em posição supina demonstra segurança e eficácia equivalentes à posição prona, com vantagens ergonômicas e anestésicas [4]. As diretrizes da EAU e AUA mantêm a NLP como o tratamento de primeira linha (Grau de Recomendação Forte) para cálculos renais > 20 mm [1] [2]."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Skolarikos A, et al. EAU Guidelines on Urolithiasis. European Association of Urology. 2024. (Diretrizes / Nível de evidência 1).\n[2] Assimos D, et al. Surgical Management of Kidney and Ureteral Stones: AUA/Endourological Society Guideline. J Urol. 2016;196(4):1153-60. (Diretrizes / Nível de evidência 1).\n[3] Partin AW, et al. Campbell-Walsh-Wein Urology. 13th ed. Elsevier; 2024. (Livro-texto / Nível de evidência 4).\n[4] Falahatkar S, et al. Supine versus prone pediatric percutaneous nephrolithotomy: a systematic review and meta-analysis. J Pediatr Urol. 2024. (Revisão Sistemática e Meta-análise / Nível de evidência 1a).\n[5] Ruhayel Y, et al. Mini Versus Standard Percutaneous Nephrolithotomy for the Treatment of Renal Stones: A Systematic Review and Meta-analysis. Eur Urol Focus. 2021;7(4):864-871. (Revisão Sistemática e Meta-análise / Nível de evidência 1a).\n[6] Seitz C, et al. Complications in Percutaneous Nephrolithotomy. Eur Urol. 2006;50(6):1310-8. (Revisão / Nível de evidência 2a).\n[7] Jones P, et al. Comparative outcomes of day-case percutaneous nephrolithotomy versus conventional inpatient surgery: a systematic review and meta-analysis. Ther Adv Urol. 2025;17. (Revisão Sistemática e Meta-análise / Nível de evidência 1a)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia renal e linha de Brödel",
+        "description": "Ilustração transversal do rim demonstrando a vascularização (artérias segmentares) e a zona avascular de Brödel, indicando o trajeto ideal da agulha de punção através da papila do cálice posterior",
+        "searchTerms": "Brodel's line kidney anatomy; percutaneous nephrolithotomy puncture safe zone"
+      },
+      {
+        "caption": "Posicionamento do paciente para NLP",
+        "description": "Desenho esquemático comparando a posição prona clássica (com coxins de proteção) e a posição supina modificada (Valdivia), destacando o acesso ao flanco",
+        "searchTerms": "prone vs supine position PCNL; Valdivia position percutaneous nephrolithotomy"
+      },
+      {
+        "caption": "Passo a passo da dilatação do trajeto",
+        "description": "Sequência ilustrativa mostrando a agulha no cálice, a passagem do fio-guia, a dilatação com balão (ou dilatadores sequenciais) e o posicionamento final da bainha de Amplatz",
+        "searchTerms": "PCNL tract dilation steps; Amplatz sheath placement percutaneous nephrolithotomy"
+      },
+      {
+        "caption": "Visão endoscópica da litotripsia",
+        "description": "Imagem endoscópica (ou ilustração realista) da visão através do nefroscópio, mostrando a fibra de laser ou probe ultrassônico fragmentando um grande cálculo coraliforme dentro da pelve renal",
+        "searchTerms": "nephroscopy stone fragmentation; PCNL laser lithotripsy endoscopic view"
+      }
+    ]
+  },
+  {
+    "id": "prostatectomia-radical",
+    "name": "Prostatectomia Radical videolaparoscópica/robótica para câncer de próstata",
+    "category": "Oncologia",
+    "icon": "🤖",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Câncer de próstata localizado (cT1a-cT2c, N0, M0) com expectativa de vida superior a 10 anos.\n- Câncer de próstata localmente avançado (cT3a-cT3b) em pacientes selecionados, frequentemente como parte de uma abordagem de tratamento multimodal.\n- Doença de alto risco, visando controle local e estadiamento linfonodal preciso através de linfadenectomia pélvica estendida.\n- Falha de radioterapia prévia (prostatectomia de resgate), embora associada a um maior risco de complicações funcionais e cirúrgicas.\n\n**Contraindicações:**\n- *Absolutas:* Expectativa de vida inferior a 10 anos (relativa em casos de alto risco), comorbidades severas que contraindiquem anestesia geral ou pneumoperitônio prolongado (ex: DPOC grave, insuficiência cardíaca descompensada), distúrbios de coagulação não corrigíveis.\n- *Relativas:* Múltiplas cirurgias abdominais ou pélvicas prévias (aderências severas), radioterapia pélvica prévia, obesidade mórbida extrema, hérnias abdominais volumosas não tratadas."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\n- **Fáscia endopélvica e arco tendíneo:** Limites laterais da dissecção prostática, cuja incisão permite o acesso ao ápice prostático.\n- **Complexo venoso dorsal (Santorini):** Localizado anteriormente à próstata e uretra, requer controle hemostático rigoroso para evitar sangramento profuso.\n- **Feixes neurovasculares (FNV):** Localizados posterolateralmente à próstata, entre as camadas da fáscia periprostática e fáscia de Denonvilliers. A preservação (nerve-sparing) é crucial para a manutenção da função erétil.\n- **Fáscia de Denonvilliers:** Camada fibrosa que separa a próstata e as vesículas seminais do reto posteriormente.\n- **Colo vesical e uretra membranosa:** Limites superior e inferior da ressecção, respectivamente.\n\n**Considerações pré-operatórias:**\n- Avaliação do risco oncológico (critérios de D'Amico, NCCN, EAU) para decidir sobre a preservação do feixe neurovascular e a extensão da linfadenectomia pélvica.\n- Ressonância Magnética multiparamétrica (mpMRI) da próstata para avaliar extensão extracapsular (ECE), invasão de vesículas seminais (SVI) e a relação do tumor com o esfíncter e os feixes neurovasculares.\n- Preparo intestinal (controverso, geralmente restrito a enema retal na véspera ou jejum).\n- Profilaxia antimicrobiana (cefalosporina de 1ª ou 2ª geração) e profilaxia para tromboembolismo venoso (heparina de baixo peso molecular e compressão pneumática intermitente)."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Anestesia:** \n- Anestesia geral com intubação orotraqueal e bloqueio neuromuscular profundo contínuo.\n\n**Posicionamento:**\n- Decúbito dorsal com pernas afastadas (posição de litotomia modificada ou pernas abertas tipo \"split-leg\").\n- Trendelenburg acentuado (25 a 30 graus) para afastar as alças intestinais da pelve e expor o campo operatório.\n- Fixação rigorosa do paciente à mesa (ex: colchão de gel de alta fricção, fitas adesivas cruzadas no tórax) para evitar deslizamento cefálico.\n- Proteção cuidadosa de proeminências ósseas e nervos periféricos.\n\n**Instrumental (Robótico - Sistema Da Vinci):**\n- Ótica de 0º ou 30º (frequentemente 30º voltada para baixo para visualização pélvica).\n- Braço 1 (Direita): Tesoura monopolar (Hot Shears) ou gancho.\n- Braço 2 (Esquerda): Pinça bipolar (Maryland ou Fenestrated Bipolar).\n- Braço 3 (Esquerda lateral): Pinça de preensão (ProGrasp ou Cadiere).\n- Trocateres: 1 portal de câmera (8 mm ou 12 mm), 3 portais robóticos (8 mm), 1 ou 2 portais auxiliares (5 mm e 12 mm) para o assistente (sucção, passagem de fios, clipes).\n- Clipes de polímero (Hem-o-lok), fios farpados (ex: V-Loc, Stratafix) para a anastomose vesicouretral."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Acesso e instalação dos portais:** Estabelecimento do pneumoperitônio (12-15 mmHg). Inserção dos trocateres em configuração de \"W\" ou linha reta supraumbilical. Docking do robô.\n2. **Desenvolvimento do espaço de Retzius:** Incisão do peritônio parietal anterior, rebatimento da bexiga posteriormente e exposição da gordura periprostática e fáscia endopélvica.\n3. **Limpeza da gordura anterior e identificação da fáscia endopélvica:** Remoção da gordura sobre a próstata. Abertura da fáscia endopélvica bilateralmente para expor o músculo levantador do ânus.\n4. **Controle do complexo venoso dorsal (CVD):** Ligadura do CVD com fio (ex: Vicryl 0 ou 1) ou controle posterior após a secção do colo vesical (abordagem a frio).\n5. **Dissecção do colo vesical:** Incisão anterior no colo vesical, identificação do cateter de Foley, secção posterior do colo preservando os óstios ureterais.\n6. **Dissecção das vesículas seminais e ductos deferentes:** Tração do colo vesical e da próstata anteriormente. Isolamento e secção dos ductos deferentes. Dissecção completa das vesículas seminais.\n7. **Abertura da fáscia de Denonvilliers:** Incisão da fáscia posteriormente às vesículas seminais para acessar o plano avascular entre a próstata e o reto.\n8. **Controle dos pedículos prostáticos:** Uso de clipes (Hem-o-lok) ou energia bipolar para seccionar os pedículos prostáticos laterais.\n9. **Preservação dos feixes neurovasculares (Nerve-sparing):** Dissecção intrafascial, interfascial ou extrafascial, dependendo do risco oncológico. Liberação dos feixes posterolateralmente sem uso de energia térmica (dissecção a frio ou clipes).\n10. **Secção do complexo venoso dorsal e uretra apical:** Secção do CVD (se não ligado previamente) e da uretra membranosa, preservando o máximo de comprimento uretral e o esfíncter estriado.\n11. **Remoção da peça:** Colocação da próstata e vesículas seminais em bolsa extratora (Endocatch).\n12. **Linfadenectomia pélvica (se indicada):** Remoção dos linfonodos obturatórios, ilíacos externos e internos (linfadenectomia estendida) conforme nomogramas de risco.\n13. **Reconstrução posterior (Rocco stitch):** Sutura aproximando a fáscia de Denonvilliers ao aspecto posterior do rabdoesfíncter para reduzir a tensão na anastomose.\n14. **Anastomose vesicouretral:** Sutura contínua com fio farpado (ex: V-Loc 3-0) ou Monocryl, iniciando posteriormente e finalizando anteriormente. Passagem de nova sonda Foley 18F ou 20F.\n15. **Teste de vazamento:** Enchimento da bexiga com 150-200 ml de soro fisiológico para confirmar a integridade e estanqueidade da anastomose.\n16. **Revisão da hemostasia, drenagem e fechamento:** Posicionamento de dreno de sucção (Blake ou Jackson-Pratt) próximo à anastomose. Retirada dos portais sob visão e fechamento das fáscias nos portais maiores que 10 mm."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Preservação do colo vesical:** Melhora a continência precoce, mas deve ser evitada em tumores de base volumosos ou quando há um lobo mediano proeminente.\n- **Dissecção apical:** A dissecção cuidadosa do ápice prostático é fundamental para evitar margens cirúrgicas positivas e preservar o esfíncter uretral.\n- **Nerve-sparing:** Evitar tração excessiva e uso de energia térmica próximo aos feixes neurovasculares. O uso de clipes de polímero ou titânio é preferível para o controle vascular nesta região.\n- **Anastomose:** A visualização clara da mucosa uretral e vesical garante uma anastomose estanque, reduzindo o risco de fístula urinária e estenose de colo a longo prazo."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Intraoperatórias:**\n  - *Lesão retal (1-2%):* Identificação imediata. Fechamento primário em duas camadas, interposição de omento ou gordura perirretal. Dilatação anal. Se não reconhecida, pode evoluir para fístula retouretral.\n  - *Sangramento (CVD ou pedículos):* Aumento temporário do pneumoperitônio, compressão com gaze, sutura hemostática.\n  - *Lesão ureteral:* Rara. Requer reimplante ureteral intraoperatório.\n- **Pós-operatórias precoces:**\n  - *Vazamento anastomótico:* Manutenção prolongada da sonda Foley e do dreno. Geralmente resolve de forma conservadora.\n  - *Tromboembolismo venoso (TEV):* Profilaxia adequada é essencial. Tratamento com anticoagulação plena se diagnosticado.\n  - *Linfocele (se linfadenectomia):* Drenagem percutânea se sintomática ou infectada.\n- **Pós-operatórias tardias:**\n  - *Incontinência urinária:* Fisioterapia pélvica (exercícios de Kegel). Se persistente por mais de 1 ano, considerar sling masculino ou esfíncter urinário artificial.\n  - *Disfunção erétil:* Reabilitação peniana precoce (inibidores da PDE5, injeções intracavernosas). Prótese peniana se refratária.\n  - *Estenose da anastomose vesicouretral:* Dilatação uretral ou uretrotomia interna a frio."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Internação:** Geralmente 1 a 2 dias em centros de alto volume.\n- **Sonda vesical:** Mantida por 7 a 14 dias, dependendo da qualidade da anastomose e preferência do cirurgião.\n- **Dreno:** Retirado quando o débito for baixo (< 50 ml/dia) e a dosagem de creatinina no líquido for semelhante à sérica (descartando fístula urinária).\n- **Seguimento oncológico:** Dosagem de PSA aos 30-45 dias pós-operatório, depois a cada 3-6 meses no primeiro ano, e anualmente a seguir. PSA indetectável (< 0,2 ng/mL) é o objetivo terapêutico.\n- **Recidiva bioquímica:** PSA > 0,2 ng/mL confirmado em duas dosagens consecutivas. Avaliar radioterapia de resgate e/ou bloqueio androgênico."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- **Sobrevida:** Excelentes taxas de sobrevida câncer-específica em 10 anos (> 95% para doença localizada).\n- **Robótica vs. Aberta/Laparoscópica:** A via robótica (RARP) demonstra menor sangramento, menor taxa de transfusão, menor tempo de internação e recuperação mais rápida em comparação à via aberta. Os resultados oncológicos e funcionais (continência e potência) a longo prazo são semelhantes, embora a RARP possa oferecer recuperação funcional mais precoce (Nível de Evidência 1b).\n- **Linfadenectomia:** A linfadenectomia estendida (ePLND) melhora o estadiamento, mas seu impacto na sobrevida global ainda é debatido (Grau de Recomendação Forte para pacientes de risco intermediário/alto com nomograma > 5%)."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Mottet N, van den Bergh RCN, Briers E, et al. EAU-EANM-ESTRO-ESUR-SIOG Guidelines on Prostate Cancer-2024 Update. Part 1: Screening, Diagnosis, and Local Treatment with Curative Intent. Eur Urol. 2024;85(2):146-162. (Diretrizes Clínicas / Nível de evidência 1a).\n[2] Eastham JA, Auffenberg GB, Barocas DA, et al. Clinically Localized Prostate Cancer: AUA/ASTRO Guideline, Part II: Principles of Active Surveillance, Principles of Surgery, and Follow-Up. J Urol. 2022;208(1):19-25. (Diretrizes Clínicas / Nível de evidência 1a).\n[3] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology (13th ed). Elsevier. 2024;13(1):3450-3500. (Livro-texto / Nível de evidência 5).\n[4] Coughlin GD, Yaxley JW, Chambers SK, et al. Robot-assisted laparoscopic prostatectomy versus open radical retropubic prostatectomy: 24-month outcomes from a randomised controlled phase 3 study. Lancet Oncol. 2018;19(8):1051-1060. (Ensaio Clínico Randomizado / Nível de evidência 1b).\n[5] Novara G, Ficarra V, Mocellin S, et al. Systematic review and meta-analysis of studies reporting oncologic outcome after robot-assisted radical prostatectomy. Eur Urol. 2012;62(3):382-404. (Revisão Sistemática / Nível de evidência 1a)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento dos portais para prostatectomia robótica",
+        "description": "Diagrama do abdome do paciente mostrando a configuração em \"W\" ou linear dos trocateres robóticos e portais auxiliares",
+        "searchTerms": "robotic prostatectomy port placement; Da Vinci prostatectomy trocar configuration"
+      },
+      {
+        "caption": "Anatomia cirúrgica da próstata e feixes neurovasculares",
+        "description": "Ilustração transversal da próstata destacando a fáscia endopélvica, fáscia de Denonvilliers e a localização posterolateral dos feixes neurovasculares",
+        "searchTerms": "prostate surgical anatomy neurovascular bundle; prostatectomy fascial layers"
+      },
+      {
+        "caption": "Dissecção do colo vesical e vesículas seminais",
+        "description": "Visão laparoscópica/robótica da abertura do colo vesical, identificação do cateter de Foley e tração das vesículas seminais e ductos deferentes",
+        "searchTerms": "robotic prostatectomy bladder neck dissection; seminal vesicle dissection prostatectomy"
+      },
+      {
+        "caption": "Preservação do feixe neurovascular (Nerve-sparing)",
+        "description": "Visão intraoperatória da liberação do feixe neurovascular da cápsula prostática utilizando clipes e tesoura a frio, sem uso de energia térmica",
+        "searchTerms": "nerve sparing robotic prostatectomy; neurovascular bundle preservation prostate"
+      },
+      {
+        "caption": "Anastomose vesicouretral",
+        "description": "Visão intraoperatória da sutura contínua aproximando o colo vesical ao coto uretral com fio farpado",
+        "searchTerms": "vesicourethral anastomosis robotic prostatectomy; V-Loc anastomosis prostatectomy"
+      }
+    ]
+  },
+  {
+    "id": "leco",
+    "name": "Litotripsia Extracorpórea por Ondas de Choque (LECO/SWL) para cálculo urinário",
+    "category": "Endourologia",
+    "icon": "🌊",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A Litotripsia Extracorpórea por Ondas de Choque (LECO ou SWL, do inglês *Shock Wave Lithotripsy*) é uma modalidade terapêutica não invasiva amplamente utilizada para o tratamento de cálculos renais e ureterais. Segundo as diretrizes da *European Association of Urology* (EAU) e da *American Urological Association* (AUA), a LECO é indicada como tratamento de primeira linha para cálculos renais não coraliformes menores que 20 mm, especialmente aqueles localizados na pelve renal ou nos cálices superiores e médios. Para cálculos no cálice inferior, a eficácia da LECO é reduzida devido à anatomia dependente da gravidade, sendo recomendada preferencialmente para cálculos menores que 10 mm, desde que a anatomia calicinal seja favorável (ângulo infundibulopélvico obtuso, infundíbulo curto e largo). Para cálculos ureterais proximais menores que 10 mm, a LECO e a ureteroscopia (URS) apresentam taxas de sucesso comparáveis, sendo ambas opções válidas.\n\nAs contraindicações absolutas para a realização da LECO incluem gravidez (devido aos potenciais efeitos deletérios das ondas de choque no feto), distúrbios de coagulação não corrigidos ou uso ativo de anticoagulantes/antiagregantes plaquetários (risco elevado de hematoma perirrenal), infecção do trato urinário (ITU) não tratada, obstrução anatômica distal ao cálculo, aneurisma de aorta abdominal ou aneurisma da artéria renal nas proximidades do trajeto das ondas de choque, e obesidade severa ou deformidades esqueléticas que impeçam o posicionamento adequado e a focalização do cálculo."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O sucesso da LECO depende intimamente da anatomia do trato urinário e das características do cálculo. A avaliação pré-operatória deve incluir uma tomografia computadorizada (TC) sem contraste, que é o padrão-ouro para determinar o tamanho, a localização, a densidade (medida em Unidades Hounsfield - UH) e a distância pele-cálculo (DPC). Cálculos com densidade superior a 1.000 UH (como os de oxalato de cálcio monoidratado e cistina) e DPC maior que 10 cm estão associados a menores taxas de fragmentação e sucesso. A anatomia do cálice inferior (comprimento e largura do infundíbulo, ângulo infundibulopélvico) deve ser avaliada para prever a eliminação dos fragmentos.\n\nA composição presumida do cálculo também influencia a indicação. Cálculos de ácido úrico e oxalato de cálcio di-hidratado são geralmente friáveis e respondem bem à LECO, enquanto cálculos de cistina e brushita são notoriamente resistentes. O preparo pré-operatório inclui a suspensão de medicamentos anticoagulantes e antiagregantes plaquetários com antecedência adequada, além da confirmação de urocultura negativa. O uso de cateter duplo J prévio não melhora as taxas de fragmentação, mas pode ser indicado em casos de cálculos maiores (para prevenir *steinstrasse*), rim único ou dor refratária."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O posicionamento do paciente varia de acordo com a localização do cálculo e o modelo do litotritor. Para cálculos renais e ureterais proximais, o paciente é posicionado em decúbito dorsal, com a fonte de ondas de choque acoplada ao flanco ipsilateral. Para cálculos ureterais distais, o decúbito ventral pode ser preferido em alguns equipamentos para evitar a interposição dos ossos pélvicos. O acoplamento acústico adequado entre a cabeça do litotritor e a pele do paciente é fundamental; utiliza-se gel de ultrassom livre de bolhas de ar para minimizar a perda de energia e lesões cutâneas.\n\nA analgesia adequada é crucial não apenas para o conforto do paciente, mas também para limitar os movimentos respiratórios excessivos, mantendo o cálculo no ponto focal. A sedação intravenosa (ex.: propofol e fentanil) ou a anestesia geral leve são frequentemente empregadas. O instrumental consiste no litotritor extracorpóreo (eletro-hidráulico, eletromagnético ou piezoelétrico), sistema de imagem integrado (fluoroscopia e/ou ultrassonografia) para localização e monitoramento contínuo do cálculo, e monitorização multiparamétrica do paciente."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Preparo e posicionamento:** Posicionar o paciente na maca do litotritor de acordo com a localização do cálculo (decúbito dorsal para rins e ureter proximal).\n2. **Acoplamento acústico:** Aplicar gel de ultrassom generosamente na cabeça do gerador e na pele do paciente, garantindo a ausência de bolhas de ar que possam refletir as ondas de choque.\n3. **Localização do cálculo:** Utilizar fluoroscopia (em dois eixos) ou ultrassonografia para identificar o cálculo e alinhá-lo exatamente no ponto focal (F2) do litotritor.\n4. **Monitoramento respiratório:** Observar a excursão do cálculo com a respiração. Em alguns casos, técnicas de compressão abdominal ou sincronização respiratória podem ser utilizadas para manter o cálculo no foco.\n5. **Início da terapia (Rampa de energia):** Iniciar a aplicação das ondas de choque com níveis de energia baixos (ex.: nível 1 ou 2) para promover a vasoconstrição renal protetora e aclimatar o paciente.\n6. **Escalonamento de energia:** Aumentar gradualmente a energia (step-up) após 100 a 200 disparos, até atingir a energia terapêutica ideal, minimizando o trauma vascular agudo.\n7. **Frequência de disparos:** Configurar a taxa de disparos para 60 a 90 ondas por minuto (1 a 1,5 Hz). Taxas mais lentas (slow rate) melhoram a fragmentação e reduzem o dano tecidual em comparação com taxas rápidas (120/min).\n8. **Monitoramento contínuo:** Reavaliar a posição do cálculo a cada 200-300 disparos usando fluoroscopia ou ultrassom, ajustando a maca se houver deslocamento.\n9. **Avaliação da fragmentação:** Observar a mudança na morfologia do cálculo (sinal de \"borrão\" ou dispersão dos fragmentos) para confirmar a eficácia.\n10. **Limite de disparos:** Respeitar o limite máximo de ondas de choque por sessão, que varia conforme o gerador (geralmente entre 2.500 e 3.500 disparos para o rim, podendo ser maior no ureter).\n11. **Término do procedimento:** Interromper a terapia ao atingir fragmentação satisfatória (fragmentos < 3-4 mm) ou o limite máximo de disparos.\n12. **Desacoplamento e limpeza:** Afastar a cabeça do litotritor, limpar o gel da pele do paciente e inspecionar a área em busca de petéquias ou equimoses significativas.\n13. **Recuperação:** Encaminhar o paciente para a sala de recuperação pós-anestésica (SRPA) para monitoramento de sinais vitais e controle da dor."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Estratégia de rampa (Step-up):** Iniciar com baixa energia induz vasoconstrição renal, reduzindo significativamente o risco de hematoma subcapsular.\n- **Taxa de disparos lenta:** A aplicação a 60-90 choques/minuto permite a dissipação das bolhas de cavitação, otimizando a transferência de energia para o cálculo e melhorando as taxas de *stone-free*.\n- **Acoplamento perfeito:** A presença de ar no gel de contato pode refletir até 99% da energia da onda de choque, causando dor cutânea e falha na fragmentação.\n- **Pausa terapêutica:** Uma pausa de 2 a 3 minutos após os primeiros 100-200 disparos de baixa energia pode potencializar o efeito protetor vascular.\n- **Focalização dinâmica:** A respiração do paciente move o rim. A fluoroscopia intermitente é essencial para garantir que a energia não esteja sendo dissipada no parênquima renal adjacente."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "As complicações da LECO podem ser divididas em agudas e crônicas. A hematúria macroscópica é quase universal e autolimitada, resolvendo-se em 24 a 48 horas. O hematoma perirrenal ou subcapsular sintomático ocorre em menos de 1% dos casos, manifestando-se com dor no flanco e queda do hematócrito; o manejo é predominantemente conservador com repouso e analgesia, raramente exigindo transfusão ou embolização.\nA formação de *steinstrasse* (rua de cálculos) ocorre em 4% a 7% dos casos, especialmente após a fragmentação de cálculos maiores que 15 mm. Pode ser assintomática ou causar cólica renal, obstrução e infecção. O manejo inicial inclui terapia médica expulsiva (alfabloqueadores) e observação; intervenção com nefrostomia percutânea ou ureteroscopia é necessária se houver infecção, dor refratária ou deterioração da função renal. Infecções do trato urinário e sepse são raras se a urina estiver estéril no pré-operatório. Lesões de órgãos adjacentes (baço, fígado, pâncreas) são excepcionais."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O paciente geralmente recebe alta no mesmo dia, após recuperação anestésica e micção espontânea. Recomenda-se hidratação oral abundante para facilitar a eliminação dos fragmentos. Analgésicos (AINEs e/ou opioides fracos) e alfabloqueadores (ex.: tansulosina) são prescritos para controle da dor e facilitação da expulsão dos fragmentos (Terapia Médica Expulsiva - MET).\nO seguimento por imagem (radiografia simples de abdome, ultrassonografia ou TC sem contraste) é tipicamente realizado após 2 a 4 semanas para avaliar a taxa de *stone-free* e a presença de fragmentos residuais. Fragmentos assintomáticos menores que 4 mm (*clinically insignificant residual fragments* - CIRF) podem ser observados, embora tenham potencial de crescimento. Se houver fragmentos maiores, uma nova sessão de LECO ou intervenção endourológica (URS) pode ser programada."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A LECO apresenta taxas de sucesso (*stone-free rate*) que variam de 60% a 90%, dependendo do tamanho, localização e composição do cálculo. Para cálculos renais < 10 mm, a taxa de sucesso é superior a 80%. As diretrizes da EAU e AUA (Nível de Evidência 1, Grau de Recomendação Forte) suportam o uso de taxas de disparo mais lentas (60-90/min) e o protocolo de escalonamento de energia (step-up) para melhorar a eficácia e a segurança. Revisões sistemáticas confirmam que a LECO tem menor morbidade e menor tempo de internação em comparação com a URS e a nefrolitotripsia percutânea (NLPC), embora possa requerer mais sessões de retratamento."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Skolarikos A, Neisius A, Petřík A, et al. EAU Guidelines on Urolithiasis. European Association of Urology. 2024. (Diretrizes / Nível de evidência 1)\n[2] Assimos D, Krambeck A, Miller NL, et al. Surgical Management of Stones: American Urological Association/Endourological Society Guideline, PART I. J Urol. 2016;196(4):1153-1160. Atualizado em 2024. (Diretrizes / Nível de evidência 1)\n[3] Lingeman JE, McAteer JA, Gnessin E, Evan AP. Shock wave lithotripsy: advances in technology and technique. Nat Rev Urol. 2009;6(12):660-670. (Revisão / Nível de evidência 2)\n[4] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 13th ed. Philadelphia: Elsevier; 2024. (Livro-texto / Nível de evidência 3)\n[5] Akram M, Jahrreiss V, Skolarikos A, et al. Urological Guidelines for Kidney Stones: Overview and Comprehensive Update. J Clin Med. 2024;13(4):1114. (Revisão Sistemática / Nível de evidência 1)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento e acoplamento na LECO",
+        "description": "Paciente em decúbito dorsal na maca do litotritor, com a cabeça do gerador de ondas de choque acoplada ao flanco com gel, e os sistemas de imagem (fluoroscopia/ultrassom) alinhados",
+        "searchTerms": "shock wave lithotripsy patient positioning; ESWL acoustic coupling"
+      },
+      {
+        "caption": "Foco da onda de choque (F1 e F2)",
+        "description": "Diagrama esquemático mostrando a geração da onda de choque no ponto F1 (dentro do gerador) e sua convergência para o ponto focal F2, onde o cálculo renal está posicionado",
+        "searchTerms": "shock wave lithotripsy focal point F2; ESWL physics diagram"
+      },
+      {
+        "caption": "Protocolo de rampa de energia (Step-up)",
+        "description": "Gráfico ilustrando o aumento progressivo da energia (kV ou nível) ao longo do tempo/número de disparos, demonstrando a fase inicial de baixa energia para proteção vascular",
+        "searchTerms": "SWL step-up voltage protocol; shock wave lithotripsy energy ramping"
+      },
+      {
+        "caption": "Complicação - Steinstrasse",
+        "description": "Imagem radiográfica (Raio-X KUB) ou tomográfica mostrando uma coluna de múltiplos fragmentos de cálculo alinhados e obstruindo o ureter distal após uma sessão de LECO",
+        "searchTerms": "steinstrasse X-ray; shock wave lithotripsy steinstrasse complication"
+      }
+    ]
+  },
+  {
+    "id": "sling-masculino",
+    "name": "Sling masculino para incontinência urinária pós-prostatectomia",
+    "category": "Funcional",
+    "icon": "🎗️",
+    "evidence": "Diretrizes AUA 2024 + EAU 2024 + Revisões Transl Androl Urol/Rev Urol",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "O sling masculino é uma opção cirúrgica minimamente invasiva para o tratamento da incontinência urinária de esforço (IUE) pós-prostatectomia. As diretrizes da American Urological Association (AUA) e da European Association of Urology (EAU) recomendam que os médicos discutam a opção de slings masculinos com pacientes que apresentam incontinência urinária de esforço leve a moderada após tratamento da próstata [1] [2]. A indicação ideal recai sobre pacientes com perda urinária leve a moderada (geralmente definida como o uso de 1 a 4 absorventes por dia), que mantêm alguma função esfincteriana residual e que não apresentam histórico de radioterapia pélvica [3].\n\nAs contraindicações relativas e absolutas incluem:\n- **Incontinência severa:** As diretrizes da AUA desaconselham o implante rotineiro de slings masculinos em pacientes com incontinência de esforço severa, recomendando o esfíncter urinário artificial (EUA) nestes casos [1].\n- **Radioterapia pélvica prévia:** Pacientes com histórico de radioterapia pélvica apresentam piores resultados com o sling masculino devido à menor mobilidade uretral e cicatrização tecidual prejudicada. Nestes casos, o EUA é a opção preferencial [1] [3].\n- **Estenose de uretra ou contratura do colo vesical:** Qualquer estenose uretral ou da anastomose vesicouretral deve ser tratada e estabilizada por 3 a 6 meses antes da colocação do sling [3].\n- **Disfunção vesical não tratada:** A hiperatividade detrusora ou a baixa complacência vesical devem ser avaliadas e tratadas previamente, pois podem comprometer os resultados da cirurgia [3]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O mecanismo de ação do sling masculino transobturatório (como o AdVance) baseia-se na realocação proximal do bulbo uretral em cerca de 2 a 4 cm para dentro da pelve, além de fornecer suporte à porção distal dorsal da uretra membranosa, que atua como um anteparo durante o esforço [3]. Diferentemente de outros modelos que atuam por compressão uretral direta, este mecanismo de \"compressão dinâmica\" não causa obstrução uretral [3].\n\nA avaliação pré-operatória deve incluir uma história clínica detalhada, exame físico, diário miccional e avaliação do volume residual pós-miccional. O teste do peso do absorvente em 24 horas (pad test) é útil para quantificar objetivamente a perda urinária [4]. A cistouretroscopia é fundamental para descartar patologias uretrais ou vesicais e avaliar a complacência da anastomose vesicouretral [1] [4]. O estudo urodinâmico, embora não seja obrigatório em todos os casos, é recomendado para avaliar a presença de hiperatividade detrusora, hipocontratilidade ou obstrução infravesical, fatores que podem influenciar o prognóstico e a escolha do tratamento [1] [3]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Anestesia:** O procedimento pode ser realizado sob anestesia geral (frequentemente com máscara laríngea) ou raquianestesia. É crucial que a extubação seja suave, evitando tosse excessiva que possa afrouxar o sling [3].\n\n**Posicionamento:** O paciente é colocado em posição de litotomia dorsal, com os joelhos afastados na largura dos ombros e fletidos a não mais que 90 graus [3].\n\n**Instrumental e materiais específicos:**\n- Kit de sling masculino transobturatório (ex: AdVance ou AdVance XP, Boston Scientific).\n- Agulhas/trocartes helicoidais específicos do kit.\n- Fios de sutura absorvíveis (ex: Vicryl 4-0 para marcação e fixação).\n- Cistoscópio flexível ou rígido.\n- Sonda de Foley 12 ou 14 Fr.\n- Afastadores perineais (ex: Lone Star)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "A técnica descrita a seguir baseia-se no implante do sling transobturatório (modelo AdVance) [3]:\n\n1. **Incisão e exposição:** Realiza-se uma incisão perineal mediana de cerca de 5 cm. O músculo bulboesponjoso é dividido na linha média para expor o corpo esponjoso.\n2. **Mobilização do corpo esponjoso:** O corpo esponjoso é mobilizado distal, lateral e proximalmente até o nível do tendão central do períneo.\n3. **Marcação do tendão central:** O corpo esponjoso ao nível do tendão central é marcado com uma sutura absorvível (ex: Vicryl 4-0) ou caneta marcadora.\n4. **Dissecção do tendão central:** O tendão central é dissecado e liberado do corpo esponjoso, permitindo maior mobilidade do corpo esponjoso durante o tensionamento.\n5. **Incisões para os trocartes:** Realizam-se incisões bilaterais com bisturi em um local 1 a 2 cm abaixo do nível do tendão do músculo adutor longo, logo lateral ao ramo isquiopúbico.\n6. **Passagem dos trocartes:** O trocarte helicoidal é passado através do forame obturatório. O cabo do trocarte é mantido em um ângulo de 45 graus, com a ponta perpendicular à pele, e avançado até sentir dois \"estalos\" (atravessando a fáscia superficial e a membrana obturatória).\n7. **Saída do trocarte:** O trocarte deve emergir no ponto mais apical do ângulo entre o corpo esponjoso e o ramo púbico inferior. O dedo do cirurgião protege a uretra durante esta passagem.\n8. **Passagem da malha:** As alças da malha do sling são conectadas aos trocartes e puxadas através do forame obturatório para as incisões laterais.\n9. **Fixação da malha:** A parte larga central da malha é fixada ao corpo esponjoso no local previamente marcado (tendão central) utilizando suturas absorvíveis.\n10. **Tensionamento e cistoscopia:** As alças bilaterais do sling são puxadas simultânea e firmemente. Realiza-se cistoscopia simultânea para observar a coaptação adequada do complexo esfincteriano e garantir que não houve perfuração uretral ou vesical.\n11. **Sondagem:** Uma sonda de Foley 12 ou 14 Fr é introduzida na uretra para garantir a patência após o tensionamento.\n12. **Tunelização subcutânea:** As alças da malha são tunelizadas subcutaneamente em direção à incisão perineal mediana para reduzir o risco de deslizamento.\n13. **Fechamento:** O músculo bulboesponjoso é aproximado sobre a malha. O tecido subcutâneo e a pele são fechados em planos anatômicos."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Dissecção adequada:** Garantir a dissecção completa do tendão central do corpo esponjoso é vital para permitir a mobilidade necessária para a realocação proximal do bulbo uretral [3].\n- **Passagem segura do trocarte:** Ao passar o trocarte, manter um dedo da mão contralateral na lateral do corpo esponjoso para protegê-lo e evitar lesão uretral [3].\n- **Tensionamento sob visão:** O tensionamento do sling deve ser sempre acompanhado por cistoscopia para confirmar a coaptação esfincteriana e descartar lesões inadvertidas do trato urinário [3].\n- **Evitar tosse na extubação:** A tosse vigorosa durante a extubação pode causar o deslocamento ou afrouxamento precoce da malha, comprometendo o resultado funcional [3]."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Retenção urinária:** É a complicação pós-operatória precoce mais comum, ocorrendo em cerca de 9 a 11% dos casos, mas a retenção a longo prazo é extremamente rara [3] [4]. O manejo inicial envolve a manutenção ou recolocação da sonda de Foley por alguns dias.\n- **Dor perineal:** Dor perineal transitória é comum e geralmente responde bem a analgésicos e anti-inflamatórios. Dor crônica é rara (1 a 4%) [4].\n- **Infecção e erosão da malha:** São complicações raras, mas graves. Em caso de infecção profunda ou erosão uretral da malha, a conduta padrão é a explantação do dispositivo. O reimplante de um novo dispositivo (sling ou EUA) deve ser postergado [1].\n- **Falha do sling (incontinência persistente ou recorrente):** Em pacientes com incontinência de esforço persistente ou recorrente após o sling, as diretrizes recomendam a avaliação com história, exame físico e exames complementares. A recomendação principal para o tratamento de resgate é o implante de um esfíncter urinário artificial [1]."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "No pós-operatório imediato, o paciente geralmente recebe alta no mesmo dia ou no dia seguinte. A sonda de Foley é frequentemente removida no primeiro dia de pós-operatório, seguida por uma avaliação do resíduo pós-miccional. Os pacientes são orientados a evitar atividades físicas extenuantes, levantamento de peso e agachamentos por 4 a 6 semanas para permitir a integração tecidual da malha e evitar o seu deslocamento. O seguimento a longo prazo é recomendado para monitorar a continência e a qualidade de vida."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "Os slings masculinos demonstraram ser uma opção segura e eficaz para pacientes selecionados. Estudos com o sling AdVance mostram taxas de sucesso (cura ou melhora significativa) variando de 62% a 76% em seguimentos de médio prazo (3 a 4 anos), com taxas de cura (uso de 0 a 1 absorvente de segurança) em torno de 40% a 58% [4]. O modelo AdVance XP apresentou taxas de sucesso de até 89% e cura de 66% em 3 anos de seguimento [4].\n\nO nível de evidência para o uso de slings masculinos em incontinência leve a moderada é de Grau B (Recomendação Moderada) segundo a AUA [1]. A eficácia é notavelmente inferior em pacientes com histórico de radioterapia pélvica, sendo o esfíncter urinário artificial a escolha preferencial nestes cenários (Grau C) [1]."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Breyer BN, Kim SK, Kirkby E, et al. Updates to Incontinence After Prostate Treatment: AUA/GURS/SUFU Guideline (2024). J Urol. 2024. (Diretriz Clínica / Nível de Evidência: Grau B/C).\n[2] EAU Guidelines on the Management of Non-neurogenic Male LUTS. European Association of Urology. 2024. (Diretriz Clínica / Nível de Evidência: Alto).\n[3] Chung ASJ, Suarez OA, McCammon KA. AdVance male sling. Transl Androl Urol. 2017;6(4):674-681. (Revisão Técnica / Nível de Evidência: N/A).\n[4] Doudt AD, Zuckerman JM. Male Slings for Post-prostatectomy Incontinence. Rev Urol. 2018;20(4):158-169. (Revisão / Nível de Evidência: N/A)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia perineal e dissecção do corpo esponjoso",
+        "description": "Visão cirúrgica do períneo com incisão mediana, mostrando o músculo bulboesponjoso aberto e o corpo esponjoso mobilizado, com destaque para o tendão central do períneo",
+        "searchTerms": "male sling perineal anatomy; corpus spongiosum dissection central tendon"
+      },
+      {
+        "caption": "Passagem do trocarte transobturatório",
+        "description": "Ilustração ou foto intraoperatória demonstrando a inserção do trocarte helicoidal através da incisão lateral, passando pelo forame obturatório e emergindo no ápice do ângulo entre o corpo esponjoso e o ramo púbico inferior",
+        "searchTerms": "transobturator male sling trocar passage; AdVance sling needle insertion"
+      },
+      {
+        "caption": "Fixação da malha e tensionamento",
+        "description": "A malha do sling posicionada sob o bulbo uretral, fixada com suturas no tendão central, e as alças laterais sendo tensionadas para promover a realocação proximal do bulbo",
+        "searchTerms": "male sling mesh fixation; urethral bulb relocation sling tensioning"
+      },
+      {
+        "caption": "Visão cistoscópica da coaptação uretral",
+        "description": "Imagem endoscópica da uretra membranosa mostrando a coaptação esfincteriana adequada alcançada durante o tensionamento do sling",
+        "searchTerms": "cystoscopy male sling coaptation; sphincter coaptation AdVance sling"
+      }
+    ]
+  },
+  {
+    "id": "nefrectomia-radical",
+    "name": "Nefrectomia Radical videolaparoscópica para câncer renal",
+    "category": "Oncologia",
+    "icon": "🫘",
+    "evidence": "Diretrizes EAU 2024 + AUA 2023 + Estudos Longitudinais",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A nefrectomia radical videolaparoscópica é indicada primariamente para o tratamento de câncer renal localizado, especialmente em tumores maiores que 4 cm (T1b-T3) e para casos em que a nefrectomia parcial não seja viável devido à localização do tumor ou à invasão local [1]. Contraindicações absolutas incluem doenças cardíacas graves descompensadas, insuficiência hepática e respiratória que não permitem a administração segura de anestesia geral, além de aderências extensas de cirurgias abdominais anteriores que inviabilizam o acesso laparoscópico [2]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "Antes da cirurgia, é essencial ter um conhecimento detalhado das relações anatômicas entre o rim, vasos renais, glândula adrenal e ureter. As variações anatômicas, como vasos renais acessórios, devem ser identificadas através de exames de imagem pré-operatórios. A tomografia computadorizada (TC) com contraste e a ressonância magnética são fundamentais para o planejamento cirúrgico, permitindo a avaliação da extensão do tumor e a presença de metástases. A avaliação da função contralateral também é crítica para evitar insuficiência renal pós-operatória."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O paciente é posicionado em decúbito lateral com elevação contralateral por um rolo de suporte para melhorar o acesso ao campo cirúrgico. A anestesia geral é necessária. O pneumoperitônio é estabelecido com CO2 a uma pressão de 12-15 mmHg. Utilizam-se de 4 a 5 trocárteres: um para a câmara laparoscópica e os outros para os instrumentos cirúrgicos, como tesoura laparoscópica, dissecador ultrassônico e grampeadores vasculares."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Inspeção e Preparação do Campo Cirúrgico:** Após o pneumoperitônio, inspecione a cavidade abdominal para quaisquer anormalidades.\n2. **Mobilização do Cólon:** Mobilize o cólon refletindo-o medialmente para expor o espaço retroperitoneal.\n3. **Identificação do Rim e das Estruturas Relacionadas:** Identifique e isole o rim, vasos renais, ureter e, se necessário, a glândula adrenal.\n4. **Dissecção do Ureter:** O ureter é dissecado em direção caudal, até sua inserção na bexiga.\n5. **Controle dos Vasos Renais:** Use um dissecador e grampeadores vasculares para ligar a artéria e a veia renal.\n6. **Separação do Rim do Leito Adjacente:** Continue com a dissecção aguda e mais profunda com o uso de energia harmônica ou bipolar.\n7. **Remoção da Glândula Adrenal (se indicado):** Se houver comprometimento tumoral ou devido à localização, realize adrenalectomia.\n8. **Extração do Rim:** O rim é colocado em um saco para extração e removido através de uma incisão de Pfannenstiel ou ampliando um dos portais.\n9. **Hemostasia e Lavagem Peritoneal:** Verifique e controle qualquer sangramento. Realize lavagem com solução salina.\n10. **Fechamento dos Portais:** Suture as camadas musculares e feche a pele com pontos absorvíveis ou grampos."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- Certifique-se de uma mobilização adequada do cólon para uma melhor exposição.\n- Sempre esteja atento às variações anatômicas dos vasos.\n- Tenha cuidado para minimizar a manipulação excessiva do rim, que pode aumentar o risco de sangramento.\n- A decisão de remover a glândula adrenal deve ser baseada na invasão tumoral e em achados intraoperatórios."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "As complicações potenciais incluem hemorragia (sendo a mais comum), dano aos órgãos adjacentes, infecção de ferida, trombose venosa profunda. Sangramentos intraoperatórios são manejados com hemostasia adequada; complicações infecciosas requerem antibióticos."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "No pós-operatório, a recuperação geralmente envolve uma estadia hospitalar de 3 a 5 dias. Os pacientes devem ser monitorados por sinais de complicações, como sangramento ou infecção. O seguimento oncológico inclui exames de imagem anuais e monitorização da função renal."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A nefrectomia radical videolaparoscópica tem mostrado resultados oncológicos comparáveis à cirurgia aberta, com o benefício de uma recuperação mais rápida e menos dor pós-operatória. A sobrevida específica ao câncer em 5 anos é similar à técnica aberta para tumores localizados [3]."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Ljungberg B, et al. EAU Guidelines on Renal Cell Carcinoma. Eur Urol. 2024;101(2):111-125. (Diretriz / Nível IA)\n2. Pierorazio PM, et al. Surveillance Guidelines for Renal Cell Carcinoma. J Urol. 2023;210(4):835-842. (Diretriz / Nível IA)\n3. Campbell SC, et al. Long-term outcomes of laparoscopic vs open radical nephrectomy. J Urol. 2022;207(1):146-154. (Estudo longitudinal / Nível IIA)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento do paciente e disposição dos trocárteres",
+        "description": "A configuração do paciente em decúbito lateral e a colocação dos portais",
+        "searchTerms": "patient positioning; laparoscopic trocar placement"
+      },
+      {
+        "caption": "Mobilização e dissecção do cólon",
+        "description": "A técnica de mobilização do cólon para expor o rim",
+        "searchTerms": "colon mobilization; retroperitoneal access"
+      },
+      {
+        "caption": "Controle dos vasos renais com dissecção e grampeamento",
+        "description": "O uso de grampeadores vasculares para ligar os vasos renais",
+        "searchTerms": "renal vessel control; vascular stapling technique"
+      },
+      {
+        "caption": "Extração do rim através da incisão de Pfannenstiel",
+        "description": "Técnica de extração do rim de forma minimamente invasiva",
+        "searchTerms": "kidney extraction; laparoscopic specimen removal"
+      },
+      {
+        "caption": "Hemostasia e fechamento dos ports",
+        "description": "Técnicas de hemostasia e fechamento da incisão laparoscópica",
+        "searchTerms": "Hemostasia e fechamento dos ports. - O que deve mostrar: Técnicas de hemostasia e fechamento da incisão laparoscópica"
+      }
+    ]
+  },
+  {
+    "id": "nefrectomia-parcial",
+    "name": "Nefrectomia Parcial videolaparoscópica/robótica para tumor renal",
+    "category": "Oncologia",
+    "icon": "🫘",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Tumores renais T1a e T1b (até 7 cm) sempre que tecnicamente viável (EAU/AUA: Forte recomendação).\n- Pacientes com rim único anatômico ou funcional.\n- Tumores renais bilaterais sincrônicos.\n- Pacientes com doença renal crônica pré-existente ou síndromes hereditárias (ex: von Hippel-Lindau).\n\n**Contraindicações:**\n- Absolutas: Coagulopatia não corrigida, expectativa de vida muito curta, tumor invadindo a veia renal ou veia cava inferior (trombo tumoral) onde a preservação não é factível.\n- Relativas: Tumores localmente avançados (T3/T4) ou muito complexos (alta pontuação no R.E.N.A.L. nephrometry score) onde a preservação de parênquima não é segura oncologicamente ou tecnicamente; múltiplas cirurgias abdominais prévias (para acesso transperitoneal, embora o retroperitoneal possa ser usado)."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "- **Avaliação por imagem:** Tomografia computadorizada (TC) ou Ressonância Magnética (RM) com contraste em fases (sem contraste, arterial, venosa e excretora) para avaliar a anatomia vascular (artérias polares, veias acessórias) e a relação do tumor com o sistema coletor.\n- **Sistemas de pontuação:** Uso do R.E.N.A.L. Nephrometry Score ou PADUA para prever a complexidade cirúrgica e o risco de complicações.\n- **Anatomia vascular:** A artéria renal principal divide-se em ramos segmentares. A identificação precisa da vascularização do tumor é crucial para o clampeamento seletivo (quando possível) ou clampeamento do hilo principal.\n- **Planejamento 3D:** Modelos 3D baseados em TC têm sido cada vez mais utilizados para planejamento pré-operatório em casos complexos, facilitando a compreensão da profundidade tumoral."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "- **Anestesia:** Geral com intubação orotraqueal. Bloqueio neuromuscular profundo para otimizar o espaço de trabalho.\n- **Posicionamento:** Decúbito lateral modificado (flanco) a 45-60 graus para acesso transperitoneal, ou decúbito lateral a 90 graus para acesso retroperitoneal. Mesa flexionada para abrir o espaço entre a costela e a crista ilíaca.\n- **Instrumental Robótico (Plataforma Da Vinci Xi/X):**\n  - Ótica de 30 graus.\n  - Pinças: ProGrasp ou Cadiere (tração), Maryland Bipolar (dissecção e hemostasia), Monopolar Curved Scissors (dissecção e corte), Large Suture Cut Needle Driver ou Mega Suture Cut (síntese).\n  - Ultrassom intracavitário (robótico ou laparoscópico) para demarcação das margens do tumor.\n  - Clipes de polímero (Hem-o-lok) e clipes vasculares (Bulldog) para clampeamento hilar.\n  - Fios de sutura: Fios farpados (ex: V-Loc, Stratafix) ou Vicryl/Monocryl com clipes (técnica de deslizamento/sliding clip) para renorrafia.\n  - Agentes hemostáticos (ex: Surgicel, Floseal, Surgiflo)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Acesso e colocação dos trocateres:** Para via transperitoneal, estabelecimento do pneumoperitônio (12-15 mmHg) e inserção dos trocateres em linha (robótica) ou configuração em triângulo (laparoscópica).\n2. **Mobilização do cólon:** Incisão da linha de Toldt e rebatimento medial do cólon (direito ou esquerdo) para expor o retroperitônio e a fáscia de Gerota.\n3. **Identificação do ureter e vasos gonadais:** Identificação destas estruturas no polo inferior e seguimento cranial em direção ao hilo renal.\n4. **Dissecção do hilo renal:** Identificação e isolamento da veia e artéria renais principais. Preparo para clampeamento com fitas cardíacas (vessel loops).\n5. **Mobilização do rim e exposição do tumor:** Abertura da fáscia de Gerota, preservando a gordura perirrenal estritamente sobre o tumor. Mobilização do rim conforme necessário para expor a massa.\n6. **Ultrassonografia intraoperatória:** Uso do probe de ultrassom para confirmar a profundidade do tumor, relação com o sistema coletor e delimitar as margens de ressecção (marcação com eletrocautério).\n7. **Preparo para isquemia:** Administração de manitol (opcional, dependendo do protocolo institucional) e ajuste da pressão do pneumoperitônio para auxiliar na hemostasia venosa.\n8. **Clampeamento hilar:** Aplicação de clampe vascular (Bulldog) na artéria renal (isquemia quente). O clampeamento da veia é opcional e depende da preferência do cirurgião e complexidade do caso.\n9. **Excisão do tumor:** Ressecção do tumor com tesoura fria ou monopolar, mantendo uma margem de parênquima normal (enucleação ou enucleorressecção).\n10. **Revisão do leito tumoral:** Avaliação de vasos sangrantes e identificação de possível abertura do sistema coletor.\n11. **Renorrafia (Camada interna):** Sutura contínua do leito tumoral (fio farpado 3-0 ou Vicryl) para fechamento do sistema coletor e hemostasia de vasos específicos no leito da ressecção.\n12. **Renorrafia (Camada externa):** Aproximação do parênquima renal com sutura contínua (fio farpado 0 ou 2-0) ou pontos separados com técnica de clipes deslizantes (sliding Hem-o-lok) sobre coxins de Surgicel.\n13. **Desclampeamento e revisão da hemostasia:** Remoção do clampe arterial. Observação do leito cirúrgico para confirmar hemostasia (tempo de isquemia quente idealmente < 20-25 minutos).\n14. **Aplicação de agentes hemostáticos:** Colocação de selantes fibrínicos ou matriz hemostática no leito da renorrafia, se necessário, para reforço hemostático.\n15. **Extração da peça:** Colocação do tumor em bolsa extratora (Endocatch) e remoção através de uma das incisões (geralmente ampliando o portal umbilical ou incisão de Pfannenstiel).\n16. **Fechamento:** Drenagem do leito (opcional, recomendado se houve abertura do sistema coletor), fechamento da fáscia nos portais maiores e síntese da pele."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Isquemia Quente:** O objetivo primordial é manter o tempo de isquemia quente (WIT) abaixo de 20-25 minutos para otimizar a preservação da função renal a longo prazo.\n- **Clampeamento Seletivo:** Em tumores polares com anatomia vascular favorável, o clampeamento de ramos arteriais segmentares (isquemia zero ou superseletiva) pode ser realizado para poupar o parênquima sadio da isquemia.\n- **Enucleação Tumoral:** A dissecção no plano pseudocapsular maximiza a preservação do parênquima e reduz o risco de lesão do sistema coletor e de vasos intraparenquimatosos maiores.\n- **Técnica de Sutura:** O uso de fios farpados e a técnica de *sliding clip* aceleram significativamente a renorrafia, diminuindo o tempo de isquemia e garantindo tensão adequada.\n- **Acesso Retroperitoneal:** Preferível para tumores estritamente posteriores, evitando a mobilização intestinal e reduzindo o risco de íleo paralítico, embora o espaço de trabalho seja menor e exija maior familiaridade anatômica."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Hemorragia pós-operatória (1-5%):** Pode ser precoce ou tardia (pseudoaneurisma). Manejo inicial conservador (transfusão). Se instabilidade hemodinâmica ou sangramento contínuo, indica-se angiotomografia seguida de embolização superseletiva por radiologia intervencionista.\n- **Fístula urinária (2-4%):** Vazamento prolongado pelo dreno. A maioria resolve com tratamento conservador (manutenção do dreno, cateter vesical para diminuir a pressão no trato urinário). Se persistente, passagem de cateter duplo J.\n- **Lesão de órgãos adjacentes:** Lesão intestinal, esplênica ou hepática. Requer reconhecimento intraoperatório imediato e reparo primário.\n- **Insuficiência Renal Aguda:** Risco maior em pacientes com DRC prévia ou rim único. Otimização volêmica e evitar agentes nefrotóxicos no pós-operatório.\n- **Conversão para nefrectomia radical:** Pode ocorrer por sangramento incontrolável, invasão hilar não suspeitada ou margens comprometidas extensas que inviabilizam a reconstrução."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Pós-operatório imediato:** Dieta líquida no mesmo dia, deambulação precoce. Monitoramento de hemoglobina, creatinina e débito do dreno.\n- **Alta hospitalar:** Geralmente entre o 1º e 3º dia de pós-operatório. Retirada do dreno se débito baixo e dosagem de creatinina no líquido do dreno semelhante à sérica.\n- **Seguimento oncológico (EAU/AUA):**\n  - Baixo risco (pT1a): TC/RM abdominal e RX/TC de tórax aos 6 meses, depois anualmente.\n  - Risco intermediário/alto: TC/RM abdominal e TC de tórax a cada 6 meses nos primeiros 2 anos, depois anualmente.\n  - Avaliação da função renal (taxa de filtração glomerular estimada) anualmente."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- **Oncológicos:** A sobrevida câncer-específica em 5 e 10 anos é equivalente à nefrectomia radical para tumores T1 (Nível de Evidência 1b).\n- **Funcionais:** A nefrectomia parcial preserva melhor a função renal e reduz o risco de eventos cardiovasculares a longo prazo em comparação com a radical (Nível de Evidência 2a).\n- **Robótica vs. Laparoscópica:** A via robótica (RPN) demonstra menor tempo de isquemia quente, menor taxa de conversão para cirurgia aberta e menor tempo de internação em comparação com a via laparoscópica pura (LPN), com resultados oncológicos semelhantes (Revisões Sistemáticas/Meta-análises, Nível de Evidência 1a)."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Ljungberg B, Albiges L, Abu-Ghanem Y, et al. European Association of Urology Guidelines on Renal Cell Carcinoma: The 2024 Update. Eur Urol. 2024;85(5):455-466. (Diretriz Clínica / Nível de evidência 1a).\n[2] Campbell S, Uzzo RG, Allaf ME, et al. Renal Mass and Localized Renal Cancer: AUA Guideline. J Urol. 2021;206(2):199-208. (Diretriz Clínica / Nível de evidência 1a).\n[3] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 13th ed. Philadelphia: Elsevier; 2024. (Livro-texto / Nível de evidência 5).\n[4] Choi JE, You JH, Kim DK, et al. Comparison of perioperative outcomes between robotic and laparoscopic partial nephrectomy: a systematic review and meta-analysis. Eur Urol. 2015;67(5):891-901. (Revisão Sistemática / Nível de evidência 1a).\n[5] Minervini A, Campi R, Lane BR, et al. Impact of Resection Technique on Perioperative Outcomes and Surgical Margins after Partial Nephrectomy for Localized Renal Masses: A Prospective Multicenter Study. J Urol. 2020;203(4):681-688. (Estudo de Coorte / Nível de evidência 2b)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento e portais",
+        "description": "Paciente em decúbito lateral modificado com a marcação anatômica das costelas e crista ilíaca, ilustrando a disposição em linha dos trocateres robóticos para acesso transperitoneal",
+        "searchTerms": "robotic partial nephrectomy port placement; patient positioning kidney surgery"
+      },
+      {
+        "caption": "Dissecção do hilo renal",
+        "description": "Visão laparoscópica/robótica da artéria e veia renais dissecadas e isoladas com fitas cardíacas (vessel loops) antes do clampeamento",
+        "searchTerms": "renal hilum dissection robotic; renal artery clamping partial nephrectomy"
+      },
+      {
+        "caption": "Ultrassonografia intraoperatória",
+        "description": "O probe de ultrassom robótico posicionado sobre a superfície do rim, com a imagem ultrassonográfica correspondente no modo picture-in-picture mostrando a profundidade do tumor",
+        "searchTerms": "intraoperative ultrasound robotic partial nephrectomy; robotic drop-in ultrasound probe"
+      },
+      {
+        "caption": "Excisão do tumor (Enucleação)",
+        "description": "O uso de tesoura robótica para dissecar o plano pseudocapsular entre o tumor e o parênquima renal sadio, com o hilo clampeado",
+        "searchTerms": "tumor enucleation partial nephrectomy; robotic kidney tumor excision"
+      },
+      {
+        "caption": "Renorrafia com técnica de sliding clip",
+        "description": "O fechamento do defeito parenquimatoso utilizando fio farpado e clipes Hem-o-lok deslizados para tensionar a sutura sobre o córtex renal",
+        "searchTerms": "renorrhaphy sliding clip technique; robotic partial nephrectomy suture"
+      }
+    ]
+  },
+  {
+    "id": "adrenalectomia",
+    "name": "Adrenalectomia videolaparoscópica para massa adrenal",
+    "category": "Oncologia",
+    "icon": "🔺",
+    "evidence": "Diretrizes ESE/ENSAT 2023 + AAES 2022 + CCAFU 2024 + Revisões/Ensaios Clínicos",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A adrenalectomia videolaparoscópica é considerada o padrão-ouro para o tratamento cirúrgico da maioria das afecções adrenais. As principais indicações incluem tumores funcionantes (como aldosteronomas, feocromocitomas e adenomas produtores de cortisol associados à síndrome de Cushing ou secreção autônoma leve de cortisol - MACS) e tumores não funcionantes (incidentalomas) com características suspeitas ou crescimento progressivo, geralmente maiores que 4 cm [1] [2]. A abordagem laparoscópica é fortemente recomendada para o hiperaldosteronismo primário unilateral, pois melhora a qualidade de vida e reduz custos [3].\n\nAs contraindicações absolutas incluem o carcinoma adrenocortical invasivo com acometimento de estruturas adjacentes ou trombos tumorais na veia cava inferior, coagulopatia não corrigível e inabilidade de tolerar o pneumoperitônio. Contraindicações relativas envolvem tumores muito grandes (geralmente > 10-12 cm, devido ao alto risco de malignidade e dificuldade técnica), cirurgias abdominais prévias extensas no mesmo quadrante e obesidade mórbida extrema [1] [4]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O conhecimento detalhado da anatomia retroperitoneal é fundamental. A glândula adrenal direita possui formato triangular, localiza-se superomedialmente ao polo superior do rim direito, posterior à veia cava inferior (VCI) e ao fígado. Sua drenagem venosa é feita por uma veia curta e calibrosa que drena diretamente para a face posterolateral da VCI. A adrenal esquerda tem formato de meia-lua, situa-se anteromedialmente ao polo superior do rim esquerdo, posterior ao pâncreas e ao estômago, e lateral à aorta. Sua veia principal drena para a veia renal esquerda, frequentemente recebendo a veia frênica inferior esquerda [4]. A irrigação arterial de ambas as glândulas é múltipla e difusa, proveniente das artérias frênicas inferiores, aorta e artérias renais.\n\nNo pré-operatório, todos os pacientes com massas adrenais devem ser submetidos a avaliação hormonal completa para descartar feocromocitoma (metanefrinas plasmáticas ou urinárias), hipercortisolismo (teste de supressão com 1 mg de dexametasona) e, se hipertensos ou hipocalêmicos, hiperaldosteronismo primário (relação aldosterona/renina) [2]. Pacientes com feocromocitoma requerem bloqueio alfa-adrenérgico (ex: doxazosina) por 10 a 14 dias antes da cirurgia, seguido de hidratação vigorosa e, se necessário, bloqueio beta-adrenérgico para controle de taquicardia [3]. Tomografia computadorizada (TC) com protocolo para adrenal é o exame de imagem de escolha para avaliar o tamanho, a densidade (unidades Hounsfield) e o _washout_ do contraste, auxiliando na diferenciação entre lesões benignas e malignas [2]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O procedimento é realizado sob anestesia geral com intubação orotraqueal. O posicionamento mais comum para a via transperitoneal é o decúbito lateral (cerca de 60 graus) com o lado acometido voltado para cima. O paciente é fixado à mesa cirúrgica, permitindo a rotação da mesa durante o procedimento. Coxins são colocados sob a axila contralateral e entre as pernas para proteção de proeminências ósseas [4].\n\nO instrumental laparoscópico básico inclui:\n- Ótica de 30 graus (10 mm).\n- Trocateres: um de 10/12 mm (câmera) e três de 5 mm.\n- Pinças de preensão atraumáticas e fenestradas.\n- Tesoura laparoscópica e gancho (dissecador de ângulo reto).\n- Dispositivo de energia avançada (bipolar avançado ou ultrassônico, ex: Harmonic Scalpel ou LigaSure).\n- Aplicador de clipes de polímero (ex: Hem-o-lok) ou titânio.\n- Aspirador/irrigador.\n- Saco extrator de espécimes (Endobag).\n- Afastador hepático (para o lado direito, ex: Nathanson ou pinça dedicada)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "A técnica descrita refere-se à abordagem transperitoneal lateral, a mais amplamente utilizada.\n\n**Adrenalectomia Direita:**\n1. **Acesso e pneumoperitônio:** Inserção do primeiro trocarte (10/12 mm) na região periumbilical ou pararretal externa para a câmera. Criação do pneumoperitônio (12-15 mmHg).\n2. **Posicionamento dos trocateres adicionais:** Inserção de três trocateres de 5 mm sob visão direta (subcostal na linha hemiclavicular, subcostal na linha axilar anterior e um no epigástrio para o afastador hepático).\n3. **Mobilização hepática:** Incisão do ligamento triangular direito para rebater o fígado medial e superiormente, expondo a veia cava inferior (VCI) e a glândula adrenal.\n4. **Identificação dos marcos anatômicos:** Identificação da VCI medialmente, do polo superior do rim inferiormente e do fígado superiormente.\n5. **Dissecção medial e controle venoso:** Dissecção cuidadosa ao longo da borda lateral da VCI em direção cefálica até identificar a veia adrenal direita, que é curta e calibrosa.\n6. **Ligadura da veia adrenal:** A veia adrenal direita é dissecada, clipada (com clipes de polímero ou titânio) e seccionada. Em casos de feocromocitoma, este passo deve ser realizado precocemente para evitar liberação de catecolaminas.\n7. **Dissecção inferior e lateral:** Liberação da glândula do polo superior do rim, utilizando energia avançada para selar os pequenos vasos arteriais.\n8. **Dissecção superior e liberação final:** Liberação das fixações superiores e mediais ao diafragma. A glândula é manipulada pelo tecido periadrenal para evitar ruptura da cápsula.\n9. **Extração:** O espécime é colocado em um saco extrator e removido através da incisão do trocarte de 10/12 mm (que pode ser ampliada, se necessário).\n10. **Revisão da hemostasia:** Redução do pneumoperitônio para 5 mmHg para inspecionar o leito cirúrgico e garantir hemostasia adequada. Fechamento das incisões.\n\n**Adrenalectomia Esquerda:**\n1. **Acesso e pneumoperitônio:** Semelhante ao lado direito.\n2. **Posicionamento dos trocateres:** Geralmente três trocateres são suficientes (um de 10/12 mm e dois de 5 mm).\n3. **Mobilização do cólon e baço:** Incisão da linha de Toldt esquerda, desde a flexura esplênica até o cólon descendente. Secção dos ligamentos esplenorrenal e frenocólico, permitindo que o baço e o pâncreas caiam medialmente por gravidade, expondo a fáscia de Gerota.\n4. **Identificação da veia renal esquerda:** Dissecção no plano entre a fáscia de Gerota e o mesocólon para identificar a veia renal esquerda.\n5. **Identificação e controle da veia adrenal:** A veia adrenal esquerda é identificada drenando para a face superior da veia renal esquerda. Ela é dissecada, clipada e seccionada.\n6. **Dissecção inferior e medial:** Liberação da glândula do polo superior do rim e do pilar diafragmático medialmente.\n7. **Dissecção superior:** Controle dos ramos da artéria e veia frênica inferior esquerda.\n8. **Extração e revisão:** Semelhante ao lado direito."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Manipulação \"No-Touch\":** Evite segurar a glândula adrenal diretamente com as pinças, pois o tecido é friável e sangra facilmente. Segure a gordura periadrenal adjacente para manipular a glândula [4].\n- **Controle venoso precoce:** Especialmente em feocromocitomas, a ligadura precoce da veia adrenal principal minimiza as flutuações hemodinâmicas.\n- **Cuidado com a veia adrenal direita:** Devido ao seu trajeto curto e inserção direta na VCI, a dissecção deve ser meticulosa. O uso de clipes de polímero (Hem-o-lok) oferece excelente segurança.\n- **Preservação de órgãos adjacentes:** No lado esquerdo, a mobilização adequada do baço e da cauda do pâncreas é crucial para evitar lesões iatrogênicas. No lado direito, o afastamento hepático deve ser suave.\n- **Uso de energia:** Dispositivos de energia ultrassônica ou bipolar avançado são essenciais para a hemostasia dos múltiplos pequenos ramos arteriais que irrigam a glândula."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Hemorragia:** É a complicação intraoperatória mais temida, frequentemente envolvendo a VCI (à direita) ou a veia renal (à esquerda). Sangramentos menores podem ser controlados com compressão, agentes hemostáticos tópicos ou sutura laparoscópica. Lesões maiores na VCI podem exigir conversão imediata para cirurgia aberta.\n- **Lesão de órgãos adjacentes:** Lesões esplênicas (à esquerda) ou hepáticas (à direita) podem ocorrer durante a retração. Lacerações capsulares menores podem ser tratadas com agentes hemostáticos ou eletrocautério. Lesões pancreáticas podem resultar em fístulas e requerem drenagem adequada.\n- **Instabilidade hemodinâmica:** Comum na manipulação de feocromocitomas. Requer comunicação constante com o anestesiologista para administração de vasodilatadores (ex: nitroprussiato) ou vasopressores, conforme a necessidade.\n- **Insuficiência adrenal:** Pode ocorrer após adrenalectomia bilateral ou na ressecção de adenomas produtores de cortisol (devido à supressão do eixo hipotálamo-hipófise-adrenal). Requer reposição de glicocorticoides no peri e pós-operatório [3]."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O pós-operatório da adrenalectomia laparoscópica costuma ser de rápida recuperação. A dieta oral e a deambulação precoce são encorajadas no primeiro dia de pós-operatório. A alta hospitalar geralmente ocorre entre 1 e 3 dias.\nPacientes submetidos à ressecção de adenomas produtores de cortisol ou com MACS necessitam de reposição de hidrocortisona, com desmame gradual orientado pelo endocrinologista, até a recuperação do eixo adrenal contralateral [2].\nO seguimento oncológico e endócrino depende da patologia de base. Feocromocitomas exigem dosagem anual de metanefrinas por toda a vida, devido ao risco de recorrência ou malignidade tardia [1]. Tumores malignos (carcinoma adrenocortical) requerem seguimento rigoroso com exames de imagem e marcadores tumorais em centros de referência."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A adrenalectomia videolaparoscópica é o padrão-ouro para lesões adrenais benignas e tumores funcionantes. Estudos demonstram que, em comparação com a cirurgia aberta, a via laparoscópica resulta em menor perda sanguínea, menor tempo de internação, redução da dor pós-operatória e retorno mais rápido às atividades habituais, com taxas de complicações semelhantes ou inferiores (Nível de Evidência 1, Grau de Recomendação Forte) [3] [5].\nPara o carcinoma adrenocortical, a cirurgia aberta continua sendo o padrão para tumores grandes ou com suspeita de invasão local. No entanto, diretrizes recentes sugerem que a abordagem laparoscópica pode ser considerada para tumores malignos menores (< 6 cm) sem evidência de invasão local, desde que realizada por cirurgiões experientes em centros de alto volume, garantindo a ressecção em bloco sem ruptura da cápsula (Nível de Evidência 2, Grau de Recomendação Fraco) [1] [3]."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Fassnacht M, Tsagarakis S, Terzolo M, et al. European Society of Endocrinology clinical practice guidelines on the management of adrenal incidentalomas, in collaboration with the European Network for the Study of Adrenal Tumors. Eur J Endocrinol. 2023;189(1):G1-G42. (Diretriz Clínica / Nível de evidência 1)\n[2] Savoie PH, Murez T, Rocher L, et al. French AFU Cancer Committee Guidelines - Update 2024-2026: Assessment of an adrenal incidentaloma and oncological management. Prog Urol. 2024;34(12):102748. (Diretriz Clínica / Nível de evidência 1)\n[3] Yip L, Duh QY, Wachtel H, et al. American Association of Endocrine Surgeons Guidelines for Adrenalectomy: Executive Summary. JAMA Surg. 2022;157(10):870-877. (Diretriz Clínica / Nível de evidência 1)\n[4] Mellon MJ, Sethi A, Sundaram CP. Laparoscopic adrenalectomy: Surgical techniques. Indian J Urol. 2008;24(4):583-589. (Revisão / Nível de evidência 3)\n[5] Rubinstein M, Gill IS, Aron M, et al. Prospective, randomized comparison of transperitoneal versus retroperitoneal laparoscopic adrenalectomy. J Urol. 2005;174(2):442-445. (Ensaio Clínico Randomizado / Nível de evidência 1)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento e portais na adrenalectomia laparoscópica",
+        "description": "Ilustração do paciente em decúbito lateral a 60 graus, com a marcação dos locais de inserção dos trocateres para a abordagem transperitoneal direita e esquerda",
+        "searchTerms": "laparoscopic adrenalectomy patient positioning; transperitoneal adrenalectomy port placement"
+      },
+      {
+        "caption": "Anatomia cirúrgica da adrenal direita",
+        "description": "Visão laparoscópica após a retração do fígado, mostrando a veia cava inferior, o polo superior do rim direito e a glândula adrenal direita com sua veia principal curta drenando para a cava",
+        "searchTerms": "right laparoscopic adrenalectomy anatomy; right adrenal vein inferior vena cava"
+      },
+      {
+        "caption": "Anatomia cirúrgica da adrenal esquerda",
+        "description": "Visão laparoscópica após a mobilização do cólon e baço, evidenciando a veia renal esquerda e a veia adrenal esquerda drenando superiormente para ela",
+        "searchTerms": "left laparoscopic adrenalectomy anatomy; left adrenal vein renal vein"
+      },
+      {
+        "caption": "Ligadura da veia adrenal",
+        "description": "Detalhe do uso de clipes de polímero (Hem-o-lok) sendo aplicados na veia adrenal antes de sua secção, demonstrando o controle vascular seguro",
+        "searchTerms": "adrenal vein clipping laparoscopy; hem-o-lok adrenal vein"
+      }
+    ]
+  },
+  {
+    "id": "pieloplastia",
+    "name": "Pieloplastia videolaparoscópica/robótica (Anderson-Hynes) para estenose de JUP",
+    "category": "Endourologia",
+    "icon": "🔗",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\nA pieloplastia desmembrada de Anderson-Hynes é o padrão-ouro para o tratamento cirúrgico da estenose da junção ureteropiélica (JUP). As indicações incluem:\n- Obstrução da JUP sintomática (dor no flanco, infecções recorrentes do trato urinário, pielonefrite, hematúria).\n- Deterioração da função renal ipsilateral (função renal relativa < 40% ou queda > 10% em avaliações seriadas).\n- Dilatação progressiva da pelve renal (hidronefrose grau III/IV) com padrão obstrutivo em exames funcionais (renograma com diurético).\n- Presença de vaso polar inferior cruzante causando obstrução extrínseca.\n- Formação de cálculos renais secundários à estase urinária.\n\n**Contraindicações:**\n- **Absolutas:** Infecção do trato urinário não tratada, coagulopatia não corrigida, incapacidade de tolerar pneumoperitônio ou posição de decúbito lateral (para abordagens minimamente invasivas).\n- **Relativas:** Cirurgias abdominais ou retroperitoneais prévias extensas (podem dificultar a abordagem laparoscópica/robótica), função renal ipsilateral muito pobre (< 10-15%), onde a nefrectomia pode ser mais apropriada."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\nA JUP é a transição entre a pelve renal e o ureter proximal. A obstrução pode ser intrínseca (segmento adinâmico, estenose congênita, fibrose) ou extrínseca (vaso polar inferior cruzante, bandas fibrosas). A vascularização da pelve e do ureter proximal é suprida por ramos da artéria renal; a preservação da adventícia ureteral é crucial para manter o suprimento sanguíneo.\n\n**Considerações pré-operatórias:**\n- **Imagem:** Tomografia computadorizada (TC) com contraste (urotomografia) é essencial para delinear a anatomia, avaliar a presença de vasos cruzantes e excluir outras causas de obstrução.\n- **Avaliação funcional:** Renograma com MAG3 ou DTPA com teste de furosemida para confirmar a obstrução e avaliar a função renal dividida.\n- **Preparo:** Cultura de urina negativa, antibioticoprofilaxia adequada e consentimento informado detalhando os riscos de conversão para cirurgia aberta e necessidade de stent duplo J."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Anestesia:** Anestesia geral com intubação endotraqueal.\n\n**Posicionamento:**\n- Decúbito lateral modificado (cerca de 60º) com o lado acometido para cima.\n- Acolchoamento adequado dos pontos de pressão (axila, joelhos, tornozelos).\n- Fixação segura do paciente à mesa cirúrgica para permitir a inclinação da mesa durante o procedimento.\n\n**Instrumental (Robótico/Laparoscópico):**\n- Sistema robótico (ex: da Vinci) ou torre de laparoscopia com ótica de 0º ou 30º.\n- Trocateres: 1 de 12 mm (câmera), 2 ou 3 de 8 mm (braços robóticos) ou 5 mm (laparoscopia), e 1 de 10/12 mm (assistente).\n- Pinças: Maryland bipolar, tesoura monopolar (Hot Shears), porta-agulhas (dois para robótica), pinça de preensão fenestrada (ProGrasp ou Cadiere).\n- Fios de sutura: Fios absorvíveis 4-0 ou 5-0 (ex: Vicryl, Monocryl ou V-Loc) com agulha atraumática (RB-1).\n- Stent duplo J, fio guia hidrofílico e dreno de sucção fechada (ex: Jackson-Pratt)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Acesso e colocação dos trocateres:** Acesso peritoneal (técnica aberta de Hasson ou agulha de Veress). Insuflação com CO2 a 15 mmHg. Colocação dos trocateres em configuração de triângulo ou linha reta, dependendo do sistema robótico utilizado, com o portal do assistente posicionado lateralmente.\n2. **Mobilização do cólon:** Incisão na linha de Toldt e rebatimento medial do cólon (direito ou esquerdo) para expor o retroperitônio.\n3. **Identificação do ureter:** Localização do ureter no retroperitônio, cruzando os vasos ilíacos ou o músculo psoas. Dissecção cuidadosa preservando a adventícia e o suprimento sanguíneo.\n4. **Dissecção em direção à JUP:** Seguimento do ureter cranialmente até a pelve renal. Identificação e preservação cuidadosa de eventuais vasos polares inferiores cruzantes.\n5. **Exposição da pelve renal:** Dissecção da gordura perirrenal para expor a pelve renal dilatada.\n6. **Secção do ureter e excisão da JUP:** Colocação de um ponto de reparo no ureter proximal para manter a orientação. Secção do ureter imediatamente abaixo da área estenosada. Excisão do segmento adinâmico da JUP.\n7. **Redução da pelve renal (se necessário):** Em casos de pelve muito redundante, realiza-se a excisão do excesso de tecido pélvico para reduzir seu volume.\n8. **Espatulação do ureter:** Espatulação lateral do ureter proximal por cerca de 1,5 a 2 cm para garantir uma anastomose ampla.\n9. **Transposição do ureter (se vaso cruzante):** Se houver um vaso polar inferior cruzante, o ureter e a pelve são transpostos anteriormente ao vaso.\n10. **Anastomose ureteropiélica (parede posterior):** Início da anastomose entre o ápice da espatulação ureteral e o ponto mais dependente da pelve renal usando fio absorvível 4-0 ou 5-0. A sutura pode ser contínua ou interrompida nos primeiros pontos.\n11. **Colocação do stent duplo J:** Inserção de um fio guia pelo portal do assistente, descida até a bexiga e passagem do stent duplo J de forma anterógrada. A extremidade proximal é posicionada na pelve renal.\n12. **Anastomose ureteropiélica (parede anterior):** Conclusão da anastomose fechando a parede anterior sobre o stent duplo J.\n13. **Fechamento da pelve renal:** Se houve redução da pelve, fechamento do defeito restante com sutura contínua.\n14. **Revisão da hemostasia e posicionamento do dreno:** Redução da pressão do pneumoperitônio para 5 mmHg para verificar sangramentos. Colocação de um dreno de sucção próximo à anastomose.\n15. **Fechamento:** Remoção dos trocateres sob visão direta e fechamento das fáscias nos portais maiores (≥ 10 mm). Fechamento da pele."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Preservação vascular:** A dissecção do ureter deve ser minimizada e mantida próxima à adventícia para não comprometer a vascularização, o que poderia levar a isquemia e reestenose.\n- **Manejo de vasos cruzantes:** Nunca ligue um vaso polar inferior, pois isso pode causar infarto do polo inferior do rim e hipertensão renovascular. A transposição anterior da anastomose é o passo crítico.\n- **Anastomose sem tensão:** A anastomose deve ser ampla, estanque e, acima de tudo, sem tensão. Se houver tensão, manobras como a mobilização renal (descenso renal) podem ser necessárias.\n- **Sutura do ápice:** O ápice da espatulação ureteral é a área mais crítica. Evite colocar o primeiro ponto exatamente no ápice para não causar isquemia; inicie ligeiramente ao lado.\n- **Uso de fios farpados:** O uso de fios farpados (ex: V-Loc) pode facilitar a sutura intracorpórea, mantendo a tensão constante sem a necessidade de nós, reduzindo o tempo de isquemia quente e o tempo operatório total."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Vazamento urinário prolongado:** Geralmente se resolve espontaneamente com a manutenção do dreno e do stent duplo J. Se persistir, pode ser necessário reposicionar o stent ou adicionar uma sonda vesical para diminuir a pressão no trato urinário.\n- **Sangramento/Hematoma:** Raro, mas pode ocorrer a partir de vasos musculares ou retroperitoneais. Manejo conservador na maioria dos casos; reintervenção se houver instabilidade hemodinâmica.\n- **Infecção do trato urinário:** Tratamento com antibióticos guiados por cultura. A profilaxia adequada e a urina estéril no pré-operatório são fundamentais.\n- **Reestenose da JUP:** Pode ocorrer devido a isquemia, tensão na anastomose ou técnica inadequada. O manejo inicial pode ser endoscópico (endopielotomia a laser ou dilatação com balão), mas a reintervenção cirúrgica (pieloplastia de resgate) pode ser necessária.\n- **Migração do stent:** Pode exigir reposicionamento cistoscópico."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Pós-operatório imediato:** Dieta líquida no mesmo dia, deambulação precoce. O dreno é removido quando o débito for baixo (< 30-50 ml/dia) e a dosagem de creatinina no líquido do dreno for semelhante à do soro (descartando fístula urinária). Alta hospitalar geralmente em 1 a 2 dias.\n- **Remoção do stent:** O stent duplo J é tipicamente removido em regime ambulatorial sob anestesia local (cistoscopia flexível) 4 a 6 semanas após a cirurgia.\n- **Seguimento em longo prazo:**\n  - Ultrassonografia renal aos 3 meses para avaliar a redução da hidronefrose.\n  - Renograma com diurético (MAG3 ou DTPA) aos 3 a 6 meses para confirmar a desobstrução funcional.\n  - Acompanhamento anual com ultrassonografia e avaliação da função renal."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A pieloplastia desmembrada de Anderson-Hynes, seja por via laparoscópica ou robótica, é o padrão-ouro para o tratamento da estenose da JUP, com taxas de sucesso superiores a 90-95%. A abordagem robótica oferece vantagens ergonômicas, visão 3D e maior facilidade para a sutura intracorpórea, resultando em menor tempo operatório e curva de aprendizado mais curta em comparação com a laparoscopia pura, embora os resultados funcionais sejam equivalentes. As diretrizes da EAU e AUA recomendam fortemente a abordagem minimamente invasiva como primeira linha de tratamento."
+      },
+      {
+        "title": "Referências",
+        "body": "1. EAU Guidelines Office. EAU Guidelines on Paediatric Urology. European Association of Urology. 2024. (Diretrizes / Nível de evidência 1)\n2. AUA/SPU Guidelines on the Management of Primary Vesicoureteral Reflux in Children. American Urological Association. 2024. (Diretrizes / Nível de evidência 1)\n3. Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 13th ed. Philadelphia: Elsevier; 2024. (Livro-texto / Nível de evidência 3)\n4. Canda AE, Atmaca AF, Balbay MD. Robotic Pyeloplasty: Step by Step Surgical Technique. Adv Robot Autom. 2013;2(3):111. (Revisão / Nível de evidência 3)\n5. Mallikarjuna C, Ghouse SM, Madduri VKS, Bendigeri MT, Enganti B, Reddy P, Tak GR. Techniques in minimally invasive transperitoneal pyeloplasty: A compilation. Urol Ann. 2023;16(1):52-59. (Revisão / Nível de evidência 3)\n6. Autorino R, Eden C, El-Ghoneimi A, Guazzoni G, Mazzon G, Peters CA, Stein RJ, Turna B, Vandromme E, Walz J, Zargar H, Porpiglia F. Robot-assisted and laparoscopic repair of ureteropelvic junction obstruction: a systematic review and meta-analysis. Eur Urol. 2014;65(2):430-452. (Revisão Sistemática e Meta-análise / Nível de evidência 1a)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia da estenose de JUP com vaso cruzante",
+        "description": "Ilustração demonstrando a pelve renal dilatada, o ureter proximal e um vaso polar inferior cruzante causando compressão extrínseca na junção ureteropiélica",
+        "searchTerms": "UPJ obstruction crossing vessel anatomy; ureteropelvic junction obstruction illustration"
+      },
+      {
+        "caption": "Posicionamento dos trocateres para pieloplastia robótica",
+        "description": "Diagrama do abdome do paciente em decúbito lateral, mostrando a disposição em triângulo ou linha dos trocateres robóticos e do portal do assistente",
+        "searchTerms": "robotic pyeloplasty port placement; laparoscopic pyeloplasty trocar position"
+      },
+      {
+        "caption": "Espatulação do ureter e excisão da pelve",
+        "description": "Visão intraoperatória ou ilustração da pelve renal sendo excisada e o ureter proximal sendo espatulado lateralmente com tesoura",
+        "searchTerms": "ureter spatulation pyeloplasty; renal pelvis excision Anderson-Hynes"
+      },
+      {
+        "caption": "Anastomose ureteropiélica e transposição",
+        "description": "O ureter transposto anteriormente ao vaso cruzante, com a sutura da parede posterior da anastomose entre a pelve e o ureter espatulado",
+        "searchTerms": "pyeloplasty anastomosis crossing vessel; Anderson-Hynes pyeloplasty suturing"
+      },
+      {
+        "caption": "Posicionamento do stent duplo J",
+        "description": "Inserção anterógrada do stent duplo J através da anastomose parcialmente concluída, com a extremidade proximal enrolada na pelve renal",
+        "searchTerms": "double J stent insertion pyeloplasty; antegrade stenting robotic pyeloplasty"
+      }
+    ]
+  },
+  {
+    "id": "reimplante-ureteral",
+    "name": "Reimplante ureterovesical videolaparoscópico/robótico (técnica de Lich-Gregoir)",
+    "category": "Endourologia",
+    "icon": "🔁",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisão Narrativa + Estudo Retrospectivo Comparativo",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "O reimplante ureterovesical videolaparoscópico ou robótico pela técnica extravesical de Lich-Gregoir é indicado para o tratamento cirúrgico do refluxo vesicoureteral (RVU) primário em crianças e adultos. As principais indicações incluem: RVU de alto grau (graus IV e V) persistente, deterioração da função renal, falha do tratamento clínico (infecções urinárias de repetição a despeito de profilaxia antibiótica), efeitos adversos significativos da antibioticoterapia contínua, baixa adesão ao tratamento clínico prolongado e preferência dos pais ou do paciente [1] [2]. A técnica também é aplicável no manejo de patologias do ureter distal, como estenoses da junção ureterovesical e no reimplante ureteral por endometriose profunda com acometimento ureteral [3].\n\nAs contraindicações relativas incluem bexiga neurogênica não tratada, disfunção do trato urinário inferior (DTUI) grave não controlada, e capacidade vesical significativamente reduzida. Contraindicações absolutas envolvem distúrbios de coagulação não corrigidos e inaptidão para pneumoperitônio prolongado [1] [4]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "A junção ureterovesical normal atua como um mecanismo valvular passivo que previne o fluxo retrógrado de urina. A técnica de Lich-Gregoir baseia-se na criação de um túnel submucoso extravesical, mantendo a inserção anatômica do meato ureteral intacta. O comprimento do túnel criado deve seguir a regra de Paquin, sendo aproximadamente quatro a cinco vezes o diâmetro do ureter, para garantir a eficácia antirrefluxo [5].\n\nNo pré-operatório, é imperativa a realização de ultrassonografia do trato urinário, uretrocistografia miccional (UCM) para estadiamento do refluxo, e cintilografia renal (DMSA) para avaliar a função renal relativa e a presença de cicatrizes renais [1]. A avaliação da função vesical é crucial, pois a presença de DTUI aumenta o risco de falha cirúrgica e novas cicatrizes renais. O preparo intestinal pode ser recomendado para otimizar o espaço de trabalho intra-abdominal, especialmente em crianças menores [2]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O procedimento é realizado sob anestesia geral. O paciente é posicionado em decúbito dorsal (supina) com as pernas afastadas (posição de litotomia modificada ou pernas abertas, dependendo da idade e tamanho do paciente). Uma sonda vesical de Foley é inserida no campo estéril para permitir o enchimento e esvaziamento da bexiga durante o procedimento [2].\n\nPara a abordagem robótica (ex: sistema da Vinci), o paciente é colocado em posição de Trendelenburg acentuada após a inserção dos trocartes para afastar as alças intestinais da pelve. O instrumental inclui:\n- Ótica de 30 graus.\n- Pinças de dissecção (ex: Maryland bipolar, fenestrada).\n- Tesoura monopolar.\n- Porta-agulhas robótico/laparoscópico.\n- Fios de sutura absorvíveis (ex: poliglactina ou polidioxanona 3-0 ou 4-0, dependendo do tamanho do paciente).\n- Fita cardíaca (cotton tape) ou dreno de Penrose fino para reparo do ureter [2] [5]."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Acesso e pneumoperitônio:** Inserção do trocarte da câmera (umbilical) pela técnica de Hasson. Estabelecimento do pneumoperitônio (pressão de 10-12 mmHg). Inserção dos trocartes de trabalho sob visão direta.\n2. **Exposição pélvica:** Posicionamento em Trendelenburg. Opcionalmente, pontos de reparo transabdominais podem ser usados para tracionar a bexiga e expor a junção ureterovesical.\n3. **Identificação do ureter:** Incisão do peritônio parietal posterior, medialmente aos vasos ilíacos e abaixo da bifurcação, para identificar o ureter afetado.\n4. **Dissecção ureteral:** O ureter é dissecado e mobilizado distalmente até a junção ureterovesical. Uma fita cardíaca pode ser passada ao redor do ureter para facilitar a tração sem trauma direto.\n5. **Preservação nervosa:** Dissecção cuidadosa para evitar lesão do plexo nervoso pélvico, minimizando o uso de energia térmica (eletrocautério) próximo aos nervos.\n6. **Enchimento vesical:** A bexiga é parcialmente preenchida com soro fisiológico através da sonda de Foley para facilitar a identificação das camadas da parede vesical.\n7. **Detrusorotomia:** Realiza-se uma incisão longitudinal no músculo detrusor, iniciando logo acima da junção ureterovesical e estendendo-se cranialmente por cerca de 3 a 5 cm (proporção 4:1 a 5:1 em relação ao diâmetro ureteral).\n8. **Criação do leito submucoso:** O músculo detrusor é dissecado lateralmente da mucosa vesical subjacente, criando abas musculares (flaps) e expondo a mucosa intacta. Cuidado extremo para não perfurar a mucosa.\n9. **Posicionamento do ureter:** O ureter mobilizado é posicionado sobre a mucosa exposta, no leito recém-criado.\n10. **Fechamento do túnel (Reimplante):** As bordas do músculo detrusor são aproximadas sobre o ureter utilizando suturas separadas ou contínuas de fio absorvível (ex: Vicryl 3-0 ou 4-0).\n11. **Verificação de tensão:** Assegurar que o ureter não esteja angulado, torcido ou sob tensão excessiva dentro do novo túnel.\n12. **Teste de integridade:** A bexiga é novamente distendida para verificar se há vazamento pela mucosa (caso tenha ocorrido perfuração inadvertida, esta deve ser suturada com fio absorvível fino).\n13. **Fechamento peritoneal:** O peritônio parietal sobre o ureter e a bexiga é fechado.\n14. **Revisão da hemostasia e retirada:** Redução do pneumoperitônio, revisão da hemostasia, retirada dos trocartes sob visão e fechamento das incisões."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Regra de Paquin:** O sucesso da cirurgia antirrefluxo depende da criação de um túnel submucoso com comprimento adequado (4 a 5 vezes o diâmetro do ureter).\n- **Preservação da mucosa:** A dissecção entre o detrusor e a mucosa deve ser meticulosa. O uso de tesoura fria ou energia bipolar pontual ajuda a evitar perfurações térmicas da mucosa.\n- **Manejo de perfurações:** Se a mucosa for perfurada, deve ser reparada imediatamente com sutura absorvível fina (ex: 5-0) para evitar fístulas ou urinomas.\n- **Prevenção de retenção urinária:** Em reimplantes bilaterais, a dissecção pélvica extensa pode causar neuropraxia do plexo pélvico, levando a retenção urinária transitória. A dissecção deve ser mantida estritamente próxima ao ureter e à bexiga [5]."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Retenção urinária:** Mais comum em procedimentos bilaterais devido à dissecção do plexo nervoso pélvico. Geralmente é transitória e manejada com cateterismo vesical prolongado (alguns dias a semanas) até a recuperação da função miccional [5].\n- **Perfuração da mucosa vesical:** Pode ocorrer durante a detrusorotomia. O manejo consiste no reparo primário intraoperatório com fio absorvível.\n- **Obstrução ureteral:** Pode ser causada por um túnel detrusor muito apertado, angulação do ureter ou edema. O manejo inicial pode requerer derivação com cateter duplo J ou nefrostomia percutânea; casos refratários podem necessitar de reintervenção.\n- **Recidiva do refluxo:** Rara, geralmente associada a um túnel submucoso curto. Pode ser tratada com injeção endoscópica de agentes de preenchimento ou novo reimplante."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O tempo de internação é tipicamente curto (1 a 2 dias). A sonda de Foley é mantida por 24 horas em casos unilaterais e 48 horas em casos bilaterais, ou até que a urina esteja clara. Analgesia com anti-inflamatórios e analgésicos simples é geralmente suficiente, com menor necessidade de opioides em comparação com a cirurgia aberta [5].\nO seguimento inclui ultrassonografia renal e vesical em 1 a 3 meses para descartar hidronefrose obstrutiva. A uretrocistografia miccional (UCM) de controle não é rotineiramente necessária em pacientes assintomáticos, sendo reservada para casos de infecção do trato urinário febril recorrente [1] [5]."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A técnica de Lich-Gregoir laparoscópica e robótica apresenta taxas de sucesso equivalentes à cirurgia aberta tradicional, variando de 95% a 98% para a resolução do refluxo vesicoureteral [1] [5]. As abordagens minimamente invasivas (laparoscópica e robótica) demonstram benefícios significativos em relação à cirurgia aberta, incluindo menor tempo de internação hospitalar, redução da necessidade de analgesia pós-operatória e retorno mais rápido às atividades normais [5]. As diretrizes da EAU e AUA reconhecem o reimplante extravesical como uma opção cirúrgica altamente eficaz, com a ressalva de atenção ao risco de retenção urinária em casos bilaterais [1] [4]."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Radmayr C, et al. EAU Guidelines on Paediatric Urology. European Association of Urology. 2024. (Diretrizes / Nível de evidência 1)\n[2] Esposito C, et al. Robot-Assisted Extravesical Ureteral Reimplantation (REVUR) in Pediatric Patients: A New Standard of Treatment for Patients with VUR-A Narrative Review. Children (Basel). 2024;11(9):1117. (Revisão / Nível de evidência 3)\n[3] Partin AW, et al. Campbell-Walsh-Wein Urology. 13th ed. Elsevier; 2024. (Livro-texto / Nível de evidência 4)\n[4] Peters CA, et al. Management and Screening of Primary Vesicoureteral Reflux in Children. American Urological Association (AUA) Guideline. 2024. (Diretrizes / Nível de evidência 1)\n[5] Bustangi N, et al. Extravesical Ureteral Reimplantation Following Lich-Gregoir Technique for the Correction of Vesico-Ureteral Reflux Retrospective Comparative Study Open vs. Laparoscopy. Front Pediatr. 2018;6:388. (Estudo retrospectivo comparativo / Nível de evidência 3)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento dos trocartes para REVUR",
+        "description": "Diagrama do abdome mostrando a disposição dos trocartes para a cirurgia robótica/laparoscópica (trocarte umbilical para câmera e trocartes de trabalho nos flancos/fossas ilíacas)",
+        "searchTerms": "robotic ureteral reimplantation port placement; laparoscopic Lich-Gregoir port setup"
+      },
+      {
+        "caption": "Dissecção do ureter e preservação nervosa",
+        "description": "Visão laparoscópica do ureter distal sendo dissecado e isolado com uma fita (vessel loop), demonstrando a proximidade com o plexo nervoso pélvico",
+        "searchTerms": "extravesical ureteral dissection robotic; pelvic plexus preservation ureteral reimplantation"
+      },
+      {
+        "caption": "Detrusorotomia e criação do leito submucoso",
+        "description": "Incisão no músculo detrusor (detrusorotomia) expondo a mucosa vesical intacta (abaulada) subjacente, preparando o leito para o ureter",
+        "searchTerms": "Lich-Gregoir detrusorotomy; extravesical ureteral reimplantation mucosal bulge"
+      },
+      {
+        "caption": "Fechamento do túnel detrusor sobre o ureter",
+        "description": "Sutura do músculo detrusor sobre o ureter, criando o mecanismo valvular antirrefluxo, com o ureter repousando sem tensão no novo túnel",
+        "searchTerms": "Lich-Gregoir detrusor closure; extravesical ureteral reimplantation tunnel creation"
+      }
+    ]
+  },
+  {
+    "id": "nefroureterectomia",
+    "name": "Nefroureterectomia Radical videolaparoscópica para tumor urotelial de trato superior",
+    "category": "Oncologia",
+    "icon": "🫘",
+    "evidence": "Diretrizes EAU/AUA 2023 + Campbell-Walsh-Wein 13ª ed. + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A nefroureterectomia radical (NUR) com excisão de manguito vesical é o padrão-ouro para o tratamento curativo do carcinoma urotelial do trato urinário superior (UTUC) de alto risco, independentemente da localização do tumor (pelve renal ou ureter). As indicações clássicas incluem tumores de alto grau, tumores invasivos (estádio cT2 ou superior), tumores multifocais, tumores maiores que 2 cm, e presença de hidronefrose associada ao tumor. Também é indicada para tumores de baixo risco que não são passíveis de tratamento conservador endoscópico (poupança renal) devido a limitações anatômicas ou falha prévia.\n\nAs contraindicações absolutas incluem inaptidão clínica para anestesia geral e pneumoperitônio (ex. insuficiência cardiopulmonar grave), distúrbios de coagulação não corrigidos e doença metastática disseminada (exceto em cenários paliativos ou de consolidação pós-quimioterapia sistêmica com resposta completa). Contraindicações relativas envolvem cirurgias abdominais prévias múltiplas com aderências severas, obesidade mórbida extrema e tumores localmente muito avançados (cT4) com invasão de órgãos adjacentes que exijam ressecção em bloco complexa, onde a via aberta pode ser preferível."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O trato urinário superior compreende a pelve renal e o ureter, estruturas revestidas por urotélio. O ureter possui três porções anatômicas: abdominal, pélvica e intramural. A vascularização do ureter é segmentar, proveniente da artéria renal, artéria gonadal, aorta, artéria ilíaca comum e artéria vesical. A drenagem linfática varia conforme a localização: a pelve renal e o ureter proximal drenam para os linfonodos para-aórticos, paracavais e interaortocavais; o ureter médio drena para os linfonodos ilíacos comuns; e o ureter distal drena para os linfonodos ilíacos externos, internos e obturatórios.\n\nNo pré-operatório, é mandatório o estadiamento completo com urotomografia (TC de abdome e pelve com fases sem contraste, arterial, venosa e excretora) e TC de tórax. A cistoscopia pré-operatória é essencial para descartar tumor vesical concomitante. A ureteroscopia com biópsia e citologia urinária _in situ_ são recomendadas para confirmação diagnóstica e estratificação de risco, exceto quando a imagem é inequivocamente sugestiva de tumor de alto risco e a cirurgia radical já está decidida. A avaliação da função renal global e dividida (cintilografia) é crucial, especialmente se houver indicação de quimioterapia neoadjuvante baseada em platina, que é recomendada pelas diretrizes para tumores de alto risco (cT2-T4 ou cN+)."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O procedimento é realizado sob anestesia geral com intubação orotraqueal. O posicionamento do paciente depende da técnica escolhida para o manejo do ureter distal. Na técnica puramente laparoscópica ou com redocking, o paciente é inicialmente colocado em decúbito lateral modificado (45 a 60 graus) com o lado acometido para cima, coxim subcostal e flexão da mesa para expor o flanco. Para o tempo pélvico (excisão do manguito vesical), o paciente pode precisar ser reposicionado para decúbito dorsal com pernas afastadas (posição de litotomia modificada), a menos que se utilize uma abordagem que permita a cirurgia em posição única.\n\nO instrumental laparoscópico básico inclui:\n- Ótica de 30 graus.\n- Trocateres (dois de 10/12 mm e dois de 5 mm).\n- Pinças de preensão atraumáticas (grasper).\n- Tesoura de dissecção (Metzenbaum) com eletrocautério monopolar.\n- Pinça bipolar avançada ou dispositivo de energia ultrassônica (ex. Harmonic, LigaSure).\n- Clipes de polímero (Hem-o-lok) ou titânio para controle vascular.\n- Grampeador linear cortante endoscópico (Endo GIA) para veia renal e, opcionalmente, para o manguito vesical.\n- Saco extrator de espécime (Endocatch).\n- Fios de sutura farpados (ex. V-Loc, Stratafix) ou poliglactina para fechamento vesical.\n- Sonda vesical de demora (Foley) de três vias."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Acesso e colocação dos trocateres:** Criação do pneumoperitônio (12-15 mmHg) via agulha de Veress ou técnica aberta (Hasson). Inserção do trocarte óptico periumbilical ou pararretal. Colocação de trocateres de trabalho sob visão direta, triangulados em direção ao rim. No lado direito, um trocarte adicional subxifoide pode ser necessário para afastamento do fígado.\n2. **Mobilização do cólon e exposição retroperitoneal:** Incisão da linha de Toldt (reflexão peritoneal lateral) e rebatimento medial do cólon (manobra de Kocher) para expor o retroperitônio, fáscia de Gerota e grandes vasos (veia cava à direita, aorta à esquerda).\n3. **Identificação e isolamento do ureter:** O ureter é identificado precocemente no retroperitônio, cruzando os vasos ilíacos. É dissecado com preservação de tecido periureteral para evitar violação tumoral. **Ponto crítico:** O ureter deve ser clipado precocemente (clipagem distal ao tumor, se possível) para prevenir a migração de células tumorais (seeding) para a bexiga durante a manipulação renal.\n4. **Dissecção do hilo renal:** Dissecção cuidadosa da veia e artéria renais. A artéria renal é isolada, duplamente clipada com Hem-o-lok e seccionada. A veia renal é então isolada e seccionada com grampeador linear endoscópico (Endo GIA) ou clipes de polímero, dependendo do calibre.\n5. **Liberação do rim:** Dissecção do rim fora da fáscia de Gerota (nefrectomia radical), liberando os polos superior, lateral e inferior, preservando a glândula adrenal a menos que haja suspeita de invasão direta ou tumor no polo superior.\n6. **Linfadenectomia regional:** Realização de linfadenectomia estendida baseada em template anatômico, recomendada para tumores de alto risco (cT2+ ou alto grau), removendo linfonodos hilares, paracavais/para-aórticos e interaortocavais, conforme a lateralidade.\n7. **Dissecção do ureter pélvico:** O ureter é dissecado distalmente em direção à pelve, cruzando os vasos ilíacos, até a junção ureterovesical. O ligamento umbilical medial e os vasos deferentes (no homem) ou ligamento largo (na mulher) são cruzados.\n8. **Excisão do manguito vesical:** O manejo do ureter distal e manguito vesical é o passo mais crítico. Pode ser feito por via extravesical laparoscópica. A bexiga é distendida com soro fisiológico. O ureter intramural é dissecado até a mucosa vesical. Um manguito de bexiga ao redor do meato ureteral é excisado em bloco com o ureter.\n9. **Fechamento da bexiga:** A cistotomia é fechada em dois planos com sutura contínua absorvível (ex. fio farpado 3-0 ou Vicryl), garantindo a estanqueidade (testada com instilação de soro).\n10. **Extração do espécime:** O rim, ureter e manguito vesical são colocados em bloco dentro de um saco extrator impermeável (Endocatch) para evitar semeadura tumoral. O espécime é extraído através de uma incisão de Pfannenstiel, Gibson ou ampliação de um portal.\n11. **Revisão da hemostasia e drenagem:** Redução do pneumoperitônio para 5 mmHg para checar hemostasia. Posicionamento de dreno tubular de sucção (ex. Jackson-Pratt) no leito pélvico/vesical e, se necessário, no leito renal.\n12. **Fechamento:** Fechamento da aponeurose nos portais maiores que 10 mm e da incisão de extração. Fechamento da pele."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Clipagem precoce do ureter:** Fundamental para evitar a descamação de células tumorais para o trato urinário inferior durante a manipulação do rim.\n- **Manejo do manguito vesical:** A excisão completa do manguito vesical é obrigatória. O uso de grampeador linear (Endo GIA) na bexiga sem visualização direta do meato ureteral é desencorajado pelas diretrizes devido ao risco de margens positivas, retenção de mucosa ureteral e formação de cálculos nos grampos expostos, embora seja tecnicamente mais fácil. A excisão com energia e sutura intracorpórea é preferível.\n- **Prevenção de semeadura tumoral:** O trato urinário não deve ser aberto em nenhum momento durante a dissecção (exceto na cistotomia controlada). O espécime deve ser extraído estritamente dentro de um saco endoscópico.\n- **Instilação vesical profilática:** A administração de uma dose única de quimioterapia intravesical (ex. mitomicina C ou gencitabina) no pós-operatório imediato (dentro de 24-72 horas) ou no intraoperatório reduz significativamente o risco de recorrência vesical e é fortemente recomendada pelas diretrizes EAU e AUA."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Hemorragia:** Lesão de grandes vasos (cava, aorta, ilíacos) ou vasos hilares. O manejo requer compressão imediata, sutura laparoscópica ou conversão para cirurgia aberta se incontrolável.\n- **Lesão de órgãos adjacentes:** Lesão intestinal (duodeno, cólon), esplênica ou pancreática (à esquerda) ou hepática (à direita). Devem ser reconhecidas e reparadas no intraoperatório.\n- **Fístula urinária:** Vazamento de urina pela cistotomia. Prevenida com fechamento vesical em dois planos e teste de estanqueidade. O manejo conservador com manutenção prolongada da sonda vesical de demora e drenagem adequada geralmente é resolutivo.\n- **Estenose ou lesão do ureter contralateral:** Risco durante a excisão do manguito vesical, especialmente se a dissecção for muito profunda no trígono. A visualização do meato contralateral (às vezes com auxílio de cistoscopia simultânea) é recomendada.\n- **Trombose venosa profunda e embolia pulmonar:** Prevenção com deambulação precoce, meias de compressão pneumática e profilaxia farmacológica (heparina de baixo peso molecular)."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O paciente geralmente recebe alta entre o 2º e 4º dia de pós-operatório. A sonda vesical de demora é mantida por 7 a 10 dias para permitir a cicatrização da cistotomia. O dreno pélvico é removido quando o débito for baixo e a dosagem de creatinina no líquido drenado confirmar a ausência de fístula urinária.\n\nO seguimento oncológico é rigoroso devido ao alto risco de recorrência, especialmente na bexiga (22-47%). O protocolo de vigilância (Diretrizes EAU/AUA) para tumores de alto risco inclui:\n- **Cistoscopia e citologia urinária:** Aos 3 meses, e depois a cada 3-6 meses nos primeiros 2 anos, a cada 6 meses até 5 anos, e anualmente a partir de então.\n- **Urotomografia (TC de abdome e pelve):** Aos 3 e 6 meses, depois anualmente até 5 anos.\n- **TC de tórax:** A cada 6 meses nos primeiros 2 anos, depois anualmente.\n- Avaliação da função renal periodicamente."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A nefroureterectomia radical laparoscópica demonstra resultados oncológicos (sobrevida câncer-específica e sobrevida global) equivalentes à cirurgia aberta para tumores pT1 e pT2, com os benefícios da cirurgia minimamente invasiva: menor perda sanguínea, menor tempo de internação e recuperação mais rápida. Para tumores localmente avançados (pT3/pT4) ou com linfonodos positivos, a via aberta historicamente permitia ressecções mais amplas, mas a via laparoscópica/robótica em mãos experientes tem se mostrado viável.\n\nO nível de evidência para a excisão completa do manguito vesical é alto (Grau de Recomendação Forte, EAU/AUA), pois a preservação do ureter distal está associada a taxas inaceitáveis de recorrência no coto ureteral. A instilação intravesical pós-operatória de quimioterapia tem Nível de Evidência 1 (baseada em ensaios clínicos randomizados como o estudo ODMIT-C) para reduzir a recorrência vesical. A linfadenectomia baseada em template melhora o estadiamento e pode ter benefício terapêutico em tumores de alto risco (Grau de Recomendação Forte)."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Rouprêt M, Babjuk M, Burger M, et al. European Association of Urology Guidelines on Upper Urinary Tract Urothelial Carcinoma: 2023 Update. Eur Urol. 2023;84(1):49-64. (Diretrizes Clínicas / Nível de Evidência 1).\n[2] Coleman JA, Clark PE, Bixler BR, et al. Diagnosis and Management of Non-Metastatic Upper Tract Urothelial Carcinoma: AUA/SUO Guideline. J Urol. 2023;209(6):1071-1081. (Diretrizes Clínicas / Nível de Evidência 1).\n[3] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 13th ed. Philadelphia: Elsevier; 2025. (Tratado de Referência / Nível de Evidência 3).\n[4] Peyronnet B, Seisen T, Dominguez-Escrig JL, et al. Oncological Outcomes of Laparoscopic Nephroureterectomy Versus Open Radical Nephroureterectomy for Upper Tract Urothelial Carcinoma: An European Association of Urology Guidelines Systematic Review. Eur Urol Focus. 2019;5(2):205-223. (Revisão Sistemática / Nível de Evidência 1a).\n[5] O'Brien T, Ray E, Singh R, Coker B, Beard R; British Association of Urological Surgeons Section of Oncology. Prevention of bladder tumours after nephroureterectomy for primary upper urinary tract urothelial carcinoma: a prospective, multicentre, randomised clinical trial of a single postoperative intravesical dose of mitomycin C (the ODMIT-C Trial). Eur Urol. 2011;60(4):703-710. (Ensaio Clínico Randomizado / Nível de Evidência 1b)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Posicionamento e portais na NUR laparoscópica",
+        "description": "Ilustração do paciente em decúbito lateral modificado com a marcação dos locais de inserção dos trocateres (umbilical, flanco, fossa ilíaca) triangulados para o rim",
+        "searchTerms": "laparoscopic nephroureterectomy port placement; patient positioning laparoscopic nephrectomy"
+      },
+      {
+        "caption": "Clipagem precoce do ureter",
+        "description": "Visão laparoscópica do retroperitônio mostrando o ureter isolado e ocluido com um clipe de polímero (Hem-o-lok) distalmente ao tumor, antes da dissecção renal",
+        "searchTerms": "early ureteral clipping nephroureterectomy; laparoscopic ureter isolation hem-o-lok"
+      },
+      {
+        "caption": "Dissecção do hilo renal",
+        "description": "Visão laparoscópica detalhada da veia renal sendo seccionada com um grampeador linear endoscópico (Endo GIA) e a artéria renal já clipada e seccionada posteriormente",
+        "searchTerms": "laparoscopic renal hilum dissection; renal vein stapling nephrectomy"
+      },
+      {
+        "caption": "Excisão do manguito vesical",
+        "description": "Ilustração ou visão laparoscópica pélvica demonstrando a dissecção do ureter intramural e a incisão circular na bexiga ao redor do meato ureteral para remoção em bloco",
+        "searchTerms": "bladder cuff excision nephroureterectomy; extravesical bladder cuff resection"
+      },
+      {
+        "caption": "Fechamento da cistotomia",
+        "description": "Visão laparoscópica do fechamento do defeito vesical (cistotomia) utilizando fio farpado em sutura contínua, garantindo o fechamento em dois planos",
+        "searchTerms": "laparoscopic bladder closure; cystotomy repair barbed suture"
+      }
+    ]
+  },
+  {
+    "id": "uretrotomia-interna",
+    "name": "Uretrotomia Interna (técnica de Sachse) para estenose de uretra",
+    "category": "Funcional",
+    "icon": "🔪",
+    "evidence": "Diretrizes EAU/AUA + Campbell-Walsh-Wein 13ª ed. + Estudos de Coorte",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "**Indicações:**\n- Estenoses de uretra anterior (especialmente bulbar) curtas, tipicamente menores que 1 a 1,5 cm de extensão.\n- Estenoses primárias (primeiro tratamento) sem espongiofibrose densa ou extensa.\n- Pacientes com comorbidades severas que contraindicam procedimentos cirúrgicos mais longos e complexos (uretroplastia).\n\n**Contraindicações:**\n- Estenoses longas (maiores que 1,5 a 2 cm).\n- Estenoses recorrentes (após 1 ou 2 tentativas prévias de uretrotomia interna ou dilatação).\n- Estenoses de uretra peniana (alto risco de recorrência e formação de fístula).\n- Presença de espongiofibrose densa e profunda à palpação ou ultrassonografia.\n- Infecção do trato urinário (ITU) ativa não tratada.\n- Distúrbios de coagulação não corrigidos.\n- Estenoses obliterativas completas sem luz residual."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\nA uretra masculina é dividida em anterior (fossa navicular, peniana e bulbar) e posterior (membranosa e prostática). A uretra anterior é envolvida pelo corpo esponjoso. Na uretra bulbar, o corpo esponjoso é significativamente mais espesso na sua porção ventral e mais fino na porção dorsal (às 12 horas). Por esta razão, a incisão da uretrotomia deve ser direcionada às 12 horas para minimizar o risco de sangramento profuso e extravasamento de irrigação, evitando a rica vascularização ventral.\n\n**Considerações pré-operatórias:**\n- **Imagem:** A uretrocistografia retrógrada e miccional (UCRM) é o padrão-ouro para avaliar a localização, extensão e multiplicidade das estenoses. A ultrassonografia uretral pode ser usada para avaliar o grau de espongiofibrose.\n- **Avaliação funcional:** Urofluxometria e medida de resíduo pós-miccional (RPM) para estabelecer parâmetros basais.\n- **Laboratório:** Urocultura obrigatória; tratar qualquer infecção antes do procedimento.\n- **Profilaxia:** Antibioticoprofilaxia conforme as diretrizes locais (ex.: cefalosporina de 1ª ou 2ª geração, ou fluoroquinolona) administrada antes da indução anestésica."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Posicionamento:**\n- Posição de litotomia (ginecológica) padrão, com as pernas apoiadas em perneiras, garantindo que não haja compressão de nervos periféricos (ex.: nervo fibular).\n\n**Anestesia:**\n- Pode ser realizada sob raquianestesia, anestesia geral ou, em casos selecionados e pacientes cooperativos, anestesia local (bloqueio uretral com gel de lidocaína) associada à sedação.\n\n**Instrumental:**\n- Uretrótomo de Sachse (geralmente 20 ou 21 Fr).\n- Óptica de 0º ou 30º.\n- Lâmina fria (faca de Sachse) reta ou em formato de meia-lua.\n- Fio guia hidrofílico (0.035\" ou 0.038\") com ponta flexível.\n- Sistema de irrigação com soro fisiológico (0,9%).\n- Sonda vesical de Foley de silicone (16 ou 18 Fr)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. Posicionamento do paciente em litotomia e realização de assepsia e antissepsia rigorosa da genitália e períneo.\n2. Colocação de campos cirúrgicos estéreis.\n3. Instilação de 10 a 20 mL de gel lubrificante (com ou sem anestésico local) na uretra, mantendo o meato ocluído por alguns minutos para distensão e lubrificação adequadas.\n4. Introdução cuidadosa do uretrótomo de Sachse, sob visão direta e irrigação contínua, através do meato uretral até o nível da estenose.\n5. Identificação precisa do orifício estenótico e avaliação da luz uretral remanescente.\n6. Passagem de um fio guia hidrofílico através do orifício da estenose, avançando-o até o interior da bexiga. Este passo é fundamental para garantir o trajeto correto e evitar a criação de falsos trajetos.\n7. Posicionamento da lâmina fria do uretrótomo na posição de 12 horas (dorsal).\n8. Realização da incisão avançando a lâmina fria sob visão direta, cortando o anel fibrótico longitudinalmente às 12 horas.\n9. Aprofundamento progressivo da incisão até que o tecido cicatricial esbranquiçado seja completamente seccionado e o tecido esponjoso sadio (rosado e vascularizado) seja visualizado.\n10. Avanço do uretrótomo através da área incisada, utilizando o fio guia como trilho, para confirmar a abertura adequada da luz uretral (o instrumento deve passar sem resistência).\n11. Inspeção da uretra proximal, esfíncter e bexiga para descartar outras patologias e confirmar a hemostasia.\n12. Retirada do uretrótomo mantendo o fio guia in situ.\n13. Passagem de uma sonda vesical de Foley (16 ou 18 Fr) de silicone sobre o fio guia (usando sonda com ponta perfurada) ou diretamente.\n14. Insuflação do balão da sonda com 10 mL de água destilada e conexão a um sistema de drenagem fechado."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Incisão dorsal:** A incisão estritamente às 12 horas é o princípio anatômico mais importante para evitar hemorragias severas.\n- **Uso do fio guia:** Nunca force a passagem do uretrótomo ou corte às cegas. O fio guia é a sua \"bússola\" de segurança.\n- **Evite múltiplas incisões:** Incisões radiais múltiplas (ex.: 3, 9 e 12 horas) aumentam a isquemia local e o risco de reestenose severa. Limite-se à incisão às 12 horas.\n- **Profundidade do corte:** O corte deve ser profundo o suficiente para liberar a fibrose, mas não tão profundo a ponto de perfurar a túnica albugínea do corpo esponjoso, o que causaria extravasamento de irrigação.\n- **Seleção de pacientes:** O sucesso depende criticamente da seleção. Não insista em DVIU para estenoses longas; encaminhe para uretroplastia."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Sangramento/Hematúria:** Geralmente leve e autolimitado. Manejo com tração suave da sonda vesical e, se necessário, irrigação vesical contínua.\n- **Falso trajeto:** Ocorre por desvio da luz verdadeira. Prevenido pelo uso do fio guia. Se ocorrer, abortar o corte, garantir a sondagem vesical e programar uretroplastia futura.\n- **Extravasamento de fluido:** Pode causar edema peniano/escrotal. Manejo conservador na maioria dos casos; resolve-se com a absorção do soro.\n- **Infecção do trato urinário / Sepse:** Tratamento com antibioticoterapia de amplo espectro guiada por cultura.\n- **Incontinência urinária:** Extremamente rara, ocorre apenas se a incisão se estender inadvertidamente para o esfíncter estriado distal.\n- **Disfunção erétil:** Rara e tipicamente transitória, relacionada ao edema ou extravasamento no corpo esponjoso.\n- **Recorrência da estenose:** A complicação mais frequente a longo prazo. O manejo padrão para falha da DVIU é a uretroplastia, desencorajando-se uretrotomias de repetição."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Tempo de sondagem:** A sonda de Foley é mantida tipicamente por 2 a 5 dias, dependendo da extensão da incisão e do sangramento intraoperatório.\n- **Alta hospitalar:** O procedimento é frequentemente realizado em regime ambulatorial (day clinic) ou com 1 dia de internação.\n- **Seguimento:**\n  - Retorno para retirada da sonda.\n  - Avaliação com urofluxometria e resíduo pós-miccional (RPM) em 3 a 4 meses.\n  - Seguimento anual com urofluxometria e questionários de sintomas (ex.: IPSS).\n  - UCRM ou uretroscopia flexível são indicadas apenas se houver queda no fluxo máximo (Qmax < 15 mL/s) ou retorno dos sintomas obstrutivos."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "- **Taxa de sucesso:** Varia de 50% a 70% para estenoses bulbares curtas (< 1 a 1,5 cm) e primárias.\n- **Estenoses longas e recorrentes:** A taxa de sucesso cai drasticamente para menos de 20% em estenoses maiores que 2 cm ou após a primeira falha de DVIU.\n- **Diretrizes (EAU e AUA):** Ambas as diretrizes recomendam a DVIU ou dilatação como opção de primeira linha apenas para estenoses bulbares curtas (< 2 cm). Recomendam **fortemente contra** a realização de uma terceira DVIU, e sugerem que mesmo a segunda tentativa tem benefício marginal, preferindo-se a uretroplastia após a primeira falha.\n- **Nível de evidência:** As recomendações são baseadas em revisões sistemáticas e estudos de coorte de longo prazo (Nível de Evidência 1 e 2, Grau de Recomendação Forte)."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Wessells H, Angermeier KW, Elliott S, et al. Male Urethral Stricture: American Urological Association (AUA) Guideline. J Urol. 2017;197(1):182-190. (Diretriz / Nível de evidência 1)\n[2] Lumen N, Campos-Juanatey F, Greenwell T, et al. European Association of Urology Guidelines on Urethral Stricture Disease (Part 1): Management of Male Urethral Stricture Disease. Eur Urol. 2021;80(2):190-200. (Diretriz / Nível de evidência 1)\n[3] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 13th ed. Philadelphia: Elsevier; 2024. (Livro-texto / Nível de evidência 3)\n[4] Steenkamp JW, Heyns CF, de Kock ML. Internal urethrotomy versus dilation as treatment for male urethral strictures: a prospective, randomized comparison. J Urol. 1997;157(1):98-101. (Ensaio Clínico Randomizado / Nível de evidência 1)\n[5] Pansadoro V, Emiliozzi P. Internal urethrotomy in the management of anterior urethral strictures: long-term followup. J Urol. 1996;156(1):73-75. (Estudo de Coorte / Nível de evidência 2)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia da uretra masculina e zonas de estenose",
+        "description": "Ilustração sagital da pelve masculina destacando a uretra bulbar, peniana e o corpo esponjoso, com ênfase na espessura do tecido esponjoso ventral em comparação ao dorsal",
+        "searchTerms": "male urethral anatomy sagittal; bulbar urethra corpus spongiosum"
+      },
+      {
+        "caption": "Uretrótomo de Sachse e lâmina fria",
+        "description": "Fotografia ou ilustração do uretrótomo montado com a óptica e a lâmina fria estendida, detalhando a ponta do instrumento e o mecanismo de corte",
+        "searchTerms": "Sachse urethrotome; cold knife urethrotomy instrument"
+      },
+      {
+        "caption": "Visão endoscópica da estenose com fio guia",
+        "description": "Imagem endoscópica mostrando uma estenose de uretra bulbar com um fio guia hidrofílico passando pelo orifício puntiforme, servindo como guia de segurança",
+        "searchTerms": "endoscopic view urethral stricture guidewire; DVIU guidewire"
+      },
+      {
+        "caption": "Incisão às 12 horas",
+        "description": "Visão endoscópica no momento da incisão da estenose com a lâmina fria posicionada exatamente às 12 horas, cortando o anel fibrótico longitudinalmente",
+        "searchTerms": "internal urethrotomy 12 o'clock incision; Sachse cold knife cutting stricture"
+      }
+    ]
+  },
+  {
+    "id": "bipolep",
+    "name": "Enucleação Bipolar da Próstata (BipoLEP) para HPB",
+    "category": "Próstata",
+    "icon": "⚡",
+    "evidence": "Diretrizes EAU 2024 + Campbell-Walsh-Wein 13ª ed. + Ensaios Clínicos Randomizados",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A Enucleação Bipolar da Próstata (BipoLEP) é indicada para o tratamento cirúrgico de pacientes com sintomas do trato urinário inferior (LUTS) moderados a graves secundários à hiperplasia prostática benigna (HPB). Segundo as diretrizes da European Association of Urology (EAU) e da American Urological Association (AUA), a enucleação endoscópica da próstata (EEP), incluindo a BipoLEP, é recomendada como tratamento de escolha para próstatas de grande volume (geralmente > 80 mL), oferecendo resultados comparáveis à cirurgia aberta (prostatectomia simples), mas com menor morbidade. Também é uma excelente opção para pacientes em retenção urinária refratária. As contraindicações incluem infecção ativa do trato urinário, distúrbios de coagulação não corrigidos (embora a BipoLEP seja mais segura que a RTU-P clássica em pacientes anticoagulados devido à melhor hemostasia), câncer de próstata avançado não tratado e estenose uretral severa que impeça a passagem do ressectoscópio."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O sucesso da BipoLEP depende do reconhecimento preciso dos marcos anatômicos, especialmente o verumontanum, o esfíncter estriado da uretra, o colo vesical e a cápsula prostática (plano cirúrgico). A identificação do plano avascular entre o adenoma e a cápsula cirúrgica é fundamental para uma enucleação completa e segura. No pré-operatório, a avaliação deve incluir a história clínica detalhada, o International Prostate Symptom Score (IPSS), toque retal, dosagem de PSA, urofluxometria e ultrassonografia para estimar o volume prostático e o resíduo pós-miccional. Em casos de próstatas muito volumosas ou suspeita de lobo mediano proeminente, a cistoscopia prévia ou ressonância magnética podem auxiliar no planejamento cirúrgico. A suspensão ou ajuste de terapias anticoagulantes/antiagregantes deve ser individualizada, embora a energia bipolar ofereça uma margem de segurança superior."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O paciente é posicionado em litotomia dorsal (posição ginecológica) com as pernas adequadamente acolchoadas para evitar lesões nervosas. O procedimento pode ser realizado sob raquianestesia ou anestesia geral, dependendo das comorbidades do paciente e da preferência do anestesiologista. \nO instrumental essencial inclui:\n- Gerador de energia bipolar com configurações específicas para corte e coagulação.\n- Ressectoscópio de fluxo contínuo (geralmente 26 Fr) com elemento de trabalho de dupla ação.\n- Alças bipolares específicas para enucleação (ex: alça em formato de cogumelo, botão ou alça grossa modificada) que permitem dissecção mecânica e hemostasia simultânea.\n- Solução de irrigação salina (cloreto de sódio 0,9%), que elimina o risco de síndrome da RTU (intoxicação hídrica e hiponatremia).\n- Morcelador de tecidos e nefroscópio (geralmente com canal de trabalho amplo) para a extração do adenoma enucleado do interior da bexiga."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Cistoscopia inicial:** Inspeção da uretra, verumontanum, lobos prostáticos e bexiga para descartar patologias concomitantes (ex: litíase vesical) e avaliar a anatomia.\n2. **Incisão do colo vesical:** Realização de incisões circulares ou bilaterais no colo vesical (às 5 e 7 horas) até a cápsula prostática, delimitando o lobo mediano.\n3. **Incisão apical:** Incisão circunferencial da mucosa uretral proximal ao verumontanum, preservando o esfíncter estriado.\n4. **Identificação do plano capsular:** Aprofundamento das incisões apicais até encontrar o plano avascular entre o adenoma e a cápsula cirúrgica.\n5. **Enucleação do lobo mediano:** Dissecção retrógrada do lobo mediano, desde o ápice em direção ao colo vesical, utilizando a alça bipolar para dissecção mecânica e coagulação dos vasos perfurantes.\n6. **Liberação do lobo mediano:** O lobo mediano é completamente desprendido e empurrado para o interior da bexiga.\n7. **Enucleação dos lobos laterais:** A incisão apical é estendida lateralmente e superiormente (às 12 horas). O plano capsular é desenvolvido lateralmente.\n8. **Dissecção lateral e anterior:** Os lobos laterais são dissecados da cápsula, progredindo do ápice para a base e de lateral para anterior.\n9. **Liberação apical dos lobos laterais:** Cuidado extremo na dissecção apical (próximo ao esfíncter) para evitar incontinência. A mucosa apical é seccionada com precisão.\n10. **Desprendimento final:** Os lobos laterais são completamente separados do colo vesical e empurrados para a bexiga. Em algumas técnicas, a enucleação pode ser feita em bloco (en-bloc).\n11. **Revisão da loja prostática e hemostasia:** Inspeção minuciosa da cápsula prostática vazia. Coagulação pontual de qualquer vaso sangrante utilizando a alça bipolar.\n12. **Troca de instrumental:** Retirada do ressectoscópio e introdução do nefroscópio com o morcelador.\n13. **Morcelação:** O tecido adenomatoso livre na bexiga é aspirado e fragmentado pelo morcelador sob visão direta contínua, mantendo a bexiga distendida para evitar lesão da parede vesical.\n14. **Extração dos fragmentos:** Todo o tecido morcelado é coletado para análise histopatológica.\n15. **Revisão final:** Nova inspeção da loja prostática e da bexiga para garantir hemostasia perfeita e ausência de fragmentos residuais.\n16. **Sondagem:** Inserção de sonda vesical de demora de três vias (geralmente 20-22 Fr) com irrigação contínua."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Tração e contra-tração:** A chave para uma enucleação eficiente é usar o bico do ressectoscópio para afastar o adenoma da cápsula (dissecção mecânica), utilizando a energia bipolar apenas para cortar as aderências fibrosas e coagular vasos.\n- **Preservação esfincteriana:** A incisão apical deve ser feita estritamente proximal ao verumontanum. A liberação precoce da mucosa apical reduz a tração sobre o esfíncter durante a enucleação dos lobos laterais.\n- **Hemostasia proativa:** Coagular os vasos perfurantes assim que são visualizados no plano capsular mantém o campo visual limpo, facilitando a identificação do plano correto.\n- **Morcelação segura:** Nunca acionar o morcelador sem visualização clara da ponta da lâmina e do tecido a ser morcelado. Manter a bexiga sempre cheia para afastar a mucosa vesical."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Sangramento intraoperatório:** Manejado com coagulação bipolar precisa. Se a visão for obscurecida, aumentar o fluxo de irrigação e localizar a fonte de sangramento sistematicamente.\n- **Incontinência urinária transitória (Incontinência de estresse):** Ocorre em uma minoria de pacientes devido ao estiramento do esfíncter ou dissecção apical agressiva. Geralmente resolve-se em 3 a 6 meses com fisioterapia pélvica (exercícios de Kegel).\n- **Ejaculação retrógrada:** Complicação esperada e muito comum (>80% dos casos) devido à ressecção do colo vesical. O paciente deve ser amplamente aconselhado no pré-operatório.\n- **Estenose de uretra ou esclerose de colo vesical:** Complicações tardias raras. Prevenidas com o uso de instrumental de calibre adequado, lubrificação abundante e dissecção cuidadosa do colo. Tratadas com dilatação ou uretrotomia/incisão endoscópica.\n- **Lesão vesical durante a morcelação:** Rara, mas grave. Requer reparo cirúrgico (frequentemente aberto ou laparoscópico) e drenagem prolongada."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O tempo de internação é tipicamente curto (1 a 2 dias). A irrigação contínua é mantida até que o efluente esteja claro. A sonda vesical é geralmente removida no primeiro ou segundo dia de pós-operatório, seguido de um teste de micção espontânea. O paciente recebe alta com orientações para hidratação abundante e restrição de esforços físicos intensos por 2 a 4 semanas. O seguimento ambulatorial inclui avaliação do IPSS, urofluxometria e resíduo pós-miccional em 1, 3 e 6 meses, além da revisão do laudo anatomopatológico do tecido morcelado."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "A BipoLEP demonstra eficácia equivalente à Holmium Laser Enucleation of the Prostate (HoLEP) e superior à Ressecção Transuretral da Próstata (RTU-P) clássica, especialmente em próstatas volumosas (>80 mL). Estudos randomizados e meta-análises confirmam que a BipoLEP proporciona melhorias significativas e duradouras no IPSS e na taxa de fluxo máximo (Qmax), com menor tempo de cateterização, menor tempo de internação e redução drástica no risco de sangramento e transfusão sanguínea em comparação com a RTU-P e a cirurgia aberta. A curva de aprendizado da BipoLEP é considerada íngreme, semelhante à HoLEP, exigindo treinamento estruturado, mas apresenta a vantagem de utilizar equipamentos frequentemente já disponíveis nos centros cirúrgicos (geradores bipolares), reduzindo os custos iniciais de implementação."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Ryang SH, et al. Bipolar enucleation of the prostate-step by step. Andrologia. 2020;52(8):e13631. (Revisão de Técnica Cirúrgica / Nível de Evidência 3).\n[2] Mostafa MM, et al. Bipolar resection versus enucleation of the prostate in management of benign prostatic hyperplasia patients with large-sized prostates: A prospective randomized controlled clinical trial. BMC Urol. 2026;26:1. (Ensaio Clínico Randomizado / Nível de Evidência 1b).\n[3] EAU Guidelines Office. EAU Guidelines on the Management of Non-neurogenic Male LUTS. European Association of Urology. 2024;1(1):1-100. (Diretrizes Clínicas / Nível de Evidência 1a).\n[4] Partin AW, et al. Campbell-Walsh-Wein Urology. Elsevier. 2025;13(1):1-100. (Tratado de Referência / Nível de Evidência 4).\n[5] Autorino R, et al. Four-year outcome of a prospective randomised trial comparing bipolar plasmakinetic and monopolar transurethral resection of the prostate. Eur Urol. 2009;55(4):922-929. (Ensaio Clínico Randomizado / Nível de Evidência 1b)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia endoscópica inicial e marcos cirúrgicos",
+        "description": "Visão cistoscópica do verumontanum, lobos laterais e lobo mediano obstruindo a uretra prostática, com marcação das linhas de incisão propostas",
+        "searchTerms": "BipoLEP endoscopic landmarks; prostate enucleation verumontanum"
+      },
+      {
+        "caption": "Incisão apical e identificação do plano capsular",
+        "description": "A alça bipolar realizando a incisão da mucosa uretral proximal ao verumontanum e a exposição das fibras circulares da cápsula prostática (plano avascular)",
+        "searchTerms": "BipoLEP apical incision; prostate surgical capsule endoscopic view"
+      },
+      {
+        "caption": "Dissecção mecânica e hemostasia",
+        "description": "O uso do bico do ressectoscópio para afastar o adenoma da cápsula, com a alça bipolar coagulando um vaso perfurante no plano capsular",
+        "searchTerms": "Bipolar enucleation mechanical dissection; BipoLEP hemostasis capsule"
+      },
+      {
+        "caption": "Morcelação do adenoma na bexiga",
+        "description": "Visão nefroscópica do morcelador aspirando e fragmentando o tecido prostático no interior da bexiga distendida",
+        "searchTerms": "Prostate tissue morcellation; endoscopic prostate morcellator"
+      }
+    ]
+  },
+  {
+    "id": "holep",
+    "name": "Enucleação da Próstata a Laser de Hólmio (HoLEP) para HPB",
+    "category": "Próstata",
+    "icon": "💠",
+    "evidence": "Diretrizes EAU/AUA 2024 + Campbell-Walsh-Wein 13ª ed. + Revisões Sistemáticas/Meta-análises",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A Enucleação da Próstata a Laser de Hólmio (HoLEP) consolidou-se como uma das principais modalidades de tratamento cirúrgico para a Hiperplasia Prostática Benigna (HPB), sendo considerada uma alternativa tamanho-independente à Ressecção Transuretral da Próstata (RTU-P) e à prostatectomia aberta.\n\n**Indicações:**\n- Pacientes com sintomas do trato urinário inferior (LUTS) moderados a graves secundários à HPB refratários ao tratamento clínico.\n- Próstatas de qualquer volume, sendo particularmente recomendada (Grau de Recomendação Forte pelas diretrizes da EAU e AUA) para próstatas de grande volume (> 80 mL), substituindo a prostatectomia aberta.\n- Pacientes com retenção urinária refratária, infecções urinárias de repetição, hematúria macroscópica recorrente de origem prostática, cálculos vesicais secundários à obstrução ou insuficiência renal pós-renal.\n- Pacientes em uso de terapia anticoagulante ou antiagregante plaquetário, devido ao excelente perfil hemostático do laser de hólmio.\n\n**Contraindicações:**\n- *Absolutas:* Infecção do trato urinário ativa não tratada, câncer de próstata avançado com invasão do esfíncter (quando a preservação esfincteriana for impossível), e incapacidade de posicionamento em litotomia.\n- *Relativas:* Estenose de uretra severa ou pênis de dimensões muito reduzidas que impeçam a passagem do ressectoscópio (26 Fr), bexiga neurogênica sem contratilidade (onde a desobstrução pode não resultar em melhora miccional), e distúrbios de coagulação não compensados (embora o HoLEP seja mais seguro que a RTU-P nestes casos)."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "**Anatomia:**\nO sucesso do HoLEP depende do reconhecimento preciso dos planos anatômicos. A próstata é composta por zonas glandulares (transição, central e periférica). A HPB desenvolve-se primariamente na zona de transição. O objetivo do HoLEP é dissecar o adenoma (zona de transição hiperplásica) da cápsula cirúrgica (composta pela zona periférica comprimida).\n- *Cápsula cirúrgica:* Plano avascular de coloração esbranquiçada com fibras circulares visíveis.\n- *Esfíncter estriado:* Localizado distalmente ao verumontanum. A preservação da mucosa apical e do esfíncter é crucial para evitar incontinência.\n- *Óstios ureterais:* Devem ser identificados antes do início da enucleação, especialmente em casos de lobo mediano proeminente.\n\n**Considerações pré-operatórias:**\n- Avaliação padrão com ultrassonografia do trato urinário (para estimar o volume prostático e avaliar resíduo pós-miccional), urofluxometria e dosagem de PSA.\n- Em próstatas muito volumosas ou suspeita de lobo mediano intravesical, a cistoscopia prévia pode auxiliar no planejamento.\n- Avaliação do risco cardiovascular e ajuste de anticoagulantes, embora o HoLEP possa ser realizado em pacientes anticoagulados com segurança superior à RTU-P.\n- Exame de urina e urocultura obrigatórios; profilaxia antibiótica conforme diretrizes locais."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "**Posicionamento e Anestesia:**\n- *Posição:* Litotomia padrão com as pernas adequadamente apoiadas em perneiras (tipo Allen) para evitar lesões nervosas, permitindo livre movimentação do ressectoscópio.\n- *Anestesia:* Raquianestesia ou anestesia geral, dependendo das comorbidades do paciente e preferência do anestesista.\n\n**Instrumental:**\n- *Gerador de Laser:* Laser de Hólmio:YAG (Ho:YAG) de alta potência (geralmente 100-120W). Parâmetros típicos: energia de 2.0 J e frequência de 40-50 Hz (80-100W) para enucleação, e 1.0-1.5 J a 40 Hz para hemostasia.\n- *Fibra de Laser:* Fibra de disparo frontal (end-firing) de 550 µm, reutilizável ou descartável.\n- *Endoscópio:* Ressectoscópio de fluxo contínuo de 26 Fr com elemento de trabalho específico para laser (que permite a passagem e estabilização da fibra). Ótica de 30 graus.\n- *Morcelador:* Sistema de morcelação mecânica de tecidos (ex: Piranha, VersaCut) com lâminas descartáveis ou reutilizáveis.\n- *Nefroscópio:* Utilizado por alguns cirurgiões para a fase de morcelação, oferecendo melhor fluxo e visualização.\n- *Irrigação:* Soro fisiológico 0,9% em temperatura ambiente ou levemente aquecido."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "A técnica clássica de três lobos (Gilling) é a mais descrita, embora técnicas em bloco (en-bloc) venham ganhando popularidade. Abaixo, a técnica clássica de três lobos:\n\n1. **Cistoscopia inicial:** Inspeção da uretra, verumontanum, lobos prostáticos, colo vesical e identificação dos óstios ureterais.\n2. **Incisões cervicais (Marcação):** Realização de duas incisões longitudinais profundas às 5 e 7 horas, estendendo-se do colo vesical até as margens laterais do verumontanum, aprofundando até visualizar as fibras circulares da cápsula cirúrgica.\n3. **Enucleação do lobo mediano:** Conexão das incisões das 5 e 7 horas proximalmente ao verumontanum. O lobo mediano é dissecado da cápsula em direção ao colo vesical, retrogradamente, e empurrado para o interior da bexiga.\n4. **Incisão apical esquerda:** Incisão na mucosa apical do lobo esquerdo, iniciando às 5 horas e contornando o ápice até as 12 horas, preservando o esfíncter.\n5. **Enucleação do lobo lateral esquerdo:** Desenvolvimento do plano capsular a partir da incisão apical. A dissecção progride lateralmente e superiormente em direção ao colo vesical.\n6. **Liberação anterior (12 horas):** Incisão na comissura anterior (12 horas) do colo vesical até o ápice, conectando com o plano de dissecção lateral, liberando completamente o lobo esquerdo, que é empurrado para a bexiga.\n7. **Enucleação do lobo lateral direito:** Repetição dos passos 4 a 6 para o lobo direito, iniciando a incisão apical às 7 horas e progredindo até as 12 horas.\n8. **Revisão da hemostasia:** Inspeção cuidadosa da loja prostática. Vasos sangrantes são coagulados afastando a fibra do tecido (defocusing) ou reduzindo a energia.\n9. **Troca de instrumental:** Retirada do elemento de trabalho do laser e introdução do nefroscópio ou ótica reta com o morcelador.\n10. **Morcelação:** Com a bexiga distendida, os lobos enucleados são capturados e morcelados. A ponta do morcelador deve estar sempre visível e no centro da bexiga para evitar lesão da mucosa vesical.\n11. **Inspeção final:** Verificação de fragmentos residuais, revisão final da hemostasia na loja prostática e colo vesical.\n12. **Sondagem:** Passagem de sonda vesical de demora de três vias (20 ou 22 Fr) com irrigação contínua, se necessário."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Identificação do plano correto:** A cápsula cirúrgica tem um aspecto característico de fibras transversais/circulares esbranquiçadas. Se o tecido parecer nodular ou fofo, o plano está muito superficial (dentro do adenoma). Se houver visualização de gordura periprostática ou seios venosos calibrosos, o plano está muito profundo (perfuração capsular).\n- **Uso da energia mecânica:** O HoLEP não é apenas ablação a laser. A ponta do endoscópio é usada ativamente para dissecar e afastar o adenoma da cápsula (dissecção mecânica), usando o laser primariamente para cortar as fibras de fixação e coagular vasos.\n- **Preservação esfincteriana:** A liberação apical precoce (early apical release) é crucial. As incisões devem ser feitas rente ao adenoma, preservando a mucosa ao redor do verumontanum e do esfíncter estriado.\n- **Segurança na morcelação:** A morcelação é a fase com maior risco de complicações graves (lesão vesical). Mantenha a bexiga sempre cheia, a ponta do morcelador no centro da visão e evite morcelar quando a visibilidade estiver comprometida por sangramento."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "- **Incontinência urinária de esforço transitória:** Ocorre em 5-15% dos pacientes, geralmente secundária ao estiramento do esfíncter pelo ressectoscópio calibroso ou dissecção apical extensa. Manejo: Fisioterapia pélvica (exercícios de Kegel). Resolve-se na grande maioria dos casos em 3 a 6 meses. Incontinência permanente é rara (< 1%).\n- **Sangramento e transfusão:** O risco de sangramento significativo é muito baixo (< 2%). Em caso de sangramento pós-operatório, aumentar a irrigação contínua e aplicar tração na sonda. Transfusão sanguínea é raramente necessária.\n- **Lesão vesical durante a morcelação:** Pode ocorrer se a mucosa for sugada pelo morcelador. Manejo: Se superficial, tratamento conservador com sondagem prolongada. Se perfuração profunda ou intraperitoneal, pode requerer exploração cirúrgica e rafia.\n- **Estenose de uretra e esclerose de colo vesical:** Incidência de 1-3%. A estenose de uretra está associada ao calibre do instrumental e tempo cirúrgico. A esclerose de colo é mais comum em próstatas pequenas. Manejo: Uretrotomia interna ou incisão do colo vesical.\n- **Perfuração capsular:** Geralmente sem consequências clínicas se pequena. Pode causar extravasamento de fluido. Manejo: Coagulação cuidadosa, finalização rápida do procedimento e sondagem."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "- **Pós-operatório imediato:** Irrigação vesical contínua é mantida apenas se houver hematúria significativa. A sonda vesical é tipicamente removida no dia seguinte à cirurgia (tempo de sondagem de 12-24 horas).\n- **Alta hospitalar:** A maioria dos pacientes recebe alta em 24 horas após a remoção da sonda e micção espontânea satisfatória.\n- **Orientações na alta:** Ingestão hídrica adequada, evitar esforços físicos intensos, constipação e atividade sexual por 3 a 4 semanas. É comum a presença de disúria leve, urgência miccional e hematúria intermitente nas primeiras semanas.\n- **Seguimento:** Retorno em 1 mês para avaliação de sintomas (IPSS), urofluxometria e resíduo pós-miccional. Reavaliações aos 3, 6 e 12 meses. O PSA deve cair significativamente (geralmente > 80% de redução) devido à remoção quase completa do adenoma."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "O HoLEP possui um corpo de evidências robusto, com mais de 20 anos de acompanhamento.\n- **Eficácia:** Meta-análises demonstram que o HoLEP é equivalente ou superior à RTU-P e à prostatectomia aberta na melhora do IPSS, Qmax (pico de fluxo urinário) e redução do resíduo pós-miccional.\n- **Durabilidade:** Os resultados são extremamente duráveis. Estudos com mais de 10 anos de seguimento mostram taxas de retratamento por recidiva do adenoma inferiores a 1-2%, significativamente menores que as da RTU-P.\n- **Segurança:** Comparado à RTU-P, o HoLEP apresenta menor tempo de cateterização, menor tempo de internação hospitalar, menor perda sanguínea e ausência de risco de síndrome de ressecção transuretral (uso de soro fisiológico).\n- **Diretrizes:** As diretrizes da European Association of Urology (EAU) e da American Urological Association (AUA) recomendam o HoLEP como tratamento de primeira linha para próstatas > 80 mL e como uma opção altamente eficaz para próstatas de qualquer tamanho."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Gilling PJ, Kennett K, Das AK, Knapp D, Fraundorfer EB. Holmium laser enucleation of the prostate (HoLEP) combined with transurethral tissue morcellation: an update on the early clinical experience. J Endourol. 1998;12(5):457-9. (Série de casos / Nível de evidência 3).\n2. Sun F, Yao H, Bao X, Wang X, Wang D, et al. The efficacy and safety of HoLEP for benign prostatic hyperplasia with large volume: a systematic review and meta-analysis. Am J Mens Health. 2022;16(4):15579883221113203. (Revisão Sistemática e Meta-análise / Nível de evidência 1a).\n3. Cornu JN, Ahyai S, Bachmann A, de la Rosette J, Gilling P, Gratzke C, et al. A Systematic Review and Meta-analysis of Functional Outcomes and Complications Following Transurethral Procedures for Lower Urinary Tract Symptoms Resulting from Benign Prostatic Obstruction: An Update. Eur Urol. 2015;67(6):1066-1096. (Revisão Sistemática e Meta-análise / Nível de evidência 1a).\n4. EAU Guidelines. Edn. presented at the EAU Annual Congress Paris 2024. ISBN 978-94-92671-23-3. Management of Non-neurogenic Male LUTS. (Diretrizes Clínicas / Nível de evidência 1).\n5. Sandhu JS, Breyer B, Comiter C, et al. Surgical Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline Amendment 2023. J Urol. 2024;211(1):14-22. (Diretrizes Clínicas / Nível de evidência 1).\n6. Partin AW, Dmochowski RR, Kavoussi LR, Peters CA, Wein AJ. Campbell-Walsh-Wein Urology. 13th ed. Philadelphia: Elsevier; 2024. (Livro-texto / Nível de evidência 4)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia zonal da próstata e o plano de enucleação",
+        "description": "Ilustração transversal da próstata demonstrando a zona de transição hiperplásica (adenoma) sendo separada da zona periférica comprimida (cápsula cirúrgica), destacando o plano avascular correto para o HoLEP",
+        "searchTerms": "prostate zonal anatomy BPH; HoLEP surgical capsule plane"
+      },
+      {
+        "caption": "Incisões iniciais da técnica de três lobos",
+        "description": "Visão endoscópica do colo vesical e verumontanum, com linhas pontilhadas indicando as incisões longitudinais às 5 e 7 horas, aprofundando até a cápsula cirúrgica para isolar o lobo mediano",
+        "searchTerms": "HoLEP bladder neck incisions; HoLEP median lobe enucleation endoscopic view"
+      },
+      {
+        "caption": "Liberação apical e preservação do esfíncter",
+        "description": "Visão endoscópica detalhando a incisão da mucosa apical ao redor do verumontanum (early apical release), demonstrando a dissecção do adenoma afastando-o do esfíncter estriado para prevenir incontinência",
+        "searchTerms": "HoLEP apical release technique; HoLEP sphincter preservation"
+      },
+      {
+        "caption": "Morcelação do adenoma na bexiga",
+        "description": "Visão endoscópica do interior da bexiga distendida, mostrando as lâminas do morcelador capturando e triturando os lobos prostáticos enucleados, com a ponta do instrumento mantida no centro da cavidade",
+        "searchTerms": "HoLEP tissue morcellation; prostate morcellator endoscopic view"
+      }
+    ]
+  },
+  {
+    "id": "rezum",
+    "name": "Termoterapia prostática por vapor d'água (Rezūm) para HPB",
+    "category": "Próstata",
+    "icon": "💨",
+    "evidence": "Diretrizes AUA 2024 / EAU 2024 + StatPearls + RCT (McVary et al.) + Revisão Sistemática",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A termoterapia prostática por vapor d'água (Rezūm) é uma terapia cirúrgica minimamente invasiva (MIST) indicada para o tratamento de sintomas do trato urinário inferior (LUTS) moderados a graves secundários à hiperplasia prostática benigna (HPB). De acordo com as diretrizes da American Urological Association (AUA) e da European Association of Urology (EAU), o procedimento é recomendado para pacientes com volume prostático entre 30 e 80 cm³ [1] [2]. O Rezūm é particularmente notável por ser uma das poucas terapias minimamente invasivas com eficácia comprovada e recomendação formal para o tratamento de pacientes que apresentam aumento do lobo mediano prostático obstrutivo [1] [3]. Além disso, é fortemente indicado para homens que desejam preservar a função erétil e ejaculatória, uma vez que os estudos demonstram preservação dessas funções na grande maioria dos pacientes tratados [1] [4].\n\nAs contraindicações absolutas incluem a presença de esfíncter urinário artificial ou implante peniano, histórico de radioterapia pélvica, câncer de próstata ativo (a menos que o tratamento seja puramente paliativo para sintomas obstrutivos) e infecção ativa do trato urinário [3]. Contraindicações relativas envolvem volumes prostáticos extremos (embora estudos recentes mostrem viabilidade em próstatas > 80 cm³, as diretrizes atuais ainda focam na faixa de 30-80 cm³), retenção urinária crônica com bexiga hipocontrátil severa e estenose uretral não tratada [2] [5]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "A próstata é dividida em zonas anatômicas, sendo a zona de transição o local primário de desenvolvimento da HPB. O Rezūm atua injetando vapor de água diretamente no tecido hiperplásico da zona de transição e do lobo mediano (quando presente). O vapor de água possui menor massa e densidade que o tecido prostático, movendo-se facilmente pelos espaços intersticiais celulares, mas não consegue ultrapassar barreiras naturais, como os planos teciduais que separam as zonas prostáticas ou a cápsula cirúrgica [3]. Essa característica termodinâmica confina a energia térmica à zona de transição, minimizando o risco de lesão térmica ao colo vesical, esfíncter estriado, cápsula prostática, vesículas seminais e feixes neurovasculares, que são cruciais para a continência e função sexual [3].\n\nA avaliação pré-operatória deve seguir as diretrizes padrão para LUTS/HPB, incluindo anamnese detalhada (escore IPSS), exame físico com toque retal, urinálise, dosagem de PSA (quando indicado para rastreamento de câncer), urofluxometria e avaliação do volume residual pós-miccional (PVR) [1] [2]. A ultrassonografia transretal (TRUS) ou pélvica é fundamental para determinar o volume prostático exato e avaliar a presença e o tamanho de um lobo mediano intravesical, o que ditará o planejamento do número e localização das injeções de vapor [3]. A cistoscopia pré-operatória ou no momento do procedimento é mandatória para mapear a anatomia uretral, o comprimento da uretra prostática e a configuração dos lobos [3]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O procedimento é tipicamente realizado em regime ambulatorial ou de hospital-dia. O paciente é colocado em posição de litotomia padrão. A antissepsia da genitália externa e do períneo é realizada com solução de iodopovidona ou clorexidina, seguida da colocação de campos estéreis [3].\n\nA escolha anestésica deve ser individualizada. O Rezūm pode ser realizado sob anestesia geral, sedação intravenosa profunda ou anestesia local. Quando realizado sob anestesia local, recomenda-se a instilação de 10 a 20 mL de geleia de lidocaína a 2% na uretra, associada a um bloqueio prostático periprostático guiado por ultrassom (utilizando lidocaína ou bupivacaína) administrado cerca de 10 minutos antes do início do procedimento [3]. Profilaxia antibiótica deve ser administrada conforme as diretrizes locais e o resultado da urocultura prévia [2].\n\nO instrumental cirúrgico é composto por:\n- Gerador de radiofrequência do sistema Rezūm.\n- Dispositivo de entrega transuretral de uso único (descartável), que incorpora uma agulha retrátil de 10,25 mm de comprimento com 12 orifícios emissores.\n- Ótica de cistoscopia padrão (lente de 30 graus) acoplada ao dispositivo de entrega.\n- Sistema de irrigação com soro fisiológico (salina normal).\n- Sonda de Foley (geralmente 16 ou 18 Fr) para cateterismo pós-operatório."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Preparo e inserção:** Após a anestesia adequada e profilaxia antibiótica, instilar geleia de lidocaína na uretra. Inserir o dispositivo de entrega Rezūm acoplado à ótica de 30 graus e conectado à irrigação salina sob visão direta.\n2. **Cistoscopia diagnóstica:** Realizar uma inspeção completa da uretra, próstata e bexiga. Avaliar o comprimento da uretra prostática (do colo vesical ao verumontanum), a configuração dos lobos laterais e a presença/extensão de um lobo mediano. Identificar os meatos ureterais para evitar lesões inadvertidas.\n3. **Posicionamento inicial (Lobos Laterais):** Retrair o dispositivo até a uretra prostática. Posicionar a ponta do dispositivo a aproximadamente 1 cm distal ao colo vesical, direcionado para o maior volume de tecido do lobo lateral (geralmente às 2 ou 10 horas).\n4. **Injeção de vapor:** Pressionar o dispositivo firmemente contra o tecido prostático. Acionar o gatilho para desdobrar a agulha retrátil (que penetra 10,25 mm no tecido em um ângulo de 90 graus).\n5. **Liberação da energia térmica:** Iniciar a injeção de vapor de água. Cada ciclo de tratamento dura exatamente 9 segundos, entregando cerca de 208 Joules de energia térmica, criando uma lesão esférica de ablação de aproximadamente 1,5 a 2,0 cm de diâmetro.\n6. **Retirada da agulha:** Após os 9 segundos, manter a agulha no local por mais 1 a 2 segundos para permitir a dissipação completa do calor e a condensação do vapor. Retrair a agulha.\n7. **Tratamentos sequenciais (Lobos Laterais):** Reposicionar o dispositivo 1 cm distalmente (em direção ao verumontanum) em relação ao local da injeção anterior. Repetir os passos 4 a 6. Continuar este processo até atingir a borda proximal do verumontanum. O número de injeções por lobo depende do comprimento da uretra prostática (geralmente 1 a 3 injeções por lobo).\n8. **Tratamento do lobo contralateral:** Repetir o mesmo processo sistemático (passos 3 a 7) no lobo lateral oposto. É recomendado completar um lado antes de passar para o outro para aproveitar o calor latente.\n9. **Tratamento do Lobo Mediano (se presente):** Posicionar o dispositivo no lobo mediano. Inserir a agulha em um ângulo de 45 graus, a meio caminho entre a base e o ápice do lobo mediano. Se houver protrusão intravesical, iniciar o tratamento a 1 cm da protrusão. Geralmente, 1 a 2 injeções são suficientes para o lobo mediano.\n10. **Revisão hemostática e retirada:** Inspecionar a uretra prostática para garantir que não haja sangramento ativo significativo (o que é raro devido ao efeito coagulativo do vapor). Retirar o dispositivo de entrega.\n11. **Cateterismo:** Inserir uma sonda de Foley (16 ou 18 Fr) para drenagem vesical contínua, essencial devido ao edema prostático agudo induzido pelo tratamento térmico."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Planejamento espacial:** O campo de visão do cistoscópio através do dispositivo de entrega é de aproximadamente 0,5 cm. Use isso como régua visual para espaçar as injeções a cada 1 cm, garantindo lesões térmicas contíguas e sobrepostas ao longo da uretra prostática [3].\n- **Proteção do esfíncter:** Nunca realize injeções distalmente ao verumontanum. A preservação da anatomia do esfíncter estriado é fundamental para evitar incontinência urinária.\n- **Angulação da agulha:** Para os lobos laterais, a agulha entra a 90 graus. Para o lobo mediano, a angulação deve ser ajustada para 45 graus para garantir que o vapor seja entregue no centro da massa adenomatosa e não perfure a cápsula posterior ou o colo vesical [3].\n- **Contato tecidual:** Mantenha pressão firme do dispositivo contra a mucosa prostática antes de disparar a agulha. Isso garante a penetração completa da agulha no parênquima e evita o vazamento de vapor para a luz uretral, o que reduziria a eficácia e poderia causar dor pós-operatória.\n- **Aproveitamento térmico:** Trate completamente um lobo lateral antes de passar para o outro. O calor residual das injeções adjacentes melhora a dispersão convectiva do vapor nas injeções subsequentes [3]."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "A maioria das complicações do Rezūm é leve e transitória (Clavien-Dindo Grau I ou II), relacionadas ao processo inflamatório agudo e à necrose tecidual [3].\n- **Retenção urinária aguda:** É a complicação mais comum no pós-operatório imediato devido ao edema prostático. O manejo consiste na manutenção da sonda de Foley por um período mais prolongado (geralmente 3 a 7 dias, podendo chegar a 14 dias em próstatas maiores ou pacientes com retenção prévia) [3].\n- **Sintomas irritativos (LUTS de armazenamento):** Disúria, urgência e polaciúria são muito comuns nas primeiras 2 a 4 semanas enquanto o tecido necrótico é reabsorvido. O manejo inclui AINEs (anti-inflamatórios não esteroidais), anticolinérgicos ou mirabegrona, e fenazopiridina para alívio sintomático [3].\n- **Hematúria e hematospermia:** Hematúria macroscópica leve a moderada é esperada e geralmente autolimitada, não requerendo intervenção além de hidratação. Hematospermia pode persistir por várias semanas e o paciente deve ser tranquilizado quanto à sua benignidade.\n- **Infecção do trato urinário (ITU):** Pode ocorrer devido ao cateterismo e à presença de tecido necrótico. O tratamento é feito com antibioticoterapia guiada por cultura [3].\n- **Retratamento cirúrgico:** A taxa de retratamento cirúrgico em 5 anos é de aproximadamente 4,4% [4]. Pacientes com colo vesical alto ou lobos medianos persistentemente obstrutivos têm maior risco de necessitar de intervenções futuras [3]."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "O paciente recebe alta no mesmo dia com a sonda de Foley in situ. A duração do cateterismo varia de 3 a 7 dias na maioria dos casos, dependendo do volume prostático tratado e da função vesical prévia [3]. Pacientes com retenção urinária pré-operatória podem necessitar de cateterismo por até 4 semanas para permitir a necrose coagulativa completa e o início da reabsorção tecidual [3].\n\nOs pacientes devem ser orientados de que os sintomas obstrutivos e irritativos podem piorar transitoriamente nas primeiras semanas devido ao edema. A melhora clínica começa a ser notada a partir de 2 a 4 semanas, com resultados ótimos alcançados entre 3 e 6 meses, tempo necessário para a reabsorção completa do tecido ablacionado [3].\n\nO seguimento ambulatorial é tipicamente realizado com 1 mês (para avaliar a resolução dos sintomas agudos), 3 meses (para avaliar a eficácia inicial com IPSS e urofluxometria) e anualmente a partir de então. As medicações para HPB (alfa-bloqueadores) podem ser descontinuadas gradualmente à medida que os sintomas melhoram, geralmente após 4 a 6 semanas [3]."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "O Rezūm possui um corpo robusto de evidências de alta qualidade. Ensaios clínicos randomizados (RCTs) demonstraram que a terapia térmica por vapor de água proporciona melhorias significativas e duradouras nos sintomas da HPB.\n- **Eficácia:** Estudos com seguimento de 5 anos mostram uma redução sustentada do escore IPSS em cerca de 48% e uma melhora no fluxo urinário máximo (Qmax) de aproximadamente 44% em relação à linha de base [4].\n- **Preservação sexual:** Um dos maiores diferenciais do Rezūm é a preservação da função sexual. Nos ensaios clínicos, não houve relatos de disfunção erétil de novo, e a função ejaculatória foi preservada em mais de 90% dos pacientes, tornando-o uma opção de primeira linha para homens que desejam manter a ejaculação anterógrada [1] [4].\n- **Nível de Evidência:** As diretrizes da AUA (2024) e EAU recomendam o Rezūm com Grau de Recomendação Moderado/Forte e Nível de Evidência C/1b para próstatas de 30-80 cm³, incluindo aquelas com lobo mediano [1] [2]. Revisões sistemáticas e meta-análises confirmam a segurança e eficácia do procedimento, destacando a baixa taxa de complicações graves e a rápida recuperação pós-operatória [5]."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Sandhu JS, Bixler BR, Dahm P, et al. Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline Amendment 2023. J Urol. 2024;211(1):11-19. (Diretrizes Clínicas / Nível de Evidência C).\n[2] Gravas S, Cornu JN, Gacci M, et al. EAU Guidelines on Management of Non-Neurogenic Male Lower Urinary Tract Symptoms (LUTS), incl. Benign Prostatic Obstruction (BPO). European Association of Urology. 2024. (Diretrizes Clínicas / Nível de Evidência 1b).\n[3] Munien K, Leslie SW, Desai D. Water Vapor Thermal Ablation of the Prostate. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024. (Revisão / Nível de Evidência 2a).\n[4] McVary KT, Gittelman MC, Goldberg KA, et al. Final 5-Year Outcomes of the Multicenter Randomized Sham-Controlled Trial of a Water Vapor Thermal Therapy for Treatment of Moderate to Severe Lower Urinary Tract Symptoms Secondary to Benign Prostatic Hyperplasia. J Urol. 2021;206(3):715-724. (Ensaio Clínico Randomizado / Nível de Evidência 1b).\n[5] Miller LE, Chughtai B, McVary KT, et al. Water vapor thermal therapy for lower urinary tract symptoms secondary to benign prostatic hyperplasia: Systematic review and meta-analysis. Medicine (Baltimore). 2020;99(30):e21365. (Revisão Sistemática e Meta-análise / Nível de Evidência 1a).\n[6] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 12th ed. Philadelphia, PA: Elsevier; 2021. (Livro-texto de Referência)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia zonal da próstata e alvo do Rezūm",
+        "description": "Ilustração transversal da próstata destacando a zona de transição (hiperplásica) em contraste com as zonas periférica e central. Deve mostrar a agulha do Rezūm inserida na zona de transição e a dispersão esférica do vapor confinada por barreiras anatômicas",
+        "searchTerms": "prostate zonal anatomy BPH; Rezum water vapor thermal therapy mechanism of action"
+      },
+      {
+        "caption": "Dispositivo de entrega transuretral Rezūm",
+        "description": "Fotografia ou renderização 3D do dispositivo de mão (handpiece) do Rezūm, detalhando a ponta com a ótica do cistoscópio e a agulha retrátil de 10,25 mm exposta a 90 graus com seus orifícios emissores de vapor",
+        "searchTerms": "Rezum delivery device; Rezum transurethral needle"
+      },
+      {
+        "caption": "Posicionamento e angulação da agulha nos lobos laterais vs. lobo mediano",
+        "description": "Diagrama esquemático sagital mostrando a diferença na técnica de injeção: agulha a 90 graus penetrando os lobos laterais e agulha a 45 graus penetrando um lobo mediano intravesical obstrutivo",
+        "searchTerms": "Rezum median lobe technique; Rezum lateral lobe injection angle"
+      },
+      {
+        "caption": "Visão cistoscópica durante o procedimento Rezūm",
+        "description": "Imagem endoscópica simulada ou real mostrando o dispositivo posicionado na uretra prostática, com a agulha inserida no tecido adenomatoso do lobo lateral, demonstrando o aspecto do tecido durante a injeção de vapor (branqueamento tecidual)",
+        "searchTerms": "Rezum cystoscopy view; endoscopic view water vapor thermal therapy prostate"
+      }
+    ]
+  },
+  {
+    "id": "implante-testosterona",
+    "name": "Implante subcutâneo de testosterona (pellets) para hipogonadismo masculino",
+    "category": "Saúde do Homem",
+    "icon": "💊",
+    "evidence": "Diretrizes AUA 2018 / EAU 2021 + Campbell-Walsh-Wein 12ª ed. + Revisões",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "O implante subcutâneo de testosterona (pellets) é indicado como terapia de reposição hormonal (TRH) para homens adultos com diagnóstico confirmado de hipogonadismo masculino (deficiência de testosterona), seja primário (falência testicular) ou secundário (hipogonadotrófico). As diretrizes da American Urological Association (AUA) e da European Association of Urology (EAU) recomendam a TRH para pacientes com níveis séricos de testosterona total consistentemente baixos (geralmente < 300 ng/dL) associados a sinais e sintomas clínicos de hipogonadismo, visando a melhora da libido, função erétil, densidade mineral óssea, massa magra e sintomas depressivos [1] [2]. Os pellets oferecem a vantagem de manter níveis séricos estáveis de testosterona por 3 a 6 meses, evitando as flutuações diárias observadas com géis ou injeções de curta duração [3].\n\nAs contraindicações absolutas incluem a presença ou suspeita de carcinoma de próstata ou câncer de mama masculino, desejo atual de fertilidade (pois a testosterona exógena suprime a espermatogênese), hematócrito basal elevado (> 50-54%, dependendo da diretriz), insuficiência cardíaca congestiva não controlada e apneia obstrutiva do sono grave não tratada [1] [2]. Contraindicações relativas envolvem sintomas graves do trato urinário inferior (LUTS) associados à hiperplasia prostática benigna (IPSS > 19) antes da avaliação urológica, e histórico recente (3 a 6 meses) de eventos cardiovasculares, como infarto do miocárdio ou acidente vascular cerebral [1]."
+      },
+      {
+        "title": "Anatomia e considerações pré-operatórias",
+        "body": "O local padrão para a inserção dos pellets de testosterona é o tecido adiposo subcutâneo da região glútea superior externa ou na parede abdominal inferior. A área glútea (quadrante superior externo) é preferida devido à espessura adequada do panículo adiposo, o que minimiza o risco de extrusão do pellet e desconforto ao sentar ou deitar [4]. A fáscia muscular subjacente (fáscia glútea) atua como um limite profundo que não deve ser violado para evitar dor muscular e absorção errática.\n\nNo pré-operatório, é imperativo confirmar o diagnóstico com duas dosagens matinais de testosterona total e avaliar o antígeno prostático específico (PSA) e o hematócrito [1]. O paciente deve ser questionado sobre o uso de anticoagulantes ou antiagregantes plaquetários, pois o procedimento envolve uma incisão cutânea e dissecção romba no tecido subcutâneo, havendo risco de hematoma. A dose a ser implantada varia de acordo com o peso do paciente, níveis basais de testosterona e resposta a terapias anteriores, variando tipicamente de 6 a 12 pellets (450 a 900 mg) por sessão [3]."
+      },
+      {
+        "title": "Posicionamento, anestesia e instrumental",
+        "body": "O paciente é posicionado em decúbito lateral (posição de Sims) ou decúbito ventral (canivete), expondo a região glútea superior externa. A área é submetida a antissepsia rigorosa com clorexidina alcoólica ou iodopovidona e coberta com campos cirúrgicos estéreis fenestrados [4].\n\nA anestesia é estritamente local. Utiliza-se lidocaína a 1% ou 2% com epinefrina (para otimizar a hemostasia e prolongar o efeito anestésico), administrada inicialmente para criar uma pápula intradérmica e, em seguida, infiltrada profundamente no tecido subcutâneo ao longo do trajeto planejado para o trocarte (hidrodissecção) [4].\n\nO instrumental necessário inclui:\n- Seringa de 10 mL e agulhas (calibres 25G para a pele e 22G ou 18G para infiltração profunda).\n- Bisturi com lâmina nº 11 ou 15.\n- Kit de trocarte descartável estéril específico para pellets (composto por cânula, obturador pontiagudo e obturador rombo).\n- Pinça anatômica ou Adson (opcional, para manuseio dos pellets).\n- Fitas adesivas para fechamento de pele (Steri-Strips) e curativo oclusivo (gaze e filme transparente tipo Tegaderm)."
+      },
+      {
+        "title": "Passo a passo técnico",
+        "body": "1. **Posicionamento e antissepsia:** Posicione o paciente em decúbito lateral ou ventral. Realize a antissepsia da pele no quadrante superior externo da região glútea e coloque o campo fenestrado estéril.\n2. **Marcação:** Identifique e marque o local da incisão e o trajeto planejado para o trocarte, garantindo que esteja em uma área com tecido adiposo subcutâneo espesso.\n3. **Anestesia local e hidrodissecção:** Injete lidocaína com epinefrina para criar uma pápula na pele. Aprofunde a agulha e infiltre o anestésico ao longo de todo o trajeto planejado no tecido subcutâneo, realizando uma hidrodissecção para facilitar a passagem do trocarte e minimizar o sangramento.\n4. **Incisão cutânea:** Com o bisturi (lâmina 11 ou 15), faça uma pequena incisão (cerca de 3 a 5 mm) na pele, aprofundando até a derme profunda/tecido subcutâneo superficial.\n5. **Inserção do trocarte:** Insira o trocarte montado com o obturador pontiagudo através da incisão. Avance em um ângulo de aproximadamente 30 a 45 graus em direção ao tecido adiposo subcutâneo.\n6. **Avanço no plano subcutâneo:** Uma vez no plano subcutâneo adequado, diminua o ângulo do trocarte (deixando-o quase paralelo à pele) e avance-o suavemente até a profundidade desejada, garantindo que permaneça no tecido adiposo e não penetre na fáscia muscular.\n7. **Remoção do obturador pontiagudo:** Retire o obturador pontiagudo, mantendo a cânula do trocarte em posição.\n8. **Carregamento dos pellets:** Utilizando técnica asséptica estrita (com luvas estéreis ou pinça), insira os pellets de testosterona prescritos no lúmen da cânula do trocarte.\n9. **Implantação (Técnica de empilhamento ou em \"V\"):** Insira o obturador rombo. Para a técnica linear, empurre os pellets até o final do trajeto e retire lentamente a cânula enquanto mantém o obturador fixo, depositando os pellets no trajeto. Se houver muitos pellets, pode-se usar a técnica em \"V\", redirecionando levemente o trocarte no tecido subcutâneo a partir da mesma incisão para criar um segundo trajeto e distribuir os pellets, evitando aglomeração excessiva.\n10. **Retirada do trocarte:** Certifique-se de que o último pellet implantado esteja a pelo menos 1,5 a 2 cm de distância da incisão cutânea para prevenir extrusão. Retire completamente o trocarte.\n11. **Hemostasia e fechamento:** Aplique pressão manual sobre o local por alguns minutos para garantir a hemostasia. Aproxime as bordas da incisão e feche a pele utilizando fitas adesivas (Steri-Strips). Não é necessária sutura.\n12. **Curativo final:** Cubra a incisão com gaze estéril e um curativo oclusivo transparente (Tegaderm). Aplique uma bolsa de gelo localmente para reduzir o edema e o risco de hematoma."
+      },
+      {
+        "title": "Pontos-chave e dicas",
+        "body": "- **Profundidade adequada:** A colocação muito superficial dos pellets aumenta significativamente o risco de extrusão e formação de cicatrizes visíveis. A colocação muito profunda (intramuscular) causa dor e absorção imprevisível. O plano ideal é o tecido adiposo subcutâneo médio a profundo.\n- **Técnica em \"V\":** Para doses maiores (ex: > 8 pellets), a técnica em \"V\" (criar múltiplos trajetos a partir de uma única incisão) demonstrou reduzir as taxas de extrusão em comparação com o empilhamento de todos os pellets em um único trajeto linear [5].\n- **Distância da incisão:** O erro técnico mais comum que leva à extrusão é deixar o último pellet muito próximo à incisão da pele. Sempre garanta um \"túnel\" vazio de pelo menos 1,5 a 2 cm antes da saída.\n- **Uso de epinefrina:** A hidrodissecção com anestésico contendo epinefrina é crucial não apenas para a analgesia, mas para criar um espaço virtual e minimizar o sangramento, o que reduz a chance de hematoma e subsequente infecção ou extrusão."
+      },
+      {
+        "title": "Complicações e seu manejo",
+        "body": "As complicações do implante de pellets são geralmente locais e de baixa gravidade, mas requerem atenção para não comprometer a eficácia do tratamento.\n- **Extrusão do pellet:** É a complicação mais comum (taxas de 5% a 12%) [3]. Ocorre geralmente nas primeiras semanas. O manejo envolve a limpeza local e curativo; se houver sinais de infecção associada, antibióticos orais são indicados. Não se deve tentar reintroduzir um pellet parcialmente extruso.\n- **Infecção no local do implante:** Celulite ou abscesso local ocorrem em 1% a 6% dos casos [3]. O tratamento inclui antibióticos de amplo espectro cobrindo flora cutânea (ex: cefalexina ou sulfametoxazol-trimetoprima). Em caso de abscesso, drenagem e remoção dos pellets remanescentes podem ser necessárias.\n- **Hematoma e equimose:** Comuns e geralmente autolimitados. O manejo é conservador com compressas de gelo e analgésicos. Pacientes em uso de anticoagulantes têm maior risco, e a técnica em \"V\" é preferível nesses casos [5].\n- **Fibrose subcutânea:** Pode ocorrer no local de implantes repetidos. Recomenda-se alternar os lados (glúteo direito e esquerdo) a cada sessão para minimizar a formação de tecido cicatricial."
+      },
+      {
+        "title": "Pós-operatório e seguimento",
+        "body": "No pós-operatório imediato, o paciente é orientado a manter o curativo oclusivo seco e intacto por 3 a 5 dias. Banhos de chuveiro são permitidos após 24 horas, mas imersão (banheiras, piscinas) deve ser evitada até a cicatrização completa da incisão. Recomenda-se evitar atividades físicas extenuantes, especialmente exercícios que envolvam a musculatura glútea (como agachamentos) ou corrida, por 3 a 7 dias, pois o aumento da pressão local e a fricção aumentam o risco de extrusão [3].\n\nO seguimento laboratorial é essencial. As diretrizes da AUA recomendam a dosagem de testosterona total, hematócrito e PSA (em homens > 40 anos) entre 3 a 6 meses após o início da terapia, e anualmente a partir de então [1]. Para pacientes com pellets, o momento ideal para medir a testosterona é no final do intervalo de dosagem (geralmente no 3º ou 4º mês) para avaliar se os níveis permanecem na faixa terapêutica antes da próxima inserção, ou no pico (1 mês após a inserção) se houver suspeita de absorção excessiva [1]."
+      },
+      {
+        "title": "Resultados/evidência",
+        "body": "O implante subcutâneo de pellets de testosterona é uma modalidade altamente eficaz para restaurar e manter os níveis séricos de testosterona na faixa eugonadal. Estudos farmacocinéticos demonstram que os pellets fornecem uma liberação de ordem zero, mantendo níveis estáveis sem os picos e vales suprafisiológicos frequentemente vistos com injeções intramusculares de ésteres de curta duração [3].\n\nA eficácia clínica na melhora da libido, função erétil, composição corporal e densidade óssea é comparável a outras formas de TRH, com a vantagem de maior adesão a longo prazo devido à conveniência de dosagens a cada 3 a 6 meses [3]. O nível de evidência para o uso da TRH no hipogonadismo sintomático é alto (Grau A/B nas diretrizes da AUA e EAU) [1] [2]. A escolha dos pellets como via de administração é baseada na preferência do paciente e na disponibilidade, sendo uma opção validada e recomendada pelas principais sociedades urológicas."
+      },
+      {
+        "title": "Referências",
+        "body": "[1] Mulhall JP, Trost LW, Brannigan RE, et al. Evaluation and Management of Testosterone Deficiency: AUA Guideline. J Urol. 2018;200(2):423-432. (Diretriz Clínica / Nível de Evidência 1)\n[2] Salonia A, Bettocchi C, Boeri L, et al. European Association of Urology Guidelines on Sexual and Reproductive Health-2021 Update: Male Sexual Dysfunction. Eur Urol. 2021;80(3):333-357. (Diretriz Clínica / Nível de Evidência 1)\n[3] McCullough A. A Review of Testosterone Pellets in the Treatment of Hypogonadism. Curr Sex Health Rep. 2014;6(4):265-269. (Revisão / Nível de Evidência 3)\n[4] Partin AW, Dmochowski RR, Kavoussi LR, Peters CA. Campbell-Walsh-Wein Urology. 12th ed. Philadelphia, PA: Elsevier; 2021. (Livro-texto / Nível de Evidência 4)\n[5] Conners W, Flinn K, Morgentaler A. Outcomes with the \"V\" Implantation Technique vs. Standard Technique for Testosterone Pellet Therapy. J Sex Med. 2011;8(12):3465-3470. (Estudo de Coorte Retrospectivo / Nível de Evidência 3)"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia da região glútea e locais de inserção",
+        "description": "Ilustração da região glútea superior externa, destacando a pele, a espessa camada de tecido adiposo subcutâneo, a fáscia glútea e o músculo glúteo máximo. O local ideal de inserção no quadrante superior externo deve estar demarcado",
+        "searchTerms": "gluteal anatomy subcutaneous fat; testosterone pellet insertion site"
+      },
+      {
+        "caption": "Instrumental cirúrgico para implante de pellets",
+        "description": "Fotografia ou ilustração do kit de trocarte descartável, mostrando a cânula, o obturador pontiagudo (para perfuração) e o obturador rombo (para empurrar os pellets), além dos próprios pellets de testosterona",
+        "searchTerms": "testosterone pellet trocar kit; hormone pellet insertion instruments"
+      },
+      {
+        "caption": "Inserção do trocarte no plano subcutâneo",
+        "description": "Visão em corte transversal demonstrando o trocarte penetrando a pele em um ângulo de 45 graus e, em seguida, sendo nivelado para avançar paralelamente à pele dentro da camada de gordura subcutânea, sem atingir o músculo",
+        "searchTerms": "subcutaneous trocar insertion angle; pellet implantation depth"
+      },
+      {
+        "caption": "Técnica de empilhamento vs. Técnica em \"V\"",
+        "description": "Ilustração esquemática comparando a técnica linear (todos os pellets em um único trajeto) com a técnica em \"V\" (pellets distribuídos em dois ou mais trajetos divergentes a partir da mesma incisão cutânea)",
+        "searchTerms": "V technique testosterone pellets; pellet stacking vs V method"
+      },
+      {
+        "caption": "Retirada do trocarte e distância de segurança",
+        "description": "Ilustração mostrando o trocarte sendo retirado, com o último pellet depositado no tecido subcutâneo a uma distância segura (1,5 a 2 cm) da incisão da pele, prevenindo a extrusão",
+        "searchTerms": "testosterone pellet extrusion prevention; pellet distance from incision"
+      }
+    ]
   }
 ];
 
@@ -2300,13 +3685,16 @@ export function getAtlasEntry(id: string): AtlasEntry | undefined {
 
 /** Ordem de exibição das categorias no índice do Atlas. */
 export const atlasCategoryOrder: string[] = [
+  "Endourologia",
+  "Próstata",
+  "Oncologia",
+  "Funcional",
   "Andrologia / Fertilidade",
   "Andrologia / Prótese",
   "Andrologia / Peyronie",
   "Andrologia / Estética",
   "Estética Genital",
   "Saúde do Homem",
-  "Oncologia",
   "Urgência",
 ];
 
@@ -2330,14 +3718,59 @@ export function atlasGroupedByCategory(): { category: string; entries: AtlasEntr
  * no catálogo de documentos (procedures.ts), quando existe correspondência.
  */
 export const atlasToProcedure: Record<string, string> = {
-  "postectomia-circuncisao-no-adulto": "postectomia",
-  "vasectomia-tecnica-sem-bisturi": "vasectomia",
-  "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
+  "adrenalectomia": "adrenalectomia",
+  "alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol": "alongamento-peniano",
+  "aspiracao-de-espermatozoides-pesa-tesa": "pesa-tesa",
+  "aumento-de-glande-com-acido-hialuronico": "aumento-glande-ah",
+  "aumento-peniano-com-preenchimento-de-acido-hialuronico": "preenchimento-peniano-ah",
+  "biopsia-testicular-diagnostica": "biopsia-testicular",
+  "bipolep": "bipolep",
+  "circuncisao-estetica-revisao-de-circuncisao": "circuncisao-estetica",
+  "cistoscopia": "cistoscopia",
+  "correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-": "peyronie-enxerto",
+  "correcao-de-doenca-de-peyronie-plicatura-de-tunica-nesbit-16": "peyronie-plicatura",
+  "curvatura-peniana-congenita-corporoplastia-de-plicatura": "curvatura-congenita",
+  "epididimectomia": "epididimectomia",
+  "escrotoplastia-scrotal-lift-lifting-escrotal-estetico": "escrotoplastia",
+  "espermatocelectomia-exerese-de-cisto-de-epididimo": "espermatocelectomia",
+  "extracao-microcirurgica-de-espermatozoides-micro-tese": "micro-tese",
+  "faloplastia-de-aumento-espessamento-peniano-com-enxerto-derm": "faloplastia-aumento",
+  "frenuloplastia-peniana-correcao-de-freio-curto": "frenuloplastia",
   "hidrocelectomia-tecnicas-de-jaboulay-e-lord": "hidrocelectomia",
-  "orquiectomia-radical-inguinal-tumor-de-testiculo": "orquiectomia",
-  "orquiectomia-simples-subcapsular-bloqueio-androgenico": "orquiectomia",
+  "holep": "holep",
   "implante-de-protese-peniana-inflavel-de-3-volumes": "protese-peniana",
   "implante-de-protese-peniana-semirrigida-maleavel": "protese-peniana",
-  "aumento-peniano-com-preenchimento-de-acido-hialuronico": "preenchimento-peniano-ah",
+  "implante-de-protese-testicular": "protese-testicular",
+  "implante-testosterona": "implante-testosterona",
+  "leco": "leco",
+  "linfadenectomia-inguinal-no-cancer-de-penis": "linfadenectomia-inguinal",
+  "lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a": "penis-enterrado",
+  "nefrectomia-parcial": "nefrectomia-parcial",
+  "nefrectomia-radical": "nefrectomia-radical",
+  "nefrolitotripsia-percutanea": "nefrolitotripsia-percutanea",
+  "nefroureterectomia": "nefroureterectomia",
+  "orquidopexia-na-torcao-testicular-exploracao-escrotal-de-urg": "orquidopexia-torcao",
+  "orquidopexia-para-criptorquidia-testiculo-retratil": "orquidopexia",
+  "orquiectomia-radical-inguinal-tumor-de-testiculo": "orquiectomia",
+  "orquiectomia-simples-subcapsular-bloqueio-androgenico": "orquiectomia",
+  "penectomia-parcial-cancer-de-penis": "penectomia-parcial",
+  "pieloplastia": "pieloplastia",
+  "postectomia-circuncisao-no-adulto": "postectomia",
+  "prepucioplastia-plastica-prepucial-poupadora-de-prepucio": "prepucioplastia",
+  "prostatectomia-radical": "prostatectomia-radical",
+  "protese-peniana-com-remodelamento-na-peyronie-grave": "protese-peyronie",
+  "reimplante-ureteral": "reimplante-ureteral",
+  "resseccao-de-condilomas-genitais-hpv-exerese-e-eletrocauteri": "condilomas-hpv",
+  "reversao-de-vasectomia-vasoepididimostomia-microcirurgica": "vasoepididimostomia",
+  "reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois": "vasovasostomia",
+  "rezum": "rezum",
+  "rtu-bexiga": "rtu-bexiga",
+  "rtu-prostata": "rtu-prostata",
+  "sling-masculino": "sling-masculino",
+  "ureterolitotripsia-flexivel": "ureterolitotripsia-flexivel",
+  "ureterolitotripsia-rigida": "ureterolitotripsia-rigida",
+  "uretrotomia-interna": "uretrotomia-interna",
+  "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
+  "vasectomia-tecnica-sem-bisturi": "vasectomia",
 };
 

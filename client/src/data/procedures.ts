@@ -1,6 +1,7 @@
 // UroDocx — Documentos Cirúrgicos Urológicos
 // Dr. Felipe Bulhões — Identidade Visual: Azul do Nilo + Tema Claro
 // Descrições cirúrgicas em formato NUMERADO e OBJETIVO
+import { proceduresExtra } from "./proceduresExtra";
 
 export interface ConfigField {
   id: string;
@@ -2274,4 +2275,8 @@ RETORNO: ___ dias.`;
     }
   },
 ];
+
+// Procedimentos do Atlas integrados ao catálogo (AUTO-GERADO em proceduresExtra.ts)
+procedures.push(...proceduresExtra);
+
 export const categories = Array.from(new Set(procedures.map(p => p.category)));

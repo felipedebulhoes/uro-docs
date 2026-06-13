@@ -11,7 +11,7 @@ import { procedures } from "../client/src/data/procedures";
 
 describe("Atlas data integrity", () => {
   it("has the expected number of entries", () => {
-    expect(atlasEntries.length).toBe(34);
+    expect(atlasEntries.length).toBe(54);
   });
 
   it("every entry has required, non-empty fields", () => {
@@ -118,6 +118,51 @@ describe("Atlas helpers", () => {
     for (const [atlasId, procId] of Object.entries(atlasToProcedure)) {
       expect(atlasIds.has(atlasId), `atlas id exists: ${atlasId}`).toBe(true);
       expect(procIds.has(procId), `procedure id exists: ${procId}`).toBe(true);
+    }
+  });
+});
+
+describe("Cobertura cruzada catálogo <-> Atlas", () => {
+  const procToAtlas = (() => {
+    const m = new Map<string, string>();
+    for (const [atlasId, procId] of Object.entries(atlasToProcedure)) {
+      if (!m.has(procId)) m.set(procId, atlasId);
+    }
+    return m;
+  })();
+
+  it("todo procedimento do catálogo tem ao menos uma entrada correspondente no Atlas", () => {
+    const semAtlas = procedures.filter((p) => !procToAtlas.has(p.id)).map((p) => p.id);
+    expect(semAtlas, `procedimentos sem entrada no Atlas: ${semAtlas.join(", ")}`).toEqual([]);
+  });
+
+  it("toda entrada do Atlas aponta para um procedimento existente no catálogo", () => {
+    const procIds = new Set(procedures.map((p) => p.id));
+    const semProc = atlasEntries
+      .filter((e) => {
+        const pid = atlasToProcedure[e.id];
+        return !pid || !procIds.has(pid);
+      })
+      .map((e) => e.id);
+    expect(semProc, `entradas do Atlas sem procedimento no catálogo: ${semProc.join(", ")}`).toEqual([]);
+  });
+
+  it("catálogo e Atlas têm contagens esperadas", () => {
+    expect(procedures.length).toBe(52);
+    expect(atlasEntries.length).toBe(54);
+  });
+
+  it("o link reverso (catálogo->Atlas) resolve para uma entrada existente em todos os procedimentos", () => {
+    const atlasIds = new Set(atlasEntries.map((e) => e.id));
+    for (const p of procedures) {
+      const atlasId = Object.keys(atlasToProcedure).find(
+        (k) => atlasToProcedure[k] === p.id
+      );
+      expect(atlasId, `procedimento ${p.id} deve ter entrada no Atlas`).toBeDefined();
+      expect(
+        atlasIds.has(atlasId as string),
+        `link reverso de ${p.id} aponta para Atlas inexistente: ${atlasId}`
+      ).toBe(true);
     }
   });
 });

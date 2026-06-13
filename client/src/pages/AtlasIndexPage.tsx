@@ -79,8 +79,9 @@ export default function AtlasIndexPage() {
         {/* Intro */}
         <Card className="p-4 mb-6 bg-card border-border">
           <p className="text-sm text-foreground/80 leading-relaxed">
-            Coletânea técnica de {atlasEntries.length} procedimentos de andrologia,
-            estética genital, saúde do homem, oncologia e urgência. Cada procedimento
+            Coletânea técnica de {atlasEntries.length} procedimentos de endourologia,
+            próstata, oncologia, função miccional, andrologia, estética genital e
+            saúde do homem. Cada procedimento
             reúne indicações, anatomia, passo a passo detalhado, complicações,
             desfechos e referências, com sugestões de figuras didáticas.
           </p>

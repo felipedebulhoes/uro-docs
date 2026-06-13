@@ -67,3 +67,9 @@
 - [x] Atlas: validar no navegador os fluxos /atlas e /atlas/:id (conteúdo, figuras, referências)
 - [x] Atlas: link cruzado da página do procedimento (/procedimento/:id) para a entrada do Atlas correspondente
 - [x] Atlas: salvar checkpoint do projeto
+
+- [x] Unificação: gerar 20 dossiês do Atlas para os procedimentos do catálogo sem entrada (endourologia, oncologia renal, próstata, funcional, implante de testosterona) — Atlas agora com 54 entradas
+- [x] Unificação: gerar documentos cirúrgicos completos (descrição + receita + orientações) para os 25 procedimentos do Atlas ausentes na página principal — catálogo agora com 52 procedimentos
+- [x] Unificação: integrar dados (atlasData, proceduresExtra) e completar o mapa atlasToProcedure bidirecional (54 pares)
+- [x] Unificação: garantir card na Home para todos os procedimentos (lista dinâmica) e botão Atlas↔documento nos dois sentidos
+- [x] Unificação: testes vitest de cobertura cruzada (todo procedimento↔Atlas, 160 testes) e validação no navegador; checkpoint
