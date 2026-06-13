@@ -3755,6 +3755,74 @@ export const atlasEntries: AtlasEntry[] = [
         "caption": "Fratura peniana ao modo-B: descontinuidade da túnica albugínea",
         "description": "Cortes longitudinais do corpo cavernoso demonstrando defeito hipoecoico da túnica albugínea (interrupção focal da linha ecogênica), medindo cerca de 1,0 cm (painel esquerdo) e 1,2 cm (painel direito) — achado diagnóstico de fratura peniana, indicação de exploração cirúrgica precoce",
         "searchTerms": "Penile fracture ultrasound tunica albuginea discontinuity hypoechoic defect B-mode"
+      },
+      {
+        "caption": "Priapismo isquêmico (baixo fluxo) ao Doppler colorido",
+        "description": "Doppler colorido/espectral das artérias cavernosas demonstrando fluxo intracavernoso reduzido ou ausente, compatível com priapismo isquêmico (baixo fluxo) — emergência urológica que demanda aspiração/irrigação e agentes simpaticomiméticos; contrasta com o padrão de alto fluxo (turbilhonado) do priapismo não isquêmico",
+        "searchTerms": "Low flow ischemic priapism color doppler ultrasound absent cavernosal arterial flow"
+      }
+    ]
+  },
+  {
+    "id": "usg-escrotal-doppler-testicular",
+    "name": "Ultrassonografia escrotal com Doppler testicular",
+    "category": "Andrologia / Imagem",
+    "icon": "\uD83D\uDD0A",
+    "evidence": "Diretriz EAU on Sexual & Reproductive Health (Infertilidade) + Consenso ESUR-SPIWG / EFSUMB (US escrotal) + Revisões de microlitíase e varícocele (CC BY)",
+    "sections": [
+      {
+        "title": "Indicações e contraindicações",
+        "body": "A ultrassonografia escrotal com Doppler colorido é o método de imagem de primeira linha para a avaliação da bolsa testicular, por ser não invasiva, amplamente disponível, sem radiação e com alta resolução anatômica e vascular [1] [2].\n\n**Indicações principais:**\n- **Dor escrotal aguda:** diferenciação entre torção do cordão espermático (emergência) e causas inflamatórias (epididimite/orquite) [2].\n- **Massa escrotal/testicular palpável:** caracterização de lesões intra vs. extratesticulares e sólidas vs. císticas [2].\n- **Investigação de infertilidade masculina:** volumetria testicular, ecotextura e pesquisa de varícocele com manobra de Valsalva [1] [4].\n- **Trauma escrotal:** integridade da túnica albugínea, hematocele e fluxo testicular.\n- **Seguimento de microlitíase testicular e de fatores de risco para tumor de células germinativas** [3].\n\n**Contraindicações:** não há contraindicações absolutas. Em dor aguda com alta suspeita clínica de torção, a exploração cirúrgica não deve ser postergada por exames de imagem [2]."
+      },
+      {
+        "title": "Anatomia e considerações pré-exame",
+        "body": "O testículo normal tem ecotextura homogênea de granulação fina e é envolvido pela túnica albugínea. O mediastino testicular aparece como linha ecogênica central. O epidídimo (cabeça, corpo e cauda) situa-se posterolateralmente, com a cabeça habitualmente isoecoica ao testículo [2].\n\n**Volumetria:** o volume é estimado pela fórmula do elipsóide (comprimento × largura × altura × 0,52). Valores normais no adulto situam-se tipicamente entre 12 e 25 mL; volumes reduzidos correlacionam-se com comprometimento da espermatogênese na investigação de infertilidade [1] [4].\n\n**Vascularização:** a perfusão testicular deriva das artérias testicular, cremastérica e deferencial; o fluxo intratesticular normal tem padrão de baixa resistência. A demonstração de fluxo arterial intratesticular simétrico é essencial para afastar torção [2].\n\n**Preparo e técnica:** transdutor linear de alta frequência (7,5–18 MHz), paciente em decúbito dorsal com o pênis apoiado sobre o abdome e a bolsa apoiada. Avaliam-se ambos os testículos em cortes longitudinal e transversal, sempre com estudo comparativo lado a lado, ajustando o Doppler para fluxos lentos. A pesquisa de varícocele inclui aquisições em repouso, ortostase e durante manobra de Valsalva [4]."
+      },
+      {
+        "title": "Protocolo de aquisição (modo-B e Doppler)",
+        "body": "**1. Modo-B comparativo:** medir os três eixos de cada testículo (volume), avaliar ecotextura, contornos, túnica albugínea, epidídimos, hidrocele e parede escrotal. Pesquisar focos hiperecogênicos puntiformes (microlitíase) [3].\n\n**2. Doppler colorido/power Doppler comparativo:** documentar e comparar o fluxo intratesticular dos dois lados com os mesmos ajustes (PRF baixo, ganho de cor otimizado para fluxos lentos). A assimetria/ausência de fluxo é o achado central na torção [2].\n\n**3. Doppler espectral:** caracterizar a curva arterial intratesticular (padrão de baixa resistência) e, na suspeita de epididimite, demonstrar hiperemia.\n\n**4. Pesquisa de varícocele:** medir o diâmetro das veias do plexo pampiniforme em repouso e durante Valsalva, e documentar refluxo venoso ao Doppler (duração do refluxo) em ortostase [4]."
+      },
+      {
+        "title": "Critérios diagnósticos e valores de referência",
+        "body": "**Torção do cordão espermático:** o achado decisivo é a **redução ou ausência de fluxo arterial intratesticular** comparado ao lado contralateral; sinais adicionais incluem o sinal do redemoinho (whirlpool) do cordão espermático, aumento e heterogeneidade do testículo (necrose na fase tardia) [2]. Fluxo presente não exclui torção intermitente/parcial — a correlação clínica prevalece.\n\n**Varícocele:** veias do plexo pampiniforme com diâmetro **> 2,5–3,0 mm** e **refluxo venoso ao Doppler durante Valsalva** confirmam o diagnóstico. Classificação ultrassonográfica (ex.: Sarteschi) gradua de I a V conforme presença de refluxo apenas à Valsalva até refluxo basal espontâneo com ectasia intratesticular [4].\n\n**Microlitíase testicular:** múltiplos focos hiperecogênicos puntiformes (1–3 mm) sem sombra acústica. Define-se **microlitíase clássica** quando há ≥ 5 microcalcificações por campo/imagem e **limitada** quando < 5 [3]. Isoladamente não é pré-maligna, mas associa-se a maior risco quando coexistem fatores (criptorquidia, atrofia, infertilidade, tumor prévio) [3].\n\n**Massa testicular:** toda lesão sólida intratesticular vascularizada deve ser considerada potencialmente maligna até prova em contrário e investigada com marcadores e conduta específica [2]."
+      },
+      {
+        "title": "Pontos-chave e dicas (pearls)",
+        "body": "- **Sempre comparativo:** ajuste o Doppler em um testículo e mantenha os mesmos parâmetros no contralateral — a torção é essencialmente um diagnóstico de **assimetria de fluxo** [2].\n- **Fluxos lentos:** use PRF baixo e power Doppler para não subestimar a perfusão intratesticular em crianças e em testículos pequenos.\n- **Valsalva de pé:** a varícocele pode só se manifestar em ortostase com Valsalva; o exame apenas deitado gera falso-negativo [4].\n- **Microlitíase:** descreva se clássica (≥ 5) ou limitada e contextualize com fatores de risco antes de sugerir seguimento [3].\n- **Não atrase a cirurgia:** diante de quadro clássico de torção, a exploração não deve aguardar o US [2]."
+      },
+      {
+        "title": "Aplicações clínicas e seu manejo",
+        "body": "- **Escroto agudo:** a distinção torção vs. epididimite define conduta — torção é emergência cirúrgica (janela de viabilidade ~6 h), enquanto a epididimite é tratada clinicamente [2].\n- **Infertilidade:** volumetria reduzida e varícocele com refluxo orientam investigação hormonal/seminal e eventual varicocelectomia em casos selecionados [1] [4].\n- **Microlitíase:** conduta individualizada — autoexame e seguimento conforme fatores de risco, sem rastreamento universal por imagem [3].\n- **Massa sólida:** encaminhar para investigação oncológica (marcadores, orquiectomia radical inguinal quando indicada) [2]."
+      },
+      {
+        "title": "Resultados/evidência (acurácia e desfechos)",
+        "body": "O Doppler colorido escrotal apresenta alta sensibilidade e especificidade para torção do cordão espermático quando demonstra ausência de fluxo intratesticular, sendo o exame de imagem de escolha no escroto agudo [2]. Na varícocele, a combinação de diâmetro venoso aumentado e refluxo à Valsalva tem boa concordância com o exame físico e orienta a seleção cirúrgica [4]. As principais limitações são a dependência do operador e a possibilidade de fluxo residual na torção parcial/intermitente, reforçando a primazia da correlação clínica [2]."
+      },
+      {
+        "title": "Referências (com nível de evidência quando aplicável)",
+        "body": "[1] Minhas S, et al. EAU Guidelines on Sexual and Reproductive Health — Male Infertility. European Association of Urology, 2024. (Diretriz Clínica — Nível 1-3). Disponível em: https://uroweb.org/guidelines/sexual-and-reproductive-health\n[2] Lotti F, et al. The role of ultrasound of the male genital tract (consenso EFSUMB/EAA). *Int Braz J Urol*. 2026;52. (Licença CC BY; Revisão de consenso — Nível 5).\n[3] Dantas GC, et al. Microlitíase testicular e suas associações (ensaio iconográfico). *Radiologia Brasileira*. 2019;52(2):123-127. (Licença CC BY 4.0; Nível 5 — revisão iconográfica).\n[4] Bertolotto M, et al. Varicocele: ultrasound assessment and pitfalls. *Andrology*. 2021;9(5):1322-1333. (Licença CC BY; Revisão — Nível 5)."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Anatomia testicular normal e volumetria ao modo-B",
+        "description": "Corte longitudinal de testículo de ecotextura homogênea com cursores de medida dos três eixos (D1–D3) e cálculo de volume (~20 mL), demonstrando a técnica de volumetria pela fórmula do elipsóide",
+        "searchTerms": "Normal testis ultrasound homogeneous echotexture volume measurement ellipsoid B-mode"
+      },
+      {
+        "caption": "Microlitíase testicular (padrão 'starry sky')",
+        "description": "Múltiplos focos hiperecogênicos puntiformes (1–3 mm) distribuídos difusamente pelo parênquima testicular, sem sombra acústica posterior — aspecto clássico de microlitíase testicular ('céu estrelado')",
+        "searchTerms": "Testicular microlithiasis ultrasound starry sky hyperechoic foci no acoustic shadowing"
+      },
+      {
+        "caption": "Torção do cordão espermático: ausência de fluxo ao Doppler",
+        "description": "Estudo Doppler colorido comparativo demonstrando ausência/redução do fluxo arterial intratesticular no testículo acometido em relação ao contralateral normalmente perfundido — achado central da torção do cordão espermático",
+        "searchTerms": "Testicular torsion color doppler absent intratesticular flow comparative ultrasound"
+      },
+      {
+        "caption": "Varícocele: plexo pampiniforme dilatado com refluxo à Valsalva",
+        "description": "Veias do plexo pampiniforme dilatadas (> 2,5–3,0 mm) com demonstração de refluxo venoso ao Doppler colorido durante a manobra de Valsalva — critérios ultrassonográficos de varícocele",
+        "searchTerms": "Varicocele ultrasound pampiniform plexus dilated veins venous reflux Valsalva color doppler"
       }
     ]
   }
@@ -3856,6 +3924,7 @@ export const atlasToProcedure: Record<string, string> = {
   "ureterolitotripsia-rigida": "ureterolitotripsia-rigida",
   "uretrotomia-interna": "uretrotomia-interna",
   "usg-doppler-peniano": "usg-doppler-peniano",
+  "usg-escrotal-doppler-testicular": "usg-escrotal-doppler-testicular",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
 };

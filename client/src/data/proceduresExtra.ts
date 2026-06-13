@@ -44,6 +44,93 @@ export function classificarDopplerPeniano(psvRaw?: string, edvRaw?: string): str
   return `Hemodinâmica arterial e veno-oclusiva DENTRO DA NORMALIDADE (PSV ${psv} cm/s ≥ 35 cm/s e EDV ${edv} cm/s ≤ 5 cm/s).`;
 }
 
+/**
+ * Monta a curva textual de fluxo arterial por fase do estudo dinâmico peniano,
+ * a partir dos PSV (cm/s) medidos em 5, 10, 15, 20 e 25 minutos após a droga vasoativa.
+ * Identifica automaticamente o PSV máximo e o tempo até o pico (time-to-peak).
+ * Racional clínico: o PSV deve ser interpretado pelo seu valor MÁXIMO ao longo do
+ * tempo; medir até 25-30 min evita falso-positivo de insuficiência arterial por
+ * avaliação precoce/subdose (Radiol Bras 2018, CC BY; Sikka et al. J Sex Med 2013).
+ */
+export function curvaFluxoPeniano(
+  psv5?: string,
+  psv10?: string,
+  psv15?: string,
+  psv20?: string,
+  psv25?: string,
+): string {
+  const parse = (v?: string): number | null => {
+    if (v == null) return null;
+    const s = String(v).trim().replace(",", ".").replace(/[^0-9.\-]/g, "");
+    if (s === "" || s === "." || s === "-") return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  };
+  const tempos: { min: number; psv: number | null }[] = [
+    { min: 5, psv: parse(psv5) },
+    { min: 10, psv: parse(psv10) },
+    { min: 15, psv: parse(psv15) },
+    { min: 20, psv: parse(psv20) },
+    { min: 25, psv: parse(psv25) },
+  ];
+  const medidos = tempos.filter((t) => t.psv != null) as { min: number; psv: number }[];
+  if (medidos.length === 0) {
+    return "Curva de fluxo por fase indisponível (informe o PSV em pelo menos um tempo: 5, 10, 15, 20 ou 25 min).";
+  }
+  const linhas = tempos
+    .map((t) => `    • ${t.min} min: ${t.psv != null ? `${t.psv} cm/s` : "— (não medido)"}`)
+    .join("\n");
+  let pico = medidos[0];
+  for (const t of medidos) if (t.psv > pico.psv) pico = t;
+  const resumo = `PSV MÁXIMO = ${pico.psv} cm/s, atingido aos ${pico.min} min (tempo até o pico).`;
+  const nota =
+    pico.min >= 20
+      ? " Pico tardio (≥ 20 min) reforça a importância de prolongar a aquisição; avaliação precoce poderia subestimar o inflow arterial."
+      : "";
+  return `${linhas}\n  ${resumo}${nota}`;
+}
+
+/**
+ * Classificação automatizada do laudo de USG escrotal/Doppler testicular
+ * a partir dos principais cenários clínicos (torção, varícocele, microlitíase,
+ * massa, normal). Gera o trecho de impressão correspondente ao achado selecionado.
+ * Fontes: EAU Male Infertility 2024; consenso EFSUMB/EAA (Lotti et al.); revisões CC BY.
+ */
+export function classificarDopplerEscrotal(
+  achado?: string,
+  opts?: { fluxo?: string; grauVaricocele?: string; microlitiase?: string },
+): string {
+  switch (achado) {
+    case "Torção do cordão espermático": {
+      const fluxo = opts?.fluxo || "";
+      if (fluxo === "Fluxo intratesticular presente e simétrico") {
+        return "Fluxo arterial intratesticular PRESENTE e simétrico no momento do exame. Achado NÃO exclui torção intermitente/parcial — diante de quadro clínico sugestivo, a exploração cirúrgica não deve ser postergada.";
+      }
+      return "AUSÊNCIA/REDUÇÃO do fluxo arterial intratesticular em relação ao contralateral — padrão compatível com TORÇÃO DO CORDÃO ESPERMÁTICO. EMERGÊNCIA UROLÓGICA: indicar exploração cirúrgica imediata (janela de viabilidade ~6 h).";
+    }
+    case "Varícocele": {
+      const grau = opts?.grauVaricocele || "não especificado";
+      return `Veias do plexo pampiniforme dilatadas com refluxo venoso à manobra de Valsalva — VARÍCOCELE (grau ${grau}). Correlacionar com exame físico, espermograma e perfil hormonal; varicocelectomia em casos selecionados.`;
+    }
+    case "Microlitíase testicular": {
+      const tipo = opts?.microlitiase || "";
+      const def =
+        tipo === "Clássica (≥ 5 focos)"
+          ? "MICROLITÍASE TESTICULAR CLÁSSICA (≥ 5 microcalcificações por imagem)"
+          : tipo === "Limitada (< 5 focos)"
+            ? "Microlitíase testicular LIMITADA (< 5 microcalcificações por imagem)"
+            : "Microlitíase testicular";
+      return `${def}. Isoladamente não é pré-maligna; estratificar conforme fatores de risco (criptorquidia, atrofia, infertilidade, tumor prévio) e orientar autoexame/seguimento individualizado.`;
+    }
+    case "Massa testicular sólida":
+      return "Lesão SÓLIDA intratesticular vascularizada — considerar potencialmente maligna até prova em contrário. Solicitar marcadores tumorais (AFP, beta-hCG, LDH) e encaminhar para conduta oncológica (orquiectomia radical inguinal quando indicada).";
+    case "Normal":
+      return "Testículos tópicos, de ecotextura homogênea e volumetria preservada, com fluxo arterial intratesticular presente e simétrico. Sem sinais de torção, varícocele, microlitíase ou lesões focais ao exame atual.";
+    default:
+      return "Selecione o achado principal para gerar a impressão automatizada.";
+  }
+}
+
 export const proceduresExtra: Procedure[] = [
   {
     id: "frenuloplastia",
@@ -1939,6 +2026,11 @@ RETORNO:
       { id: "transdutor", label: "Transdutor", type: "select", options: ["Linear de alta frequ\u00eancia (12-15 MHz)", "Linear (7-12 MHz)"], defaultValue: "Linear de alta frequ\u00eancia (12-15 MHz)" },
       { id: "psv", label: "PSV m\u00e1ximo (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 38" },
       { id: "edv", label: "EDV (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 3" },
+      { id: "psv5", label: "PSV aos 5 min (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 22" },
+      { id: "psv10", label: "PSV aos 10 min (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 30" },
+      { id: "psv15", label: "PSV aos 15 min (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 36" },
+      { id: "psv20", label: "PSV aos 20 min (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 38" },
+      { id: "psv25", label: "PSV aos 25 min (cm/s)", type: "text", defaultValue: "", placeholder: "Ex.: 38" },
       { id: "ri", label: "\u00cdndice de resistividade (RI)", type: "text", defaultValue: "", placeholder: "Ex.: 0,95" },
       { id: "achados", label: "Achados relevantes", type: "text", defaultValue: "Sem altera\u00e7\u00f5es estruturais significativas", placeholder: "Placas, calcifica\u00e7\u00f5es, hematoma, f\u00edstula" },
     ],
@@ -1957,6 +2049,9 @@ DOPPLER ESPECTRAL (art\u00e9rias cavernosas, ap\u00f3s vasoativo):
 - Pico sist\u00f3lico (PSV) m\u00e1ximo: ${c.psv || "____"} cm/s.
 - Velocidade diast\u00f3lica final (EDV): ${c.edv || "____"} cm/s.
 - \u00cdndice de resistividade (RI): ${c.ri || "____"}.
+
+CURVA DE FLUXO ARTERIAL POR FASE (PSV das art\u00e9rias cavernosas ao longo do tempo):
+${curvaFluxoPeniano(c.psv5, c.psv10, c.psv15, c.psv20, c.psv25)}
 
 PAR\u00c2METROS DE REFER\u00caNCIA (correlacionar com a cl\u00ednica):
 - PSV > 35 cm/s: ausência de doença arterial. PSV < 25 cm/s: insufici\u00eancia arterial. 25-35 cm/s: indeterminado.
@@ -1990,6 +2085,63 @@ PREPARO:
 AP\u00d3S O EXAME (PONTOS DE ATEN\u00c7\u00c3O):
 ${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "- Sem restri\u00e7\u00f5es. Pode retornar \u00e0s atividades normais." : `- Pode haver leve desconforto ou pequeno hematoma no local da inje\u00e7\u00e3o.
 - SINAL DE ALERTA: se a ere\u00e7\u00e3o persistir por mais de 3-4 horas ou houver dor importante, procure um pronto-socorro imediatamente.`}`,
+    },
+  },
+  {
+    id: "usg-escrotal-doppler-testicular",
+    name: "Ultrassonografia escrotal com Doppler testicular",
+    shortName: "USG escrotal/Doppler",
+    icon: "\uD83D\uDD0A",
+    category: "Andrologia",
+    configFields: [
+      { id: "indicacao", label: "Indica\u00e7\u00e3o", type: "select", options: ["Dor escrotal aguda (escroto agudo)", "Investiga\u00e7\u00e3o de infertilidade", "Massa/n\u00f3dulo escrotal", "Trauma escrotal", "Seguimento de microlit\u00edase", "Var\u00edcocele"], defaultValue: "Investiga\u00e7\u00e3o de infertilidade" },
+      { id: "transdutor", label: "Transdutor", type: "select", options: ["Linear de alta frequ\u00eancia (7,5-18 MHz)", "Linear (7-12 MHz)"], defaultValue: "Linear de alta frequ\u00eancia (7,5-18 MHz)" },
+      { id: "volume_dir", label: "Volume test\u00edculo direito (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 18" },
+      { id: "volume_esq", label: "Volume test\u00edculo esquerdo (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 17" },
+      { id: "achado", label: "Achado principal", type: "select", options: ["Normal", "Tor\u00e7\u00e3o do cord\u00e3o esperm\u00e1tico", "Var\u00edcocele", "Microlit\u00edase testicular", "Massa testicular s\u00f3lida"], defaultValue: "Normal" },
+      { id: "lateralidade", label: "Lateralidade do achado", type: "select", options: ["\u00e0 direita", "\u00e0 esquerda", "bilateral", "n\u00e3o se aplica"], defaultValue: "n\u00e3o se aplica" },
+      { id: "fluxo", label: "Fluxo intratesticular (se escroto agudo)", type: "select", options: ["N\u00e3o avaliado", "Fluxo intratesticular presente e sim\u00e9trico", "Aus\u00eancia/redu\u00e7\u00e3o do fluxo intratesticular"], defaultValue: "N\u00e3o avaliado" },
+      { id: "grau_varicocele", label: "Grau da var\u00edcocele (Sarteschi I-V)", type: "select", options: ["n\u00e3o especificado", "I", "II", "III", "IV", "V"], defaultValue: "n\u00e3o especificado" },
+      { id: "microlitiase", label: "Padr\u00e3o de microlit\u00edase", type: "select", options: ["n\u00e3o se aplica", "Cl\u00e1ssica (\u2265 5 focos)", "Limitada (< 5 focos)"], defaultValue: "n\u00e3o se aplica" },
+    ],
+    templates: {
+      descricao: (c) => `LAUDO \u2014 ULTRASSONOGRAFIA ESCROTAL COM DOPPLER TESTICULAR
+Indica\u00e7\u00e3o: ${c.indicacao}
+T\u00e9cnica: Estudo comparativo com transdutor ${c.transdutor}, em cortes longitudinal e transversal de ambos os test\u00edculos, com modo-B e Doppler colorido/espectral (ajuste para fluxos lentos).${c.indicacao === "Investiga\u00e7\u00e3o de infertilidade" || c.achado === "Var\u00edcocele" ? " Pesquisa de var\u00edcocele em repouso, ortostase e durante manobra de Valsalva." : ""}
+
+MODO-B (VOLUMETRIA E ECOTEXTURA):
+- Test\u00edculo direito: volume ${c.volume_dir || "____"} mL.
+- Test\u00edculo esquerdo: volume ${c.volume_esq || "____"} mL.
+- Ecotextura homog\u00eanea de granula\u00e7\u00e3o fina; t\u00fanica albug\u00ednea e mediastino preservados (salvo achado abaixo).
+- Epid\u00eddimos e parede escrotal sem altera\u00e7\u00f5es significativas; ausente/presente hidrocele conforme exame.
+
+DOPPLER (PERFUS\u00c3O INTRATESTICULAR):
+- Fluxo arterial intratesticular: ${c.fluxo === "N\u00e3o avaliado" ? "avaliado de forma comparativa entre os lados" : c.fluxo.toLowerCase()}.
+
+ACHADO PRINCIPAL: ${c.achado}${c.lateralidade !== "n\u00e3o se aplica" ? ` (${c.lateralidade})` : ""}.
+
+IMPRESS\u00c3O (automatizada a partir do achado selecionado):
+- ${classificarDopplerEscrotal(c.achado, { fluxo: c.fluxo, grauVaricocele: c.grau_varicocele, microlitiase: c.microlitiase })}
+
+Observa\u00e7\u00e3o: laudo a ser interpretado em conjunto com a avalia\u00e7\u00e3o cl\u00ednica do especialista.`,
+      posOperatorio: (c) => `ORIENTA\u00c7\u00d5ES IMEDIATAS AP\u00d3S O EXAME (USG ESCROTAL)
+1. Exame n\u00e3o invasivo, indolor e sem necessidade de repouso. Pode retomar atividades habituais imediatamente.${c.achado === "Tor\u00e7\u00e3o do cord\u00e3o esperm\u00e1tico" && c.fluxo === "Aus\u00eancia/redu\u00e7\u00e3o do fluxo intratesticular" ? "\n2. ATEN\u00c7\u00c3O: achado compat\u00edvel com tor\u00e7\u00e3o \u2014 EMERG\u00caNCIA. Encaminhamento cir\u00fargico imediato." : ""}`,
+      receitaAlta: (c) => `RECOMENDA\u00c7\u00d5ES
+Nenhuma medica\u00e7\u00e3o necess\u00e1ria ap\u00f3s o exame.${c.achado === "Var\u00edcocele" ? "\nLevar o resultado ao urologista para correla\u00e7\u00e3o com espermograma e perfil hormonal." : ""}${c.achado === "Massa testicular s\u00f3lida" ? "\nProcurar o urologista com brevidade para investiga\u00e7\u00e3o complementar (marcadores tumorais)." : ""}
+Retornar com o resultado do exame para avalia\u00e7\u00e3o e defini\u00e7\u00e3o de conduta com o urologista.`,
+      orientacoes: (c) => `ORIENTA\u00c7\u00d5ES SOBRE O EXAME \u2014 USG ESCROTAL COM DOPPLER
+O QUE \u00c9:
+- Exame de imagem que avalia os test\u00edculos, epid\u00eddimos e a circula\u00e7\u00e3o da bolsa escrotal, sem radia\u00e7\u00e3o.
+- \u00c9 o m\u00e9todo de escolha para investigar dor escrotal aguda (afastar tor\u00e7\u00e3o), n\u00f3dulos/massas, var\u00edcocele e na avalia\u00e7\u00e3o de fertilidade.
+
+COMO \u00c9 FEITO:
+- Aplica-se gel e o aparelho (transdutor) \u00e9 deslizado sobre a bolsa escrotal.${c.indicacao === "Investiga\u00e7\u00e3o de infertilidade" || c.achado === "Var\u00edcocele" ? "\n- Para pesquisar var\u00edcocele, parte do exame \u00e9 feita em p\u00e9 e pedindo que voc\u00ea \"force\" o abdome (manobra de Valsalva)." : ""}
+
+PREPARO:
+- N\u00e3o \u00e9 necess\u00e1rio jejum nem preparo especial.
+
+AP\u00d3S O EXAME:
+- Sem restri\u00e7\u00f5es. Retorne ao seu urologista com o laudo para a conduta.`,
     },
   },
 ];
