@@ -142,3 +142,14 @@
 - [x] Prótese: nova fig "Aspecto intraoperatório A-C" + remapear imagem fig1->fig4 (fidelidade legenda-imagem)
 - [x] Remover resíduo ". 4" no searchTerms da figura Loja Subdartos
 - [x] Rerodar testes (172/172) e validar índices finais no banco
+
+# Lote OA 5 (Jaboulay/Lord, fratura peniana) + classificação USG
+- [x] Jaboulay/Lord: esquemas OA indisponíveis (CC BY); usados esquemas do Campbell-Walsh-Wein (Fig. 83.6 e 83.5) — uso pessoal, com crédito
+- [x] Fratura peniana ao USG: Safi A et al., Cureus 2025;17(7):e87730, CC BY 4.0
+- [x] Validar licenças/créditos (PMC OA) e preparar as imagens (recorte + redimensionamento)
+- [x] Adicionar 6ª figura (fratura peniana) ao dossiê USG no atlasData
+- [x] Ingerir Jaboulay (fig1) e Lord (fig2) na hidrocelectomia; fratura (fig5) no USG
+- [x] Atualizar descrições das figuras Jaboulay/Lord (fiel aos esquemas)
+- [x] Implementar classificação automática (normal/insuficiência arterial/venous leak) no laudo de USG a partir de PSV/EDV
+- [x] Criar testes vitest da função de classificação (10 cenários)
+- [x] Rodar testes (182/182), validar storage (307->200, image/jpeg) e salvar checkpoint

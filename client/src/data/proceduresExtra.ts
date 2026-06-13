@@ -2,6 +2,48 @@
 // Conteúdo clínico padronizado para o Dr. Felipe Bulhões. Fontes: EAU/AUA/SBU/Campbell-Walsh-Wein 13ª ed.
 import type { Procedure } from "./procedures";
 
+/**
+ * Classificação hemodinâmica automática do estudo Doppler peniano a partir de PSV/EDV.
+ * Faixas de referência (correlacionar sempre com a clínica):
+ *  - PSV < 25 cm/s: insuficiência arterial.
+ *  - PSV 25–35 cm/s: inflow arterial indeterminado/limítrofe.
+ *  - PSV ≥ 35 cm/s + EDV > 5 cm/s: disfunção veno-oclusiva (venous leak).
+ *  - PSV ≥ 35 cm/s + EDV ≤ 5 cm/s: hemodinâmica arterial e veno-oclusiva normais.
+ * Fontes: Radiol Bras 2018 (CC BY); Sikka et al. J Sex Med 2013; EAU 2024.
+ */
+export function classificarDopplerPeniano(psvRaw?: string, edvRaw?: string): string {
+  const parse = (v?: string): number | null => {
+    if (v == null) return null;
+    const s = String(v).trim().replace(",", ".").replace(/[^0-9.\-]/g, "");
+    if (s === "" || s === "." || s === "-") return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  };
+  const psv = parse(psvRaw);
+  const edv = parse(edvRaw);
+
+  if (psv == null) {
+    return "Classificação automática indisponível (informe o PSV para gerar a interpretação hemodinâmica).";
+  }
+  if (psv < 25) {
+    return `Padrão sugestivo de INSUFICIÊNCIA ARTERIAL (PSV ${psv} cm/s < 25 cm/s). Com inflow arterial reduzido, o EDV não permite avaliar de forma confiável o mecanismo veno-oclusivo.`;
+  }
+  if (psv < 35) {
+    const compl = edv != null && edv > 5
+      ? ` Observa-se EDV elevado (${edv} cm/s), porém o componente veno-oclusivo só é interpretável de forma fidedigna com PSV normal (≥ 35 cm/s).`
+      : "";
+    return `INFLOW ARTERIAL INDETERMINADO/LIMÍTROFE (PSV ${psv} cm/s, faixa 25–35 cm/s) — considerar redose/estimulação e correlação clínica.${compl}`;
+  }
+  // PSV >= 35
+  if (edv == null) {
+    return `Inflow arterial dentro da normalidade (PSV ${psv} cm/s ≥ 35 cm/s). Informe o EDV para avaliar o mecanismo veno-oclusivo.`;
+  }
+  if (edv > 5) {
+    return `Inflow arterial normal (PSV ${psv} cm/s) com EDV elevado (${edv} cm/s > 5 cm/s): padrão SUGESTIVO DE DISFUNÇÃO VENO-OCLUSIVA (venous leak).`;
+  }
+  return `Hemodinâmica arterial e veno-oclusiva DENTRO DA NORMALIDADE (PSV ${psv} cm/s ≥ 35 cm/s e EDV ${edv} cm/s ≤ 5 cm/s).`;
+}
+
 export const proceduresExtra: Procedure[] = [
   {
     id: "frenuloplastia",
@@ -1918,7 +1960,10 @@ DOPPLER ESPECTRAL (art\u00e9rias cavernosas, ap\u00f3s vasoativo):
 
 PAR\u00c2METROS DE REFER\u00caNCIA (correlacionar com a cl\u00ednica):
 - PSV > 35 cm/s: ausência de doença arterial. PSV < 25 cm/s: insufici\u00eancia arterial. 25-35 cm/s: indeterminado.
-- EDV > 5 cm/s com PSV normal: sugere disfun\u00e7\u00e3o veno-oclusiva (venous leak).`}
+- EDV > 5 cm/s com PSV normal: sugere disfun\u00e7\u00e3o veno-oclusiva (venous leak).
+
+CLASSIFICA\u00c7\u00c3O HEMODIN\u00c2MICA (autom\u00e1tica, a partir de PSV/EDV informados):
+- ${classificarDopplerPeniano(c.psv, c.edv)}`}
 
 IMPRESS\u00c3O:
 - Correlacionar os achados hemodin\u00e2micos com o quadro cl\u00ednico. Estudo a ser interpretado em conjunto com a avalia\u00e7\u00e3o do especialista.`,

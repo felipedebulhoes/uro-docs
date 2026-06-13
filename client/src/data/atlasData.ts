@@ -553,12 +553,12 @@ export const atlasEntries: AtlasEntry[] = [
       },
       {
         "caption": "Técnica de Jaboulay (Eversão)",
-        "description": "O saco da hidrocele aberto, com as bordas da túnica vaginal sendo tracionadas para trás do testículo e do cordão espermático, e a sutura sendo realizada para manter a eversão",
+        "description": "Esquema da eversão da túnica vaginal: após a abertura ampla do saco, as bordas são evertidas (viradas do avesso) e suturadas frouxamente atrás do testículo e do cordão espermático, impedindo a reacumulação de fluido",
         "searchTerms": "Jaboulay procedure hydrocelectomy illustration; Tunica vaginalis eversion technique hydrocele"
       },
       {
         "caption": "Técnica de Lord (Plicatura)",
-        "description": "O testículo exposto através da incisão na túnica vaginal in situ, com as suturas radiais (em bolsa de tabaco) passadas na túnica redundante, demonstrando o pregueamento do tecido ao redor da base do testículo após o aperto dos fios",
+        "description": "Esquema da plicatura radial: o testículo é entregue através da incisão e a túnica vaginal redundante é pregueada por múltiplas suturas radiais que, ao serem amarradas, formam um colar de tecido ao redor da base do testículo, obliterando o espaço sem dissecção extensa",
         "searchTerms": "Lord's plication hydrocele surgery diagram; Lord procedure hydrocelectomy radial sutures"
       },
       {
@@ -3747,9 +3747,14 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "High flow priapism color doppler arteriolacunar fistula cavernosal"
       },
       {
-        "caption": "Doen\u00e7a de Peyronie: placa calcificada ao modo-B",
-        "description": "Corte transversal na por\u00e7\u00e3o m\u00e9dia do p\u00eanis com imagem ecog\u00eanica e sombra ac\u00fastica posterior no corpo cavernoso, correspondente a calcifica\u00e7\u00e3o de placa de Peyronie (seta)",
+        "caption": "Doença de Peyronie: placa calcificada ao modo-B",
+        "description": "Corte transversal na porção média do pênis com imagem ecogênica e sombra acústica posterior no corpo cavernoso, correspondente a calcificação de placa de Peyronie (seta)",
         "searchTerms": "Peyronie disease calcified plaque B-mode ultrasound acoustic shadowing tunica"
+      },
+      {
+        "caption": "Fratura peniana ao modo-B: descontinuidade da túnica albugínea",
+        "description": "Cortes longitudinais do corpo cavernoso demonstrando defeito hipoecoico da túnica albugínea (interrupção focal da linha ecogênica), medindo cerca de 1,0 cm (painel esquerdo) e 1,2 cm (painel direito) — achado diagnóstico de fratura peniana, indicação de exploração cirúrgica precoce",
+        "searchTerms": "Penile fracture ultrasound tunica albuginea discontinuity hypoechoic defect B-mode"
       }
     ]
   }
