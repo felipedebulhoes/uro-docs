@@ -97,3 +97,10 @@
 - [x] Ingerir figuras no storage + DB com crédito Hinman's completo (13/13 OK; total 98 imagens)
 - [x] Validar testes (172 OK), storage proxy (HTTP 200 PNG) e PDF (embute imagens cadastradas)
 - [x] Checkpoint e reportar ao usuário
+
+## Lote Hinman 2 (não-andrológicos + figuras extras de andrologia)
+- [x] Mapear capítulos/páginas do Hinman's para procedimentos não-andrológicos (12 procedimentos)
+- [x] Definir figuras extras (fig2-4) para procedimentos-chave de andrologia (4 figuras)
+- [x] Renderizar páginas, selecionar e recortar figuras (300 DPI) com validação visual (16 recortes, 4 duplicatas descartadas)
+- [x] Ingerir figuras no storage + DB com crédito Hinman's completo (16/16 OK; total 114 imagens)
+- [x] Validar testes (172 OK), storage (PNG íntegro) e PDF (embute imagens); checkpoint e reportar ao usuário
