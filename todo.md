@@ -131,3 +131,4 @@
 - [x] Ingerir 5 figuras do dossiê USG (Radiologia Brasileira, CC BY 4.0)
 - [x] Atualizar asserts de contagem nos testes (atlas 55, procedures 53)
 - [x] Rodar pnpm test e validar storage/figuras (172/172 testes, storage 307->200)
+- [x] Atualizar subtítulo do Atlas na Home (54 -> 55 procedimentos)
