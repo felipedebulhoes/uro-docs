@@ -25,6 +25,10 @@ const CATEGORY_META: Record<string, CategoryMeta> = {
     badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
     shortLabel: "Estética",
   },
+  "Andrologia / Imagem": {
+    badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
+    shortLabel: "Imagem (USG)",
+  },
   "Estética Genital": {
     badgeClass: "bg-pink-500/10 text-pink-300 border-pink-500/30",
   },

@@ -1917,7 +1917,7 @@ DOPPLER ESPECTRAL (art\u00e9rias cavernosas, ap\u00f3s vasoativo):
 - \u00cdndice de resistividade (RI): ${c.ri || "____"}.
 
 PAR\u00c2METROS DE REFER\u00caNCIA (correlacionar com a cl\u00ednica):
-- PSV > 35 cm/s: ausencia de doen\u00e7a arterial. PSV < 25 cm/s: insufici\u00eancia arterial. 25-35 cm/s: indeterminado.
+- PSV > 35 cm/s: ausência de doença arterial. PSV < 25 cm/s: insufici\u00eancia arterial. 25-35 cm/s: indeterminado.
 - EDV > 5 cm/s com PSV normal: sugere disfun\u00e7\u00e3o veno-oclusiva (venous leak).`}
 
 IMPRESS\u00c3O:

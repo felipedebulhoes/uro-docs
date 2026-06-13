@@ -560,6 +560,11 @@ export const atlasEntries: AtlasEntry[] = [
         "caption": "Técnica de Lord (Plicatura)",
         "description": "O testículo exposto através da incisão na túnica vaginal in situ, com as suturas radiais (em bolsa de tabaco) passadas na túnica redundante, demonstrando o pregueamento do tecido ao redor da base do testículo após o aperto dos fios",
         "searchTerms": "Lord's plication hydrocele surgery diagram; Lord procedure hydrocelectomy radial sutures"
+      },
+      {
+        "caption": "Aspecto intraoperatório: hidrocele escrotal volumosa (acesso escrotal)",
+        "description": "Fotografia intraoperatória de hidrocele escrotal de grande volume, com hemiescroto distendido e pequena incisão escrotal por onde se exterioriza a túnica vaginal — demonstra o aspecto clínico-cirúrgico que motiva a abordagem escrotal das técnicas de Jaboulay e Lord",
+        "searchTerms": "Large scrotal hydrocele intraoperative photograph scrotal incision tunica vaginalis"
       }
     ]
   },
@@ -884,12 +889,17 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Criação da Loja Subdartos e Fixação",
         "description": "Uma visão intraoperatória (ilustração médica) demonstrando o dedo do cirurgião ou um instrumento rombo criando a bolsa subdartos em direção à porção dependente do escroto. Uma imagem secundária (inset) deve mostrar o detalhe do ponto de fixação (fio inabsorvível) ancorando a aba da prótese à túnica dartos inferior para evitar a migração superior",
-        "searchTerms": "Testicular implant subdartos pouch creation inferior fixation suture. 4"
+        "searchTerms": "Testicular implant subdartos pouch creation inferior fixation suture"
       },
       {
         "caption": "Técnica Intravaginal Modificada (Pós-Torção)",
         "description": "Uma ilustração detalhando a técnica de preservação da túnica vaginal após orquiectomia por torção. Deve mostrar a incisão na parede posterior da túnica vaginal, a inserção da prótese dentro desta cavidade e o fechamento da túnica isolando a prótese das camadas superficiais do escroto, minimizando o risco de extrusão",
         "searchTerms": "Intravaginal testicular prosthesis implantation tunica vaginalis closure"
+      },
+      {
+        "caption": "Aspecto intraoperatório do implante (marcação, inserção e resultado)",
+        "description": "Sequência clínico-cirúrgica em três tempos: (A) marcação pré-operatória da incisão e do trajeto da loja escrotal; (B) tempo intraoperatório com exposição e introdução da prótese na bolsa subdartos; (C) resultado pós-operatório imediato com a prótese alojada e simétrica no hemiescroto",
+        "searchTerms": "Testicular prosthesis implant intraoperative steps scrotal pouch result"
       }
     ]
   },
@@ -3678,7 +3688,7 @@ export const atlasEntries: AtlasEntry[] = [
   {
     "id": "usg-doppler-peniano",
     "name": "Ultrassonografia com Doppler peniano (atlas com e sem Doppler)",
-    "category": "Andrologia",
+    "category": "Andrologia / Imagem",
     "icon": "\uD83D\uDD0A",
     "evidence": "Diretriz EAU Sexual & Reproductive Health 2024 + ISSM/AUA + Ensaio iconogr\u00e1fico Radiol Bras 2018 (CC BY) + Revis\u00f5es de consenso (PSV/EDV)",
     "sections": [
@@ -3762,6 +3772,7 @@ export const atlasCategoryOrder: string[] = [
   "Andrologia / Prótese",
   "Andrologia / Peyronie",
   "Andrologia / Estética",
+  "Andrologia / Imagem",
   "Estética Genital",
   "Saúde do Homem",
   "Urgência",

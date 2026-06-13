@@ -114,11 +114,11 @@
 - Nota: hidrocelectomia e prótese testicular não têm capítulo ilustrado dedicado no Hinman's — sugeridos para rodada Open Access futura
 
 ## Lote Open Access 4 + USG Doppler peniano
-- [ ] Buscar imagem Open Access (CC-BY/CC0) para hidrocelectomia (técnicas de Jaboulay e Lord)
-- [ ] Buscar imagem Open Access (CC-BY/CC0) para implante de prótese testicular
-- [ ] Buscar imagens Open Access (CC-BY/CC0) de USG peniano modo-B e Doppler (anatomia, cavernosas, espectral PSV/EDV/RI)
-- [ ] Validar licença/crédito e preparar as figuras
-- [ ] Criar dossiê "USG Doppler Peniano" no Atlas (atlasData) com passo a passo, parâmetros e referências
+- [x] Buscar imagem Open Access (CC-BY/CC0) para hidrocelectomia (técnicas de Jaboulay e Lord)
+- [x] Buscar imagem Open Access (CC-BY/CC0) para implante de prótese testicular
+- [x] Buscar imagens Open Access (CC-BY/CC0) de USG peniano modo-B e Doppler (anatomia, cavernosas, espectral PSV/EDV/RI)
+- [x] Validar licença/crédito e preparar as figuras
+- [x] Criar dossiê "USG Doppler Peniano" no Atlas (atlasData) com passo a passo, parâmetros e referências
 - [x] Ingerir figuras no storage + DB (fig1 de hidrocele/prótese testicular; figuras do novo dossiê) com crédito
 - [x] Validar testes, storage, PDF e navegador; checkpoint e reportar ao usuário
 
@@ -132,3 +132,13 @@
 - [x] Atualizar asserts de contagem nos testes (atlas 55, procedures 53)
 - [x] Rodar pnpm test e validar storage/figuras (172/172 testes, storage 307->200)
 - [x] Atualizar subtítulo do Atlas na Home (54 -> 55 procedimentos)
+
+# Revisão Lote OA 4 (correções)
+- [x] Reclassificar categoria do dossiê USG para "Andrologia / Imagem" (ordem + atlasMeta)
+- [x] Corrigir título do crédito da hidrocele (Saber A, título correto via PMC OA)
+- [x] Corrigir crédito da prótese (Chantzi Z, título/ano corretos via PMC OA)
+- [x] Corrigir acento "ausência" no laudo de USG
+- [x] Hidrocele: nova fig "Aspecto intraoperatório" + remapear imagem fig1->fig3 (fidelidade legenda-imagem)
+- [x] Prótese: nova fig "Aspecto intraoperatório A-C" + remapear imagem fig1->fig4 (fidelidade legenda-imagem)
+- [x] Remover resíduo ". 4" no searchTerms da figura Loja Subdartos
+- [x] Rerodar testes (172/172) e validar índices finais no banco
