@@ -235,6 +235,9 @@ export default function AtlasProcedurePage() {
 
 function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
   const [copied, setCopied] = useState(false);
+  // se a imagem (quando houver) falhar ao carregar, cai no placeholder informativo
+  const [imgError, setImgError] = useState(false);
+  const showImage = Boolean(fig.imageUrl) && !imgError;
 
   const copyTerms = () => {
     navigator.clipboard
@@ -250,10 +253,12 @@ function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
   return (
     <Card className="overflow-hidden bg-card border-border flex flex-col">
       {/* Espaço da imagem (placeholder informativo) */}
-      {fig.imageUrl ? (
+      {showImage ? (
         <img
           src={fig.imageUrl}
           alt={fig.caption}
+          loading="lazy"
+          onError={() => setImgError(true)}
           className="w-full aspect-video object-cover bg-nilo-dark"
         />
       ) : (

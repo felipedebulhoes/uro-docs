@@ -48,6 +48,20 @@ describe("Atlas data integrity", () => {
     }
   });
 
+  it("nenhuma figura tem imageUrl inválido (evita links quebrados)", () => {
+    const valido = /^(https?:\/\/|\/manus-storage\/|\/)/;
+    for (const e of atlasEntries) {
+      for (const f of e.figures) {
+        if (f.imageUrl !== undefined && f.imageUrl !== "") {
+          expect(
+            valido.test(f.imageUrl),
+            `imageUrl inválido em ${e.id}: "${f.imageUrl}"`
+          ).toBe(true);
+        }
+      }
+    }
+  });
+
   it("every figure has a caption and search terms", () => {
     for (const e of atlasEntries) {
       for (const f of e.figures) {
