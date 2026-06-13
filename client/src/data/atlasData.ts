@@ -887,8 +887,8 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Saline-filled testicular prosthesis preparation filling technique air removal. 3"
       },
       {
-        "caption": "Criação da Loja Subdartos e Fixação",
-        "description": "Uma visão intraoperatória (ilustração médica) demonstrando o dedo do cirurgião ou um instrumento rombo criando a bolsa subdartos em direção à porção dependente do escroto. Uma imagem secundária (inset) deve mostrar o detalhe do ponto de fixação (fio inabsorvível) ancorando a aba da prótese à túnica dartos inferior para evitar a migração superior",
+        "caption": "Loja Subdartos e Fixação da Prótese (aspecto intraoperatório)",
+        "description": "Aspecto intraoperatório real da prótese já posicionada e ancorada na porção dependente da bolsa escrotal, ponto-chave para evitar a migração superior. Neste exemplo, a prótese é uma esfera de tela de polipropileno (alternativa de baixo custo descrita para castração cirúrgica em câncer de próstata); o princípio de criação da loja subdartos e fixação inferior com fio inabsorvível é o mesmo para próteses salinas/de silicone convencionais",
         "searchTerms": "Testicular implant subdartos pouch creation inferior fixation suture"
       },
       {
