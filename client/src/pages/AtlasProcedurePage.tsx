@@ -27,7 +27,15 @@ import {
   FileText,
   Copy,
   Check,
+  ExternalLink,
+  Printer,
 } from "lucide-react";
+import {
+  clinicalKeySearchUrl,
+  capesSearchUrl,
+  openInNewTab,
+} from "@/lib/atlasSearch";
+import { exportAtlasPdf } from "@/lib/atlasPdf";
 import { useMemo, useState } from "react";
 import { useParams, Link } from "wouter";
 import { Streamdown } from "streamdown";
@@ -129,18 +137,32 @@ export default function AtlasProcedurePage() {
             </p>
           </Card>
 
-          {linkedProcedure && (
-            <Link href={`/procedimento/${linkedProcedure.id}`}>
-              <Button
-                size="sm"
-                variant="outline"
-                className="mt-3 h-8 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
-              >
-                <FileText className="w-3.5 h-3.5" />
-                Gerar documentos deste procedimento
-              </Button>
-            </Link>
-          )}
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {linkedProcedure && (
+              <Link href={`/procedimento/${linkedProcedure.id}`}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-8 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  Gerar documentos deste procedimento
+                </Button>
+              </Link>
+            )}
+            <Button
+              size="sm"
+              variant="outline"
+              className="h-8 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
+              onClick={() => {
+                exportAtlasPdf(entry);
+                toast.success("Dossiê aberto para impressão/PDF");
+              }}
+            >
+              <Printer className="w-3.5 h-3.5" />
+              Exportar PDF
+            </Button>
+          </div>
         </div>
 
         {/* Seções técnicas */}
@@ -304,6 +326,36 @@ function FigureCard({ fig, index }: { fig: AtlasFigure; index: number }) {
               <Copy className="w-3.5 h-3.5 text-primary" />
             )}
           </button>
+        </div>
+
+        {/* Abrir busca direto nas plataformas (uso pessoal/educacional) */}
+        <div className="mt-1 flex flex-wrap items-center gap-1.5">
+          <button
+            onClick={() => openInNewTab(clinicalKeySearchUrl(fig.searchTerms))}
+            className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-primary/10 border border-primary/20 text-[10px] font-medium text-primary hover:bg-primary/20 transition-colors"
+            title="Abrir estes termos no ClinicalKey (requer login institucional)"
+          >
+            <ExternalLink className="w-3 h-3" />
+            ClinicalKey
+          </button>
+          <button
+            onClick={() => openInNewTab(capesSearchUrl(fig.searchTerms))}
+            className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-primary/10 border border-primary/20 text-[10px] font-medium text-primary hover:bg-primary/20 transition-colors"
+            title="Abrir estes termos no Portal de Periódicos CAPES (login via CAFe)"
+          >
+            <ExternalLink className="w-3 h-3" />
+            CAPES
+          </button>
+          {fig.sourceUrl && (
+            <button
+              onClick={() => openInNewTab(fig.sourceUrl!)}
+              className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-card border border-border text-[10px] font-medium text-foreground/80 hover:border-primary/40 hover:text-primary transition-colors"
+              title="Abrir a fonte original desta figura"
+            >
+              <ExternalLink className="w-3 h-3" />
+              Fonte
+            </button>
+          )}
         </div>
       </div>
     </Card>

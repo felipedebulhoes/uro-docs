@@ -13,6 +13,7 @@ export interface AtlasFigure {
   searchTerms: string; // termos em inglês para localizar a figura em livros/atlas/artigos
   imageUrl?: string; // preenchido quando uma imagem (gerada/open-access) está disponível
   credit?: string;   // fonte/crédito da imagem
+  sourceUrl?: string; // link direto para a fonte original (artigo/atlas), uso pessoal
 }
 
 export interface AtlasEntry {

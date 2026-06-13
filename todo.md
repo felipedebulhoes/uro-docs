@@ -73,3 +73,9 @@
 - [x] Unificação: integrar dados (atlasData, proceduresExtra) e completar o mapa atlasToProcedure bidirecional (54 pares)
 - [x] Unificação: garantir card na Home para todos os procedimentos (lista dinâmica) e botão Atlas↔documento nos dois sentidos
 - [x] Unificação: testes vitest de cobertura cruzada (todo procedimento↔Atlas, 160 testes) e validação no navegador; checkpoint
+
+- [x] Atlas+: botão "abrir busca" em cada figura (ClinicalKey + Portal CAPES) abrindo termos em nova aba
+- [x] Atlas+: exportar dossiê do Atlas em PDF com cabeçalho institucional (impressão/estudo)
+- [ ] Atlas+: schema de figura com imageUrl/credit/sourceUrl e storage protegido por login + fallback onError
+- [ ] Atlas+: coletar figuras-chave reais via ClinicalKey/CAPES (login do usuário), baixar e hospedar com crédito
+- [ ] Atlas+: integrar imagens às figuras-chave, testes/links e checkpoint
