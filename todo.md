@@ -155,14 +155,14 @@
 - [x] Rodar testes (182/182), validar storage (307->200, image/jpeg) e salvar checkpoint
 
 # Lote OA 6 (laudo USG avançado + priapismo isquêmico + USG escrotal)
-- [ ] Buscar figura Open Access (CC BY) de priapismo isquêmico/baixo fluxo ao Doppler peniano
-- [ ] Buscar figuras Open Access (CC BY) de USG escrotal/Doppler testicular (torção, varicocele, microlitíase)
-- [ ] Validar licenças/créditos e preparar as imagens
-- [ ] Laudo USG peniano: campo "tempo até PSV máximo" + curva textual de fluxo por fase (5/10/15/20 min)
-- [ ] Criar dossiê `usg-doppler-escrotal-testicular` no atlasData (torção, varicocele, microlitíase)
-- [ ] Criar procedimento-catálogo `usg-doppler-escrotal-testicular` (laudo automatizado + solicitação + orientações)
-- [ ] Mapear novo dossiê em atlasToProcedure e atualizar asserts de contagem (atlas 56, procedures 54)
-- [ ] Adicionar 7ª figura (priapismo isquêmico) ao dossiê USG peniano
-- [ ] Ingerir imagens no storage + DB com crédito
-- [ ] Criar/atualizar testes vitest (curva de fluxo + classificação escrotal, se houver)
-- [ ] Rodar testes, validar storage/banco e salvar checkpoint
+- [x] Buscar figura Open Access (CC BY) de priapismo isquêmico/baixo fluxo ao Doppler peniano (PMC6472861, Radiol Bras 2019)
+- [x] Buscar figuras Open Access (CC BY) de USG escrotal/Doppler testicular (torção PMC12130081, varicocele PMC8596817, microlitíase/anatomia PMC13143353)
+- [x] Validar licenças/créditos e preparar as imagens (5 recortes, QC visual aprovado)
+- [x] Laudo USG peniano: campo "tempo até PSV máximo" + curva textual de fluxo por fase (5/10/15/20/25 min)
+- [x] Criar dossiê `usg-escrotal-doppler-testicular` no atlasData (torção, varicocele, microlitíase, anatomia)
+- [x] Criar procedimento-catálogo `usg-escrotal-doppler-testicular` (laudo automatizado + solicitação + orientações)
+- [x] Mapear novo dossiê em atlasToProcedure e atualizar asserts de contagem (atlas 56, procedures 54)
+- [x] Adicionar 7ª figura (priapismo isquêmico, fig6) ao dossiê USG peniano
+- [x] Ingerir imagens no storage + DB com crédito (5/5 OK; peniano com 7 figs, escrotal com 4 figs)
+- [x] Criar/atualizar testes vitest (curvaFluxoPeniano + classificarDopplerEscrotal, 16 testes)
+- [x] Rodar testes, validar storage/banco e salvar checkpoint (198/198 testes, TS OK)
