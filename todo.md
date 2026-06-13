@@ -82,3 +82,10 @@
 - [x] Atlas+: painel administrativo de upload de imagens por figura (/atlas/admin, crédito/fonte, preview, remoção, só admin)
 - [x] Atlas+: coletar figuras Open Access (PMC/CC-BY) — 40/54 figuras-chave com imagem real verificada (licença + crédito), 14 sem fonte redistribuível (placeholder)
 - [x] Atlas+: ingestão no storage + tabela (crédito/fonte), leitura por procedure autenticado, fallback onError; 170 testes OK
+
+- [x] Atlas++: painel admin já gerencia imagens de todas as figuras (itera entry.figures, figureIndex 0..N)
+- [x] Atlas++: UI do dossiê já exibe imagem do banco em qualquer figura (imageByIndex por figureIndex)
+- [x] Atlas++: PDF exportado embute imagens cadastradas (data URI + crédito) quando logado; placeholder textual quando não há imagem
+- [ ] Atlas++: nova rodada de busca Open Access para as 14 figuras-chave faltantes + figuras 2-4 onde houver fonte CC
+- [ ] Atlas++: ingestão das novas imagens (storage + tabela, crédito/fonte)
+- [ ] Atlas++: testes, validação e checkpoint final

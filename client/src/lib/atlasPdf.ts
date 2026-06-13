@@ -6,6 +6,13 @@ import type { AtlasEntry } from "@/data/atlasData";
 import { LOGO_SVG } from "@/lib/institution";
 import { openPrintableDocument } from "@/lib/printDocument";
 
+/** Imagem (já resolvida em data URI) para uma figura específica. */
+export type AtlasPdfImage = {
+  /** data URI (data:image/...;base64,...) pronto para embutir no PDF */
+  dataUrl: string;
+  credit?: string | null;
+};
+
 function esc(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -22,8 +29,15 @@ function mdToHtml(md: string): string {
 /**
  * Monta o dossiê formatado (HTML) para impressão / "Salvar como PDF".
  * Função pura (sem efeitos colaterais) para ser testada em ambiente node.
+ *
+ * `images` mapeia figureIndex (0-based) → imagem em data URI. Quando presente,
+ * a imagem é embutida no item da figura; caso contrário, mantém-se a sugestão
+ * com termos de busca (placeholder textual).
  */
-export function buildAtlasPdfHtml(entry: AtlasEntry): string {
+export function buildAtlasPdfHtml(
+  entry: AtlasEntry,
+  images?: Map<number, AtlasPdfImage>
+): string {
   const refIndex = entry.sections.findIndex((s) =>
     s.title.toLowerCase().includes("refer")
   );
@@ -44,22 +58,33 @@ export function buildAtlasPdfHtml(entry: AtlasEntry): string {
       ? `<section class="block"><h2>Figuras de referência (${
           entry.figures.length
         })</h2>
-        <p class="note">Sugestões de figuras didáticas. Use os termos de busca em inglês para localizar a ilustração em atlas/livros (ClinicalKey) ou artigos (Portal CAPES). Uso pessoal/educacional — respeite os direitos autorais.</p>
+        <p class="note">Figuras com imagem cadastrada são reproduzidas para uso pessoal/educacional, com crédito da fonte. Para as demais, use os termos de busca em inglês para localizar a ilustração em atlas/livros (ClinicalKey) ou artigos (Portal CAPES). Respeite os direitos autorais.</p>
         <ol class="figs">${entry.figures
-          .map(
-            (f) =>
-              `<li><span class="fig-cap">${esc(f.caption)}</span>${
-                f.description
-                  ? `<span class="fig-desc">${esc(f.description)}</span>`
-                  : ""
-              }<span class="fig-terms"><strong>Buscar:</strong> ${esc(
-                f.searchTerms
-              )}</span>${
-                f.credit
-                  ? `<span class="fig-credit">Crédito: ${esc(f.credit)}</span>`
-                  : ""
-              }</li>`
-          )
+          .map((f, i) => {
+            const img = images?.get(i);
+            const imgCredit = img?.credit || f.credit;
+            const imageBlock = img
+              ? `<img class="fig-img" src="${img.dataUrl}" alt="${esc(
+                  f.caption
+                )}" />`
+              : "";
+            const termsBlock = img
+              ? ""
+              : `<span class="fig-terms"><strong>Buscar:</strong> ${esc(
+                  f.searchTerms
+                )}</span>`;
+            return `<li>${imageBlock}<span class="fig-cap">${esc(
+              f.caption
+            )}</span>${
+              f.description
+                ? `<span class="fig-desc">${esc(f.description)}</span>`
+                : ""
+            }${termsBlock}${
+              imgCredit
+                ? `<span class="fig-credit">Crédito: ${esc(imgCredit)}</span>`
+                : ""
+            }</li>`;
+          })
           .join("")}</ol></section>`
       : "";
 
@@ -105,7 +130,8 @@ export function buildAtlasPdfHtml(entry: AtlasEntry): string {
     .md th { background:#f3f3f3; }
     .note { font-size:9.5pt; color:#777; font-style:italic; margin-bottom:8px; }
     ol.figs { margin-left:18px; }
-    ol.figs li { margin:8px 0; }
+    ol.figs li { margin:10px 0; page-break-inside:avoid; }
+    .fig-img { display:block; max-width:100%; max-height:340px; object-fit:contain; border:1px solid #ddd; border-radius:6px; margin:4px 0 6px; background:#fafafa; }
     .fig-cap { display:block; font-weight:600; color:#1C3D5A; }
     .fig-desc { display:block; font-size:10pt; color:#444; margin:2px 0; }
     .fig-terms { display:block; font-size:9.5pt; color:#666; font-family:monospace; }
@@ -148,10 +174,65 @@ export function buildAtlasPdfHtml(entry: AtlasEntry): string {
 }
 
 /**
+ * Baixa uma imagem (URL assinada/relativa) e converte em data URI base64.
+ * Retorna null em caso de falha (CORS, 404 etc.) — o PDF cai no placeholder.
+ */
+async function fetchAsDataUrl(url: string): Promise<string | null> {
+  try {
+    const res = await fetch(url, { credentials: "include" });
+    if (!res.ok) return null;
+    const blob = await res.blob();
+    if (!blob.type.startsWith("image/")) return null;
+    return await new Promise<string | null>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(String(reader.result));
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
+
+/** Imagem do Atlas (vinda do backend) usada para resolver as figuras do PDF. */
+export type AtlasImageInput = {
+  figureIndex: number;
+  url: string;
+  credit?: string | null;
+};
+
+/**
+ * Resolve as imagens (data URI) para uso no PDF. As que falharem são omitidas
+ * (mantêm o placeholder textual no PDF).
+ */
+export async function resolveAtlasPdfImages(
+  imgs: AtlasImageInput[]
+): Promise<Map<number, AtlasPdfImage>> {
+  const out = new Map<number, AtlasPdfImage>();
+  await Promise.all(
+    imgs.map(async (img) => {
+      const dataUrl = await fetchAsDataUrl(img.url);
+      if (dataUrl) out.set(img.figureIndex, { dataUrl, credit: img.credit });
+    })
+  );
+  return out;
+}
+
+/**
  * Abre o dossiê em nova aba para impressão / "Salvar como PDF". Usa Blob URL
  * (openPrintableDocument) para ser seguro sob CSP Trusted Types e tratar popup
  * bloqueado com fallback de âncora.
+ *
+ * Se `imgs` for fornecido (usuário autenticado com imagens cadastradas), as
+ * imagens são embutidas no PDF; caso contrário, mantém-se o placeholder textual.
  */
-export function exportAtlasPdf(entry: AtlasEntry): void {
-  openPrintableDocument(buildAtlasPdfHtml(entry));
+export async function exportAtlasPdf(
+  entry: AtlasEntry,
+  imgs?: AtlasImageInput[]
+): Promise<void> {
+  let images: Map<number, AtlasPdfImage> | undefined;
+  if (imgs && imgs.length > 0) {
+    images = await resolveAtlasPdfImages(imgs);
+  }
+  openPrintableDocument(buildAtlasPdfHtml(entry, images));
 }

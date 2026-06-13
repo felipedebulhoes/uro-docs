@@ -183,8 +183,17 @@ export default function AtlasProcedurePage() {
               variant="outline"
               className="h-8 text-xs gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
               onClick={() => {
-                exportAtlasPdf(entry);
-                toast.success("Dossiê aberto para impressão/PDF");
+                const imgs = Array.from(imageByIndex.values()).map((im) => ({
+                  figureIndex: im.figureIndex,
+                  url: im.url,
+                  credit: im.credit,
+                }));
+                void exportAtlasPdf(entry, imgs);
+                toast.success(
+                  imgs.length > 0
+                    ? "Preparando dossiê com imagens…"
+                    : "Dossiê aberto para impressão/PDF"
+                );
               }}
             >
               <Printer className="w-3.5 h-3.5" />

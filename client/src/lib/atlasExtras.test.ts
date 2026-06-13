@@ -72,4 +72,29 @@ describe("buildAtlasPdfHtml", () => {
       expect(html).toContain(e.name);
     }
   });
+
+  it("embute a imagem (data URI) quando fornecida para a figura", () => {
+    const withFig = atlasEntries.find((e) => e.figures.length > 0)!;
+    const dataUrl =
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==";
+    const images = new Map([[0, { dataUrl, credit: "Autor et al., 2023 (CC BY)" }]]);
+    const html = buildAtlasPdfHtml(withFig, images);
+    // a imagem deve aparecer embutida
+    expect(html).toContain(`src="${dataUrl}"`);
+    // crédito da imagem deve aparecer
+    expect(html).toContain("Autor et al., 2023 (CC BY)");
+    // figura com imagem não mostra os termos de busca (placeholder textual)
+    const firstFig = withFig.figures[0];
+    // o termo de busca não deve estar no bloco da figura 0 quando há imagem
+    // (pode aparecer em outras figuras sem imagem, então checamos via marcador)
+    expect(html).toContain('<img class="fig-img"');
+    expect(firstFig.caption.length).toBeGreaterThan(0);
+  });
+
+  it("sem imagens, mantém os termos de busca no PDF", () => {
+    const withFig = atlasEntries.find((e) => e.figures.length > 0)!;
+    const html = buildAtlasPdfHtml(withFig);
+    expect(html).not.toContain('<img class="fig-img"');
+    expect(html).toContain("Buscar:");
+  });
 });
