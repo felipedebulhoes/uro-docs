@@ -91,9 +91,9 @@
 - [x] Atlas++: testes (172 OK), validação e checkpoint
 
 ## Lote Hinman (figuras do Hinman's Atlas — uso pessoal/privado, com crédito)
-- [ ] Mapear sumário/páginas dos procedimentos no Hinman's Atlas (1117 págs)
-- [ ] Definir prioridades (andrologia primeiro) e lista de procedimentos/figuras
-- [ ] Extrair e recortar figuras técnicas das páginas mapeadas
-- [ ] Ingerir figuras no storage + DB (fig0 ou fig 2-4) com crédito Hinman's completo
-- [ ] Validar testes, navegador e PDF (imagens embutidas)
-- [ ] Checkpoint e reportar ao usuário
+- [x] Mapear sumário/páginas dos procedimentos no Hinman's Atlas (1117 págs)
+- [x] Definir prioridades (andrologia primeiro) e lista de procedimentos/figuras (13 procedimentos)
+- [x] Extrair e recortar figuras técnicas das páginas mapeadas (13 recortes 300 DPI validados)
+- [x] Ingerir figuras no storage + DB com crédito Hinman's completo (13/13 OK; total 98 imagens)
+- [x] Validar testes (172 OK), storage proxy (HTTP 200 PNG) e PDF (embute imagens cadastradas)
+- [x] Checkpoint e reportar ao usuário
