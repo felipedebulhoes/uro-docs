@@ -11,4 +11,4 @@
 - [x] Salvar checkpoint e reportar ao usuário
 - [x] Esquemas conceituais como ilustração médica autoral: algoritmo de decisão (vasovaso vs vasoepi, fig4), microscopia comparativa do fluido vasal (vasoepi fig3) e posicionamento do reservatório da prótese peniana inflável (fig4)
 - [x] Reversão de vasectomia (vasovasostomia fig4 e vasoepididimostomia fig3) e prótese peniana inflável de 3 volumes (fig4): dossiês completos, validados no storage (HTTP 206) sem duplicatas
-- [ ] (Adiado) Rezūm: figuras cistoscópicas/dispositivo só disponíveis em CC BY-NC-SA (não-comercial); aguardando fonte CC BY/CC0 pura ou ilustração autoral dedicada em lote futuro
+- [x] Rezūm: dossiê completo (fig0-fig3). Como não havia fonte CC BY/CC0 pura para dispositivo/cistoscopia, produzidas ilustrações médicas autorais — fig1 (handpiece/dispositivo transuretral), fig2 (angulação da agulha lobos laterais ~90° vs mediano ~45°) e fig3 (visão cistoscópica da injeção de vapor); validadas no storage (HTTP 206) sem duplicatas
