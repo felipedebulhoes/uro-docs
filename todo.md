@@ -9,6 +9,6 @@
 - [x] Ingerir imagens no storage + DB com crédito (DELETE+INSERT idempotente, 4/4 OK)
 - [x] Validar storage (HTTP 206/image-jpeg), banco sem duplicatas e testes vitest (198/198)
 - [x] Salvar checkpoint e reportar ao usuário
-- [ ] (Próximo lote) Rezūm: figuras cistoscópicas/dispositivo em CC BY puro (candidatos disponíveis eram CC BY-NC-SA — adiado)
-- [ ] (Próximo lote) Esquemas conceituais (algoritmos, anatomia fascial transversal, manejo de complicações com AH): produzir como ilustração médica autoral
-- [ ] (Próximo lote) Reversão de vasectomia (vasovasostomia/vasoepididimostomia) e prótese peniana inflável: completar figuras restantes
+- [x] Esquemas conceituais como ilustração médica autoral: algoritmo de decisão (vasovaso vs vasoepi, fig4), microscopia comparativa do fluido vasal (vasoepi fig3) e posicionamento do reservatório da prótese peniana inflável (fig4)
+- [x] Reversão de vasectomia (vasovasostomia fig4 e vasoepididimostomia fig3) e prótese peniana inflável de 3 volumes (fig4): dossiês completos, validados no storage (HTTP 206) sem duplicatas
+- [ ] (Adiado) Rezūm: figuras cistoscópicas/dispositivo só disponíveis em CC BY-NC-SA (não-comercial); aguardando fonte CC BY/CC0 pura ou ilustração autoral dedicada em lote futuro
