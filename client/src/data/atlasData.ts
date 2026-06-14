@@ -882,8 +882,8 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Testicular prosthesis surgical incision inguinal scrotal approach anatomy. 2"
       },
       {
-        "caption": "Preparo e Preenchimento da Prótese Salina",
-        "description": "Uma fotografia ou ilustração passo a passo mostrando a técnica correta de punção do portal da prótese (ex.: Torosa) com uma agulha borboleta/seringa, a injeção da solução salina estéril e a aspiração cuidadosa de todo o ar residual do interior da prótese antes da implantação",
+        "caption": "Preparo da Prótese (e Preenchimento Salino, quando aplicável)",
+        "description": "Ilustração do preparo da prótese testicular em mesa estéril antes da implantação. Em próteses salinas (ex.: Torosa), demonstra-se a punção do portal com agulha borboleta/seringa, a injeção de solução salina estéril e a aspiração cuidadosa de todo o ar residual; em próteses de silicone sólido, apenas a seleção do tamanho adequado e a imersão em solução antibiótica",
         "searchTerms": "Saline-filled testicular prosthesis preparation filling technique air removal. 3"
       },
       {
