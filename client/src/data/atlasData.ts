@@ -3887,8 +3887,20 @@ export const atlasEntries: AtlasEntry[] = [
         "body": "Dura\u00e7\u00e3o m\u00e1xima: 4\u20136 semanas (EAU 2024). Reavalia\u00e7\u00e3o com imagem (TC sem contraste ou RX) em 4 semanas. Crit\u00e9rios de falha (indica\u00e7\u00e3o cir\u00fargica): aus\u00eancia de passagem ap\u00f3s 4\u20136 semanas; dor refrat\u00e1ria; infec\u00e7\u00e3o urin\u00e1ria; deteriora\u00e7\u00e3o da fun\u00e7\u00e3o renal; obstru\u00e7\u00e3o bilateral ou rim \u00fanico."
       },
       {
-        "title": "Orienta\u00e7\u00f5es ao Paciente",
-        "body": "Hidrata\u00e7\u00e3o: \u2265 2,5 L de \u00e1gua/dia. Filtrar a urina (filtro de caf\u00e9 ou gaze) para identificar a passagem do c\u00e1lculo. Guardar o c\u00e1lculo para an\u00e1lise de composi\u00e7\u00e3o. Atividade f\u00edsica moderada pode auxiliar. Sinais de alerta: febre > 38\u00b0C (emerg\u00eancia), dor intensa refrat\u00e1ria, aus\u00eancia de diurese."
+        "title": "Hidrata\u00e7\u00e3o",
+        "body": "Ingest\u00e3o h\u00eddrica: \u2265 2,5 L de \u00e1gua/dia, distribu\u00edda ao longo de todo o dia (incluindo \u00e0 noite). Prefer\u00eancia por \u00e1gua com baixo teor de s\u00f3dio (< 200 mg/L). Evitar bebidas a\u00e7ucaradas, refrigerantes (especialmente cola) e sucos industrializados. Limona\u00e7\u00e3o natural (citrato de pot\u00e1ssio end\u00f3geno) pode ser ben\u00e9fica em c\u00e1lculos de oxalato de c\u00e1lcio. Monitorar diurese: meta \u2265 2 L/dia de urina. Filtrar a urina (filtro de caf\u00e9 ou gaze) para identificar a passagem do c\u00e1lculo e guard\u00e1-lo para an\u00e1lise de composi\u00e7\u00e3o."
+      },
+      {
+        "title": "Dieta",
+        "body": "Sal: restringir a < 5 g/dia (s\u00f3dio urin\u00e1rio < 150 mEq/dia) \u2014 hipercalci\u00faria sal-sens\u00edvel \u00e9 fator de risco major. C\u00e1lcio diet\u00e9tico: manter ingesta normal (800\u20131.000 mg/dia) \u2014 n\u00e3o restringir, pois o c\u00e1lcio intestinal se liga ao oxalato e reduz sua absor\u00e7\u00e3o. Oxalato: reduzir alimentos ricos (espinafre, beterraba, nozes, chocolate, ch\u00e1 preto) em c\u00e1lculos de oxalato de c\u00e1lcio. Prote\u00edna animal: limitar a < 0,8 g/kg/dia \u2014 excesso aumenta calci\u00faria, oxal\u00faria e uricosuria. Purinas: evitar carnes vermelhas, v\u00edsceras e frutos do mar em c\u00e1lculos de \u00e1cido \u00farico. Vitamina C: n\u00e3o suplementar em doses altas (> 1 g/dia) \u2014 metabolizada a oxalato. Fonte: EAU Guidelines on Urolithiasis 2024, Cap. 4 (Dietary Recommendations)."
+      },
+      {
+        "title": "Exerc\u00edcio F\u00edsico",
+        "body": "Atividade f\u00edsica moderada \u00e9 recomendada e pode favorecer a progress\u00e3o e expuls\u00e3o do c\u00e1lculo por meio de vibra\u00e7\u00e3o mec\u00e2nica do trato urin\u00e1rio. Recomenda\u00e7\u00f5es: caminhada r\u00e1pida (30\u201345 min/dia), subir e descer escadas, pular corda ou corrida leve \u2014 atividades de impacto moderado s\u00e3o prefer\u00edveis a exerc\u00edcios est\u00e1ticos. Estudo de Yencilek et al. (Urol Res 2010): atividade f\u00edsica aumentou significativamente a taxa de expuls\u00e3o em c\u00e1lculos distais. Evitar exerc\u00edcio extenuante com desidrata\u00e7\u00e3o (aumenta concentra\u00e7\u00e3o urin\u00e1ria e risco de novo c\u00e1lculo). Repouso relativo apenas durante epis\u00f3dios de c\u00f3lica intensa."
+      },
+      {
+        "title": "Repouso e Atividades Di\u00e1rias",
+        "body": "Repouso absoluto n\u00e3o \u00e9 indicado e pode ser prejudicial (reduz a mobilidade do c\u00e1lculo). Durante epis\u00f3dios de c\u00f3lica: repouso relativo, analgesia com AINE (cetoprofeno 100 mg IV/IM ou diclofenaco 75 mg IM) \u2014 superiores a opioide para c\u00f3lica renal (EAU 2024). Retorno ao trabalho: liberado conforme toler\u00e2ncia \u2014 trabalho sedent\u00e1rio pode ser retomado imediatamente; trabalho f\u00edsico pesado deve aguardar controle da dor. Dirigir: permitido ap\u00f3s cessa\u00e7\u00e3o da c\u00f3lica e sem uso de opioide. Sinais de alerta (ir ao pronto-socorro): febre > 38\u00b0C, calafrios, dor intensa refrat\u00e1ria a analg\u00e9sicos, aus\u00eancia de diurese por > 8h, n\u00e1useas/v\u00f4mitos intrat\u00e1veis."
       },
       {
         "title": "Refer\u00eancias",
