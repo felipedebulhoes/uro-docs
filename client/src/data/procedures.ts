@@ -6,10 +6,21 @@ import { proceduresExtra } from "./proceduresExtra";
 export interface ConfigField {
   id: string;
   label: string;
-  type: "select" | "text" | "number";
+  type: "select" | "text" | "number" | "calculated";
   options?: string[];
   defaultValue: string;
   placeholder?: string;
+  // For type="calculated": function that receives current config and returns a CalcResult
+  calculate?: (config: Record<string, string>) => CalcResult;
+}
+
+export interface CalcResult {
+  probability: number;        // 0-100 (%)
+  probLabel: string;          // e.g. "~78%"
+  timeEstimate: string;       // e.g. "1–2 semanas"
+  recommendation: string;     // short clinical recommendation
+  color: "green" | "yellow" | "orange" | "red";  // visual indicator
+  details: string[];          // bullet points with supporting data
 }
 
 export interface Procedure {

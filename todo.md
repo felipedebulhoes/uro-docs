@@ -12,3 +12,10 @@
 - [x] Esquemas conceituais como ilustração médica autoral: algoritmo de decisão (vasovaso vs vasoepi, fig4), microscopia comparativa do fluido vasal (vasoepi fig3) e posicionamento do reservatório da prótese peniana inflável (fig4)
 - [x] Reversão de vasectomia (vasovasostomia fig4 e vasoepididimostomia fig3) e prótese peniana inflável de 3 volumes (fig4): dossiês completos, validados no storage (HTTP 206) sem duplicatas
 - [x] Rezūm: dossiê completo (fig0-fig3). Como não havia fonte CC BY/CC0 pura para dispositivo/cistoscopia, produzidas ilustrações médicas autorais — fig1 (handpiece/dispositivo transuretral), fig2 (angulação da agulha lobos laterais ~90° vs mediano ~45°) e fig3 (visão cistoscópica da injeção de vapor); validadas no storage (HTTP 206) sem duplicatas
+
+# Calculadora Interativa de Expulsão (Lote OA 9)
+- [x] Campo `calc_expulsao` type="calculated" inserido em proceduresExtra.ts (terapia-expulsiva-calculo-ureteral)
+- [x] Lógica da calculadora: matriz 5×3 (tamanho × localização) baseada em Hollingsworth JAMA 2016 + EAU 2024
+- [x] Renderização do painel visual em ProcedurePage.tsx (badge colorido + recomendação + detalhes)
+- [x] Correção de backticks escapados e vírgula dupla no proceduresExtra.ts
+- [x] TypeScript sem erros, 198/198 testes passando

@@ -801,56 +801,94 @@ export default function ProcedurePage() {
                 {/* Procedure-specific fields */}
                 {procedure.configFields.map((field) => (
                   <div key={field.id} className="space-y-1.5">
-                    <Label className="text-xs text-muted-foreground font-medium">
-                      {field.label}
-                    </Label>
-                    {field.type === "select" && field.options ? (
-                      <Select
-                        value={config[field.id] || field.defaultValue}
-                        onValueChange={(val) => updateConfig(field.id, val)}
-                      >
-                        <SelectTrigger className="h-9 text-xs bg-secondary border-border text-foreground">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-card border-border text-foreground">
-                          {field.options.map((opt) => (
-                            <SelectItem key={opt} value={opt} className="text-xs">
-                              {opt}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                    {field.type === "calculated" ? (
+                      (() => {
+                        const result = field.calculate?.(config);
+                        if (!result) return null;
+                        const colorMap: Record<string, { bg: string; border: string; text: string; badge: string }> = {
+                          green:  { bg: "bg-green-50",  border: "border-green-200",  text: "text-green-800",  badge: "bg-green-100 text-green-800 border-green-300" },
+                          yellow: { bg: "bg-amber-50",  border: "border-amber-200",  text: "text-amber-800",  badge: "bg-amber-100 text-amber-800 border-amber-300" },
+                          orange: { bg: "bg-orange-50", border: "border-orange-200", text: "text-orange-800", badge: "bg-orange-100 text-orange-800 border-orange-300" },
+                          red:    { bg: "bg-red-50",    border: "border-red-200",    text: "text-red-800",    badge: "bg-red-100 text-red-800 border-red-300" },
+                        };
+                        const c = colorMap[result.color] ?? colorMap.yellow;
+                        return (
+                          <div className={`rounded-lg border p-3 ${c.bg} ${c.border}`}>
+                            <div className="flex items-center gap-3 mb-2">
+                              <span className={`text-2xl font-bold tabular-nums rounded-full w-14 h-14 flex items-center justify-center border-2 shrink-0 ${c.badge}`}>
+                                {result.probLabel}
+                              </span>
+                              <div className="min-w-0">
+                                <p className={`text-[11px] font-semibold uppercase tracking-wide ${c.text} opacity-70`}>{field.label}</p>
+                                <p className={`text-xs font-bold leading-snug ${c.text}`}>{result.recommendation}</p>
+                                <p className={`text-[11px] ${c.text} opacity-80`}>Tempo estimado: {result.timeEstimate}</p>
+                              </div>
+                            </div>
+                            <ul className={`space-y-0.5 pl-1 ${c.text}`}>
+                              {result.details.map((d, i) => (
+                                <li key={i} className="text-[11px] flex gap-1.5">
+                                  <span className="opacity-50 shrink-0">•</span>
+                                  <span className="opacity-80">{d}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })()
                     ) : (
-                      <div className="flex items-center gap-1.5">
-                        <Input
-                          value={config[field.id] || ""}
-                          onChange={(e) => updateConfig(field.id, e.target.value)}
-                          placeholder={field.placeholder}
-                          className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground flex-1"
-                        />
-                        <Button
-                          type="button"
-                          size="icon"
-                          variant="outline"
-                          onClick={() => dictateField(field.id)}
-                          title={
-                            dictation.activeField === field.id
-                              ? "Parar ditado"
-                              : "Ditar por voz"
-                          }
-                          className={`h-9 w-9 shrink-0 ${
-                            dictation.activeField === field.id
-                              ? "border-red-500/60 text-red-400 bg-red-500/10 animate-pulse"
-                              : "border-border text-muted-foreground hover:text-primary hover:border-primary/40"
-                          }`}
-                        >
-                          {dictation.activeField === field.id ? (
-                            <MicOff className="w-4 h-4" />
-                          ) : (
-                            <Mic className="w-4 h-4" />
-                          )}
-                        </Button>
-                      </div>
+                      <>
+                        <Label className="text-xs text-muted-foreground font-medium">
+                          {field.label}
+                        </Label>
+                        {field.type === "select" && field.options ? (
+                          <Select
+                            value={config[field.id] || field.defaultValue}
+                            onValueChange={(val) => updateConfig(field.id, val)}
+                          >
+                            <SelectTrigger className="h-9 text-xs bg-secondary border-border text-foreground">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="bg-card border-border text-foreground">
+                              {field.options.map((opt) => (
+                                <SelectItem key={opt} value={opt} className="text-xs">
+                                  {opt}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <div className="flex items-center gap-1.5">
+                            <Input
+                              value={config[field.id] || ""}
+                              onChange={(e) => updateConfig(field.id, e.target.value)}
+                              placeholder={field.placeholder}
+                              className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground flex-1"
+                            />
+                            <Button
+                              type="button"
+                              size="icon"
+                              variant="outline"
+                              onClick={() => dictateField(field.id)}
+                              title={
+                                dictation.activeField === field.id
+                                  ? "Parar ditado"
+                                  : "Ditar por voz"
+                              }
+                              className={`h-9 w-9 shrink-0 ${
+                                dictation.activeField === field.id
+                                  ? "border-red-500/60 text-red-400 bg-red-500/10 animate-pulse"
+                                  : "border-border text-muted-foreground hover:text-primary hover:border-primary/40"
+                              }`}
+                            >
+                              {dictation.activeField === field.id ? (
+                                <MicOff className="w-4 h-4" />
+                              ) : (
+                                <Mic className="w-4 h-4" />
+                              )}
+                            </Button>
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                 ))}
