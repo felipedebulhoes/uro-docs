@@ -3963,7 +3963,110 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "24 hour urine kidney stone reference values hypercalciuria hypocitraturia urinary supersaturation"
       }
     ]
+  },
+
+  {
+    "id": "hpb-tratamento-clinico",
+    "name": "HPB — Tratamento Clínico (IPSS, Alfa-bloqueadores, 5-ARIs)",
+    "icon": "💊",
+    "category": "Próstata",
+    "evidence": "EAU Guidelines on BPH 2024 (Gravas S et al.); AUA/SUFU Guideline on BPH 2023; Barry MJ et al. J Urol 1992;148(5):1549–1557 (IPSS)",
+    "sections": [
+      {
+        "title": "Avaliação Inicial — IPSS e Exames",
+        "body": "O International Prostate Symptom Score (IPSS) é a ferramenta padrão para quantificar os STUI/LUTS. Escore 0–7: leve (conduta expectante); 8–19: moderado (tratamento farmacológico); 20–35: grave (avaliar cirurgia). O item de qualidade de vida (QoL, 0–6) é independente do escore total e guia a decisão compartilhada. Exames: PSA (rastreio Ca próstata), urofluxometria + RPM (Qmáx < 10 mL/s = obstrução significativa), USG de vias urinárias (volume prostático, RPM, litíase vesical). Fonte: Barry MJ et al. J Urol 1992; EAU 2024."
+      },
+      {
+        "title": "Alfa-bloqueadores (1ª linha)",
+        "body": "Mecanismo: bloqueio α1-adrenérgico no colo vesical e estroma prostático → relaxamento do músculo liso → melhora do fluxo. Opções: tansulosina 0,4 mg/dia (seletivo α1A, menos hipotensão ortostática), silodosina 8 mg/dia (mais seletivo, maior ejaculação retrógrada), alfuzosina 10 mg/dia, doxazosina 4–8 mg/dia. Início de ação: 48–72h. Efeitos adversos: hipotensão ortostática, ejaculação retrógrada, rinite. Atenção: síndrome da íris flácida intraoperatória (IFIS) em pacientes que usam alfa-bloqueadores e serão submetidos à cirurgia de catarata — informar oftalmologista. Fonte: EAU BPH Guidelines 2024."
+      },
+      {
+        "title": "5-ARIs (Inibidores da 5-alfa-redutase)",
+        "body": "Indicados quando volume prostático ≥ 40 mL ou PSA ≥ 1,5 ng/mL (preditor de volume). Reduzem o volume prostático em 20–30% em 6–12 meses. Finasterida 5 mg/dia (inibe tipo II); dutasterida 0,5 mg/dia (inibe tipos I e II — maior redução de PSA). Reduzem o PSA em ~50% após 6 meses — dobrar o PSA para estimar o valor real. Efeitos adversos: disfunção erétil (5–8%), redução da libido, ginecomastia. Terapia combinada (alfa-bloqueador + 5-ARI): superior para prevenir progressão em próstatas grandes (estudo CombAT, MTOPS). Fonte: EAU 2024; Roehrborn CG et al. Eur Urol 2010."
+      },
+      {
+        "title": "Antimuscarínicos, Beta-3 Agonistas e iPDE-5",
+        "body": "Indicados quando há componente de bexiga hiperativa (urgência, frequência, noctúria) com RPM < 150 mL. Antimuscarínicos: solifenacina 5–10 mg/dia, tolterodina 4 mg/dia — risco de retenção urinária em RPM elevado. Beta-3 agonista: mirabegron 50 mg/dia — menor risco de retenção, pode ser combinado com alfa-bloqueador. Tadalafila 5 mg/dia: opção quando há disfunção erétil associada — melhora IPSS e IIEF simultaneamente. Fonte: EAU 2024; Chapple CR et al. Eur Urol 2013."
+      },
+      {
+        "title": "Indicações de Tratamento Cirúrgico",
+        "body": "Absolutas: retenção urinária aguda recorrente (≥ 2 episódios), ITU recorrente por HPB, litíase vesical por HPB, hematúria macroscópica refratária, insuficiência renal obstrutiva. Relativas: falha do tratamento clínico adequado (≥ 6 meses), IPSS grave (≥ 20) com baixa qualidade de vida, Qmáx < 10 mL/s persistente, RPM > 300 mL. Fonte: EAU BPH Guidelines 2024; AUA/SUFU 2023."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Gravas S et al. EAU Guidelines on Management of Non-Neurogenic Male Lower Urinary Tract Symptoms (BPH) 2024.\n2. AUA/SUFU Guideline on Benign Prostatic Hyperplasia 2023.\n3. Barry MJ et al. The American Urological Association symptom index for benign prostatic hyperplasia. J Urol 1992;148(5):1549–1557.\n4. Roehrborn CG et al. Efficacy and safety of a fixed-dose combination of dutasteride and tamsulosin (CombAT). Eur Urol 2010;57(1):123–131.\n5. Chapple CR et al. Mirabegron in overactive bladder. Eur Urol 2013;63(2):296–305."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Algoritmo de Tratamento da HPB — EAU 2024",
+        "description": "Fluxograma de decisão terapêutica baseado no IPSS, volume prostático e presença de complicações: conduta expectante (IPSS leve) → farmacoterapia (IPSS moderado/grave) → cirurgia (falha clínica ou complicações).",
+        "searchTerms": "BPH treatment algorithm IPSS watchful waiting alpha blocker 5-ARI surgery EAU guidelines"
+      },
+      {
+        "caption": "Questionário IPSS — International Prostate Symptom Score",
+        "description": "Formulário completo do IPSS com as 7 perguntas de sintomas (0–5 cada) e a pergunta de qualidade de vida (0–6). Classificação: 0–7 leve, 8–19 moderado, 20–35 grave.",
+        "searchTerms": "IPSS international prostate symptom score questionnaire BPH LUTS scoring"
+      },
+      {
+        "caption": "Mecanismo dos Alfa-bloqueadores e 5-ARIs",
+        "description": "Diagrama comparativo do mecanismo de ação dos alfa-bloqueadores (relaxamento do músculo liso do colo vesical e estroma prostático) versus 5-ARIs (inibição da conversão de testosterona em DHT, redução do volume glandular).",
+        "searchTerms": "alpha blocker mechanism 5-alpha reductase inhibitor DHT prostate BPH pharmacology"
+      }
+    ]
+  },
+
+  {
+    "id": "hpb-tratamento-cirurgico",
+    "name": "HPB — Tratamento Cirúrgico (RTU-P / HoLEP / Enucleação)",
+    "icon": "🔬",
+    "category": "Próstata",
+    "evidence": "EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023; Ahyai SA et al. Eur Urol 2010;58(3):384–397",
+    "sections": [
+      {
+        "title": "Indicações Cirúrgicas",
+        "body": "Absolutas: retenção urinária aguda recorrente (≥ 2 episódios), ITU recorrente por HPB, litíase vesical por HPB, hematúria macroscópica refratária, insuficiência renal obstrutiva. Relativas: falha do tratamento clínico adequado (≥ 6 meses), IPSS grave (≥ 20) com baixa qualidade de vida, Qmáx < 10 mL/s persistente, RPM > 300 mL. Fonte: EAU 2024."
+      },
+      {
+        "title": "RTU-P Bipolar (Padrão-ouro para próstatas < 80 mL)",
+        "body": "Ressecção transuretral bipolar em soro fisiológico — elimina o risco de síndrome de ressecção (hiponatremia dilucional), principal complicação da RTU-P monopolar em água destilada. Redução do IPSS em 70–80%, melhora do Qmáx em 120–140%. Complicações: ejaculação retrógrada (65–90%), estenose uretral (2–3%), incontinência urinária de esforço (< 1%), disfunção erétil (< 10%). Mortalidade perioperatória < 0,1%. Fonte: EAU 2024; Ahyai SA et al. Eur Urol 2010."
+      },
+      {
+        "title": "HoLEP (Holmium Laser Enucleation of the Prostate)",
+        "body": "Indicado para qualquer volume prostático, especialmente > 80 mL (alternativa à prostatectomia aberta). Enucleação dos lóbulos prostáticos com laser de hólmio (2140 nm) seguida de morcelamento intravesical. Vantagens: menor sangramento, menor tempo de sonda, menor tempo de internação, resultados duráveis a longo prazo. Curva de aprendizado longa (50–100 casos). Resultados equivalentes à prostatectomia aberta para grandes próstatas. Fonte: Gravas S et al. Eur Urol 2021; EAU 2024."
+      },
+      {
+        "title": "Rezūm e UroLift (Procedimentos Minimamente Invasivos)",
+        "body": "Rezūm: ablação térmica com vapor d'água (103°C) injetado no parênquima prostático por agulha transuretral. Preserva a função ejaculatória (< 5% de ejaculação retrógrada). Indicado para próstatas 30–80 mL sem lóbulo mediano proeminente. Melhora do IPSS em ~50% em 3 meses. UroLift: implante de sutura permanente que retrai os lóbulos laterais sem ablação. Preserva completamente a função ejaculatória e erétil. Indicado para próstatas < 80 mL sem lóbulo mediano. Ambos são procedimentos ambulatoriais/day clinic. Fonte: EAU 2024; McVary KT et al. J Urol 2016."
+      },
+      {
+        "title": "Cuidados Pós-operatórios",
+        "body": "RTU-P/HoLEP: sonda de 3 vias com irrigação contínua até efluente claro (24–48h). Retirada da sonda em 24–72h. Alta em 1–3 dias. Sintomas irritativos (urgência, disúria) esperados por 4–6 semanas. Ejaculação retrógrada: informar previamente — sêmen vai para a bexiga e é eliminado na urina (não é perigoso). Hematúria leve por 4–6 semanas. Retorno ao trabalho leve: 1–2 semanas. Atividade física intensa: 4–6 semanas. Fonte: EAU 2024."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Gravas S et al. EAU Guidelines on Management of Non-Neurogenic Male Lower Urinary Tract Symptoms (BPH) 2024.\n2. AUA/SUFU Guideline on Benign Prostatic Hyperplasia 2023.\n3. Ahyai SA et al. Meta-analysis of functional outcomes and complications following transurethral procedures for lower urinary tract symptoms. Eur Urol 2010;58(3):384–397.\n4. McVary KT et al. Rezūm Water Vapor Thermal Therapy for Lower Urinary Tract Symptoms. J Urol 2016;195(5):1529–1538.\n5. Roehrborn CG et al. The prostatic urethral lift for the treatment of lower urinary tract symptoms. J Urol 2013;190(6):2161–2167."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Comparação das Técnicas Cirúrgicas para HPB",
+        "description": "Tabela comparativa entre RTU-P bipolar, HoLEP, ThuLEP, vaporização a laser (GreenLight), Rezūm e UroLift: volume prostático indicado, preservação da ejaculação, tempo de sonda, internação e curva de aprendizado.",
+        "searchTerms": "TURP HoLEP ThuLEP GreenLight Rezum UroLift comparison BPH surgical options"
+      },
+      {
+        "caption": "Técnica de RTU-P Bipolar — Ressecção Sistemática",
+        "description": "Esquema endoscópico da ressecção transuretral bipolar: posicionamento do resectoscópio, ressecção dos lóbulos lateral direito, lateral esquerdo e mediano, hemostasia e colocação da sonda de 3 vias.",
+        "searchTerms": "TURP bipolar technique resectoscope systematic resection lateral lobes median lobe"
+      },
+      {
+        "caption": "HoLEP — Enucleação a Laser de Hólmio",
+        "description": "Sequência da técnica HoLEP: incisão do colo vesical, enucleação dos lóbulos com laser de hólmio (plano entre adenoma e cápsula cirúrgica), morcelamento intravesical e hemostasia.",
+        "searchTerms": "HoLEP holmium laser enucleation prostate technique morcellation capsule plane"
+      }
+    ]
   }
+
 ];
 
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));
@@ -4066,6 +4169,8 @@ export const atlasToProcedure: Record<string, string> = {
   "priapismo-isquemico": "priapismo-isquemico",
   "terapia-expulsiva-calculo-ureteral": "terapia-expulsiva-calculo-ureteral",
   "investigacao-metabolica-litiase": "investigacao-metabolica-litiase",
+  "hpb-tratamento-clinico": "hpb-tratamento-clinico",
+  "hpb-tratamento-cirurgico": "hpb-tratamento-cirurgico",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
 };

@@ -19,3 +19,15 @@
 - [x] Renderização do painel visual em ProcedurePage.tsx (badge colorido + recomendação + detalhes)
 - [x] Correção de backticks escapados e vírgula dupla no proceduresExtra.ts
 - [x] TypeScript sem erros, 198/198 testes passando
+
+# Lote OA 10 — HPB, Litíase (risco recorrência) e Exportação PDF
+- [x] Protocolo HPB tratamento clínico: alfa-bloqueadores, 5-ARIs, antimuscarínicos, beta-3 — com calculadora IPSS (campo calculated)
+- [x] Protocolo HPB tratamento cirúrgico: RTU-P, HoLEP, Rezūm (já existente) — com indicações baseadas em IPSS/volume prostático
+- [x] Calculadora de risco de recorrência de litíase (campo calculated) no protocolo de investigação metabólica
+- [x] Exportar resultado da calculadora de expulsão nas orientações ao paciente (template orientacoes)
+- [x] Atualizar contadores (Atlas + Home subtitle)
+- [x] TypeScript sem erros, 198/198 testes passando
+- [x] Salvar checkpoint
+
+# Gaps identificados após Lote OA 10
+- [x] Adicionar campo calc_indicacao_cirurgica (calculated) no protocolo HPB cirúrgico para recomendar RTU-P vs HoLEP vs Rezūm/UroLift baseado em IPSS + volume prostático

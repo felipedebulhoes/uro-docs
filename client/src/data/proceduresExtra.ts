@@ -2303,8 +2303,62 @@ AP\u00d3S O EXAME:
       },
       orientacoes: (c) => {
         const tam = parseFloat(c.tamanho) || 0;
-        const chancePasso = tam <= 4 ? "~80%" : tam <= 6 ? "~60%" : tam <= 10 ? "~40\u201350%" : "< 25%";
-        return `ORIENTA\u00c7\u00d5ES AO PACIENTE \u2014 TERAPIA EXPULSIVA PARA C\u00c1LCULO URETERAL\n\nO QUE \u00c9:\nVoc\u00ea tem um c\u00e1lculo (pedra) no ureter ${c.lateralidade}, localizado no ${c.localizacao}, medindo ${c.tamanho} mm.\nA terapia expulsiva usa medicamentos (relaxantes do ureter) para facilitar a sa\u00edda espont\u00e2nea do c\u00e1lculo pela urina.\n\nCHANCE DE SA\u00cdDA ESPONT\u00c2NEA: ${chancePasso} (estimativa baseada no tamanho e localiza\u00e7\u00e3o).\n\nMEDICAMENTO PRESCRITO:\n${c.farmaco.includes("Tamsulosina") ? "\u2022 Tamsulosina (bloqueador alfa-1): relaxa a musculatura do ureter, facilitando a passagem do c\u00e1lculo. Tome \u00e0 noite para reduzir o risco de tontura ao levantar." : ""}${c.farmaco.includes("Nifedipina") ? "\n\u2022 Nifedipina (bloqueador de canal de c\u00e1lcio): auxilia no relaxamento ureteral." : ""}\n\nO QUE FAZER:\n\u2022 Beber bastante \u00e1gua (\u2265 2,5 L/dia) para manter boa diurese.\n\u2022 Coar a urina com filtro de caf\u00e9 ou gaze para identificar quando o c\u00e1lculo sair.\n\u2022 Guardar o c\u00e1lculo (em frasco seco) para an\u00e1lise de composi\u00e7\u00e3o.\n\u2022 Atividade f\u00edsica moderada (caminhada) pode ajudar na mobiliza\u00e7\u00e3o do c\u00e1lculo.\n\nSINAIS DE ALERTA (Procurar emerg\u00eancia imediatamente):\n\u2022 Febre > 38\u00b0C ou calafrios (pode indicar infec\u00e7\u00e3o com obstru\u00e7\u00e3o \u2014 emerg\u00eancia).\n\u2022 Dor intensa que n\u00e3o melhora com os analg\u00e9sicos.\n\u2022 N\u00e1useas/v\u00f4mitos que impedem a alimenta\u00e7\u00e3o.\n\u2022 Aus\u00eancia de urina por > 8h.\n\nQUANDO A CIRURGIA PODE SER NECESS\u00c1RIA:\n\u2022 Se o c\u00e1lculo n\u00e3o sair dentro de ${c.duracao_prevista}.\n\u2022 Se a dor n\u00e3o for controlada com medicamentos.\n\u2022 Se houver infec\u00e7\u00e3o urin\u00e1ria associada.\n\u2022 Se a fun\u00e7\u00e3o do rim estiver comprometida.\n\nRETORNO: ${c.retorno} com nova imagem (tomografia ou raio-X).\n\nFONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2022; Hollingsworth JM et al. JAMA 2016;315(19):2104.`;
+        const loc = c.localizacao || "";
+
+        // Recalculate probability for the PDF (mirrors calc_expulsao logic)
+        // Evidence: Hollingsworth JM et al. JAMA 2016;315(19):2104; EAU 2024
+        type SizeBand = "<= 4" | "5-6" | "7-9" | "10+";
+        type LocKey = "distal" | "medio" | "proximal";
+        const matrix: Record<SizeBand, Record<LocKey, number>> = {
+          "<= 4": { distal: 87, medio: 72, proximal: 55 },
+          "5-6":  { distal: 74, medio: 55, proximal: 38 },
+          "7-9":  { distal: 48, medio: 32, proximal: 22 },
+          "10+":  { distal: 25, medio: 16, proximal: 10 },
+        };
+        const sizeBand: SizeBand = tam <= 4 ? "<= 4" : tam <= 6 ? "5-6" : tam <= 9 ? "7-9" : "10+";
+        const locKey: LocKey = loc.includes("distal") ? "distal" : loc.includes("médio") || loc.includes("medio") ? "medio" : "proximal";
+        const prob = matrix[sizeBand][locKey];
+
+        const riskLabel = prob >= 70 ? "ALTA" : prob >= 45 ? "MODERADA" : prob >= 25 ? "BAIXA" : "MUITO BAIXA";
+        const timeEst = prob >= 70 ? "1–2 semanas" : prob >= 45 ? "2–4 semanas" : prob >= 25 ? "4–6 semanas" : "> 6 semanas (considerar intervenção)";
+
+        return `ORIENTAÇÕES AO PACIENTE — TERAPIA EXPULSIVA PARA CÁLCULO URETERAL
+
+O QUE É:
+Você tem um cálculo (pedra) no ureter ${c.lateralidade}, localizado no ${c.localizacao}, medindo ${c.tamanho} mm.
+A terapia expulsiva usa medicamentos (relaxantes do ureter) para facilitar a saída espontânea do cálculo pela urina.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROBABILIDADE DE SAÍDA ESPONTÂNEA: ~${prob}% — CHANCE ${riskLabel}
+Tempo estimado: ${timeEst}
+Tamanho: ${c.tamanho} mm | Localização: ${c.localizacao}
+Fonte: Hollingsworth JM et al. JAMA 2016;315(19):2104; EAU Guidelines on Urolithiasis 2024
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MEDICAMENTO PRESCRITO:
+${c.farmaco.includes("Tamsulosina") ? "• Tamsulosina (bloqueador alfa-1): relaxa a musculatura do ureter, facilitando a passagem do cálculo. Tome à noite para reduzir o risco de tontura ao levantar." : ""}${c.farmaco.includes("Nifedipina") ? "\n• Nifedipina (bloqueador de canal de cálcio): auxilia no relaxamento ureteral." : ""}
+
+O QUE FAZER:
+• Beber bastante água (≥ 2,5 L/dia) para manter boa diurese.
+• Coar a urina com filtro de café ou gaze para identificar quando o cálculo sair.
+• Guardar o cálculo (em frasco seco) para análise de composição.
+• Atividade física moderada (caminhada) pode ajudar na mobilização do cálculo.
+
+SINAIS DE ALERTA (Procurar emergência imediatamente):
+• Febre > 38°C ou calafrios (pode indicar infecção com obstrução — emergência).
+• Dor intensa que não melhora com os analgésicos.
+• Náuseas/vômitos que impedem a alimentação.
+• Ausência de urina por > 8h.
+
+QUANDO A CIRURGIA PODE SER NECESSÁRIA:
+• Se o cálculo não sair dentro de ${c.duracao_prevista}.
+• Se a dor não for controlada com medicamentos.
+• Se houver infecção urinária associada.
+• Se a função do rim estiver comprometida.
+
+RETORNO: ${c.retorno} com nova imagem (tomografia ou raio-X).
+
+FONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2022; Hollingsworth JM et al. JAMA 2016;315(19):2104.`;
       },
     },
   },
@@ -2333,6 +2387,115 @@ AP\u00d3S O EXAME:
       { id: "au_sangue", label: "Ácido Úrico Sérico (mg/dL)", type: "text", defaultValue: "", placeholder: "Ex: 6,5" },
       { id: "creatinina", label: "Creatinina Sérica (mg/dL)", type: "text", defaultValue: "", placeholder: "Ex: 0,9" },
       { id: "vitamina_d", label: "25-OH Vitamina D (ng/mL)", type: "text", defaultValue: "", placeholder: "Ex: 28" },
+      {
+        id: "calc_risco_litiase",
+        label: "Calculadora de Risco de Recorrência",
+        type: "calculated" as const,
+        defaultValue: "",
+        calculate: (c: Record<string, string>) => {
+          // Evidence-based risk stratification
+          // Sources:
+          //   Pearle MS et al. AUA Guideline 2014 (amended 2019) — Medical Management of Kidney Stones
+          //   EAU Guidelines on Urolithiasis 2024 (Türk et al.)
+          //   Borghi L et al. N Engl J Med 2002;346(2):77–84
+          //   Worcester EM, Coe FL. NEJM 2010;363(10):954–963
+
+          const riskFactors: string[] = [];
+          let score = 0;
+
+          // ── Episódios ────────────────────────────────────────────────
+          const ep = parseInt(c.episodios || "1", 10);
+          if (ep >= 3) { score += 3; riskFactors.push(`≥ 3 episódios (${ep}×) — alto risco de recorrência`); }
+          else if (ep === 2) { score += 1; riskFactors.push(`2 episódios — risco moderado`); }
+
+          // ── Volume urinário ──────────────────────────────────────────
+          const vol = parseFloat((c.volume_urina24 || "0").replace(",", "."));
+          if (vol > 0 && vol < 1500) { score += 2; riskFactors.push(`Volume urinário baixo: ${vol} mL/dia (meta ≥ 2000 mL)`); }
+          else if (vol >= 1500 && vol < 2000) { score += 1; riskFactors.push(`Volume urinário limítrofe: ${vol} mL/dia`); }
+
+          // ── Cálcio urinário ──────────────────────────────────────────
+          const caU = parseFloat((c.ca_urina24 || "0").replace(",", "."));
+          if (caU > 300) { score += 2; riskFactors.push(`Hipercalciúria: ${caU} mg/dia (ref: < 300 ♂ / < 250 ♀)`); }
+
+          // ── Oxalato urinário ─────────────────────────────────────────
+          const oxU = parseFloat((c.oxalato_urina24 || "0").replace(",", "."));
+          if (oxU > 40) { score += 2; riskFactors.push(`Hiperoxalúria: ${oxU} mg/dia (ref: < 40)`); }
+
+          // ── Citrato urinário ─────────────────────────────────────────
+          const citU = parseFloat((c.citrato_urina24 || "0").replace(",", "."));
+          if (citU > 0 && citU < 320) { score += 2; riskFactors.push(`Hipocitratúria: ${citU} mg/dia (ref: > 320 ♀ / > 450 ♂)`); }
+
+          // ── Ácido úrico urinário ─────────────────────────────────────
+          const auU = parseFloat((c.au_urina24 || "0").replace(",", "."));
+          if (auU > 800) { score += 1; riskFactors.push(`Hiperuricosúria: ${auU} mg/dia (ref: < 800 ♂ / < 750 ♀)`); }
+
+          // ── Sódio urinário ───────────────────────────────────────────
+          const naU = parseFloat((c.sodio_urina24 || "0").replace(",", "."));
+          if (naU > 150) { score += 1; riskFactors.push(`Hipersodiosúria: ${naU} mEq/dia (ref: < 150) — aumenta calciúria`); }
+
+          // ── Cálcio sérico ────────────────────────────────────────────
+          const caS = parseFloat((c.ca_sangue || "0").replace(",", "."));
+          if (caS > 10.2) { score += 2; riskFactors.push(`Hipercalcemia: ${caS} mg/dL — investigar hiperparatireoidismo`); }
+
+          // ── PTH ──────────────────────────────────────────────────────
+          const pth = parseFloat((c.pth || "0").replace(",", "."));
+          if (pth > 65 && caS > 10.2) { score += 3; riskFactors.push(`PTH elevado (${pth} pg/mL) + hipercalcemia → hiperparatireoidismo primário`); }
+          else if (pth > 65) { score += 1; riskFactors.push(`PTH elevado: ${pth} pg/mL (ref: 15–65)`); }
+
+          // ── Ácido úrico sérico ───────────────────────────────────────
+          const auS = parseFloat((c.au_sangue || "0").replace(",", "."));
+          if (auS > 7.0) { score += 1; riskFactors.push(`Hiperuricemia: ${auS} mg/dL (ref: < 7,0 ♂ / < 6,0 ♀)`); }
+
+          // ── pH urinário ──────────────────────────────────────────────
+          const ph = parseFloat((c.ph_urina || "0").replace(",", "."));
+          if (ph > 0 && ph < 5.5) { score += 1; riskFactors.push(`pH urinário ácido: ${ph} (< 5,5 → risco de cálculo de ácido úrico)`); }
+          if (ph > 7.0) { score += 1; riskFactors.push(`pH urinário alcalino: ${ph} (> 7,0 → risco de estruvita/fosfato de cálcio)`); }
+
+          // ── Composição de alto risco ─────────────────────────────────
+          const comp = (c.composicao || "").toLowerCase();
+          if (comp.includes("cistina")) { score += 4; riskFactors.push("Cistinúria — risco muito alto de recorrência (doença genética)"); }
+          if (comp.includes("estruvita")) { score += 3; riskFactors.push("Cálculo de estruvita — associado a infecção por bactérias urease-positivas"); }
+
+          // ── Classificação ────────────────────────────────────────────
+          let risk: string;
+          let color: "green" | "yellow" | "orange" | "red";
+          let probability: number;
+          let recommendation: string;
+          let timeEstimate: string;
+
+          if (score === 0) {
+            risk = "Baixo";
+            color = "green";
+            probability = 15;
+            timeEstimate = "Recorrência em ~15% em 5 anos";
+            recommendation = "Risco baixo: hidratação (≥ 2 L/dia) e orientações dietéticas. Reavaliação anual.";
+          } else if (score <= 3) {
+            risk = "Moderado";
+            color = "yellow";
+            probability = 40;
+            timeEstimate = "Recorrência em ~40% em 5 anos";
+            recommendation = "Risco moderado: corrigir fatores identificados. Considerar tratamento farmacológico específico.";
+          } else if (score <= 6) {
+            risk = "Alto";
+            color = "orange";
+            probability = 65;
+            timeEstimate = "Recorrência em ~65% em 5 anos";
+            recommendation = "Risco alto: tratamento farmacológico indicado. Monitorar urina de 24h a cada 6–12 meses.";
+          } else {
+            risk = "Muito Alto";
+            color = "red";
+            probability = 85;
+            timeEstimate = "Recorrência em ~85% em 5 anos";
+            recommendation = "Risco muito alto: tratamento intensivo obrigatório. Avaliar causas secundárias (hiperparatireoidismo, cistinúria, ATR).";
+          }
+
+          const details = riskFactors.length > 0
+            ? [`Fatores de risco identificados (${riskFactors.length}):`, ...riskFactors, "Fonte: EAU Urolithiasis 2024; AUA/Endourology Society 2022; Worcester EM, Coe FL. NEJM 2010"]
+            : ["Nenhum fator de risco identificado nos dados informados", "Preencha os campos de exames para análise completa", "Fonte: EAU Urolithiasis 2024; AUA/Endourology Society 2022"];
+
+          return { probability, probLabel: `Risco ${risk}`, timeEstimate, recommendation, color, details };
+        },
+      },
       { id: "diagnostico_metabolico", label: "Diagnóstico Metabólico", type: "text", defaultValue: "", placeholder: "Ex: hipercalciúria absortiva + hipocitratúria" },
       { id: "conduta", label: "Conduta / Tratamento Proposto", type: "text", defaultValue: "", placeholder: "Ex: hidroclorotiazida 25 mg/dia + citrato de potássio 30 mEq/dia" },
     ],
@@ -2372,6 +2535,390 @@ AP\u00d3S O EXAME:
         `SOLICITAÇÃO DE EXAMES — INVESTIGAÇÃO METABÓLICA PARA LITÍASE\n\n1. URINA DE 24 HORAS:\n   • Cálcio, oxalato, citrato, ácido úrico, sódio, fosfato, creatinina, volume total\n   • pH urinário (3 amostras: manhã, tarde, noite)\n\n2. SANGUE (jejum de 8–12h):\n   • Cálcio sérico, PTH intacto, ácido úrico, creatinina, 25-OH Vitamina D, bicarbonato, glicemia\n\n3. URINA SIMPLES (EAS + urocultura)\n\nINSTRUÇÕES PARA COLETA DE URINA DE 24H:\n• Descartar a primeira urina da manhã\n• Coletar TODA a urina das próximas 24h no frasco fornecido\n• Incluir a primeira urina do dia seguinte\n• Manter o frasco refrigerado\n• Não alterar a dieta habitual durante a coleta\n\nFONTE: EAU Guidelines on Urolithiasis 2024.`,
       orientacoes: (c) =>
         `ORIENTAÇÕES — INVESTIGAÇÃO METABÓLICA PARA PEDRA NOS RINS\n\nPaciente: ${c.nome || '___________'}\n\nPOR QUE INVESTIGAR?\nPacientes com litíase recorrente (≥ 2 episódios) ou de alto risco (rim único, criança, hiperparatireoidismo, acidose tubular, cistinúria) devem ser investigados para identificar a causa metabólica e prevenir novos cálculos.\n\nEXAMES SOLICITADOS:\n\n1. URINA DE 24 HORAS (coletar em dia típico de alimentação e atividade habitual):\n   • Cálcio, oxalato, citrato, ácido úrico, sódio, fosfato\n   • Volume total (meta: ≥ 2 L/dia)\n   • pH urinário\n   Como coletar: descartar a primeira urina da manhã; coletar TODA a urina das próximas 24h (incluindo a primeira urina do dia seguinte) no frasco fornecido. Manter o frasco refrigerado. Não alterar a dieta habitual durante a coleta.\n\n2. SANGUE EM JEJUM:\n   • Cálcio, PTH intacto, ácido úrico, creatinina, 25-OH Vitamina D\n\n3. URINA SIMPLES (EAS + urocultura): avaliar pH, cristais e infecção.\n\nCUIDADOS DURANTE A COLETA:\n• Manter alimentação e hidratação habituais (não alterar para "parecer melhor")\n• Evitar suplementos de vitamina C ou cálcio no dia da coleta\n• Anotar qualquer medicamento em uso\n\nRETORNO: Trazer todos os resultados para interpretação e definição do tratamento individualizado.\n\nFONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2022.`,
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // HPB — TRATAMENTO CLÍNICO (protocolo #58)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hpb-tratamento-clinico",
+    name: "HPB — Tratamento Clínico (Alfa-bloqueadores, 5-ARIs, Antimuscarínicos, Beta-3)",
+    shortName: "HPB Clínico",
+    icon: "💊",
+    category: "Próstata",
+    configFields: [
+      {
+        id: "ipss_q1", label: "IPSS Q1 — Esvaziamento incompleto (0–5)", type: "select",
+        options: ["0 — Nunca", "1 — < 1 em 5 vezes", "2 — < metade das vezes", "3 — Metade das vezes", "4 — > metade das vezes", "5 — Quase sempre"],
+        defaultValue: "0 — Nunca",
+      },
+      {
+        id: "ipss_q2", label: "IPSS Q2 — Frequência (0–5)", type: "select",
+        options: ["0 — Nunca", "1 — < 1 em 5 vezes", "2 — < metade das vezes", "3 — Metade das vezes", "4 — > metade das vezes", "5 — Quase sempre"],
+        defaultValue: "0 — Nunca",
+      },
+      {
+        id: "ipss_q3", label: "IPSS Q3 — Intermitência (0–5)", type: "select",
+        options: ["0 — Nunca", "1 — < 1 em 5 vezes", "2 — < metade das vezes", "3 — Metade das vezes", "4 — > metade das vezes", "5 — Quase sempre"],
+        defaultValue: "0 — Nunca",
+      },
+      {
+        id: "ipss_q4", label: "IPSS Q4 — Urgência (0–5)", type: "select",
+        options: ["0 — Nunca", "1 — < 1 em 5 vezes", "2 — < metade das vezes", "3 — Metade das vezes", "4 — > metade das vezes", "5 — Quase sempre"],
+        defaultValue: "0 — Nunca",
+      },
+      {
+        id: "ipss_q5", label: "IPSS Q5 — Jato fraco (0–5)", type: "select",
+        options: ["0 — Nunca", "1 — < 1 em 5 vezes", "2 — < metade das vezes", "3 — Metade das vezes", "4 — > metade das vezes", "5 — Quase sempre"],
+        defaultValue: "0 — Nunca",
+      },
+      {
+        id: "ipss_q6", label: "IPSS Q6 — Esforço para iniciar (0–5)", type: "select",
+        options: ["0 — Nunca", "1 — < 1 em 5 vezes", "2 — < metade das vezes", "3 — Metade das vezes", "4 — > metade das vezes", "5 — Quase sempre"],
+        defaultValue: "0 — Nunca",
+      },
+      {
+        id: "ipss_q7", label: "IPSS Q7 — Noctúria (0–5)", type: "select",
+        options: ["0 — Nenhuma vez", "1 — 1 vez", "2 — 2 vezes", "3 — 3 vezes", "4 — 4 vezes", "5 — 5 ou mais vezes"],
+        defaultValue: "0 — Nenhuma vez",
+      },
+      {
+        id: "ipss_qol", label: "IPSS QoL — Qualidade de vida (0–6)", type: "select",
+        options: ["0 — Ótima", "1 — Satisfeito", "2 — Razoavelmente satisfeito", "3 — Indiferente", "4 — Razoavelmente insatisfeito", "5 — Infeliz", "6 — Péssima"],
+        defaultValue: "3 — Indiferente",
+      },
+      {
+        id: "calc_ipss",
+        label: "Escore IPSS e Classificação",
+        type: "calculated" as const,
+        defaultValue: "",
+        calculate: (c: Record<string, string>) => {
+          const parseQ = (val: string): number => {
+            const n = parseInt(val.charAt(0), 10);
+            return Number.isFinite(n) ? n : 0;
+          };
+          const q1 = parseQ(c.ipss_q1 || "0");
+          const q2 = parseQ(c.ipss_q2 || "0");
+          const q3 = parseQ(c.ipss_q3 || "0");
+          const q4 = parseQ(c.ipss_q4 || "0");
+          const q5 = parseQ(c.ipss_q5 || "0");
+          const q6 = parseQ(c.ipss_q6 || "0");
+          const q7 = parseQ(c.ipss_q7 || "0");
+          const qol = parseQ(c.ipss_qol || "3");
+          const total = q1 + q2 + q3 + q4 + q5 + q6 + q7;
+
+          let severity: string;
+          let recommendation: string;
+          let color: "green" | "yellow" | "orange" | "red";
+          let timeEstimate: string;
+          let probability: number;
+
+          if (total <= 7) {
+            severity = "Leve";
+            color = "green";
+            probability = 85;
+            timeEstimate = "Conduta expectante / watchful waiting";
+            recommendation = "IPSS leve (0–7): conduta expectante. Reavaliação anual. Mudanças de estilo de vida.";
+          } else if (total <= 19) {
+            severity = "Moderado";
+            color = "yellow";
+            probability = 60;
+            timeEstimate = "Tratamento clínico — 4–6 semanas para resposta";
+            recommendation = "IPSS moderado (8–19): tratamento farmacológico indicado. Alfa-bloqueador ± 5-ARI conforme volume prostático.";
+          } else {
+            severity = "Grave";
+            color = "red";
+            probability = 30;
+            timeEstimate = "Tratamento clínico ou cirúrgico — avaliar indicação cirúrgica";
+            recommendation = "IPSS grave (20–35): avaliar indicação cirúrgica (RTU-P, HoLEP). Tratar complicações (retenção, ITU, litíase vesical).";
+          }
+
+          const qolLabel = ["Ótima", "Satisfeito", "Razoavelmente satisfeito", "Indiferente", "Razoavelmente insatisfeito", "Infeliz", "Péssima"][qol] || "—";
+
+          return {
+            probability,
+            probLabel: `${total}/35`,
+            timeEstimate,
+            recommendation,
+            color,
+            details: [
+              `Escore IPSS total: ${total}/35 — Sintomas ${severity}s`,
+              `Qualidade de vida (QoL): ${qol}/6 — ${qolLabel}`,
+              `Sintomas obstrutivos (Q1+Q3+Q5+Q6): ${q1+q3+q5+q6}/20`,
+              `Sintomas irritativos (Q2+Q4+Q7): ${q2+q4+q7}/15`,
+              `Fonte: Barry MJ et al. J Urol 1992 (IPSS); EAU Guidelines on BPH 2024`,
+            ],
+          };
+        },
+      },
+      { id: "volume_prostatico", label: "Volume Prostático (mL)", type: "text", defaultValue: "", placeholder: "Ex: 45" },
+      { id: "psa", label: "PSA Total (ng/mL)", type: "text", defaultValue: "", placeholder: "Ex: 2,8" },
+      { id: "qmax", label: "Qmáx — Fluxo Máximo (mL/s)", type: "text", defaultValue: "", placeholder: "Ex: 12" },
+      { id: "rpvm", label: "Resíduo Pós-Miccional (mL)", type: "text", defaultValue: "", placeholder: "Ex: 80" },
+      {
+        id: "farmaco_classe", label: "Classe Farmacológica", type: "select",
+        options: [
+          "Alfa-bloqueador isolado",
+          "5-ARI isolado",
+          "Alfa-bloqueador + 5-ARI (terapia combinada)",
+          "Alfa-bloqueador + Antimuscarínico",
+          "Alfa-bloqueador + Beta-3 agonista",
+          "Alfa-bloqueador + 5-ARI + Beta-3 agonista (tripla terapia)",
+          "Inibidor de PDE-5 (tadalafila 5 mg/dia)",
+        ],
+        defaultValue: "Alfa-bloqueador isolado",
+      },
+      {
+        id: "farmaco_escolha", label: "Fármaco Específico", type: "select",
+        options: [
+          "Tansulosina 0,4 mg 1×/dia (após jantar)",
+          "Silodosina 8 mg 1×/dia (com alimento)",
+          "Alfuzosina 10 mg 1×/dia (após jantar)",
+          "Doxazosina 4 mg 1×/dia",
+          "Finasterida 5 mg 1×/dia (5-ARI)",
+          "Dutasterida 0,5 mg 1×/dia (5-ARI)",
+          "Dutasterida 0,5 mg + Tansulosina 0,4 mg (Combodart) 1×/dia",
+          "Solifenacina 5 mg 1×/dia (antimuscarínico)",
+          "Mirabegron 50 mg 1×/dia (beta-3)",
+          "Tadalafila 5 mg 1×/dia (iPDE-5)",
+        ],
+        defaultValue: "Tansulosina 0,4 mg 1×/dia (após jantar)",
+      },
+      { id: "duracao_prevista", label: "Duração Prevista do Tratamento", type: "select", options: ["3 meses (reavaliação)", "6 meses", "12 meses", "Contínuo (manutenção)"], defaultValue: "3 meses (reavaliação)" },
+      { id: "retorno", label: "Retorno para Reavaliação", type: "select", options: ["4 semanas", "6 semanas", "3 meses", "6 meses"], defaultValue: "6 semanas" },
+      { id: "complicacoes", label: "Complicações / Observações", type: "text", defaultValue: "Sem intercorrências", placeholder: "Observações clínicas" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const parseQ = (val: string): number => { const n = parseInt((val || "0").charAt(0), 10); return Number.isFinite(n) ? n : 0; };
+        const total = [c.ipss_q1,c.ipss_q2,c.ipss_q3,c.ipss_q4,c.ipss_q5,c.ipss_q6,c.ipss_q7].reduce((s,v)=>s+parseQ(v),0);
+        const sev = total<=7?"leve":total<=19?"moderado":"grave";
+        const qolN = parseQ(c.ipss_qol||"3");
+        return `CONSULTA — HPB / SINTOMAS DO TRATO URINÁRIO INFERIOR (STUI)
+
+Paciente com STUI secundários a HPB. IPSS total: ${total}/35 (sintomas ${sev}s). QoL: ${qolN}/6.
+Volume prostático: ${c.volume_prostatico||"—"} mL. PSA: ${c.psa||"—"} ng/mL. Qmáx: ${c.qmax||"—"} mL/s. RPM: ${c.rpvm||"—"} mL.
+
+CONDUTA FARMACOLÓGICA:
+Classe: ${c.farmaco_classe}.
+Fármaco prescrito: ${c.farmaco_escolha}.
+Duração prevista: ${c.duracao_prevista}.
+Retorno para reavaliação: ${c.retorno}.
+
+Critérios de indicação cirúrgica (se presentes): retenção urinária aguda recorrente, ITU recorrente por HPB, litíase vesical, hematúria macroscópica refratária, insuficiência renal obstrutiva, falha do tratamento clínico adequado.
+
+REFERÊNCIAS: EAU Guidelines on Benign Prostatic Hyperplasia (BPH) 2024; AUA/SUFU Guideline on Benign Prostatic Hyperplasia 2023; Barry MJ et al. J Urol 1992;148(5):1549–1557 (IPSS).`;
+      },
+      posOperatorio: (_c) => `Não se aplica (tratamento clínico ambulatorial). Monitorar resposta sintomática com IPSS em 4–6 semanas. Solicitar urofluxometria + RPM em 3 meses.`,
+      receitaAlta: (c) => `RECEITA — HPB / STUI
+
+${c.farmaco_escolha}.
+Uso contínuo. Não suspender sem orientação médica.
+
+ORIENTAÇÕES GERAIS:
+• Evitar anti-histamínicos, descongestionantes nasais e anticolinérgicos sem orientação (podem agravar retenção).
+• Reduzir ingestão de líquidos à noite (após 18h) para diminuir noctúria.
+• Retorno em ${c.retorno} com IPSS preenchido.`,
+      orientacoes: (c) => {
+        const parseQ = (val: string): number => { const n = parseInt((val || "0").charAt(0), 10); return Number.isFinite(n) ? n : 0; };
+        const total = [c.ipss_q1,c.ipss_q2,c.ipss_q3,c.ipss_q4,c.ipss_q5,c.ipss_q6,c.ipss_q7].reduce((s,v)=>s+parseQ(v),0);
+        const sev = total<=7?"LEVE":total<=19?"MODERADO":"GRAVE";
+        return `ORIENTAÇÕES — HPB (PRÓSTATA AUMENTADA) E TRATAMENTO
+
+DIAGNÓSTICO:
+Você foi diagnosticado com HPB (Hiperplasia Prostática Benigna) — aumento benigno da próstata que causa dificuldade para urinar. Seu escore IPSS é ${total}/35 (sintomas ${sev}s).
+
+MEDICAMENTO PRESCRITO:
+${c.farmaco_escolha}.
+Tome conforme indicado. O efeito máximo pode levar 4–6 semanas para aparecer.
+
+CUIDADOS NO DIA A DIA:
+• Beba pelo menos 1,5–2 L de água por dia, mas reduza líquidos após as 18h.
+• Evite bebidas alcoólicas e cafeína em excesso (pioram os sintomas).
+• Urine regularmente — não segure a urina por muito tempo.
+• Evite medicamentos que podem piorar a urina: anti-histamínicos (para alergia), descongestionantes nasais, alguns antidepressivos.
+
+SINAIS DE ALERTA (Procurar PS imediatamente):
+• Impossibilidade total de urinar (retenção urinária aguda).
+• Febre com dificuldade para urinar (suspeita de infecção).
+• Sangue na urina.
+
+RETORNO:
+Retorne em ${c.retorno} com o questionário IPSS preenchido novamente para avaliar a resposta ao tratamento.
+
+FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`;
+      },
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // HPB — TRATAMENTO CIRÚRGICO (protocolo #59)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hpb-tratamento-cirurgico",
+    name: "HPB — Tratamento Cirúrgico (RTU-P / HoLEP / Enucleação)",
+    shortName: "HPB Cirúrgico",
+    icon: "🔬",
+    category: "Próstata",
+    configFields: [
+      {
+        id: "calc_indicacao_cirurgica",
+        label: "Recomendação de Técnica Cirúrgica",
+        type: "calculated" as const,
+        defaultValue: "",
+        calculate: (c: Record<string, string>) => {
+          const vol = parseFloat((c.volume_prostatico || "0").replace(",", "."));
+          const ipss = parseInt(c.ipss_pre || "0", 10);
+          const qmax = parseFloat((c.qmax_pre || "0").replace(",", "."));
+
+          // Evidence-based technique selection
+          // EAU BPH Guidelines 2024; AUA/SUFU 2023
+          // Ahyai SA et al. Eur Urol 2010;58(3):384–397
+
+          let recommended: string;
+          let color: "green" | "yellow" | "orange" | "red";
+          let probability: number;
+          let timeEstimate: string;
+          let recommendation: string;
+          const details: string[] = [];
+
+          const ipssGrave = ipss >= 20;
+          const ipssModGrave = ipss >= 8;
+          const obstrucaoSignificativa = qmax > 0 && qmax < 10;
+
+          if (vol <= 0) {
+            // No volume entered
+            recommended = "Preencher volume prostático";
+            color = "orange";
+            probability = 0;
+            timeEstimate = "Dados insuficientes";
+            recommendation = "Informe o volume prostático para receber a recomendação de técnica cirúrgica.";
+            details.push("Volume prostático não informado");
+          } else if (vol > 80) {
+            // Large prostate: HoLEP or open enucleation
+            recommended = "HoLEP (enucleação a laser de hólmio)";
+            color = "green";
+            probability = 90;
+            timeEstimate = "Resultado duradouro a longo prazo";
+            recommendation = `Volume ${vol} mL (> 80 mL): HoLEP ou enucleação aberta (Millin). RTU-P é subideal para volumes grandes.`;
+            details.push(`Volume prostático: ${vol} mL — indicação de enucleação (HoLEP/ThuLEP/Millin)`);
+            details.push("HoLEP: equivalente à prostatectomia aberta, menor sangramento, menor internação");
+            details.push("Curva de aprendizado longa (50–100 casos) — encaminhar a centro especializado se necessário");
+            if (ipssGrave) details.push(`IPSS grave (${ipss}/35): indicação cirúrgica reforçada`);
+          } else if (vol >= 30 && vol <= 80) {
+            // Medium prostate: RTU-P standard; Rezūm/UroLift if IPSS moderate and ejaculation priority
+            if (ipssModGrave || obstrucaoSignificativa) {
+              recommended = "RTU-P (ressecção transuretral bipolar)";
+              color = "green";
+              probability = 85;
+              timeEstimate = "Padrão-ouro para 30–80 mL";
+              recommendation = `Volume ${vol} mL, IPSS ${ipss}/35${obstrucaoSignificativa ? `, Qmáx ${qmax} mL/s` : ""}: RTU-P bipolar é o padrão-ouro. Rezūm ou UroLift se preservação ejaculatória for prioridade.`;
+              details.push(`Volume ${vol} mL + IPSS ${ipss}/35 — RTU-P bipolar (padrão-ouro)`);
+              details.push("Rezūm: alternativa com preservação ejaculatória (< 5% ejaculacão retrógrada), IPSS moderado");
+              details.push("UroLift: sem ablação, preserva ejaculacão e função erétil, indicado para < 80 mL sem lóbulo mediano");
+            } else {
+              // IPSS leve com volume 30-80: pode ser watchful waiting ou Rezūm/UroLift
+              recommended = "Rezūm ou UroLift (IPSS leve)";
+              color = "yellow";
+              probability = 75;
+              timeEstimate = "Procedimento ambulatorial minimamente invasivo";
+              recommendation = `Volume ${vol} mL, IPSS ${ipss}/35 (leve): Rezūm ou UroLift são preferíveis por menor morbidade. Reavalie indicação cirúrgica.`;
+              details.push(`Volume ${vol} mL + IPSS leve (${ipss}/35) — procedimento minimamente invasivo`);
+              details.push("Rezūm: vapor d'água, ambulatorial, preserva ejaculacão");
+              details.push("UroLift: implante prostático, ambulatorial, preserva ejaculacão e função erétil");
+            }
+          } else {
+            // Small prostate (< 30 mL): consider UroLift or Rezūm
+            recommended = "UroLift ou Rezūm";
+            color = "yellow";
+            probability = 70;
+            timeEstimate = "Procedimento ambulatorial";
+            recommendation = `Volume ${vol} mL (< 30 mL): considerar UroLift ou Rezūm. RTU-P possível mas com menor tecido para ressecção.`;
+            details.push(`Volume prostático: ${vol} mL — próstata pequena`);
+            details.push("UroLift: indicado para próstatas < 80 mL sem lóbulo mediano proeminente");
+            if (ipssGrave) details.push(`IPSS grave (${ipss}/35): apesar do volume pequeno, sintomas graves justificam intervenção`);
+          }
+
+          if (ipss > 0) details.push(`IPSS pré-op: ${ipss}/35 (${ipss <= 7 ? "leve" : ipss <= 19 ? "moderado" : "grave"})`);
+          if (qmax > 0) details.push(`Qmáx pré-op: ${qmax} mL/s${qmax < 10 ? " — obstrução significativa" : ""}`);
+          details.push("Fonte: EAU BPH Guidelines 2024; AUA/SUFU 2023; Ahyai SA et al. Eur Urol 2010");
+
+          return { probability, probLabel: recommended, timeEstimate, recommendation, color, details };
+        },
+      },
+      { id: "tecnica", label: "Técnica Cirúrgica", type: "select", options: ["RTU-P (ressecção transuretral bipolar)", "HoLEP (enucleação a laser de hólmio)", "ThuLEP (enucleação a laser de túlio)", "Enucleação aberta (Millin/HoLAP)", "Vaporização a laser (GreenLight PVP)", "Rezūm (vapor d'água)", "UroLift (implante prostático)"], defaultValue: "RTU-P (ressecção transuretral bipolar)" },
+      { id: "anestesia", label: "Anestesia", type: "select", options: ["Raquianestesia", "Anestesia geral", "Bloqueio peridural"], defaultValue: "Raquianestesia" },
+      { id: "volume_prostatico", label: "Volume Prostático (mL)", type: "text", defaultValue: "", placeholder: "Ex: 60" },
+      { id: "ipss_pre", label: "IPSS Pré-operatório", type: "text", defaultValue: "", placeholder: "Ex: 22" },
+      { id: "qmax_pre", label: "Qmáx Pré-operatório (mL/s)", type: "text", defaultValue: "", placeholder: "Ex: 8" },
+      { id: "indicacao", label: "Indicação Cirúrgica", type: "select", options: ["Falha do tratamento clínico", "Retenção urinária aguda recorrente", "ITU recorrente por HPB", "Litíase vesical por HPB", "Hematúria macroscópica refratária", "Insuficiência renal obstrutiva", "Preferência do paciente"], defaultValue: "Falha do tratamento clínico" },
+      { id: "sonda_pos", label: "Sonda Vesical Pós-operatória", type: "select", options: ["Sonda de Foley 3 vias 22Fr (irrigação contínua)", "Sonda de Foley 2 vias 18Fr", "Sonda de Foley 3 vias 20Fr"], defaultValue: "Sonda de Foley 3 vias 22Fr (irrigação contínua)" },
+      { id: "irrigacao", label: "Irrigação Vesical", type: "select", options: ["Soro fisiológico 0,9% contínua", "Água destilada estéril contínua (RTU monopolar)", "Não necessária"], defaultValue: "Soro fisiológico 0,9% contínua" },
+      { id: "retirada_sonda", label: "Retirada da Sonda Prevista", type: "select", options: ["24–48 horas", "48–72 horas", "72–96 horas", "5–7 dias"], defaultValue: "48–72 horas" },
+      { id: "complicacoes", label: "Intercorrências Intraoperatórias", type: "text", defaultValue: "Sem intercorrências", placeholder: "Ex: perfuração capsular, sangramento" },
+    ],
+    templates: {
+      descricao: (c) => `DESCRIÇÃO CIRÚRGICA
+Procedimento: ${c.tecnica}
+Anestesia: ${c.anestesia}
+Indicação: ${c.indicacao}. Volume prostático pré-operatório: ${c.volume_prostatico||"—"} mL. IPSS pré-op: ${c.ipss_pre||"—"}/35. Qmáx pré-op: ${c.qmax_pre||"—"} mL/s.
+
+1. Paciente posicionado em posição de litotomia, sob ${c.anestesia}.
+2. Antissepsia perineal e colocação de campos estéreis.
+3. Introdução do resectoscópio/cistoscópio operatório com óptica 0° e 30°.
+4. Avaliação endoscópica: uretra, colo vesical, trígono, meatos ureterais e lóbulos prostáticos.
+5. Realização de ${c.tecnica} com ressecção/enucleação sistemática dos lóbulos lateral direito, lateral esquerdo e mediano.
+6. Hemostasia endoscópica rigorosa.
+7. Lavagem vesical com soro fisiológico até efluente claro.
+8. Introdução de ${c.sonda_pos} com balonete insuflado com 30–50 mL.
+9. Início de ${c.irrigacao}.
+
+Intercorrências: ${c.complicacoes}.
+REFERÊNCIAS: EAU Guidelines on BPH 2024; Gravas S et al. Eur Urol 2021.`,
+      posOperatorio: (c) => `PRESCRIÇÃO DE PÓS-OPERATÓRIO IMEDIATO — ${c.tecnica.split(" ")[0]}
+
+1. Dieta líquida, progredir conforme tolerância.
+2. Acesso venoso periférico — SF 0,9% 500 mL EV em 6h.
+3. Dipirona 1g EV de 6/6h (ou VO se tolerando).
+4. Cetoprofeno 100 mg EV de 12/12h por 24h.
+5. ${c.irrigacao} pela sonda de 3 vias — manter até efluente claro.
+6. Controle de diurese e aspecto da urina de 4/4h.
+7. Monitorar sinais de síndrome de ressecção (confusão, hiponatremia) nas primeiras 6h.
+8. Retirada da sonda prevista: ${c.retirada_sonda} após cirurgia.
+9. Alta hospitalar após retirada da sonda e micção espontânea satisfatória.`,
+      receitaAlta: (_c) => `RECEITA DE ALTA — PÓS-OPERATÓRIO DE HPB CIRÚRGICO
+
+1. Dipirona 1g — 1 comprimido VO de 6/6h se dor por 5 dias.
+2. Ibuprofeno 600 mg — 1 comprimido VO de 8/8h por 5 dias (com alimento).
+3. Ciprofloxacino 500 mg — 1 comprimido VO de 12/12h por 7 dias (profilaxia).
+4. Tansulosina 0,4 mg — 1 cápsula VO 1×/dia por 4–6 semanas (facilita micção pós-op).`,
+      orientacoes: (c) => `ORIENTAÇÕES PÓS-ALTA — CIRURGIA DE PRÓSTATA (${c.tecnica.split(" ")[0]})
+
+REPOUSO E ATIVIDADES:
+• Repouso relativo nos primeiros 7–10 dias. Evitar esforços físicos intensos por 4–6 semanas.
+• Não dirigir por 48–72h após a alta.
+• Retorno ao trabalho leve: 1–2 semanas. Trabalho pesado: 4–6 semanas.
+
+HIDRATAÇÃO:
+• Beba 2–3 L de água por dia para manter a urina clara e prevenir coágulos.
+• Evite álcool e cafeína nas primeiras 2 semanas.
+
+SINTOMAS ESPERADOS:
+• Ardência ao urinar, urgência e frequência aumentada nas primeiras 4–6 semanas — são normais.
+• Urina com leve coloração rosada pode ocorrer por até 4–6 semanas.
+• Ejaculação retrógrada (sêmen vai para a bexiga) é comum — não é perigosa.
+
+SINAIS DE ALERTA (Procurar PS):
+• Impossibilidade de urinar (retenção urinária).
+• Sangramento intenso com coágulos.
+• Febre > 38°C.
+• Dor intensa não controlada.
+
+RETORNO:
+Retorne em 4–6 semanas com urofluxometria + RPM e IPSS para avaliação do resultado cirúrgico.
+
+FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`,
     },
   },
 ];
