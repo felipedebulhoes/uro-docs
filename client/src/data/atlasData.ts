@@ -3826,6 +3826,83 @@ export const atlasEntries: AtlasEntry[] = [
       }
     ]
   }
+,
+  {
+    "id": "priapismo-isquemico",
+    "name": "Priapismo Isqu\u00eamico",
+    "icon": "\ud83d\udea8",
+    "category": "Urg\u00eancia",
+    "evidence": "EAU Guidelines on Priapism 2015; AUA/SMSNA Guideline \u2014 Acute Ischemic Priapism (J Urol 2021;206:1114)",
+    "sections": [
+      {
+        "title": "Defini\u00e7\u00e3o e Classifica\u00e7\u00e3o",
+        "body": "Priapismo \u00e9 a ere\u00e7\u00e3o peniana persistente n\u00e3o relacionada ao desejo sexual. O tipo isqu\u00eamico (baixo fluxo) \u00e9 uma emerg\u00eancia urol\u00f3gica caracterizada por fluxo cavernoso ausente ou m\u00ednimo, hipoxia e acidose progressiva. O tipo n\u00e3o isqu\u00eamico (alto fluxo) \u00e9 causado por f\u00edstula arteriocavernosa e n\u00e3o constitui emerg\u00eancia."
+      },
+      {
+        "title": "Diagn\u00f3stico",
+        "body": "Cl\u00ednico: ere\u00e7\u00e3o dolorosa > 4h. Gasometria cavernosa: pO\u2082 < 30 mmHg, pCO\u2082 > 60 mmHg, pH < 7,25. Doppler peniano: aus\u00eancia de fluxo cavernoso. Excluir priapismo n\u00e3o isqu\u00eamico (sangue vermelho, fluxo turbulento ao Doppler)."
+      },
+      {
+        "title": "Tratamento Cl\u00ednico",
+        "body": "1\u00aa linha: aspira\u00e7\u00e3o cavernosa (21G) + irriga\u00e7\u00e3o com SF 0,9%. Vasoconstritor intracavernoso: fenilefrina 200 \u00b5g/mL (al\u00edquotas de 1 mL a cada 3\u20135 min, dose m\u00e1xima 1 mg/h) \u2014 1\u00aa linha AUA/EAU. Alternativa no Brasil: etilefrina 2,5 mg/mL (Flukka \u2014 formula\u00e7\u00e3o magistral). Monitorizar PA e FC. Taxa de sucesso: ~80% se tratado em < 12h."
+      },
+      {
+        "title": "Tratamento Cir\u00fargico",
+        "body": "Indicado ap\u00f3s falha do tratamento cl\u00ednico (1h). Shunt distal (Winter: agulha percut\u00e2nea; Al-Ghorab: excis\u00e3o da t\u00fanica albuginea distal) \u2014 1\u00aa op\u00e7\u00e3o cir\u00fargica. Shunt distal + tuneliza\u00e7\u00e3o (Lue) para priapismo > 36h. Shunt proximal (Quackels, Grayhack) como \u00faltimo recurso. Pr\u00f3tese peniana precoce: considerar em priapismo > 36h para preservar comprimento peniano e evitar fibrose."
+      },
+      {
+        "title": "Progn\u00f3stico e Seguimento",
+        "body": "Risco de disfun\u00e7\u00e3o er\u00e9til: baixo se tratado em < 4\u20136h; quase 100% ap\u00f3s 48h. Seguimento androl\u00f3gico obrigat\u00f3rio. Em priapismo recorrente/intermitente: investigar anemia falciforme, considerar antiandrog\u00eanios ou agonistas GnRH."
+      },
+      {
+        "title": "Refer\u00eancias",
+        "body": "1. Salonia A et al. EAU Guidelines on Priapism. European Association of Urology 2015.\n2. Broderick GA et al. Priapism: AUA/SMSNA Guideline. J Urol 2021;206(5):1114\u20131121. DOI: 10.1097/JU.0000000000002236.\n3. Montague DK et al. American Urological Association guideline on the management of priapism. J Urol 2003;170(4 Pt 1):1318\u20131324."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Priapismo Isqu\u00eamico ao Doppler Peniano",
+        "description": "Doppler peniano demonstrando aus\u00eancia de fluxo nas art\u00e9rias cavernosas, confirmando priapismo de baixo fluxo (isqu\u00eamico). Sangue escuro e hipox\u00eamico ao aspirado.",
+        "searchTerms": "ischemic priapism low flow doppler penile absent cavernous artery flow"
+      }
+    ]
+  },
+  {
+    "id": "terapia-expulsiva-calculo-ureteral",
+    "name": "Terapia Expulsiva \u2014 C\u00e1lculo Ureteral",
+    "icon": "\ud83d\udc8a",
+    "category": "Endourologia",
+    "evidence": "EAU Guidelines on Urolithiasis 2024 (T\u00fcrk et al.); AUA/Endourology Society Guideline 2022; Hollingsworth JM et al. JAMA 2016;315(19):2104",
+    "sections": [
+      {
+        "title": "Indica\u00e7\u00f5es e Crit\u00e9rios de Sele\u00e7\u00e3o",
+        "body": "Crit\u00e9rios para terapia expulsiva: c\u00e1lculo ureteral \u2264 10 mm, dor control\u00e1vel, sem infec\u00e7\u00e3o urin\u00e1ria, fun\u00e7\u00e3o renal preservada, sem obstru\u00e7\u00e3o grave. C\u00e1lculos do ter\u00e7o distal t\u00eam maior taxa de passagem espont\u00e2nea (60\u201380% para < 6 mm). C\u00e1lculos > 10 mm raramente passam espontaneamente (< 25%)."
+      },
+      {
+        "title": "Farmacologia",
+        "body": "Bloqueadores alfa-1 (tamsulosina 0,4 mg/dia ou silodosina 8 mg/dia): 1\u00aa linha \u2014 relaxam a musculatura lisa ureteral distal, aumentando a taxa de passagem espont\u00e2nea em ~30% e reduzindo o tempo at\u00e9 a expuls\u00e3o. Nifedipina 30 mg/dia (bloqueador de canal de c\u00e1lcio): alternativa ou combina\u00e7\u00e3o. Metaan\u00e1lise (Hollingsworth 2016, JAMA): NNT = 7 para evitar uma interven\u00e7\u00e3o cir\u00fargica."
+      },
+      {
+        "title": "Monitoramento e Crit\u00e9rios de Falha",
+        "body": "Dura\u00e7\u00e3o m\u00e1xima: 4\u20136 semanas (EAU 2024). Reavalia\u00e7\u00e3o com imagem (TC sem contraste ou RX) em 4 semanas. Crit\u00e9rios de falha (indica\u00e7\u00e3o cir\u00fargica): aus\u00eancia de passagem ap\u00f3s 4\u20136 semanas; dor refrat\u00e1ria; infec\u00e7\u00e3o urin\u00e1ria; deteriora\u00e7\u00e3o da fun\u00e7\u00e3o renal; obstru\u00e7\u00e3o bilateral ou rim \u00fanico."
+      },
+      {
+        "title": "Orienta\u00e7\u00f5es ao Paciente",
+        "body": "Hidrata\u00e7\u00e3o: \u2265 2,5 L de \u00e1gua/dia. Filtrar a urina (filtro de caf\u00e9 ou gaze) para identificar a passagem do c\u00e1lculo. Guardar o c\u00e1lculo para an\u00e1lise de composi\u00e7\u00e3o. Atividade f\u00edsica moderada pode auxiliar. Sinais de alerta: febre > 38\u00b0C (emerg\u00eancia), dor intensa refrat\u00e1ria, aus\u00eancia de diurese."
+      },
+      {
+        "title": "Refer\u00eancias",
+        "body": "1. T\u00fcrk C et al. EAU Guidelines on Urolithiasis 2024. European Association of Urology.\n2. Assimos D et al. Surgical Management of Stones: AUA/Endourology Society Guideline 2022.\n3. Hollingsworth JM et al. Alpha blockers for treatment of ureteric stones: systematic review and meta-analysis. JAMA 2016;315(19):2104\u20132110. DOI: 10.1001/jama.2016.4844."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Localiza\u00e7\u00e3o do C\u00e1lculo Ureteral e Taxa de Passagem Espont\u00e2nea",
+        "description": "Esquema do ureter com localiza\u00e7\u00e3o do c\u00e1lculo (ter\u00e7o proximal, m\u00e9dio ou distal/JUV) e taxas de passagem espont\u00e2nea por tamanho: < 4 mm ~80%, 4\u20136 mm ~60%, 6\u201310 mm ~40\u201350%, > 10 mm < 25%.",
+        "searchTerms": "ureteral stone expulsive therapy alpha blocker tamsulosin spontaneous passage rate distal ureter"
+      }
+    ]
+  }
 ];
 
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));
@@ -3925,6 +4002,8 @@ export const atlasToProcedure: Record<string, string> = {
   "uretrotomia-interna": "uretrotomia-interna",
   "usg-doppler-peniano": "usg-doppler-peniano",
   "usg-escrotal-doppler-testicular": "usg-escrotal-doppler-testicular",
+  "priapismo-isquemico": "priapismo-isquemico",
+  "terapia-expulsiva-calculo-ureteral": "terapia-expulsiva-calculo-ureteral",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
 };

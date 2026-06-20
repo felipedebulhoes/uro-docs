@@ -2144,4 +2144,103 @@ AP\u00d3S O EXAME:
 - Sem restri\u00e7\u00f5es. Retorne ao seu urologista com o laudo para a conduta.`,
     },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // MANEJO DO PRIAPISMO ISQUÊMICO
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "priapismo-isquemico",
+    name: "Manejo do Priapismo Isqu\u00eamico",
+    shortName: "Priapismo Isqu\u00eamico",
+    icon: "\ud83d\udea8",
+    category: "Andrologia",
+    configFields: [
+      { id: "duracao", label: "Dura\u00e7\u00e3o do Priapismo", type: "select", options: ["< 4 horas", "4\u20136 horas", "6\u201312 horas", "12\u201324 horas", "24\u201336 horas", "> 36 horas"], defaultValue: "4\u20136 horas" },
+      { id: "etiologia", label: "Etiologia Prov\u00e1vel", type: "select", options: ["Idiop\u00e1tico", "P\u00f3s-IIC (alprostadil/trimix/bimix)", "Anemia falciforme", "Medicamentoso (antipsic\u00f3tico/anti-hipertensivo)", "Hematol\u00f3gico (outra causa)", "N\u00e3o identificada"], defaultValue: "Idiop\u00e1tico" },
+      { id: "gasometria", label: "Gasometria Cavernosa", type: "select", options: ["Isqu\u00eamica (pO\u2082 < 30 mmHg, pCO\u2082 > 60 mmHg, pH < 7,25)", "Indeterminada", "N\u00e3o realizada"], defaultValue: "Isqu\u00eamica (pO\u2082 < 30 mmHg, pCO\u2082 > 60 mmHg, pH < 7,25)" },
+      { id: "aspiracao", label: "Aspira\u00e7\u00e3o Cavernosa", type: "select", options: ["Realizada \u2014 sangue escuro aspirado", "Realizada + irriga\u00e7\u00e3o com SF 0,9%", "N\u00e3o realizada (< 4h, p\u00f3s-IIC)"], defaultValue: "Realizada \u2014 sangue escuro aspirado" },
+      { id: "vasoconstritor", label: "Vasoconstritor Intracavernoso", type: "select", options: ["Fenilefrina 200 \u00b5g/mL (1\u00aa linha \u2014 AUA/EAU)", "Etilefrina 2,5 mg/mL \u2014 Flukka (alternativa dispon\u00edvel no Brasil)", "Adrenalina 1:100.000 (2 mL)", "Fenilefrina + Irriga\u00e7\u00e3o com SF"], defaultValue: "Fenilefrina 200 \u00b5g/mL (1\u00aa linha \u2014 AUA/EAU)" },
+      { id: "resposta", label: "Resposta ao Tratamento Cl\u00ednico", type: "select", options: ["Detumesc\u00eancia completa", "Detumesc\u00eancia parcial", "Sem resposta ap\u00f3s 1 hora"], defaultValue: "Detumesc\u00eancia completa" },
+      { id: "shunt", label: "Shunt Cir\u00fargico", type: "select", options: ["N\u00e3o necess\u00e1rio", "Shunt distal (Winter / Al-Ghorab)", "Shunt distal + tuneliza\u00e7\u00e3o (Lue)", "Shunt proximal (Quackels / Grayhack)"], defaultValue: "N\u00e3o necess\u00e1rio" },
+      { id: "protese_precoce", label: "Pr\u00f3tese Peniana Precoce", type: "select", options: ["N\u00e3o indicada", "Discutida e aceita pelo paciente", "Implantada (pr\u00f3tese male\u00e1vel)", "Implantada (pr\u00f3tese infl\u00e1vel 3 volumes)"], defaultValue: "N\u00e3o indicada" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const vasoFarmaco = c.vasoconstritor.includes("Fenilefrina") && !c.vasoconstritor.includes("Irriga\u00e7\u00e3o")
+          ? "fenilefrina (200 \u00b5g/mL em SF 0,9%, al\u00edquotas de 1 mL a cada 3\u20135 min, dose m\u00e1xima 1 mg/h)"
+          : c.vasoconstritor.includes("Etilefrina")
+          ? "etilefrina 2,5 mg/mL intracavernosa (Flukka \u2014 formula\u00e7\u00e3o magistral)"
+          : c.vasoconstritor.includes("Adrenalina")
+          ? "adrenalina 1:100.000 (2 mL IC, repetida at\u00e9 5\u00d7 em 20 min)"
+          : "fenilefrina + irriga\u00e7\u00e3o com SF 0,9%";
+        return `MANEJO DO PRIAPISMO ISQU\u00caMICO\nDura\u00e7\u00e3o: ${c.duracao}. Etiologia: ${c.etiologia}.\nGasometria cavernosa: ${c.gasometria}.\n1. ASPIRA\u00c7\u00c3O: ${c.aspiracao}.\n2. VASOCONSTRITOR IC: Administrado ${vasoFarmaco}. Monitoriza\u00e7\u00e3o de PA e FC durante o procedimento.\n3. RESPOSTA: ${c.resposta}.\n${c.shunt !== "N\u00e3o necess\u00e1rio" ? `4. SHUNT CIR\u00daRGICO: ${c.shunt} realizado por falha do tratamento cl\u00ednico.\n` : ""}${c.protese_precoce !== "N\u00e3o indicada" ? `5. PR\u00d3TESE PENIANA: ${c.protese_precoce}.\n` : ""}\nREFER\u00caNCIAS: AUA/SMSNA Guideline \u2014 Acute Ischemic Priapism (J Urol 2021;206:1114); EAU Guidelines on Priapism 2015.`;
+      },
+      posOperatorio: (c) => {
+        const urgente = c.duracao === "> 36 horas" || c.protese_precoce !== "N\u00e3o indicada";
+        return `P\u00d3S-PROCEDIMENTO \u2014 PRIAPISMO ISQU\u00caMICO\n${urgente ? "ATEN\u00c7\u00c3O: Priapismo de longa dura\u00e7\u00e3o (> 36h) \u2014 risco elevado de disfun\u00e7\u00e3o er\u00e9til permanente. Acompanhamento androl\u00f3gico obrigat\u00f3rio.\n" : ""}MONITORIZA\u00c7\u00c3O:\n\u2022 Verificar detumesc\u00eancia e retorno do fluxo cavernoso (Doppler) ap\u00f3s o procedimento.\n\u2022 Monitorar PA e FC durante e ap\u00f3s uso de vasoconstritor.\n\u2022 Observar por 1\u20132h antes da alta hospitalar.\nANALGESIA: Dipirona 1 g IV/VO 6/6h + Ibuprofeno 600 mg VO 8/8h (se sem contraindica\u00e7\u00e3o).\nCUIDADOS LOCAIS: Compress\u00e3o suave do local de pun\u00e7\u00e3o por 5 min. Gelo local por 20 min.\n${c.shunt !== "N\u00e3o necess\u00e1rio" ? `P\u00d3S-SHUNT: Curativo compressivo. Manter sonda vesical 24h. Repouso relativo 48h.\n` : ""}`;
+      },
+      receitaAlta: (c) => {
+        return `PRESCRI\u00c7\u00c3O DE ALTA \u2014 PRIAPISMO ISQU\u00caMICO\n1. Dipirona 500 mg \u2014 1 comprimido VO de 6/6h por 3 dias (se dor).\n2. Ibuprofeno 600 mg \u2014 1 comprimido VO de 8/8h por 3 dias (com alimento; se sem contraindica\u00e7\u00e3o).\n${c.etiologia === "Anemia falciforme" ? "3. Manter hidrata\u00e7\u00e3o oral adequada. Contato com hematologista para ajuste do protocolo de crise.\n" : ""}${c.shunt !== "N\u00e3o necess\u00e1rio" ? "3. Cefalexina 500 mg \u2014 1 comprimido VO de 6/6h por 5 dias (profilaxia p\u00f3s-shunt).\n" : ""}\nRETORNO: ${c.duracao === "> 36 horas" || c.resposta !== "Detumesc\u00eancia completa" ? "Em 48\u201372h para reavalia\u00e7\u00e3o cl\u00ednica e Doppler peniano." : "Em 7 dias ou antes se necess\u00e1rio."}`;
+      },
+      orientacoes: (c) => {
+        const riscoDE = c.duracao === "> 36 horas" ? "ALTO (priapismo > 36h \u2014 fibrose cavernosa quase inevit\u00e1vel)"
+          : c.duracao === "24\u201336 horas" ? "ELEVADO (priapismo 24\u201336h)"
+          : c.duracao === "12\u201324 horas" ? "MODERADO"
+          : "BAIXO A MODERADO";
+        return `ORIENTA\u00c7\u00d5ES AO PACIENTE \u2014 PRIAPISMO ISQU\u00caMICO\n\nO QUE \u00c9:\nPriapismo isqu\u00eamico \u00e9 uma emerg\u00eancia urol\u00f3gica: ere\u00e7\u00e3o dolorosa prolongada (> 4h) sem est\u00edmulo sexual, causada pela interrup\u00e7\u00e3o do fluxo venoso do p\u00eanis. Sem tratamento r\u00e1pido, pode causar fibrose irrevers\u00edvel dos corpos cavernosos e disfun\u00e7\u00e3o er\u00e9til permanente.\n\nRISCO DE DISFUN\u00c7\u00c3O ER\u00c9TIL: ${riscoDE}.\n\u2022 Tratamento iniciado em < 4\u20136h: maior chance de preserva\u00e7\u00e3o da fun\u00e7\u00e3o er\u00e9til.\n\u2022 Ap\u00f3s 48h: quase 100% dos pacientes desenvolvem algum grau de fibrose.\n\nAP\u00d3S O TRATAMENTO:\n\u2022 Repouso relativo por 24\u201348h. Evitar atividade sexual por 2\u20134 semanas.\n\u2022 Manter o p\u00eanis elevado (travesseiro) para reduzir edema.\n\u2022 Compressas frias (20 min, 3\u00d7/dia) nos primeiros 2 dias.\n\u2022 Tomar os medicamentos prescritos conforme indicado.\n\nSINAIS DE ALERTA (Retornar imediatamente):\n\u2022 Ere\u00e7\u00e3o dolorosa recorrente (priapismo recorrente/intermitente).\n\u2022 Febre, secre\u00e7\u00e3o ou vermelhid\u00e3o no local de pun\u00e7\u00e3o.\n\u2022 Incapacidade de urinar.\n\nSEGUIMENTO:\n\u2022 Retornar conforme agendado para avalia\u00e7\u00e3o da fun\u00e7\u00e3o er\u00e9til.\n\u2022 Em casos de disfun\u00e7\u00e3o er\u00e9til p\u00f3s-priapismo, existem op\u00e7\u00f5es de reabilita\u00e7\u00e3o peniana e, se necess\u00e1rio, implante de pr\u00f3tese peniana.\n\nFONTES: AUA/SMSNA Guideline \u2014 Acute Ischemic Priapism (J Urol 2021;206:1114); EAU Guidelines on Priapism 2015.`;
+      },
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // TERAPIA EXPULSIVA PARA CÁLCULO URETERAL
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "terapia-expulsiva-calculo-ureteral",
+    name: "Terapia Expulsiva \u2014 C\u00e1lculo Ureteral",
+    shortName: "Terapia Expulsiva",
+    icon: "\ud83d\udc8a",
+    category: "Endourologia",
+    configFields: [
+      { id: "lateralidade", label: "Lateralidade", type: "select", options: ["\u00e0 direita", "\u00e0 esquerda"], defaultValue: "\u00e0 esquerda" },
+      { id: "localizacao", label: "Localiza\u00e7\u00e3o do C\u00e1lculo", type: "select", options: ["ter\u00e7o distal (JUV)", "ter\u00e7o m\u00e9dio", "ter\u00e7o proximal"], defaultValue: "ter\u00e7o distal (JUV)" },
+      { id: "tamanho", label: "Tamanho do C\u00e1lculo (mm)", type: "text", defaultValue: "6", placeholder: "Ex: 6" },
+      { id: "composicao", label: "Composi\u00e7\u00e3o Prov\u00e1vel", type: "select", options: ["N\u00e3o determinada", "Oxalato de c\u00e1lcio", "\u00c1cido \u00farico", "Estruvita", "Cistina"], defaultValue: "N\u00e3o determinada" },
+      { id: "obstrucao", label: "Grau de Obstru\u00e7\u00e3o", type: "select", options: ["Sem hidronefrose", "Hidronefrose leve", "Hidronefrose moderada"], defaultValue: "Hidronefrose leve" },
+      { id: "farmaco", label: "F\u00e1rmaco de Escolha", type: "select", options: ["Tamsulosina 0,4 mg/dia (1\u00aa linha)", "Silodosina 8 mg/dia", "Nifedipina 30 mg/dia (alternativa)", "Tamsulosina 0,4 mg + Nifedipina 30 mg (combina\u00e7\u00e3o)"], defaultValue: "Tamsulosina 0,4 mg/dia (1\u00aa linha)" },
+      { id: "duracao_prevista", label: "Dura\u00e7\u00e3o Prevista do Tratamento", type: "select", options: ["At\u00e9 4 semanas", "At\u00e9 6 semanas", "At\u00e9 8 semanas"], defaultValue: "At\u00e9 4 semanas" },
+      { id: "analgesico", label: "Analgesia Associada", type: "select", options: ["AINE (ibuprofeno 600 mg 8/8h)", "Dipirona 1 g 6/6h", "AINE + Dipirona", "N\u00e3o necess\u00e1rio no momento"], defaultValue: "AINE (ibuprofeno 600 mg 8/8h)" },
+      { id: "retorno", label: "Retorno para Reavalia\u00e7\u00e3o", type: "select", options: ["2 semanas", "4 semanas", "6 semanas"], defaultValue: "4 semanas" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const tam = parseFloat(c.tamanho) || 0;
+        const chancePasso = tam <= 4 ? "~80%" : tam <= 6 ? "~60%" : tam <= 10 ? "~40\u201350%" : "< 25%";
+        return `TERAPIA EXPULSIVA \u2014 C\u00c1LCULO URETERAL\nC\u00e1lculo ureteral ${c.lateralidade}, ${c.localizacao}, ${c.tamanho} mm.${c.composicao !== "N\u00e3o determinada" ? ` Composi\u00e7\u00e3o prov\u00e1vel: ${c.composicao}.` : ""}\nGrau de obstru\u00e7\u00e3o: ${c.obstrucao}.\nChance de passagem espont\u00e2nea estimada: ${chancePasso} (baseada no tamanho e localiza\u00e7\u00e3o).\nCrit\u00e9rios de elegibilidade para terapia expulsiva presentes: c\u00e1lculo \u2264 10 mm, sem infec\u00e7\u00e3o urin\u00e1ria, sem obstru\u00e7\u00e3o grave, dor control\u00e1vel, fun\u00e7\u00e3o renal preservada.\nF\u00e1rmaco prescrito: ${c.farmaco}. Dura\u00e7\u00e3o prevista: ${c.duracao_prevista}.\nAnalgesia: ${c.analgesico}.\nRetorno para reavalia\u00e7\u00e3o: ${c.retorno}.\nCrit\u00e9rios de falha da terapia expulsiva (indica\u00e7\u00e3o de interven\u00e7\u00e3o cir\u00fargica): aus\u00eancia de passagem ap\u00f3s ${c.duracao_prevista}; dor refrat\u00e1ria; infec\u00e7\u00e3o urin\u00e1ria associada; deteriora\u00e7\u00e3o da fun\u00e7\u00e3o renal; obstru\u00e7\u00e3o bilateral ou em rim \u00fanico.\nREFER\u00caNCIAS: EAU Guidelines on Urolithiasis 2024 (T\u00fcrk et al.); AUA/Endourology Society Guideline 2022; Hollingsworth JM et al. JAMA 2016;315(19):2104.`;
+      },
+      posOperatorio: (c) => `ACOMPANHAMENTO \u2014 TERAPIA EXPULSIVA\nN\u00e3o se aplica p\u00f3s-operat\u00f3rio (tratamento conservador).\nMonitorar:\n\u2022 Passagem do c\u00e1lculo (coar a urina com filtro/gaze).\n\u2022 Dor: se c\u00f3lica intensa ou refrat\u00e1ria, retornar ao pronto-socorro.\n\u2022 Febre ou calafrios: retornar imediatamente (suspeita de pielonefrite obstrutiva \u2014 EMERG\u00caNCIA).\n\u2022 Hemat\u00faria: esperada; se maci\u00e7a, retornar.\nRetorno agendado: ${c.retorno} com nova imagem (TC sem contraste ou RX simples de abdome).`,
+      receitaAlta: (c) => {
+        const farmaco = c.farmaco.includes("Tamsulosina") && c.farmaco.includes("Nifedipina")
+          ? "1. Tamsulosina 0,4 mg \u2014 1 c\u00e1psula VO 1\u00d7/dia (preferencialmente \u00e0 noite, ap\u00f3s jantar).\n2. Nifedipina 30 mg \u2014 1 comprimido VO 1\u00d7/dia."
+          : c.farmaco.includes("Tamsulosina")
+          ? "1. Tamsulosina 0,4 mg \u2014 1 c\u00e1psula VO 1\u00d7/dia (preferencialmente \u00e0 noite, ap\u00f3s jantar)."
+          : c.farmaco.includes("Silodosina")
+          ? "1. Silodosina 8 mg \u2014 1 c\u00e1psula VO 1\u00d7/dia (com alimento)."
+          : "1. Nifedipina 30 mg \u2014 1 comprimido VO 1\u00d7/dia.";
+        const analgesico = c.analgesico.includes("AINE") && c.analgesico.includes("Dipirona")
+          ? "\n2. Ibuprofeno 600 mg \u2014 1 comprimido VO de 8/8h com alimento (se dor; m\u00e1ximo 5 dias cont\u00ednuos).\n3. Dipirona 1 g \u2014 1 comprimido VO de 6/6h (se dor entre as doses do AINE)."
+          : c.analgesico.includes("AINE")
+          ? "\n2. Ibuprofeno 600 mg \u2014 1 comprimido VO de 8/8h com alimento (se dor; m\u00e1ximo 5 dias cont\u00ednuos)."
+          : c.analgesico.includes("Dipirona")
+          ? "\n2. Dipirona 1 g \u2014 1 comprimido VO de 6/6h (se dor)."
+          : "";
+        return `PRESCRI\u00c7\u00c3O \u2014 TERAPIA EXPULSIVA\n${farmaco}${analgesico}\n\nINGEST\u00c3O H\u00cdDRICA: Manter diurese > 2 L/dia (beber \u2265 2,5 L de \u00e1gua/dia).\nFILTRAR A URINA: Coar a urina com filtro de caf\u00e9 ou gaze para identificar a passagem do c\u00e1lculo.\nRETORNO: ${c.retorno} com nova imagem.`;
+      },
+      orientacoes: (c) => {
+        const tam = parseFloat(c.tamanho) || 0;
+        const chancePasso = tam <= 4 ? "~80%" : tam <= 6 ? "~60%" : tam <= 10 ? "~40\u201350%" : "< 25%";
+        return `ORIENTA\u00c7\u00d5ES AO PACIENTE \u2014 TERAPIA EXPULSIVA PARA C\u00c1LCULO URETERAL\n\nO QUE \u00c9:\nVoc\u00ea tem um c\u00e1lculo (pedra) no ureter ${c.lateralidade}, localizado no ${c.localizacao}, medindo ${c.tamanho} mm.\nA terapia expulsiva usa medicamentos (relaxantes do ureter) para facilitar a sa\u00edda espont\u00e2nea do c\u00e1lculo pela urina.\n\nCHANCE DE SA\u00cdDA ESPONT\u00c2NEA: ${chancePasso} (estimativa baseada no tamanho e localiza\u00e7\u00e3o).\n\nMEDICAMENTO PRESCRITO:\n${c.farmaco.includes("Tamsulosina") ? "\u2022 Tamsulosina (bloqueador alfa-1): relaxa a musculatura do ureter, facilitando a passagem do c\u00e1lculo. Tome \u00e0 noite para reduzir o risco de tontura ao levantar." : ""}${c.farmaco.includes("Nifedipina") ? "\n\u2022 Nifedipina (bloqueador de canal de c\u00e1lcio): auxilia no relaxamento ureteral." : ""}\n\nO QUE FAZER:\n\u2022 Beber bastante \u00e1gua (\u2265 2,5 L/dia) para manter boa diurese.\n\u2022 Coar a urina com filtro de caf\u00e9 ou gaze para identificar quando o c\u00e1lculo sair.\n\u2022 Guardar o c\u00e1lculo (em frasco seco) para an\u00e1lise de composi\u00e7\u00e3o.\n\u2022 Atividade f\u00edsica moderada (caminhada) pode ajudar na mobiliza\u00e7\u00e3o do c\u00e1lculo.\n\nSINAIS DE ALERTA (Procurar emerg\u00eancia imediatamente):\n\u2022 Febre > 38\u00b0C ou calafrios (pode indicar infec\u00e7\u00e3o com obstru\u00e7\u00e3o \u2014 emerg\u00eancia).\n\u2022 Dor intensa que n\u00e3o melhora com os analg\u00e9sicos.\n\u2022 N\u00e1useas/v\u00f4mitos que impedem a alimenta\u00e7\u00e3o.\n\u2022 Aus\u00eancia de urina por > 8h.\n\nQUANDO A CIRURGIA PODE SER NECESS\u00c1RIA:\n\u2022 Se o c\u00e1lculo n\u00e3o sair dentro de ${c.duracao_prevista}.\n\u2022 Se a dor n\u00e3o for controlada com medicamentos.\n\u2022 Se houver infec\u00e7\u00e3o urin\u00e1ria associada.\n\u2022 Se a fun\u00e7\u00e3o do rim estiver comprometida.\n\nRETORNO: ${c.retorno} com nova imagem (tomografia ou raio-X).\n\nFONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2022; Hollingsworth JM et al. JAMA 2016;315(19):2104.`;
+      },
+    },
+  },
 ];
