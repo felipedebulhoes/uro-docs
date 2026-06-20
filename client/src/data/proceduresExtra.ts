@@ -2243,4 +2243,70 @@ AP\u00d3S O EXAME:
       },
     },
   },
+
+  {
+    id: "investigacao-metabolica-litiase",
+    name: "Investigação Metabólica — Litíase Recorrente",
+    shortName: "Invest. Metabólica",
+    icon: "🔬",
+    category: "Endourologia",
+    configFields: [
+      { id: "nome", label: "Nome do Paciente", type: "text", defaultValue: "", placeholder: "Nome completo" },
+      { id: "data", label: "Data da Consulta", type: "text", defaultValue: "", placeholder: "DD/MM/AAAA" },
+      { id: "episodios", label: "Nº de Episódios de Litíase", type: "text", defaultValue: "", placeholder: "Ex: 2" },
+      { id: "composicao", label: "Composição do Cálculo", type: "text", defaultValue: "não disponível", placeholder: "Ex: oxalato de cálcio" },
+      { id: "ca_urina24", label: "Cálcio Urinário 24h (mg/dia)", type: "text", defaultValue: "", placeholder: "Ex: 320" },
+      { id: "oxalato_urina24", label: "Oxalato Urinário 24h (mg/dia)", type: "text", defaultValue: "", placeholder: "Ex: 45" },
+      { id: "citrato_urina24", label: "Citrato Urinário 24h (mg/dia)", type: "text", defaultValue: "", placeholder: "Ex: 280" },
+      { id: "au_urina24", label: "Ácido Úrico Urinário 24h (mg/dia)", type: "text", defaultValue: "", placeholder: "Ex: 700" },
+      { id: "sodio_urina24", label: "Sódio Urinário 24h (mEq/dia)", type: "text", defaultValue: "", placeholder: "Ex: 180" },
+      { id: "fosfato_urina24", label: "Fosfato Urinário 24h (mg/dia)", type: "text", defaultValue: "", placeholder: "Ex: 900" },
+      { id: "volume_urina24", label: "Volume Urinário 24h (mL)", type: "text", defaultValue: "", placeholder: "Ex: 1800" },
+      { id: "ph_urina", label: "pH Urinário Médio", type: "text", defaultValue: "", placeholder: "Ex: 5,8" },
+      { id: "ca_sangue", label: "Cálcio Sérico (mg/dL)", type: "text", defaultValue: "", placeholder: "Ex: 9,8" },
+      { id: "pth", label: "PTH Intacto (pg/mL)", type: "text", defaultValue: "", placeholder: "Ex: 45" },
+      { id: "au_sangue", label: "Ácido Úrico Sérico (mg/dL)", type: "text", defaultValue: "", placeholder: "Ex: 6,5" },
+      { id: "creatinina", label: "Creatinina Sérica (mg/dL)", type: "text", defaultValue: "", placeholder: "Ex: 0,9" },
+      { id: "vitamina_d", label: "25-OH Vitamina D (ng/mL)", type: "text", defaultValue: "", placeholder: "Ex: 28" },
+      { id: "diagnostico_metabolico", label: "Diagnóstico Metabólico", type: "text", defaultValue: "", placeholder: "Ex: hipercalciúria absortiva + hipocitratúria" },
+      { id: "conduta", label: "Conduta / Tratamento Proposto", type: "text", defaultValue: "", placeholder: "Ex: hidroclorotiazida 25 mg/dia + citrato de potássio 30 mEq/dia" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const linhaU = (label: string, val: string, ref: string) =>
+          val ? `• ${label}: ${val} (ref: ${ref})\n` : '';
+        const linhaS = (label: string, val: string, ref: string) =>
+          val ? `• ${label}: ${val} (ref: ${ref})\n` : '';
+        const urineSection = [
+          linhaU('Cálcio urinário 24h', c.ca_urina24, '< 250 mg/dia ♀ / < 300 mg/dia ♂'),
+          linhaU('Oxalato urinário 24h', c.oxalato_urina24, '< 40 mg/dia'),
+          linhaU('Citrato urinário 24h', c.citrato_urina24, '> 320 mg/dia ♀ / > 450 mg/dia ♂'),
+          linhaU('Ácido úrico urinário 24h', c.au_urina24, '< 750 mg/dia ♀ / < 800 mg/dia ♂'),
+          linhaU('Sódio urinário 24h', c.sodio_urina24, '< 150 mEq/dia'),
+          linhaU('Fosfato urinário 24h', c.fosfato_urina24, '400–1.300 mg/dia'),
+          linhaU('Volume urinário 24h', c.volume_urina24, '≥ 2.000 mL/dia'),
+          linhaU('pH urinário médio', c.ph_urina, '5,8–6,2 ideal'),
+        ].filter(Boolean).join('');
+        const bloodSection = [
+          linhaS('Cálcio sérico', c.ca_sangue, '8,5–10,2 mg/dL'),
+          linhaS('PTH intacto', c.pth, '15–65 pg/mL'),
+          linhaS('Ácido úrico sérico', c.au_sangue, '< 6,0 mg/dL ♀ / < 7,0 mg/dL ♂'),
+          linhaS('Creatinina sérica', c.creatinina, '0,6–1,2 mg/dL'),
+          linhaS('25-OH Vitamina D', c.vitamina_d, '30–60 ng/mL'),
+        ].filter(Boolean).join('');
+        return `RELATÓRIO DE INVESTIGAÇÃO METABÓLICA — LITÍASE URINÁRIA\n\nPaciente: ${c.nome || '___________'}\nData: ${c.data || '___/___/______'}\nEpisódios de litíase: ${c.episodios || 'não informado'}\nComposição do cálculo: ${c.composicao || 'não disponível'}\n\n` +
+          (urineSection ? `URINA DE 24 HORAS:\n${urineSection}\n` : 'URINA DE 24 HORAS: aguardando resultado.\n\n') +
+          (bloodSection ? `EXAMES DE SANGUE:\n${bloodSection}\n` : 'EXAMES DE SANGUE: aguardando resultado.\n\n') +
+          (c.diagnostico_metabolico ? `DIAGNÓSTICO METABÓLICO:\n${c.diagnostico_metabolico}\n\n` : '') +
+          (c.conduta ? `CONDUTA:\n${c.conduta}\n\n` : '') +
+          `FONTES: EAU Guidelines on Urolithiasis 2024 (Türk et al.); Pearle MS et al. AUA/Endourology Society Guideline 2022; Goldfarb DS. Kidney Int 2019;96(1):26–33.`;
+      },
+      posOperatorio: (_c) =>
+        `Protocolo de investigação metabólica para litíase recorrente. Aguardar resultados dos exames de urina de 24h e sangue para interpretação e definição da conduta preventiva individualizada.`,
+      receitaAlta: (_c) =>
+        `SOLICITAÇÃO DE EXAMES — INVESTIGAÇÃO METABÓLICA PARA LITÍASE\n\n1. URINA DE 24 HORAS:\n   • Cálcio, oxalato, citrato, ácido úrico, sódio, fosfato, creatinina, volume total\n   • pH urinário (3 amostras: manhã, tarde, noite)\n\n2. SANGUE (jejum de 8–12h):\n   • Cálcio sérico, PTH intacto, ácido úrico, creatinina, 25-OH Vitamina D, bicarbonato, glicemia\n\n3. URINA SIMPLES (EAS + urocultura)\n\nINSTRUÇÕES PARA COLETA DE URINA DE 24H:\n• Descartar a primeira urina da manhã\n• Coletar TODA a urina das próximas 24h no frasco fornecido\n• Incluir a primeira urina do dia seguinte\n• Manter o frasco refrigerado\n• Não alterar a dieta habitual durante a coleta\n\nFONTE: EAU Guidelines on Urolithiasis 2024.`,
+      orientacoes: (c) =>
+        `ORIENTAÇÕES — INVESTIGAÇÃO METABÓLICA PARA PEDRA NOS RINS\n\nPaciente: ${c.nome || '___________'}\n\nPOR QUE INVESTIGAR?\nPacientes com litíase recorrente (≥ 2 episódios) ou de alto risco (rim único, criança, hiperparatireoidismo, acidose tubular, cistinúria) devem ser investigados para identificar a causa metabólica e prevenir novos cálculos.\n\nEXAMES SOLICITADOS:\n\n1. URINA DE 24 HORAS (coletar em dia típico de alimentação e atividade habitual):\n   • Cálcio, oxalato, citrato, ácido úrico, sódio, fosfato\n   • Volume total (meta: ≥ 2 L/dia)\n   • pH urinário\n   Como coletar: descartar a primeira urina da manhã; coletar TODA a urina das próximas 24h (incluindo a primeira urina do dia seguinte) no frasco fornecido. Manter o frasco refrigerado. Não alterar a dieta habitual durante a coleta.\n\n2. SANGUE EM JEJUM:\n   • Cálcio, PTH intacto, ácido úrico, creatinina, 25-OH Vitamina D\n\n3. URINA SIMPLES (EAS + urocultura): avaliar pH, cristais e infecção.\n\nCUIDADOS DURANTE A COLETA:\n• Manter alimentação e hidratação habituais (não alterar para "parecer melhor")\n• Evitar suplementos de vitamina C ou cálcio no dia da coleta\n• Anotar qualquer medicamento em uso\n\nRETORNO: Trazer todos os resultados para interpretação e definição do tratamento individualizado.\n\nFONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2022.`,
+    },
+  },
 ];

@@ -3914,6 +3914,55 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "ureteral stone expulsive therapy alpha blocker tamsulosin spontaneous passage rate distal ureter"
       }
     ]
+  },
+  {
+    "id": "investigacao-metabolica-litiase",
+    "name": "Investigação Metabólica — Litíase Recorrente",
+    "icon": "🔬",
+    "category": "Endourologia",
+    "evidence": "EAU Guidelines on Urolithiasis 2024 (Türk et al.); AUA Guideline 2014/2019; Goldfarb DS. Kidney Int 2019;96(1):26–33.",
+    "sections": [
+      {
+        "title": "Indicações para Investigação Metabólica",
+        "body": "Investigação indicada em: ≥ 2 episódios de litíase sintomática; primeiro episódio em criança ou adolescente; rim único; nefrocalcinose; cálculo de composição incomum (cistina, estruvita, xantina); história familiar forte; condições associadas (hiperparatireoidismo, acidose tubular renal, doença inflamatória intestinal, bypass gástrico, sarcoidose, gota). Fonte: EAU 2024 — investigação metabólica simplificada para todos os formadores de cálculo; investigação extensa para pacientes de alto risco."
+      },
+      {
+        "title": "Urina de 24 Horas",
+        "body": "Coleta: descartar a primeira urina da manhã; coletar toda a urina das 24h seguintes no frasco fornecido; manter refrigerado; não alterar a dieta habitual.\n\nParâmetros e referências:\n• Cálcio: < 250 mg/dia (♀) / < 300 mg/dia (♂)\n• Oxalato: < 40 mg/dia\n• Citrato: > 320 mg/dia (♀) / > 450 mg/dia (♂)\n• Ácido úrico: < 750 mg/dia (♀) / < 800 mg/dia (♂)\n• Sódio: < 150 mEq/dia\n• Fosfato: 400–1.300 mg/dia\n• Volume: ≥ 2.000 mL/dia\n• pH urinário: 5,8–6,2 (ideal); pH < 5,5 → risco de cálculo de ácido úrico; pH > 7,0 → risco de estruvita/fosfato de cálcio"
+      },
+      {
+        "title": "Exames de Sangue",
+        "body": "Coleta em jejum de 8–12h:\n• Cálcio sérico: 8,5–10,2 mg/dL — hipercalcemia sugere hiperparatireoidismo, sarcoidose, intoxicação por vitamina D\n• PTH intacto: 15–65 pg/mL — PTH elevado + hipercalcemia = hiperparatireoidismo primário (indicação cirúrgica)\n• Ácido úrico sérico: < 6,0 mg/dL (♀) / < 7,0 mg/dL (♂)\n• Creatinina + TFGe: avaliar função renal\n• 25-OH Vitamina D: 30–60 ng/mL\n• Bicarbonato sérico: < 22 mEq/L sugere acidose tubular renal tipo 1\n• Glicemia de jejum: diabetes associado a cálculo de ácido úrico"
+      },
+      {
+        "title": "Urina Simples (EAS + Urocultura)",
+        "body": "pH urinário em 3 amostras (manhã, tarde, noite). Cristais: oxalato de cálcio (envelope/halter), ácido úrico (losango amarelo), fosfato de cálcio (prismas), cistina (hexagonal). Urocultura: descartar infecção por urease-positivos (Proteus, Klebsiella) — causa de cálculo de estruvita."
+      },
+      {
+        "title": "Interpretação e Conduta por Distúrbio",
+        "body": "Hipercalciúria: hidroclorotiazida 25 mg/dia ou clortalidona 12,5–25 mg/dia + restrição de sal (< 5 g/dia).\nHipocitratúria: citrato de potássio 30–60 mEq/dia ou limonada natural.\nHiperoxalúria entérica: colestiramina + cálcio com as refeições + restrição de oxalato.\nHiperuricosúria: alopurinol 300 mg/dia + alcalinização (pH alvo 6,5–7,0).\nHiperparatireoidismo primário: encaminhar para paratireoidectomia.\nCistinúria: hidratação intensa (> 3 L/dia) + alcalinização (pH > 7,5) + D-penicilamina ou tiopronina.\nFonte: EAU 2024, Capítulo 5 — Medical Preventive Therapy."
+      },
+      {
+        "title": "Análise de Composição do Cálculo",
+        "body": "Indicada em todo primeiro episódio e sempre que disponível. Método preferencial: espectroscopia de infravermelho (FTIR) ou difração de raios-X. Composições mais comuns: oxalato de cálcio mono/di-hidratado (70–80%), fosfato de cálcio (10–15%), ácido úrico (5–10%), estruvita (5%), cistina (1–2%). A composição guia a investigação metabólica específica e o tratamento preventivo."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Türk C et al. EAU Guidelines on Urolithiasis 2024. European Association of Urology.\n2. Pearle MS et al. Medical Management of Kidney Stones: AUA Guideline 2014 (amended 2019). J Urol 2014;192(2):316–324.\n3. Goldfarb DS. Empirical therapy for recurrent calcium oxalate stones. Kidney Int 2019;96(1):26–33.\n4. Borghi L et al. Comparison of two diets for prevention of recurrent stones in idiopathic hypercalciuria. N Engl J Med 2002;346(2):77–84."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Algoritmo de Investigação Metabólica",
+        "description": "Fluxograma de decisão: paciente com litíase → critérios de alto risco → investigação simplificada vs. extensa → exames de urina 24h e sangue → diagnóstico metabólico → tratamento específico.",
+        "searchTerms": "metabolic evaluation kidney stones urolithiasis workup algorithm 24h urine collection"
+      },
+      {
+        "caption": "Valores de Referência — Urina de 24 Horas",
+        "description": "Tabela visual com os parâmetros da urina de 24h (cálcio, oxalato, citrato, ácido úrico, sódio, volume, pH) e seus valores de referência por sexo, com destaque para os limiares de risco.",
+        "searchTerms": "24 hour urine kidney stone reference values hypercalciuria hypocitraturia urinary supersaturation"
+      }
+    ]
   }
 ];
 
@@ -4016,6 +4065,7 @@ export const atlasToProcedure: Record<string, string> = {
   "usg-escrotal-doppler-testicular": "usg-escrotal-doppler-testicular",
   "priapismo-isquemico": "priapismo-isquemico",
   "terapia-expulsiva-calculo-ureteral": "terapia-expulsiva-calculo-ureteral",
+  "investigacao-metabolica-litiase": "investigacao-metabolica-litiase",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
 };

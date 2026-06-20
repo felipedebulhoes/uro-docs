@@ -134,7 +134,7 @@ export default function Home() {
                 <div className="min-w-0 flex-1">
                   <h2 className="text-base font-bold text-primary">Atlas Cirúrgico</h2>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    Passo a passo técnico de 58 procedimentos — endourologia, oncologia, próstata, andrologia, imagem (USG/Doppler), estética genital e saúde do homem, baseado em evidências.
+                    Passo a passo técnico de 59 procedimentos — endourologia, oncologia, próstata, andrologia, imagem (USG/Doppler), estética genital e saúde do homem, baseado em evidências.
                   </p>
                 </div>
               </div>
