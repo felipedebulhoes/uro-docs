@@ -4065,7 +4065,114 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "HoLEP holmium laser enucleation prostate technique morcellation capsule plane"
       }
     ]
+  },
+
+  {
+    "id": "trt-clinico",
+    "name": "TRT — Reposição de Testosterona (Indicação Clínica / Hipogonadismo)",
+    "icon": "🔬",
+    "category": "Andrologia",
+    "evidence": "AUA Guideline on Male Hypogonadism 2022; EAU Guidelines SRH 2024; Bhasin S et al. J Clin Endocrinol Metab 2018; ISSM Position Statement 2021",
+    "sections": [
+      {
+        "title": "Diagnóstico de Hipogonadismo Masculino",
+        "body": "Critérios diagnósticos (AUA 2022): testosterona total < 300 ng/dL em duas dosagens matinais (7-11h) separadas por ≥ 4 semanas, associada a sintomas clínicos. Critério EAU 2024: < 350 ng/dL. Testosterona livre < 65 pg/mL é alternativa quando SHBG anormal (obesidade, DM, hipotireoidismo). Classificação: Hipogonadismo primário (hipergonadotrófico) — testicular: LH/FSH elevados, T baixa (síndrome de Klinefelter, pós-orquiectomia, irradiação). Hipogonadismo secundário (hipogonadotrófico) — central: LH/FSH baixos ou inapropriadamente normais (hiperprolactinemia, hipopituitarismo, uso de opióides, anabolizantes). DAEM (Late-onset Hypogonadism / LOH): forma mais comum em homens > 45 anos — diagnóstico requer OBRIGATORIAMENTE dois critérios: bioquímico (T < 300-350 ng/dL) + pelo menos 3 sintomas sexuais (↓ libido, ↓ ereções espontâneas, ↓ ereções matinais). Sintomas não sexuais isolados não são suficientes para indicação (Bhasin S et al. JCEM 2010). Contraindicações absolutas: câncer de próstata ativo (relativo em remissão), câncer de mama masculino, hematócrito > 54%, desejo imediato de paternidade sem suporte de HCG."
+      },
+      {
+        "title": "Formulações de Testosterona — Farmacocinética e Seleção",
+        "body": "INJETÁVEIS (padrão-ouro de eficácia): Undecanoato IM (Nebido® 1000 mg q10-14 semanas) — cinética plana, confortável, ideal para adesão; curva lenta de ação (semanas). Enantato / Cipionato 100-200 mg IM semanal ou q2 semanas (magistral) — pico em 24-72h, vale ao final do intervalo; permitido auto-aplicação. Propionato 50 mg IM em dias alternados — éster curto, meia-vida 2-3 dias, menor retenção hídrica, mais injeções. TRANSDÉRMICOS: Gel 1-2% (50-100 mg/dia) — aplicar no ombro/abdome pela manhã; biodisponibilidade ~14%; sem picos; risco de transferência cutânea. Indicado quando injetáveis são contraindicados ou indesejados. SUBCUTÂNEOS: Pellets de testosterona (75-150 mg/pellet, 4-6 pellets a cada 3-6 meses). ORAIS: Undecanoato oral (Andriol®, 120-240 mg/dia) — biodisponibilidade errática, uso limitado. MODULADORES (SERMs): Clomifeno 25-50 mg/dia ou dias alternados — indicado exclusivamente em hipogonadismo secundário; preserva fertilidade; aumenta T endógena via estímulo de LH; não suprime eixo HPG. Fontes: EAU SRH 2024; Bhasin S et al. JCEM 2018."
+      },
+      {
+        "title": "HCG — Gonadotrofina Coriônica: Indicações e Protocolos",
+        "body": "A testosterona exógena suprime o eixo HPG via feedback negativo → redução de LH/FSH endógenos → atrofia testicular (↓ volume) + redução da testosterona intratesticular (ITT) → supressão da espermatogênese. O HCG (agonista do receptor de LH nas células de Leydig) reverte esse efeito ao estimular diretamente o testículo. INDICAÇÕES: (1) Preservação da fertilidade durante TRT. (2) Manutenção do volume testicular (efeito cosmético/psicológico). (3) Monoproto para hipogonadismo secundário com desejo de paternidade. DOSES: 500-1000 UI SC 2-3×/semana durante TRT (preservação). 2500-5000 UI SC 3×/semana como monoterapia (indução, antes de TRT). Reconstituição: pó + SF 0,9%; refrigerado após reconstituição (2-8°C); usar em 30 dias. Efeitos adversos: policitemio (estimula eritropoiese via ↑ T intratesticular), ginecomastia (aromatização aumentada), dor no sítio de injeção. Fontes: Hsieh TC et al. Fertil Steril 2013; Kim ED et al. J Urol 2013."
+      },
+      {
+        "title": "Inibidores de Aromatase (IA) — Uso na TRT",
+        "body": "A aromatase (CYP19A1) converte testosterona → estradiol, especialmente no tecido adiposo. Com TRT, os níveis de E2 sobem proporcionalmente à T. O estradiol é essencial (libido, densidade óssea, saúde cardiovascular) — nunca suprimir completamente. INDICAÇÕES de IA na TRT: E2 > 40 pg/mL com sintomas (ginecomastia, retenção hídrica, labilidade emocional, libido deprimida) OU E2 > 60 pg/mL independente de sintomas. Fontes de evidência: limitadas; uso majoritariamente baseado em opinião de especialistas e farmacodinâmica. ANASTROZOL (não-esteroidal, reversível): 0,25-0,5 mg VO 2-3×/semana. Dose-resposta linear; início de ação em 24h. EXEMESTANO (esteroidal, irreversível): 12,5-25 mg VO 2-3×/semana. Pós-refeição (absorção lipofílica). METAS: E2 alvo 20-30 pg/mL. E2 < 15 pg/mL = overdosagem de IA: consequências graves — perda óssea, disfunção erétil, dislipidemia (↑ LDL, ↓ HDL), artralgia, depressão. Ajuste sempre guiado por dosagem sérica. Clomifeno não precisa de IA (não eleva T tanto quanto TRT). Fonte: EAU SRH 2024; Finkelstein JS et al. NEJM 2013 (papel do E2 em homens)."
+      },
+      {
+        "title": "Metas Terapêuticas e Monitoramento",
+        "body": "METAS (AUA 2022 / EAU 2024): Testosterona total: 400-700 ng/dL (manter no vale; evitar picos > 1100 ng/dL). Testosterona livre: ≥ 100 pg/mL. Estradiol: 20-30 pg/mL. Hematócrito (Hct): ≤ 52%; se 52-54%: reduzir dose + doação voluntária de sangue; se > 54%: SUSPENDER + flebotomia 450 mL. PSA: Δ ≤ 1,4 ng/mL em 12 meses; Δ ≤ 0,75 ng/mL/ano cronicamente; PSA > 4 ng/mL → biópsia. MONITORAMENTO: Semana 4-6: T total/livre, E2, Hct/Hb. Mês 3: T, E2, Hct, PSA, lipidograma, glicemia. Mês 6: todos anteriores + perfil metabólico. Anualmente: todos + DEXA (se fatores de risco para osteoporose). Timing de coleta: injetáveis curtos = vale (dia anterior à próxima injeção); Nebido = qualquer momento após equilíbrio (após 3ª dose); gel = 2-4h após aplicação. EFEITOS ADVERSOS: Policitemia (Hct ↑) — mais comum com injetáveis; monitoramento e doação/flebotomia. Apneia do sono — piora em predispostos; triagem com Epworth + parceiro. Dislipidemia — injetáveis: ↓ HDL leve; gel: impacto menor. PSA — aumento de até 1,4 ng/mL em 12 meses é aceitável; > 4 ng/mL ou velocidade > 0,75 → biópsia. Efeitos favoráveis esperados: ↑ libido e função erétil, ↑ massa muscular magra, ↓ massa gorda, ↑ densidade óssea, ↑ disposição e humor (metanálise Corona G et al. J Sex Med 2020)."
+      },
+      {
+        "title": "Referências Principais",
+        "body": "1. Mulhall JP et al. Evaluation and Management of Testosterone Deficiency: AUA Guideline. J Urol 2018; atualizada 2022.\n2. EAU Guidelines on Sexual and Reproductive Health 2024 (Capítulo: Male Hypogonadism).\n3. Bhasin S et al. Testosterone Therapy in Men with Hypogonadism. J Clin Endocrinol Metab 2018;103(5):1715–1744.\n4. ISSM Position Statement on Testosterone Therapy in Men with Sexual Dysfunction (2021).\n5. Finkelstein JS et al. Gonadal steroids and body composition, strength, and sexual function in men. NEJM 2013;369:1011.\n6. Corona G et al. Testosterone supplementation and sexual function: a meta-analysis study. J Sex Med 2020.\n7. Hsieh TC et al. Concomitant intramuscular human chorionic gonadotropin preserves spermatogenesis in men undergoing testosterone replacement therapy. J Urol 2013."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Eixo Hipotálamo-Hipofisário-Gonadal (HPG) e TRT",
+        "description": "Diagrama do eixo HPG: GnRH hipotalâmico → LH/FSH hipofisários → produção de testosterona testicular (células de Leydig) e espermatogênese (células de Sertoli). Feedback negativo da testosterona e estradiol sobre hipotálamo e hipófise. Seta indicando onde a TRT exógena entra no eixo e o mecanismo de supressão de LH/FSH. Local de ação do HCG (imita LH) e do clomifeno (bloqueia feedback negativo no hipotálamo/hipófise).",
+        "searchTerms": "HPG axis hypothalamic pituitary gonadal testosterone LH FSH feedback negative TRT HCG clomiphene"
+      },
+      {
+        "caption": "Farmacocinética das Formulações de Testosterona",
+        "description": "Gráfico comparativo dos perfis de concentração sérica ao longo do tempo para: Cipionato/Enantato semanal (pico D1-D3, vale D7), Nebido® (curva plana com pico suave a cada 12 semanas), Propionato em dias alternados (picos rápidos e frequentes), Gel transdérmico (curva plana diária, nível mais baixo). Linha de referência da faixa normal (300-1000 ng/dL) e da faixa-alvo (400-700 ng/dL).",
+        "searchTerms": "testosterone pharmacokinetics cypionate enanthate undecanoate nebido gel serum levels peak trough"
+      },
+      {
+        "caption": "Algoritmo de Monitoramento da TRT",
+        "description": "Fluxograma de acompanhamento: Baseline (T×2, T livre, LH, FSH, E2, SHBG, PSA, Hct, lipidograma) → Semana 4-6 (T, E2, Hct) → Mês 3 (T, E2, Hct, PSA, lipidograma) → Mês 6 → Anual. Critérios de ajuste de dose (T no vale, E2, Hct) e critérios de suspensão (Hct > 54%, PSA ↑, evento CV).",
+        "searchTerms": "TRT monitoring algorithm testosterone replacement therapy hematocrit PSA estradiol follow-up"
+      }
+    ]
+  },
+
+  {
+    "id": "trt-estetico-performance",
+    "name": "Protocolo Andrológico — Otimização Hormonal / Performance (Off-Label)",
+    "icon": "💪",
+    "category": "Andrologia",
+    "evidence": "Bhasin S et al. JCEM 2010/2018; EAU SRH 2024; Hackett G et al. BJU Int 2017; Nair KS et al. NEJM 2006; AUA 2022 (adaptado para contexto off-label com consentimento informado)",
+    "sections": [
+      {
+        "title": "Contexto Clínico e Bases Éticas",
+        "body": "Pacientes eugonadais (T normal) ou em faixa limítrofe que buscam otimização hormonal para composição corporal, performance atlética ou bem-estar. Nenhum guideline internacionalmente reconhecido recomenda TRT em homens eugonadais para essas finalidades. A prescrição é off-label, com autonomia prescritiva médica (CFM Resolução 2.314/2022), condicionada a: (1) consentimento informado detalhado com documentação dos riscos; (2) monitoramento laboratorial periódico rigoroso; (3) ausência de contraindicações; (4) avaliação de risco cardiovascular basal. Doses suprafisiológicas (> 200-300 mg/semana de T equivalente) têm evidência de benefício apenas em condições específicas (ex.: wasting em AIDS, hipogonadismo grave) e aumentam proporcionalmente os riscos cardiovasculares, hematológicos e de supressão do eixo. Fonte: Bhasin S et al. Testosterone dose-response relationships in healthy young men. Am J Physiol 2001; Basaria S et al. Adverse events associated with testosterone administration (NEJM 2010 — trial interrompido por eventos cardiovasculares em dose suprafisiológica)."
+      },
+      {
+        "title": "Nandrolona Decanoato — Farmacologia e Uso Clínico",
+        "body": "A nandrolona (19-nor-testosterona) é um esteroide androgênico anabolizante (EAA) derivado da testosterona com modificações na posição C-19. FARMACOLOGIA: Relação anabolismo:androgenismo ≈ 3:1 (testosterona = 1:1). Não converte em DHT (converte em DHN — dihidronandrolona, muito menos ativo em receptores AR de próstata e couro cabeludo). Aromatiza minimamente (< 20% da taxa da testosterona). Meia-vida plasmática: ~8 dias (éster decanoato). INDICAÇÕES APROVADAS (ANVISA): anemia por insuficiência renal crônica, osteoporose grave, desnutrição em doenças wasting. USO CLÍNICO ANDROLÓGICO (off-label em doses baixas): Proteção articular e manutenção de massa magra: 25-50 mg IM q2 semanas ou semanal — menor androgenicidade, útil em andrologia do envelhecimento masculino. Dose moderada: 100 mg/semana. Dose performance: 200-400 mg/semana (exclusivo contexto atlético; maior supressão e risco). EFEITOS ADVERSOS: Supressão do eixo HPG (mais intensa e prolongada que testosterona equivalente). Dislipidemia: ↓ HDL significativa (dose-dependente). Retenção hídrica. Acne androgenética. Hepatotoxicidade mínima (éster injetável; diferente dos 17-alfa-alquilados orais). ⚠ Interferência em ensaios de testosterona: nandrolona causa reatividade cruzada em alguns imunoensaios — preferir cromatografia líquida (LC-MS/MS) para dosagem de T durante uso. Fontes: Mooradian AD et al. Ann Intern Med 1987; Bhasin S et al. Ann Intern Med 1997; ANVISA."
+      },
+      {
+        "title": "Hormônio do Crescimento (GH) — Protocolos e Evidências",
+        "body": "O GH é secretado pela hipófise anterior de forma pulsátil, com pico noturno durante sono profundo (ondas lentas). Estimula a produção hepática de IGF-1 (fator de crescimento insulino-símile tipo 1), principal mediador de seus efeitos anabólicos. DEFICIÊNCIA ADULTA DE GH (indicação aprovada): critério: IGF-1 < -2 DP para idade + teste de estimulação de GH positivo (ITT, arginina+GHRH ou macimorelin). Dose: 0,2-0,4 UI/dia SC à noite, titular por IGF-1 (alvo: limite superior da normalidade para idade/sexo). Benefícios comprovados: ↑ massa magra, ↓ massa gorda, ↑ força muscular, melhora do perfil lipídico, qualidade de vida. ANTI-AGING / COMPOSIÇÃO CORPORAL (off-label): Evidência: metanálises mostram efeito modesto em composição corporal (↑ ~2 kg massa magra, ↓ ~2 kg gordura) mas sem benefício convincente em força funcional, performance ou mortalidade em adultos GH-suficientes (Liu H et al. Ann Intern Med 2007). Doses usadas empiricamente: 0,5-2 UI/dia SC à noite. Meta IGF-1: 0 a +1,5 DP para idade. Riscos com doses suprafisiológicas: retenção hídrica, síndrome do túnel do carpo, parestesias, artralgia, resistência à insulina/DM2, acromegalia subclínica (IGF-1 persistentemente elevado). Risco teórico de proliferação celular com IGF-1 crônico > +2 DP — base biológica plausível mas sem evidência conclusiva em adultos não-acromegálicos. Contraindicionado em: neoplasia ativa, retinopatia diabética proliferativa, hipertensão craniana. EFEITO SAZONAL: o GH exógeno suprime o GH endógeno via somatostatina (feedback negativo); pausas periódicas podem ser consideradas para preservar a sensibilidade. Fontes: Nair KS et al. NEJM 2006; Liu H et al. Ann Intern Med 2007 (meta-análise); Molitch ME et al. J Clin Endocrinol Metab 2011 (guideline deficiência adulta)."
+      },
+      {
+        "title": "Peptídeos Secretagogos de GH — GHRP / GHRH",
+        "body": "Secretagogos são moléculas que estimulam a hipófise a secretar GH endógeno, preservando a pulsatilidade e o feedback negativo — diferem do GH exógeno que suprime o GH endógeno. CLASSES: GHRH análogos (aumentam amplitude dos pulsos): Sermorelin (análogo GHRH 1-29) — mais fisiológico, meia-vida curta, estímulo dependente do somatostato (sensível ao feedback). CJC-1295 sem DAC (Mod GRF 1-29) — análogo GHRH de curta ação (30-60 min). CJC-1295 com DAC (Drug Affinity Complex) — ação prolongada (~8 dias); estimula liberação contínua de GH (perda da pulsatilidade). Tesamorelin — análogo GHRH aprovado FDA para lipodistrofia em HIV/AIDS. GHRPs (agonistas do receptor de ghrelina/GHS-R — aumentam frequência dos pulsos): Ipamorelin — mais seletivo, sem aumento de cortisol ou prolactina (diferencial em relação a GHRP-2 e GHRP-6). GHRP-6 — estimula fortemente o apetite (via ghrelina); útil para ganho de massa. GHRP-2 — menos seletivo, aumenta cortisol e prolactina. COMBINAÇÃO SINÉRGICA: GHRP + GHRH análogo produz liberação de GH 4-10× maior que cada um isolado (via mecanismos complementares). Ipamorelin + CJC-1295 sem DAC é a combinação mais usada por este perfil. SECRETAGOGOS ORAIS: MK-677 (Ibutamoren) — agonista oral de GHS-R; não registrado na ANVISA; meia-vida 24h; estimula GH/IGF-1 de forma contínua; efeitos adversos: fome intensa, retenção hídrica, hipoglicemia de rebote, resistência à insulina. TODOS são off-label para objetivos de composição corporal/performance. Fonte: Sigalos JT, Pastuszak AW. Sex Med Rev 2018; Smith RG et al. Endocr Rev 2005."
+      },
+      {
+        "title": "Manejo de Efeitos Colaterais e Monitoramento Intensificado",
+        "body": "POLICITEMIA: Mecanismo: testosterona estimula eritropoietina (EPO) renal → ↑ eritropoiese. Mais comum com injetáveis de éster longo em alta dose. Hct 52-54%: reduzir dose, doação voluntária de sangue (450 mL, q2-3 meses). Hct ≥ 54%: SUSPENDER TRT + flebotomia terapêutica imediata. DISLIPIDEMIA: Testosterona injetável: ↓ HDL (mais intenso com Propionato e altas doses); ↑ ou neutro LDL. Nandrolona: ↓ HDL mais pronunciada. GH: melhora o perfil lipídico (↓ LDL, ↑ HDL) — efeito oposto. Estratégia: Ômega-3 EPA+DHA ≥ 4g/dia (TG e inflamação); estatina se LDL > 130 mg/dL; CoQ10 200 mg/dia se estatina. ESTRADIOL ELEVADO (AROMATIZAÇÃO): Com altas doses de T, E2 sobe proporcionalmente. Sintomas de E2 elevado: ginecomastia (nódulo ou sensibilidade mamelar), retenção hídrica, labilidade emocional, redução da libido paradoxal. Estratégia: IA (anastrozol ou exemestano — ver seção TRT clínico). Evitar overcorrection (E2 < 15 pg/mL = pior que E2 elevado). SUPRESSÃO DO EIXO HPG: Injetável ou qualquer T exógena suprime LH/FSH → ↓ espermatogênese. HCG mitiga mas não elimina completamente. TPC com SERM (clomifeno ou tamoxifeno) restaura eixo após ciclo. MONITORAMENTO MÍNIMO: Semana 4-6: T (vale), E2, Hct, PA. Mês 3: T, E2, Hct, PSA, LDL/HDL/TG, Glicemia, HbA1c + IGF-1 se GH + ALT/AST se nandrolona. Mês 6: todos + hemograma completo + creatinina. Anual: DEXA se ciclos prolongados."
+      },
+      {
+        "title": "TPC — Terapia Pós-Ciclo (Protocolos)",
+        "body": "A TPC aplica-se a protocolos com término planejado (não à TRT contínua). Objetivo: restaurar o eixo HPG e a produção endógena de testosterona após supressão pelo ciclo. TIMING DE INÍCIO (após última dose): Ésteres longos (Cipionato, Enantato, Decanoato de Nandrolona): iniciar TPC 14-21 dias após a última injeção (quando os níveis séricos caem abaixo de 100 ng/dL). Propionato: iniciar TPC 3-5 dias após última dose (meia-vida ~2 dias). PROTOCOLOS: Clomifeno: 50 mg/dia × 4 semanas (ou 100→50 mg com desmame em 2+2 semanas). Bloqueia receptores de E2 no hipotálamo → remove feedback negativo → ↑ GnRH → ↑ LH/FSH → ↑ T endógena. Tamoxifeno: 20-40 mg/dia × 4-6 semanas. Mesmo mecanismo, diferente farmacocinética. Combinado (ciclos muito supressivos): Clomifeno 50 mg + Tamoxifeno 20 mg/dia × 3-4 semanas. Monitoramento da TPC: T total, LH, FSH — dosagens a cada 4 semanas até T > 300 ng/dL + LH > 2 mUI/mL espontaneamente. Recuperação esperada: 8-16 semanas em ciclos curtos (12-20 semanas); pode ser > 6 meses em ciclos longos ou com compostos de alta supressão. Se recuperação inadequada em 6 meses → investigar hipogonadismo primário induzido. Fontes: Rasmussen JJ et al. J Clin Endocrinol Metab 2016; Christou MA et al. Clin Endocrinol 2017."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Bhasin S et al. Testosterone dose-response relationships in healthy young men. Am J Physiol Endocrinol Metab 2001;281(6):E1172–81.\n2. Basaria S et al. Adverse events associated with testosterone administration. NEJM 2010;363:109–122.\n3. Nair KS et al. DHEA in elderly women and DHEA or testosterone in elderly men. NEJM 2006;355:1647.\n4. Liu H et al. Systematic review: The safety and efficacy of growth hormone in the healthy elderly. Ann Intern Med 2007;146:104–115.\n5. Mooradian AD et al. Biological actions of androgens. Endocr Rev 1987;8(1):1–28.\n6. Rasmussen JJ et al. Long-term effects of androgen use on lipid and metabolic parameters. J Clin Endocrinol Metab 2016;101(4):1456–66.\n7. Sigalos JT, Pastuszak AW. The safety and efficacy of growth hormone secretagogues. Sex Med Rev 2018;6(1):45–53.\n8. Hackett G et al. British Society for Sexual Medicine Guidelines on Adult Testosterone Deficiency, With Statements for UK Practice. J Sex Med 2017;14(12):1504–1523."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Perfis Farmacocinéticos dos Esteroides Androgênicos Anabolizantes",
+        "description": "Gráfico comparativo dos perfis séricos dos ésteres de testosterona (propionato, enantato/cipionato, undecanoato IM) e nandrolona decanoato: pico, duração de ação e nível no vale em relação à linha de faixa fisiológica (300-1000 ng/dL). Destaque para o éster decanoato (nandrolona) com meia-vida de ~8 dias.",
+        "searchTerms": "anabolic androgenic steroids pharmacokinetics testosterone propionate enanthate cypionate undecanoate nandrolone decanoate half-life serum levels"
+      },
+      {
+        "caption": "Eixo GH — IGF-1: Fisiologia e Pontos de Ação dos Secretagogos",
+        "description": "Diagrama do eixo GH: GHRH e ghrelin hipotalâmicos → liberação pulsátil de GH pela hipófise anterior → produção de IGF-1 hepático → efeitos periféricos (anabolismo muscular, lipólise, síntese óssea). Somatostatina como feedback inibitório. Pontos de ação: GHRH análogos (Sermorelin, CJC-1295) na hipófise via receptor GHRHR; GHRPs (Ipamorelin, GHRP-6) via receptor de ghrelina GHS-R1a. GH exógeno: entra diretamente no eixo pós-hipófise.",
+        "searchTerms": "GH IGF-1 axis GHRH somatostatin GHS-R ghrelin ipamorelin CJC-1295 sermorelin growth hormone secretagogues mechanism"
+      },
+      {
+        "caption": "Protocolo de TPC — Restauração do Eixo HPG",
+        "description": "Diagrama temporal da TPC: período de supressão durante o ciclo (LH/FSH baixos, T endógena suprimida) → intervalo pós-ciclo antes da TPC (washout conforme éster) → TPC com SERM (clomifeno/tamoxifeno, bloqueio do receptor de E2 no hipotálamo) → recuperação progressiva de LH, FSH e T endógena ao longo de 8-16 semanas.",
+        "searchTerms": "PCT post cycle therapy HPG axis recovery SERM clomiphene tamoxifen LH FSH testosterone endogenous recovery"
+      }
+    ]
   }
+
 
 ];
 
@@ -4173,5 +4280,7 @@ export const atlasToProcedure: Record<string, string> = {
   "hpb-tratamento-cirurgico": "hpb-tratamento-cirurgico",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
+  "trt-clinico": "trt-clinico",
+  "trt-estetico-performance": "trt-estetico-performance",
 };
 
