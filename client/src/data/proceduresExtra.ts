@@ -2921,4 +2921,713 @@ Retorne em 4–6 semanas com urofluxometria + RPM e IPSS para avaliação do res
 FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`,
     },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // TRT — REPOSIÇÃO DE TESTOSTERONA (INDICAÇÃO CLÍNICA / HIPOGONADISMO)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "trt-clinico",
+    name: "Reposição de Testosterona — Indicação Clínica (Hipogonadismo / DAEM)",
+    shortName: "TRT Clínico",
+    icon: "🔬",
+    category: "Andrologia",
+    configFields: [
+      {
+        id: "indicacao", label: "Diagnóstico", type: "select",
+        options: [
+          "Hipogonadismo primário (hipergonadotrófico — LH/FSH elevados)",
+          "Hipogonadismo secundário (hipogonadotrófico — LH/FSH baixos/normais)",
+          "Hipogonadismo misto (componente central e gonadal)",
+          "DAEM — Déficit Androgênico do Envelhecimento Masculino (LOH/Late-onset Hypogonadism)",
+        ],
+        defaultValue: "DAEM — Déficit Androgênico do Envelhecimento Masculino (LOH/Late-onset Hypogonadism)",
+      },
+      { id: "test_total_1", label: "Testosterona total 1ª dosagem (ng/dL)", type: "text", defaultValue: "200", placeholder: "Ex: 210 — dosagem matinal (7-11h)" },
+      { id: "test_total_2", label: "Testosterona total 2ª dosagem (ng/dL)", type: "text", defaultValue: "195", placeholder: "Ex: 195 — ≥ 4 semanas da 1ª" },
+      { id: "test_livre", label: "Testosterona livre (pg/mL)", type: "text", defaultValue: "", placeholder: "Ex: 50 (ref. ≥ 65 pg/mL)" },
+      { id: "lh", label: "LH (mUI/mL)", type: "text", defaultValue: "", placeholder: "Ex: 2,1" },
+      { id: "fsh", label: "FSH (mUI/mL)", type: "text", defaultValue: "", placeholder: "Ex: 3,5" },
+      { id: "shbg", label: "SHBG (nmol/L)", type: "text", defaultValue: "", placeholder: "Ex: 45" },
+      { id: "estradiol_basal", label: "Estradiol basal (pg/mL)", type: "text", defaultValue: "", placeholder: "Ex: 22" },
+      { id: "psa_basal", label: "PSA basal (ng/mL)", type: "text", defaultValue: "", placeholder: "Ex: 1,2" },
+      { id: "hematocrito_basal", label: "Hematócrito basal (%)", type: "text", defaultValue: "", placeholder: "Ex: 44" },
+      {
+        id: "formulacao_t", label: "Formulação de Testosterona", type: "select",
+        options: [
+          "Nebido® — undecanoato 1000 mg IM q10-14 semanas",
+          "Enantato 250 mg IM q2 semanas (magistral)",
+          "Enantato 125 mg IM semanal (magistral — picos menores, níveis mais estáveis)",
+          "Cipionato 200 mg IM q2 semanas (magistral)",
+          "Cipionato 100 mg IM semanal (magistral — mais fisiológico)",
+          "Gel testosterona 50 mg/dia transdérmico",
+          "Gel testosterona 75 mg/dia transdérmico",
+          "Gel testosterona 100 mg/dia transdérmico",
+          "Pellet subcutâneo (ver protocolo específico de implante)",
+          "Clomifeno 25 mg/dia VO (monoterapia — hipogonadismo secundário, fertilidade preservada)",
+          "Clomifeno 50 mg dias alternados VO",
+        ],
+        defaultValue: "Nebido® — undecanoato 1000 mg IM q10-14 semanas",
+      },
+      {
+        id: "hcg", label: "HCG (Gonadotrofina Coriônica Humana)", type: "select",
+        options: [
+          "Não prescrito",
+          "HCG 500 UI SC 2×/semana",
+          "HCG 1000 UI SC 2×/semana",
+          "HCG 1500 UI SC 2×/semana",
+          "HCG 500 UI SC 3×/semana (foco em fertilidade)",
+          "HCG 2500 UI SC 3×/semana (indução — hipogonadismo secundário)",
+        ],
+        defaultValue: "HCG 500 UI SC 2×/semana",
+      },
+      {
+        id: "ai", label: "Inibidor de Aromatase (IA)", type: "select",
+        options: [
+          "Não prescrito — aguardar E2 em 4-6 semanas",
+          "Anastrozol 0,25 mg VO 2×/semana",
+          "Anastrozol 0,5 mg VO 2×/semana",
+          "Anastrozol 0,5 mg VO 3×/semana",
+          "Exemestano 12,5 mg VO 2×/semana",
+          "Exemestano 25 mg VO 2×/semana",
+        ],
+        defaultValue: "Não prescrito — aguardar E2 em 4-6 semanas",
+      },
+      {
+        id: "comorbidade", label: "Comorbidades relevantes", type: "select",
+        options: [
+          "Sem comorbidades relevantes",
+          "Apneia do sono (CPAP em uso)",
+          "Policitemia secundária prévia — monitoramento intensivo",
+          "Dislipidemia em tratamento",
+          "HAS controlada",
+          "DM2 em controle",
+          "Infertilidade como preocupação",
+        ],
+        defaultValue: "Sem comorbidades relevantes",
+      },
+    ],
+    templates: {
+      descricao: (c) => {
+        const t1 = parseFloat((c.test_total_1 || "0").replace(",", "."));
+        const t2 = parseFloat((c.test_total_2 || "0").replace(",", "."));
+        const media = t1 && t2 ? `(média ${((t1 + t2) / 2).toFixed(0)} ng/dL)` : "";
+        const ai_indicado = c.ai && !c.ai.startsWith("Não prescrito");
+        const hcg_indicado = c.hcg && c.hcg !== "Não prescrito";
+
+        return `PLANO DE TRATAMENTO ANDROLÓGICO — TRT (Indicação Clínica)
+
+DIAGNÓSTICO: ${c.indicacao || "—"}
+
+CRITÉRIOS DIAGNÓSTICOS CONFIRMADOS:
+• Testosterona total: ${c.test_total_1 || "—"} ng/dL (1ª dosagem) / ${c.test_total_2 || "—"} ng/dL (2ª dosagem) ${media} — ambas abaixo do limiar (AUA 2022: < 300 ng/dL; EAU 2024: < 350 ng/dL)
+• Testosterona livre: ${c.test_livre || "—"} pg/mL (referência: ≥ 65 pg/mL)
+• LH: ${c.lh || "—"} mUI/mL | FSH: ${c.fsh || "—"} mUI/mL
+• SHBG: ${c.shbg || "—"} nmol/L | Estradiol: ${c.estradiol_basal || "—"} pg/mL
+• PSA basal: ${c.psa_basal || "—"} ng/mL | Hematócrito: ${c.hematocrito_basal || "—"}%
+
+PLANO TERAPÊUTICO:
+1. TESTOSTERONA: ${c.formulacao_t || "—"}
+${hcg_indicado ? `2. HCG: ${c.hcg} — manutenção da função testicular e fertilidade\n` : ""}${ai_indicado ? `${hcg_indicado ? "3" : "2"}. IA: ${c.ai}\n` : `${hcg_indicado ? "3" : "2"}. IA: aguardar dosagem de E2 em 4-6 semanas; iniciar se E2 > 40 pg/mL com sintomas (ginecomastia, retenção, labilidade emocional)\n`}
+METAS TERAPÊUTICAS (AUA 2022 / EAU 2024):
+• Testosterona total alvo: 400–700 ng/dL (no vale para injetáveis curtos / em qualquer momento para Nebido®)
+• Testosterona livre alvo: ≥ 100 pg/mL
+• Estradiol alvo: 20–30 pg/mL (evitar < 15 pg/mL: perda óssea, disfunção erétil)
+• Hematócrito: ≤ 52%; se 52-54%: reduzir dose; se > 54%: suspender + flebotomia
+• PSA: Δ ≤ 1,4 ng/mL em 12 meses e ≤ 0,75 ng/mL/ano cronicamente
+• LDL/HDL/glicemia: estabilidade ou melhora (efeito metabólico favorável esperado com T na faixa fisiológica)
+
+CRONOGRAMA DE MONITORAMENTO:
+• Semana 4-6: T total/livre, E2, Hct/Hb — primeira avaliação de resposta e ajuste de dose
+• Mês 3: T, E2, Hct, PSA, lipidograma, glicemia
+• Mês 6: T, E2, Hct, PSA, perfil metabólico completo
+• Anual: todos acima + DEXA (se fatores de risco para osteoporose)
+
+Comorbidades: ${c.comorbidade || "—"}
+
+FONTES: AUA Guideline Male Hypogonadism 2022; EAU Guidelines SRH 2024; Bhasin S et al. J Clin Endocrinol Metab 2018; ISSM Position Statement on TRT; Isidori AM et al. J Sex Med 2022.`;
+      },
+
+      posOperatorio: (c) => {
+        const f = c.formulacao_t || "";
+        let timing = "conforme formulação";
+        if (f.includes("Nebido")) timing = "a qualquer momento (cinética plana após equilíbrio estável; antes da 3ª dose para ajuste inicial)";
+        else if (f.includes("semanal") || f.includes("100 mg")) timing = "vale: dia anterior à próxima aplicação (mede concentração mínima)";
+        else if (f.includes("q2") || f.includes("250 mg") || f.includes("200 mg")) timing = "vale: dia anterior à próxima aplicação (7º dia do intervalo de 14 dias)";
+        else if (f.includes("Gel") || f.includes("gel")) timing = "2-4h após aplicação do gel";
+        else if (f.includes("Clomifeno")) timing = "dosagem matinal (7-11h) após ≥ 4 semanas em uso";
+        const hcg_indicado = c.hcg && c.hcg !== "Não prescrito";
+        const ai_indicado = c.ai && !c.ai.startsWith("Não prescrito");
+
+        return `SEGUIMENTO E MONITORAMENTO — TRT (${(c.formulacao_t || "").split("—")[0].trim()})
+
+◉ SEMANA 4-6 — Primeira reavaliação
+  Exames: T total, T livre, Estradiol, Hematócrito, Hemoglobina
+  Timing de coleta: ${timing}
+  Avaliação: resposta sintomática (libido, disposição, ereções matinais), efeitos adversos
+  ${hcg_indicado ? "• Volume testicular: registro subjetivo (comparação basal)\n  " : ""}${ai_indicado ? `• E2: avaliar necessidade de ajuste de dose do IA (alvo 20-30 pg/mL)\n  ` : "• E2: se > 40 pg/mL + sintomas → iniciar IA"}
+
+◉ MÊS 3
+  Exames: T total, T livre, SHBG, E2, Hct/Hb, PSA, lipidograma, glicemia em jejum
+  Avaliação clínica: IIEF-5 / AMS scale; composição corporal; pressão arterial
+
+◉ MÊS 6
+  Exames: T total, E2, Hct, PSA, perfil metabólico completo, creatinina, hemograma
+  Avaliação prostática: TR (toque retal) se PSA ↑ ou paciente > 50 anos
+
+◉ ANUAL (manutenção)
+  Todos acima + Densidade mineral óssea (DEXA) se: uso de IA prolongado, hipogonadismo longa data, osteopenia prévia
+
+ALVOS TERAPÊUTICOS:
+  T total (pico/vale)... 400–700 ng/dL (manter ≥ 300 ng/dL no vale)
+  T livre .............. ≥ 100 pg/mL
+  Estradiol ............ 20–30 pg/mL
+  Hematócrito .......... ≤ 52%
+  PSA .................. Δ ≤ 1,4 ng/mL/12 meses
+  LDL/HDL .............. estabilidade ou melhora
+
+CRITÉRIOS DE AJUSTE DE DOSE:
+  T < 300 ng/dL no vale → ↑ dose ou ↓ intervalo entre aplicações
+  T > 900 ng/dL no pico → ↓ dose em 20-25%
+  E2 > 40 pg/mL + sintomas → iniciar/ajustar IA
+  E2 < 15 pg/mL (com IA) → ↓ dose ou suspender IA
+  Hct 52-54% → ↓ dose 25% + doação de sangue voluntária
+  Hct > 54% → SUSPENDER TRT; flebotomia 450 mL; reiniciar com dose ≤ 50% após normalização
+  PSA > 4 ng/mL ou ΔPSA > 1,4 ng/mL → SUSPENDER; biópsia prostática
+  
+SINAIS DE ALERTA:
+  ⚠ Hematócrito elevado: cefaleia persistente, face avermelhada, visão turva
+  ⚠ Embolia pulmonar (raro mas grave): dor torácica, dispneia → PS emergência
+  ⚠ Apneia do sono piora: ronco intenso, sonolência diurna → polissonografia
+  ⚠ PSA em ascensão ou nódulo prostático ao TR → biópsia`;
+      },
+
+      receitaAlta: (c) => {
+        const linhas: string[] = [];
+        const f = c.formulacao_t || "";
+
+        if (f.includes("Nebido")) {
+          linhas.push("1. Nebido® (undecanoato de testosterona 1000 mg/4 mL) — 01 ampola IM PROFUNDA (glúteo médio) HOJE (dose de carga). 2ª aplicação em 6 SEMANAS. A partir daí: q10-14 semanas conforme níveis séricos.");
+        } else if (f.includes("Enantato 250") && !f.includes("semanal")) {
+          linhas.push("1. Testosterona Enantato 250 mg/mL — 01 mL IM a cada 14 dias. Magistral/manipulado (frasco 10 mL). Técnica Z-track; alternar glúteo D/E.");
+        } else if (f.includes("Enantato 125") || (f.includes("Enantato") && f.includes("semanal"))) {
+          linhas.push("1. Testosterona Enantato 125 mg IM — aplicar 0,5 mL 1×/semana (mesmo dia). Magistral (frasco 10 mL a 250 mg/mL). Níveis mais estáveis, menor amplitude de pico/vale.");
+        } else if (f.includes("Cipionato 200") && !f.includes("semanal")) {
+          linhas.push("1. Testosterona Cipionato 200 mg IM — 01 mL a cada 14 dias. Magistral.");
+        } else if (f.includes("Cipionato 100") || (f.includes("Cipionato") && f.includes("semanal"))) {
+          linhas.push("1. Testosterona Cipionato 100 mg IM — 01 mL 1×/semana (todo [dia fixo]). Magistral. Padrão mais fisiológico: menor variação de T e E2.");
+        } else if (f.includes("Gel") && f.includes("50 mg")) {
+          linhas.push("1. Gel de Testosterona 1% — aplicar 5 g (50 mg de T) no ombro ou antebraço (pele íntegra e seca) 1×/dia pela manhã. Lavar mãos após; cobrir a área; evitar contato com pele de parceiras/crianças por ≥ 2h.");
+        } else if (f.includes("Gel") && f.includes("75 mg")) {
+          linhas.push("1. Gel de Testosterona 2% — aplicar 3,75 mL (75 mg de T) no ombro ou abdome 1×/dia pela manhã. Lavar mãos após.");
+        } else if (f.includes("Gel") && f.includes("100 mg")) {
+          linhas.push("1. Gel de Testosterona 2% — aplicar 5 mL (100 mg de T) no ombro ou abdome 1×/dia pela manhã. Lavar mãos após.");
+        } else if (f.includes("Clomifeno 25")) {
+          linhas.push("1. Clomifeno 50 mg (comprimido) — tomar METADE (25 mg) VO 1×/dia, todos os dias, pela manhã. Modulador seletivo do receptor estrogênico (SERM); estimula LH e FSH endógenos.");
+        } else if (f.includes("Clomifeno 50 mg dias")) {
+          linhas.push("1. Clomifeno 50 mg VO — 01 comprimido em DIAS ALTERNADOS (ex.: seg/qua/sex).");
+        } else {
+          linhas.push(`1. ${f}`);
+        }
+
+        const hcg_indicado = c.hcg && c.hcg !== "Não prescrito";
+        if (hcg_indicado) {
+          const dose_hcg = (c.hcg.match(/(\d+)\s*UI/) || [])[1] || "500";
+          const freq_hcg = c.hcg.includes("3×") ? "3×/semana (ex.: seg/qua/sex)" : "2×/semana (ex.: 2ª e 5ª feira)";
+          linhas.push(`${linhas.length + 1}. Gonadotrofina Coriônica Humana (HCG) ${dose_hcg} UI SC — ${freq_hcg}. Reconstituir pó com SF 0,9% (p.ex.: 1 mL → ${dose_hcg} UI/mL). Conservar refrigerado (2-8°C); NÃO congelar; usar em 30 dias. Seringa de insulina 1 mL.`);
+        }
+
+        const ai_indicado = c.ai && !c.ai.startsWith("Não prescrito");
+        if (ai_indicado) {
+          if (c.ai.includes("Anastrozol")) {
+            const dose_a = c.ai.includes("0,25") ? "0,25 mg (½ comprimido)" : c.ai.includes("0,5 mg VO 3") ? "0,5 mg" : "0,5 mg";
+            const freq_a = c.ai.includes("3×") ? "3×/semana" : "2×/semana";
+            linhas.push(`${linhas.length + 1}. Anastrozol ${dose_a} VO — ${freq_a} (ex.: 2ª e 5ª feira). Inibidor de aromatase: bloqueia conversão T→E2. Não usar sem dosagem prévia de E2 basal. Meta: E2 20-30 pg/mL.`);
+          } else if (c.ai.includes("Exemestano")) {
+            const dose_e = c.ai.includes("12,5") ? "12,5 mg (½ comprimido)" : "25 mg";
+            const freq_e = c.ai.includes("3×") ? "3×/semana" : "2×/semana";
+            linhas.push(`${linhas.length + 1}. Exemestano ${dose_e} VO — ${freq_e}, após refeição. IA esteroidal (irreversível). Meta: E2 20-30 pg/mL.`);
+          }
+        }
+
+        return `PRESCRIÇÃO — INÍCIO DE TRT (${new Date().toLocaleDateString("pt-BR")})
+
+${linhas.join("\n\n")}
+
+EXAMES EM 4-6 SEMANAS:
+Testosterona total e livre, Estradiol, Hematócrito, Hemoglobina.
+${f.includes("Nebido") ? "Para Nebido®: colher antes da 3ª aplicação (semana 16-18) para ajuste de intervalo." : "Colher no vale (dia anterior à próxima injeção ou antes de aplicar o gel)."}
+
+REFERÊNCIAS: AUA Male Hypogonadism 2022; EAU SRH 2024; Bhasin S et al. JCEM 2018.`;
+      },
+
+      orientacoes: (c) => {
+        const f = c.formulacao_t || "";
+        const hcg_indicado = c.hcg && c.hcg !== "Não prescrito";
+        const ai_indicado = c.ai && !c.ai.startsWith("Não prescrito");
+
+        return `ORIENTAÇÕES AO PACIENTE — TERAPIA DE REPOSIÇÃO DE TESTOSTERONA
+
+DIAGNÓSTICO: ${c.indicacao || "—"}
+
+Seus níveis de testosterona foram confirmados abaixo do normal em DUAS dosagens matinais (${c.test_total_1 || "—"} e ${c.test_total_2 || "—"} ng/dL), associados aos seus sintomas. O tratamento é médico e indicado — não é uso de doping.
+
+SEU PROTOCOLO:
+• Testosterona: ${f}
+${hcg_indicado ? `• HCG: ${c.hcg} — preserva os testículos e a fertilidade durante a TRT\n` : ""}${ai_indicado ? `• Inibidor de aromatase (IA): ${c.ai} — controla a conversão de T em estrogênio\n` : ""}
+O QUE ESPERAR E QUANDO:
+Semanas 2-4 ......... Melhora gradual da disposição e humor
+Semanas 4-8 ......... Melhora da libido e ereções matinais
+Meses 2-4 ........... Melhora da composição corporal (↑ massa, ↓ gordura)
+Meses 4-6 ........... Melhora total da qualidade de vida, força e densidade óssea
+(A resposta é individual; seja paciente e mantenha acompanhamento)
+
+COMO USAR:
+${f.includes("IM") || f.includes("Nebido") || f.includes("Enantato") || f.includes("Cipionato") ? `INJEÇÃO INTRAMUSCULAR (IM):
+Aplicar no GLÚTEO MÉDIO (terço superior externo da nádega) ou no DELTOIDE (ombro).
+Passo a passo: (1) Limpe com álcool 70%. (2) Técnica Z-track: puxe a pele 2-3 cm para o lado. (3) Introduza a agulha em 90° (agulha 40×12 ou 30×8). (4) Aspire brevemente. (5) Injete devagar (1 mL em 30 segundos). (6) Solte a pele. (7) Pressão suave com gaze. SEMPRE alterne os lados.\n` : ""}${f.includes("Gel") ? `GEL TRANSDÉRMICO:
+Aplique no ombro, antebraço ou abdome (pele íntegra, seca, sem ferimentos).
+• NUNCA aplique nos genitais ou tórax.
+• Lave as mãos IMEDIATAMENTE após a aplicação.
+• Cubra a área por pelo menos 2h; evite contato com mulheres grávidas ou crianças nesse período.
+• Aplique sempre pela manhã, no mesmo horário.\n` : ""}${hcg_indicado ? `HCG (INJEÇÃO SUBCUTÂNEA):
+Aplicar no abdome (2-3 cm ao lado do umbigo) ou na coxa, pinçando a pele.
+Agulha de insulina (6-8 mm). Rodar os sítios. Conservar refrigerado.\n` : ""}
+ESTILO DE VIDA QUE POTENCIALIZA O EFEITO:
+✓ Treino de força 3-4×/semana — sinergia comprovada com a TRT
+✓ Sono de qualidade 7-9h — 70% da T é produzida durante o sono profundo
+✓ Dieta com proteína adequada (≥ 1,6 g/kg/dia) e controle de gordura corporal
+✓ Restrição de álcool (deprime o eixo hormonal e aumenta a aromatase)
+
+DOAÇÃO DE SANGUE:
+A TRT pode aumentar o hematócrito (espessura do sangue). Caso suba acima de 52%, a doação de sangue é indicada — é segura e ajuda outras pessoas.
+
+FERTILIDADE:
+${hcg_indicado ? "O HCG está prescrito para preservar a função testicular e a produção de espermatozoides durante a TRT. Informe ao médico se houver desejo de paternidade em breve para eventual ajuste." : "A TRT reduz (mas não elimina) a produção de espermatozoides. Se houver desejo de paternidade em breve, informe ao médico antes de iniciar para discutir HCG concomitante ou criopreservação seminal."}
+
+SINAIS DE ALERTA (procure o consultório ou UPA):
+⚠ Cefaleia intensa + face avermelhada: pode indicar hematócrito elevado.
+⚠ Dor + inchaço na panturrilha ou dor torácica + falta de ar: PS imediatamente.
+⚠ Aparecimento de caroço na mama: comunicar para ajuste do protocolo.
+⚠ Ronco muito intenso ou sonolência excessiva durante o dia.
+
+ACOMPANHAMENTO:
+Retorne com exames em 4-6 semanas. A TRT é um tratamento contínuo — o acompanhamento regular é parte da segurança do tratamento, não opcional.
+
+FONTES: AUA Guideline Male Hypogonadism 2022; EAU SRH 2024; Bhasin S et al. JCEM 2018; ISSM/SBEM/SBU.`;
+      },
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // TRT — PROTOCOLO ESTÉTICO / PERFORMANCE (OFF-LABEL)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "trt-estetico-performance",
+    name: "Protocolo Andrológico — Otimização Hormonal / Performance (Off-Label)",
+    shortName: "TRT Performance",
+    icon: "💪",
+    category: "Andrologia",
+    configFields: [
+      {
+        id: "objetivo", label: "Objetivo Principal", type: "select",
+        options: [
+          "Composição corporal / anti-aging",
+          "Performance atlética e recuperação muscular",
+          "Bem-estar, vitalidade e libido",
+          "Ganho de massa muscular",
+        ],
+        defaultValue: "Composição corporal / anti-aging",
+      },
+      {
+        id: "fase", label: "Fase do Protocolo", type: "select",
+        options: ["Início / Indução", "Manutenção / Estado estável", "Interrupção planejada / TPC"],
+        defaultValue: "Início / Indução",
+      },
+      { id: "duracao_ciclo_sem", label: "Duração planejada (semanas)", type: "text", defaultValue: "16", placeholder: "Ex: 12-16" },
+      {
+        id: "formulacao_t", label: "Testosterona — Formulação e Dose", type: "select",
+        options: [
+          "Cipionato 100 mg IM semanal (dose fisiológica otimizada — T alvo 600-800 ng/dL)",
+          "Cipionato 150 mg IM semanal (suprafisiológica baixa)",
+          "Cipionato 200 mg IM semanal (suprafisiológica moderada)",
+          "Cipionato 250 mg IM 2×/semana — 500 mg/sem (suprafisiológica alta)",
+          "Enantato 125 mg IM semanal",
+          "Enantato 250 mg IM semanal (suprafisiológica moderada)",
+          "Enantato 250 mg IM 2×/semana — 500 mg/sem",
+          "Propionato 50 mg IM em dias alternados (éster curto — menos retenção hídrica)",
+          "Nebido® 1000 mg IM q12-14 semanas (base contínua)",
+          "Gel testosterona 100 mg/dia transdérmico",
+          "Gel testosterona 150 mg/dia transdérmico",
+        ],
+        defaultValue: "Cipionato 100 mg IM semanal (dose fisiológica otimizada — T alvo 600-800 ng/dL)",
+      },
+      {
+        id: "nandrolona", label: "Nandrolona Decanoato", type: "select",
+        options: [
+          "Não prescrita",
+          "Nandrolona Decanoato 25 mg IM 2×/mês (proteção articular / androgenismo mínimo)",
+          "Nandrolona Decanoato 50 mg IM semanal",
+          "Nandrolona Decanoato 100 mg IM semanal",
+          "Nandrolona Decanoato 200 mg IM semanal",
+        ],
+        defaultValue: "Não prescrita",
+      },
+      {
+        id: "gh", label: "Hormônio do Crescimento (GH / Somatropina)", type: "select",
+        options: [
+          "Não prescrito",
+          "GH 0,2-0,4 UI/dia SC à noite (deficiência adulta comprovada — dose substitutiva)",
+          "GH 0,5 UI SC à noite (anti-aging / composição corporal — off-label)",
+          "GH 1 UI SC à noite (off-label — composição)",
+          "GH 2 UI SC à noite (off-label — performance)",
+          "GH 1 UI SC manhã + 1 UI SC à noite (2 UI/dia)",
+        ],
+        defaultValue: "Não prescrito",
+      },
+      {
+        id: "peptideos", label: "Peptídeos Secretagogos de GH (off-label)", type: "select",
+        options: [
+          "Não prescritos",
+          "Ipamorelin 300 mcg SC à noite (GHRP seletivo — sem aumento de cortisol/prolactina)",
+          "Ipamorelin 300 mcg SC + CJC-1295 sem DAC 100 mcg SC à noite",
+          "CJC-1295 com DAC 2 mg SC 2×/semana (GHRH de ação prolongada)",
+          "Sermorelin 300 mcg SC à noite (análogo de GHRH)",
+          "GHRP-6 300 mcg SC 3×/dia (estimula apetite — indicado para massa)",
+          "Tesamorelin 2 mg SC/dia (aprovado apenas para lipodistrofia HIV — off-label outros)",
+          "MK-677 (Ibutamoren) 25 mg VO à noite — secretagogo oral (não registrado ANVISA)",
+        ],
+        defaultValue: "Não prescritos",
+      },
+      {
+        id: "hcg", label: "HCG (Manutenção Testicular / Fertilidade)", type: "select",
+        options: [
+          "Não prescrito",
+          "HCG 500 UI SC 2×/semana",
+          "HCG 1000 UI SC 2×/semana",
+          "HCG 1500 UI SC 2×/semana",
+          "HCG 500 UI SC 3×/semana",
+        ],
+        defaultValue: "HCG 500 UI SC 2×/semana",
+      },
+      {
+        id: "ai", label: "Inibidor de Aromatase (IA)", type: "select",
+        options: [
+          "Não prescrito — monitorar E2",
+          "Anastrozol 0,25 mg VO 2×/semana (dose mínima efetiva)",
+          "Anastrozol 0,5 mg VO 2×/semana",
+          "Anastrozol 0,5 mg VO 3×/semana",
+          "Anastrozol 1 mg VO 2×/semana",
+          "Exemestano 12,5 mg VO 2×/semana (IA esteroidal)",
+          "Exemestano 25 mg VO 2×/semana",
+          "Exemestano 25 mg VO 3×/semana",
+        ],
+        defaultValue: "Anastrozol 0,25 mg VO 2×/semana",
+      },
+      {
+        id: "serm_tpc", label: "SERM / TPC (se ciclo com término planejado)", type: "select",
+        options: [
+          "Não aplicável — protocolo de TRT contínua",
+          "Clomifeno 50 mg/dia VO × 4 semanas (TPC)",
+          "Clomifeno 100 mg/dia × 2 sem → 50 mg/dia × 2 sem",
+          "Tamoxifeno 20 mg/dia VO × 4 semanas",
+          "Tamoxifeno 40 mg × 2 sem → 20 mg × 2 sem",
+          "Clomifeno 50 mg/dia + Tamoxifeno 20 mg/dia × 3 semanas",
+        ],
+        defaultValue: "Não aplicável — protocolo de TRT contínua",
+      },
+      {
+        id: "suporte_metabolico", label: "Suporte Metabólico / Cardioproteção", type: "select",
+        options: [
+          "Observação — lipidograma em 3 meses",
+          "Ômega-3 EPA+DHA 4 g/dia + CoQ10 200 mg/dia",
+          "Ômega-3 4 g/dia + Estatina (se LDL elevado)",
+          "NAC (N-acetilcisteína) 600 mg 2×/dia + Ômega-3",
+        ],
+        defaultValue: "Ômega-3 EPA+DHA 4 g/dia + CoQ10 200 mg/dia",
+      },
+    ],
+    templates: {
+      descricao: (c) => {
+        const nand = c.nandrolona && c.nandrolona !== "Não prescrita";
+        const ghPres = c.gh && c.gh !== "Não prescrito";
+        const pept = c.peptideos && c.peptideos !== "Não prescritos";
+        const hcgPres = c.hcg && c.hcg !== "Não prescrito";
+        const aiPres = c.ai && !c.ai.startsWith("Não prescrito");
+        const tpc = c.serm_tpc && !c.serm_tpc.startsWith("Não aplicável");
+
+        const doseEquiv = (() => {
+          const f = c.formulacao_t || "";
+          if (f.includes("100 mg IM semanal")) return "100 mg/semana";
+          if (f.includes("150 mg IM semanal")) return "150 mg/semana";
+          if (f.includes("200 mg IM semanal") && !f.includes("2×")) return "200 mg/semana";
+          if (f.includes("250 mg IM 2×")) return "500 mg/semana";
+          if (f.includes("250 mg IM semanal")) return "250 mg/semana";
+          if (f.includes("125 mg IM semanal")) return "125 mg/semana";
+          if (f.includes("50 mg IM em dias alternados")) return "~175 mg/semana equiv. (propionato)";
+          if (f.includes("Nebido")) return "~70 mg/sem equiv. (q12-14 semanas)";
+          if (f.includes("100 mg/dia")) return "~700 mg/sem bruta (gel; biodisponibilidade ~14%)";
+          if (f.includes("150 mg/dia")) return "~1050 mg/sem bruta (gel; biodisponibilidade ~14%)";
+          return "dose a calcular";
+        })();
+
+        return `PROTOCOLO ANDROLÓGICO — ${(c.objetivo || "").toUpperCase()} (USO OFF-LABEL)
+
+⚠ NOTA DE RESPONSABILIDADE CLÍNICA:
+Protocolo realizado a pedido do paciente, que declara estar informado sobre o uso off-label das substâncias abaixo prescritas, os riscos inerentes e que assume voluntariamente esses riscos. Médico prescreve com base em evidências científicas disponíveis, exercendo autonomia prescritiva (CFM Res. 2.113/2014 e 2.314/2022), com objetivo de minimizar riscos e garantir monitoramento rigoroso.
+
+OBJETIVO DECLARADO: ${c.objetivo || "—"}
+FASE ATUAL: ${c.fase || "—"}
+DURAÇÃO PLANEJADA: ${c.duracao_ciclo_sem || "a definir"} semanas
+
+══════════ PROTOCOLO ══════════
+
+1. TESTOSTERONA: ${c.formulacao_t || "—"}
+   Dose semanal equivalente: ${doseEquiv}
+   Base do protocolo; todos os demais compostos são adjuvantes.
+
+${nand ? `2. NANDROLONA DECANOATO: ${c.nandrolona}
+   Relação anabolismo:androgenismo ≈ 3:1 em relação à T (menor androgenicidade).
+   Não converte em DHT (converte em DHN — muito menos ativo em receptores androgênicos do couro cabeludo/próstata).
+   Aromatiza minimamente (< 20% da taxa da testosterona).
+   ⚠ Suprime eixo HPG; impacta espermatogênese; reduz HDL.
+   ⚠ Monitorar: Hct, lipidograma, PSA, transaminases.\n\n` : ""}${ghPres ? `${nand ? "3" : "2"}. GH / SOMATROPINA: ${c.gh}
+   Meta: IGF-1 no terço superior do normal para faixa etária (0 a +2 DP para idade/sexo — tabela Bidlingmaier).
+   Aplicar SC ao deitar (mimetiza pico fisiológico noturno de GH).
+   Evidência: melhora composição corporal (↓ gordura visceral, ↑ massa magra), lipidemia favorável.
+   ⚠ Monitorar: IGF-1 (a cada 3 meses), glicemia jejum, HbA1c (risco de resistência à insulina em doses suprafisiológicas).
+   ⚠ Risco teórico com IGF-1 crônico > +2 DP: proliferação celular; contraindicado em neoplasia ativa.\n\n` : ""}${pept ? `PEPTÍDEOS SECRETAGOGOS: ${c.peptideos}
+   Mecanismo: estimulam hipófise a secretar GH endógeno (via receptor de GHRH ou ghrelina/GHS-R).
+   Perfil mais fisiológico que GH exógeno (preservam a pulsatilidade e o feedback negativo).
+   Armazenar liofilizado refrigerado; reconstituir com água bacteriostática estéril; usar em 30 dias.
+   ⚠ Todos são off-label; MK-677 não registrado na ANVISA.\n\n` : ""}${hcgPres ? `HCG: ${c.hcg}
+   Finalidade: manutenção do volume testicular, testosterona intratesticular (ITT) e espermatogênese durante supressão do eixo HPG induzida pela TRT.
+   Mecanismo: agonista do receptor de LH (LHr) nas células de Leydig.\n\n` : ""}${aiPres ? `IA: ${c.ai}
+   Meta: estradiol 20–30 pg/mL. Evitar < 15 pg/mL: perda óssea, libido deprimida, dislipidemia.
+   ⚠ Overdosagem de IA é tão problemática quanto E2 elevado.\n\n` : ""}${tpc ? `TPC (terapia pós-ciclo): ${c.serm_tpc}
+   Iniciar: ${(c.formulacao_t || "").includes("Propionato") ? "3-5 dias" : "14-21 dias"} após última dose de testosterona.
+   Objetivo: restaurar produção endógena de T e eixo HPG em 8-16 semanas.\n\n` : ""}SUPORTE METABÓLICO: ${c.suporte_metabolico || "—"}
+
+MONITORAMENTO (ver protocolo de seguimento):
+• T total, E2, Hct — 4-6 semanas após início
+• T, E2, Hct, PSA, Lipidograma, Glicemia${ghPres ? ", IGF-1" : ""}${nand ? ", ALT/AST" : ""} — 3/3 meses
+• PSA, toque retal (se > 45 anos) — semestral
+• DEXA — se ciclos prolongados com IA ou hipogonadismo longa data
+
+FONTES: Bhasin S et al. JCEM 2010/2018; Hackett G et al. BJU Int 2017; Corona G et al. J Sex Med 2020; Nair KS et al. NEJM 2006 (DHEA/GH em idosos); EAU SRH 2024; Mooradian AD et al. Ann Intern Med 1987 (fisiologia androgênica).`;
+      },
+
+      posOperatorio: (c) => {
+        const ghPres = c.gh && c.gh !== "Não prescrito";
+        const nand = c.nandrolona && c.nandrolona !== "Não prescrita";
+        const tpc = c.serm_tpc && !c.serm_tpc.startsWith("Não aplicável");
+
+        return `SEGUIMENTO — PROTOCOLO ${(c.objetivo || "").toUpperCase()} (${c.fase || "—"})
+
+◉ SEMANA 4-6 — Avaliação inicial em uso
+  Exames: T total, T livre, Estradiol, Hematócrito, Hemoglobina, Pressão arterial
+  ${ghPres ? "IGF-1, Glicemia de jejum (se GH em uso)\n  " : ""}${nand ? "ALT/AST (se nandrolona em uso)\n  " : ""}Timing: vale (antes da próxima injeção); ou vale+pico para verificar amplitude
+  Avaliação: tolerância, efeitos adversos, ajuste fino de dose de IA e HCG
+
+◉ MÊS 3
+  Exames: T total/livre, SHBG, E2, Hct/Hb, PSA, LDL, HDL, TG, Glicemia, HbA1c${ghPres ? ", IGF-1, T3L/T4L" : ""}${nand ? ", ALT/AST" : ""}, creatinina
+  Avaliação clínica: composição corporal (peso, CA, dobras se disponível), força muscular, bem-estar
+
+◉ MÊS 6
+  Todos acima + Hemograma completo, PSA
+  Eco-Doppler de próstata se PSA ↑; TR (toque retal) se ≥ 45 anos
+
+◉ ANUAL
+  Todos acima + DEXA (densitometria) se uso de IA prolongado ou fatores de risco
+
+ALVOS TERAPÊUTICOS:
+  T total .............. ${(c.formulacao_t || "").includes("500 mg") ? "800–1200 ng/dL (suprafisiológica)" : "600–900 ng/dL (otimização / faixa alta normal)"}
+  T livre .............. ≥ 150 pg/mL
+  Estradiol ............ 20–30 pg/mL (com IA); ≤ 40 pg/mL sem sintomas (sem IA)
+  ${ghPres ? `IGF-1 ................. 0 a +2 DP para idade (terço superior do normal)\n  ` : ""}Hematócrito .......... ≤ 52% (flebotomia terapêutica se ≥ 54%)
+  HDL .................. ≥ 35 mg/dL; se queda > 30% do basal: ajustar protocolo
+  PSA .................. Δ ≤ 1,4 ng/mL em 12 meses; suspender se > 4 ng/mL
+
+CRITÉRIOS DE AJUSTE OU SUSPENSÃO:
+  ✓ T < alvo no vale → ↑ dose ou ↓ intervalo
+  ✓ E2 > 40 pg/mL + sintomas → ↑ dose IA
+  ✓ E2 < 15 pg/mL → ↓ dose IA (overdosagem de IA é problemática)
+  ✗ Hct ≥ 54%: SUSPENDER + flebotomia 450 mL + reiniciar com dose menor
+  ✗ PSA ≥ 4 ng/mL ou ΔPSA > 1,4/12 meses: SUSPENDER + biópsia
+  ✗ Evento CV (IAM, AVC, TEP): SUSPENDER permanentemente ou reconsiderar protocolo
+  ✗ ${ghPres ? "IGF-1 > +2 DP para idade cronicamente: ↓ dose GH ou suspender\n  ✗ " : ""}${nand ? "ALT/AST > 3× LSN: SUSPENDER nandrolona; investigar\n  ✗ " : ""}HDL < 25 mg/dL: revisar protocolo e suporte lipídico
+
+${tpc ? `TPC (terapia pós-ciclo — iniciar ${(c.formulacao_t || "").includes("Propionato") ? "3-5" : "14-21"} dias após última dose de T):
+  Protocolo: ${c.serm_tpc}
+  Monitorar: T endógena, LH/FSH a cada 4 semanas até normalização (geralmente 8-16 semanas)
+  Sinal de normalização: T total > 300 ng/dL + LH > 2 mUI/mL espontaneamente` : "Protocolo de TRT contínua — sem TPC planejada."}`;
+      },
+
+      receitaAlta: (c) => {
+        const linhas: string[] = [];
+        const f = c.formulacao_t || "";
+
+        // Testosterona
+        if (f.includes("Cipionato") && !f.includes("Gel")) {
+          const matchMg = f.match(/(\d+)\s*mg/);
+          const dose = matchMg ? matchMg[1] : "dose conforme";
+          const freq = f.includes("2×/semana") ? "2×/semana (ex.: 2ª e 5ª feira), dividindo a dose total" : "semanal — mesmo dia da semana";
+          linhas.push(`${linhas.length + 1}. Testosterona Cipionato ${dose} mg/mL — 01 mL IM ${freq}. (Magistral 250 mg/mL, frasco 10 mL. Técnica Z-track, glúteo médio ou deltoide, alternar lados.)`);
+        } else if (f.includes("Enantato")) {
+          const matchMg = f.match(/(\d+)\s*mg/);
+          const dose = matchMg ? matchMg[1] : "dose conforme";
+          const freq = f.includes("2×/semana") ? "2×/semana" : "semanal";
+          linhas.push(`${linhas.length + 1}. Testosterona Enantato ${dose} mg IM — ${freq}. (Magistral 250 mg/mL.)`);
+        } else if (f.includes("Propionato")) {
+          linhas.push(`${linhas.length + 1}. Testosterona Propionato 50 mg IM — em dias alternados (seg/qua/sex). Éster curto (meia-vida 2-3 dias): menor retenção hídrica, picos mais curtos.`);
+        } else if (f.includes("Nebido")) {
+          linhas.push(`${linhas.length + 1}. Nebido® 1000 mg/4 mL — 01 ampola IM PROFUNDA agora; 2ª dose em 6 semanas; depois q12-14 semanas conforme T sérica.`);
+        } else if (f.includes("Gel")) {
+          const matchMg = f.match(/(\d+)\s*mg/);
+          const dose = matchMg ? matchMg[1] : "dose conforme";
+          linhas.push(`${linhas.length + 1}. Gel de Testosterona ${dose} mg/dia — aplicar pela manhã em ombro ou abdome. Lavar mãos após; cobrir área por 2h.`);
+        }
+
+        if (c.nandrolona && c.nandrolona !== "Não prescrita") {
+          const matchMg = c.nandrolona.match(/(\d+)\s*mg/);
+          const dose_n = matchMg ? matchMg[1] : "dose conforme";
+          const freq_n = c.nandrolona.includes("2×/mês") ? "2×/mês (ex.: 1º e 15º dia)" : c.nandrolona.includes("semanal") ? "1×/semana" : "conforme";
+          linhas.push(`${linhas.length + 1}. Nandrolona Decanoato ${dose_n} mg IM — ${freq_n}. (Magistral, frasco 10 mL. IM profundo — glúteo médio. Conservar ao abrigo da luz, temperatura ambiente.)`);
+        }
+
+        if (c.gh && c.gh !== "Não prescrito") {
+          const matchUI = c.gh.match(/([\d,]+)\s*UI/);
+          const dose_g = matchUI ? matchUI[1] : "dose conforme";
+          linhas.push(`${linhas.length + 1}. Somatropina (GH recombinante humano) ${dose_g} UI SC — aplicar À NOITE antes de dormir (pico fisiológico noturno de GH). Reconstituir pó com água para injeção ou bacteriostática estéril (conforme fabricante). Refrigerado (2-8°C); não congelar. Agulha de insulina 6-8 mm; rodar sítios (abdome, coxa, braço). Exame IGF-1 em 4 semanas.`);
+        }
+
+        if (c.peptideos && c.peptideos !== "Não prescritos") {
+          linhas.push(`${linhas.length + 1}. ${c.peptideos.split("(")[0].trim()} — SC à noite (em jejum ou 2h após refeição para maior pico de GH). Reconstituir com água bacteriostática estéril; refrigerado; usar em 30 dias. Seringa de insulina 0,5 ou 1 mL.`);
+        }
+
+        if (c.hcg && c.hcg !== "Não prescrito") {
+          const matchUI = c.hcg.match(/(\d+)\s*UI/);
+          const dose_h = matchUI ? matchUI[1] : "500";
+          const freq_h = c.hcg.includes("3×") ? "3×/semana (seg/qua/sex)" : "2×/semana (2ª e 5ª)";
+          linhas.push(`${linhas.length + 1}. HCG ${dose_h} UI SC — ${freq_h}. (Magistral ou Choriomon®. Reconstituído: refrigerar, usar em 30 dias. Seringa de insulina.)`);
+        }
+
+        if (c.ai && !c.ai.startsWith("Não prescrito")) {
+          if (c.ai.includes("Anastrozol")) {
+            const matchMg = c.ai.match(/([\d,]+)\s*mg/);
+            const dose_a = matchMg ? matchMg[1] + " mg" : "dose conforme";
+            const freq_a = c.ai.includes("3×") ? "3×/semana" : "2×/semana";
+            linhas.push(`${linhas.length + 1}. Anastrozol ${dose_a} VO — ${freq_a}. Inibidor de aromatase. Meta: E2 20-30 pg/mL. Ajustar dose conforme exame em 4-6 semanas. ⚠ Não usar sem dosagem basal de E2.`);
+          } else if (c.ai.includes("Exemestano")) {
+            const matchMg = c.ai.match(/(\d+[,.]?\d*)\s*mg/);
+            const dose_e = matchMg ? matchMg[1] + " mg" : "dose conforme";
+            const freq_e = c.ai.includes("3×") ? "3×/semana" : "2×/semana";
+            linhas.push(`${linhas.length + 1}. Exemestano ${dose_e} VO — ${freq_e} após refeição. IA esteroidal (irreversível). Meta: E2 20-30 pg/mL.`);
+          }
+        }
+
+        if (c.serm_tpc && !c.serm_tpc.startsWith("Não aplicável")) {
+          const esterCurto = (c.formulacao_t || "").includes("Propionato");
+          const timing_tpc = esterCurto ? "3-5 dias" : "14-21 dias";
+          linhas.push(`${linhas.length + 1}. [TPC — iniciar ${timing_tpc} após última dose de T]: ${c.serm_tpc}.`);
+        }
+
+        if (c.suporte_metabolico && !c.suporte_metabolico.includes("Observação")) {
+          if (c.suporte_metabolico.includes("Ômega-3")) {
+            linhas.push(`${linhas.length + 1}. Ômega-3 (EPA+DHA) 1 g — 04 cápsulas/dia após o jantar (4 g/dia total). CoQ10 200 mg — 01 cápsula/dia.`);
+          }
+          if (c.suporte_metabolico.includes("NAC")) {
+            linhas.push(`${linhas.length + 1}. N-Acetilcisteína (NAC) 600 mg — 02 cápsulas/dia (1 manhã + 1 noite). Antioxidante e suporte hepático.`);
+          }
+        }
+
+        return `PRESCRIÇÃO — PROTOCOLO ${(c.objetivo || "").toUpperCase()} (Off-label)
+
+⚠ USO OFF-LABEL — Prescrição médica individualizada. Paciente devidamente informado e ciente dos riscos.
+Fase: ${c.fase || "—"} | Duração planejada: ${c.duracao_ciclo_sem || "—"} semanas
+
+${linhas.join("\n\n")}
+
+EXAMES DE CONTROLE EM 4-6 SEMANAS:
+T total (vale), T livre, Estradiol, Hematócrito, Hemoglobina${c.gh && c.gh !== "Não prescrito" ? ", IGF-1, Glicemia" : ""}${c.nandrolona && c.nandrolona !== "Não prescrita" ? ", ALT/AST" : ""}.
+
+REFERÊNCIAS: AUA 2022; EAU SRH 2024; Bhasin S et al. JCEM 2018; Hackett G et al. BJU Int 2017.`;
+      },
+
+      orientacoes: (c) => {
+        const nand = c.nandrolona && c.nandrolona !== "Não prescrita";
+        const ghPres = c.gh && c.gh !== "Não prescrito";
+        const pept = c.peptideos && c.peptideos !== "Não prescritos";
+        const hcgPres = c.hcg && c.hcg !== "Não prescrito";
+        const aiPres = c.ai && !c.ai.startsWith("Não prescrito");
+        const tpc = c.serm_tpc && !c.serm_tpc.startsWith("Não aplicável");
+        const f = c.formulacao_t || "";
+        const imBased = f.includes("IM") || f.includes("Cipionato") || f.includes("Enantato") || f.includes("Propionato") || f.includes("Nebido");
+        const gelBased = f.includes("Gel");
+
+        return `ORIENTAÇÕES — PROTOCOLO DE ANDROLOGIA / OTIMIZAÇÃO HORMONAL
+
+OBJETIVO: ${c.objetivo || "—"} | Fase: ${c.fase || "—"}
+
+Este protocolo é prescrito de forma individualizada. Os compostos abaixo têm uso off-label para este objetivo; os riscos foram discutidos e você os assume conscientemente, com acompanhamento médico.
+
+══ PROTOCOLO EM USO ══
+• Testosterona: ${f}
+${nand ? `• Nandrolona: ${c.nandrolona}\n` : ""}${ghPres ? `• GH: ${c.gh}\n` : ""}${pept ? `• Peptídeos: ${c.peptideos.split("(")[0].trim()}\n` : ""}${hcgPres ? `• HCG: ${c.hcg}\n` : ""}${aiPres ? `• IA: ${c.ai}\n` : ""}${tpc ? `• TPC: ${c.serm_tpc}\n` : ""}• Suporte metabólico: ${c.suporte_metabolico || "—"}
+
+══ RISCOS QUE VOCÊ DECLAROU CONHECER ══
+• Supressão do eixo HPG: redução da produção endógena de T e LH/FSH durante uso.
+• Policitemia (↑ hematócrito): ↑ risco de trombose, AVC, TEP — monitoramento obrigatório.
+• Dislipidemia: ↓ HDL (especialmente com esteroides), ↑ risco cardiovascular a longo prazo.
+• Atrofia testicular e infertilidade transitória ou prolongada${hcgPres ? " (mitigada pelo HCG prescrito)" : " — HCG não prescrito: risco maior"}.
+• Acne, oleosidade da pele, alopecia androgenética em predispostos.
+• Ginecomastia por aromatização de T em E2${aiPres ? " (mitigada pelo IA prescrito)" : ""}.
+• Apneia do sono: esteroides androgênicos podem agravar ou desencadear.
+${ghPres ? "• GH: retenção hídrica, síndrome do túnel do carpo, parestesias; risco teórico de proliferação celular com IGF-1 persistentemente elevado.\n" : ""}${nand ? "• Nandrolona: supressão mais intensa do eixo HPG; redução de HDL significativa; efeito residual longo (éster decanoato, meia-vida ~8 dias).\n" : ""}
+══ TÉCNICAS DE APLICAÇÃO ══
+${imBased ? `INJEÇÃO IM:
+Sítio: glúteo médio (terço súpero-lateral da nádega) ou deltoide. ALTERNAR lados a cada aplicação.
+Passo a passo: (1) Limpe com álcool 70°. (2) Técnica Z-track: puxe a pele 2-3 cm para o lado. (3) Agulha 40×12 mm ou 30×8 mm, inserir em 90°. (4) Aspire por 3-5 segundos (se retornar sangue, reposicione). (5) Injete DEVAGAR (30 segundos por mL). (6) Solte a pele antes de retirar a agulha. (7) Compressão suave com gaze. Descarte agulha em recipiente rígido.\n\n` : ""}${gelBased ? `GEL TRANSDÉRMICO:
+Aplicar em ombro, antebraço ou abdome (pele íntegra, seca, sem ferimentos ou irritações).
+• NUNCA genitais, rosto, mamilos ou tórax.
+• Lavar as mãos IMEDIATAMENTE.
+• Cobrir a área por ≥ 2h; evitar contato com gestantes e crianças nesse período.
+• Horário fixo pela manhã; se esquecer, pular e retomar no dia seguinte.\n\n` : ""}${(hcgPres || ghPres || pept) ? `INJEÇÃO SC (HCG / GH / Peptídeos):
+Sítio: abdome (2-4 cm ao redor do umbigo), face anterior da coxa ou parte posterior do braço. RODAR sítios.
+Técnica: pinçar 1-2 cm de pele, agulha de insulina 6-8 mm em 45-90°, injetar devagar, soltar a pele.
+Reconstituição: adicionar água bacteriostática ao pó; misturar por rolagem (nunca agitar). Refrigerar após reconstituição (2-8°C). Usar em 28-30 dias.\n\n` : ""}
+══ MONITORAMENTO OBRIGATÓRIO ══
+• Semana 4-6: T total (vale), E2, Hematócrito.
+• A cada 3 meses: T, E2, Hct, PSA, Lipidograma (LDL/HDL/TG), Glicemia${ghPres ? ", IGF-1" : ""}${nand ? ", ALT/AST" : ""}.
+• Manter registro de cada aplicação: data, produto, dose, sítio, lado.
+• DOAÇÃO DE SANGUE se Hct ≥ 52%: indicada e terapêutica; reduz viscosidade sanguínea.
+
+══ SINAIS DE ALERTA (Procurar atendimento imediato) ══
+⚠ Cefaleia intensa + face avermelhada + zumbido → Hct elevado: ir à UPA para exame.
+⚠ Dor + calor + inchaço em panturrilha ou coxa → risco de TVP: PS imediatamente.
+⚠ Dor torácica + falta de ar → risco de TEP ou IAM: SAMU / PS.
+⚠ Caroço ou dor mamária → comunicar ao médico para ajuste de IA.
+⚠ Sonolência diurna intensa + ronco alto → apneia do sono: polissonografia.
+⚠ Infecção no sítio de injeção (vermelhidão, calor, pus, febre) → antibiótico, avaliar.
+
+══ ESTILO DE VIDA ══
+✓ Treinamento de força 3-5×/semana — potencializa o efeito anabólico (sinergia comprovada)
+✓ Cardio moderado 150 min/semana — cardioproteção parcial à dislipidemia induzida
+✓ Sono 7-9h — GH noturno endógeno e recuperação muscular dependem do sono
+✓ Dieta: proteína ≥ 1,8-2,2 g/kg/dia; calorias ajustadas ao objetivo
+✓ Hidratação 3-4 L/dia (especialmente se Hct subir)
+✗ Álcool: hepatotóxico (sobretudo com nandrolona), aumenta aromatase, suprime T endógena
+✗ Nunca compartilhe medicamentos ou altere doses sem consulta médica
+
+${tpc ? `══ TPC (TERAPIA PÓS-CICLO) ══
+Quando iniciar: ${(c.formulacao_t || "").includes("Propionato") ? "3-5 dias" : "14-21 dias"} após a última dose de testosterona.
+Protocolo prescrito: ${c.serm_tpc}
+Objetivo: estimular LH/FSH endógenos para retomar produção natural de T.
+Monitorar: T total, LH/FSH a cada 4 semanas. Recuperação esperada: 8-16 semanas.
+
+` : ""}ACOMPANHAMENTO CONTÍNUO:
+Manter consultas trimestrais enquanto em uso. Qualquer ajuste de dose deve ser feito apenas com orientação médica após exame.`;
+      },
+    },
+  },
+
 ];
