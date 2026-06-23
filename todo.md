@@ -31,3 +31,12 @@
 
 # Gaps identificados após Lote OA 10
 - [x] Adicionar campo calc_indicacao_cirurgica (calculated) no protocolo HPB cirúrgico para recomendar RTU-P vs HoLEP vs Rezūm/UroLift baseado em IPSS + volume prostático
+
+# Atlas — Imagens de Andrologia e Estética Genital
+- [x] Buscar imagens open-access licenciadas (PMC/CC/Wikimedia) para 22 procedimentos
+- [x] Validar URLs, baixar e revisar visualmente (descartar duplicadas/irrelevantes)
+- [x] Upload de 47 imagens via manus-upload-file --webdev
+- [x] Inserir imageUrl + credit + sourceUrl nas figuras do atlasData.ts
+- [x] Cobertura: 22/22 procedimentos com >=1 imagem; 47 figuras com imagem real
+- [x] Testes de rastreabilidade (crédito+fonte obrigatórios) — 200/200 passando
+- [x] Salvar checkpoint

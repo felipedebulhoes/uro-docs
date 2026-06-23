@@ -343,7 +343,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia e Vascularização do Deferente",
         "description": "Anatomia e Vascularização do Deferente: A figura deve mostrar um corte transversal do ducto deferente demonstrando a mucosa interna, a espessa camada muscular e a bainha adventícia externa contendo a artéria e veia deferenciais. Termos de busca em inglês: \"Vas deferens cross section histology\", \"Vas deferens blood supply deferential artery\"",
-        "searchTerms": "Vas deferens cross section histology; Vas deferens blood supply deferential artery"
+        "searchTerms": "Vas deferens cross section histology; Vas deferens blood supply deferential artery",
+        "imageUrl": "/manus-storage/reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois_0_2e1bb718.jpg",
+        "credit": "Obstructive azoospermia: reconstructive techniques and results. (CC BY-NC 3.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3583161/"
       },
       {
         "caption": "Técnica de Marcação Microdot",
@@ -420,7 +423,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Microcirúrgica do Epidídimo",
         "description": "Anatomia Microcirúrgica do Epidídimo: Uma ilustração detalhada mostrando a anatomia do epidídimo (cabeça, corpo, cauda), o suprimento vascular e os locais preferenciais para a anastomose. Termos de busca em inglês: \"microsurgical anatomy of epididymis vasoepididymostomy\"",
-        "searchTerms": "microsurgical anatomy of epididymis vasoepididymostomy"
+        "searchTerms": "microsurgical anatomy of epididymis vasoepididymostomy",
+        "imageUrl": "/manus-storage/reversao-de-vasectomia-vasoepididimostomia-microcirurgica_1_d9afb865.png",
+        "credit": "A modified single-armed microsurgical vasoepididymostomy for epididymal obstructive azoospermia: intraoperative choice and postoperative consideration (CC BY 4.0)",
+        "sourceUrl": "https://link.springer.com/article/10.1186/s12894-020-00692-5"
       },
       {
         "caption": "Técnica de Intussuscepção Longitudinal (LIVE) - Passo a Passo",
@@ -482,7 +488,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia do funículo espermático e incisão",
         "description": "A localização da incisão subinguinal (abaixo do anel inguinal externo) e a anatomia seccional do funículo espermático, destacando as fáscias espermáticas, artérias (testicular, deferencial, cremastérica), veias e vasos linfáticos",
-        "searchTerms": "microsurgical subinguinal varicocelectomy incision anatomy; spermatic cord cross section varicocele"
+        "searchTerms": "microsurgical subinguinal varicocelectomy incision anatomy; spermatic cord cross section varicocele",
+        "imageUrl": "/manus-storage/varicocelectomia-subinguinal-microcirurgica_0_f110bcfd.jpg",
+        "credit": "Efficiency and safety of microscopic cluster ligation of the internal spermatic veins: A prospective matched case-control study. (CC BY-NC-SA 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12663800/"
       },
       {
         "caption": "Exposição microcirúrgica e isolamento de estruturas",
@@ -879,22 +888,34 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Topográfica e Vias de Acesso",
         "description": "Uma ilustração esquemática da região inguinal e escrotal, destacando o canal inguinal, o anel inguinal superficial, o funículo espermático e as camadas do escroto. Deve indicar com linhas tracejadas os locais exatos da incisão inguinal (para orquiectomia radical) e da incisão escrotal transversa superior (para implante isolado)",
-        "searchTerms": "Testicular prosthesis surgical incision inguinal scrotal approach anatomy. 2"
+        "searchTerms": "Testicular prosthesis surgical incision inguinal scrotal approach anatomy. 2",
+        "imageUrl": "/manus-storage/implante-de-protese-testicular_0_97c806a2.jpg",
+        "credit": "Autologous Testicle Construction With Buried Metoidioplasty Correction (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11623857/"
       },
       {
         "caption": "Preparo da Prótese (e Preenchimento Salino, quando aplicável)",
         "description": "Ilustração do preparo da prótese testicular em mesa estéril antes da implantação. Em próteses salinas (ex.: Torosa), demonstra-se a punção do portal com agulha borboleta/seringa, a injeção de solução salina estéril e a aspiração cuidadosa de todo o ar residual; em próteses de silicone sólido, apenas a seleção do tamanho adequado e a imersão em solução antibiótica",
-        "searchTerms": "Saline-filled testicular prosthesis preparation filling technique air removal. 3"
+        "searchTerms": "Saline-filled testicular prosthesis preparation filling technique air removal. 3",
+        "imageUrl": "/manus-storage/implante-de-protese-testicular_1_c304ba3a.jpg",
+        "credit": "Penile and testicular prosthesis following gender-affirming phalloplasty and scrotoplasty: a narrative review and technical insights (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10643390/"
       },
       {
         "caption": "Loja Subdartos e Fixação da Prótese (aspecto intraoperatório)",
         "description": "Aspecto intraoperatório real da prótese já posicionada e ancorada na porção dependente da bolsa escrotal, ponto-chave para evitar a migração superior. Neste exemplo, a prótese é uma esfera de tela de polipropileno (alternativa de baixo custo descrita para castração cirúrgica em câncer de próstata); o princípio de criação da loja subdartos e fixação inferior com fio inabsorvível é o mesmo para próteses salinas/de silicone convencionais",
-        "searchTerms": "Testicular implant subdartos pouch creation inferior fixation suture"
+        "searchTerms": "Testicular implant subdartos pouch creation inferior fixation suture",
+        "imageUrl": "/manus-storage/implante-de-protese-testicular_2_6c76c71e.jpg",
+        "credit": "Penile and testicular prosthesis following gender-affirming phalloplasty and scrotoplasty: a narrative review and technical insights (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10643390/"
       },
       {
         "caption": "Técnica Intravaginal Modificada (Pós-Torção)",
         "description": "Uma ilustração detalhando a técnica de preservação da túnica vaginal após orquiectomia por torção. Deve mostrar a incisão na parede posterior da túnica vaginal, a inserção da prótese dentro desta cavidade e o fechamento da túnica isolando a prótese das camadas superficiais do escroto, minimizando o risco de extrusão",
-        "searchTerms": "Intravaginal testicular prosthesis implantation tunica vaginalis closure"
+        "searchTerms": "Intravaginal testicular prosthesis implantation tunica vaginalis closure",
+        "imageUrl": "/manus-storage/implante-de-protese-testicular_3_44343036.jpg",
+        "credit": "Penile and testicular prosthesis following gender-affirming phalloplasty and scrotoplasty: a narrative review and technical insights (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10643390/"
       },
       {
         "caption": "Aspecto intraoperatório do implante (marcação, inserção e resultado)",
@@ -1085,7 +1106,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Vascular do Testículo e Locais Seguros para Biópsia",
         "description": "Uma ilustração esquemática do testículo demonstrando o trajeto da artéria testicular penetrando no mediastino e seus ramos capsulares sob a túnica albugínea. Deve destacar as \"zonas seguras\" (avasculares) no polo superior e faces ântero-laterais, e as \"zonas de perigo\" no polo inferior e face posterior",
-        "searchTerms": "Testicular arterial anatomy blood supply biopsy safe zones; Testis capsular arteries surgical anatomy"
+        "searchTerms": "Testicular arterial anatomy blood supply biopsy safe zones; Testis capsular arteries surgical anatomy",
+        "imageUrl": "/manus-storage/biopsia-testicular-diagnostica_0_3b1718f1.jpg",
+        "credit": "Testicular artery (bull) (CC BY-SA 2.5)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Testicular_artery_(bull).jpg"
       },
       {
         "caption": "Técnica da Janela Microcirúrgica (Passo a Passo)",
@@ -1152,12 +1176,18 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Vascular Subtunical e Incisão Equatorial",
         "description": "O testículo com a túnica albugínea intacta, destacando a rede vascular superficial e a linha ideal de incisão equatorial (zona avascular) para a técnica de \"open book\"",
-        "searchTerms": "micro-TESE equatorial incision; testicular subtunical vascular anatomy microdissection; open book technique testis"
+        "searchTerms": "micro-TESE equatorial incision; testicular subtunical vascular anatomy microdissection; open book technique testis",
+        "imageUrl": "/manus-storage/extracao-microcirurgica-de-espermatozoides-micro-tese_0_d1fadd15.jpg",
+        "credit": "Micro-dissection testicular sperm extraction as an alternative for sperm acquisition in the most difficult cases of Azoospermia: Technique and preliminary results in India (CC BY-NC-SA 3.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3778600/"
       },
       {
         "caption": "Visão Microscópica do Parênquima Testicular (Túbulos)",
         "description": "A visão do cirurgião através do microscópio operatório (24x de aumento), contrastando túbulos seminíferos finos, colapsados e amarelados (sem espermatogênese) com túbulos dilatados, opacos e esbranquiçados (promissores para extração)",
-        "searchTerms": "micro-TESE dilated seminiferous tubules; microscopic view testicular parenchyma NOA; microdissection TESE tubules comparison"
+        "searchTerms": "micro-TESE dilated seminiferous tubules; microscopic view testicular parenchyma NOA; microdissection TESE tubules comparison",
+        "imageUrl": "/manus-storage/extracao-microcirurgica-de-espermatozoides-micro-tese_1_911be894.jpg",
+        "credit": "Micro-dissection testicular sperm extraction as an alternative for sperm acquisition in the most difficult cases of Azoospermia: Technique and preliminary results in India (CC BY-NC-SA 3.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3778600/"
       },
       {
         "caption": "Extração Microcirúrgica do Tecido",
@@ -1224,7 +1254,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Algoritmo de Recuperação de Espermatozoides",
         "description": "Um fluxograma de decisão clínica. Começando com \"Azoospermia Obstrutiva\" -> \"PESA\". Se sucesso -> \"ICSI\". Se falha -> \"TESA\". Se falha -> \"TESE/Micro-TESE\"",
-        "searchTerms": "Sperm retrieval algorithm obstructive azoospermia; PESA TESA TESE flowchart"
+        "searchTerms": "Sperm retrieval algorithm obstructive azoospermia; PESA TESA TESE flowchart",
+        "imageUrl": "/manus-storage/aspiracao-de-espermatozoides-pesa-tesa_2_93767af9.jpg",
+        "credit": "Wikimedia Commons (Clinics, USP) (CC BY-NC 3.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cln-66-04-691-g004.jpg"
       }
     ]
   },
@@ -1276,22 +1309,34 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia e Componentes da Prótese",
         "description": "Uma visão esquemática da pelve masculina mostrando a localização final dos três componentes: cilindros dentro dos corpos cavernosos, o pump no espaço subdartos escrotal e o reservatório no espaço de Retzius (ou ectópico)",
-        "searchTerms": "3-piece inflatable penile prosthesis anatomy diagram; IPP components placement illustration"
+        "searchTerms": "3-piece inflatable penile prosthesis anatomy diagram; IPP components placement illustration",
+        "imageUrl": "/manus-storage/implante-de-protese-peniana-inflavel-de-3-volumes_0_2802a4b5.jpg",
+        "credit": "Comparison of penile implants (CC BY-SA 4.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Comparison_of_penile_implants.jpg"
       },
       {
         "caption": "Incisão e Exposição (Corporotomia)",
         "description": "Visão intraoperatória ou ilustração da incisão penoescrotal transversal, com o afastador de Scott em posição, mostrando a túnica albugínea exposta e as suturas de reparo (stay sutures) antes ou logo após a incisão longitudinal",
-        "searchTerms": "Penoscrotal incision penile prosthesis; Corporotomy stay sutures IPP"
+        "searchTerms": "Penoscrotal incision penile prosthesis; Corporotomy stay sutures IPP",
+        "imageUrl": "/manus-storage/implante-de-protese-peniana-inflavel-de-3-volumes_1_58a30583.jpg",
+        "credit": "Three-Piece Inflatable Penile Prosthesis Implantation for the Treatment of Severe Erectile Dysfunction Following a Complex Pelvic Fracture: A Case Report. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9550429/"
       },
       {
         "caption": "Dilatação e Medição dos Corpos Cavernosos",
         "description": "O cirurgião inserindo um dilatador de Brooks ou Hegar no corpo cavernoso, com ênfase na angulação lateral durante a dilatação distal para evitar a uretra. Pode incluir a ferramenta de medição (Furlow) sendo lida",
-        "searchTerms": "Corporal dilation penile implant; Brooks dilator IPP measurement"
+        "searchTerms": "Corporal dilation penile implant; Brooks dilator IPP measurement",
+        "imageUrl": "/manus-storage/implante-de-protese-peniana-inflavel-de-3-volumes_2_6b7316fa.jpg",
+        "credit": "Three-Piece Inflatable Penile Prosthesis Implantation for the Treatment of Severe Erectile Dysfunction Following a Complex Pelvic Fracture: A Case Report. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9550429/"
       },
       {
         "caption": "Passagem do Cilindro com Agulha de Keith",
         "description": "O instrumento de Furlow inserido no corpo cavernoso, com a agulha de Keith perfurando a glande lateralmente, guiando o fio de tração que puxará o cilindro para sua posição distal",
-        "searchTerms": "Furlow insertion tool Keith needle IPP; Distal cylinder placement penile prosthesis"
+        "searchTerms": "Furlow insertion tool Keith needle IPP; Distal cylinder placement penile prosthesis",
+        "imageUrl": "/manus-storage/implante-de-protese-peniana-inflavel-de-3-volumes_3_495b31d1.jpg",
+        "credit": "Three-Piece Inflatable Penile Prosthesis Implantation for the Treatment of Severe Erectile Dysfunction Following a Complex Pelvic Fracture: A Case Report. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9550429/"
       },
       {
         "caption": "Posicionamento do Reservatório (Espaço de Retzius vs. Ectópico)",
@@ -1348,7 +1393,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia cirúrgica e incisão penoscrotal",
         "description": "Visão ventral do pênis e escroto retraído, demonstrando a incisão transversal na rafe penoscrotal e a exposição das fáscias até a túnica albugínea, com a uretra centralmente protegida",
-        "searchTerms": "penoscrotal incision penile prosthesis anatomy; corporotomy penile implant surgical view"
+        "searchTerms": "penoscrotal incision penile prosthesis anatomy; corporotomy penile implant surgical view",
+        "imageUrl": "/manus-storage/implante-de-protese-peniana-semirrigida-maleavel_0_3c6114f1.jpg",
+        "credit": "Comparison of penile implants (CC BY-SA 4.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Comparison_of_penile_implants.jpg"
       },
       {
         "caption": "Dilatação e mensuração dos corpos cavernosos",
@@ -1358,7 +1406,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Inserção da prótese maleável",
         "description": "A técnica de flexão da prótese maleável (em formato de \"U\" invertido) sendo inserida na corporotomia, com a extremidade proximal já na crura e a distal sendo guiada sob a glande",
-        "searchTerms": "malleable penile prosthesis insertion technique; semirigid implant placement corporotomy"
+        "searchTerms": "malleable penile prosthesis insertion technique; semirigid implant placement corporotomy",
+        "imageUrl": "/manus-storage/implante-de-protese-peniana-semirrigida-maleavel_2_4ff46421.png",
+        "credit": "ZSI 100 FTM penile implant (CC BY-SA 4.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:ZSI_100_FTM_penile_implant.png"
       },
       {
         "caption": "Modelos de próteses maleáveis disponíveis",
@@ -1425,12 +1476,18 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Marcação dos pontos na técnica 16-dot",
         "description": "Visão esquemática ou foto intraoperatória do pênis ereto (teste de ereção artificial) com a curvatura evidente. Marcações na pele ou na túnica albugínea mostrando a distribuição dos 16 pontos (8 pares) no lado convexo, distribuídos paralelamente ao redor do ponto de máxima curvatura",
-        "searchTerms": "16-dot plication technique marking Peyronie's; Lue 16 dot penile plication diagram"
+        "searchTerms": "16-dot plication technique marking Peyronie's; Lue 16 dot penile plication diagram",
+        "imageUrl": "/manus-storage/correcao-de-doenca-de-peyronie-plicatura-de-tunica-nesbit-16_1_754fbdd4.png",
+        "credit": "Peyronie’s penile plication (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://tau.amegroups.org/article/view/15821/html"
       },
       {
         "caption": "Passagem da sutura e técnica de nós invertidos (Kiel knots)",
         "description": "Detalhe ampliado da túnica albugínea mostrando a pequena incisão transversal (5 mm) e a agulha passando a sutura inabsorvível. Uma segunda imagem mostrando o nó sendo atado e \"afundando\" na incisão, ficando nivelado com a superfície da túnica para evitar palpação sob a pele",
-        "searchTerms": "Kiel knot technique penile plication; Inverted knot tunica albuginea plication Peyronie's"
+        "searchTerms": "Kiel knot technique penile plication; Inverted knot tunica albuginea plication Peyronie's",
+        "imageUrl": "/manus-storage/correcao-de-doenca-de-peyronie-plicatura-de-tunica-nesbit-16_2_46fa5a0f.png",
+        "credit": "Peyronie’s penile plication (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://tau.amegroups.org/article/view/15821/html"
       }
     ]
   },
@@ -1482,17 +1539,26 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia cirúrgica do pênis e feixe neurovascular",
         "description": "Corte transversal do pênis demonstrando a fáscia de Buck, a túnica albugínea, os corpos cavernosos e a localização exata do feixe neurovascular dorsal (veia, artérias e nervos)",
-        "searchTerms": "Penile cross section anatomy neurovascular bundle Buck's fascia tunica albuginea"
+        "searchTerms": "Penile cross section anatomy neurovascular bundle Buck's fascia tunica albuginea",
+        "imageUrl": "/manus-storage/correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-_0_1fa19c62.png",
+        "credit": "Peyronie's graft surgery—tips and tricks from the masters in andrologic surgery (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://tau.amegroups.org/article/view/15677/html"
       },
       {
         "caption": "Dissecção e elevação do feixe neurovascular",
         "description": "Visão intraoperatória ou ilustração da fáscia de Buck aberta lateralmente e o feixe neurovascular dorsal sendo elevado e tracionado com uma fita (vessel loop) para expor a placa na túnica albugínea",
-        "searchTerms": "Peyronie's disease surgery neurovascular bundle mobilization elevation"
+        "searchTerms": "Peyronie's disease surgery neurovascular bundle mobilization elevation",
+        "imageUrl": "/manus-storage/correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-_1_1886c31d.png",
+        "credit": "Peyronie's graft surgery—tips and tricks from the masters in andrologic surgery (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://tau.amegroups.org/article/view/15677/html"
       },
       {
         "caption": "Padrões de incisão da placa",
         "description": "Ilustração esquemática dos diferentes tipos de incisão na túnica albugínea (ex: incisão em duplo Y, incisão em H modificado) sobre a área de maior curvatura",
-        "searchTerms": "Peyronie's plaque incision techniques double Y modified H"
+        "searchTerms": "Peyronie's plaque incision techniques double Y modified H",
+        "imageUrl": "/manus-storage/correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-_2_e25cbc18.png",
+        "credit": "Peyronie's graft surgery—tips and tricks from the masters in andrologic surgery (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://tau.amegroups.org/article/view/15677/html"
       },
       {
         "caption": "Fixação do enxerto",
@@ -1549,17 +1615,26 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Seccional do Pênis e Feixe Neurovascular",
         "description": "Corte transversal do pênis mostrando os corpos cavernosos, corpo esponjoso, túnica albugínea, fáscia de Buck e a localização exata do feixe neurovascular dorsal (veia, artérias e nervos). Crucial para demonstrar onde é seguro passar as suturas",
-        "searchTerms": "Penile cross section anatomy neurovascular bundle; Buck's fascia tunica albuginea cross section"
+        "searchTerms": "Penile cross section anatomy neurovascular bundle; Buck's fascia tunica albuginea cross section",
+        "imageUrl": "/manus-storage/curvatura-peniana-congenita-corporoplastia-de-plicatura_0_adfd7d67.jpg",
+        "credit": "Isolated ventral congenital penile curvature treated by incisionless plication of tunica albuginea in adults: A prospective case series. (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10337818/"
       },
       {
         "caption": "Teste de Ereção Artificial Intraoperatória",
         "description": "Pênis com garrote na base, agulha tipo borboleta inserida no corpo cavernoso lateralmente, e o pênis ereto demonstrando a curvatura máxima",
-        "searchTerms": "Artificial erection penile curvature surgery; Intraoperative artificial erection test"
+        "searchTerms": "Artificial erection penile curvature surgery; Intraoperative artificial erection test",
+        "imageUrl": "/manus-storage/curvatura-peniana-congenita-corporoplastia-de-plicatura_1_89a7e318.jpg",
+        "credit": "Isolated ventral congenital penile curvature treated by incisionless plication of tunica albuginea in adults: A prospective case series. (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10337818/"
       },
       {
         "caption": "Dissecção e Marcação dos Pontos (Técnica de 16 pontos)",
         "description": "Visão dorsal ou lateral do pênis com a fáscia de Buck rebatida. Marcações com caneta cirúrgica na túnica albugínea mostrando os pares de pontos no lado convexo da curvatura",
-        "searchTerms": "16-dot plication technique markings; Penile plication suture placement markings"
+        "searchTerms": "16-dot plication technique markings; Penile plication suture placement markings",
+        "imageUrl": "/manus-storage/curvatura-peniana-congenita-corporoplastia-de-plicatura_2_d4772d53.jpg",
+        "credit": "Plication for Correction of Congenital Penile Curvature: With or Without Degloving? (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8766273/"
       },
       {
         "caption": "Passagem da Sutura e Nó Invertido (Kiel Knot)",
@@ -1621,17 +1696,26 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia do Sistema Suspensor do Pênis",
         "description": "Visão sagital da pelve masculina demonstrando a sínfise púbica, a raiz do pênis e a distinção clara entre os ligamentos frouxos (fundiforme e suspensor) e os ligamentos profundos estabilizadores (vertical denso e arqueado)",
-        "searchTerms": "Penile suspensory ligament anatomy sagittal view; Fundiform and suspensory ligament penis MRI/cadaver"
+        "searchTerms": "Penile suspensory ligament anatomy sagittal view; Fundiform and suspensory ligament penis MRI/cadaver",
+        "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_0_d9d36254.jpg",
+        "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
       },
       {
         "caption": "Incisão e Plástica em V-Y",
         "description": "Ilustração em dois tempos (pré e pós-operatório) mostrando a marcação da incisão em V invertido na região infrapúbica e o fechamento final em Y, demonstrando o recrutamento de pele para a haste peniana",
-        "searchTerms": "Inverted V-Y plasty penile lengthening; V-Y advancement flap penis base"
+        "searchTerms": "Inverted V-Y plasty penile lengthening; V-Y advancement flap penis base",
+        "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_1_beb39bd4.jpg",
+        "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
       },
       {
         "caption": "Técnica de Ligamentólise e Interposição de Espaçador",
         "description": "Visão intraoperatória (ilustração cirúrgica) mostrando o afastamento do pênis caudalmente, a secção do ligamento suspensor rente ao osso púbico e a fixação de um espaçador (silicone ou matriz dérmica) no espaço morto criado para evitar a refixação",
-        "searchTerms": "Suspensory ligament release surgical technique; Ligamentolysis penis spacer insertion"
+        "searchTerms": "Suspensory ligament release surgical technique; Ligamentolysis penis spacer insertion",
+        "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_2_03419f2f.jpg",
+        "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
       }
     ]
   },
@@ -1683,7 +1767,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Seccional do Pênis e Plano de Dissecção",
         "description": "Corte transversal do pênis ilustrando a pele, fáscia de Dartos, fáscia de Buck, feixe neurovascular dorsal e corpos cavernosos. Uma seta ou destaque deve indicar o plano avascular correto para a inserção do enxerto (entre Dartos e Buck)",
-        "searchTerms": "Cross section penile anatomy fascia of Buck Dartos; Penile neurovascular bundle cross section"
+        "searchTerms": "Cross section penile anatomy fascia of Buck Dartos; Penile neurovascular bundle cross section",
+        "imageUrl": "/manus-storage/faloplastia-de-aumento-espessamento-peniano-com-enxerto-derm_0_db0cb253.jpg",
+        "credit": "DART-VAG: initial clinical experience with a novel autologous technique for penile girth augmentation. (CC BY)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13226365/"
       },
       {
         "caption": "Colheita e Preparação do Enxerto Dérmico-Gorduroso",
@@ -1693,7 +1780,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Posicionamento e Fixação do Enxerto no Pênis",
         "description": "O pênis desluvado (degloved) com o enxerto dérmico-gorduroso sendo enrolado ao redor do eixo. Deve ilustrar a derme voltada para fora e a sutura longitudinal na face ventral, evitando a uretra",
-        "searchTerms": "Dermal fat graft penile augmentation surgical technique; Augmentation phalloplasty dermal fat graft wrapping"
+        "searchTerms": "Dermal fat graft penile augmentation surgical technique; Augmentation phalloplasty dermal fat graft wrapping",
+        "imageUrl": "/manus-storage/faloplastia-de-aumento-espessamento-peniano-com-enxerto-derm_2_3486e9a6.jpg",
+        "credit": "Penis Girth Augmentation Using SEPA Flap and Dermofat Grafts. (CC BY-NC-SA)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10768958/"
       }
     ]
   },
@@ -1745,7 +1835,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia Fascial Transversal do Pênis",
         "description": "Um corte transversal do pênis ilustrando claramente a pele, a fáscia de Dartos, o espaço areolar frouxo (plano alvo para injeção), a fáscia de Buck, os feixes neurovasculares dorsais e os corpos cavernosos. Deve destacar a segurança do plano sub-Dartos",
-        "searchTerms": "penile cross section anatomy fascia dartos buck; penile augmentation hyaluronic acid injection plane diagram"
+        "searchTerms": "penile cross section anatomy fascia dartos buck; penile augmentation hyaluronic acid injection plane diagram",
+        "imageUrl": "/manus-storage/aumento-peniano-com-preenchimento-de-acido-hialuronico_0_c247d822.jpg",
+        "credit": "Penile augmentation with injectable hyaluronic acid gel: an alternative choice for small penis syndrome (CC BY-NC-SA 4.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9809476/"
       },
       {
         "caption": "Técnica de Injeção com Microcânula (Visão Longitudinal)",
@@ -1755,7 +1848,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Técnica em Leque (Fanning Technique)",
         "description": "Uma visão dorsal do pênis mostrando um único ponto de entrada na base com múltiplas setas divergentes (em formato de leque) indicando os trajetos da cânula para distribuir o preenchedor nas faces laterais e dorsal",
-        "searchTerms": "fanning technique penile augmentation filler; penile hyaluronic acid injection pattern"
+        "searchTerms": "fanning technique penile augmentation filler; penile hyaluronic acid injection pattern",
+        "imageUrl": "/manus-storage/aumento-peniano-com-preenchimento-de-acido-hialuronico_2_dbf01ae8.jpg",
+        "credit": "Penile augmentation with injectable hyaluronic acid gel: an alternative choice for small penis syndrome (CC BY-NC-SA 4.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9809476/"
       },
       {
         "caption": "Manejo de Complicações - Nódulos e Efeito Tyndall",
@@ -1817,12 +1913,18 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Técnica de injeção em leque (Fanning technique)",
         "description": "Uma visão dorsal ou lateral da glande com linhas pontilhadas indicando os trajetos da agulha a partir de um único ponto de entrada proximal, espalhando-se em direção à coroa em formato de leque",
-        "searchTerms": "Fanning technique filler injection; glans penis augmentation injection technique diagram; hyaluronic acid retrograde linear injection"
+        "searchTerms": "Fanning technique filler injection; glans penis augmentation injection technique diagram; hyaluronic acid retrograde linear injection",
+        "imageUrl": "/manus-storage/aumento-de-glande-com-acido-hialuronico_1_e1d671e4.jpg",
+        "credit": "Hyaluronic acid injection to coronal sulcus of the penis for the treatment of premature ejaculation: a retrospective observational study (Chen K et al., 2023) (CC BY 4.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10067247/"
       },
       {
         "caption": "Manejo de complicações (Nódulos e Isquemia)",
         "description": "Um fluxograma visual ou fotos comparativas mostrando uma glande com nódulo subcutâneo assimétrico e a técnica de injeção de hialuronidase (agulha fina perpendicular ao nódulo) para reversão",
-        "searchTerms": "Hyaluronidase injection filler complication; penile filler nodules management; glans penis hyaluronic acid adverse effects"
+        "searchTerms": "Hyaluronidase injection filler complication; penile filler nodules management; glans penis hyaluronic acid adverse effects",
+        "imageUrl": "/manus-storage/aumento-de-glande-com-acido-hialuronico_2_cc034e89.jpg",
+        "credit": "Hyaluronic acid injection to coronal sulcus of the penis for the treatment of premature ejaculation: a retrospective observational study (Chen K et al., 2023) (CC BY 4.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10067247/"
       }
     ]
   },
@@ -1874,7 +1976,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia e Fisiopatologia do Pênis Enterrado",
         "description": "Um corte sagital da pelve masculina demonstrando o pênis retraído sob um grande coxim adiposo suprapúbico (escutcheon). Deve destacar a frouxidão do ligamento fundiforme e a telescopagem da pele peniana",
-        "searchTerms": "Adult acquired buried penis anatomy sagittal view; Buried penis pathophysiology escutcheon diagram"
+        "searchTerms": "Adult acquired buried penis anatomy sagittal view; Buried penis pathophysiology escutcheon diagram",
+        "imageUrl": "/manus-storage/lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a_0_6331b663.jpg",
+        "credit": "Wikimedia Commons (CC BY-SA 4.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buried_penis_due_to_obesity.jpg"
       },
       {
         "caption": "Marcação Cirúrgica e Escutcheonectomia",
@@ -1956,7 +2061,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Correção do *Webbing* e Fechamento",
         "description": "O detalhe da transposição dos retalhos da Z-plastia na base do pênis para aprofundar o ângulo penoescrotal, e o aspecto final do fechamento da pele escrotal em formato de \"Y\" invertido ou linha vertical ao longo da rafe",
-        "searchTerms": "Penoscrotal web Z-plasty flap transposition; Ventral phalloplasty closure; Scrotal reduction final suture line"
+        "searchTerms": "Penoscrotal web Z-plasty flap transposition; Ventral phalloplasty closure; Scrotal reduction final suture line",
+        "imageUrl": "/manus-storage/escrotoplastia-scrotal-lift-lifting-escrotal-estetico_2_d13b8ac7.jpg",
+        "credit": "Evaluation of Z-plasty versus Heineke-Mikulicz scrotoplasty in the management of penoscrotal web in pediatric age group (CC BY 4.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10960422/"
       }
     ]
   },
@@ -2075,7 +2183,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia da Doença de Peyronie e Avaliação da Curvatura",
         "description": "Um diagrama transversal e longitudinal do pênis mostrando a localização típica da placa fibrótica na túnica albugínea (dorsal) e a consequente curvatura durante a ereção",
-        "searchTerms": "Peyronie's disease penile anatomy plaque curvature diagram; Peyronie's disease tunica albuginea fibrosis illustration"
+        "searchTerms": "Peyronie's disease penile anatomy plaque curvature diagram; Peyronie's disease tunica albuginea fibrosis illustration",
+        "imageUrl": "/manus-storage/protese-peniana-com-remodelamento-na-peyronie-grave_0_dde705e8.jpg",
+        "credit": "Peyronie disease.jpg (Public Domain)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/user:Peyronie"
       },
       {
         "caption": "Inserção da Prótese Peniana Inflável (IPP)",
@@ -2276,7 +2387,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Marcação Cirúrgica (Sleeve Technique)",
         "description": "Pênis em visão dorsal e lateral, ilustrando duas linhas pontilhadas paralelas: uma na pele da haste peniana e outra na mucosa interna (próxima ao sulco coronal), demonstrando a área de prepúcio redundante a ser excisada",
-        "searchTerms": "Sleeve circumcision technique marking; adult circumcision double incision lines; circumcision surgical planning"
+        "searchTerms": "Sleeve circumcision technique marking; adult circumcision double incision lines; circumcision surgical planning",
+        "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_0_eeacdb6e.jpg",
+        "credit": "Subcutaneous tissue-sparing dorsal slit with new marking technique: A novel circumcision method (CC BY-NC-ND 4.0)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6494260/"
       },
       {
         "caption": "Dissecção do Colar de Pele (Sleeve Resection)",
@@ -2296,7 +2410,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Manejo do Frênulo (Frenuloplastia associada)",
         "description": "Visão ventral do pênis detalhando a incisão transversal do frênulo e o fechamento longitudinal (V-Y ou Y-V) para ganho de comprimento, integrado à linha de sutura da circuncisão",
-        "searchTerms": "Frenuloplasty with circumcision; circumcision ventral view frenulum; frenulectomy surgical technique"
+        "searchTerms": "Frenuloplasty with circumcision; circumcision ventral view frenulum; frenulectomy surgical technique",
+        "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_4_17ca2a53.jpg",
+        "credit": "Before and after frenoloplasty (CC BY-SA 4.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Before_and_after_frenoloplasty.jpg"
       }
     ]
   },
@@ -3729,7 +3846,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Anatomia peniana normal ao modo-B (corte transversal)",
         "description": "Corte transversal por acesso ventral demonstrando os dois corpos cavernosos hipoecoicos (seta de duas pontas), as respectivas art\u00e9rias cavernosas (setas grossas), a t\u00fanica albug\u00ednea como linha ecog\u00eanica que os envolve (seta fina) e o corpo esponjoso adjacente (asterisco)",
-        "searchTerms": "Normal penile anatomy transverse B-mode ultrasound corpora cavernosa tunica albuginea"
+        "searchTerms": "Normal penile anatomy transverse B-mode ultrasound corpora cavernosa tunica albuginea",
+        "imageUrl": "/manus-storage/usg-doppler-peniano_0_d5a78230.jpg",
+        "credit": "Normal penis ultrasound (CC BY-SA 4.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Normal_penis_ultrasound.jpg"
       },
       {
         "caption": "Fluxo da art\u00e9ria cavernosa em repouso (Doppler espectral e colorido)",
@@ -3739,27 +3859,42 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Fases hemodin\u00e2micas da ere\u00e7\u00e3o ao Doppler espectral",
         "description": "Gr\u00e1ficos do espectro Doppler das art\u00e9rias cavernosas: A fluxo monof\u00e1sico com diastole m\u00ednima/ausente no p\u00eanis fl\u00e1cido; B aumento de fluxo sist\u00f3lico e diast\u00f3lico ap\u00f3s droga vasoativa; C fluxo sist\u00f3lico aumentado com diastole reversa na ere\u00e7\u00e3o r\u00edgida",
-        "searchTerms": "Penile doppler erection phases spectral waveform PSV EDV vasoactive injection"
+        "searchTerms": "Penile doppler erection phases spectral waveform PSV EDV vasoactive injection",
+        "imageUrl": "/manus-storage/usg-doppler-peniano_2_4beaf2cf.jpg",
+        "credit": "Sildenafil induced penile doppler: normal (CC BY-NC-SA 3.0)",
+        "sourceUrl": "https://radiopaedia.org/cases/sildenafil-induced-penile-doppler-normal"
       },
       {
         "caption": "Priapismo de alto fluxo ao Doppler colorido",
         "description": "Doppler colorido demonstrando cole\u00e7\u00e3o hipoecoica correspondente a hematoma com f\u00edstula arteriovenosa/arteriolacunar secund\u00e1ria a trauma peniano, com fluxo turbilhonado \u2014 padr\u00e3o de priapismo de alto fluxo (n\u00e3o isqu\u00eamico)",
-        "searchTerms": "High flow priapism color doppler arteriolacunar fistula cavernosal"
+        "searchTerms": "High flow priapism color doppler arteriolacunar fistula cavernosal",
+        "imageUrl": "/manus-storage/usg-doppler-peniano_3_20b73a40.png",
+        "credit": "Posttraumatic high-flow priapism: a case of bilateral cavernous pseudoaneurysm irrigated by the right internal pudendal artery (CC BY 4.0)",
+        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-025-01860-1"
       },
       {
         "caption": "Doença de Peyronie: placa calcificada ao modo-B",
         "description": "Corte transversal na porção média do pênis com imagem ecogênica e sombra acústica posterior no corpo cavernoso, correspondente a calcificação de placa de Peyronie (seta)",
-        "searchTerms": "Peyronie disease calcified plaque B-mode ultrasound acoustic shadowing tunica"
+        "searchTerms": "Peyronie disease calcified plaque B-mode ultrasound acoustic shadowing tunica",
+        "imageUrl": "/manus-storage/usg-doppler-peniano_4_25a03a2a.jpg",
+        "credit": "Peyronie disease - eyebrow appearance (CC BY-NC-SA 3.0)",
+        "sourceUrl": "https://radiopaedia.org/cases/peyronie-disease-eyebrow-appearance"
       },
       {
         "caption": "Fratura peniana ao modo-B: descontinuidade da túnica albugínea",
         "description": "Cortes longitudinais do corpo cavernoso demonstrando defeito hipoecoico da túnica albugínea (interrupção focal da linha ecogênica), medindo cerca de 1,0 cm (painel esquerdo) e 1,2 cm (painel direito) — achado diagnóstico de fratura peniana, indicação de exploração cirúrgica precoce",
-        "searchTerms": "Penile fracture ultrasound tunica albuginea discontinuity hypoechoic defect B-mode"
+        "searchTerms": "Penile fracture ultrasound tunica albuginea discontinuity hypoechoic defect B-mode",
+        "imageUrl": "/manus-storage/usg-doppler-peniano_5_2f4058d2.jpg",
+        "credit": "Penile fracture (CC BY-NC-SA 3.0)",
+        "sourceUrl": "https://radiopaedia.org/cases/penile-fracture-1"
       },
       {
         "caption": "Priapismo isquêmico (baixo fluxo) ao Doppler colorido",
         "description": "Doppler colorido/espectral das artérias cavernosas demonstrando fluxo intracavernoso reduzido ou ausente, compatível com priapismo isquêmico (baixo fluxo) — emergência urológica que demanda aspiração/irrigação e agentes simpaticomiméticos; contrasta com o padrão de alto fluxo (turbilhonado) do priapismo não isquêmico",
-        "searchTerms": "Low flow ischemic priapism color doppler ultrasound absent cavernosal arterial flow"
+        "searchTerms": "Low flow ischemic priapism color doppler ultrasound absent cavernosal arterial flow",
+        "imageUrl": "/manus-storage/usg-doppler-peniano_6_4fd5ebd7.jpg",
+        "credit": "Ischaemic (low flow) priapism (CC BY-NC-SA 3.0)",
+        "sourceUrl": "https://radiopaedia.org/cases/ischemic-low-flow-priapism"
       }
     ]
   },
@@ -3817,12 +3952,18 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Torção do cordão espermático: ausência de fluxo ao Doppler",
         "description": "Estudo Doppler colorido comparativo demonstrando ausência/redução do fluxo arterial intratesticular no testículo acometido em relação ao contralateral normalmente perfundido — achado central da torção do cordão espermático",
-        "searchTerms": "Testicular torsion color doppler absent intratesticular flow comparative ultrasound"
+        "searchTerms": "Testicular torsion color doppler absent intratesticular flow comparative ultrasound",
+        "imageUrl": "/manus-storage/usg-escrotal-doppler-testicular_2_39254519.jpg",
+        "credit": "A sound approach to stay on the ball-a review of scrotal pathologies on ultrasound imaging (Lam Shin Cheung J, Bhaduri M, 2026) (CC BY 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13134857/"
       },
       {
         "caption": "Varícocele: plexo pampiniforme dilatado com refluxo à Valsalva",
         "description": "Veias do plexo pampiniforme dilatadas (> 2,5–3,0 mm) com demonstração de refluxo venoso ao Doppler colorido durante a manobra de Valsalva — critérios ultrassonográficos de varícocele",
-        "searchTerms": "Varicocele ultrasound pampiniform plexus dilated veins venous reflux Valsalva color doppler"
+        "searchTerms": "Varicocele ultrasound pampiniform plexus dilated veins venous reflux Valsalva color doppler",
+        "imageUrl": "/manus-storage/usg-escrotal-doppler-testicular_3_43e027b0.jpg",
+        "credit": "A sound approach to stay on the ball-a review of scrotal pathologies on ultrasound imaging (Lam Shin Cheung J, Bhaduri M, 2026) (CC BY 4.0)",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13134857/"
       }
     ]
   }

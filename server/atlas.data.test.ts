@@ -62,6 +62,31 @@ describe("Atlas data integrity", () => {
     }
   });
 
+  it("toda figura com imageUrl tem crédito e fonte (rastreabilidade)", () => {
+    for (const e of atlasEntries) {
+      for (const f of e.figures) {
+        if (f.imageUrl && f.imageUrl !== "") {
+          expect(
+            (f.credit ?? "").length,
+            `figura com imagem sem crédito em ${e.id}: "${f.caption}"`
+          ).toBeGreaterThan(0);
+          expect(
+            /^(https?:\/\/)/.test(f.sourceUrl ?? ""),
+            `figura com imagem sem sourceUrl válido em ${e.id}: "${f.caption}"`
+          ).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("o Atlas tem pelo menos 47 figuras com imagem real (andrologia/estética)", () => {
+    const comImagem = atlasEntries.reduce(
+      (acc, e) => acc + e.figures.filter((f) => f.imageUrl && f.imageUrl !== "").length,
+      0
+    );
+    expect(comImagem).toBeGreaterThanOrEqual(47);
+  });
+
   it("every figure has a caption and search terms", () => {
     for (const e of atlasEntries) {
       for (const f of e.figures) {
