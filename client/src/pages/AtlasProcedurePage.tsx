@@ -37,6 +37,7 @@ import {
   ImagePlus,
   Maximize2,
   Info,
+  ClipboardList,
 } from "lucide-react";
 import {
   clinicalKeySearchUrl,
@@ -49,7 +50,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { exportAtlasPdf } from "@/lib/atlasPdf";
+import { exportAtlasPdf, exportLaudoPdf, findLaudoSection } from "@/lib/atlasPdf";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useCallback, useMemo, useState } from "react";
@@ -235,6 +236,24 @@ export default function AtlasProcedurePage() {
               <Printer className="w-3.5 h-3.5" />
               Exportar PDF
             </Button>
+            {findLaudoSection(entry) && (
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-8 text-xs gap-1.5 border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10"
+                onClick={() => {
+                  const ok = exportLaudoPdf(entry);
+                  if (ok) {
+                    toast.success("Laudo em branco aberto para impressão/PDF");
+                  } else {
+                    toast.error("Esta entrada não possui laudo-modelo");
+                  }
+                }}
+              >
+                <ClipboardList className="w-3.5 h-3.5" />
+                Laudo em Branco
+              </Button>
+            )}
             {user?.role === "admin" && (
               <Link href="/atlas/admin">
                 <Button

@@ -2921,4 +2921,163 @@ Retorne em 4–6 semanas com urofluxometria + RPM e IPSS para avaliação do res
 FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`,
     },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // USG RENAL — LAUDO ESTRUTURADO
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "usg-renal",
+    name: "Ultrassonografia Renal",
+    shortName: "USG Renal",
+    icon: "🫘",
+    category: "Imagem",
+    configFields: [
+      { id: "indicacao", label: "Indicação", type: "select", options: ["Cólica renal / litíase", "Hematúria", "Infecção urinária de repetição", "Investigação de HAS", "Massa renal", "Seguimento pós-cirúrgico", "Rastreamento (rim único, transplante)"], defaultValue: "Cólica renal / litíase" },
+      { id: "rim_dir_dim", label: "Dimensões rim direito (cm)", type: "text", defaultValue: "", placeholder: "Ex.: 10,5 × 5,2 × 4,8" },
+      { id: "rim_esq_dim", label: "Dimensões rim esquerdo (cm)", type: "text", defaultValue: "", placeholder: "Ex.: 11,0 × 5,4 × 5,0" },
+      { id: "ecogenicidade", label: "Ecogenicidade cortical", type: "select", options: ["Normal (isoecogênica ao parênquima hepático/esplênico)", "Hiperecogênica (nefropatia parenquimatosa)", "Heterogênea"], defaultValue: "Normal (isoecogênica ao parênquima hepático/esplênico)" },
+      { id: "hidronefrose_dir", label: "Hidronefrose direita (SFU)", type: "select", options: ["Ausente (grau 0)", "Grau I — pelve levemente dilatada", "Grau II — cálices visíveis, sem afinamento cortical", "Grau III — cálices dilatados, afinamento cortical leve", "Grau IV — afinamento cortical grave"], defaultValue: "Ausente (grau 0)" },
+      { id: "hidronefrose_esq", label: "Hidronefrose esquerda (SFU)", type: "select", options: ["Ausente (grau 0)", "Grau I — pelve levemente dilatada", "Grau II — cálices visíveis, sem afinamento cortical", "Grau III — cálices dilatados, afinamento cortical leve", "Grau IV — afinamento cortical grave"], defaultValue: "Ausente (grau 0)" },
+      { id: "calculo", label: "Cálculo renal", type: "select", options: ["Ausente", "Cálculo único — especificar localização e tamanho", "Múltiplos cálculos", "Nefrocalcinose"], defaultValue: "Ausente" },
+      { id: "calculo_local", label: "Localização do cálculo (se presente)", type: "text", defaultValue: "", placeholder: "Ex.: polo inferior direito, 8 mm, sombra acústica posterior" },
+      { id: "massa", label: "Massa renal", type: "select", options: ["Ausente", "Cisto simples (Bosniak I)", "Cisto minimamente complexo (Bosniak II)", "Cisto complexo (Bosniak IIF/III)", "Massa sólida suspeita (Bosniak IV)", "Massa sólida — angiomiolipoma (hiperecogênica)"], defaultValue: "Ausente" },
+      { id: "doppler", label: "Doppler renal (se realizado)", type: "select", options: ["Não realizado", "Fluxo intrarrenal preservado bilateralmente", "IR elevado (> 0,70) — sugestivo de nefropatia parenquimatosa", "Assimetria de fluxo — investigar estenose de artéria renal"], defaultValue: "Não realizado" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const calcStr = c.calculo !== "Ausente" && c.calculo_local
+          ? `\n- ${c.calculo}: ${c.calculo_local}.`
+          : c.calculo !== "Ausente"
+          ? `\n- ${c.calculo}.`
+          : "";
+        const massaStr = c.massa !== "Ausente" ? `\n- ${c.massa}.` : "";
+        const dopStr = c.doppler !== "Não realizado" ? `\nDOPPLER RENAL:\n- ${c.doppler}.` : "";
+        return `LAUDO — ULTRASSONOGRAFIA RENAL
+Indicação: ${c.indicacao}
+Técnica: Estudo em modo-B com transdutor convexo de 3,5–5 MHz, cortes longitudinais e transversais de ambos os rins em decúbito dorsal e lateral. Bexiga avaliada em repleção moderada.
+
+RIM DIREITO:
+- Dimensões: ${c.rim_dir_dim || "____"} cm. Relação córtex/medula preservada.
+- Ecogenicidade: ${c.ecogenicidade}.
+- Sistema coletor: ${c.hidronefrose_dir}.${c.hidronefrose_dir !== "Ausente (grau 0)" ? " Ureter proximal não visualizado." : ""}
+
+RIM ESQUERDO:
+- Dimensões: ${c.rim_esq_dim || "____"} cm. Relação córtex/medula preservada.
+- Ecogenicidade: ${c.ecogenicidade}.
+- Sistema coletor: ${c.hidronefrose_esq}.${c.hidronefrose_esq !== "Ausente (grau 0)" ? " Ureter proximal não visualizado." : ""}
+${calcStr}${massaStr}${dopStr}
+
+BEXIGA: Paredes regulares, espessura normal (< 3 mm em repleção). Sem lesões endoluminais.
+
+CONCLUSÃO:
+${c.hidronefrose_dir !== "Ausente (grau 0)" || c.hidronefrose_esq !== "Ausente (grau 0)" ? `Hidronefrose ${c.hidronefrose_dir !== "Ausente (grau 0)" ? "direita: " + c.hidronefrose_dir : ""}${c.hidronefrose_dir !== "Ausente (grau 0)" && c.hidronefrose_esq !== "Ausente (grau 0)" ? " / " : ""}${c.hidronefrose_esq !== "Ausente (grau 0)" ? "esquerda: " + c.hidronefrose_esq : ""}. ` : ""}${c.calculo !== "Ausente" ? c.calculo + (c.calculo_local ? " (" + c.calculo_local + ")." : ".") + " " : ""}${c.massa !== "Ausente" ? c.massa + ". " : ""}${c.hidronefrose_dir === "Ausente (grau 0)" && c.hidronefrose_esq === "Ausente (grau 0)" && c.calculo === "Ausente" && c.massa === "Ausente" ? "Rins de dimensões, ecogenicidade e sistema coletor normais. Bexiga sem alterações." : ""}
+
+REFERÊNCIAS: EAU Guidelines on Urolithiasis 2024; ACR Appropriateness Criteria — Renal Colic 2022.`;
+      },
+      posOperatorio: (c) => `ORIENTAÇÕES PÓS-EXAME — USG RENAL
+${c.hidronefrose_dir !== "Ausente (grau 0)" || c.hidronefrose_esq !== "Ausente (grau 0)" ? "⚠️ HIDRONEFROSE DETECTADA: Encaminhar para avaliação urológica. Solicitar uroTC sem contraste se suspeita de litíase obstrutiva.\n" : ""}${c.calculo !== "Ausente" ? "⚠️ CÁLCULO RENAL: Correlacionar com quadro clínico. Considerar uroTC para melhor caracterização.\n" : ""}${c.massa !== "Ausente" ? "⚠️ MASSA RENAL: Encaminhar para uroTC com contraste para estadiamento (Bosniak). Não retardar investigação.\n" : ""}${c.doppler.includes("IR elevado") ? "⚠️ IR ELEVADO: Correlacionar com função renal (creatinina, TFG). Considerar nefrologista.\n" : ""}
+Hidratação adequada (2–3 L/dia de água). Retorno conforme orientação do urologista.`,
+      receitaAlta: () => `PRESCRIÇÃO — USG RENAL
+Exame de imagem — sem prescrição medicamentosa específica.
+Encaminhar resultado ao médico solicitante para correlação clínica.`,
+      orientacoes: (c) => `ORIENTAÇÕES AO PACIENTE — USG RENAL
+
+O QUE É:
+A ultrassonografia renal é um exame de imagem que utiliza ondas sonoras para avaliar os rins, a bexiga e as estruturas adjacentes. Não utiliza radiação ionizante.
+
+RESULTADO:
+${c.hidronefrose_dir !== "Ausente (grau 0)" || c.hidronefrose_esq !== "Ausente (grau 0)" ? "Foi identificada dilatação do sistema coletor renal (hidronefrose). Isso pode indicar obstrução por cálculo, estreitamento ou outra causa. Seu médico avaliará a necessidade de exames complementares.\n" : ""}${c.calculo !== "Ausente" ? "Foi identificado cálculo renal. Dependendo do tamanho e localização, pode ser necessário tratamento específico.\n" : ""}${c.massa !== "Ausente" ? "Foi identificada massa/cisto renal que necessita de investigação complementar com tomografia computadorizada.\n" : ""}${c.hidronefrose_dir === "Ausente (grau 0)" && c.hidronefrose_esq === "Ausente (grau 0)" && c.calculo === "Ausente" && c.massa === "Ausente" ? "Os rins apresentam aparência normal ao ultrassom.\n" : ""}
+FONTES: EAU Guidelines on Urolithiasis 2024; ACR Appropriateness Criteria 2022.`,
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // USG PRÓSTATA TRANSABDOMINAL — LAUDO ESTRUTURADO
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "usg-prostata-transabdominal",
+    name: "Ultrassonografia de Próstata Transabdominal",
+    shortName: "USG Próstata (TA)",
+    icon: "🔵",
+    category: "Imagem",
+    configFields: [
+      { id: "indicacao", label: "Indicação", type: "select", options: ["LUTS / HPB", "Elevação de PSA", "Seguimento de HPB", "Retenção urinária", "Infecção urinária de repetição", "Pré-operatório de RTU-P / HoLEP"], defaultValue: "LUTS / HPB" },
+      { id: "dim_ap", label: "Diâmetro AP da próstata (cm)", type: "text", defaultValue: "", placeholder: "Ex.: 4,2" },
+      { id: "dim_tl", label: "Diâmetro transverso (cm)", type: "text", defaultValue: "", placeholder: "Ex.: 5,0" },
+      { id: "dim_cc", label: "Diâmetro craniocaudal (cm)", type: "text", defaultValue: "", placeholder: "Ex.: 4,5" },
+      { id: "ipp", label: "IPP — Intravesical Prostatic Protrusion (mm)", type: "text", defaultValue: "", placeholder: "Ex.: 12" },
+      { id: "ecotextura", label: "Ecotextura prostática", type: "select", options: ["Homogênea", "Heterogênea — nódulos hipoecogênicos", "Heterogênea — calcificações", "Heterogênea — mista (nódulos + calcificações)"], defaultValue: "Homogênea" },
+      { id: "zona_transicional", label: "Zona de transição", type: "select", options: ["Normal", "Aumentada (HPB) — nódulos hiperplásicos", "Cisto de zona de transição"], defaultValue: "Normal" },
+      { id: "cistos", label: "Cistos prostáticos", type: "select", options: ["Ausentes", "Cisto de utrículo prostático (linha média)", "Cisto de ducto ejaculatório", "Cisto de retenção"], defaultValue: "Ausentes" },
+      { id: "suspeita_neo", label: "Área suspeita de neoplasia", type: "select", options: ["Ausente", "Nódulo hipoecogênico periférico — suspeito", "Assimetria de zona periférica"], defaultValue: "Ausente" },
+      { id: "rpm", label: "Resíduo pós-miccional (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 45" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const vol = (c.dim_ap && c.dim_tl && c.dim_cc)
+          ? (parseFloat(c.dim_ap) * parseFloat(c.dim_tl) * parseFloat(c.dim_cc) * 0.523).toFixed(1)
+          : "____";
+        const ippNum = parseFloat(c.ipp);
+        const ippClass = !isNaN(ippNum)
+          ? ippNum < 5 ? "Grau I (< 5 mm — sem obstrução significativa)"
+          : ippNum < 10 ? "Grau II (5–9 mm — obstrução leve)"
+          : "Grau III (≥ 10 mm — obstrução significativa, alto risco de retenção)"
+          : "";
+        const rpmNum = parseFloat(c.rpm);
+        const rpmClass = !isNaN(rpmNum)
+          ? rpmNum < 50 ? "normal (< 50 mL)"
+          : rpmNum < 100 ? "limítrofe (50–100 mL)"
+          : "elevado (> 100 mL — significativo)"
+          : "";
+        return `LAUDO — ULTRASSONOGRAFIA DE PRÓSTATA TRANSABDOMINAL
+Indicação: ${c.indicacao}
+Técnica: Estudo em modo-B com transdutor convexo de 3,5–5 MHz, com bexiga em repleção moderada. Avaliação em cortes longitudinais e transversais. Biometria prostática pelo método elipsoide (V = AP × TL × CC × 0,523).
+
+PRÓSTATA:
+- Dimensões: AP ${c.dim_ap || "____"} × TL ${c.dim_tl || "____"} × CC ${c.dim_cc || "____"} cm.
+- Volume estimado: ${vol} mL.
+- Ecotextura: ${c.ecotextura}.
+- Zona de transição: ${c.zona_transicional}.
+- Zona periférica: ${c.suspeita_neo}.
+- Cistos: ${c.cistos}.
+${c.ipp ? `- IPP (Intravesical Prostatic Protrusion): ${c.ipp} mm — ${ippClass}.` : "- IPP: não mensurado."}
+
+BEXIGA:
+- Paredes regulares. Espessura da parede: ____mm.
+- Sem lesões endoluminais.
+${c.rpm ? `- Resíduo pós-miccional: ${c.rpm} mL — ${rpmClass}.` : "- Resíduo pós-miccional: não avaliado."}
+
+CONCLUSÃO:
+Próstata com volume de ${vol} mL.${parseFloat(vol) > 30 ? " Aumento prostático benigno (HPB)." : ""}${c.ipp && parseFloat(c.ipp) >= 10 ? " IPP grau III — alto risco de retenção urinária e falha do tratamento clínico (EAU 2024)." : ""}${c.suspeita_neo !== "Ausente" ? " " + c.suspeita_neo + " — correlacionar com PSA e considerar biópsia guiada (TRUS/fusão)." : ""}${c.rpm && parseFloat(c.rpm) > 100 ? " Resíduo pós-miccional elevado (> 100 mL) — considerar intervenção." : ""}
+
+REFERÊNCIAS: EAU Guidelines on BPH 2024; AUA/SUFU Guideline on BPH 2023; Eur Urol 2020 (IPP como preditor de falha clínica).`;
+      },
+      posOperatorio: (c) => {
+        const vol = (c.dim_ap && c.dim_tl && c.dim_cc)
+          ? (parseFloat(c.dim_ap) * parseFloat(c.dim_tl) * parseFloat(c.dim_cc) * 0.523).toFixed(1)
+          : "____";
+        return `ORIENTAÇÕES PÓS-EXAME — USG PRÓSTATA
+${parseFloat(vol) > 80 ? "⚠️ PRÓSTATA > 80 mL: Considerar HoLEP/prostatectomia aberta. Inibidores da 5-alfa-redutase indicados (dutasterida/finasterida).\n" : ""}${c.ipp && parseFloat(c.ipp) >= 10 ? "⚠️ IPP ≥ 10 mm: Alto risco de retenção urinária. Reavaliação urológica prioritária. Considerar intervenção cirúrgica.\n" : ""}${c.suspeita_neo !== "Ausente" ? "⚠️ ÁREA SUSPEITA: Correlacionar com PSA total/livre e densidade de PSA. Considerar biópsia prostática guiada.\n" : ""}${c.rpm && parseFloat(c.rpm) > 100 ? "⚠️ RPM > 100 mL: Risco de infecção urinária e lesão renal obstrutiva. Considerar cateterismo intermitente ou intervenção cirúrgica.\n" : ""}
+Encaminhar resultado ao urologista para correlação clínica e decisão terapêutica.`;
+      },
+      receitaAlta: () => `PRESCRIÇÃO — USG PRÓSTATA TRANSABDOMINAL
+Exame de imagem — sem prescrição medicamentosa específica.
+Encaminhar resultado ao médico solicitante para correlação clínica.`,
+      orientacoes: (c) => {
+        const vol = (c.dim_ap && c.dim_tl && c.dim_cc)
+          ? (parseFloat(c.dim_ap) * parseFloat(c.dim_tl) * parseFloat(c.dim_cc) * 0.523).toFixed(1)
+          : "____";
+        return `ORIENTAÇÕES AO PACIENTE — USG PRÓSTATA
+
+O QUE É:
+A ultrassonografia de próstata transabdominal é um exame de imagem que avalia o tamanho, a forma e a ecotextura da próstata através da parede abdominal, com a bexiga cheia. Não utiliza radiação.
+
+RESULTADO:
+Volume prostático: ${vol} mL.${parseFloat(vol) > 30 ? " Sua próstata está aumentada (HPB — Hiperplasia Prostática Benigna), o que é comum com o envelhecimento." : " Tamanho dentro da normalidade."}
+${c.ipp && parseFloat(c.ipp) >= 10 ? `IPP: ${c.ipp} mm — A próstata está projetando-se para dentro da bexiga, o que pode dificultar a saída de urina.\n` : ""}${c.suspeita_neo !== "Ausente" ? "Foi identificada uma área suspeita que necessita de investigação adicional com PSA e possivelmente biópsia.\n" : ""}
+
+FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`;
+      },
+    },
+  },
 ];

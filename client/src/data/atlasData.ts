@@ -4403,14 +4403,20 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Hidronefrose — Classificação SFU (Graus I–IV)",
-        "description": "Esquema comparativo dos 4 graus de hidronefrose pela classificação SFU: grau I (pelve levemente dilatada, cálices normais), grau II (pelve e cálices levemente dilatados), grau III (dilatação moderada, parênquima preservado), grau IV (dilatação grave, parênquima afinado < 10 mm).",
-        "searchTerms": "hydronephrosis SFU grading ultrasound classification diagram"
+        "caption": "Hidronefrose — Classificação SFU (Graus I–IV) com USG e Diagrama",
+        "description": "Imagem comparativa dos 4 graus de hidronefrose pela classificação SFU: grau I (pelve levemente dilatada, cálices normais), grau II (pelve e cálices levemente dilatados), grau III (dilatação moderada, parênquima preservado), grau IV (dilatação grave, parênquima afinado). Cada grau é ilustrado com imagem ultrassonográfica e diagrama esquemático correspondente.",
+        "searchTerms": "hydronephrosis SFU grading ultrasound classification diagram grades I II III IV",
+        "imageUrl": "/manus-storage/hidro_pmc13266088_f4_51998247.jpg",
+        "credit": "Qin Y et al. Diagnostics 2025;15(13):1657. CC BY 4.0. PMC13266088.",
+        "sourceUrl": "https://doi.org/10.3390/diagnostics15131657"
       },
       {
-        "caption": "Cálculo Renal — Sombra Acústica e Sinal do Cintilamento",
-        "description": "Imagem ultrassonográfica de cálculo renal mostrando imagem hiperecogênica com sombra acústica posterior (modo-B) e sinal do cintilamento ao Doppler colorido (twinkling artifact).",
-        "searchTerms": "renal calculus ultrasound acoustic shadow twinkling artifact Doppler"
+        "caption": "Cálculo Renal — Sombra Acústica Posterior e Hidronefrose Associada",
+        "description": "Imagem ultrassonográfica de cálculo renal mostrando imagem hiperecogênica com sombra acústica posterior característica (modo-B). A imagem também demonstra hidronefrose associada à obstrução pelo cálculo, com dilatação do sistema coletor.",
+        "searchTerms": "renal calculus ultrasound acoustic shadow twinkling artifact Doppler kidney stone",
+        "imageUrl": "/manus-storage/calc_pmc13117089_f2_4cde5c93.jpg",
+        "credit": "Meng X et al. J Imaging 2025;11(6):163. CC BY 4.0. PMC13117089.",
+        "sourceUrl": "https://doi.org/10.3390/jimaging11060163"
       },
       {
         "caption": "Classificação de Bosniak — Cistos Renais (I a IV)",
@@ -4457,13 +4463,16 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Biometria Prostática — Medidas e Fórmula do Elipsoide",
-        "description": "Diagrama mostrando os três eixos de medição prostática (comprimento, largura, altura) nos cortes longitudinal e transversal, com a fórmula V = C × D × H × 0,52 e a tabela de classificação por volume.",
-        "searchTerms": "prostate volume measurement ultrasound biometry formula ellipsoid transabdominal"
+        "caption": "Próstata ao Ultrassom Transabdominal — Aspecto Normal e HPB",
+        "description": "Imagem ultrassonográfica transabdominal mostrando a próstata (Prostata) em relação à bexiga (Harnblase) e ao reto (Enddarm). A imagem demonstra o aspecto típico da próstata ao modo-B, com a janela acústica obtida através da bexiga repleta.",
+        "searchTerms": "prostate transabdominal ultrasound BPH mode-B bladder acoustic window",
+        "imageUrl": "/manus-storage/prostate_wiki_hpb_2d32bc58.jpg",
+        "credit": "Kalumet. Prostatahyperplasie Koprostase Sono. Wikimedia Commons. CC BY-SA 4.0.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prostatahyperplasie_Koprostase_Sono.jpg"
       },
       {
-        "caption": "IPP — Índice de Protrusão Prostática (Graus I, II e III)",
-        "description": "Imagem ultrassonográfica mostrando a medição do IPP (distância de protrusão do lobo mediano para a bexiga) e os três graus: Grau I ≤ 5 mm, Grau II 6–10 mm, Grau III > 10 mm.",
+        "caption": "IPP — Índice de Protruso Prostática (Graus I, II e III)",
+        "description": "Imagem ultrassonográfica mostrando a medição do IPP (distância de protruso do lobo mediano para a bexiga) e os três graus: Grau I ≤ 5 mm, Grau II 6–10 mm, Grau III > 10 mm.",
         "searchTerms": "intravesical prostatic protrusion IPP ultrasound grading measurement"
       }
     ]
@@ -4576,7 +4585,7 @@ export const atlasToProcedure: Record<string, string> = {
   "hpb-tratamento-cirurgico": "hpb-tratamento-cirurgico",
   "varicocelectomia-subinguinal-microcirurgica": "varicocelectomia",
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
-  "usg-renal": "usg-escrotal-doppler-testicular",
-  "usg-prostata-transabdominal": "usg-escrotal-doppler-testicular",
+  "usg-renal": "usg-renal",
+  "usg-prostata-transabdominal": "usg-prostata-transabdominal",
 };
 

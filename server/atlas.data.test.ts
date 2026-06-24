@@ -187,7 +187,7 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
   });
 
   it("catálogo e Atlas têm contagens esperadas", () => {
-    expect(procedures.length).toBe(59);
+    expect(procedures.length).toBe(61);
     expect(atlasEntries.length).toBe(65);
   });
 

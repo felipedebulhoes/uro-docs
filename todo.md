@@ -88,3 +88,11 @@
 - [x] Enriquecer entrada "usg-doppler-peniano": protocolo detalhado (posicionamento, agulha, timing), tabela ISSM 2012 expandida (6 categorias), PVS flácido, EHS, laudo-modelo, redose
 - [x] Nova entrada "usg-anatomia-peniana-modo-b": anatomia modo-B, variações anatômicas (artéria perfurante, dorsal única), ateromatose, artérias helicinas, fibrose pós-priapismo
 - [x] Nova entrada "usg-doppler-peniano-reversao-seguranca": protocolo de reversão (etilefrina/fenilefrina), TCLE, critérios de alta, manejo de priapismo pós-exame
+
+## USG - Melhorias (Jun 2026)
+- [ ] Adicionar procedimento usg-renal ao catálogo (proceduresExtra.ts) com template de laudo
+- [ ] Adicionar procedimento usg-prostata-transabdominal ao catálogo (proceduresExtra.ts) com template de laudo
+- [ ] Atualizar atlasToProcedure para mapear usg-renal e usg-prostata-transabdominal aos novos procedimentos
+- [x] Buscar e fazer upload de imagens open-access: hidronefrose (PMC13266088 CC BY), cálculo renal (PMC13117089 CC BY), próstata ao USG (Wikimedia CC BY-SA 4.0)
+- [x] Implementar botão "Laudo em Branco" (PDF) nas entradas com laudo-modelo (usg-renal, usg-prostata-transabdominal, usg-escrotal-doppler-testicular)
+- [x] Testes e checkpoint

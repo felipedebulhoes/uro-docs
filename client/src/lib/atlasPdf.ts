@@ -236,3 +236,143 @@ export async function exportAtlasPdf(
   }
   openPrintableDocument(buildAtlasPdfHtml(entry, images));
 }
+
+/**
+ * Verifica se uma entrada do Atlas possui seção de laudo-modelo.
+ * Retorna a seção encontrada ou undefined.
+ */
+export function findLaudoSection(
+  entry: AtlasEntry
+): { title: string; body: string } | undefined {
+  return entry.sections.find((s) =>
+    s.title.toLowerCase().includes("laudo")
+  );
+}
+
+/**
+ * Monta o HTML do laudo em branco para impressão/PDF.
+ * Gera um documento limpo com cabeçalho institucional e apenas a seção
+ * de laudo-modelo, formatado para preenchimento em consultório.
+ */
+export function buildLaudoPdfHtml(entry: AtlasEntry): string {
+  const laudo = findLaudoSection(entry);
+  if (!laudo) return "";
+
+  const today = new Date().toLocaleDateString("pt-BR");
+
+  // Converte markdown do laudo para HTML
+  const laudoHtml = mdToHtml(laudo.body);
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Laudo — ${esc(entry.name)}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Roboto',sans-serif; color:#1a1a1a; line-height:1.7; font-size:11pt; padding:40px; max-width:800px; margin:0 auto; }
+    .doc-header { border-bottom:2px solid #B87333; padding-bottom:12px; margin-bottom:18px; }
+    .doc-header .brand { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .doc-header .brand-logo { width:40px; height:40px; flex:0 0 auto; }
+    .doc-header .brand-mark { font-size:22px; font-weight:800; color:#8a5523; letter-spacing:-.5px; }
+    .doc-header .brand-mark span { color:#B87333; }
+    .doc-header .brand-info { border-left:2px solid #e0d4c5; padding-left:12px; line-height:1.35; }
+    .doc-header .phys-name { font-size:13px; font-weight:700; color:#1a1a1a; }
+    .doc-header .phys-cred { font-size:10.5px; color:#555; }
+    .doc-header .phys-aff { font-size:10px; color:#8a5523; }
+    .doc-title { font-size:18px; color:#1C3D5A; margin:6px 0 2px; }
+    .doc-sub { font-size:11px; color:#666; }
+    .patient-box { border:1px solid #ddd; border-radius:6px; padding:10px 14px; margin:14px 0 18px; background:#fafafa; }
+    .patient-box .row { display:flex; gap:24px; margin-bottom:6px; }
+    .patient-box .field { flex:1; }
+    .patient-box .label { font-size:9pt; color:#888; text-transform:uppercase; letter-spacing:.5px; }
+    .patient-box .line { border-bottom:1px solid #ccc; min-height:20px; margin-top:2px; }
+    .laudo-content { margin-top:8px; }
+    .laudo-content p { margin:6px 0; }
+    .laudo-content ul, .laudo-content ol { margin:6px 0 6px 22px; }
+    .laudo-content li { margin:3px 0; }
+    .laudo-content strong { color:#1C3D5A; }
+    .laudo-content table { border-collapse:collapse; width:100%; margin:8px 0; font-size:9.5pt; }
+    .laudo-content th, .laudo-content td { border:1px solid #ddd; padding:5px 7px; text-align:left; }
+    .laudo-content th { background:#f3f3f3; }
+    .laudo-content h1, .laudo-content h2, .laudo-content h3 { color:#8a5523; margin:12px 0 6px; }
+    .laudo-content h2 { font-size:13.5pt; border-bottom:1px solid #e6dccd; padding-bottom:4px; }
+    .laudo-content h3 { font-size:12pt; }
+    .assinatura { margin-top:40px; border-top:1px solid #ddd; padding-top:16px; }
+    .assinatura .linha { border-bottom:1px solid #333; width:260px; margin-bottom:4px; }
+    .assinatura .texto { font-size:10pt; color:#444; }
+    .footer { margin-top:28px; padding-top:10px; border-top:1px solid #ddd; font-size:8.5pt; color:#888; text-align:center; }
+    @media print {
+      body { padding:22px; }
+      .no-print { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <div class="brand">
+      ${LOGO_SVG}
+      <div class="brand-mark">Uro<span>Docx</span></div>
+      <div class="brand-info">
+        <div class="phys-name">Dr. Felipe Bulhões</div>
+        <div class="phys-cred">Urologista (Instituto D'Or) · Cirurgião Geral TCBC · CRM-SP 202.291</div>
+        <div class="phys-aff">Membro da AUA (International Resident in Training), EAU (Junior International Member) e SBU</div>
+      </div>
+    </div>
+    <h1 class="doc-title">${esc(entry.name)}</h1>
+    <div class="doc-sub">${esc(entry.category)} · Gerado em ${today}</div>
+  </header>
+
+  <div class="patient-box">
+    <div class="row">
+      <div class="field">
+        <div class="label">Paciente</div>
+        <div class="line"></div>
+      </div>
+      <div class="field" style="max-width:120px">
+        <div class="label">Idade</div>
+        <div class="line"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <div class="label">Data do Exame</div>
+        <div class="line"></div>
+      </div>
+      <div class="field">
+        <div class="label">Solicitante</div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="laudo-content">
+    ${laudoHtml}
+  </div>
+
+  <div class="assinatura">
+    <div class="linha"></div>
+    <div class="texto">Dr. Felipe Bulhões &mdash; CRM-SP 202.291</div>
+    <div class="texto" style="font-size:9.5pt;color:#888;">Urologista &middot; Instituto D'Or de Ensino e Pesquisa</div>
+  </div>
+
+  <div class="footer">
+    Dr. Felipe Bulhões &mdash; CRM-SP 202.291 &mdash; Urologia &amp; Andrologia &mdash; Instituto D'Or de Ensino e Pesquisa<br/>
+    Laudo gerado pelo UroDocx &mdash; uso pessoal/educacional.
+  </div>
+  <script>window.onload = function(){ window.print(); };</script>
+</body>
+</html>`;
+}
+
+/**
+ * Exporta o laudo-modelo em branco como PDF (via janela de impressão).
+ * Retorna false se a entrada não tiver seção de laudo.
+ */
+export function exportLaudoPdf(entry: AtlasEntry): boolean {
+  const html = buildLaudoPdfHtml(entry);
+  if (!html) return false;
+  openPrintableDocument(html);
+  return true;
+}
