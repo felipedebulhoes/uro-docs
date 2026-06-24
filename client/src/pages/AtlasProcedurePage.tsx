@@ -394,7 +394,7 @@ function FigureCard({
             alt={fig.caption}
             loading="lazy"
             onError={() => setImgError(true)}
-            className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+            className="w-full h-full object-contain motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover:scale-[1.03]"
           />
           <span className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
             <Maximize2 className="w-3.5 h-3.5" />

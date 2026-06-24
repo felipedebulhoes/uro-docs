@@ -42,13 +42,13 @@
 - [x] Salvar checkpoint
 
 # Lightbox de figuras do Atlas
-- [ ] Componente Lightbox em tela cheia (Dialog) com imagem ampliada
-- [ ] Clicar na imagem do FigureCard abre o lightbox
-- [ ] Navegação entre figuras com imagem da entrada (anterior/próxima) por botão e teclado (setas)
-- [ ] Fechar por ESC, clique no backdrop e botão X
-- [ ] Exibir legenda, descrição e crédito no lightbox + link da fonte
-- [ ] Respeitar prefers-reduced-motion; foco acessível
-- [ ] Testes e checkpoint
+- [x] Componente Lightbox em tela cheia (Dialog) com imagem ampliada
+- [x] Clicar na imagem do FigureCard abre o lightbox
+- [x] Navegação entre figuras com imagem da entrada (anterior/próxima) por botão e teclado (setas)
+- [x] Fechar por ESC, clique no backdrop e botão X
+- [x] Exibir legenda, descrição e crédito no lightbox + link da fonte
+- [x] Respeitar prefers-reduced-motion (motion-safe no zoom); foco acessível via Radix Dialog
+- [x] Testes e checkpoint
 
 # Lightbox de figuras do Atlas (concluído)
 
@@ -59,3 +59,7 @@
 - [x] Lógica pura extraída para client/src/lib/lightboxNav.ts (testável)
 - [x] 7 testes vitest em lightboxNav.test.ts (build de figuras, wrap circular, mapeamento de índice)
 - [x] TypeScript sem erros, 207/207 testes passando, build de produção OK
+
+# Reforço de acessibilidade do lightbox
+- [x] Regra global @media (prefers-reduced-motion: reduce) no index.css neutraliza animações de Dialog/overlay (fade/zoom) e transições, cobrindo o lightbox sem editar o componente UI compartilhado
+- [x] TypeScript sem erros, 207/207 testes passando
