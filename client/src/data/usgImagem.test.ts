@@ -99,7 +99,7 @@ describe("Novas entradas do Atlas (Lote OA 6)", () => {
     const e = getAtlasEntry("usg-escrotal-doppler-testicular");
     expect(e).toBeDefined();
     expect(e!.category).toBe("Andrologia / Imagem");
-    expect(e!.figures.length).toBe(4);
+    expect(e!.figures.length).toBe(7); // atualizado: +3 imagens (volumetria PMC13281861, varicocele Wikimedia CC BY 3.0, hidrocele CC0, massa paratesticular PMC13283463)
   });
 
   it("USG peniano tem 7 figuras (incluindo priapismo isquêmico)", () => {

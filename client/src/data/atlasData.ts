@@ -4084,14 +4084,41 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia testicular normal e volumetria ao modo-B",
-        "description": "Corte longitudinal de testículo de ecotextura homogênea com cursores de medida dos três eixos (D1–D3) e cálculo de volume (~20 mL), demonstrando a técnica de volumetria pela fórmula do elipsóide",
-        "searchTerms": "Normal testis ultrasound homogeneous echotexture volume measurement ellipsoid B-mode"
+        "caption": "Volumetria testicular ao modo-B: vistas transversal e longitudinal com medidas",
+        "description": "Testículo direito (Rt TESTICLE) em cortes transversal e longitudinal com cursores de medida dos três eixos (D1 = 3,85 cm, D2 = 1,98 cm, D3 = 2,66 cm) e volume calculado de 10,60 mL pela fórmula do elipsóide — demonstração da técnica de volumetria testicular ao modo-B",
+        "searchTerms": "Normal testis ultrasound volume measurement ellipsoid B-mode D1 D2 D3",
+        "imageUrl": "/manus-storage/escrotal_volumetria_testicular_1aa29f73.jpg",
+        "credit": "Jama A, et al. Normal Reference Values for Testicular Volume in Adult Somali Men. Res Rep Urol. 2026;18:615746. (CC BY 4.0) — PMC13281861",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13281861/"
       },
       {
         "caption": "Microlitíase testicular (padrão 'starry sky')",
         "description": "Múltiplos focos hiperecogênicos puntiformes (1–3 mm) distribuídos difusamente pelo parênquima testicular, sem sombra acústica posterior — aspecto clássico de microlitíase testicular ('céu estrelado')",
         "searchTerms": "Testicular microlithiasis ultrasound starry sky hyperechoic foci no acoustic shadowing"
+      },
+      {
+        "caption": "Varícocele escrotal: plexo pampiniforme dilatado ao modo-B e Doppler colorido",
+        "description": "(a) Modo-B mostrando veias do plexo pampiniforme dilatadas (> 3 mm) ao redor do testículo; (b) Doppler colorido demonstrando fluxo venoso bidirecional com refluxo durante manobra de Valsalva — critérios diagnósticos de varícocele",
+        "searchTerms": "Varicocele scrotal ultrasound pampiniform plexus dilated veins color doppler Valsalva reflux",
+        "imageUrl": "/manus-storage/escrotal_varicocele_doppler_4f97e183.jpg",
+        "credit": "Mak CW, Tzeng WS. Scrotal ultrasonography of varicocele. Wikimedia Commons. (CC BY 3.0)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scrotal_ultrasonography_of_varicocele.jpg"
+      },
+      {
+        "caption": "Hidrocele com apêndice testicular ao Doppler colorido",
+        "description": "Coleção anecóica ao redor do testículo (hidrocele) com apêndice testicular visível e sinal de fluxo ao Doppler colorido — diferenciação de torção do apêndice testicular",
+        "searchTerms": "Hydrocele testicular appendix ultrasound color doppler scrotal",
+        "imageUrl": "/manus-storage/escrotal_hidrocele_apendice_a5c1e886.jpg",
+        "credit": "Häggström M. Ultrasonography of an appendix on a testicle in a hydrocele. Wikimedia Commons. (CC0 / Public Domain)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_an_appendix_on_a_testicle_in_a_hydrocele.jpg"
+      },
+      {
+        "caption": "Massa paratesticular: tumor de tecidos moles com Doppler colorido",
+        "description": "Testículo esquerdo (ESQ) ao Doppler colorido mostrando massa paratesticular heterogênea e infiltrativa com vascularização periférica — aspecto de tumor de partes moles paratesticular (fibroma solitário)",
+        "searchTerms": "Paratesticular mass ultrasound color doppler heterogeneous soft tissue tumor scrotal",
+        "imageUrl": "/manus-storage/escrotal_massa_paratesticular_6f764add.jpg",
+        "credit": "Abdelgadir A, et al. Paratesticular Solitary Fibrous Tumor: A Case Report. Cureus. 2026;18:e109443. (CC BY 4.0) — PMC13283463",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13283463/"
       },
       {
         "caption": "Torção do cordão espermático: ausência de fluxo ao Doppler",
@@ -4511,9 +4538,12 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Espessura da parede vesical (EPV) — técnica de medição ao USG",
-        "description": "Imagem ultrassonográfica demonstrando a técnica de medição da espessura da parede vesical (EPV) na parede anterior com bexiga em replecão adequada. EPV normal ≤ 3 mm; EPV > 5 mm sugere hipertrofia do detrusor.",
-        "searchTerms": "bladder wall thickness ultrasound measurement detrusor hypertrophy EPV BWT"
+        "caption": "Nódulo endoluminal vesical ao USG transabdominal",
+        "description": "Imagem ultrassonográfica transabdominal de bexiga repleta demonstrando nódulo endoluminal (15 × 7,6 mm) na parede vesical, com contornos irregulares e sombra acustica parcial — achado que indica investigação com cistoscopia em contexto de hematuria",
+        "searchTerms": "bladder tumor nodule endoluminal ultrasound transabdominal hematuria",
+        "imageUrl": "/manus-storage/vui_bexiga_nodulo_endoluminal_a84f4106.jpg",
+        "credit": "Suwannarurk K et al. Bladder mass in a patient with hematuria. Clin Case Rep. 2026;14:e72920. (CC BY 4.0) — PMC13263390",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13263390/"
       },
       {
         "caption": "Resíduo pós-miccional (RPM) — medição ultrassonográfica",

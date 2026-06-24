@@ -103,3 +103,11 @@
 - [x] Criar procedimento interativo "usg-vias-urinarias-inferiores" no proceduresExtra.ts com campos de RPM, EPV, IPP, divertículos, cálculo, lesão
 - [x] Implementar botão "Laudo PDF" (azul) na aba Descrição do ProcedurePage.tsx com assinatura e barra de paciente
 - [x] Testes e checkpoint (218/218)
+
+# Lote USG Imagens + Doppler Peniano (Jun 2026)
+- [ ] Buscar imagens open-access PMC/Wikimedia para usg-escrotal-doppler-testicular (testículo normal, varicocele, hidrocele, massa)
+- [ ] Buscar imagens open-access PMC/Wikimedia para usg-vias-urinarias-inferiores (bexiga normal, RPM, IPP, divertículo)
+- [ ] Upload das imagens aprovadas e atualizar atlasData.ts com imageUrl, credit e sourceUrl
+- [ ] Criar procedimento interativo usg-doppler-peniano no proceduresExtra.ts com campos PSV/EDV/RI e calculadora ISSM 2012
+- [ ] Mapear usg-doppler-peniano no atlasToProcedure
+- [ ] Testes e checkpoint
