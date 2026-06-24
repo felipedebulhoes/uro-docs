@@ -113,8 +113,12 @@
 - [x] Testes e checkpoint (218/218) - versao c2b05d34
 
 # Lote Atlas Hematúria + IPSS + Bexiga Normal (Jun 2026)
-- [ ] Buscar imagem open-access de bexiga normal ao USG transabdominal com EPV medida (PMC/Wikimedia)
-- [ ] Upload da imagem e adicionar como figura "Bexiga normal" na entrada usg-vias-urinarias-inferiores
-- [ ] Criar entrada do Atlas "investigacao-hematuria" com fluxograma EAU 2024, critérios de urgência, laudo-modelo e referências
-- [ ] Implementar calculadora de IPSS interativa embutida na entrada HPB do Atlas (AtlasProcedurePage.tsx): 7 questões, escore automático, interpretação e recomendação de conduta
-- [ ] Testes e checkpoint
+- [x] Buscar imagem open-access de bexiga normal ao USG transabdominal com EPV medida (PMC/Wikimedia)
+- [x] Upload da imagem e adicionar como figura "Bexiga normal" na entrada usg-vias-urinarias-inferiores
+- [x] Criar entrada do Atlas "investigacao-hematuria" com fluxograma EAU 2024, critérios de urgência, laudo-modelo e referências
+- [x] Implementar calculadora de IPSS interativa embutida na entrada HPB do Atlas (AtlasProcedurePage.tsx): 7 questões, escore automático, interpretação e recomendação de conduta
+- [x] Testes e checkpoint
+
+# Exportação em Lote (Jun 2026)
+- [x] Implementar botão "Exportar Tudo (PDF)" no ProcedurePage.tsx que gera um PDF único com todas as abas em sequência (descrição cirúrgica, pós-operatório, receita e orientações) — já existia, label atualizado para "Exportar Tudo" com tooltip explicativo
+- [x] Testes e checkpoint (218/218)

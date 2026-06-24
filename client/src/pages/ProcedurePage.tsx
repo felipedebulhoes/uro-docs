@@ -754,9 +754,10 @@ export default function ProcedurePage() {
                 variant="outline"
                 className="h-7 text-xs gap-1 border-green-500/30 text-green-400 hover:bg-green-500/10"
                 onClick={exportAllPDF}
+                title="Exportar todos os documentos como PDF único (descrição, PO, receita e orientações)"
               >
                 <Download className="w-3 h-3" />
-                <span className="hidden sm:inline">PDF</span>
+                <span className="hidden sm:inline">Exportar Tudo</span>
               </Button>
               <Button
                 size="sm"
