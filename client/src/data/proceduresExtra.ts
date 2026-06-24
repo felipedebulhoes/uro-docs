@@ -3080,4 +3080,163 @@ FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`;
       },
     },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // USG ESCROTAL / DOPPLER TESTICULAR — LAUDO ESTRUTURADO
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "usg-escrotal-doppler-testicular",
+    name: "Ultrassonografia Escrotal com Doppler Testicular",
+    shortName: "USG Escrotal/Doppler",
+    icon: "🔊",
+    category: "Imagem",
+    configFields: [
+      { id: "indicacao", label: "Indicação", type: "select", options: ["Dor escrotal aguda", "Massa escrotal / testicular", "Investigação de infertilidade", "Trauma escrotal", "Varicocele", "Seguimento de microlitíase", "Pós-orquiectomia (testículo contralateral)"], defaultValue: "Massa escrotal / testicular" },
+      { id: "vol_dir", label: "Volume testículo direito (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 18,5" },
+      { id: "vol_esq", label: "Volume testículo esquerdo (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 17,2" },
+      { id: "ecotextura_dir", label: "Ecotextura testículo direito", type: "select", options: ["Homogênea", "Heterogênea difusa", "Nódulo hipoecogênico", "Nódulo hiperecogênico", "Microlitíase clássica (≥ 5 focos)", "Microlitíase limitada (< 5 focos)"], defaultValue: "Homogênea" },
+      { id: "ecotextura_esq", label: "Ecotextura testículo esquerdo", type: "select", options: ["Homogênea", "Heterogênea difusa", "Nódulo hipoecogênico", "Nódulo hiperecogênico", "Microlitíase clássica (≥ 5 focos)", "Microlitíase limitada (< 5 focos)"], defaultValue: "Homogênea" },
+      { id: "doppler_dir", label: "Doppler testículo direito", type: "select", options: ["Fluxo intratesticular preservado", "Fluxo reduzido (assimetria)", "Fluxo ausente", "Hiperemia (epididimite/orquite)"], defaultValue: "Fluxo intratesticular preservado" },
+      { id: "doppler_esq", label: "Doppler testículo esquerdo", type: "select", options: ["Fluxo intratesticular preservado", "Fluxo reduzido (assimetria)", "Fluxo ausente", "Hiperemia (epididimite/orquite)"], defaultValue: "Fluxo intratesticular preservado" },
+      { id: "epididimo_dir", label: "Epidídimo direito", type: "select", options: ["Normal", "Aumentado / hipoecogênico (epididimite)", "Cisto de epidídimo", "Espermatocele"], defaultValue: "Normal" },
+      { id: "epididimo_esq", label: "Epidídimo esquerdo", type: "select", options: ["Normal", "Aumentado / hipoecogênico (epididimite)", "Cisto de epidídimo", "Espermatocele"], defaultValue: "Normal" },
+      { id: "varicocele", label: "Varicocele", type: "select", options: ["Ausente", "Grau I — refluxo só à Valsalva (< 2,5 mm em repouso)", "Grau II — veias 2,5–3,5 mm, refluxo à Valsalva", "Grau III — veias > 3,5 mm, refluxo espontâneo"], defaultValue: "Ausente" },
+      { id: "hidrocele", label: "Hidrocele", type: "select", options: ["Ausente", "Hidrocele direita", "Hidrocele esquerda", "Hidrocele bilateral"], defaultValue: "Ausente" },
+      { id: "massa", label: "Massa / lesão focal", type: "select", options: ["Ausente", "Nódulo sólido intratesticular suspeito", "Cisto simples intratesticular", "Cisto epidermoide (aspecto em alvo)", "Massa extratesticular benigna"], defaultValue: "Ausente" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const volDir = parseFloat(c.vol_dir);
+        const volEsq = parseFloat(c.vol_esq);
+        const atrofiaDir = !isNaN(volDir) && volDir < 12 ? " — atrofia testicular (< 12 mL)" : "";
+        const atrofiaEsq = !isNaN(volEsq) && volEsq < 12 ? " — atrofia testicular (< 12 mL)" : "";
+        const assimetria = !isNaN(volDir) && !isNaN(volEsq) && Math.abs(volDir - volEsq) / Math.max(volDir, volEsq) > 0.2
+          ? `\nObs.: Assimetria de volume testicular > 20% (D: ${c.vol_dir} mL / E: ${c.vol_esq} mL) — correlacionar com função hormonal e seminal.`
+          : "";
+        return `LAUDO — ULTRASSONOGRAFIA ESCROTAL COM DOPPLER TESTICULAR
+Indicação: ${c.indicacao}
+Técnica: Transdutor linear de alta frequência (7,5–18 MHz), paciente em decúbito dorsal. Modo-B comparativo + Doppler colorido com mesmos parâmetros em ambos os testículos. Pesquisa de varicocele em repouso e durante manobra de Valsalva em ortostase.
+
+TESTÍCULO DIREITO:
+- Volume: ${c.vol_dir || "____"} mL${atrofiaDir}.
+- Ecotextura: ${c.ecotextura_dir}.
+- Epidídimo: ${c.epididimo_dir}.
+- Doppler: ${c.doppler_dir}.
+
+TESTÍCULO ESQUERDO:
+- Volume: ${c.vol_esq || "____"} mL${atrofiaEsq}.
+- Ecotextura: ${c.ecotextura_esq}.
+- Epidídimo: ${c.epididimo_esq}.
+- Doppler: ${c.doppler_esq}.
+
+VARICOCELE: ${c.varicocele}.
+HIDROCELE: ${c.hidrocele}.
+MASS/LESÃO FOCAL: ${c.massa}.${assimetria}
+
+CONCLUSÃO:
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE — SUSPEITA DE TORSÃO: Encaminhar para exploração cirúrgica de urgência imediatamente. Não aguardar exames adicionais.\n" : ""}${c.massa !== "Ausente" ? c.massa + " — correlacionar com marcadores tumorais (AFP, β-hCG, LDH) e considerar orquiectomia radical inguinal.\n" : ""}${c.varicocele !== "Ausente" ? c.varicocele + ".\n" : ""}${c.epididimo_dir.includes("epididimite") || c.epididimo_esq.includes("epididimite") ? "Sinais de epididimite — tratamento clínico (antibioticoterapia).\n" : ""}${c.doppler_dir === "Fluxo intratesticular preservado" && c.doppler_esq === "Fluxo intratesticular preservado" && c.massa === "Ausente" && c.varicocele === "Ausente" && !c.epididimo_dir.includes("epididimite") && !c.epididimo_esq.includes("epididimite") ? "Testículos de volume, ecotextura e vascularização normais. Epidídimos sem alterações." : ""}
+
+REFERÊNCIAS: EAU Guidelines on Sexual & Reproductive Health 2024; Consenso EFSUMB/EAA (Lotti F et al. Int Braz J Urol 2026).`;
+      },
+      posOperatorio: (c) => `ORIENTAÇÕES PÓS-EXAME — USG ESCROTAL
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE: Encaminhar para cirurgia de urgência imediatamente (torsão testicular).\n" : ""}${c.massa !== "Ausente" ? "⚠️ MASSA TESTICULAR: Solicitar AFP, β-hCG, LDH. Encaminhar para urologista com urgência.\n" : ""}${c.varicocele !== "Ausente" ? "⚠️ VARICOCELE: Correlacionar com espermograma e FSH/LH. Considerar varicocelectomia em casos selecionados.\n" : ""}${c.ecotextura_dir.includes("Microlitíase") || c.ecotextura_esq.includes("Microlitíase") ? "⚠️ MICROLITÍASE: Avaliar fatores de risco (criptorquidia, infertilidade, tumor prévio). Seguimento anual se fatores de risco presentes.\n" : ""}
+Encaminhar resultado ao urologista para correlação clínica.`,
+      receitaAlta: () => `PRESCRIÇÃO — USG ESCROTAL COM DOPPLER
+Exame de imagem — sem prescrição medicamentosa específica.
+Encaminhar resultado ao médico solicitante para correlação clínica.`,
+      orientacoes: (c) => `ORIENTAÇÕES AO PACIENTE — USG ESCROTAL COM DOPPLER
+
+O QUE É:
+A ultrassonografia escrotal com Doppler avalia os testículos, epidídimos e a vascularização da bolsa testicular. Não utiliza radiação ionizante.
+
+RESULTADO:
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "ATENÇÃO: Foi identificada ausência de fluxo sanguíneo em um testículo. Isso pode indicar torsão testicular, que é uma emergência médica. Procure atendimento cirúrgico imediatamente.\n" : ""}${c.massa !== "Ausente" ? "Foi identificada uma lesão testicular que necessita de investigação adicional com exames de sangue e avaliação do urologista.\n" : ""}${c.varicocele !== "Ausente" ? "Foi identificada varicocele (dilatação das veias do testículo). Seu urologista avaliará se há necessidade de tratamento.\n" : ""}${c.doppler_dir === "Fluxo intratesticular preservado" && c.doppler_esq === "Fluxo intratesticular preservado" && c.massa === "Ausente" ? "Os testículos apresentam vascularização e ecotextura normais ao ultrassom.\n" : ""}
+FONTES: EAU Guidelines on Sexual & Reproductive Health 2024.`,
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // USG VIAS URINÁRIAS INFERIORES — LAUDO ESTRUTURADO
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "usg-vias-urinarias-inferiores",
+    name: "Ultrassonografia das Vias Urinárias Inferiores",
+    shortName: "USG VUI",
+    icon: "💧",
+    category: "Imagem",
+    configFields: [
+      { id: "indicacao", label: "Indicação", type: "select", options: ["LUTS / HPB", "Hematúria", "Infecção urinária de repetição", "Retenção urinária", "Bexiga hiperativa", "Incontinuência urinária", "Pós-operatório"], defaultValue: "LUTS / HPB" },
+      { id: "vol_pre", label: "Volume pré-miccional (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 280" },
+      { id: "rpm", label: "Resíduo pós-miccional (mL)", type: "text", defaultValue: "", placeholder: "Ex.: 85" },
+      { id: "epv", label: "Espessura da parede vesical (mm)", type: "text", defaultValue: "", placeholder: "Ex.: 4,2" },
+      { id: "ipp", label: "IPP — Intravesical Prostatic Protrusion (mm)", type: "text", defaultValue: "", placeholder: "Ex.: 11" },
+      { id: "parede", label: "Paredes vesicais", type: "select", options: ["Regulares", "Irregulares / espessadas difusamente", "Espessamento focal suspeito"], defaultValue: "Regulares" },
+      { id: "diverticulo", label: "Divertículos vesicais", type: "select", options: ["Ausentes", "Divertículo único (descrever)", "Múltiplos divertículos"], defaultValue: "Ausentes" },
+      { id: "calculo", label: "Cálculo vesical", type: "select", options: ["Ausente", "Cálculo único móvel", "Múltiplos cálculos", "Cálculo fixo (em divertículo)"], defaultValue: "Ausente" },
+      { id: "lesao", label: "Lesão endoluminal", type: "select", options: ["Ausente", "Pólipo / lesão sólida suspeita", "Coagulo (sem vascularização ao Doppler)"], defaultValue: "Ausente" },
+    ],
+    templates: {
+      descricao: (c) => {
+        const rpmNum = parseFloat(c.rpm);
+        const rpmClass = !isNaN(rpmNum)
+          ? rpmNum < 50 ? "normal (< 50 mL)"
+          : rpmNum < 100 ? "limitórofe (50–100 mL)"
+          : rpmNum < 300 ? "elevado (> 100 mL)"
+          : "retenção crônica (> 300 mL)"
+          : "";
+        const epvNum = parseFloat(c.epv);
+        const epvClass = !isNaN(epvNum)
+          ? epvNum <= 3 ? "normal (≤ 3 mm)"
+          : epvNum <= 5 ? "limitórofe (3–5 mm)"
+          : "aumentada (> 5 mm — hipertrofia do detrusor)"
+          : "";
+        const ippNum = parseFloat(c.ipp);
+        const ippClass = !isNaN(ippNum)
+          ? ippNum < 5 ? "Grau I (< 5 mm)"
+          : ippNum < 10 ? "Grau II (5–9 mm)"
+          : "Grau III (≥ 10 mm — alto risco de retenção)"
+          : "";
+        return `LAUDO — ULTRASSONOGRAFIA DAS VIAS URINÁRIAS INFERIORES
+Indicação: ${c.indicacao}
+Técnica: Estudo em modo-B com transdutor convexo de 3,5–5 MHz, com bexiga em replecão moderada. Cortes longitudinais e transversais. Após a micção, avaliação do resíduo pós-miccional.
+
+BEXIGA (pré-miccional):
+- Volume pré-miccional: ${c.vol_pre || "____"} mL.
+- Paredes: ${c.parede}. Espessura: ${c.epv || "____"} mm${epvClass ? " — " + epvClass : ""}.
+- Conteúdo: anecoico.${c.calculo !== "Ausente" ? " " + c.calculo + "." : ""}
+- Divertículos: ${c.diverticulo}.
+- Lesão endoluminal: ${c.lesao}.
+${c.ipp ? `- IPP: ${c.ipp} mm — ${ippClass}.` : "- IPP: não mensurado."}
+
+BEXIGA (pós-miccional):
+- Resíduo pós-miccional: ${c.rpm || "____"} mL${rpmClass ? " — " + rpmClass : ""}.
+
+CONCLUSÃO:
+${c.lesao !== "Ausente" && c.lesao !== "Coagulo (sem vascularização ao Doppler)" ? c.lesao + " — cistoscopia indicada para investigação.\n" : ""}${c.ipp && parseFloat(c.ipp) >= 10 ? "IPP grau III (≥ 10 mm) — alto risco de retenção urinária e falha do tratamento clínico (EAU 2024).\n" : ""}${!isNaN(rpmNum) && rpmNum > 100 ? "RPM elevado (> 100 mL) — risco de infecção e lesão renal obstrutiva.\n" : ""}${!isNaN(epvNum) && epvNum > 5 ? "EPV aumentada (> 5 mm) — hipertrofia do detrusor por obstrução ou bexiga hiperativa.\n" : ""}${c.lesao === "Ausente" && c.diverticulo === "Ausentes" && c.calculo === "Ausente" && (isNaN(rpmNum) || rpmNum < 50) && (isNaN(ippNum) || ippNum < 5) && (isNaN(epvNum) || epvNum <= 3) ? "Bexiga sem alterações morfológicas. RPM dentro da normalidade." : ""}
+
+REFERÊNCIAS: EAU Guidelines on Non-neurogenic Male LUTS 2024; Cetrus — Curso de Ultrassonografia em Urologia.`;
+      },
+      posOperatorio: (c) => {
+        const rpmNum = parseFloat(c.rpm);
+        const ippNum = parseFloat(c.ipp);
+        return `ORIENTAÇÕES PÓS-EXAME — USG VUI
+${c.lesao !== "Ausente" && c.lesao !== "Coagulo (sem vascularização ao Doppler)" ? "⚠️ LESÃO ENDOLUMINAL: Cistoscopia obrigatória para investigação. Não retardar.\n" : ""}${!isNaN(ippNum) && ippNum >= 10 ? "⚠️ IPP ≥ 10 mm: Alto risco de retenção urinária. Reavaliação urológica prioritária. Considerar intervenção cirúrgica.\n" : ""}${!isNaN(rpmNum) && rpmNum > 100 ? "⚠️ RPM > 100 mL: Risco de infecção urinária e lesão renal obstrutiva. Considerar cateterismo intermitente.\n" : ""}
+Encaminhar resultado ao urologista para correlação clínica e decisão terapêutica.`;
+      },
+      receitaAlta: () => `PRESCRIÇÃO — USG VIAS URINÁRIAS INFERIORES
+Exame de imagem — sem prescrição medicamentosa específica.
+Encaminhar resultado ao médico solicitante para correlação clínica.`,
+      orientacoes: (c) => {
+        const rpmNum = parseFloat(c.rpm);
+        return `ORIENTAÇÕES AO PACIENTE — USG VIAS URINÁRIAS INFERIORES
+
+O QUE É:
+A ultrassonografia das vias urinárias inferiores avalia a bexiga e as estruturas adjacentes. Não utiliza radiação ionizante.
+
+RESULTADO:
+${!isNaN(rpmNum) && rpmNum > 100 ? `Resíduo pós-miccional elevado (${c.rpm} mL). Isso significa que após urinar, ainda resta urina na bexiga, o que pode causar infecções ou danos renais.\n` : ""}${c.lesao !== "Ausente" && c.lesao !== "Coagulo (sem vascularização ao Doppler)" ? "Foi identificada uma lesão na bexiga que necessita de investigação adicional com cistoscopia.\n" : ""}${c.lesao === "Ausente" && (isNaN(rpmNum) || rpmNum < 50) ? "A bexiga apresenta aparência normal ao ultrassom.\n" : ""}
+FONTES: EAU Guidelines on Non-neurogenic Male LUTS 2024.`;
+      },
+    },
+  },
 ];

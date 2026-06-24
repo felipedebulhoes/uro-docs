@@ -96,3 +96,10 @@
 - [x] Buscar e fazer upload de imagens open-access: hidronefrose (PMC13266088 CC BY), cálculo renal (PMC13117089 CC BY), próstata ao USG (Wikimedia CC BY-SA 4.0)
 - [x] Implementar botão "Laudo em Branco" (PDF) nas entradas com laudo-modelo (usg-renal, usg-prostata-transabdominal, usg-escrotal-doppler-testicular)
 - [x] Testes e checkpoint
+
+# Lote USG Avançado (Jun 2026)
+- [x] Criar entrada do Atlas "usg-vias-urinarias-inferiores" (atlasData.ts) com protocolo de avaliação vesical: espessura da parede, divertículos, resíduo pós-miccional, IPP, bexiga hiperativa
+- [x] Criar procedimento interativo "usg-escrotal-doppler-testicular" no proceduresExtra.ts com campos de volume testicular, Doppler e conclusão automatizada
+- [x] Criar procedimento interativo "usg-vias-urinarias-inferiores" no proceduresExtra.ts com campos de RPM, EPV, IPP, divertículos, cálculo, lesão
+- [x] Implementar botão "Laudo PDF" (azul) na aba Descrição do ProcedurePage.tsx com assinatura e barra de paciente
+- [x] Testes e checkpoint (218/218)

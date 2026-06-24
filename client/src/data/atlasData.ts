@@ -4476,6 +4476,61 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "intravesical prostatic protrusion IPP ultrasound grading measurement"
       }
     ]
+  },
+  {
+    "id": "usg-vias-urinarias-inferiores",
+    "name": "Ultrassonografia das Vias Urinárias Inferiores",
+    "category": "Imagem",
+    "icon": "💧",
+    "evidence": "EAU Guidelines on Non-neurogenic Male LUTS 2024 + EAU Guidelines on Urinary Incontinence 2024 + Consenso EFSUMB (US vesical) + Cetrus",
+    "sections": [
+      {
+        "title": "Indicações e protocolo",
+        "body": "A ultrassonografia das vias urinárias inferiores (VUI) avalia a bexiga, a uretra proximal e estruturas adjacentes. É o exame de imagem de primeira linha para avaliação funcional e morfológica do trato urinário inferior, sem radiação ionizante.\n\n**Indicações principais:**\n- **LUTS / HPB:** avaliação do resíduo pós-miccional (RPM), IPP, espessura da parede vesical (EPV) e volume prostático.\n- **Incontinuência urinária:** avaliação da mobilidade do colo vesical e uretra proximal.\n- **Hematuria:** pesquisa de lesões endoluminais, espessamento parietal focal.\n- **Infecção urinária de repetição:** pesquisa de divertículos, cálculos vesicais, resíduo.\n- **Disfunção miccional / bexiga hiperativa:** EPV aumentada como marcador de obstrução.\n- **Pós-operatório:** avaliação de anastomose, fístulas, coletarês.\n\n**Técnica:**\nTransdutor convexo 3,5–5 MHz (suprapúbico) com bexiga em replecão moderada (150–300 mL). Cortes longitudinais e transversais. Após a micção, repetir para calcular o RPM. Para avaliação da uretra e colo vesical, transdutor linear de alta frequência (7,5–12 MHz) por via perineal."
+      },
+      {
+        "title": "Parâmetros de avaliação vesical",
+        "body": "**1. Volume vesical e resíduo pós-miccional (RPM):**\nFórmula: V = comprimento × largura × altura × 0,52. O RPM é medido após micção espontânea.\n\n| RPM | Interpretação | Conduta |\n|---|---|---|\n| < 50 mL | Normal | Sem intervenção |\n| 50–100 mL | Limitórofe | Monitorar, correlacionar com sintomas |\n| > 100 mL | Elevado | Risco de infecção e lesão renal; avaliar intervenção |\n| > 300 mL | Retenção crônica | Cateterismo intermitente / cirurgia |\n\n**2. Espessura da parede vesical (EPV):**\nMedida na parede anterior em replecão adequada. Normal: ≤ 3 mm (replecão). EPV > 5 mm sugere hipertrofia do detrusor por obstrução ou bexiga hiperativa. EPV > 3 mm e < 5 mm: zona cinzenta.\n\n**3. IPP (Intravesical Prostatic Protrusion):**\nDistância da projeção do lobo mediano ao colo vesical. Preditor de obstrução infravesical e falha do tratamento clínico:\n- Grau I: < 5 mm (sem obstrução significativa)\n- Grau II: 5–9 mm (obstrução leve)\n- Grau III: ≥ 10 mm (obstrução significativa — alto risco de retenção e falha clínica)\n\n**4. Divertículos vesicais:**\nProjecões saculares da mucosa através da camada muscular. Associados a HPB, disfunção neurogênica e infecção de repetição. Divertículos grandes (> 3 cm) podem reter urina e aumentar o RPM funcional.\n\n**5. Cálculos vesicais:**\nHiperecogênicos com sombra acústica posterior, móveis com mudança de posição. Associados a HPB, corpo estranho e infecção crônica.\n\n**6. Lesões endoluminais:**\nEspessamento focal ou pólipo/tumor vesical: avaliação com cistoscopia obrigatória em hematuria + lesão ao USG."
+      },
+      {
+        "title": "Avaliação da uretra e colo vesical",
+        "body": "**Ultrassonografia perineal (translabial):**\nTecnicamente mais simples que a endovaginal; avalia o colo vesical e a uretra proximal em repouso e durante Valsalva/tosse.\n\n**Parâmetros principais:**\n- **Mobilidade do colo vesical:** descida > 25 mm durante Valsalva é sugestiva de hipermobilidade uretral (incontinuência de esforço).\n- **ângulo uretrovesical posterior (UVP):** > 130° em repouso é associado a incontinuência.\n- **Abertura do colo vesical em repouso:** sugere insuïciência esfincteriana intrínseca.\n- **Espessura do esfíncter uretral externo:** reduzida em incontinuência grave.\n\n**Divertículo uretral:**\nColetarão periuretral com comunicação com a uretra; mais comum em mulheres. Ao USG: imagem cística periuretral que se preenche com urina durante a micção.\n\n**Estenose de uretra:**\nEspessamento hiperecoico da parede uretral com redução do calibre; confirmar com uretrografia retrográda."
+      },
+      {
+        "title": "Laudo-Modelo (Cetrus/EAU)",
+        "body": "Modelo de laudo estruturado para USG de vias urinárias inferiores. Adaptar os campos em branco conforme o achado.\n\n---\n\n**LAUDO — ULTRASSONOGRAFIA DAS VIAS URINÁRIAS INFERIORES**\n\n**Indicação:** ___\n**Técnica:** Estudo em modo-B com transdutor convexo de 3,5–5 MHz, com bexiga em replecão moderada. Cortes longitudinais e transversais. Após a micção, avaliação do resíduo pós-miccional.\n\n**BEXIGA (pré-miccional):**\n- Volume pré-miccional: ___ mL\n- Paredes: regulares / irregulares; espessura: ___ mm (normal ≤ 3 mm em replecção)\n- Conteúdo: anecoico / debris / cálculos\n- Divertículos: ausentes / presente à ___ (tamanho: ___ mm)\n- Lesão endoluminal: ausente / presente (descrever: ___)\n- IPP: ___ mm — Grau ___ (I: < 5 mm / II: 5–9 mm / III: ≥ 10 mm)\n\n**BEXIGA (pós-miccional):**\n- Resíduo pós-miccional (RPM): ___ mL\n\n**CONCLUSÃO:**\n___ \n\n**REFERÊNCIAS:** EAU Guidelines on Non-neurogenic Male LUTS 2024; Cetrus — Curso de Ultrassonografia em Urologia."
+      },
+      {
+        "title": "Pearls e Armadilhas",
+        "body": "**Pearls:**\n- O RPM deve ser medido após micção espontânea com vontade miccional; RPM medido após cateterismo ou micção forçada não é válido.\n- A EPV é confiável apenas com replecão adequada (≥ 150 mL); bexiga vazia superestima a espessura.\n- O IPP é o melhor preditor ultrassonográfico de falha do tratamento clínico da HPB e de retenção aguda de urina.\n- Divertículos grandes podem reter urina e inflar artificialmente o RPM — descrever separadamente.\n- Cálculos vesicais móveis confirmam a natureza não fixada; cálculos fixos (em divertículo ou corpo estranho) não mudam com a posição.\n\n**Armadilhas:**\n- Coagulo de sangue pode simular tumor vesical — não tem vascularização ao Doppler e muda de forma/posição.\n- Ar intravesical (após instrumentação) cria artefato de reverberação que pode mascarar lesões.\n- Bexiga hiperativa pode ter EPV aumentada sem obstrução anatômica — correlacionar com urodinâmica."
+      },
+      {
+        "title": "Referências",
+        "body": "1. Gravas M et al. EAU Guidelines on Non-neurogenic Male Lower Urinary Tract Symptoms (LUTS) 2024. European Association of Urology.\n2. Burkhard FC et al. EAU Guidelines on Urinary Incontinence 2024. European Association of Urology.\n3. Cetrus — Centro de Ensino em Tomografia, Ressonância e Ultrassonografia. Curso de Ultrassonografia em Urologia: Ultrassonografia das Vias Urinárias Inferiores. São Paulo, 2024.\n4. Wein AJ et al. Campbell-Walsh-Wein Urology, 13ª ed. Elsevier; 2024. Cap. 108 (Avaliação Urodinâmica e por Imagem das VUI).\n5. Eur Urol 2020 — Lim KB et al. Intravesical prostatic protrusion as a predictor of clinical failure of medical therapy in BPH."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Espessura da parede vesical (EPV) — técnica de medição ao USG",
+        "description": "Imagem ultrassonográfica demonstrando a técnica de medição da espessura da parede vesical (EPV) na parede anterior com bexiga em replecão adequada. EPV normal ≤ 3 mm; EPV > 5 mm sugere hipertrofia do detrusor.",
+        "searchTerms": "bladder wall thickness ultrasound measurement detrusor hypertrophy EPV BWT"
+      },
+      {
+        "caption": "Resíduo pós-miccional (RPM) — medição ultrassonográfica",
+        "description": "Imagem ultrassonográfica suprapúbica demonstrando a medição do resíduo pós-miccional com cursores nos três eixos vesicais e cálculo do volume pela fórmula do elipsoide.",
+        "searchTerms": "post-void residual urine ultrasound measurement PVR suprapubic bladder volume"
+      },
+      {
+        "caption": "Divertículo vesical ao USG",
+        "description": "Imagem ultrassonográfica demonstrando divertículo vesical como projeção sacular da parede vesical, com conteúdo anecoico e colo de comunicação com a bexiga.",
+        "searchTerms": "bladder diverticulum ultrasound saccular projection wall defect"
+      },
+      {
+        "caption": "Cálculo vesical — sombra acústica e mobilidade",
+        "description": "Imagem ultrassonográfica de cálculo vesical mostrando imagem hiperecogênica com sombra acústica posterior e mobilidade com mudança de posição do paciente.",
+        "searchTerms": "bladder stone calculus ultrasound acoustic shadow mobile hyperechoic"
+      }
+    ]
   }
 ];
 
@@ -4587,5 +4642,6 @@ export const atlasToProcedure: Record<string, string> = {
   "vasectomia-tecnica-sem-bisturi": "vasectomia",
   "usg-renal": "usg-renal",
   "usg-prostata-transabdominal": "usg-prostata-transabdominal",
+  "usg-vias-urinarias-inferiores": "usg-vias-urinarias-inferiores",
 };
 

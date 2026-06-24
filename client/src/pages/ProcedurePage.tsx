@@ -49,6 +49,7 @@ import {
   CalendarPlus,
   Phone,
   CopyPlus,
+  FileSignature,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
@@ -460,6 +461,78 @@ export default function ProcedurePage() {
     },
     [getDocText, procedure, config]
   );
+
+  // Exporta o laudo preenchido (aba descricao) com formatação especial para laudos médicos
+  const exportLaudoPDF = useCallback(() => {
+    const text = getDocText("descricao");
+    if (!text.trim()) {
+      toast.error("Laudo vazio — preencha os campos antes de exportar.");
+      return;
+    }
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+      toast.error("Popup bloqueado. Permita popups para exportar PDF.");
+      return;
+    }
+    const now = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
+    const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Laudo — ${procedure?.shortName || ""} — ${config.paciente || "Paciente"}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; padding: 30px 40px; color: #1a1a1a; line-height: 1.65; font-size: 10.5pt; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 14px; border-bottom: 3px solid #1C3D5A; margin-bottom: 20px; }
+    .header-left h1 { font-size: 13pt; font-weight: 700; color: #1C3D5A; }
+    .header-left p { font-size: 8.5pt; color: #555; margin-top: 2px; }
+    .header-right { text-align: right; font-size: 8pt; color: #666; }
+    .header-right .name { font-size: 10pt; font-weight: 700; color: #1C3D5A; }
+    .laudo-title { font-size: 11pt; font-weight: 700; color: #B87333; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #B87333; padding-bottom: 6px; }
+    .patient-bar { background: #f0f4f8; border-left: 4px solid #1C3D5A; padding: 8px 12px; margin-bottom: 16px; font-size: 9pt; color: #333; }
+    .patient-bar strong { color: #1C3D5A; }
+    .content { white-space: pre-wrap; font-size: 10pt; line-height: 1.75; }
+    .signature-area { margin-top: 50px; display: flex; justify-content: flex-end; }
+    .signature-box { text-align: center; width: 260px; }
+    .signature-line { border-top: 1px solid #333; margin-bottom: 6px; }
+    .signature-box p { font-size: 9pt; color: #333; line-height: 1.5; }
+    .footer { margin-top: 30px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 7.5pt; color: #999; text-align: center; }
+    @media print { body { padding: 15px 25px; } .no-print { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left" style="display:flex;align-items:center;gap:12px;">
+      ${LOGO_SVG}
+      <div>
+        <h1>${procedure?.name || ""}</h1>
+        <p>Laudo de Exame — ${now}</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="name">Dr. Felipe de Bulhões</div>
+      <div>CRM-SP 202.291 | RQE 146538</div>
+      <div>Urologista — Instituto D'Or</div>
+    </div>
+  </div>
+  ${config.paciente ? `<div class="patient-bar"><strong>Paciente:</strong> ${config.paciente}${config.data_cirurgia ? " &nbsp;|&nbsp; <strong>Data:</strong> " + formatBR(config.data_cirurgia) : ""}</div>` : ""}
+  <div class="laudo-title">Laudo</div>
+  <div class="content">${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+  <div class="signature-area">
+    <div class="signature-box">
+      <div class="signature-line"></div>
+      <p><strong>Dr. Felipe de Bulhões</strong><br>CRM-SP 202.291 | RQE 146538<br>Urologista — Instituto D'Or de Ensino e Pesquisa</p>
+    </div>
+  </div>
+  <div class="footer">Dr. Felipe de Bulhões — CRM-SP 202.291 — Urologia &amp; Andrologia — Instituto D'Or de Ensino e Pesquisa</div>
+  <script>window.onload = function() { window.print(); };<\/script>
+</body>
+</html>`;
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+    toast.success("Laudo aberto para impressão/PDF!");
+  }, [getDocText, procedure, config]);
 
   const exportAllPDF = useCallback(() => {
     if (!documents || !procedure) return;
@@ -1086,6 +1159,19 @@ export default function ProcedurePage() {
                               <span className="hidden sm:inline">Consultório</span>
                             </Button>
                           </>
+                        )}
+                        {/* Laudo PDF button — only on descricao tab */}
+                        {tab.id === "descricao" && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 text-xs gap-1 border-blue-500/40 text-blue-400 hover:bg-blue-500/10"
+                            onClick={exportLaudoPDF}
+                            title="Exportar laudo preenchido como PDF com assinatura"
+                          >
+                            <FileSignature className="w-3 h-3" />
+                            <span className="hidden sm:inline">Laudo PDF</span>
+                          </Button>
                         )}
                         {/* PDF button */}
                         <Button
