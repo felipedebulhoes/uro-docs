@@ -4621,6 +4621,40 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "renal calculus stone ultrasound acoustic shadow hematuria nephrolithiasis"
       }
     ]
+  },
+  {
+    "id": "investigacao-cancer-prostata",
+    "name": "Investigação do Câncer de Próstata",
+    "category": "Diagnóstico",
+    "icon": "🔬",
+    "evidence": "EAU Guidelines 2024 | AUA/ASTRO/SUO 2022 | ERSPC RC4 (Roobol 2012)",
+    "sections": [
+      {
+        "title": "Rastreamento e Indicações de Investigação",
+        "body": "## Rastreamento e Indicações de Investigação\n\n### Quando Investigar (EAU 2024)\n\n| Situação | Conduta |\n|---|---|\n| PSA ≥ 3 ng/mL em homem ≥ 50 anos | Investigar |\n| PSA ≥ 1 ng/mL em homem ≥ 45 anos com histórico familiar 1º grau | Investigar |\n| PSA ≥ 1 ng/mL em homem ≥ 40 anos com BRCA2 | Investigar |\n| DRE suspeito (nódulo, assimetria, endurecimento) | Investigar independente do PSA |\n| PSA ≥ 10 ng/mL | Biópsia direta (sem necessidade de mpRM prévia) |\n\n### Cinemática do PSA\n\n**PSAV (velocidade):** aumento > 0,75 ng/mL/ano — fator de risco independente.\n**PSADT (tempo de duplicação):** < 3 anos — indica doença agressiva.\n**PSAD (densidade):** ≥ 0,15 ng/mL/mL — fator de risco adicional para câncer clinicamente significativo (csPCa).\n\n### Calculadora de Risco ERSPC RC4\n\nA calculadora abaixo estima o risco individual de câncer clinicamente significativo (ISUP ≥ 2, equivalente a Gleason ≥ 7) com base no PSA, toque retal, TRUS, histórico familiar e biópsia prévia.\n\n> **Roobol MJ et al.** Improving the Rotterdam European Randomized Study of Screening for Prostate Cancer Risk Calculator for Initial Prostate Biopsy by Including the 2 [-2]proPSA-Based Prostate Health Index. *Eur Urol.* 2012;62(2):229-36. PMID: 22633556"
+      },
+      {
+        "title": "Ressonância Magnética Multiparamétrica (mpRM) e PIRADS",
+        "body": "## Ressonância Magnética Multiparamétrica (mpRM) e PIRADS\n\n### Indicações de mpRM (EAU 2024, Grau A)\n\n- PSA persistentemente elevado com biópsia prévia negativa\n- Antes da primeira biópsia quando PSA 3–10 ng/mL (para guiar biópsia-alvo)\n- Estadiamento local (T) em câncer de alto risco\n\n### Classificação PIRADS v2.1\n\n| Escore | Significado | Conduta |\n|---|---|---|\n| PIRADS 1 | Muito baixa probabilidade de csPCa | Vigilância |\n| PIRADS 2 | Baixa probabilidade | Vigilância |\n| PIRADS 3 | Probabilidade intermediária | Biópsia-alvo + sistemática (ou vigilância se PSAD < 0,15) |\n| PIRADS 4 | Alta probabilidade | Biópsia-alvo + sistemática |\n| PIRADS 5 | Muito alta probabilidade | Biópsia-alvo + sistemática |\n\n### Biópsia-Alvo vs. Sistemática\n\n**Biópsia-alvo (mpRM-guided):** 2–4 fragmentos por lesão PIRADS ≥ 3. Detecta mais csPCa e menos câncer clinicamente insignificante (ISUP 1) que a biópsia sistemática isolada.\n\n**Biópsia sistemática (12 fragmentos):** ainda recomendada em combinação com a biópsia-alvo para não perder focos anteriores e posteriores.\n\n> **EAU Guidelines 2024** — Prostate Cancer, Seção 5.2.3 (Grau A)"
+      },
+      {
+        "title": "Biópsia de Próstata — Técnica e Classificação",
+        "body": "## Biópsia de Próstata\n\n### Vias de Acesso\n\n| Via | Vantagens | Desvantagens |\n|---|---|---|\n| Transperineal (TP) | Menor risco de infecção, acesso anterior | Requer anestesia local/geral |\n| Transretal (TR) | Mais familiar, ambulatorial | Maior risco de infecção (sepse em 0,5–1%) |\n\n**EAU 2024 recomenda via transperineal** como preferêncial para reduzir infecções (Grau B).\n\n### Classificação de Gleason / ISUP\n\n| Grupo ISUP | Gleason | Significado |\n|---|---|---|\n| ISUP 1 | 3+3=6 | Baixo risco (insignificante) |\n| ISUP 2 | 3+4=7 | Risco intermediário favorável |\n| ISUP 3 | 4+3=7 | Risco intermediário desfavorável |\n| ISUP 4 | 4+4=8 | Alto risco |\n| ISUP 5 | 9–10 | Muito alto risco |\n\n**csPCa = ISUP ≥ 2** (Gleason ≥ 7) — limiar para tratamento curativo.\n\n> **Epstein JI et al.** The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. *Am J Surg Pathol.* 2016;40(2):244-52. PMID: 26492179"
+      },
+      {
+        "title": "Estadiamento Clínico (TNM 2017) e Grupos de Risco",
+        "body": "## Estadiamento Clínico e Grupos de Risco\n\n### Estadiamento TNM 2017 (simplificado)\n\n| Estágio | Definição |\n|---|---|\n| T1 | Tumor não palável, achado incidental |\n| T2 | Tumor confinado à próstata |\n| T3a | Extensão extracapsular |\n| T3b | Invasão de vesículas seminais |\n| T4 | Invasão de estruturas adjacentes |\n\n### Grupos de Risco EAU 2024\n\n| Grupo | Critérios |\n|---|---|\n| Baixo risco | PSA < 10 + Gleason 6 + cT1–2a |\n| Risco intermediário | PSA 10–20 OU Gleason 7 OU cT2b |\n| Alto risco | PSA > 20 OU Gleason 8–10 OU cT3–4 |\n| Muito alto risco | cT3b–T4 OU N1 OU M1 |\n\n### Exames de Estadiamento\n\n**Baixo risco:** nenhum exame adicional necessário.\n**Risco intermediário:** mpRM (se não realizada) + considerar cintilografia óssea se PSA > 10.\n**Alto/muito alto risco:** mpRM + cintilografia óssea + TC abdome/pelve OU PSMA-PET/CT (preferêncial, EAU 2024 Grau A).\n\n> **EAU Guidelines 2024** — Prostate Cancer, Seção 6 (Estadiamento)"
+      },
+      {
+        "title": "Referências",
+        "body": "## Referências\n\n1. **EAU Guidelines on Prostate Cancer 2024.** Mottet N et al. European Association of Urology. Disponível em: https://uroweb.org/guidelines/prostate-cancer\n2. **AUA/ASTRO/SUO Guideline: Clinically Localized Prostate Cancer 2022.** Eastham JA et al. *J Urol.* 2022;208(3):505-535. PMID: 35640716. DOI: 10.1097/JU.0000000000002757\n3. **Roobol MJ et al.** Improving the Rotterdam ERSPC Risk Calculator for Initial Prostate Biopsy by Including the 2[-2]proPSA-Based Prostate Health Index. *Eur Urol.* 2012;62(2):229-236. PMID: 22633556. DOI: 10.1016/j.eururo.2012.05.010\n4. **Epstein JI et al.** The 2014 ISUP Consensus Conference on Gleason Grading of Prostatic Carcinoma. *Am J Surg Pathol.* 2016;40(2):244-252. PMID: 26492179. DOI: 10.1097/PAS.0000000000000530\n5. **PI-RADS Steering Committee.** PI-RADS Prostate Imaging – Reporting and Data System: 2019, Version 2.1. *Eur Urol.* 2019;75(3):379-391. PMID: 30426033. DOI: 10.1016/j.eururo.2018.12.014"
+      },
+      {
+        "title": "Fluxograma Diagnóstico Resumido",
+        "body": "## Fluxograma Diagnóstico Resumido\n\n```\nPSA elevado ou DRE suspeito\n    ↓\nCalcular risco ERSPC RC4 + PSAD\n    ↓\n┌──────────────────────────────────────────────────────────────────┐\n│ PSA 3–10 ng/mL                    PSA > 10 ou DRE suspeito │\n│ Risco < 15%                       Risco ≥ 15%              │\n│     ↓                                   ↓                  │\n│ mpRM prévia                       mpRM prévia (se disponível) │\n│     ↓                             ou biópsia direta         │\n│ PIRADS 1–2: vigilância                  ↓                  │\n│ PIRADS 3–5: biópsia-alvo          Biópsia-alvo + sistemática │\n└──────────────────────────────────────────────────────────────────┘\n    ↓\nBiópsia positiva: Estadiamento (TNM + grupos de risco)\n    ↓\nDecisão terapêutica multidisciplinar\n```\n\n**Fontes:** EAU Guidelines 2024 (Prostate Cancer); AUA/ASTRO/SUO Guideline 2022; ERSPC RC4 (Roobol 2012, PMID: 22633556)"
+      }
+    ],
+    "figures": []
   }
 ];
 
@@ -4734,5 +4768,6 @@ export const atlasToProcedure: Record<string, string> = {
   "usg-prostata-transabdominal": "usg-prostata-transabdominal",
   "usg-vias-urinarias-inferiores": "usg-vias-urinarias-inferiores",
   "investigacao-hematuria": "investigacao-hematuria",
+  "investigacao-cancer-prostata": "investigacao-cancer-prostata",
 };
 

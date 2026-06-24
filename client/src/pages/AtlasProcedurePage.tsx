@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { IpssCalculator } from "@/components/IpssCalculator";
+import { ErspcCalculator } from "@/components/ErspcCalculator";
 import {
   Accordion,
   AccordionContent,
@@ -298,6 +299,16 @@ export default function AtlasProcedurePage() {
                     {/* Calculadora IPSS embutida na seção de IPSS da entrada HPB */}
                     {entry.id.startsWith("hpb-") && section.title.toLowerCase().includes("ipss") && (
                       <IpssCalculator />
+                    )}
+                    {/* Calculadora ERSPC RC4 embutida na seção de rastreamento/diagnóstico de câncer de próstata */}
+                    {entry.id.includes("cancer-prostata") && (
+                      section.title.toLowerCase().includes("rastreamento") ||
+                      section.title.toLowerCase().includes("diagnóstico") ||
+                      section.title.toLowerCase().includes("diagnostico") ||
+                      section.title.toLowerCase().includes("psa") ||
+                      section.title.toLowerCase().includes("risco")
+                    ) && (
+                      <ErspcCalculator />
                     )}
                   </AccordionContent>
                 </AccordionItem>

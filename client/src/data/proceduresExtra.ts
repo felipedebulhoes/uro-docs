@@ -3337,4 +3337,114 @@ ${c.tipo === "Macroscópica (HM)" ? "\nPROCURE PRONTO-SOCORRO IMEDIATAMENTE SE:\
 FONTES: EAU Guidelines on Haematuria 2024.`,
     },
   },
+  {
+    id: "investigacao-cancer-prostata",
+    name: "Investigação do Câncer de Próstata",
+    shortName: "Ca Próstata",
+    icon: "🔬",
+    category: "Diagnóstico",
+    configFields: [
+      { id: "paciente", label: "Nome do Paciente", type: "text", defaultValue: "" },
+      { id: "data", label: "Data da Consulta", type: "text", defaultValue: "" },
+      { id: "idade", label: "Idade (anos)", type: "text", defaultValue: "" },
+      { id: "psa", label: "PSA Total (ng/mL)", type: "text", defaultValue: "" },
+      { id: "psad", label: "Densidade do PSA (ng/mL/mL)", type: "text", defaultValue: "" },
+      { id: "psav", label: "Velocidade do PSA (ng/mL/ano)", type: "text", defaultValue: "" },
+      { id: "dre", label: "Toque Retal (DRE)", type: "select", defaultValue: "Normal", options: ["Normal", "Suspeito (nódulo/assimetria)", "Não realizado"] },
+      { id: "historico_familiar", label: "Histórico Familiar 1º Grau", type: "select", defaultValue: "Não", options: ["Não", "Sim (pai ou irmão)"] },
+      { id: "biopsia_previa", label: "Biópsia Prévia", type: "select", defaultValue: "Nenhuma", options: ["Nenhuma", "Negativa", "Positiva"] },
+      { id: "pirads", label: "PIRADS (mpRM)", type: "select", defaultValue: "Não realizada", options: ["Não realizada", "PIRADS 1", "PIRADS 2", "PIRADS 3", "PIRADS 4", "PIRADS 5"] },
+      { id: "gleason", label: "Gleason / ISUP (biópsia)", type: "select", defaultValue: "Não realizada", options: ["Não realizada", "ISUP 1 (3+3=6)", "ISUP 2 (3+4=7)", "ISUP 3 (4+3=7)", "ISUP 4 (4+4=8)", "ISUP 5 (9-10)"] },
+      { id: "estadio_t", label: "Estágio T (TNM)", type: "select", defaultValue: "Não estadiado", options: ["Não estadiado", "cT1a", "cT1b", "cT1c", "cT2a", "cT2b", "cT2c", "cT3a", "cT3b", "cT4"] },
+      { id: "estadio_n", label: "Estágio N", type: "select", defaultValue: "Não avaliado", options: ["Não avaliado", "cN0", "cN1"] },
+      { id: "estadio_m", label: "Estágio M", type: "select", defaultValue: "Não avaliado", options: ["Não avaliado", "cM0", "cM1a", "cM1b", "cM1c"] },
+      { id: "grupo_risco", label: "Grupo de Risco (EAU 2024)", type: "select", defaultValue: "A definir", options: ["A definir", "Baixo risco", "Risco intermediário favorável", "Risco intermediário desfavorável", "Alto risco", "Muito alto risco / Metastático"] },
+      { id: "observacoes", label: "Observações Clínicas", type: "text", defaultValue: "" },
+    ],
+    templates: {
+      descricao: (c: Record<string, string>) => `AVALIAÇÃO ONCOLÓGICA — CÂNCER DE PRÓSTATA
+Data: ${c.data || "___/___/______"}
+Paciente: ${c.paciente || "_______________________________"}, ${c.idade || "___"} anos
+
+DADOS LABORATORIAIS E DE IMAGEM:
+- PSA Total: ${c.psa || "___"} ng/mL
+- Densidade do PSA (PSAD): ${c.psad || "___"} ng/mL/mL
+- Velocidade do PSA (PSAV): ${c.psav || "___"} ng/mL/ano
+- Toque Retal (DRE): ${c.dre || "___"}
+- Histórico Familiar 1º Grau: ${c.historico_familiar || "___"}
+- Biópsia Prévia: ${c.biopsia_previa || "___"}
+- mpRM / PIRADS: ${c.pirads || "___"}
+
+RESULTADO DA BIÓPSIA:
+- Gleason / ISUP: ${c.gleason || "___"}
+
+ESTADIAMENTO ONCOLÓGICO (TNM 2017):
+- T: ${c.estadio_t || "___"}
+- N: ${c.estadio_n || "___"}
+- M: ${c.estadio_m || "___"}
+
+GRUPO DE RISCO (EAU 2024): ${c.grupo_risco || "___"}
+
+OBSERVAÇÕES:
+${c.observacoes || "___"}
+
+CONDUTA PROPOSTA:
+${c.grupo_risco === "Baixo risco" ? "Vigílância ativa (PSA a cada 3–6 meses, biópsia confirmatória em 6–12 meses). Discutir prostatectomia radical ou radioterapia conforme preferência do paciente." : c.grupo_risco === "Risco intermediário favorável" || c.grupo_risco === "Risco intermediário desfavorável" ? "Tratamento curativo: prostatectomia radical (laparoscópica/robótica) ou radioterapia com braquiterapia. Discutir em equipe multidisciplinar." : c.grupo_risco === "Alto risco" ? "Tratamento curativo intensificado: prostatectomia radical + linfadenectomia pélvica estendida, ou radioterapia + deprivação androgênica (2–3 anos). PSMA-PET/CT para estadiamento." : c.grupo_risco === "Muito alto risco / Metastático" ? "Tratamento sistêmico: deprivação androgênica + docetaxel ou abiraterona (LATITUDE/STAMPEDE). Encaminhar para oncologia." : "A definir após discussão multidisciplinar."}
+
+FONTES: EAU Guidelines 2024 (Prostate Cancer); AUA/ASTRO/SUO 2022.`,
+      posOperatorio: (c: Record<string, string>) => `SOLICITAÇÃO DE BIÓPSIA DE PRÓSTATA
+Paciente: ${c.paciente || "_______________________________"}
+Data: ${c.data || "___/___/______"}
+
+INDICAÇÃO:
+- PSA: ${c.psa || "___"} ng/mL
+- DRE: ${c.dre || "___"}
+- PIRADS: ${c.pirads || "___"}
+- Grupo de risco ERSPC RC4: ${c.grupo_risco || "___"}
+
+SOLICITO:
+Biópsia de próstata transperineal guiada por ultrassom (12 fragmentos sistemáticos + biópsia-alvo se PIRADS ≥ 3)
+
+Preparo:
+- Enema retal na noite anterior
+- Antibioticoprofilaxia: ciprofloxacino 500 mg VO 1h antes
+- Suspender anticoagulantes conforme protocolo
+- Anestesia local transperineal ou sedação
+
+Após o procedimento:
+- Encaminhar material para anatomopatológico com imuno-histoquímica
+- Retorno em 2–3 semanas com resultado
+
+Dr. Felipe de Bulhões | CRM-SP 202.291 | RQE 146538`,
+      receitaAlta: (c: Record<string, string>) => `SOLICITAÇÃO DE EXAMES — INVESTIGAÇÃO DE CÂNCER DE PRÓSTATA
+Paciente: ${c.paciente || "_______________________________"}
+
+EXAMES LABORATORIAIS:
+- PSA total e livre
+- Testosterona total
+- Hemograma completo, creatinina, TGO, TGP, fosfatase alcalina
+- Fosfatase ácida prostática (se suspeita de metástase)
+
+EXAMES DE IMAGEM:
+${c.pirads === "Não realizada" ? "- Ressonância Magnética Multiparamétrica (mpRM) de próstata com contraste (PI-RADS v2.1)" : ""}
+${c.grupo_risco === "Alto risco" || c.grupo_risco === "Muito alto risco / Metastático" ? "- Cintilografia óssea (pesquisa de metástases)\n- TC de abdome e pelve com contraste\n- Considerar PSMA-PET/CT (preferêncial, EAU 2024)" : ""}
+
+Dr. Felipe de Bulhões | CRM-SP 202.291 | RQE 146538`,
+      orientacoes: (c: Record<string, string>) => `ORIENTAÇÕES AO PACIENTE — INVESTIGAÇÃO DO CÂNCER DE PRÓSTATA
+
+SEU PSA ATUAL: ${c.psa || "___"} ng/mL
+
+O QUE É O PSA:
+O PSA (ânteno prostático específico) é uma proteína produzida pela próstata. Valores elevados podem indicar câncer, mas também infecção, inflação ou aumento benigno da próstata.
+
+PRÓXIMOS PASSOS:
+${c.pirads === "Não realizada" ? "1. Realizar ressonância magnética da próstata (mpRM) antes da biópsia\n" : ""}${c.gleason === "Não realizada" ? "2. Biópsia de próstata conforme indicação clínica\n" : ""}3. Retornar com todos os resultados para definição da conduta
+
+IMPORTANTE:
+- Não realize atividade física intensa, ejaculacão ou cistoscopia 48h antes do PSA
+- Traga todos os exames anteriores na próxima consulta
+
+FONTES: EAU Guidelines 2024 (Prostate Cancer); AUA Early Detection of Prostate Cancer 2023.`,
+    },
+  },
 ];

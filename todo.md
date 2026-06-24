@@ -122,3 +122,11 @@
 # Exportação em Lote (Jun 2026)
 - [x] Implementar botão "Exportar Tudo (PDF)" no ProcedurePage.tsx que gera um PDF único com todas as abas em sequência (descrição cirúrgica, pós-operatório, receita e orientações) — já existia, label atualizado para "Exportar Tudo" com tooltip explicativo
 - [x] Testes e checkpoint (218/218)
+
+# Lote Câncer de Próstata (Jun 2026)
+- [ ] Criar componente ErspcCalculator.tsx com campos PSA, volume prostático, toque retal, histórico familiar, DRE, TRUS e cálculo de risco ERSPC RC4 (câncer clinicamente significativo ≥ Gleason 7)
+- [ ] Integrar ErspcCalculator no AtlasProcedurePage.tsx na entrada de câncer de próstata (seção de rastreamento/diagnóstico)
+- [ ] Criar entrada do Atlas "investigacao-cancer-prostata" com protocolo PSA, PIRADS, biópsia e estadiamento (EAU 2024)
+- [ ] Criar procedimento interativo "investigacao-cancer-prostata" no proceduresExtra.ts com campos e templates de solicitação de biópsia e laudo de estadiamento clínico
+- [ ] Mapear investigacao-cancer-prostata no atlasToProcedure
+- [ ] Testes e checkpoint
