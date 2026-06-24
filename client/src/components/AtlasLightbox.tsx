@@ -11,6 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
+import { capesArticleUrl } from "@/lib/atlasSearch";
 
 export type LightboxFigure = {
   url: string;
@@ -152,17 +153,29 @@ export function AtlasLightbox({
               Crédito: {fig.credit}
             </p>
           )}
-          {fig.sourceUrl && (
+          <div className="mt-1 flex flex-wrap gap-2">
             <a
-              href={fig.sourceUrl}
+              href={capesArticleUrl(fig.sourceUrl, fig.caption)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-0.5 inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:underline w-fit"
+              className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-primary/15 border border-primary/30 text-[10px] font-medium text-primary hover:bg-primary/25 transition-colors"
+              title="Abrir artigo no Portal de Periódicos CAPES (login via CAFe)"
             >
               <ExternalLink className="w-3 h-3" />
-              Ver fonte original
+              Abrir no Portal CAPES
             </a>
-          )}
+            {fig.sourceUrl && (
+              <a
+                href={fig.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-card border border-border text-[10px] font-medium text-foreground/80 hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                <ExternalLink className="w-3 h-3" />
+                Fonte original
+              </a>
+            )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>

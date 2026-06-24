@@ -36,12 +36,19 @@ import {
   Printer,
   ImagePlus,
   Maximize2,
+  Info,
 } from "lucide-react";
 import {
   clinicalKeySearchUrl,
   capesSearchUrl,
+  capesArticleUrl,
   openInNewTab,
 } from "@/lib/atlasSearch";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { exportAtlasPdf } from "@/lib/atlasPdf";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -382,24 +389,76 @@ function FigureCard({
     <Card className="overflow-hidden bg-card border-border flex flex-col">
       {/* Espaço da imagem (placeholder informativo) */}
       {showImage ? (
-        <button
-          type="button"
-          onClick={onOpenLightbox}
-          className="group relative w-full aspect-video bg-nilo-dark overflow-hidden cursor-zoom-in"
-          title="Ampliar imagem"
-          aria-label={`Ampliar figura: ${fig.caption}`}
-        >
-          <img
-            src={effectiveUrl}
-            alt={fig.caption}
-            loading="lazy"
-            onError={() => setImgError(true)}
-            className="w-full h-full object-contain motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover:scale-[1.03]"
-          />
-          <span className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+        <div className="group relative w-full aspect-video bg-nilo-dark overflow-hidden">
+          <button
+            type="button"
+            onClick={onOpenLightbox}
+            className="absolute inset-0 cursor-zoom-in"
+            title="Ampliar imagem"
+            aria-label={`Ampliar figura: ${fig.caption}`}
+          >
+            <img
+              src={effectiveUrl}
+              alt={fig.caption}
+              loading="lazy"
+              onError={() => setImgError(true)}
+              className="w-full h-full object-contain motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover:scale-[1.03]"
+            />
+          </button>
+          {/* ícone de ampliar */}
+          <span className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
             <Maximize2 className="w-3.5 h-3.5" />
           </span>
-        </button>
+          {/* tooltip de referência bibliográfica */}
+          {effectiveCredit && (
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute top-2 left-2 z-10 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-background/90 transition-colors duration-150"
+                  title="Ver referência bibliográfica"
+                  aria-label="Referência bibliográfica da imagem"
+                >
+                  <Info className="w-3.5 h-3.5" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent
+                side="bottom"
+                align="start"
+                className="w-80 p-3 text-xs space-y-2"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <p className="font-semibold text-foreground text-[11px] uppercase tracking-wider mb-1">
+                  Referência Bibliográfica
+                </p>
+                <p className="text-foreground/90 leading-relaxed">{effectiveCredit}</p>
+                <div className="flex flex-wrap gap-1.5 pt-1 border-t border-border">
+                  <a
+                    href={capesArticleUrl(effectiveSourceUrl, fig.searchTerms)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-primary/15 border border-primary/30 text-[10px] font-medium text-primary hover:bg-primary/25 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    Abrir no Portal CAPES
+                  </a>
+                  {effectiveSourceUrl && (
+                    <a
+                      href={effectiveSourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 h-6 px-2 rounded-md bg-card border border-border text-[10px] font-medium text-foreground/80 hover:border-primary/40 hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Fonte original
+                    </a>
+                  )}
+                </div>
+              </PopoverContent>
+            </Popover>
+          )}
+        </div>
       ) : (
         <div className="w-full aspect-video bg-nilo-dark/60 border-b border-border flex flex-col items-center justify-center text-muted-foreground/60 gap-1">
           <ImageIcon className="w-7 h-7" />

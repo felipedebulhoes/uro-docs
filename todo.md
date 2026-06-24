@@ -75,3 +75,16 @@
 - [x] Todas as figuras com crédito + sourceUrl (CC BY 4.0)
 - [x] TypeScript limpo, 207/207 testes passando, URLs respondendo (307 signed redirect)
 - [x] Checkpoint salvo
+
+# Tooltips interativos nas imagens do Atlas
+- [x] Tooltip/popover interativo nas imagens: hover/click exibe referência bibliográfica completa + link para artigo via Portal CAPES
+- [x] Construir URL CAPES a partir do DOI (https://www-periodicos-capes-gov-br.ez24.periodicos.capes.gov.br/index.php?option=com_pmetabusca&mn=88&smn=88&base=find-db-1&type=b&Itemid=109&sfx=https://doi.org/{DOI})
+- [x] Extrair DOI do sourceUrl quando disponível, ou usar sourceUrl diretamente
+- [x] Animação suave de entrada/saída do tooltip (CSS transition)
+- [x] Acessibilidade: teclado (focus) e aria-label
+- [x] TypeScript sem erros, testes passando
+
+# Ampliação USG em Urologia — Material Cetrus
+- [x] Enriquecer entrada "usg-doppler-peniano": protocolo detalhado (posicionamento, agulha, timing), tabela ISSM 2012 expandida (6 categorias), PVS flácido, EHS, laudo-modelo, redose
+- [x] Nova entrada "usg-anatomia-peniana-modo-b": anatomia modo-B, variações anatômicas (artéria perfurante, dorsal única), ateromatose, artérias helicinas, fibrose pós-priapismo
+- [x] Nova entrada "usg-doppler-peniano-reversao-seguranca": protocolo de reversão (etilefrina/fenilefrina), TCLE, critérios de alta, manejo de priapismo pós-exame
