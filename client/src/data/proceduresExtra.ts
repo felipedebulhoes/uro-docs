@@ -3239,4 +3239,102 @@ FONTES: EAU Guidelines on Non-neurogenic Male LUTS 2024.`;
       },
     },
   },
+  {
+    id: "investigacao-hematuria",
+    name: "Investigação da Hematúria",
+    shortName: "Hematúria",
+    icon: "🔴",
+    category: "Diagnóstico",
+    configFields: [
+      { id: "tipo", label: "Tipo de hematúria", type: "select" as const, options: ["Macroscópica (HM)", "Microscópica (HMi)"], defaultValue: "" },
+      { id: "episodios", label: "Número de episódios", type: "text" as const, placeholder: "ex: 1, 2, recorrente", defaultValue: "" },
+      { id: "duracao", label: "Duração do episódio", type: "text" as const, placeholder: "ex: 1 dia, 3 dias", defaultValue: "" },
+      { id: "coagulos", label: "Cóagulos", type: "select" as const, options: ["Ausentes", "Presentes"], defaultValue: "" },
+      { id: "tabagismo", label: "Tabagismo", type: "select" as const, options: ["Não", "Ex-tabagista", "Tabagista ativo"], defaultValue: "" },
+      { id: "anos_maco", label: "Anos-maço (se tabagista)", type: "text" as const, placeholder: "ex: 20", defaultValue: "" },
+      { id: "exposicao_ocupacional", label: "Exposição ocupacional (aminas aromáticas)", type: "select" as const, options: ["Não", "Sim"], defaultValue: "" },
+      { id: "radiacao_pelvica", label: "Irradiação pélvica prévia", type: "select" as const, options: ["Não", "Sim"], defaultValue: "" },
+      { id: "ciclofosfamida", label: "Uso de ciclofosfamida ou pioglitazona", type: "select" as const, options: ["Não", "Sim"], defaultValue: "" },
+      { id: "idade", label: "Idade", type: "text" as const, placeholder: "ex: 58", defaultValue: "" },
+      { id: "usg_resultado", label: "Resultado USG renal", type: "text" as const, placeholder: "ex: Cálculo renal direito 8mm", defaultValue: "" },
+      { id: "cistoscopia_resultado", label: "Resultado cistoscopia", type: "text" as const, placeholder: "ex: Mucosa vesical normal", defaultValue: "" },
+      { id: "citologia_resultado", label: "Resultado citologia urinária", type: "text" as const, placeholder: "ex: Negativa para malignidade", defaultValue: "" },
+      { id: "diagnostico", label: "Diagnóstico provável", type: "text" as const, placeholder: "ex: Litíase renal", defaultValue: "" },
+    ],
+    templates: {
+      descricao: (c: Record<string, string>) => {
+        const fatoresRisco = [
+          c.tabagismo !== "Não" ? `Tabagismo (${c.anos_maco || "?"} anos-maço)` : "",
+          c.exposicao_ocupacional === "Sim" ? "Exposição ocupacional a aminas aromáticas" : "",
+          c.radiacao_pelvica === "Sim" ? "Irradiação pélvica prévia" : "",
+          c.ciclofosfamida === "Sim" ? "Uso de ciclofosfamida/pioglitazona" : "",
+          parseInt(c.idade) > 60 ? "Idade > 60 anos" : "",
+        ].filter(Boolean);
+        const nFatores = fatoresRisco.length;
+        const risco = c.tipo === "Macroscópica (HM)" && parseInt(c.idade) > 35
+          ? "alto"
+          : c.tipo === "Microscópica (HMi)" && nFatores >= 2
+          ? "alto"
+          : nFatores === 1
+          ? "intermediário"
+          : "baixo";
+        const conduta = risco === "alto"
+          ? "TC urográfica (3 fases) + cistoscopia (EAU 2024, Grau A)"
+          : risco === "intermediário"
+          ? "USG renal + cistoscopia"
+          : "USG renal + cistoscopia flexível";
+        return `AVALIAÇÃO CLÍNICA — HEMATÚRIA
+
+Tipo: ${c.tipo || "Não informado"}
+Episódios: ${c.episodios || "Não informado"} | Duração: ${c.duracao || "Não informado"}
+Cóagulos: ${c.coagulos || "Não informado"}
+
+FATORES DE RISCO:
+${fatoresRisco.length > 0 ? fatoresRisco.map((f: string) => `- ${f}`).join("\n") : "- Nenhum fator de risco identificado"}
+
+ESTRATIFICAÇÃO DE RISCO: ${risco.toUpperCase()}
+Conduta: ${conduta}
+
+EXAMES SOLICITADOS:
+- Urinálise com microscopia + urocultura
+- Citologia urinária (3 amostras)
+- Creatinina + TFG${parseInt(c.idade) > 40 ? "\n- PSA" : ""}
+${risco === "alto" ? "- TC urográfica (3 fases)" : "- USG renal bilateral"}
+- Cistoscopia flexível
+
+RESULTADOS:
+USG renal: ${c.usg_resultado || "Pendente"}
+Cistoscopia: ${c.cistoscopia_resultado || "Pendente"}
+Citologia: ${c.citologia_resultado || "Pendente"}
+
+DIAGNÓSTICO PROVÁVEL: ${c.diagnostico || "A definir após investigação completa"}
+
+REFERÊNCIAS: EAU Guidelines on Haematuria 2024; AUA/SUFU Guideline on Microhematuria 2020.`;
+      },
+      posOperatorio: (c: Record<string, string>) => `ORIENTAÇÕES PÓS-CONSULTA — HEMATÚRIA
+${c.tipo === "Macroscópica (HM)" && c.coagulos === "Presentes" ? "⚠️ ATENÇÃO: Hematúria com cóagulos. Se houver retenção urinária, procure pronto-socorro imediatamente.\n" : ""}
+Aguardar resultados dos exames solicitados. Retornar em consulta após obter todos os resultados.
+Em caso de novo episódio de hematúria macroscópica, procurar atendimento médico.`,
+      receitaAlta: () => `SOLICITAÇÃO DE EXAMES — HEMATÚRIA
+- Urinálise com microscopia
+- Urocultura com antibiograma
+- Citologia urinária (3 amostras em dias consecutivos)
+- Creatinina sérica e TFG estimada
+- PSA total (homens > 40 anos)
+- Ultrassonografia renal bilateral com Doppler
+- Cistoscopia flexível`,
+      orientacoes: (c: Record<string, string>) => `ORIENTAÇÕES AO PACIENTE — HEMATÚRIA
+O QUE É HEMATÚRIA:
+Hematúria é a presença de sangue na urina. Pode ser visível (macroscópica) ou detectada apenas em exames (microscópica). Sempre deve ser investigada.
+
+O QUE FAZER:
+- Realize todos os exames solicitados
+- Evite esforço físico intenso até a investigação completa
+- Mantenha hidratação adequada (2L de água/dia)
+- Retorne para consulta com os resultados
+${c.tipo === "Macroscópica (HM)" ? "\nPROCURE PRONTO-SOCORRO IMEDIATAMENTE SE:\n- A urina ficar muito escura ou com cóagulos grandes\n- Tiver dificuldade para urinar\n- Tiver dor intensa" : ""}
+
+FONTES: EAU Guidelines on Haematuria 2024.`,
+    },
+  },
 ];

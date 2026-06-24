@@ -4538,6 +4538,14 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
+        "caption": "Bexiga normal ao USG transabdominal — planos longitudinal e transversal",
+        "description": "Imagem ultrassonográfica transabdominal da bexiga urinária normal em dois planos (longitudinal à esquerda, transversal à direita). Conteúdo anecoico homogêneo, paredes finas e regulares (EPV ≤ 3 mm em replecão adequada). Referência para avaliação de espessura da parede, resíduo pós-miccional e IPP.",
+        "searchTerms": "urinary bladder normal ultrasound transabdominal longitudinal transverse anechoic wall thickness",
+        "imageUrl": "/manus-storage/vui_bexiga_normal_transabdominal_7de36a45.png",
+        "credit": "Wikimedia Commons. Ultrasound Scan ND 0104103659 1042320. CC BY-SA 3.0.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ultrasound_Scan_ND_0104103659_1042320.png"
+      },
+      {
         "caption": "Nódulo endoluminal vesical ao USG transabdominal",
         "description": "Imagem ultrassonográfica transabdominal de bexiga repleta demonstrando nódulo endoluminal (15 × 7,6 mm) na parede vesical, com contornos irregulares e sombra acustica parcial — achado que indica investigação com cistoscopia em contexto de hematuria",
         "searchTerms": "bladder tumor nodule endoluminal ultrasound transabdominal hematuria",
@@ -4559,6 +4567,58 @@ export const atlasEntries: AtlasEntry[] = [
         "caption": "Cálculo vesical — sombra acústica e mobilidade",
         "description": "Imagem ultrassonográfica de cálculo vesical mostrando imagem hiperecogênica com sombra acústica posterior e mobilidade com mudança de posição do paciente.",
         "searchTerms": "bladder stone calculus ultrasound acoustic shadow mobile hyperechoic"
+      }
+    ]
+  },
+  {
+    "id": "investigacao-hematuria",
+    "name": "Investigação da Hematúria",
+    "category": "Diagnóstico e Imagem",
+    "icon": "🔴",
+    "evidence": "EAU Guidelines on Haematuria 2024 + AUA/SUFU Guideline on Microhematuria 2020 + Campbell-Walsh-Wein 13ª ed. Cap. 3",
+    "sections": [
+      {
+        "title": "Definição e Classificação",
+        "body": "**Hematúria macroscópica (HM):** urina visivelmente avermelhada ou marrom, confirmada por exame físico. Qualquer episódio de HM em adulto deve ser investigado como neoplasia até prova em contrário (EAU 2024, Grau A).\n\n**Hematúria microscópica (HMi):** ≥ 3 hemácias por campo de alta potência (HPF) em urinálise com microscopia, ou ≥ 10 hemácias/µL em citometria de fluxo, em pelo menos 2 de 3 amostras consecutivas.\n\n**Hematúria de origem glomerular:** hemácias dismorficas (≥20% acantócitos), cilindros eritrocitarios, proteinuria — encaminhar para Nefrologia.\n\n**Hematúria de origem urológica:** hemácias isomorfas, sem cilindros, sem proteinuria significativa — investigar via trato urinário."
+      },
+      {
+        "title": "Critérios de Urgência e Encaminhamento Imediato",
+        "body": "**Encaminhar imediatamente (DP ou pronto-socorro):**\n- Hematúria macroscópica com cóagulos e retenção urinária\n- Hematúria com instabilidade hemodinâmica\n- Hematúria em paciente anticoagulado com queda de Hb\n- Hematúria pós-trauma abdominal ou pelvico\n\n**Prioridade alta (consulta em até 2 semanas):**\n- HM em qualquer adulto > 35 anos\n- HM com fatores de risco para câncer de bexiga (tabagismo, exposição a aminas aromáticas, iradiação pélvica prévia, ciclofosfamida)\n- HMi persistente em > 50 anos\n\n**Fatores de risco para câncer de bexiga (EAU 2024):**\n- Tabagismo (principal fator de risco, RR 2–6×)\n- Exposição ocupacional: aminas aromáticas, hidrocarbonetos policicíclicos, benzidina\n- Iradiação pélvica prévia\n- Uso de ciclofosfamida ou pioglitazona\n- Idade > 60 anos, sexo masculino, história familiar"
+      },
+      {
+        "title": "Fluxograma Diagnóstico (EAU 2024)",
+        "body": "**Passo 1 — Confirmar hematúria verdadeira:**\n- Excluir pseudohematúria: betacaroteno, rifampicina, mioglobinúria, hemoglobinúria, porfiria\n- Confirmar com urinálise com microscopia (não apenas fita reativa)\n- Solicitar: urinálise completa + urocultura + citologia urinária (3 amostras)\n\n**Passo 2 — Estratificação de risco:**\n- Baixo risco: HMi isolada, < 50 anos, sem fatores de risco → USG renal + cistoscopia flexível\n- Risco intermediário: HMi com 1 fator de risco, ou HM em < 35 anos → USG + cistoscopia\n- Alto risco: HM em > 35 anos, ou HMi com ≥2 fatores de risco → TC urográfica + cistoscopia\n\n**Passo 3 — Exames de imagem:**\n- **USG renal bilateral:** primeira linha para avaliação de massas renais, cálculos, hidronefrose\n- **TC urográfica (uro-TC):** padrão-ouro para investigação de hematúria de alto risco; três fases (pré-contraste, nefrogrâfica, excretora)\n- **RM urográfica:** alternativa para pacientes com contraindicação ao contraste iodado ou gestação\n\n**Passo 4 — Cistoscopia:**\n- Indicada em todos os adultos > 35 anos com HM\n- Indicada em HMi com fatores de risco\n- Cistoscopia flexível preferível (menor desconforto, mesma acurácia)\n- Biopsias dirigidas se lesão suspeita\n\n**Passo 5 — Citologia urinária:**\n- Coletar 3 amostras de urina de jato médio (não cateterizada) em dias consecutivos\n- Sensibilidade 48–62% para câncer de bexiga (alta especificidade: 96–99%)\n- Positiva em carcinoma urotelial de alto grau e CIS\n- Não substitui cistoscopia"
+      },
+      {
+        "title": "Investigação Laboratorial",
+        "body": "**Exames básicos em toda hematúria:**\n- Urinálise com microscopia (hemácias, cilindros, proteinuria)\n- Urocultura (excluir infecção urinária como causa)\n- Citologia urinária (3 amostras)\n- Creatinina sérica e TFG estimada\n- Coagulograma (se anticoagulado ou suspeita de disturbio)\n\n**Exames adicionais conforme contexto:**\n- PSA: homens > 40 anos (excluir câncer de próstata)\n- Proteinuria de 24h + complemento (suspeita de nefropatia por IgA)\n- Cistoscopia com biopsias\n- Ureteroscopia diagnóstica (hematúria alta com imagem negativa)\n\n**Marcadores urinários (não substituíram cistoscopia):**\n- NMP22, BTA, UroVysion FISH: sensibilidade 50–80%, especificidade 70–90%\n- Uso adjunto à cistoscopia em pacientes de alto risco ou seguimento"
+      },
+      {
+        "title": "Causas Mais Comuns por Faixa Etária",
+        "body": "**Adultos jovens (20–40 anos):**\n- Litias renal ou vesical (mais comum)\n- Infecção urinária\n- Nefropatia por IgA (hematúria glomerular)\n- Trauma\n\n**Adultos de meia-idade (40–60 anos):**\n- Litias renal\n- Câncer de bexiga (incidência crescente)\n- HPB com hematúria\n- Infecção urinária\n\n**Idosos (> 60 anos):**\n- Câncer de bexiga (principal diagnóstico a excluir)\n- Câncer renal\n- HPB com hematúria\n- Litias\n\n**Crianças:**\n- Infecção urinária\n- Nefropatia por IgA\n- Hipercalciúria\n- Trauma"
+      },
+      {
+        "title": "Laudo-Modelo: Investigação de Hematúria",
+        "body": "**AVALIAÇÃO CLÍNICA — HEMATÚRIA**\n\nData: ___/___/______\n\n**1. Tipo de hematúria:**\n[ ] Macroscópica (HM) [ ] Microscópica (HMi)\nNúmero de episódios: _____ Duração: _____\nAssociada a: [ ] Cóagulos [ ] Disuria [ ] Cólica [ ] Assintomática\n\n**2. Fatores de risco:**\n[ ] Tabagismo (anos-maço: _____) [ ] Exposição ocupacional\n[ ] Iradiação pélvica prévia [ ] Ciclofosfamida [ ] Pioglitazona\n[ ] História familiar de câncer urológico\n\n**3. Exames solicitados:**\n[ ] Urinálise + microscopia [ ] Urocultura [ ] Citologia urinária (3 amostras)\n[ ] Creatinina + TFG [ ] PSA (homens > 40 anos)\n[ ] USG renal bilateral [ ] TC urográfica [ ] RM urográfica\n[ ] Cistoscopia flexível [ ] Cistoscopia rígida + biopsias\n\n**4. Resultados:**\nUSG renal: _________________________________________________\nTC/RM: ____________________________________________________\nCistoscopia: _______________________________________________\nCitologia: _________________________________________________\n\n**5. Diagnóstico provável:**\n___________________________________________________________\n\n**6. Conduta:**\n___________________________________________________________\n\nMédico: __________________________ CRM: __________________"
+      },
+      {
+        "title": "Referências",
+        "body": "1. Babjuk M et al. EAU Guidelines on Non-muscle-invasive Bladder Cancer (TaT1 and CIS). EAU 2024.\n2. Heidenreich A et al. EAU Guidelines on Haematuria. European Association of Urology, 2024.\n3. Wollin DA et al. AUA/SUFU Guideline on Microhematuria. J Urol. 2020;204(4):778–786. doi:10.1097/JU.0000000000001297\n4. Wein AJ et al. Campbell-Walsh-Wein Urology, 13ª ed. Elsevier; 2024. Cap. 3 (Hematúria).\n5. Davis R et al. Diagnosis, Evaluation and Follow-Up of Asymptomatic Microhematuria (AMH) in Adults: AUA Guideline. J Urol. 2012;188(6 Suppl):2473–2481."
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Nódulo endoluminal vesical ao USG — hematúria macroscópica",
+        "description": "Imagem ultrassonográfica transabdominal de bexiga repleta demonstrando nódulo endoluminal (15 × 7,6 mm) na parede vesical com contornos irregulares — achado que indica investigação urgente com cistoscopia em contexto de hematúria macroscópica.",
+        "searchTerms": "bladder tumor nodule endoluminal ultrasound transabdominal hematuria cystoscopy",
+        "imageUrl": "/manus-storage/vui_bexiga_nodulo_endoluminal_a84f4106.jpg",
+        "credit": "Suwannarurk K et al. Bladder mass in a patient with hematuria. Clin Case Rep. 2026;14:e72920. (CC BY 4.0) — PMC13263390",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13263390/"
+      },
+      {
+        "caption": "Cálculo renal com sombra acústica — causa de hematúria",
+        "description": "Imagem ultrassonográfica de cálculo renal hiperecogênico com sombra acústica posterior, causa frequente de hematúria macroscópica e microscópica em adultos jovens.",
+        "searchTerms": "renal calculus stone ultrasound acoustic shadow hematuria nephrolithiasis"
       }
     ]
   }
@@ -4673,5 +4733,6 @@ export const atlasToProcedure: Record<string, string> = {
   "usg-renal": "usg-renal",
   "usg-prostata-transabdominal": "usg-prostata-transabdominal",
   "usg-vias-urinarias-inferiores": "usg-vias-urinarias-inferiores",
+  "investigacao-hematuria": "investigacao-hematuria",
 };
 

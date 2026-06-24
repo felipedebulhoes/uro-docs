@@ -105,9 +105,16 @@
 - [x] Testes e checkpoint (218/218)
 
 # Lote USG Imagens + Doppler Peniano (Jun 2026)
-- [ ] Buscar imagens open-access PMC/Wikimedia para usg-escrotal-doppler-testicular (testículo normal, varicocele, hidrocele, massa)
-- [ ] Buscar imagens open-access PMC/Wikimedia para usg-vias-urinarias-inferiores (bexiga normal, RPM, IPP, divertículo)
-- [ ] Upload das imagens aprovadas e atualizar atlasData.ts com imageUrl, credit e sourceUrl
-- [ ] Criar procedimento interativo usg-doppler-peniano no proceduresExtra.ts com campos PSV/EDV/RI e calculadora ISSM 2012
-- [ ] Mapear usg-doppler-peniano no atlasToProcedure
+- [x] Buscar imagens open-access PMC/Wikimedia para usg-escrotal-doppler-testicular: volumetria (PMC13281861 CC BY), varicocele (Wikimedia CC BY 3.0), hidrocele (Wikimedia CC0), massa paratesticular (PMC13283463 CC BY)
+- [x] Buscar imagens open-access PMC/Wikimedia para usg-vias-urinarias-inferiores: nodulo endoluminal vesical (PMC13263390 CC BY)
+- [x] Upload das imagens aprovadas e atualizar atlasData.ts com imageUrl, credit e sourceUrl
+- [x] Criar procedimento interativo usg-doppler-peniano no proceduresExtra.ts com campos PSV/EDV/RI e calculadora ISSM 2012 - ja existia completo
+- [x] Mapear usg-doppler-peniano no atlasToProcedure - ja mapeado (linhas 4662-4664)
+- [x] Testes e checkpoint (218/218) - versao c2b05d34
+
+# Lote Atlas Hematúria + IPSS + Bexiga Normal (Jun 2026)
+- [ ] Buscar imagem open-access de bexiga normal ao USG transabdominal com EPV medida (PMC/Wikimedia)
+- [ ] Upload da imagem e adicionar como figura "Bexiga normal" na entrada usg-vias-urinarias-inferiores
+- [ ] Criar entrada do Atlas "investigacao-hematuria" com fluxograma EAU 2024, critérios de urgência, laudo-modelo e referências
+- [ ] Implementar calculadora de IPSS interativa embutida na entrada HPB do Atlas (AtlasProcedurePage.tsx): 7 questões, escore automático, interpretação e recomendação de conduta
 - [ ] Testes e checkpoint

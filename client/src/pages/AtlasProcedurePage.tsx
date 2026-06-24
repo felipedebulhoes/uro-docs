@@ -5,6 +5,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { IpssCalculator } from "@/components/IpssCalculator";
 import {
   Accordion,
   AccordionContent,
@@ -294,6 +295,10 @@ export default function AtlasProcedurePage() {
                     <div className="prose prose-sm prose-invert max-w-none prose-headings:text-primary prose-strong:text-foreground prose-a:text-primary prose-li:marker:text-primary/60 prose-p:text-foreground/85 prose-li:text-foreground/85 prose-table:text-foreground/85">
                       <Streamdown>{section.body}</Streamdown>
                     </div>
+                    {/* Calculadora IPSS embutida na seção de IPSS da entrada HPB */}
+                    {entry.id.startsWith("hpb-") && section.title.toLowerCase().includes("ipss") && (
+                      <IpssCalculator />
+                    )}
                   </AccordionContent>
                 </AccordionItem>
               ))}
