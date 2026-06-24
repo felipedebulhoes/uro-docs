@@ -1841,20 +1841,20 @@ export const atlasEntries: AtlasEntry[] = [
         "sourceUrl": "https://link.springer.com/article/10.1186/s12301-024-00464-9"
       },
       {
-        "caption": "Técnica de Injeção com Microcânula (Múltiplas Punções)",
-        "description": "Ilustração da técnica de aplicação por múltiplas punções: a microcânula é inserida a partir de pontos de entrada e o ácido hialurônico é depositado de forma retrógrada no plano subcutâneo da haste, distribuindo o produto uniformemente para ganho de circunferência",
-        "searchTerms": "penile girth enhancement cannula injection technique illustration; hyaluronic acid penile filler retrograde injection",
-        "imageUrl": "/manus-storage/final_fig2_microcanula_05c01b1a.png",
-        "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
-        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
+        "caption": "Técnica de Injeção na Haste (Distribuição Circunferencial)",
+        "description": "Diagrama colorido mostrando 3 seringas convergindo para a haste peniana a partir de diferentes ângulos, com seta circular indicando a distribuição circunferencial homogênea do AH no plano subcutâneo entre a fáscia de Dartos e a fáscia de Buck para ganho de circunferência",
+        "searchTerms": "penile girth enhancement hyaluronic acid injection technique diagram; penile shaft filler circumferential distribution",
+        "imageUrl": "/manus-storage/haste_fig2_distribuicao_prs2025_fa09c4b8.jpg",
+        "credit": "Jiang Y, et al. Penile Volume Augmentation With Hyaluronic Acid Under Ultrasound Guidance. Plast Reconstr Surg Glob Open. 2025;13(12):e7317 (CC BY-NC-ND)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12674163/"
       },
       {
-        "caption": "Técnica em Leque (Fanning Technique)",
-        "description": "Ilustração da técnica em leque: a partir de um ponto de entrada, a cânula percorre múltiplos trajetos divergentes (em formato de leque) para distribuir o preenchedor de modo homogêneo pelas faces da haste, reduzindo o risco de nódulos e assimetrias",
-        "searchTerms": "fanning technique penile augmentation filler; penile hyaluronic acid injection pattern",
-        "imageUrl": "/manus-storage/final_fig3_leque_d81e38b6.png",
-        "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
-        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
+        "caption": "Plano de Injeção (Ultrassonografia Transversal da Haste)",
+        "description": "Ultrassonografia transversal da haste peniana após injeção de AH guiada por ultrassom: seta laranja indica o plano subcutâneo (entre Dartos e Buck) onde o filler foi depositado; seta verde indica a fáscia de Buck intacta. Confirma o plano correto de injeção e a distribuição circunferencial do produto",
+        "searchTerms": "penile shaft ultrasound hyaluronic acid filler plane injection; penile girth enhancement ultrasound guided",
+        "imageUrl": "/manus-storage/haste_fig3_ultrassom_prs2025_eb5bfb1a.jpg",
+        "credit": "Jiang Y, et al. Penile Volume Augmentation With Hyaluronic Acid Under Ultrasound Guidance. Plast Reconstr Surg Glob Open. 2025;13(12):e7317 (CC BY-NC-ND)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12674163/"
       },
       {
         "caption": "Resultados Clínicos e Complicações (Fotos Clínicas)",
@@ -1920,9 +1920,12 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia seccional da glande e plano de injeção",
-        "description": "Um corte sagital do pênis focando na glande, destacando a epiderme, a derme (lâmina própria - plano alvo), o corpo esponjoso e as terminações do nervo dorsal. Deve ilustrar a agulha depositando o gel criando um \"coxim\" acima dos nervos",
-        "searchTerms": "Glans penis cross section anatomy; hyaluronic acid injection plane glans penis; dorsal nerve of penis glans histology"
+        "caption": "Técnica em leque (Fan technique) na glande",
+        "description": "Diagrama esquemático mostrando múltiplas agulhas divergindo em leque a partir de um ponto de entrada proximal (painel esquerdo), seguido de sequência fotográfica demonstrando a injeção retrógrada na glande com a agulha percorrendo diferentes trajetos para distribuição homogênea do AH",
+        "searchTerms": "Fan technique glans penis augmentation hyaluronic acid injection; fanning technique glans penis filler",
+        "imageUrl": "/manus-storage/glande_fig1_fan_technique_moon2015_6bbca42e.jpg",
+        "credit": "Moon DG, et al. Penile Girth Enhancement Using Injectable Hyaluronic Acid Gel. World J Mens Health. 2015;33(2):50-61 (CC BY-NC)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/"
       },
       {
         "caption": "Técnica de injeção em leque (Fanning technique)",
@@ -1933,12 +1936,12 @@ export const atlasEntries: AtlasEntry[] = [
         "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10067247/"
       },
       {
-        "caption": "Manejo de complicações (Nódulos e Isquemia)",
-        "description": "Um fluxograma visual ou fotos comparativas mostrando uma glande com nódulo subcutâneo assimétrico e a técnica de injeção de hialuronidase (agulha fina perpendicular ao nódulo) para reversão",
-        "searchTerms": "Hyaluronidase injection filler complication; penile filler nodules management; glans penis hyaluronic acid adverse effects",
-        "imageUrl": "/manus-storage/aumento-de-glande-com-acido-hialuronico_2_cc034e89.jpg",
-        "credit": "Hyaluronic acid injection to coronal sulcus of the penis for the treatment of premature ejaculation: a retrospective observational study (Chen K et al., 2023) (CC BY 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10067247/"
+        "caption": "Complicações: necrose por pressão após superinjeção",
+        "description": "Série fotográfica (7 painéis) documentando a evolução temporal de necrose por pressão da glande após superinjeção de filler: desde o edema inicial e isquemia até a necrose estabelecida e o resultado pós-desbridamento. Ilustra a importância do volume adequado e do reconhecimento precoce de complicações isquêmicas",
+        "searchTerms": "Glans penis necrosis filler overinjection complication; penile filler pressure necrosis ischemia",
+        "imageUrl": "/manus-storage/glande_fig3_necrose_moon2015_41ffc987.jpg",
+        "credit": "Moon DG, et al. Penile Girth Enhancement Using Injectable Hyaluronic Acid Gel. World J Mens Health. 2015;33(2):50-61 (CC BY-NC)",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/"
       }
     ]
   },
