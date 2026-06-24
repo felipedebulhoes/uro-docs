@@ -63,3 +63,15 @@
 # Reforço de acessibilidade do lightbox
 - [x] Regra global @media (prefers-reduced-motion: reduce) no index.css neutraliza animações de Dialog/overlay (fade/zoom) e transições, cobrindo o lightbox sem editar o componente UI compartilhado
 - [x] TypeScript sem erros, 207/207 testes passando
+
+# Correção das figuras — Aumento peniano com preenchimento de ácido hialurônico (haste)
+- [x] Inspecionar as 4 figuras atuais e identificar 2 imagens incorretas/inadequadas + 2 vazias
+- [x] Buscar imagens open-access CC BY 4.0 (BMC Urology 2023, African J Urol 2024)
+- [x] Substituir Fig1 (esquema de planos/padrões de injeção)
+- [x] Preencher Fig2 (técnica com microcânula / múltiplas punções)
+- [x] Substituir Fig3 (técnica em leque/fanning — diagrama correto)
+- [x] Substituir Fig4 (fotos clínicas de resultados e complicações)
+- [x] Adicionar Fig5 didática (forest plot de incidência de eventos adversos)
+- [x] Todas as figuras com crédito + sourceUrl (CC BY 4.0)
+- [x] TypeScript limpo, 207/207 testes passando, URLs respondendo (307 signed redirect)
+- [x] Checkpoint salvo

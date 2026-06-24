@@ -1833,30 +1833,44 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia Fascial Transversal do Pênis",
-        "description": "Um corte transversal do pênis ilustrando claramente a pele, a fáscia de Dartos, o espaço areolar frouxo (plano alvo para injeção), a fáscia de Buck, os feixes neurovasculares dorsais e os corpos cavernosos. Deve destacar a segurança do plano sub-Dartos",
-        "searchTerms": "penile cross section anatomy fascia dartos buck; penile augmentation hyaluronic acid injection plane diagram",
-        "imageUrl": "/manus-storage/aumento-peniano-com-preenchimento-de-acido-hialuronico_0_c247d822.jpg",
-        "credit": "Penile augmentation with injectable hyaluronic acid gel: an alternative choice for small penis syndrome (CC BY-NC-SA 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9809476/"
+        "caption": "Esquema dos Planos e Padrões de Injeção",
+        "description": "Esquema demonstrando os dois principais padrões de aplicação do ácido hialurônico na haste peniana: (A) técnica de múltiplas micropunções distribuídas e (B) técnica em leque (fanning) a partir de pontos de entrada na base, com a deposição do preenchedor no plano subcutâneo (entre a fáscia de Dartos e a fáscia de Buck)",
+        "searchTerms": "penile augmentation hyaluronic acid injection plane diagram; penile filler injection pattern multipuncture fanning",
+        "imageUrl": "/manus-storage/final_fig1_anatomia_7b99dac7.jpg",
+        "credit": "Salama A, et al. African Journal of Urology 2024;30:34 (CC BY 4.0)",
+        "sourceUrl": "https://link.springer.com/article/10.1186/s12301-024-00464-9"
       },
       {
-        "caption": "Técnica de Injeção com Microcânula (Visão Longitudinal)",
-        "description": "Uma visão lateral do pênis demonstrando o ponto de entrada na base, a inserção da microcânula avançando distalmente no plano correto (entre Dartos e Buck) e a deposição linear retrógrada do ácido hialurônico",
-        "searchTerms": "penile girth enhancement cannula injection technique illustration; hyaluronic acid penile filler retrograde injection"
+        "caption": "Técnica de Injeção com Microcânula (Múltiplas Punções)",
+        "description": "Ilustração da técnica de aplicação por múltiplas punções: a microcânula é inserida a partir de pontos de entrada e o ácido hialurônico é depositado de forma retrógrada no plano subcutâneo da haste, distribuindo o produto uniformemente para ganho de circunferência",
+        "searchTerms": "penile girth enhancement cannula injection technique illustration; hyaluronic acid penile filler retrograde injection",
+        "imageUrl": "/manus-storage/final_fig2_microcanula_05c01b1a.png",
+        "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
+        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
       },
       {
         "caption": "Técnica em Leque (Fanning Technique)",
-        "description": "Uma visão dorsal do pênis mostrando um único ponto de entrada na base com múltiplas setas divergentes (em formato de leque) indicando os trajetos da cânula para distribuir o preenchedor nas faces laterais e dorsal",
+        "description": "Ilustração da técnica em leque: a partir de um ponto de entrada, a cânula percorre múltiplos trajetos divergentes (em formato de leque) para distribuir o preenchedor de modo homogêneo pelas faces da haste, reduzindo o risco de nódulos e assimetrias",
         "searchTerms": "fanning technique penile augmentation filler; penile hyaluronic acid injection pattern",
-        "imageUrl": "/manus-storage/aumento-peniano-com-preenchimento-de-acido-hialuronico_2_dbf01ae8.jpg",
-        "credit": "Penile augmentation with injectable hyaluronic acid gel: an alternative choice for small penis syndrome (CC BY-NC-SA 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9809476/"
+        "imageUrl": "/manus-storage/final_fig3_leque_d81e38b6.png",
+        "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
+        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
       },
       {
-        "caption": "Manejo de Complicações - Nódulos e Efeito Tyndall",
-        "description": "Uma ilustração ou foto clínica (desidentificada) mostrando a formação de um nódulo subcutâneo ou coloração azulada (Tyndall) e a técnica de injeção pontual de hialuronidase diretamente na lesão para dissolução",
-        "searchTerms": "hyaluronic acid filler nodule hyaluronidase injection; penile filler complication management tyndall effect"
+        "caption": "Resultados Clínicos e Complicações (Fotos Clínicas)",
+        "description": "Painel de fotografias clínicas demonstrando resultados pós-procedimento e complicações possíveis: (a,b) aspecto da haste após injeção, (c,d) edema, irregularidades de contorno e nódulos que podem ocorrer e que são manejados com massagem ou hialuronidase",
+        "searchTerms": "hyaluronic acid penile filler clinical result complication photo; penile filler nodule edema",
+        "imageUrl": "/manus-storage/final_fig4_complic_6b4043e7.jpg",
+        "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
+        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
+      },
+      {
+        "caption": "Incidência de Eventos Adversos (Meta-análise)",
+        "description": "Forest plot de meta-análise comparando a incidência de eventos adversos entre injeção de ácido hialurônico e controle nos estudos publicados, demonstrando o perfil de segurança geral favorável do procedimento. Material de apoio para aconselhamento e consentimento informado",
+        "searchTerms": "hyaluronic acid penile augmentation adverse events meta-analysis forest plot; penile filler safety systematic review",
+        "imageUrl": "/manus-storage/final_fig6_forestplot_e2541eed.png",
+        "credit": "Salama A, et al. African Journal of Urology 2024;30:34 (CC BY 4.0)",
+        "sourceUrl": "https://link.springer.com/article/10.1186/s12301-024-00464-9"
       }
     ]
   },
