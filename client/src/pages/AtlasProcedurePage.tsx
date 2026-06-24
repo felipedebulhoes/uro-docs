@@ -12,6 +12,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { BrandLogo } from "@/components/BrandLogo";
+import { AtlasLightbox } from "@/components/AtlasLightbox";
+import {
+  buildLightboxFigures,
+  positionForFigure,
+} from "@/lib/lightboxNav";
 import {
   getAtlasEntry,
   atlasToProcedure,
@@ -30,6 +35,7 @@ import {
   ExternalLink,
   Printer,
   ImagePlus,
+  Maximize2,
 } from "lucide-react";
 import {
   clinicalKeySearchUrl,
@@ -39,7 +45,7 @@ import {
 import { exportAtlasPdf } from "@/lib/atlasPdf";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useParams, Link } from "wouter";
 import { Streamdown } from "streamdown";
 import { toast } from "sonner";
@@ -81,6 +87,29 @@ export default function AtlasProcedurePage() {
     }
     return map;
   }, [entry, atlasImages]);
+
+  // Lista de figuras que possuem imagem efetiva (banco protegido > estático),
+  // usada para o lightbox em tela cheia. Guardamos também o índice original
+  // da figura para mapear o clique no card à posição correta no lightbox.
+  const lightboxFigures = useMemo(
+    () => (entry ? buildLightboxFigures(entry.figures, imageByIndex) : []),
+    [entry, imageByIndex]
+  );
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  // abre o lightbox a partir do índice ORIGINAL da figura clicada
+  const openLightbox = useCallback(
+    (figIndex: number) => {
+      const pos = positionForFigure(lightboxFigures, figIndex);
+      if (pos >= 0) {
+        setLightboxIndex(pos);
+        setLightboxOpen(true);
+      }
+    },
+    [lightboxFigures]
+  );
 
   if (!entry) {
     return (
@@ -265,6 +294,7 @@ export default function AtlasProcedurePage() {
                   fig={fig}
                   index={i + 1}
                   dbImage={imageByIndex.get(i)}
+                  onOpenLightbox={() => openLightbox(i)}
                 />
               ))}
             </div>
@@ -298,6 +328,14 @@ export default function AtlasProcedurePage() {
         </div>
       </main>
 
+      <AtlasLightbox
+        figures={lightboxFigures}
+        index={lightboxIndex}
+        onIndexChange={setLightboxIndex}
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+      />
+
       <footer className="border-t border-border/50 py-4">
         <div className="container">
           <p className="text-xs text-muted-foreground text-center">
@@ -313,10 +351,12 @@ function FigureCard({
   fig,
   index,
   dbImage,
+  onOpenLightbox,
 }: {
   fig: AtlasFigure;
   index: number;
   dbImage?: AtlasImage;
+  onOpenLightbox?: () => void;
 }) {
   const [copied, setCopied] = useState(false);
   // se a imagem (quando houver) falhar ao carregar, cai no placeholder informativo
@@ -342,13 +382,24 @@ function FigureCard({
     <Card className="overflow-hidden bg-card border-border flex flex-col">
       {/* Espaço da imagem (placeholder informativo) */}
       {showImage ? (
-        <img
-          src={effectiveUrl}
-          alt={fig.caption}
-          loading="lazy"
-          onError={() => setImgError(true)}
-          className="w-full aspect-video object-contain bg-nilo-dark"
-        />
+        <button
+          type="button"
+          onClick={onOpenLightbox}
+          className="group relative w-full aspect-video bg-nilo-dark overflow-hidden cursor-zoom-in"
+          title="Ampliar imagem"
+          aria-label={`Ampliar figura: ${fig.caption}`}
+        >
+          <img
+            src={effectiveUrl}
+            alt={fig.caption}
+            loading="lazy"
+            onError={() => setImgError(true)}
+            className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+          />
+          <span className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+            <Maximize2 className="w-3.5 h-3.5" />
+          </span>
+        </button>
       ) : (
         <div className="w-full aspect-video bg-nilo-dark/60 border-b border-border flex flex-col items-center justify-center text-muted-foreground/60 gap-1">
           <ImageIcon className="w-7 h-7" />

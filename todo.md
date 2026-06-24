@@ -40,3 +40,22 @@
 - [x] Cobertura: 22/22 procedimentos com >=1 imagem; 47 figuras com imagem real
 - [x] Testes de rastreabilidade (crédito+fonte obrigatórios) — 200/200 passando
 - [x] Salvar checkpoint
+
+# Lightbox de figuras do Atlas
+- [ ] Componente Lightbox em tela cheia (Dialog) com imagem ampliada
+- [ ] Clicar na imagem do FigureCard abre o lightbox
+- [ ] Navegação entre figuras com imagem da entrada (anterior/próxima) por botão e teclado (setas)
+- [ ] Fechar por ESC, clique no backdrop e botão X
+- [ ] Exibir legenda, descrição e crédito no lightbox + link da fonte
+- [ ] Respeitar prefers-reduced-motion; foco acessível
+- [ ] Testes e checkpoint
+
+# Lightbox de figuras do Atlas (concluído)
+
+- [x] Componente AtlasLightbox (Dialog fullscreen, ESC/backdrop/X para fechar)
+- [x] Imagens das figuras clicáveis (cursor-zoom-in + ícone Maximize2 no hover)
+- [x] Navegação entre figuras com imagem (setas na tela + teclado ArrowLeft/ArrowRight)
+- [x] Rodapé com legenda, descrição, crédito e link "Ver fonte original"
+- [x] Lógica pura extraída para client/src/lib/lightboxNav.ts (testável)
+- [x] 7 testes vitest em lightboxNav.test.ts (build de figuras, wrap circular, mapeamento de índice)
+- [x] TypeScript sem erros, 207/207 testes passando, build de produção OK
