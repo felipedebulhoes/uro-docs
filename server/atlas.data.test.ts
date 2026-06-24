@@ -11,7 +11,7 @@ import { procedures } from "../client/src/data/procedures";
 
 describe("Atlas data integrity", () => {
   it("has the expected number of entries", () => {
-    expect(atlasEntries.length).toBe(63);
+    expect(atlasEntries.length).toBe(65);
   });
 
   it("every entry has required, non-empty fields", () => {
@@ -188,7 +188,7 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
 
   it("catálogo e Atlas têm contagens esperadas", () => {
     expect(procedures.length).toBe(59);
-    expect(atlasEntries.length).toBe(63);
+    expect(atlasEntries.length).toBe(65);
   });
 
   it("o link reverso (catálogo->Atlas) resolve para uma entrada existente em todos os procedimentos", () => {
