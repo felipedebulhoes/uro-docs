@@ -1,6 +1,14 @@
 // AUTO-GERADO (build_extra_procedures.py): procedimentos do Atlas adicionados ao catálogo.
 // Conteúdo clínico padronizado para o Dr. Felipe Bulhões. Fontes: EAU/AUA/SBU/Campbell-Walsh-Wein 13ª ed.
 import type { Procedure } from "./procedures";
+import {
+  calcExpulsao,
+  calcExpulsaoProbabilidade,
+  calcIpss,
+  calcIpssScore,
+  calcRiscoLitiase,
+  calcIndicacaoCirurgicaHPB,
+} from "../lib/calculators";
 
 /**
  * Classificação hemodinâmica automática do estudo Doppler peniano a partir de PSV/EDV.
@@ -2216,71 +2224,14 @@ AP\u00d3S O EXAME:
         label: "Calculadora de Expulsão",
         type: "calculated" as const,
         defaultValue: "",
-        calculate: (c: Record<string, string>) => {
-          const tam = parseFloat(c.tamanho) || 0;
-          const loc = c.localizacao || "";
-
-          // Evidence matrix: Hollingsworth JM et al. JAMA 2016;315(19):2104
-          // EAU Urolithiasis Guidelines 2024 (Türk et al.)
-          // Rows: size bands; Cols: location (distal/medio/proximal)
-          type Band = { maxSize: number; distal: number; medio: number; proximal: number };
-          const matrix: Band[] = [
-            { maxSize: 4,  distal: 87, medio: 76, proximal: 63 },
-            { maxSize: 6,  distal: 74, medio: 60, proximal: 48 },
-            { maxSize: 8,  distal: 55, medio: 42, proximal: 32 },
-            { maxSize: 10, distal: 40, medio: 30, proximal: 22 },
-            { maxSize: 99, distal: 20, medio: 15, proximal: 10 },
-          ];
-
-          const isDistal  = loc.includes("distal") || loc.includes("JUV");
-          const isProx    = loc.includes("proximal");
-          const band      = matrix.find(b => tam <= b.maxSize) ?? matrix[matrix.length - 1];
-          const prob      = isDistal ? band.distal : isProx ? band.proximal : band.medio;
-
-          // Time estimate
-          let timeEstimate = "";
-          if (prob >= 75)      timeEstimate = "1–2 semanas";
-          else if (prob >= 55) timeEstimate = "2–3 semanas";
-          else if (prob >= 35) timeEstimate = "3–4 semanas";
-          else                 timeEstimate = "> 4 semanas (baixa chance)";
-
-          // Color
-          const color: "green" | "yellow" | "orange" | "red" =
-            prob >= 70 ? "green" : prob >= 50 ? "yellow" : prob >= 30 ? "orange" : "red";
-
-          // Recommendation
-          let recommendation = "";
-          if (prob >= 70)
-            recommendation = "Terapia expulsiva indicada. Alta probabilidade de passagem espontânea.";
-          else if (prob >= 50)
-            recommendation = "Terapia expulsiva razoável. Reavalie em 4 semanas com imagem.";
-          else if (prob >= 30)
-            recommendation = "Chance moderada. Considere intervenção se dor refratária ou obstrução progressiva.";
-          else
-            recommendation = "Baixa probabilidade de expulsão espontânea. Discutir intervenção precoce.";
-
-          const locLabel = isDistal ? "distal (JUV)" : isProx ? "proximal" : "médio";
-
-          return {
-            probability: prob,
-            probLabel: `~${prob}%`,
-            timeEstimate,
-            recommendation,
-            color,
-            details: [
-              `Tamanho: ${tam > 0 ? tam + " mm" : "não informado"}`,
-              `Localização: ureter ${locLabel}`,
-              `Taxa de expulsão (Hollingsworth 2016 / EAU 2024): ~${prob}%`,
-              `Tempo médio estimado: ${timeEstimate}`,
-            ],
-          };
-        },
+        calculate: (c: Record<string, string>) => calcExpulsao(c),
       },
     ],
     templates: {
       descricao: (c) => {
         const tam = parseFloat(c.tamanho) || 0;
-        const chancePasso = tam <= 4 ? "~80%" : tam <= 6 ? "~60%" : tam <= 10 ? "~40\u201350%" : "< 25%";
+        // Mesma matriz do painel calc_expulsao (lib/calculators.ts).
+        const chancePasso = `~${calcExpulsaoProbabilidade(tam, c.localizacao || "").probability}%`;
         return `TERAPIA EXPULSIVA \u2014 C\u00c1LCULO URETERAL\nC\u00e1lculo ureteral ${c.lateralidade}, ${c.localizacao}, ${c.tamanho} mm.${c.composicao !== "N\u00e3o determinada" ? ` Composi\u00e7\u00e3o prov\u00e1vel: ${c.composicao}.` : ""}\nGrau de obstru\u00e7\u00e3o: ${c.obstrucao}.\nChance de passagem espont\u00e2nea estimada: ${chancePasso} (baseada no tamanho e localiza\u00e7\u00e3o).\nCrit\u00e9rios de elegibilidade para terapia expulsiva presentes: c\u00e1lculo \u2264 10 mm, sem infec\u00e7\u00e3o urin\u00e1ria, sem obstru\u00e7\u00e3o grave, dor control\u00e1vel, fun\u00e7\u00e3o renal preservada.\nF\u00e1rmaco prescrito: ${c.farmaco}. Dura\u00e7\u00e3o prevista: ${c.duracao_prevista}.\nAnalgesia: ${c.analgesico}.\nRetorno para reavalia\u00e7\u00e3o: ${c.retorno}.\nCrit\u00e9rios de falha da terapia expulsiva (indica\u00e7\u00e3o de interven\u00e7\u00e3o cir\u00fargica): aus\u00eancia de passagem ap\u00f3s ${c.duracao_prevista}; dor refrat\u00e1ria; infec\u00e7\u00e3o urin\u00e1ria associada; deteriora\u00e7\u00e3o da fun\u00e7\u00e3o renal; obstru\u00e7\u00e3o bilateral ou em rim \u00fanico.\nREFER\u00caNCIAS: EAU Guidelines on Urolithiasis 2024 (T\u00fcrk et al.); AUA/Endourology Society Guideline 2022; Hollingsworth JM et al. JAMA 2016;315(19):2104.`;
       },
       posOperatorio: (c) => `ACOMPANHAMENTO \u2014 TERAPIA EXPULSIVA\nN\u00e3o se aplica p\u00f3s-operat\u00f3rio (tratamento conservador).\nMonitorar:\n\u2022 Passagem do c\u00e1lculo (coar a urina com filtro/gaze).\n\u2022 Dor: se c\u00f3lica intensa ou refrat\u00e1ria, retornar ao pronto-socorro.\n\u2022 Febre ou calafrios: retornar imediatamente (suspeita de pielonefrite obstrutiva \u2014 EMERG\u00caNCIA).\n\u2022 Hemat\u00faria: esperada; se maci\u00e7a, retornar.\nRetorno agendado: ${c.retorno} com nova imagem (TC sem contraste ou RX simples de abdome).`,
@@ -2305,22 +2256,10 @@ AP\u00d3S O EXAME:
         const tam = parseFloat(c.tamanho) || 0;
         const loc = c.localizacao || "";
 
-        // Recalculate probability for the PDF (mirrors calc_expulsao logic)
-        // Evidence: Hollingsworth JM et al. JAMA 2016;315(19):2104; EAU 2024
-        type SizeBand = "<= 4" | "5-6" | "7-9" | "10+";
-        type LocKey = "distal" | "medio" | "proximal";
-        const matrix: Record<SizeBand, Record<LocKey, number>> = {
-          "<= 4": { distal: 87, medio: 72, proximal: 55 },
-          "5-6":  { distal: 74, medio: 55, proximal: 38 },
-          "7-9":  { distal: 48, medio: 32, proximal: 22 },
-          "10+":  { distal: 25, medio: 16, proximal: 10 },
-        };
-        const sizeBand: SizeBand = tam <= 4 ? "<= 4" : tam <= 6 ? "5-6" : tam <= 9 ? "7-9" : "10+";
-        const locKey: LocKey = loc.includes("distal") ? "distal" : loc.includes("médio") || loc.includes("medio") ? "medio" : "proximal";
-        const prob = matrix[sizeBand][locKey];
-
-        const riskLabel = prob >= 70 ? "ALTA" : prob >= 45 ? "MODERADA" : prob >= 25 ? "BAIXA" : "MUITO BAIXA";
-        const timeEst = prob >= 70 ? "1–2 semanas" : prob >= 45 ? "2–4 semanas" : prob >= 25 ? "4–6 semanas" : "> 6 semanas (considerar intervenção)";
+        // Mesma fonte de verdade do painel calc_expulsao (lib/calculators.ts) —
+        // evita que este documento mostre uma probabilidade diferente da
+        // exibida na calculadora.
+        const { probability: prob, riskLabel, timeEstimate: timeEst } = calcExpulsaoProbabilidade(tam, loc);
 
         return `ORIENTAÇÕES AO PACIENTE — TERAPIA EXPULSIVA PARA CÁLCULO URETERAL
 
@@ -2392,109 +2331,7 @@ FONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2
         label: "Calculadora de Risco de Recorrência",
         type: "calculated" as const,
         defaultValue: "",
-        calculate: (c: Record<string, string>) => {
-          // Evidence-based risk stratification
-          // Sources:
-          //   Pearle MS et al. AUA Guideline 2014 (amended 2019) — Medical Management of Kidney Stones
-          //   EAU Guidelines on Urolithiasis 2024 (Türk et al.)
-          //   Borghi L et al. N Engl J Med 2002;346(2):77–84
-          //   Worcester EM, Coe FL. NEJM 2010;363(10):954–963
-
-          const riskFactors: string[] = [];
-          let score = 0;
-
-          // ── Episódios ────────────────────────────────────────────────
-          const ep = parseInt(c.episodios || "1", 10);
-          if (ep >= 3) { score += 3; riskFactors.push(`≥ 3 episódios (${ep}×) — alto risco de recorrência`); }
-          else if (ep === 2) { score += 1; riskFactors.push(`2 episódios — risco moderado`); }
-
-          // ── Volume urinário ──────────────────────────────────────────
-          const vol = parseFloat((c.volume_urina24 || "0").replace(",", "."));
-          if (vol > 0 && vol < 1500) { score += 2; riskFactors.push(`Volume urinário baixo: ${vol} mL/dia (meta ≥ 2000 mL)`); }
-          else if (vol >= 1500 && vol < 2000) { score += 1; riskFactors.push(`Volume urinário limítrofe: ${vol} mL/dia`); }
-
-          // ── Cálcio urinário ──────────────────────────────────────────
-          const caU = parseFloat((c.ca_urina24 || "0").replace(",", "."));
-          if (caU > 300) { score += 2; riskFactors.push(`Hipercalciúria: ${caU} mg/dia (ref: < 300 ♂ / < 250 ♀)`); }
-
-          // ── Oxalato urinário ─────────────────────────────────────────
-          const oxU = parseFloat((c.oxalato_urina24 || "0").replace(",", "."));
-          if (oxU > 40) { score += 2; riskFactors.push(`Hiperoxalúria: ${oxU} mg/dia (ref: < 40)`); }
-
-          // ── Citrato urinário ─────────────────────────────────────────
-          const citU = parseFloat((c.citrato_urina24 || "0").replace(",", "."));
-          if (citU > 0 && citU < 320) { score += 2; riskFactors.push(`Hipocitratúria: ${citU} mg/dia (ref: > 320 ♀ / > 450 ♂)`); }
-
-          // ── Ácido úrico urinário ─────────────────────────────────────
-          const auU = parseFloat((c.au_urina24 || "0").replace(",", "."));
-          if (auU > 800) { score += 1; riskFactors.push(`Hiperuricosúria: ${auU} mg/dia (ref: < 800 ♂ / < 750 ♀)`); }
-
-          // ── Sódio urinário ───────────────────────────────────────────
-          const naU = parseFloat((c.sodio_urina24 || "0").replace(",", "."));
-          if (naU > 150) { score += 1; riskFactors.push(`Hipersodiosúria: ${naU} mEq/dia (ref: < 150) — aumenta calciúria`); }
-
-          // ── Cálcio sérico ────────────────────────────────────────────
-          const caS = parseFloat((c.ca_sangue || "0").replace(",", "."));
-          if (caS > 10.2) { score += 2; riskFactors.push(`Hipercalcemia: ${caS} mg/dL — investigar hiperparatireoidismo`); }
-
-          // ── PTH ──────────────────────────────────────────────────────
-          const pth = parseFloat((c.pth || "0").replace(",", "."));
-          if (pth > 65 && caS > 10.2) { score += 3; riskFactors.push(`PTH elevado (${pth} pg/mL) + hipercalcemia → hiperparatireoidismo primário`); }
-          else if (pth > 65) { score += 1; riskFactors.push(`PTH elevado: ${pth} pg/mL (ref: 15–65)`); }
-
-          // ── Ácido úrico sérico ───────────────────────────────────────
-          const auS = parseFloat((c.au_sangue || "0").replace(",", "."));
-          if (auS > 7.0) { score += 1; riskFactors.push(`Hiperuricemia: ${auS} mg/dL (ref: < 7,0 ♂ / < 6,0 ♀)`); }
-
-          // ── pH urinário ──────────────────────────────────────────────
-          const ph = parseFloat((c.ph_urina || "0").replace(",", "."));
-          if (ph > 0 && ph < 5.5) { score += 1; riskFactors.push(`pH urinário ácido: ${ph} (< 5,5 → risco de cálculo de ácido úrico)`); }
-          if (ph > 7.0) { score += 1; riskFactors.push(`pH urinário alcalino: ${ph} (> 7,0 → risco de estruvita/fosfato de cálcio)`); }
-
-          // ── Composição de alto risco ─────────────────────────────────
-          const comp = (c.composicao || "").toLowerCase();
-          if (comp.includes("cistina")) { score += 4; riskFactors.push("Cistinúria — risco muito alto de recorrência (doença genética)"); }
-          if (comp.includes("estruvita")) { score += 3; riskFactors.push("Cálculo de estruvita — associado a infecção por bactérias urease-positivas"); }
-
-          // ── Classificação ────────────────────────────────────────────
-          let risk: string;
-          let color: "green" | "yellow" | "orange" | "red";
-          let probability: number;
-          let recommendation: string;
-          let timeEstimate: string;
-
-          if (score === 0) {
-            risk = "Baixo";
-            color = "green";
-            probability = 15;
-            timeEstimate = "Recorrência em ~15% em 5 anos";
-            recommendation = "Risco baixo: hidratação (≥ 2 L/dia) e orientações dietéticas. Reavaliação anual.";
-          } else if (score <= 3) {
-            risk = "Moderado";
-            color = "yellow";
-            probability = 40;
-            timeEstimate = "Recorrência em ~40% em 5 anos";
-            recommendation = "Risco moderado: corrigir fatores identificados. Considerar tratamento farmacológico específico.";
-          } else if (score <= 6) {
-            risk = "Alto";
-            color = "orange";
-            probability = 65;
-            timeEstimate = "Recorrência em ~65% em 5 anos";
-            recommendation = "Risco alto: tratamento farmacológico indicado. Monitorar urina de 24h a cada 6–12 meses.";
-          } else {
-            risk = "Muito Alto";
-            color = "red";
-            probability = 85;
-            timeEstimate = "Recorrência em ~85% em 5 anos";
-            recommendation = "Risco muito alto: tratamento intensivo obrigatório. Avaliar causas secundárias (hiperparatireoidismo, cistinúria, ATR).";
-          }
-
-          const details = riskFactors.length > 0
-            ? [`Fatores de risco identificados (${riskFactors.length}):`, ...riskFactors, "Fonte: EAU Urolithiasis 2024; AUA/Endourology Society 2022; Worcester EM, Coe FL. NEJM 2010"]
-            : ["Nenhum fator de risco identificado nos dados informados", "Preencha os campos de exames para análise completa", "Fonte: EAU Urolithiasis 2024; AUA/Endourology Society 2022"];
-
-          return { probability, probLabel: `Risco ${risk}`, timeEstimate, recommendation, color, details };
-        },
+        calculate: (c: Record<string, string>) => calcRiscoLitiase(c),
       },
       { id: "diagnostico_metabolico", label: "Diagnóstico Metabólico", type: "text", defaultValue: "", placeholder: "Ex: hipercalciúria absortiva + hipocitratúria" },
       { id: "conduta", label: "Conduta / Tratamento Proposto", type: "text", defaultValue: "", placeholder: "Ex: hidroclorotiazida 25 mg/dia + citrato de potássio 30 mEq/dia" },
@@ -2593,64 +2430,7 @@ FONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2
         label: "Escore IPSS e Classificação",
         type: "calculated" as const,
         defaultValue: "",
-        calculate: (c: Record<string, string>) => {
-          const parseQ = (val: string): number => {
-            const n = parseInt(val.charAt(0), 10);
-            return Number.isFinite(n) ? n : 0;
-          };
-          const q1 = parseQ(c.ipss_q1 || "0");
-          const q2 = parseQ(c.ipss_q2 || "0");
-          const q3 = parseQ(c.ipss_q3 || "0");
-          const q4 = parseQ(c.ipss_q4 || "0");
-          const q5 = parseQ(c.ipss_q5 || "0");
-          const q6 = parseQ(c.ipss_q6 || "0");
-          const q7 = parseQ(c.ipss_q7 || "0");
-          const qol = parseQ(c.ipss_qol || "3");
-          const total = q1 + q2 + q3 + q4 + q5 + q6 + q7;
-
-          let severity: string;
-          let recommendation: string;
-          let color: "green" | "yellow" | "orange" | "red";
-          let timeEstimate: string;
-          let probability: number;
-
-          if (total <= 7) {
-            severity = "Leve";
-            color = "green";
-            probability = 85;
-            timeEstimate = "Conduta expectante / watchful waiting";
-            recommendation = "IPSS leve (0–7): conduta expectante. Reavaliação anual. Mudanças de estilo de vida.";
-          } else if (total <= 19) {
-            severity = "Moderado";
-            color = "yellow";
-            probability = 60;
-            timeEstimate = "Tratamento clínico — 4–6 semanas para resposta";
-            recommendation = "IPSS moderado (8–19): tratamento farmacológico indicado. Alfa-bloqueador ± 5-ARI conforme volume prostático.";
-          } else {
-            severity = "Grave";
-            color = "red";
-            probability = 30;
-            timeEstimate = "Tratamento clínico ou cirúrgico — avaliar indicação cirúrgica";
-            recommendation = "IPSS grave (20–35): avaliar indicação cirúrgica (RTU-P, HoLEP). Tratar complicações (retenção, ITU, litíase vesical).";
-          }
-
-          const qolLabel = ["Ótima", "Satisfeito", "Razoavelmente satisfeito", "Indiferente", "Razoavelmente insatisfeito", "Infeliz", "Péssima"][qol] || "—";
-
-          return {
-            probability,
-            probLabel: `${total}/35`,
-            timeEstimate,
-            recommendation,
-            color,
-            details: [
-              `Escore IPSS total: ${total}/35 — Sintomas ${severity}s`,
-              `Qualidade de vida (QoL): ${qol}/6 — ${qolLabel}`,
-              `Sintomas obstrutivos (Q1+Q3+Q5+Q6): ${q1+q3+q5+q6}/20`,
-              `Sintomas irritativos (Q2+Q4+Q7): ${q2+q4+q7}/15`,
-              `Fonte: Barry MJ et al. J Urol 1992 (IPSS); EAU Guidelines on BPH 2024`,
-            ],
-          };
-        },
+        calculate: (c: Record<string, string>) => calcIpss(c),
       },
       { id: "volume_prostatico", label: "Volume Prostático (mL)", type: "text", defaultValue: "", placeholder: "Ex: 45" },
       { id: "psa", label: "PSA Total (ng/mL)", type: "text", defaultValue: "", placeholder: "Ex: 2,8" },
@@ -2691,10 +2471,11 @@ FONTES: EAU Guidelines on Urolithiasis 2024; AUA/Endourology Society Guideline 2
     ],
     templates: {
       descricao: (c) => {
-        const parseQ = (val: string): number => { const n = parseInt((val || "0").charAt(0), 10); return Number.isFinite(n) ? n : 0; };
-        const total = [c.ipss_q1,c.ipss_q2,c.ipss_q3,c.ipss_q4,c.ipss_q5,c.ipss_q6,c.ipss_q7].reduce((s,v)=>s+parseQ(v),0);
-        const sev = total<=7?"leve":total<=19?"moderado":"grave";
-        const qolN = parseQ(c.ipss_qol||"3");
+        // Mesma fonte de verdade do painel calc_ipss (lib/calculators.ts).
+        const ipssScore = calcIpssScore(c);
+        const total = ipssScore.total;
+        const sev = ipssScore.severity.toLowerCase();
+        const qolN = ipssScore.qol;
         return `CONSULTA — HPB / SINTOMAS DO TRATO URINÁRIO INFERIOR (STUI)
 
 Paciente com STUI secundários a HPB. IPSS total: ${total}/35 (sintomas ${sev}s). QoL: ${qolN}/6.
@@ -2721,9 +2502,9 @@ ORIENTAÇÕES GERAIS:
 • Reduzir ingestão de líquidos à noite (após 18h) para diminuir noctúria.
 • Retorno em ${c.retorno} com IPSS preenchido.`,
       orientacoes: (c) => {
-        const parseQ = (val: string): number => { const n = parseInt((val || "0").charAt(0), 10); return Number.isFinite(n) ? n : 0; };
-        const total = [c.ipss_q1,c.ipss_q2,c.ipss_q3,c.ipss_q4,c.ipss_q5,c.ipss_q6,c.ipss_q7].reduce((s,v)=>s+parseQ(v),0);
-        const sev = total<=7?"LEVE":total<=19?"MODERADO":"GRAVE";
+        // Mesma fonte de verdade do painel calc_ipss (lib/calculators.ts).
+        const total = calcIpssScore(c).total;
+        const sev = calcIpssScore(c).severity.toUpperCase();
         return `ORIENTAÇÕES — HPB (PRÓSTATA AUMENTADA) E TRATAMENTO
 
 DIAGNÓSTICO:
@@ -2767,85 +2548,7 @@ FONTES: EAU Guidelines on BPH 2024; AUA/SUFU Guideline 2023.`;
         label: "Recomendação de Técnica Cirúrgica",
         type: "calculated" as const,
         defaultValue: "",
-        calculate: (c: Record<string, string>) => {
-          const vol = parseFloat((c.volume_prostatico || "0").replace(",", "."));
-          const ipss = parseInt(c.ipss_pre || "0", 10);
-          const qmax = parseFloat((c.qmax_pre || "0").replace(",", "."));
-
-          // Evidence-based technique selection
-          // EAU BPH Guidelines 2024; AUA/SUFU 2023
-          // Ahyai SA et al. Eur Urol 2010;58(3):384–397
-
-          let recommended: string;
-          let color: "green" | "yellow" | "orange" | "red";
-          let probability: number;
-          let timeEstimate: string;
-          let recommendation: string;
-          const details: string[] = [];
-
-          const ipssGrave = ipss >= 20;
-          const ipssModGrave = ipss >= 8;
-          const obstrucaoSignificativa = qmax > 0 && qmax < 10;
-
-          if (vol <= 0) {
-            // No volume entered
-            recommended = "Preencher volume prostático";
-            color = "orange";
-            probability = 0;
-            timeEstimate = "Dados insuficientes";
-            recommendation = "Informe o volume prostático para receber a recomendação de técnica cirúrgica.";
-            details.push("Volume prostático não informado");
-          } else if (vol > 80) {
-            // Large prostate: HoLEP or open enucleation
-            recommended = "HoLEP (enucleação a laser de hólmio)";
-            color = "green";
-            probability = 90;
-            timeEstimate = "Resultado duradouro a longo prazo";
-            recommendation = `Volume ${vol} mL (> 80 mL): HoLEP ou enucleação aberta (Millin). RTU-P é subideal para volumes grandes.`;
-            details.push(`Volume prostático: ${vol} mL — indicação de enucleação (HoLEP/ThuLEP/Millin)`);
-            details.push("HoLEP: equivalente à prostatectomia aberta, menor sangramento, menor internação");
-            details.push("Curva de aprendizado longa (50–100 casos) — encaminhar a centro especializado se necessário");
-            if (ipssGrave) details.push(`IPSS grave (${ipss}/35): indicação cirúrgica reforçada`);
-          } else if (vol >= 30 && vol <= 80) {
-            // Medium prostate: RTU-P standard; Rezūm/UroLift if IPSS moderate and ejaculation priority
-            if (ipssModGrave || obstrucaoSignificativa) {
-              recommended = "RTU-P (ressecção transuretral bipolar)";
-              color = "green";
-              probability = 85;
-              timeEstimate = "Padrão-ouro para 30–80 mL";
-              recommendation = `Volume ${vol} mL, IPSS ${ipss}/35${obstrucaoSignificativa ? `, Qmáx ${qmax} mL/s` : ""}: RTU-P bipolar é o padrão-ouro. Rezūm ou UroLift se preservação ejaculatória for prioridade.`;
-              details.push(`Volume ${vol} mL + IPSS ${ipss}/35 — RTU-P bipolar (padrão-ouro)`);
-              details.push("Rezūm: alternativa com preservação ejaculatória (< 5% ejaculacão retrógrada), IPSS moderado");
-              details.push("UroLift: sem ablação, preserva ejaculacão e função erétil, indicado para < 80 mL sem lóbulo mediano");
-            } else {
-              // IPSS leve com volume 30-80: pode ser watchful waiting ou Rezūm/UroLift
-              recommended = "Rezūm ou UroLift (IPSS leve)";
-              color = "yellow";
-              probability = 75;
-              timeEstimate = "Procedimento ambulatorial minimamente invasivo";
-              recommendation = `Volume ${vol} mL, IPSS ${ipss}/35 (leve): Rezūm ou UroLift são preferíveis por menor morbidade. Reavalie indicação cirúrgica.`;
-              details.push(`Volume ${vol} mL + IPSS leve (${ipss}/35) — procedimento minimamente invasivo`);
-              details.push("Rezūm: vapor d'água, ambulatorial, preserva ejaculacão");
-              details.push("UroLift: implante prostático, ambulatorial, preserva ejaculacão e função erétil");
-            }
-          } else {
-            // Small prostate (< 30 mL): consider UroLift or Rezūm
-            recommended = "UroLift ou Rezūm";
-            color = "yellow";
-            probability = 70;
-            timeEstimate = "Procedimento ambulatorial";
-            recommendation = `Volume ${vol} mL (< 30 mL): considerar UroLift ou Rezūm. RTU-P possível mas com menor tecido para ressecção.`;
-            details.push(`Volume prostático: ${vol} mL — próstata pequena`);
-            details.push("UroLift: indicado para próstatas < 80 mL sem lóbulo mediano proeminente");
-            if (ipssGrave) details.push(`IPSS grave (${ipss}/35): apesar do volume pequeno, sintomas graves justificam intervenção`);
-          }
-
-          if (ipss > 0) details.push(`IPSS pré-op: ${ipss}/35 (${ipss <= 7 ? "leve" : ipss <= 19 ? "moderado" : "grave"})`);
-          if (qmax > 0) details.push(`Qmáx pré-op: ${qmax} mL/s${qmax < 10 ? " — obstrução significativa" : ""}`);
-          details.push("Fonte: EAU BPH Guidelines 2024; AUA/SUFU 2023; Ahyai SA et al. Eur Urol 2010");
-
-          return { probability, probLabel: recommended, timeEstimate, recommendation, color, details };
-        },
+        calculate: (c: Record<string, string>) => calcIndicacaoCirurgicaHPB(c),
       },
       { id: "tecnica", label: "Técnica Cirúrgica", type: "select", options: ["RTU-P (ressecção transuretral bipolar)", "HoLEP (enucleação a laser de hólmio)", "ThuLEP (enucleação a laser de túlio)", "Enucleação aberta (Millin/HoLAP)", "Vaporização a laser (GreenLight PVP)", "Rezūm (vapor d'água)", "UroLift (implante prostático)"], defaultValue: "RTU-P (ressecção transuretral bipolar)" },
       { id: "anestesia", label: "Anestesia", type: "select", options: ["Raquianestesia", "Anestesia geral", "Bloqueio peridural"], defaultValue: "Raquianestesia" },
