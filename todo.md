@@ -148,3 +148,9 @@
 - [x] Revisar e aprimorar a barra de busca inicial para localizar procedimentos, categorias e calculadoras
 - [x] Adicionar lógica testável de pesquisa com correspondência por nome, abreviação, categoria e indicadores de calculadora
 - [x] Validar TypeScript/Vitest (226/226) e preparar checkpoint da busca rápida
+
+# Auditoria e Complementação de Imagens do Atlas (Ago 2026)
+- [ ] Auditar as figuras por entrada: cobertura, relevância clínica, crédito e fonte bibliográfica
+- [ ] Priorizar procedimentos sem imagem ou com figuras incompletas/inadequadas e selecionar substituições de fontes abertas ou institucionais, conforme adequação clínica
+- [ ] Fazer upload das imagens aprovadas e atualizar créditos, fontes e descrições no Atlas
+- [ ] Validar integridade das imagens, executar testes e salvar checkpoint

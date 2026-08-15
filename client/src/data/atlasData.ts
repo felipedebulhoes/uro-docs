@@ -4696,6 +4696,274 @@ export const atlasEntries: AtlasEntry[] = [
   }
 ];
 
+const atlasImageAdditions: Record<string, AtlasFigure[]> = {
+  "postectomia-circuncisao-no-adulto": [
+    {
+      caption: "Etapas da postectomia no adulto",
+      description: "Painel intraoperatório da técnica DGS modificada, incluindo fenda dorsal, marcações, ressecção e síntese do prepúcio.",
+      searchTerms: "adult circumcision DGS dorsal slit guillotine sleeve surgical steps",
+      imageUrl: "/manus-storage/postectomia_adulto_fig2_816fc090.jpg",
+      credit: "Wang D et al. Modified DGS procedure for adult circumcision. Int J Impot Res. 2025. Fig. 2. (CC BY-NC) — PMC12700785",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12700785/",
+    },
+  ],
+  "frenuloplastia-peniana-correcao-de-freio-curto": [
+    {
+      caption: "Frenuloplastia a laser de CO₂",
+      description: "Sequência clínica mostrando lesão do frênulo, aspecto imediato após frenuloplastia a laser de CO₂ e cicatrização no seguimento.",
+      searchTerms: "penile frenuloplasty CO2 laser frenulum breve clinical result",
+      imageUrl: "/manus-storage/frenuloplastia_laser_fig1_c2f1112e.jpg",
+      credit: "Lodi G et al. CO₂ laser frenuloplasty. AME Case Rep. 2025. Fig. 1. (CC BY-NC) — PMC12053987",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12053987/",
+    },
+  ],
+  "epididimectomia": [
+    {
+      caption: "Epididimectomia assistida por escrotoscopia",
+      description: "Sequência intraoperatória de exposição, inspeção e exérese de lesão epididimária por acesso escrotoscópico.",
+      searchTerms: "epididymectomy scrotoscopy surgical steps epididymal mass excision",
+      imageUrl: "/manus-storage/epididimectomia_escrotoscopia_fig1_6b46fcbe.jpg",
+      credit: "Qin C et al. Scrotoscopy-assisted epididymal mass excision. Front Surg. 2022. Fig. 1. (CC BY 4.0) — PMC8907580",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8907580/",
+    },
+  ],
+  "espermatocelectomia-exerese-de-cisto-de-epididimo": [
+    {
+      caption: "Correlação de cisto epididimário",
+      description: "Painel com ultrassonografia, achado intraoperatório e correlação histológica de cisto epididimário submetido à exérese.",
+      searchTerms: "spermatocelectomy epididymal cyst ultrasound intraoperative pathology",
+      imageUrl: "/manus-storage/espermatocelectomia_fig2_c6c813b6.jpg",
+      credit: "Xu Q et al. Epididymal cyst excision. Front Surg. 2025. Fig. 2. (CC BY 4.0) — PMC12643962",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12643962/",
+    },
+  ],
+  "orquidopexia-na-torcao-testicular-exploracao-escrotal-de-urg": [
+    {
+      caption: "Exploração escrotal na torção testicular",
+      description: "Achado intraoperatório de testículo torcido e congesto durante exploração escrotal de urgência, antes da decisão de viabilidade e fixação.",
+      searchTerms: "testicular torsion emergency scrotal exploration orchiopexy intraoperative",
+      imageUrl: "/manus-storage/orquidopexia_torcao_fig2_c654e2be.jpg",
+      credit: "Bhardwaj R et al. Testicular torsion exploration. Cureus. 2021. Fig. 2. (CC BY 4.0) — PMC8424974",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8424974/",
+    },
+  ],
+  "orquiectomia-radical-inguinal-tumor-de-testiculo": [
+    {
+      caption: "Peça de orquiectomia radical inguinal",
+      description: "Peça cirúrgica após orquiectomia radical por tumor testicular volumoso, ilustrando a apresentação macroscópica do espécime.",
+      searchTerms: "radical inguinal orchiectomy testicular tumor surgical specimen",
+      imageUrl: "/manus-storage/orquiectomia_radical_peca_fig3_47e773bd.jpg",
+      credit: "Ali FH et al. Radical orchiectomy specimen for testicular tumour. J Surg Case Rep. 2026. Fig. 3. (CC BY 4.0) — PMC13132600",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13132600/",
+    },
+  ],
+  "prostatectomia-radical": [
+    {
+      caption: "Posicionamento e portais na prostatectomia robótica",
+      description: "Esquema de posicionamento do paciente e distribuição dos portais para prostatectomia radical assistida por robô.",
+      searchTerms: "robotic radical prostatectomy patient positioning port placement RARP",
+      imageUrl: "/manus-storage/prostatectomia_radical_portais_fig1_d43a7fd7.jpg",
+      credit: "Huynh LM, Ahlering TE. Robotic radical prostatectomy. J Endourol. 2018. Fig. 1. (CC BY 4.0) — PMC6071518",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6071518/",
+    },
+  ],
+  "reimplante-ureteral": [
+    {
+      caption: "Reimplante ureteral extravesical de Lich-Gregoir",
+      description: "Esquema passo a passo da técnica extravesical de Lich-Gregoir, evidenciando a confecção do túnel submucoso e a reconstrução.",
+      searchTerms: "Lich Gregoir extravesical ureteral reimplantation surgical technique diagram",
+      imageUrl: "/manus-storage/reimplante_ureteral_lich_gregoir_fig1_b7a13e5f.jpg",
+      credit: "Bustangi N et al. Extravesical Lich-Gregoir ureteral reimplantation. Front Pediatr. 2018. Fig. 1. (CC BY 4.0) — PMC6305429",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6305429/",
+    },
+  ],
+  "resseccao-de-condilomas-genitais-hpv-exerese-e-eletrocauteri": [
+    {
+      caption: "Exérese de condiloma genital extenso",
+      description: "Aspecto intraoperatório após exérese ampla de condiloma acuminado, com demonstração das superfícies dorsal e ventral.",
+      searchTerms: "giant condyloma acuminatum wide excision genital surgical technique",
+      imageUrl: "/manus-storage/ressecao_condilomas_fig2_fbb488af.jpg",
+      credit: "Yunir PE et al. Wide excision of giant condyloma acuminatum. Case Rep Urol. 2016. Fig. 2. (CC BY 4.0) — PMC5128710",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5128710/",
+    },
+  ],
+  "rtu-prostata": [
+    {
+      caption: "Marcos apicais na enucleação bipolar transuretral",
+      description: "Visão endoscópica de marcações mucosas no ápice prostático para orientação da ressecção/enucleação bipolar.",
+      searchTerms: "bipolar transurethral prostate resection apical landmarks endoscopic view",
+      imageUrl: "/manus-storage/rtup_bipolar_marcos_fig2_991e8def.jpg",
+      credit: "Mallikarjuna C et al. Bipolar transurethral prostate enucleation. Indian J Urol. 2018. Fig. 2. (CC BY-NC) — PMC6034404",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6034404/",
+    },
+  ],
+  "cistoscopia": [
+    {
+      caption: "Retirada cistoscópica de cateter duplo J",
+      description: "Painel endoscópico demonstrando a apreensão e retirada de cateter ureteral duplo J durante cistoscopia.",
+      searchTerms: "cystoscopic ureteral stent removal double J grasping technique",
+      imageUrl: "/manus-storage/cistoscopia_retirada_duplo_j_fig1_71d6c86f.jpg",
+      credit: "Oswal AT et al. Cystoscopic double-J stent removal. Indian J Urol. 2017. Fig. 1. (CC BY-NC) — PMC5508442",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5508442/",
+    },
+  ],
+  "bipolep": [
+    {
+      caption: "Sequência endoscópica da enucleação bipolar",
+      description: "Painel de passos da técnica en bloc com liberação apical precoce, incluindo incisão, desenvolvimento do plano capsular e morcelação.",
+      searchTerms: "bipolar prostate enucleation BipoLEP mushroom technique endoscopic steps",
+      imageUrl: "/manus-storage/bipolep_mushroom_fig1_f1e011dd.jpg",
+      credit: "Kiss Z et al. En bloc bipolar prostate enucleation mushroom technique. Medicina (Kaunas). 2025. Fig. 1. (CC BY 4.0) — PMC12566086",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12566086/",
+    },
+  ],
+  "adrenalectomia": [
+    {
+      caption: "Adrenalectomia laparoscópica para massa adrenal",
+      description: "Painel com imagem pré-operatória, posicionamento, acesso laparoscópico, dissecção e peça cirúrgica após adrenalectomia.",
+      searchTerms: "laparoscopic adrenalectomy adrenal mass surgical steps specimen",
+      imageUrl: "/manus-storage/adrenalectomia_laparoscopica_fig2_493f15d6.jpg",
+      credit: "Öz B et al. Laparoscopic adrenalectomy for adrenal mass. J Minim Access Surg. 2023. Fig. 2. (CC BY 4.0) — PMC10898626",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10898626/",
+    },
+  ],
+  "hidrocelectomia-tecnicas-de-jaboulay-e-lord": [
+    {
+      caption: "Exposição do saco hidroceliano",
+      description: "Aspecto intraoperatório da exposição e abertura do saco hidroceliano durante correção cirúrgica de hidrocele.",
+      searchTerms: "hydrocelectomy Jaboulay Lord hydrocele sac intraoperative technique",
+      imageUrl: "/manus-storage/hidrocelectomia_jaboulay_lord_fig1_62a27b0e.jpg",
+      credit: "Nassour AJ et al. Hydrocelectomy techniques. Can Urol Assoc J. 2021. Fig. 1. (CC BY-NC) — PMC9119592",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9119592/",
+    },
+  ],
+  "holep": [
+    {
+      caption: "Incisão em T na enucleação HoLEP",
+      description: "Visões endoscópicas da incisão em T entre lobo médio e lateral, com desenvolvimento inicial do plano de enucleação.",
+      searchTerms: "HoLEP T incision enucleation plane endoscopic view",
+      imageUrl: "/manus-storage/holep_incisao_t_fig1_c3fd3c53.jpg",
+      credit: "Porreca A et al. HoLEP T-incision technique. Cent European J Urol. 2021. Fig. 1. (CC BY 4.0) — PMC8552945",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8552945/",
+    },
+  ],
+  "linfadenectomia-inguinal-no-cancer-de-penis": [
+    {
+      caption: "Acesso endoscópico versus aberto na linfadenectomia inguinal",
+      description: "Comparação de feridas pós-operatórias após linfadenectomia inguinal endoscópica e abordagem convencional aberta.",
+      searchTerms: "inguinal lymphadenectomy penile cancer endoscopic open wound comparison",
+      imageUrl: "/manus-storage/linfadenectomia_inguinal_fig3_efcb471c.jpg",
+      credit: "Astigueta JCP et al. Endoscopic versus open inguinal lymphadenectomy. Ecancermedicalscience. 2015. Fig. 3. (CC BY 4.0) — PMC4631570",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4631570/",
+    },
+  ],
+  "orquiectomia-simples-subcapsular-bloqueio-androgenico": [
+    {
+      caption: "Etapas da orquiectomia subcapsular",
+      description: "Sequência de pinçamento, incisão da túnica albugínea, enucleação do parênquima e reaproximação capsular.",
+      searchTerms: "subcapsular orchiectomy testicular parenchyma enucleation surgical steps",
+      imageUrl: "/manus-storage/orquiectomia_subcapsular_fig2_c3f4a607.jpg",
+      credit: "Chibuzo INC et al. Subcapsular orchiectomy technique. Prostate Cancer. 2021. Fig. 2. (CC BY 4.0) — PMC8642020",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8642020/",
+    },
+  ],
+  "rtu-bexiga": [
+    {
+      caption: "Modalidades de imagem cistoscópica na RTU-B",
+      description: "Comparação de luz branca, luz azul, NBI e outras modalidades para identificar tumores vesicais e carcinoma in situ.",
+      searchTerms: "transurethral resection bladder tumor blue light cystoscopy NBI imaging",
+      imageUrl: "/manus-storage/rtub_luz_azul_fig1_fe21e2fb.jpg",
+      credit: "Chang TC et al. Optical imaging modalities for bladder cancer. Bladder Cancer. 2017. Fig. 1. (CC BY-NC) — PMC5545914",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5545914/",
+    },
+  ],
+  "ureterolitotripsia-flexivel": [
+    {
+      caption: "Fragmentos residuais após RIRS",
+      description: "Comparação da avaliação de fragmentos residuais após ureterolitotripsia flexível por second look e tomografia computadorizada.",
+      searchTerms: "RIRS flexible ureteroscopy laser residual stone fragments CT",
+      imageUrl: "/manus-storage/ureterolitotripsia_flexivel_laser_fig2_ece78e4a.jpg",
+      credit: "Geavlete B et al. RIRS laser residual fragments. J Med Life. 2022. Fig. 2. (CC BY 4.0) — PMC9675293",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9675293/",
+    },
+  ],
+  "ureterolitotripsia-rigida": [
+    {
+      caption: "Litotripsia rígida com laser e fluoroscopia",
+      description: "Sequência radiológica de cálculo ureteral impactado submetido à ureterolitotripsia rígida com laser de hólmio.",
+      searchTerms: "rigid ureteroscopy holmium laser impacted ureteral stone fluoroscopy",
+      imageUrl: "/manus-storage/ureterolitotripsia_rigida_laser_fig1_2764a127.jpg",
+      credit: "Adanur S et al. Rigid ureteroscopy holmium laser. Med Sci Monit. 2014. Fig. 1. (CC BY-NC) — PMC4250031",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4250031/",
+    },
+  ],
+  "implante-testosterona": [
+    {
+      caption: "Marcação para implante subcutâneo de pellets",
+      description: "Esquema de localização, incisão de 5 mm e orientação do trocarte para implante subcutâneo de pellets hormonais.",
+      searchTerms: "testosterone pellet subcutaneous implant trocar incision technique",
+      imageUrl: "/manus-storage/implante_testosterona_pellets_fig1_cc9db826.jpg",
+      credit: "Glaser RL, Dimitrakakis C. Subcutaneous pellet implantation technique. Menopause. 2014. Fig. 1. (CC BY-NC) — PMC4033664",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4033664/",
+    },
+  ],
+  "nefrectomia-parcial": [
+    {
+      caption: "Renorrafia na nefrectomia parcial robótica",
+      description: "Painel intraoperatório demonstrando reconstrução parenquimatosa e renorrafia após excisão tumoral em nefrectomia parcial robótica.",
+      searchTerms: "robotic partial nephrectomy renorrhaphy parenchymal reconstruction",
+      imageUrl: "/manus-storage/nefrectomia_parcial_renorrafia_fig3_4e36c318.jpg",
+      credit: "Ganpule AP et al. Robotic partial nephrectomy renorrhaphy. J Minim Access Surg. 2015. Fig. 3. (CC BY-NC) — PMC4290124",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4290124/",
+    },
+  ],
+  "nefrectomia-radical": [
+    {
+      caption: "Portais da nefrectomia radical laparoscópica",
+      description: "Mapa de posicionamento dos portais para nefrectomia radical direita por videolaparoscopia.",
+      searchTerms: "laparoscopic radical nephrectomy port placement right side",
+      imageUrl: "/manus-storage/nefrectomia_radical_portais_fig1_8e8503ed.jpg",
+      credit: "Deo SV, Kelkar DS. Laparoscopic radical nephrectomy port placement. J Surg Tech Case Rep. 2011. Fig. 1. (CC BY-NC) — PMC3296433",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3296433/",
+    },
+  ],
+  "nefroureterectomia": [
+    {
+      caption: "Etapas da nefroureterectomia laparoscópica",
+      description: "Painel técnico da nefroureterectomia radical transperitoneal, incluindo posição, acesso e manejo do ureter distal.",
+      searchTerms: "laparoscopic radical nephroureterectomy transperitoneal surgical steps",
+      imageUrl: "/manus-storage/nefroureterectomia_laparoscopica_fig1_c1767d2c.jpg",
+      credit: "Yuan C et al. Laparoscopic radical nephroureterectomy. Transl Androl Urol. 2023. Fig. 1. (CC BY-NC) — PMC10323451",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10323451/",
+    },
+  ],
+  "orquidopexia-para-criptorquidia-testiculo-retratil": [
+    {
+      caption: "Apresentação clínica da criptorquidia",
+      description: "Imagem clínica de bolsa escrotal vazia com testículo não descido, contextualizando a indicação de avaliação e orquidopexia.",
+      searchTerms: "cryptorchidism undescended testis clinical presentation orchiopexy",
+      imageUrl: "/manus-storage/orquidopexia_criptorquidia_fig1_ee86b21f.jpg",
+      credit: "Tao C et al. Cryptorchidism clinical presentation. Transl Androl Urol. 2025. Fig. 1. (CC BY-NC) — PMC11833526",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11833526/",
+    },
+  ],
+  "penectomia-parcial-cancer-de-penis": [
+    {
+      caption: "Etapas da penectomia parcial",
+      description: "Painel intraoperatório da técnica de penectomia parcial com marcação, ressecção e reconstrução distal.",
+      searchTerms: "partial penectomy penile cancer surgical steps reconstruction",
+      imageUrl: "/manus-storage/penectomia_parcial_fig2_e79dfc1f.jpg",
+      credit: "Ranjan SK et al. Partial penectomy parachute technique. J Family Med Prim Care. 2021. Fig. 2. (CC BY-NC) — PMC8138405",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8138405/",
+    },
+  ],
+};
+
+for (const entry of atlasEntries) {
+  const additions = atlasImageAdditions[entry.id];
+  if (additions) entry.figures.push(...additions);
+}
+
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));
 
 /** Busca uma entrada do Atlas pelo seu id. */
