@@ -1,0 +1,111 @@
+
+Compared to conventional imaging, PSMA PET/CT is characterised by superior accuracy compared to conventional imaging. However, studies of patients with PSA persistence after RP are limited compared to those inclusive of patients with BCR with/without persistent PSA.
+
+A study of 129 patients who had either persistent PSA (52%) or BCR (48%) after RP, showed that men with a persistent PSA had significantly more pelvic nodal involvement on PSMA PET/CT than those with an initially undetectable PSA [989]. When focusing on patients with PSA persistence a multicentre retrospective study included 191 patients with persistently elevated PSA after RP and ⁶⁸ Ga-PSMA-PET/CT was positive in 68%, 35% of whom had disease confined to the pelvis (obturator, presacral/mesorectal most common) and 33% had distant metastases [525]. A subgroup analysis of 33 patients with pre- and post-RP imaging showed PET-persistence in 45%, new lesions in 24% and negative post-RP PET in 30%. Another retrospective study included 150 patients with persistent PSA after RARP who were restaged with both ⁶⁸ Ga-PSMA and ¹⁸ F-DCFPyL PSMA. The authors found that, in the presence of persistent PSA, the majority of patients already had involved pelvic LNs (33%) or distant metastases (26%) that would support a role of PSMA PET/ CT imaging in guiding (salvage) treatment strategies [990].
+
+Taken together, these findings support the role of PSMA PET/CT in identifying sites of residual or metastatic disease in patients with persistent PSA after RP, enabling the implementation of metastasis-directed therapies.
+
+##### 6\.3.6.e. Management options for patients with persistent PSA
+
+###### 6\.3.6.e.1. Comparison with biochemical recurrence (BCR)
+
+Persistent PSA after RP is clearly a poor prognostic indicator, likely representative of low volume synchronous metastatic disease rather than metachronous disease as in BCR. A retrospective analysis of the RTOG 9601 trial of SRT +/- ADT (bicalutamide) for biochemical failure after RP considered patients with persistent PSA (n = 90) or BCR (n = 670) as the cause for biochemical failure and showed higher 10-year metastatic progression rate (29% vs. 10%, p < 0.0001), higher 10-year overall mortality rate (25% vs. 12%, p = 0.03), and higher local progression rate (3.2% vs. 1.4%, p = 0.0001) [991]. In the ARO 96-02, a prospective RCT, 74 patients with PSA persistence (20%) received immediate SRT only (66Gy per protocol [arm C]). The 10-year clinical relapse-free survival was 63% and showed worse 10-year metastasis-free survival (67% vs 83%) and overall survival (68% vs 84%) than BCR patients [992]. Therefore, it is likely that outcomes are worse than for men with persistent PSA than those experiencing BCR [993]. Indeed, studies investigating PSA persistence were excluded from the EAU Guidelines Biochemical Recurrence risk groups [994].
+
+###### 6\.3.6.e.2. Postoperative RT
+
+The benefit of postoperative RT (adjuvant or salvage) in patients with persistent PSA remains unclear due to a lack of RCTs specifically focusing on this setting. AN SR reported that SRT was associated with improved survival outcomes, although the available evidence is of low quality and did not include patients restaged with PSMA/PET [977].
+
+Another study compared oncological outcomes of patients with persistent PSA who received SRT vs. those who did not [984]. In the subgroup of patients with persistent PSA, after 1:1 propensity score matching between those treated with SRT versus no RT, 10-year overall- and cancer-specific survival rates were 87 versus 73% and 94 versus 82% (p < 0.01), respectively. These differences remained statistically significant when patients were stratified according to margin status, pathologic stage, ISUP GG, and lymph node involvement. In multivariable models SRT was associated with lower risk of death (HR: 0.42, p = 0.02) and lower cancer-specific death (HR: 0.29, p = 0.03). SRT dose was 46Gy for the 54% of patients with available data, but SRT field and ADT use was unavailable. A retrospective analysis of 313 patients with PSA persistence (median follow-up 4.5 years) suggested a benefit of SRT, with or without ADT, compared to no SRT in improving metastases-free (HR 0.39, p = 0.001), cancer-specific (HR 0.34, p = 0.03) and overall survival (HR 0.24, p = 0.001) [995]. These benefits were associated with higher incidence of bowel symptoms (34 vs. 19%, p = 0.01) and bothersome incontinence if given within six months of surgery (p < 0.001).
+
+Poor oncological outcomes are driven by the level of pre-RT PSA, the presence of ISUP GG ≥ 4 in the RP histology and pT3b disease [988,992,996-999]. Two studies suggested that only men with a persistent PSA after RP and ISUP GG ≤ 3 benefit significantly [995,1000], where positive margins, higher T stage, pN1 and lower ISUP GG were most likely to benefit from SRT, although this was not supported by Preisser _et al._ [984,995].
+
+The current data do not allow clear treatment recommendations.
+
+###### 6\.3.6.e.3. Multimodal therapy (ADT with postoperative RT)
+
+The RTOG 9601 trial randomised patients with either PSA persistence defined as PSA nadir after surgery > 0.5 ng/mL (n = 45, 12%) or BCR (n = 338, 88%) to 24 months of bicalutamide versus placebo during and after SRT [1001]. Although the study demonstrated a benefit of antiandrogen therapy in terms of OS at a median follow-up of 13 years, no subgroup analyses were performed focusing only on men with PSA persistence. Similarly, the NRG Oncology/RTOG 0534 SPPORT trial included patients with PSA persistence after prostatectomy, alongside those with rising PSA, and demonstrated improved freedom from progression with the addition of four to six months of ADT and pelvic lymph node radiotherapy [1002]. However, no subgroup analysis assessing patients with PSA persistence was reported. Other randomised trials which assessed the role of concomitant ADT and its duration at the time of SRT on oncologic control such as the RADICALS-HD and the GETUG-AFU 16 both excluded patients with PSA persistence and, therefore, their results are not applicable to this setting [1003,1004].
+
+The phase II GETUG-22 trial comparing RT (46Gy pelvis with 66Gy prostate bed boost) with RT plus short-term ADT for post-RP PSA persistence (0.2–2.0ng/mL) in 125 patients reported good tolerability of the combined treatment. The oncological endpoints are yet to be published [1005]. A multicentre, retrospective study from Japan considered 383 patients with pN1 and persistent PSA after RP and reported that the addition of SRT (median 66Gy; prostate bed with pelvis 67%, prostate bed alone 24%) to ADT showed better castration resistance-free (5-year p < 0.001, 10-year p = 0.02) and metastasis-free (5-year p < 0.001, 10-year p = 0.15), but not overall survival, than ADT alone in patients with pretreatment PSA ≥ 0.52ug/L [1006].
+
+##### 6\.3.6.f. Conclusion
+
+The available data suggest that patients with PSA persistence after RP have worse outcomes and serve to benefit most from early aggressive multimodality treatment, however, the lack of prospective RCTs makes firm recommendations difficult.
+
+##### 6\.3.6.g. Recommendations for the management of persistent PSA after radical prostatectomy
+
+|Recommendations |Strength rating |
+| --- | --- |
+|Offer a prostate-specific membrane antigen (PSMA) positron emission tomography/computed tomography (PET/CT) scan to males with a persistent prostate-specific antigen (PSA) and rising if the results will influence subsequent treatment decisions. |Weak |
+|Treat males with persistent PSA and no evidence of distant metastatic disease with salvage radiotherapy and additional hormonal therapy. |Weak |
+
+### 6\.4. Management of PSA-only recurrence after treatment with curative intent
+
+Follow-up will be addressed in Chapter 7 and is not discussed in this section.
+
+#### 6\.4.1. Background
+
+Between 27% and 53% of all patients undergoing RP or RT develop a rising PSA (PSA recurrence). Whilst metastatic progression is universally preceded by rising PSA levels, physicians must inform the patient that the natural history of PSA-only recurrence may be prolonged and that a measurable PSA may not necessarily lead to clinically apparent metastatic disease. Physicians treating patients with PSA-only recurrence face a difficult set of decisions in attempting to delay the onset of metastatic disease and death while avoiding overtreating patients whose disease may never affect their OS or QoL. It should be emphasised that the treatment recommendations for these patients should be given after discussion in a multidisciplinary team.
+
+##### 6\.4.1.a. PSA velocity and doubling time
+
+Various PSA kinetics definitions have been proposed with different methods of calculation (log transformed or not) and eligible PSAs:
+
+* PSA velocity (PSAV): absolute annual increase in serum PSA (ng/mL/year); and
+* PSA doubling time (PSA-DT): measures the exponential increase in serum PSA over time.
+
+Prostate-specific antigen velocity is easier to calculate by subtracting the initial value from the final value, dividing by time. However, by ignoring middle values, not all PSA values are accurately taken into account.
+
+Prostate-specific antigen DT is calculated assuming an exponential rise in serum PSA. The formula takes into account the natural logarithm of two divided by the slope obtained from fitting a linear regression of the natural log of PSA over time [1007]. However, many different PSA-DT calculations have been assessed according to the mathematical formula used and to the included PSA values (number, time period, intervals) [1008]. The ‘MSKCC’ method, for example, calculates a regression slope integrating all PSA values. Other methods transform PSA before calculating the slope and do not include all PSA values (different time frames and minimal intervals) [1009]. O’Brien and colleagues identified more than 20 different definitions of PSAV and PSA-DT and demonstrated that obtained values could vary widely between definitions [1009].
+
+However, some rules can be considered for PSA-DT calculation [1007]:
+
+* At least three PSA measurements are required.
+* A minimum period between measurements (four weeks) is preferable due to potential statistical ‘noise’ when PSA values are obtained too close together (this statement can be reconsidered in case of highly active disease).
+* All included PSA values should be obtained within the past twelve months at most, to reflect the current disease activity.
+* PSA-DT is often expressed in months, or in weeks in highly active disease.
+
+These measurements do not provide additional information compared with PSA alone [604,1009-1011]. In the post-local therapy relapse setting, PSA-DT has been correlated with distant progression and with poorer outcomes after salvage treatments [1012,1013]. Prostate-specific antigen DT has been linked with metastasis-free and OS in non-metastatic CRPC (nmCRPC) and identifies patients with high-risk nmCRPC who benefit from intensified therapy (PSA-DT threshold < ten months) [1014].
+
+#### 6\.4.2. Controversies in the definitions of clinically relevant PSA relapse
+
+The PSA level that defines treatment failure depends on the primary treatment. Patients with rising PSA after RP or primary RT have different risks of subsequent symptomatic metastatic disease based on various parameters, including the PSA level. Therefore, physicians should carefully interpret BCR endpoints when comparing treatments. Clinicians should interpret a PSA rise bearing in mind the EAU BCR risk groups [994].
+
+After RP, the threshold that best predicts further metastases is a PSA > 0.4ng/mL and rising [1015]. However, with access to ultrasensitive PSA testing, a rising PSA much below this level will be a cause for concern for patients.
+
+After primary RT - with or without short-term hormonal manipulation - the RTOG-ASTRO Phoenix Consensus Conference definition of PSA failure (with an accuracy of > 80% for clinical failure) is ‘any PSA increase > 2ng/mL higher than the PSA nadir value, regardless of the serum concentration of the nadir’ [1016].
+
+After HIFU or cryotherapy, no endpoints have been validated against clinical progression or survival. Therefore, it is not possible to offer a firm recommendation of an acceptable PSA threshold after these alternative local treatments [994].
+
+#### 6\.4.3. Natural history of biochemical recurrence
+
+Once a PSA recurrence has been diagnosed, it is important to determine whether the recurrence has developed at local or distant sites. A SR and meta-analysis investigated the impact of BCR on clinical endpoints and concluded that patients experiencing BCR are at an increased risk of developing distant metastases, as well as PCa-specific and overall mortality [994]. The effect size of BCR as a risk factor for mortality, however, is highly variable. After primary RP, its impact ranges from HR 1.03 (95% CI: 1.004–1.06) to HR 2.32 (95% CI: 1.45–3.71) [1017,1018]. After primary RT, OS rates are approximately 20% lower at eight to ten years follow-up, even in men with minimal comorbidity [1019,1020]. Still, the variability in reported effect sizes of BCR remains high and suggests that only certain patient subgroups with BCR might be at an increased risk of mortality.
+
+The risk of subsequent metastases, PCa-specific and overall mortality may be predicted by the initial clinical and pathologic factors (e.g. T category, PSA, ISUP grade group) and PSA kinetics (PSA-DT and interval to PSA failure), which was further investigated by the SR [994].
+
+For patients with BCR after RP, the following outcomes were found to be associated with significant prognostic factors, including:
+
+* distant metastatic recurrence: positive surgical margins, high RP specimen pathological ISUP GG, high pT category, short PSA-DT, high pre-SRT PSA;
+* prostate-cancer-specific mortality: high RP specimen pathological ISUP grade group, short interval to biochemical failure as defined by investigators, short PSA-DT; and
+* overall mortality: high RP specimen pathological ISUP grade group, short interval to biochemical failure, high PSA-DT.
+
+For patients with BCR after RT, the corresponding outcomes are:
+
+* distant metastatic recurrence: high biopsy ISUP grade group, high cT category, short interval to biochemical failure;
+* prostate-cancer-specific mortality: short interval to biochemical failure; and
+* overall mortality: high age, high biopsy ISUP grade group, short interval to biochemical failure, high initial (pretreatment) PSA.
+
+Based on this meta-analysis, the proposal is to stratify patients into two risk categories since not all patients with BCR will have similar outcomes (see Table 6.4.1). The stratification into ‘EAU Low-Risk’ or ‘EAU High-Risk’ BCR after RP has been validated in a European cohort [1021].
+
+**Table 6.4.1: EAU risk categories for patients developing biochemical recurrence**
+
+| |EAU Low Risk BCR |EAU High Risk BCR |
+| --- | --- | --- |
+|After RP |PSA-DT > 1 yr
+
+AND
+
+pathological ISUP grade group < 4 |PSA-DT ≤ 1 yr
+
+pathological ISUP grade group 4-5 |
+|After RT |interval to biochemical failure > 18 mo.
+

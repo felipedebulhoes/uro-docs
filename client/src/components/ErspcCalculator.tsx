@@ -26,6 +26,10 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { AlertTriangle, CheckCircle2, Info, Calculator } from "lucide-react";
+import {
+  calculatePsaDensity,
+  calculatePsaVelocity,
+} from "@/lib/prostateMetrics";
 
 // ─── ERSPC RC4 Logistic Regression Coefficients ──────────────────────────────
 // Fonte: Roobol MJ et al. Eur Urol. 2012;62(2):229-36
@@ -131,6 +135,9 @@ function interpretRisk(
 
 export function ErspcCalculator() {
   const [psa, setPsa] = useState("");
+  const [psaDate, setPsaDate] = useState("");
+  const [previousPsa, setPreviousPsa] = useState("");
+  const [previousPsaDate, setPreviousPsaDate] = useState("");
   const [volume, setVolume] = useState("");
   const [dre, setDre] = useState<"normal" | "suspicious" | "">("");
   const [trus, setTrus] = useState<"normal" | "suspicious" | "">("");
@@ -139,12 +146,23 @@ export function ErspcCalculator() {
   const [calculated, setCalculated] = useState(false);
 
   const psaNum = parseFloat(psa);
+  const previousPsaNum = parseFloat(previousPsa);
   const volumeNum = parseFloat(volume);
 
   const psaDensity = useMemo(() => {
-    if (psaNum > 0 && volumeNum > 0) return psaNum / volumeNum;
-    return null;
+    return calculatePsaDensity(psaNum, volumeNum);
   }, [psaNum, volumeNum]);
+
+  const psaVelocity = useMemo(
+    () =>
+      calculatePsaVelocity({
+        currentPsaNgMl: psaNum,
+        currentDate: psaDate,
+        previousPsaNgMl: previousPsaNum,
+        previousDate: previousPsaDate,
+      }),
+    [psaNum, psaDate, previousPsaNum, previousPsaDate]
+  );
 
   const result = useMemo(() => {
     if (!calculated || !psaNum || psaNum <= 0) return null;
@@ -181,6 +199,9 @@ export function ErspcCalculator() {
 
   const handleReset = () => {
     setPsa("");
+    setPsaDate("");
+    setPreviousPsa("");
+    setPreviousPsaDate("");
     setVolume("");
     setDre("");
     setTrus("");
@@ -199,10 +220,10 @@ export function ErspcCalculator() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-        {/* PSA */}
+        {/* PSA atual */}
         <div className="space-y-1">
           <Label className="text-xs text-muted-foreground">
-            PSA total (ng/mL) <span className="text-red-400">*</span>
+            PSA atual (ng/mL) <span className="text-red-400">*</span>
           </Label>
           <Input
             type="number"
@@ -212,6 +233,54 @@ export function ErspcCalculator() {
             value={psa}
             onChange={(e) => {
               setPsa(e.target.value);
+              setCalculated(false);
+            }}
+            className="h-8 text-sm bg-background"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <Label className="text-xs text-muted-foreground">
+            Data do PSA atual
+          </Label>
+          <Input
+            type="date"
+            value={psaDate}
+            onChange={(e) => {
+              setPsaDate(e.target.value);
+              setCalculated(false);
+            }}
+            className="h-8 text-sm bg-background"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <Label className="text-xs text-muted-foreground">
+            PSA anterior (ng/mL) — para PSAV
+          </Label>
+          <Input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="ex: 3.1"
+            value={previousPsa}
+            onChange={(e) => {
+              setPreviousPsa(e.target.value);
+              setCalculated(false);
+            }}
+            className="h-8 text-sm bg-background"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <Label className="text-xs text-muted-foreground">
+            Data do PSA anterior
+          </Label>
+          <Input
+            type="date"
+            value={previousPsaDate}
+            onChange={(e) => {
+              setPreviousPsaDate(e.target.value);
               setCalculated(false);
             }}
             className="h-8 text-sm bg-background"
@@ -353,6 +422,22 @@ export function ErspcCalculator() {
         </div>
       )}
 
+      {psaVelocity !== null && (
+        <div className="flex items-start gap-2 mb-3 p-2 rounded bg-muted/30 border border-border">
+          <Info className="w-3 h-3 text-muted-foreground shrink-0 mt-0.5" />
+          <span className="text-xs text-muted-foreground">
+            <strong className="text-foreground">Velocidade do PSA (PSAV):</strong>{" "}
+            {psaVelocity >= 0 ? "+" : ""}
+            {psaVelocity.toFixed(2)} ng/mL/ano
+            {psaVelocity > 0 ? (
+              <span className="text-yellow-400 ml-1">(trajetória ascendente — interpretar com PSAD, mpRM e contexto clínico)</span>
+            ) : (
+              <span className="text-green-400 ml-1">(estável ou em queda)</span>
+            )}
+          </span>
+        </div>
+      )}
+
       <div className="flex gap-2 mb-4">
         <Button
           size="sm"
@@ -417,10 +502,20 @@ export function ErspcCalculator() {
             </div>
           )}
 
+          {psaVelocity !== null && (
+            <div className="flex items-start gap-2 p-2 rounded bg-blue-500/10 border border-blue-500/20">
+              <Info className="w-3 h-3 text-blue-400 shrink-0 mt-0.5" />
+              <p className="text-xs text-blue-300">
+                <strong>PSAV calculada: </strong>
+                {psaVelocity >= 0 ? "+" : ""}{psaVelocity.toFixed(2)} ng/mL/ano. Use a tendência seriada como dado complementar; a decisão de biópsia deve se basear na avaliação integrada de PSA, PSAD, mpRM, DRE e risco individual.
+              </p>
+            </div>
+          )}
+
           {/* Recomendação */}
           <div className="p-3 rounded bg-muted/30 border border-border">
             <p className="text-xs font-semibold text-foreground mb-1">
-              Recomendação (EAU 2024):
+              Recomendação (EAU 2026):
             </p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               {result.interpretation.recommendation}

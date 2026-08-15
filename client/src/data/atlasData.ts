@@ -4655,6 +4655,44 @@ export const atlasEntries: AtlasEntry[] = [
       }
     ],
     "figures": []
+  },
+  {
+    "id": "seguimento-pos-prostatectomia",
+    "name": "Seguimento Pós-Prostatectomia",
+    "category": "Oncologia",
+    "icon": "📈",
+    "evidence": "EAU-EANM-ESTRO-ESUR-ISUP-SIOG Guidelines on Prostate Cancer 2026 | AUA/ASTRO/SUO Salvage Therapy Guideline 2024",
+    "sections": [
+      {
+        "title": "Objetivos e Cronograma de Seguimento",
+        "body": "## Objetivos do Seguimento\n\nO seguimento após prostatectomia radical combina controle oncológico, reabilitação funcional e apoio psicossocial. Em cada consulta, registrar PSA, sintomas de progressão, continência, função erétil, complicações e preferências do paciente.\n\n### Cronograma orientador (EAU 2026)\n\n| Momento | Avaliação principal |\n|---|---|\n| 6–8 semanas após cirurgia | PSA basal pós-operatório; anatomopatológico definitivo; continência, ereção e recuperação clínica |\n| Até 3 anos | História dirigida + PSA a cada 6 meses |\n| Após 3 anos | História dirigida + PSA anual, enquanto o paciente tiver expectativa de vida e condição clínica para tratamento de resgate |\n\n> O PSA deve se tornar indetectável por volta de dois meses após a prostatectomia. Não há indicação de imagem de rotina em paciente assintomático com PSA indetectável; solicitar imagem apenas se o resultado modificar a conduta.\n\n### Avaliação funcional estruturada\n\n- **Continência:** número de absorventes/dia, urgência e impacto na qualidade de vida.\n- **Função erétil:** EHS/IIEF-5, reabilitação peniana, resposta a iPDE5 ou terapias intracavernosas.\n- **Sintomas e sinais de alerta:** dor óssea/pélvica, hematúria, edema de membros inferiores, piora progressiva de LUTS, fadiga ou perda ponderal requerem avaliação dirigida."
+      },
+      {
+        "title": "PSA Pós-Operatório e Recidiva Bioquímica",
+        "body": "## Como interpretar o PSA após prostatectomia radical\n\n| Situação | Interpretação e conduta inicial |\n|---|---|\n| PSA indetectável | Seguimento programado; sem imagem de rotina se assintomático |\n| PSA persistentemente detectável | Avaliar com repetição, cinética, fatores patológicos e, se o resultado alterar o tratamento, PSMA-PET/CT; discutir tratamento multimodal precoce se sem metástase distante |\n| PSA em ascensão confirmada | Estratificar risco de recidiva, solicitar imagem seletiva e discutir radioterapia de resgate precoce |\n| PSA ≥ 0,2 ng/mL em duas dosagens | Definição operacional de recidiva bioquímica usada pela AUA após prostatectomia |\n| PSA > 0,4 ng/mL e ascendente | Limiar que melhor prediz metástase subsequente no guideline EAU, sem significar que se deva aguardar esse valor para discutir resgate |\n\n**PSA ultrassensível:** pode apoiar a vigilância em pacientes de maior risco, mas valor isolado muito baixo não deve desencadear tratamento. Confirmar tendência de elevação e interpretar junto a margens, pT, ISUP, PSA doubling time (PSA-DT), tempo até a falha e expectativa de vida.\n\n> **Importante:** o critério Phoenix (nadir + 2 ng/mL) é utilizado após radioterapia, não após prostatectomia radical."
+      },
+      {
+        "title": "Estratificação de Risco de Recidiva (EAU)",
+        "body": "## Categorias EAU de risco após prostatectomia\n\n| Categoria | Critérios | Implicação prática |\n|---|---|---|\n| Baixo risco de recidiva bioquímica | PSA-DT > 12 meses **e** ISUP patológico < 4 | Pode permitir confirmação de tendência e planejamento individualizado |\n| Alto risco de recidiva bioquímica | PSA-DT ≤ 12 meses **ou** ISUP patológico 4–5 | Priorizar estadiamento que altere a conduta e discussão precoce de resgate |\n\nFatores associados a pior prognóstico incluem PSA persistentemente detectável, ISUP alto, pT3/4, invasão de vesículas seminais, margens positivas, linfonodos positivos, intervalo curto até elevação do PSA, PSA-DT curto e PSA mais alto antes da radioterapia de resgate.\n\n### Cálculo de cinética\n\nO PSA-DT exige dosagens seriadas e, idealmente, pelo menos três valores obtidos em intervalo ≥ 4 semanas, preferencialmente dentro dos últimos 12 meses. A velocidade de PSA (PSAV) é complementar e não substitui a avaliação da tendência, do PSA-DT e dos dados anatomopatológicos."
+      },
+      {
+        "title": "Imagem na Suspeita de Recidiva",
+        "body": "## Imagem seletiva e estadiamento\n\n- **PSMA-PET/CT:** considerar quando PSA for > 0,2 ng/mL e o resultado puder modificar o plano de tratamento. É a modalidade mais sensível em PSA baixo, especialmente < 0,5 ng/mL.\n- **RM de pelve / leito prostático:** útil para caracterizar recidiva local e planejamento da radioterapia; pode complementar o PSMA-PET/CT.\n- **TC e cintilografia óssea:** reservar para maior carga de doença, sintomas ou quando influenciar decisão terapêutica.\n- **PSMA-PET/CT negativo não exclui doença microscópica no leito prostático** e não deve, isoladamente, impedir radioterapia de resgate se houver indicação clínica.\n\nA indicação e o campo de radioterapia devem ser definidos conjuntamente com radio-oncologia, com incorporação de lesões pélvicas identificadas no planejamento quando apropriado."
+      },
+      {
+        "title": "Tratamento de Resgate: Indicações e Estratégias",
+        "body": "## Radioterapia de resgate precoce (SRT)\n\nA SRT do leito prostático é a estratégia potencialmente curativa para PSA detectável/em ascensão após prostatectomia, desde que não haja doença metastática incompatível com controle local e que haja expectativa de vida suficiente para benefício. Os melhores resultados são observados com PSA baixo.\n\n| Situação | Estratégia a discutir em equipe multidisciplinar |\n|---|---|\n| PSA detectável/em ascensão, sem metástase distante | Encaminhar precocemente à radio-oncologia; não postergar SRT até PSA alto |\n| Candidato à SRT com PSA ≤ 0,5 ng/mL | Oferecer SRT precoce (recomendação AUA/ASTRO/SUO 2024) |\n| Alto risco clínico (PSA persistente, PSA-DT ≤ 6 meses, ISUP 4–5, invasão de vesícula seminal ou PSA pré-SRT ≥ 0,7) | Considerar SRT + bloqueio androgênico; duração mínima usual de 4–6 meses, podendo ser estendida conforme risco e tolerabilidade |\n| PSMA-PET/CT com linfonodo pélvico positivo | Incorporar lesão/cadeias pélvicas ao plano de RT e discutir ADT associada |\n| Metástase não regional ou doença disseminada | Discussão com oncologia clínica/radio-oncologia para estratégia sistêmica e, em casos selecionados, terapia dirigida a metástases |\n\n**Não é rotina indicar radioterapia adjuvante imediata para todos os pacientes com fatores patológicos adversos.** O modelo contemporâneo privilegia vigilância com PSA e SRT precoce quando necessária, individualizando por risco, efeitos funcionais, comorbidades e preferência do paciente."
+      },
+      {
+        "title": "Laudo-Modelo: Consulta de Seguimento Pós-Prostatectomia",
+        "body": "**SEGUIMENTO PÓS-PROSTATECTOMIA RADICAL**\n\nData da cirurgia: ___/___/______  |  Data da consulta: ___/___/______\n\n**Anatomopatológico:** pT___ pN___ | ISUP/Gleason: ___ | Margens: [ ] Livres [ ] Positivas | Vesículas seminais: [ ] Livres [ ] Invadidas\n\n**PSA:**\n- Primeiro PSA pós-operatório: ___ ng/mL em ___/___/______\n- PSA atual: ___ ng/mL em ___/___/______\n- PSA-DT (se disponível): ___ meses\n- Situação: [ ] Indetectável [ ] Persistente [ ] Elevação confirmada [ ] Recidiva bioquímica\n\n**Imagem na recidiva:**\n[ ] Não indicada no momento  [ ] PSMA-PET/CT  [ ] RM de pelve  [ ] TC/cintilografia\nResultado: __________________________________________________\n\n**Avaliação funcional:**\nContinência / absorventes por dia: __________________________\nFunção erétil / reabilitação: ______________________________\n\n**Estratificação e conduta:**\n[ ] Seguimento programado\n[ ] Repetir PSA para confirmar tendência\n[ ] Encaminhar para radio-oncologia para SRT precoce\n[ ] Discutir SRT + ADT\n[ ] Discussão multidisciplinar / oncologia clínica\n\nMédico: __________________________ CRM: __________________"
+      },
+      {
+        "title": "Referências",
+        "body": "1. **EAU-EANM-ESTRO-ESUR-ISUP-SIOG Guidelines on Prostate Cancer 2026.** Capítulos Follow Up e Treatment. European Association of Urology. https://uroweb.org/guidelines/prostate-cancer\n2. **Morgan TM, Boorjian SA, Buyyounouski MK, et al.** Salvage Therapy for Prostate Cancer: AUA/ASTRO/SUO Guideline Part I. *J Urol.* 2024;211(4):509-517. DOI: 10.1097/JU.0000000000003892.\n3. **Morgan TM, Boorjian SA, Buyyounouski MK, et al.** Salvage Therapy for Prostate Cancer: AUA/ASTRO/SUO Guideline Part II. *J Urol.* 2024;211(4):518-525. DOI: 10.1097/JU.0000000000003891.\n4. **Tilki D, et al.** Prostate-specific antigen level at the time of salvage therapy after radical prostatectomy for prostate cancer and the risk of death. *J Clin Oncol.* 2023;41(13):2427-2435. DOI: 10.1200/JCO.22.02480.\n5. **Van den Broeck T, et al.** Biochemical recurrence in prostate cancer: the European Association of Urology prostate cancer guidelines panel recommendations. *Eur Urol Focus.* 2020;6(2):231-234. DOI: 10.1016/j.euf.2019.06.004."
+      }
+    ],
+    "figures": []
   }
 ];
 
@@ -4769,5 +4807,5 @@ export const atlasToProcedure: Record<string, string> = {
   "usg-vias-urinarias-inferiores": "usg-vias-urinarias-inferiores",
   "investigacao-hematuria": "investigacao-hematuria",
   "investigacao-cancer-prostata": "investigacao-cancer-prostata",
+  "seguimento-pos-prostatectomia": "seguimento-pos-prostatectomia",
 };
-

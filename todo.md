@@ -124,9 +124,17 @@
 - [x] Testes e checkpoint (218/218)
 
 # Lote Câncer de Próstata (Jun 2026)
-- [ ] Criar componente ErspcCalculator.tsx com campos PSA, volume prostático, toque retal, histórico familiar, DRE, TRUS e cálculo de risco ERSPC RC4 (câncer clinicamente significativo ≥ Gleason 7)
-- [ ] Integrar ErspcCalculator no AtlasProcedurePage.tsx na entrada de câncer de próstata (seção de rastreamento/diagnóstico)
-- [ ] Criar entrada do Atlas "investigacao-cancer-prostata" com protocolo PSA, PIRADS, biópsia e estadiamento (EAU 2024)
-- [ ] Criar procedimento interativo "investigacao-cancer-prostata" no proceduresExtra.ts com campos e templates de solicitação de biópsia e laudo de estadiamento clínico
-- [ ] Mapear investigacao-cancer-prostata no atlasToProcedure
-- [ ] Testes e checkpoint
+- [x] Criar componente ErspcCalculator.tsx com campos PSA, volume prostático, toque retal, histórico familiar, DRE, TRUS e cálculo de risco ERSPC RC4 (câncer clinicamente significativo ≥ Gleason 7)
+- [x] Integrar ErspcCalculator no AtlasProcedurePage.tsx na entrada de câncer de próstata (seção de rastreamento/diagnóstico)
+- [x] Criar entrada do Atlas "investigacao-cancer-prostata" com protocolo PSA, PIRADS, biópsia e estadiamento (EAU 2024)
+- [x] Criar procedimento interativo "investigacao-cancer-prostata" no proceduresExtra.ts com campos e templates de solicitação de biópsia e laudo de estadiamento clínico
+- [x] Mapear investigacao-cancer-prostata no atlasToProcedure
+- [x] Testes e checkpoint (218/218; checkpoint fb29e174)
+
+# Seguimento Pós-Prostatectomia e ERSPC (Ago 2026)
+- [x] Adicionar cálculo automático de PSA Density (PSA ÷ volume prostático) na calculadora ERSPC
+- [x] Adicionar cálculo automático de PSA Velocity a partir de dois valores de PSA e suas respectivas datas na calculadora ERSPC
+- [x] Criar entrada do Atlas "seguimento-pos-prostatectomia" com cronograma de PSA, critérios de recidiva bioquímica e abordagem de tratamento de resgate, baseada na EAU 2026
+- [x] Criar procedimento interativo "seguimento-pos-prostatectomia" com campos de PSA seriado, patologia, estadiamento e templates de seguimento/encaminhamento
+- [x] Mapear a nova entrada do Atlas ao procedimento de seguimento pós-prostatectomia
+- [x] Validar TypeScript e Vitest (222/222) e preparar checkpoint do lote
