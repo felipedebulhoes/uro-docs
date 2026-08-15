@@ -138,3 +138,8 @@
 - [x] Criar procedimento interativo "seguimento-pos-prostatectomia" com campos de PSA seriado, patologia, estadiamento e templates de seguimento/encaminhamento
 - [x] Mapear a nova entrada do Atlas ao procedimento de seguimento pós-prostatectomia
 - [x] Validar TypeScript e Vitest (222/222) e preparar checkpoint do lote
+
+# Correção de Integridade do Catálogo (Ago 2026)
+- [x] Localizar e eliminar a duplicação do ID `usg-escrotal-doppler-testicular` que gera chave React duplicada na página inicial
+- [x] Adicionar teste de regressão para garantir unicidade dos IDs de procedimentos do catálogo
+- [x] Validar TypeScript/Vitest (223/223) e preparar checkpoint da correção

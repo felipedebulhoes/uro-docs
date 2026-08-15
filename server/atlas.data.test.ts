@@ -175,6 +175,11 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
     expect(semAtlas, `procedimentos sem entrada no Atlas: ${semAtlas.join(", ")}`).toEqual([]);
   });
 
+  it("o catálogo não contém IDs duplicados", () => {
+    const ids = procedures.map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it("toda entrada do Atlas aponta para um procedimento existente no catálogo", () => {
     const procIds = new Set(procedures.map((p) => p.id));
     const semProc = atlasEntries
@@ -187,7 +192,7 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
   });
 
   it("catálogo e Atlas têm contagens esperadas", () => {
-    expect(procedures.length).toBe(66);
+    expect(procedures.length).toBe(65);
     expect(atlasEntries.length).toBe(69);
   });
 

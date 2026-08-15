@@ -2087,11 +2087,12 @@ ${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "- Sem restri\u00e7\
 - SINAL DE ALERTA: se a ere\u00e7\u00e3o persistir por mais de 3-4 horas ou houver dor importante, procure um pronto-socorro imediatamente.`}`,
     },
   },
+  /* Versão compacta substituída pelo laudo estruturado completo abaixo.
   {
-    id: "usg-escrotal-doppler-testicular",
+    id: "usg-escrotal-doppler-testicular-compact-deprecated",
     name: "Ultrassonografia escrotal com Doppler testicular",
     shortName: "USG escrotal/Doppler",
-    icon: "\uD83D\uDD0A",
+    icon: "🔊",
     category: "Andrologia",
     configFields: [
       { id: "indicacao", label: "Indica\u00e7\u00e3o", type: "select", options: ["Dor escrotal aguda (escroto agudo)", "Investiga\u00e7\u00e3o de infertilidade", "Massa/n\u00f3dulo escrotal", "Trauma escrotal", "Seguimento de microlit\u00edase", "Var\u00edcocele"], defaultValue: "Investiga\u00e7\u00e3o de infertilidade" },
@@ -2144,6 +2145,7 @@ AP\u00d3S O EXAME:
 - Sem restri\u00e7\u00f5es. Retorne ao seu urologista com o laudo para a conduta.`,
     },
   },
+  */
 
   // ═══════════════════════════════════════════════════════════════
   // MANEJO DO PRIAPISMO ISQUÊMICO
@@ -3134,12 +3136,12 @@ HIDROCELE: ${c.hidrocele}.
 MASS/LESÃO FOCAL: ${c.massa}.${assimetria}
 
 CONCLUSÃO:
-${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE — SUSPEITA DE TORSÃO: Encaminhar para exploração cirúrgica de urgência imediatamente. Não aguardar exames adicionais.\n" : ""}${c.massa !== "Ausente" ? c.massa + " — correlacionar com marcadores tumorais (AFP, β-hCG, LDH) e considerar orquiectomia radical inguinal.\n" : ""}${c.varicocele !== "Ausente" ? c.varicocele + ".\n" : ""}${c.epididimo_dir.includes("epididimite") || c.epididimo_esq.includes("epididimite") ? "Sinais de epididimite — tratamento clínico (antibioticoterapia).\n" : ""}${c.doppler_dir === "Fluxo intratesticular preservado" && c.doppler_esq === "Fluxo intratesticular preservado" && c.massa === "Ausente" && c.varicocele === "Ausente" && !c.epididimo_dir.includes("epididimite") && !c.epididimo_esq.includes("epididimite") ? "Testículos de volume, ecotextura e vascularização normais. Epidídimos sem alterações." : ""}
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE — SUSPEITA DE TORSÃO: Encaminhar para exploração cirúrgica de urgência imediatamente. Não aguardar exames adicionais.\n" : ""}${c.massa !== "Ausente" ? c.massa + " — correlacionar com marcadores tumorais (AFP, β-hCG, LDH) e considerar orquiectomia radical inguinal.\n" : ""}${c.varicocele !== "Ausente" ? c.varicocele + ".\n" : ""}${(c.epididimo_dir ?? "").includes("epididimite") || (c.epididimo_esq ?? "").includes("epididimite") ? "Sinais de epididimite — tratamento clínico (antibioticoterapia).\n" : ""}${c.doppler_dir === "Fluxo intratesticular preservado" && c.doppler_esq === "Fluxo intratesticular preservado" && c.massa === "Ausente" && c.varicocele === "Ausente" && !(c.epididimo_dir ?? "").includes("epididimite") && !(c.epididimo_esq ?? "").includes("epididimite") ? "Testículos de volume, ecotextura e vascularização normais. Epidídimos sem alterações." : ""}
 
 REFERÊNCIAS: EAU Guidelines on Sexual & Reproductive Health 2024; Consenso EFSUMB/EAA (Lotti F et al. Int Braz J Urol 2026).`;
       },
       posOperatorio: (c) => `ORIENTAÇÕES PÓS-EXAME — USG ESCROTAL
-${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE: Encaminhar para cirurgia de urgência imediatamente (torsão testicular).\n" : ""}${c.massa !== "Ausente" ? "⚠️ MASSA TESTICULAR: Solicitar AFP, β-hCG, LDH. Encaminhar para urologista com urgência.\n" : ""}${c.varicocele !== "Ausente" ? "⚠️ VARICOCELE: Correlacionar com espermograma e FSH/LH. Considerar varicocelectomia em casos selecionados.\n" : ""}${c.ecotextura_dir.includes("Microlitíase") || c.ecotextura_esq.includes("Microlitíase") ? "⚠️ MICROLITÍASE: Avaliar fatores de risco (criptorquidia, infertilidade, tumor prévio). Seguimento anual se fatores de risco presentes.\n" : ""}
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE: Encaminhar para cirurgia de urgência imediatamente (torsão testicular).\n" : ""}${c.massa !== "Ausente" ? "⚠️ MASSA TESTICULAR: Solicitar AFP, β-hCG, LDH. Encaminhar para urologista com urgência.\n" : ""}${c.varicocele !== "Ausente" ? "⚠️ VARICOCELE: Correlacionar com espermograma e FSH/LH. Considerar varicocelectomia em casos selecionados.\n" : ""}${(c.ecotextura_dir ?? "").includes("Microlitíase") || (c.ecotextura_esq ?? "").includes("Microlitíase") ? "⚠️ MICROLITÍASE: Avaliar fatores de risco (criptorquidia, infertilidade, tumor prévio). Seguimento anual se fatores de risco presentes.\n" : ""}
 Encaminhar resultado ao urologista para correlação clínica.`,
       receitaAlta: () => `PRESCRIÇÃO — USG ESCROTAL COM DOPPLER
 Exame de imagem — sem prescrição medicamentosa específica.
