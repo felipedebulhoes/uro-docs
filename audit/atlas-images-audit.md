@@ -1,8 +1,8 @@
 # Auditoria de Figuras do Atlas
 
 - Entradas auditadas: 69
-- Figuras cadastradas: 324
-- Figuras com imagem: 124
+- Figuras cadastradas: 333
+- Figuras com imagem: 133
 - Figuras pendentes de imagem: 200
 - Entradas por situação: cobertura parcial (62), coberto (7)
 
@@ -14,28 +14,28 @@
 | nefrectomia-parcial | Nefrectomia Parcial videolaparoscópica/robótica para tumor renal | Oncologia | 1/6 | 5 | cobertura parcial |
 | nefrectomia-radical | Nefrectomia Radical videolaparoscópica para câncer renal | Oncologia | 2/7 | 5 | cobertura parcial |
 | nefroureterectomia | Nefroureterectomia Radical videolaparoscópica para tumor urotelial de trato superior | Oncologia | 2/7 | 5 | cobertura parcial |
-| orquidopexia-para-criptorquidia-testiculo-retratil | Orquidopexia para criptorquidia / testículo retrátil | Saúde do Homem | 1/6 | 5 | cobertura parcial |
-| pieloplastia | Pieloplastia videolaparoscópica/robótica (Anderson-Hynes) para estenose de JUP | Endourologia | 1/6 | 5 | cobertura parcial |
+| orquidopexia-para-criptorquidia-testiculo-retratil | Orquidopexia para criptorquidia / testículo retrátil | Saúde do Homem | 2/7 | 5 | cobertura parcial |
+| pieloplastia | Pieloplastia videolaparoscópica/robótica (Anderson-Hynes) para estenose de JUP | Endourologia | 2/7 | 5 | cobertura parcial |
 | postectomia-circuncisao-no-adulto | Postectomia (circuncisão) no adulto | Saúde do Homem | 2/7 | 5 | cobertura parcial |
 | prostatectomia-radical | Prostatectomia Radical videolaparoscópica/robótica para câncer de próstata | Oncologia | 2/7 | 5 | cobertura parcial |
 | rtu-prostata | Ressecção Transuretral da Próstata (RTU-P) monopolar/bipolar para HPB | Próstata | 2/7 | 5 | cobertura parcial |
 | rtu-bexiga | Ressecção Transuretral de Bexiga (RTU-B) para tumor vesical | Oncologia | 2/7 | 5 | cobertura parcial |
 | ureterolitotripsia-flexivel | Ureterolitotripsia Flexível (ureterorrenoscopia flexível com laser Holmium/Thulium - RIRS) | Endourologia | 2/7 | 5 | cobertura parcial |
-| vasectomia-tecnica-sem-bisturi | Vasectomia (técnica sem bisturi) | Saúde do Homem | 1/6 | 5 | cobertura parcial |
-| adrenalectomia | Adrenalectomia videolaparoscópica para massa adrenal | Oncologia | 1/5 | 4 | cobertura parcial |
-| cistoscopia | Cistoscopia diagnóstica e retirada de cateter duplo J | Endourologia | 1/5 | 4 | cobertura parcial |
+| vasectomia-tecnica-sem-bisturi | Vasectomia (técnica sem bisturi) | Saúde do Homem | 2/7 | 5 | cobertura parcial |
+| adrenalectomia | Adrenalectomia videolaparoscópica para massa adrenal | Oncologia | 2/6 | 4 | cobertura parcial |
+| cistoscopia | Cistoscopia diagnóstica e retirada de cateter duplo J | Endourologia | 2/6 | 4 | cobertura parcial |
 | bipolep | Enucleação Bipolar da Próstata (BipoLEP) para HPB | Próstata | 1/5 | 4 | cobertura parcial |
-| holep | Enucleação da Próstata a Laser de Hólmio (HoLEP) para HPB | Próstata | 1/5 | 4 | cobertura parcial |
+| holep | Enucleação da Próstata a Laser de Hólmio (HoLEP) para HPB | Próstata | 2/6 | 4 | cobertura parcial |
 | epididimectomia | Epididimectomia | Saúde do Homem | 1/5 | 4 | cobertura parcial |
-| hidrocelectomia-tecnicas-de-jaboulay-e-lord | Hidrocelectomia (técnicas de Jaboulay e Lord) | Saúde do Homem | 1/5 | 4 | cobertura parcial |
+| hidrocelectomia-tecnicas-de-jaboulay-e-lord | Hidrocelectomia (técnicas de Jaboulay e Lord) | Saúde do Homem | 2/6 | 4 | cobertura parcial |
 | linfadenectomia-inguinal-no-cancer-de-penis | Linfadenectomia inguinal no câncer de pênis | Oncologia | 1/5 | 4 | cobertura parcial |
 | lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a | Lipoaspiração suprapúbica e correção de pênis enterrado no adulto | Estética Genital | 1/5 | 4 | cobertura parcial |
 | leco | Litotripsia Extracorpórea por Ondas de Choque (LECO/SWL) para cálculo urinário | Endourologia | 1/5 | 4 | cobertura parcial |
-| nefrolitotripsia-percutanea | Nefrolitotripsia Percutânea (NLP) para cálculo renal | Endourologia | 1/5 | 4 | cobertura parcial |
+| nefrolitotripsia-percutanea | Nefrolitotripsia Percutânea (NLP) para cálculo renal | Endourologia | 2/6 | 4 | cobertura parcial |
 | orquiectomia-radical-inguinal-tumor-de-testiculo | Orquiectomia radical inguinal (tumor de testículo) | Oncologia | 1/5 | 4 | cobertura parcial |
 | orquiectomia-simples-subcapsular-bloqueio-androgenico | Orquiectomia simples / subcapsular (bloqueio androgênico) | Oncologia | 1/5 | 4 | cobertura parcial |
 | penectomia-parcial-cancer-de-penis | Penectomia parcial (câncer de pênis) | Oncologia | 1/5 | 4 | cobertura parcial |
-| reimplante-ureteral | Reimplante ureterovesical videolaparoscópico/robótico (técnica de Lich-Gregoir) | Endourologia | 1/5 | 4 | cobertura parcial |
+| reimplante-ureteral | Reimplante ureterovesical videolaparoscópico/robótico (técnica de Lich-Gregoir) | Endourologia | 2/6 | 4 | cobertura parcial |
 | resseccao-de-condilomas-genitais-hpv-exerese-e-eletrocauteri | Ressecção de condilomas genitais (HPV) - exérese e eletrocauterização | Saúde do Homem | 1/5 | 4 | cobertura parcial |
 | reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois | Reversão de vasectomia - vasovasostomia microcirúrgica em dois planos | Andrologia / Fertilidade | 2/6 | 4 | cobertura parcial |
 | sling-masculino | Sling masculino para incontinência urinária pós-prostatectomia | Funcional | 1/5 | 4 | cobertura parcial |

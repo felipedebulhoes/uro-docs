@@ -5275,7 +5275,87 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
 
 for (const entry of atlasEntries) {
   const additions = atlasImageAdditions[entry.id];
+  const secondaryAdditions = getAtlasSecondaryImageAdditions(entry.id);
   if (additions) entry.figures.push(...additions);
+  if (secondaryAdditions.length) entry.figures.push(...secondaryAdditions);
+}
+
+function getAtlasSecondaryImageAdditions(entryId: string): AtlasFigure[] {
+  const additions: Record<string, AtlasFigure[]> = {
+    "adrenalectomia": [{
+      caption: "Controle da veia adrenal na adrenalectomia esquerda",
+      description: "Visão laparoscópica da identificação da veia adrenal esquerda e sua relação com a veia renal antes de clipagem e secção.",
+      searchTerms: "laparoscopic left adrenalectomy adrenal vein renal vein dissection",
+      imageUrl: "/manus-storage/adrenalectomia_veia_adrenal_fig3_799b824e.jpg",
+      credit: "Mellon MJ et al. Laparoscopic adrenalectomy: surgical techniques. Indian J Urol. 2008. Fig. 3. (CC BY-NC) — PMC2684378",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2684378/",
+    }],
+    "cistoscopia": [{
+      caption: "Laço de fio-guia para remoção de duplo J",
+      description: "Montagem de laço de fio-guia passada pelo canal de trabalho para apreender a extremidade vesical de cateter duplo J.",
+      searchTerms: "cystoscopic ureteral stent removal guidewire loop",
+      imageUrl: "/manus-storage/cistoscopia_retirada_duplo_j_fig1_4b0faa17.jpg",
+      credit: "Oswal AT, Maheshwari PN. Cystoscopic stent removal using a guidewire loop. Indian J Urol. 2017. Fig. 1. (CC BY-NC) — PMC5508442",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5508442/",
+    }],
+    "holep": [{
+      caption: "Marco endoscópico da incisão em T no HoLEP",
+      description: "Imagens endoscópicas da incisão inicial em T, utilizada para definir o plano de enucleação entre o lobo médio e o lobo lateral.",
+      searchTerms: "HoLEP T incision endoscopic enucleation landmark",
+      imageUrl: "/manus-storage/holep_incisao_t_fig1_f5f97e08.jpg",
+      credit: "Porreca A et al. T-L technique for HoLEP. Cent European J Urol. 2021. Fig. 1. (CC BY-NC) — PMC8552945",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8552945/",
+    }],
+    "orquidopexia-para-criptorquidia-testiculo-retratil": [{
+      caption: "Preparo para orquidopexia transescrotal",
+      description: "Fotografia intraoperatória do preparo de tecido adiposo subescrotal para fixação estável e sem tensão do testículo.",
+      searchTerms: "transscrotal orchiopexy fat anchor technique",
+      imageUrl: "/manus-storage/orquidopexia_fat_fan_fig2_d9977d1f.jpg",
+      credit: "Spinelli C et al. Fat anchor orchiopexy technique. Pediatr Surg Int. 2021. Fig. 2. (CC BY 4.0) — PMC8742813",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742813/",
+    }],
+    "pieloplastia": [{
+      caption: "Transposição de vaso cruzado na pieloplastia",
+      description: "Visão laparoscópica antes e após a transposição de vaso polar inferior durante reconstrução da junção ureteropiélica.",
+      searchTerms: "laparoscopic pyeloplasty crossing vessel transposition ureteropelvic junction",
+      imageUrl: "/manus-storage/pieloplastia_vaso_cruzado_fig2_9924eecb.jpg",
+      credit: "Liu J et al. Crossing vessels in laparoscopic pyeloplasty. BMC Urol. 2021. Fig. 2. (CC BY 4.0) — PMC8101153",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8101153/",
+    }],
+    "vasectomia-tecnica-sem-bisturi": [{
+      caption: "Exteriorização do deferente com gancho dissetor",
+      description: "Demonstração do uso de gancho dissetor para captar e exteriorizar o ducto deferente através da punção cutânea mínima.",
+      searchTerms: "no scalpel vasectomy vas hooking technique",
+      imageUrl: "/manus-storage/vasectomia_gancho_deferente_fig7_8919cbb7.jpg",
+      credit: "Coe TM, Curington J. Model for teaching vasectomy. Int Braz J Urol. 2015. Fig. 7. (CC BY-NC) — PMC4752104",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4752104/",
+    }],
+    "hidrocelectomia-tecnicas-de-jaboulay-e-lord": [{
+      caption: "Abertura anterior da túnica vaginal",
+      description: "Etapa de abertura da túnica vaginal durante hidrocelectomia, preservando as fixações gubernaculares e a orientação anatômica.",
+      searchTerms: "hydrocelectomy anterior vaginal tunic opening technique",
+      imageUrl: "/manus-storage/hidrocelectomia_tunica_vaginal_fig4_1ea21c2e.jpg",
+      credit: "Rowe NE et al. Western snip, stitch, and tug hydrocelectomy. Can Urol Assoc J. 2016. Fig. 4. (CC BY-NC) — PMC5028222",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5028222/",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Estratégias de acesso percutâneo na NLP",
+      description: "Diagrama das técnicas fluoroscópicas de alinhamento axial (bull's eye), triangulação e abordagem híbrida para punção calicial.",
+      searchTerms: "PCNL fluoroscopic renal access bull eye triangulation diagram",
+      imageUrl: "/manus-storage/nlp_acesso_fluoroscopico_fig1_96723656.jpg",
+      credit: "Sharma GR, Luitel B. Fluoroscopy-guided percutaneous renal access. Indian J Urol. 2019. Fig. 1. (CC BY-NC) — PMC6792419",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6792419/",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Etapas do reimplante extravesical de Lich-Gregoir",
+      description: "Painel intraoperatório com acesso robótico, dissecção distal do ureter, túnel detrusor e fechamento muscular no reimplante ureterovesical.",
+      searchTerms: "robotic Lich Gregoir ureteral reimplantation detrusor tunnel steps",
+      imageUrl: "/manus-storage/reimplante_lich_gregoir_passos_fig1_afada8d9.jpg",
+      credit: "Lin S et al. Robot-assisted modified Lich-Gregoir ureteral reimplantation. Eur J Med Res. 2024. Fig. 1. (CC BY 4.0) — PMC11077742",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11077742/",
+    }],
+  };
+  return additions[entryId] ?? [];
 }
 
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));

@@ -166,3 +166,9 @@
 - [x] Selecionar e revisar dez imagens médicas complementares de anatomia, técnica, diagnóstico e seguimento
 - [x] Atualizar quadros secundários de vasovasostomia, vasoepididimostomia, varicocelectomia, biópsia testicular, PESA/TESA, micro-TESE, próteses penianas e correções de curvatura/Peyronie
 - [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (124 figuras com imagem) e preparar checkpoint
+
+# Enriquecimento Didático Contínuo — Lote 06 (Ago 2026)
+- [x] Priorizar os quadros secundários remanescentes por ganho didático: anatomia, acesso, técnica, imagem diagnóstica, complicações e seguimento
+- [x] Selecionar e revisar nove imagens clínicas, técnicas e esquemáticas complementares; descartar foto de pós-orquiectomia sem valor técnico suficiente
+- [x] Atualizar adrenalectomia, cistoscopia, HoLEP, orquidopexia, pieloplastia, vasectomia, hidrocelectomia, NLP e reimplante ureteral com novas imagens e legendas didáticas
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (133 figuras com imagem) e preparar checkpoint
