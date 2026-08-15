@@ -143,3 +143,8 @@
 - [x] Localizar e eliminar a duplicação do ID `usg-escrotal-doppler-testicular` que gera chave React duplicada na página inicial
 - [x] Adicionar teste de regressão para garantir unicidade dos IDs de procedimentos do catálogo
 - [x] Validar TypeScript/Vitest (223/223) e preparar checkpoint da correção
+
+# Pesquisa Rápida do Catálogo (Ago 2026)
+- [x] Revisar e aprimorar a barra de busca inicial para localizar procedimentos, categorias e calculadoras
+- [x] Adicionar lógica testável de pesquisa com correspondência por nome, abreviação, categoria e indicadores de calculadora
+- [x] Validar TypeScript/Vitest (226/226) e preparar checkpoint da busca rápida
