@@ -87,6 +87,14 @@ describe("Atlas data integrity", () => {
     expect(comImagem).toBeGreaterThanOrEqual(47);
   });
 
+  it("todo procedimento tem ao menos uma figura com imagem rastreável", () => {
+    const semImagem = atlasEntries
+      .filter((entry) => !entry.figures.some((figure) => figure.imageUrl && figure.imageUrl !== ""))
+      .map((entry) => entry.id);
+
+    expect(semImagem, `entradas sem cobertura visual: ${semImagem.join(", ")}`).toEqual([]);
+  });
+
   it("every figure has a caption and search terms", () => {
     for (const e of atlasEntries) {
       for (const f of e.figures) {

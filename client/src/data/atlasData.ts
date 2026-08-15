@@ -4827,6 +4827,156 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10898626/",
     },
   ],
+  "pieloplastia": [
+    {
+      caption: "Pieloplastia Anderson-Hynes com ureter espatulado",
+      description: "Ilustração médica autoral do princípio da ressecção da JUP estenótica, espatulação ureteral e reanastomose pieloureteral.",
+      searchTerms: "Anderson Hynes pyeloplasty ureteropelvic junction obstruction ureter spatulation",
+      imageUrl: "/manus-storage/pieloplastia-anderson-hynes_7f6571d8.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na técnica de Anderson-Hynes.",
+      sourceUrl: "https://uroweb.org/guidelines/paediatric-urology/chapter/management-of-ureteropelvic-junction-obstruction",
+    },
+  ],
+  "vasectomia-tecnica-sem-bisturi": [
+    {
+      caption: "Exteriorização do deferente na técnica sem bisturi",
+      description: "Ilustração médica autoral da apreensão e exteriorização do deferente por punção escrotal mínima com pinça em anel.",
+      searchTerms: "no scalpel vasectomy ring clamp vas deferens exteriorization",
+      imageUrl: "/manus-storage/vasectomia-sem-bisturi_0dd84f69.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em técnica de vasectomia sem bisturi.",
+      sourceUrl: "https://www.auanet.org/guidelines-and-quality/guidelines/vasectomy-guideline",
+    },
+  ],
+  "leco": [
+    {
+      caption: "Focalização da LECO no cálculo renal",
+      description: "Ilustração médica autoral da convergência das ondas de choque extracorpóreas sobre cálculo renal localizado.",
+      searchTerms: "extracorporeal shock wave lithotripsy renal stone focusing",
+      imageUrl: "/manus-storage/leco-ondas-choque_c2344842.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de LECO/SWL.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+    },
+  ],
+  "nefrolitotripsia-percutanea": [
+    {
+      caption: "Acesso percutâneo na nefrolitotripsia",
+      description: "Ilustração médica autoral do trajeto percutâneo por cálice posterior, dilatação do acesso e posicionamento do nefroscópio.",
+      searchTerms: "percutaneous nephrolithotomy posterior calyx tract nephroscope",
+      imageUrl: "/manus-storage/pcnl-acesso-percutaneo_2eadbd84.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de NLP/PCNL.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+    },
+  ],
+  "sling-masculino": [
+    {
+      caption: "Sling transobturatório masculino",
+      description: "Ilustração médica autoral mostrando suporte da uretra bulbar e passagem bilateral dos braços do sling pelos forames obturatórios.",
+      searchTerms: "male transobturator sling post prostatectomy stress urinary incontinence bulbous urethra",
+      imageUrl: "/manus-storage/sling-masculino_77be0d84.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de sling masculino transobturatório.",
+      sourceUrl: "https://uroweb.org/guidelines/non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "rezum": [
+    {
+      caption: "Aplicação transuretral de vapor no Rezūm",
+      description: "Ilustração médica autoral da agulha transuretral penetrando lobo prostático hiperplásico para aplicação controlada de vapor d'água.",
+      searchTerms: "Rezum water vapor therapy transurethral needle enlarged prostate",
+      imageUrl: "/manus-storage/rezum-vapor_57af8d93.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na técnica de terapia por vapor d'água Rezūm.",
+      sourceUrl: "https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "uretrotomia-interna": [
+    {
+      caption: "Uretrotomia interna de Sachse",
+      description: "Ilustração médica autoral de visão endoscópica da incisão controlada de estenose bulbar curta com uretrotomo a frio.",
+      searchTerms: "Sachse internal urethrotomy bulbar urethral stricture cold knife endoscopy",
+      imageUrl: "/manus-storage/uretrotomia-sachse_0f34d864.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na técnica de Sachse.",
+      sourceUrl: "https://uroweb.org/guidelines/urethral-strictures/chapter/disease-management-in-males",
+    },
+  ],
+  "hpb-tratamento-cirurgico": [
+    {
+      caption: "Plano de enucleação no tratamento cirúrgico da HPB",
+      description: "Ilustração médica autoral do princípio endoscópico de separação entre adenoma obstrutivo e cápsula prostática cirúrgica.",
+      searchTerms: "BPH endoscopic enucleation adenoma surgical capsule plane",
+      imageUrl: "/manus-storage/hpb-tratamento-cirurgico_002bc674.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de enucleação prostática endoscópica.",
+      sourceUrl: "https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "hpb-tratamento-clinico": [
+    {
+      caption: "Obstrução infravesical por HPB",
+      description: "Ilustração médica autoral de próstata aumentada comprimindo a uretra prostática, com repercussão na parede e no esvaziamento vesical.",
+      searchTerms: "benign prostatic hyperplasia bladder outlet obstruction anatomy",
+      imageUrl: "/manus-storage/hpb-tratamento-clinico_452d71ab.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na anatomia da HPB e obstrução infravesical.",
+      sourceUrl: "https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "investigacao-metabolica-litiase": [
+    {
+      caption: "Coleta e perfil metabólico para litíase recorrente",
+      description: "Ilustração médica autoral dos principais elementos da investigação metabólica: urina de 24 horas, amostra laboratorial, rim e cálculo urinário.",
+      searchTerms: "recurrent stone metabolic evaluation 24 hour urine collection",
+      imageUrl: "/manus-storage/investigacao-metabolica-litiase_ba1bf005.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na avaliação metabólica de litíase recorrente.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/metabolic-evaluation-and-recurrence-prevention",
+    },
+  ],
+  "priapismo-isquemico": [
+    {
+      caption: "Aspiração cavernosa no priapismo isquêmico",
+      description: "Ilustração médica autoral da punção lateral de corpo cavernoso para aspiração na abordagem inicial do priapismo isquêmico.",
+      searchTerms: "ischemic priapism corporal aspiration lateral needle technique",
+      imageUrl: "/manus-storage/priapismo-isquemico_85a229e0.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada no manejo de priapismo isquêmico.",
+      sourceUrl: "https://uroweb.org/guidelines/sexual-and-reproductive-health/chapter/priapism",
+    },
+  ],
+  "terapia-expulsiva-calculo-ureteral": [
+    {
+      caption: "Cálculo ureteral distal em terapia expulsiva",
+      description: "Ilustração médica autoral de cálculo no ureter distal e princípio anatômico da progressão para a bexiga durante terapia expulsiva.",
+      searchTerms: "medical expulsive therapy distal ureteral stone anatomy",
+      imageUrl: "/manus-storage/terapia-expulsiva-calculo-ureteral_ebf6aa23.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de terapia expulsiva.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+    },
+  ],
+  "investigacao-cancer-prostata": [
+    {
+      caption: "Ressonância multiparamétrica e biópsia transperineal",
+      description: "Ilustração médica autoral da lesão prostática suspeita na mpRM e da trajetória de biópsia transperineal guiada por imagem.",
+      searchTerms: "prostate cancer multiparametric MRI transperineal targeted biopsy",
+      imageUrl: "/manus-storage/investigacao-cancer-prostata_43b7b421.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada no fluxo diagnóstico do câncer de próstata.",
+      sourceUrl: "https://uroweb.org/guidelines/prostate-cancer/chapter/diagnostic-evaluation",
+    },
+  ],
+  "seguimento-pos-prostatectomia": [
+    {
+      caption: "Seguimento bioquímico após prostatectomia radical",
+      description: "Ilustração médica autoral da anastomose vesicouretral pós-prostatectomia e do acompanhamento seriado de PSA.",
+      searchTerms: "radical prostatectomy follow up PSA biochemical recurrence anastomosis",
+      imageUrl: "/manus-storage/seguimento-pos-prostatectomia_bb524504.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em recomendações de seguimento pós-prostatectomia.",
+      sourceUrl: "https://uroweb.org/guidelines/prostate-cancer/chapter/followup",
+    },
+  ],
+  "prepucioplastia-plastica-prepucial-poupadora-de-prepucio": [
+    {
+      caption: "Plástica prepucial poupadora de prepúcio",
+      description: "Ilustração médica autoral de incisão longitudinal no anel fimótico e fechamento transversal para ampliar o óstio prepucial.",
+      searchTerms: "preputioplasty phimosis longitudinal incision transverse closure",
+      imageUrl: "/manus-storage/prepucioplastia_6b7e36ce.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de prepucioplastia.",
+      sourceUrl: "https://uroweb.org/guidelines/paediatric-urology/chapter/the-guideline",
+    },
+  ],
   "hidrocelectomia-tecnicas-de-jaboulay-e-lord": [
     {
       caption: "Exposição do saco hidroceliano",

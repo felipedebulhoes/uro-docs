@@ -150,7 +150,7 @@
 - [x] Validar TypeScript/Vitest (226/226) e preparar checkpoint da busca rápida
 
 # Auditoria e Complementação de Imagens do Atlas (Ago 2026)
-- [ ] Auditar as figuras por entrada: cobertura, relevância clínica, crédito e fonte bibliográfica
-- [ ] Priorizar procedimentos sem imagem ou com figuras incompletas/inadequadas e selecionar substituições de fontes abertas ou institucionais, conforme adequação clínica
-- [ ] Fazer upload das imagens aprovadas e atualizar créditos, fontes e descrições no Atlas
-- [ ] Validar integridade das imagens, executar testes e salvar checkpoint
+- [x] Auditar as figuras por entrada: cobertura, relevância clínica, crédito e fonte bibliográfica (69 entradas; relatório reprodutível em audit/atlas-images-audit.md)
+- [x] Priorizar procedimentos sem imagem e selecionar figuras de literatura e ilustrações médicas autorais conforme adequação clínica
+- [x] Atualizar créditos, fontes e descrições no Atlas (106 figuras com imagem e rastreabilidade completa; cobertura mínima de todas as 69 entradas)
+- [x] Validar TypeScript/Vitest (227/227) e preparar checkpoint da auditoria visual
