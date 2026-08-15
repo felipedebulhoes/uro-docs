@@ -154,3 +154,9 @@
 - [x] Priorizar procedimentos sem imagem e selecionar figuras de literatura e ilustrações médicas autorais conforme adequação clínica
 - [x] Atualizar créditos, fontes e descrições no Atlas (106 figuras com imagem e rastreabilidade completa; cobertura mínima de todas as 69 entradas)
 - [x] Validar TypeScript/Vitest (227/227) e preparar checkpoint da auditoria visual
+
+# Enriquecimento de Quadros Secundários do Atlas (Ago 2026)
+- [x] Priorizar procedimentos com quatro ou mais quadros secundários vazios, começando por técnicas oncológicas, endourológicas e andrológicas
+- [x] Selecionar e revisar oito imagens médicas complementares, evitando repetição de conteúdo e mantendo créditos e fontes
+- [x] Preencher oito quadros secundários priorizados no Atlas com descrições didáticas (pellets, nefrectomias, nefroureterectomia, postectomia, prostatectomia, RTU-P, RTU-B e RIRS)
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (114 figuras com imagem) e preparar checkpoint

@@ -1,8 +1,8 @@
 # Auditoria de Figuras do Atlas
 
 - Entradas auditadas: 69
-- Figuras cadastradas: 306
-- Figuras com imagem: 106
+- Figuras cadastradas: 314
+- Figuras com imagem: 114
 - Figuras pendentes de imagem: 200
 - Entradas por situação: cobertura parcial (62), coberto (7)
 
@@ -10,17 +10,17 @@
 
 | ID | Entrada | Categoria | Figuras com imagem | Pendentes | Situação |
 |---|---|---:|---:|---:|---|
-| implante-testosterona | Implante subcutâneo de testosterona (pellets) para hipogonadismo masculino | Saúde do Homem | 1/6 | 5 | cobertura parcial |
+| implante-testosterona | Implante subcutâneo de testosterona (pellets) para hipogonadismo masculino | Saúde do Homem | 2/7 | 5 | cobertura parcial |
 | nefrectomia-parcial | Nefrectomia Parcial videolaparoscópica/robótica para tumor renal | Oncologia | 1/6 | 5 | cobertura parcial |
-| nefrectomia-radical | Nefrectomia Radical videolaparoscópica para câncer renal | Oncologia | 1/6 | 5 | cobertura parcial |
-| nefroureterectomia | Nefroureterectomia Radical videolaparoscópica para tumor urotelial de trato superior | Oncologia | 1/6 | 5 | cobertura parcial |
+| nefrectomia-radical | Nefrectomia Radical videolaparoscópica para câncer renal | Oncologia | 2/7 | 5 | cobertura parcial |
+| nefroureterectomia | Nefroureterectomia Radical videolaparoscópica para tumor urotelial de trato superior | Oncologia | 2/7 | 5 | cobertura parcial |
 | orquidopexia-para-criptorquidia-testiculo-retratil | Orquidopexia para criptorquidia / testículo retrátil | Saúde do Homem | 1/6 | 5 | cobertura parcial |
 | pieloplastia | Pieloplastia videolaparoscópica/robótica (Anderson-Hynes) para estenose de JUP | Endourologia | 1/6 | 5 | cobertura parcial |
-| postectomia-circuncisao-no-adulto | Postectomia (circuncisão) no adulto | Saúde do Homem | 1/6 | 5 | cobertura parcial |
-| prostatectomia-radical | Prostatectomia Radical videolaparoscópica/robótica para câncer de próstata | Oncologia | 1/6 | 5 | cobertura parcial |
-| rtu-prostata | Ressecção Transuretral da Próstata (RTU-P) monopolar/bipolar para HPB | Próstata | 1/6 | 5 | cobertura parcial |
-| rtu-bexiga | Ressecção Transuretral de Bexiga (RTU-B) para tumor vesical | Oncologia | 1/6 | 5 | cobertura parcial |
-| ureterolitotripsia-flexivel | Ureterolitotripsia Flexível (ureterorrenoscopia flexível com laser Holmium/Thulium - RIRS) | Endourologia | 1/6 | 5 | cobertura parcial |
+| postectomia-circuncisao-no-adulto | Postectomia (circuncisão) no adulto | Saúde do Homem | 2/7 | 5 | cobertura parcial |
+| prostatectomia-radical | Prostatectomia Radical videolaparoscópica/robótica para câncer de próstata | Oncologia | 2/7 | 5 | cobertura parcial |
+| rtu-prostata | Ressecção Transuretral da Próstata (RTU-P) monopolar/bipolar para HPB | Próstata | 2/7 | 5 | cobertura parcial |
+| rtu-bexiga | Ressecção Transuretral de Bexiga (RTU-B) para tumor vesical | Oncologia | 2/7 | 5 | cobertura parcial |
+| ureterolitotripsia-flexivel | Ureterolitotripsia Flexível (ureterorrenoscopia flexível com laser Holmium/Thulium - RIRS) | Endourologia | 2/7 | 5 | cobertura parcial |
 | vasectomia-tecnica-sem-bisturi | Vasectomia (técnica sem bisturi) | Saúde do Homem | 1/6 | 5 | cobertura parcial |
 | adrenalectomia | Adrenalectomia videolaparoscópica para massa adrenal | Oncologia | 1/5 | 4 | cobertura parcial |
 | cistoscopia | Cistoscopia diagnóstica e retirada de cateter duplo J | Endourologia | 1/5 | 4 | cobertura parcial |

@@ -4706,6 +4706,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       credit: "Wang D et al. Modified DGS procedure for adult circumcision. Int J Impot Res. 2025. Fig. 2. (CC BY-NC) — PMC12700785",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12700785/",
     },
+    {
+      caption: "Incisão dorsal na postectomia",
+      description: "Imagem intraoperatória do passo de incisão dorsal para ampliar a exposição da glande durante circuncisão adulta.",
+      searchTerms: "adult circumcision dorsal slit intraoperative technique",
+      imageUrl: "/manus-storage/postectomia_dorsal_slit_fig3_1e1b66a4.jpg",
+      credit: "Abdulwahab-Ahmed A, Mungadi IA. Techniques of male circumcision. J Surg Tech Case Rep. 2013. Fig. 3. (CC BY-NC) — PMC3888996",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3888996/",
+    },
   ],
   "frenuloplastia-peniana-correcao-de-freio-curto": [
     {
@@ -4766,6 +4774,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       credit: "Huynh LM, Ahlering TE. Robotic radical prostatectomy. J Endourol. 2018. Fig. 1. (CC BY 4.0) — PMC6071518",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6071518/",
     },
+    {
+      caption: "Relações anatômicas na prostatectomia radical",
+      description: "Diagrama anatômico das relações entre próstata, vesículas seminais, bexiga, uretra e feixes neurovasculares relevantes para preservação funcional.",
+      searchTerms: "robotic radical prostatectomy neurovascular bundle anatomy diagram",
+      imageUrl: "/manus-storage/prostatectomia_anatomia_nervos_fig1_a986fd1c.jpg",
+      credit: "Hoeh B et al. Nerve-sparing robotic radical prostatectomy anatomy. Front Surg. 2022. Fig. 1. (CC BY 4.0) — PMC8901727",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8901727/",
+    },
   ],
   "reimplante-ureteral": [
     {
@@ -4795,6 +4811,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       imageUrl: "/manus-storage/rtup_bipolar_marcos_fig2_991e8def.jpg",
       credit: "Mallikarjuna C et al. Bipolar transurethral prostate enucleation. Indian J Urol. 2018. Fig. 2. (CC BY-NC) — PMC6034404",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6034404/",
+    },
+    {
+      caption: "Anatomia zonal após RTU-P na ressonância",
+      description: "Ressonância magnética demonstrando anatomia zonal e alteração da uretra prostática após ressecção transuretral.",
+      searchTerms: "TURP postoperative MRI prostate zonal anatomy",
+      imageUrl: "/manus-storage/rtup_rm_pos_operatoria_fig2_4cc54993.jpg",
+      credit: "Bhat A et al. MRI after TURP and HoLEP. Indian J Urol. 2022. Fig. 2. (CC BY-NC) — PMC9730261",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9730261/",
     },
   ],
   "cistoscopia": [
@@ -5026,6 +5050,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       credit: "Chang TC et al. Optical imaging modalities for bladder cancer. Bladder Cancer. 2017. Fig. 1. (CC BY-NC) — PMC5545914",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5545914/",
     },
+    {
+      caption: "Energia monopolar versus bipolar na RTU-B",
+      description: "Esquema comparativo do circuito elétrico e princípio físico de ressecção monopolar e bipolar em tumor vesical.",
+      searchTerms: "TURBT monopolar bipolar electrocautery comparison diagram",
+      imageUrl: "/manus-storage/rtub_monopolar_bipolar_fig2_e3dd1615.jpg",
+      credit: "Taskovska M et al. Monopolar and bipolar TURBT. Radiol Oncol. 2020. Fig. 2. (CC BY 4.0) — PMC7276645",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7276645/",
+    },
   ],
   "ureterolitotripsia-flexivel": [
     {
@@ -5035,6 +5067,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       imageUrl: "/manus-storage/ureterolitotripsia_flexivel_laser_fig2_ece78e4a.jpg",
       credit: "Geavlete B et al. RIRS laser residual fragments. J Med Life. 2022. Fig. 2. (CC BY 4.0) — PMC9675293",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9675293/",
+    },
+    {
+      caption: "Instrumentais da ureterolitotripsia flexível",
+      description: "Conjunto de bainha de acesso ureteral, cesta de extração e ureteroscópio flexível usados na estratégia de RIRS.",
+      searchTerms: "RIRS flexible ureteroscopy access sheath basket instruments",
+      imageUrl: "/manus-storage/rirs_instrumentais_fig1_61f6b6cf.jpg",
+      credit: "Aboutaleb H. Retrograde intrarenal surgery. Arab J Urol. 2016. Fig. 1. (CC BY-NC) — PMC4963160",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4963160/",
     },
   ],
   "ureterolitotripsia-rigida": [
@@ -5056,6 +5096,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       credit: "Glaser RL, Dimitrakakis C. Subcutaneous pellet implantation technique. Menopause. 2014. Fig. 1. (CC BY-NC) — PMC4033664",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4033664/",
     },
+    {
+      caption: "Trocarte carregado para implante de pellets",
+      description: "Imagem clínica do trocarte e da inserção subcutânea de pellet hormonal durante o procedimento ambulatorial.",
+      searchTerms: "testosterone pellet implantation trocar subcutaneous technique",
+      imageUrl: "/manus-storage/pellets_trocarte_fig1_873cab0d.jpg",
+      credit: "Donovitz GS. Testosterone pellet implantation technique. Ther Adv Endocrinol Metab. 2021. Fig. 1. (CC BY 4.0) — PMC8165877",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8165877/",
+    },
   ],
   "nefrectomia-parcial": [
     {
@@ -5076,6 +5124,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       credit: "Deo SV, Kelkar DS. Laparoscopic radical nephrectomy port placement. J Surg Tech Case Rep. 2011. Fig. 1. (CC BY-NC) — PMC3296433",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3296433/",
     },
+    {
+      caption: "Dissecção hilar na nefrectomia radical",
+      description: "Painel intraoperatório demonstrando os marcos da dissecção renal laparoscópica, incluindo veia renal e músculo psoas.",
+      searchTerms: "laparoscopic radical nephrectomy renal hilum dissection psoas vein",
+      imageUrl: "/manus-storage/nefrectomia_radical_hilo_fig2_34aba22d.jpg",
+      credit: "Chiruvella M et al. Laparoscopic radical nephrectomy hilar dissection. Indian J Urol. 2018. Fig. 2. (CC BY-NC) — PMC6174716",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6174716/",
+    },
   ],
   "nefroureterectomia": [
     {
@@ -5084,6 +5140,14 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       searchTerms: "laparoscopic radical nephroureterectomy transperitoneal surgical steps",
       imageUrl: "/manus-storage/nefroureterectomia_laparoscopica_fig1_c1767d2c.jpg",
       credit: "Yuan C et al. Laparoscopic radical nephroureterectomy. Transl Androl Urol. 2023. Fig. 1. (CC BY-NC) — PMC10323451",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10323451/",
+    },
+    {
+      caption: "Resultado cistoscópico após ressecção do manguito",
+      description: "Visão cistoscópica pós-operatória documentando o sítio de excisão do óstio ureteral após retirada do manguito vesical.",
+      searchTerms: "nephroureterectomy bladder cuff excision postoperative cystoscopy",
+      imageUrl: "/manus-storage/nefroureterectomia_manguito_vesical_fig3_68476eb1.jpg",
+      credit: "Yuan C et al. Laparoscopic radical nephroureterectomy. Transl Androl Urol. 2023. Fig. 3. (CC BY-NC) — PMC10323451",
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10323451/",
     },
   ],
