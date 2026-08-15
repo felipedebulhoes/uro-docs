@@ -1,8 +1,8 @@
 # Auditoria de Figuras do Atlas
 
 - Entradas auditadas: 69
-- Figuras cadastradas: 314
-- Figuras com imagem: 114
+- Figuras cadastradas: 324
+- Figuras com imagem: 124
 - Figuras pendentes de imagem: 200
 - Entradas por situação: cobertura parcial (62), coberto (7)
 
@@ -37,31 +37,31 @@
 | penectomia-parcial-cancer-de-penis | Penectomia parcial (câncer de pênis) | Oncologia | 1/5 | 4 | cobertura parcial |
 | reimplante-ureteral | Reimplante ureterovesical videolaparoscópico/robótico (técnica de Lich-Gregoir) | Endourologia | 1/5 | 4 | cobertura parcial |
 | resseccao-de-condilomas-genitais-hpv-exerese-e-eletrocauteri | Ressecção de condilomas genitais (HPV) - exérese e eletrocauterização | Saúde do Homem | 1/5 | 4 | cobertura parcial |
-| reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois | Reversão de vasectomia - vasovasostomia microcirúrgica em dois planos | Andrologia / Fertilidade | 1/5 | 4 | cobertura parcial |
+| reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois | Reversão de vasectomia - vasovasostomia microcirúrgica em dois planos | Andrologia / Fertilidade | 2/6 | 4 | cobertura parcial |
 | sling-masculino | Sling masculino para incontinência urinária pós-prostatectomia | Funcional | 1/5 | 4 | cobertura parcial |
 | rezum | Termoterapia prostática por vapor d'água (Rezūm) para HPB | Próstata | 1/5 | 4 | cobertura parcial |
 | ureterolitotripsia-rigida | Ureterolitotripsia Rígida (litotripsia ureteroscópica semirrígida com laser/balístico) | Endourologia | 1/5 | 4 | cobertura parcial |
 | uretrotomia-interna | Uretrotomia Interna (técnica de Sachse) para estenose de uretra | Funcional | 1/5 | 4 | cobertura parcial |
-| biopsia-testicular-diagnostica | Biópsia testicular diagnóstica | Andrologia / Fertilidade | 1/4 | 3 | cobertura parcial |
+| biopsia-testicular-diagnostica | Biópsia testicular diagnóstica | Andrologia / Fertilidade | 2/5 | 3 | cobertura parcial |
 | circuncisao-estetica-revisao-de-circuncisao | Circuncisão estética / revisão de circuncisão | Estética Genital | 2/5 | 3 | cobertura parcial |
 | espermatocelectomia-exerese-de-cisto-de-epididimo | Espermatocelectomia / exérese de cisto de epidídimo | Saúde do Homem | 1/4 | 3 | cobertura parcial |
 | frenuloplastia-peniana-correcao-de-freio-curto | Frenuloplastia peniana (correção de freio curto) | Saúde do Homem | 1/4 | 3 | cobertura parcial |
 | hpb-tratamento-cirurgico | HPB — Tratamento Cirúrgico (RTU-P / HoLEP / Enucleação) | Próstata | 1/4 | 3 | cobertura parcial |
 | hpb-tratamento-clinico | HPB — Tratamento Clínico (IPSS, Alfa-bloqueadores, 5-ARIs) | Próstata | 1/4 | 3 | cobertura parcial |
-| implante-de-protese-peniana-semirrigida-maleavel | Implante de prótese peniana semirrígida / maleável | Andrologia / Prótese | 2/5 | 3 | cobertura parcial |
+| implante-de-protese-peniana-semirrigida-maleavel | Implante de prótese peniana semirrígida / maleável | Andrologia / Prótese | 3/6 | 3 | cobertura parcial |
 | orquidopexia-na-torcao-testicular-exploracao-escrotal-de-urg | Orquidopexia na torção testicular (exploração escrotal de urgência) | Urgência | 1/4 | 3 | cobertura parcial |
 | prepucioplastia-plastica-prepucial-poupadora-de-prepucio | Prepucioplastia / plástica prepucial poupadora de prepúcio | Saúde do Homem | 1/4 | 3 | cobertura parcial |
-| protese-peniana-com-remodelamento-na-peyronie-grave | Prótese peniana com remodelamento na Peyronie grave | Andrologia / Peyronie | 1/4 | 3 | cobertura parcial |
-| reversao-de-vasectomia-vasoepididimostomia-microcirurgica | Reversão de vasectomia - vasoepididimostomia microcirúrgica | Andrologia / Fertilidade | 1/4 | 3 | cobertura parcial |
+| protese-peniana-com-remodelamento-na-peyronie-grave | Prótese peniana com remodelamento na Peyronie grave | Andrologia / Peyronie | 2/5 | 3 | cobertura parcial |
+| reversao-de-vasectomia-vasoepididimostomia-microcirurgica | Reversão de vasectomia - vasoepididimostomia microcirúrgica | Andrologia / Fertilidade | 2/5 | 3 | cobertura parcial |
 | usg-vias-urinarias-inferiores | Ultrassonografia das Vias Urinárias Inferiores | Imagem | 2/5 | 3 | cobertura parcial |
-| varicocelectomia-subinguinal-microcirurgica | Varicocelectomia subinguinal microcirúrgica | Andrologia / Fertilidade | 1/4 | 3 | cobertura parcial |
-| aspiracao-de-espermatozoides-pesa-tesa | Aspiração de espermatozoides PESA/TESA | Andrologia / Fertilidade | 1/3 | 2 | cobertura parcial |
-| curvatura-peniana-congenita-corporoplastia-de-plicatura | Curvatura peniana congênita - corporoplastia de plicatura | Andrologia / Peyronie | 3/5 | 2 | cobertura parcial |
+| varicocelectomia-subinguinal-microcirurgica | Varicocelectomia subinguinal microcirúrgica | Andrologia / Fertilidade | 2/5 | 3 | cobertura parcial |
+| aspiracao-de-espermatozoides-pesa-tesa | Aspiração de espermatozoides PESA/TESA | Andrologia / Fertilidade | 2/4 | 2 | cobertura parcial |
+| curvatura-peniana-congenita-corporoplastia-de-plicatura | Curvatura peniana congênita - corporoplastia de plicatura | Andrologia / Peyronie | 4/6 | 2 | cobertura parcial |
 | escrotoplastia-scrotal-lift-lifting-escrotal-estetico | Escrotoplastia / scrotal lift (lifting escrotal estético) | Estética Genital | 1/3 | 2 | cobertura parcial |
 | investigacao-metabolica-litiase | Investigação Metabólica — Litíase Recorrente | Endourologia | 1/3 | 2 | cobertura parcial |
-| correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com- | Correção de Doença de Peyronie - incisão/excisão de placa com enxerto | Andrologia / Peyronie | 3/4 | 1 | cobertura parcial |
+| correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com- | Correção de Doença de Peyronie - incisão/excisão de placa com enxerto | Andrologia / Peyronie | 4/5 | 1 | cobertura parcial |
 | correcao-de-doenca-de-peyronie-plicatura-de-tunica-nesbit-16 | Correção de Doença de Peyronie - plicatura de túnica (Nesbit/16 dot) | Andrologia / Peyronie | 2/3 | 1 | cobertura parcial |
-| extracao-microcirurgica-de-espermatozoides-micro-tese | Extração microcirúrgica de espermatozoides - micro-TESE | Andrologia / Fertilidade | 2/3 | 1 | cobertura parcial |
+| extracao-microcirurgica-de-espermatozoides-micro-tese | Extração microcirúrgica de espermatozoides - micro-TESE | Andrologia / Fertilidade | 3/4 | 1 | cobertura parcial |
 | faloplastia-de-aumento-espessamento-peniano-com-enxerto-derm | Faloplastia de aumento - espessamento peniano com enxerto dérmico-gorduroso | Estética Genital | 2/3 | 1 | cobertura parcial |
 | implante-de-protese-peniana-inflavel-de-3-volumes | Implante de prótese peniana inflável de 3 volumes | Andrologia / Prótese | 4/5 | 1 | cobertura parcial |
 | implante-de-protese-testicular | Implante de prótese testicular | Andrologia / Estética | 4/5 | 1 | cobertura parcial |

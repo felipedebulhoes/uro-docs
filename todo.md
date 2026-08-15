@@ -160,3 +160,9 @@
 - [x] Selecionar e revisar oito imagens médicas complementares, evitando repetição de conteúdo e mantendo créditos e fontes
 - [x] Preencher oito quadros secundários priorizados no Atlas com descrições didáticas (pellets, nefrectomias, nefroureterectomia, postectomia, prostatectomia, RTU-P, RTU-B e RIRS)
 - [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (114 figuras com imagem) e preparar checkpoint
+
+# Quadros Secundários — Andrologia e Fertilidade (Ago 2026)
+- [x] Priorizar procedimentos de andrologia e fertilidade com maior número de quadros vazios
+- [x] Selecionar e revisar dez imagens médicas complementares de anatomia, técnica, diagnóstico e seguimento
+- [x] Atualizar quadros secundários de vasovasostomia, vasoepididimostomia, varicocelectomia, biópsia testicular, PESA/TESA, micro-TESE, próteses penianas e correções de curvatura/Peyronie
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (124 figuras com imagem) e preparar checkpoint

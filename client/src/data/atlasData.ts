@@ -5171,6 +5171,106 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8138405/",
     },
   ],
+  "reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois": [
+    {
+      caption: "Anastomose vasal em dois planos",
+      description: "Esquema transversal da aproximação mucosa interna e do reforço muscular/adventicial externo na vasovasostomia microcirúrgica.",
+      searchTerms: "microsurgical vasovasostomy two layer anastomosis mucosa muscularis",
+      imageUrl: "/manus-storage/vasovasostomia_dois_planos_fig1_b236e7e2.jpg",
+      credit: "Herrel L, Hsiao W. Microsurgical vasovasostomy. Asian J Androl. 2013. Fig. 1. (CC BY-NC) — PMC3739128",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3739128/",
+    },
+  ],
+  "reversao-de-vasectomia-vasoepididimostomia-microcirurgica": [
+    {
+      caption: "Intussuscepção na vasoepididimostomia",
+      description: "Diagrama da técnica de intussuscepção com duas agulhas, mostrando a invaginação do túbulo epididimário no lúmen vasal.",
+      searchTerms: "vasoepididymostomy two needle intussusception technique diagram",
+      imageUrl: "/manus-storage/vasoepididimostomia_intussuscepcao_fig2_c12233f9.jpg",
+      credit: "Chan PT. Evolution and refinement of vasoepididymostomy techniques. Transl Androl Urol. 2012. Fig. 2. (CC BY-NC) — PMC3739129",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3739129/",
+    },
+  ],
+  "varicocelectomia-subinguinal-microcirurgica": [
+    {
+      caption: "Sequência da varicocelectomia subinguinal",
+      description: "Painel técnico com incisão subinguinal, exteriorização do cordão e identificação seletiva de estruturas vasculares sob magnificação.",
+      searchTerms: "microsurgical subinguinal varicocelectomy step by step spermatic cord",
+      imageUrl: "/manus-storage/varicocelectomia_subinguinal_passos_fig1_0640d554.jpg",
+      credit: "Lee JY et al. Microsurgical intermediate subinguinal varicocelectomy. Int Surg. 2014. Fig. 1. (CC BY-NC) — PMC4114368",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4114368/",
+    },
+  ],
+  "biopsia-testicular-diagnostica": [
+    {
+      caption: "GCNIS em biópsia testicular",
+      description: "Microfotografia com marcação imuno-histoquímica para OCT3/4, ilustrando aplicação diagnóstica da biópsia testicular na pesquisa de neoplasia germinativa in situ.",
+      searchTerms: "testicular biopsy GCNIS OCT3 4 histology infertility",
+      imageUrl: "/manus-storage/biopsia_testicular_cis_fig1_92234726.jpg",
+      credit: "Dohle GR et al. Testicular biopsy: clinical practice and interpretation. Asian J Androl. 2012. Fig. 1. (CC BY-NC) — PMC3735160",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3735160/",
+    },
+  ],
+  "aspiracao-de-espermatozoides-pesa-tesa": [
+    {
+      caption: "Aspiração percutânea do epidídimo (PESA)",
+      description: "Imagens clínicas das etapas de punção e aspiração epididimária para obtenção de espermatozoides em azoospermia obstrutiva.",
+      searchTerms: "PESA percutaneous epididymal sperm aspiration technique clinical",
+      imageUrl: "/manus-storage/pesa_aspiracao_epididimaria_fig2_adf3ed8f.jpg",
+      credit: "Coward RM, Mills JN. Office-based sperm retrieval for obstructive azoospermia. Transl Androl Urol. 2017. Fig. 2. (CC BY-NC) — PMC5583054",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5583054/",
+    },
+  ],
+  "extracao-microcirurgica-de-espermatozoides-micro-tese": [
+    {
+      caption: "Seleção de túbulos na micro-TESE",
+      description: "Visão microscópica comparando túbulos seminíferos de maior calibre e opacidade com túbulos atróficos durante a busca por focos de espermatogênese.",
+      searchTerms: "micro TESE dilated seminiferous tubules microscope sperm retrieval",
+      imageUrl: "/manus-storage/microtese_tubulos_seminiferos_fig2_9e3f31bf.jpg",
+      credit: "Dabaja AA, Schlegel PN. Microdissection testicular sperm extraction: an update. Asian J Androl. 2013. Fig. 2. (CC BY-NC) — PMC3739122",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3739122/",
+    },
+  ],
+  "implante-de-protese-peniana-semirrigida-maleavel": [
+    {
+      caption: "Modelos de prótese peniana maleável",
+      description: "Comparação visual de dispositivos maleáveis e semirrígidos, destacando diferenças de haste, revestimento e estrutura.",
+      searchTerms: "malleable penile prosthesis devices comparison",
+      imageUrl: "/manus-storage/protese_maleavel_dispositivos_fig1_a439dd72.jpg",
+      credit: "Chung E, Wang J. Current malleable penile prosthesis devices. Ther Adv Urol. 2023. Fig. 1. (CC BY 4.0) — PMC10350748",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10350748/",
+    },
+  ],
+  "protese-peniana-com-remodelamento-na-peyronie-grave": [
+    {
+      caption: "Modelagem manual após implante de prótese",
+      description: "Fotografias intraoperatórias da manobra de modelagem manual com cilindros inflados para correção de curvatura residual na Doença de Peyronie.",
+      searchTerms: "Peyronie disease penile prosthesis manual modeling technique",
+      imageUrl: "/manus-storage/protese_peyronie_modelagem_fig3_57b80df3.jpg",
+      credit: "Ziegelmann MJ et al. Penile prosthetics in Peyronie's disease. Asian J Androl. 2020. Fig. 3. (CC BY-NC) — PMC6958979",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6958979/",
+    },
+  ],
+  "curvatura-peniana-congenita-corporoplastia-de-plicatura": [
+    {
+      caption: "Passagem de sutura na plicatura tunical",
+      description: "Esquema da plicatura peniana sem deglover, demonstrando a passagem longitudinal e o tensionamento controlado dos pontos tunicais.",
+      searchTerms: "congenital penile curvature plication suture technique diagram",
+      imageUrl: "/manus-storage/corporoplastia_plicatura_sutura_fig2_b53ae5d2.jpg",
+      credit: "Kusin SB et al. Plication for correction of congenital penile curvature. Sex Med. 2021. Fig. 2. (CC BY 4.0) — PMC8766273",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8766273/",
+    },
+  ],
+  "correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-": [
+    {
+      caption: "Incisões de placa e enxertia na Peyronie",
+      description: "Sequência técnica de exposição, incisões da placa tunical e cobertura do defeito com enxerto durante reconstrução peniana.",
+      searchTerms: "Peyronie plaque incision grafting operative steps",
+      imageUrl: "/manus-storage/peyronie_enxerto_passos_fig2_53493bba.jpg",
+      credit: "Hegarty PK et al. Multiple plaque incisions with or without grafting. BJUI Compass. 2022. Fig. 2. (CC BY 4.0) — PMC9045568",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9045568/",
+    },
+  ],
 };
 
 for (const entry of atlasEntries) {
