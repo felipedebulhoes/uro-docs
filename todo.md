@@ -172,3 +172,9 @@
 - [x] Selecionar e revisar nove imagens clínicas, técnicas e esquemáticas complementares; descartar foto de pós-orquiectomia sem valor técnico suficiente
 - [x] Atualizar adrenalectomia, cistoscopia, HoLEP, orquidopexia, pieloplastia, vasectomia, hidrocelectomia, NLP e reimplante ureteral com novas imagens e legendas didáticas
 - [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (133 figuras com imagem) e preparar checkpoint
+
+# Complicações e Revisão Cirúrgica — Lote 07 (Ago 2026)
+- [x] Priorizar procedimentos sem quadro visual de complicação, falha terapêutica ou revisão cirúrgica
+- [x] Selecionar e revisar oito imagens médicas que ilustram sangramento, extravasamento, avulsão, perfuração, enfisema e salvamento protético
+- [x] Atualizar nefrectomia parcial, prostatectomia radical, RIRS, NLP, HoLEP, RTU-P, prótese peniana inflável e reimplante ureteral com imagens e legendas de segurança clínica
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (141 figuras com imagem) e preparar checkpoint

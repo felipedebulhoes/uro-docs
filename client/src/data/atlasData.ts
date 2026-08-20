@@ -5355,7 +5355,73 @@ function getAtlasSecondaryImageAdditions(entryId: string): AtlasFigure[] {
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11077742/",
     }],
   };
-  return additions[entryId] ?? [];
+  const complicationAdditions: Record<string, AtlasFigure[]> = {
+    "nefrectomia-parcial": [{
+      caption: "Embolização de sangramento tardio após nefrectomia parcial",
+      description: "Angiografia renal seletiva mostrando pseudoaneurisma e controle pós-embolização, estratégia de resgate para hemorragia tardia.",
+      searchTerms: "robotic partial nephrectomy pseudoaneurysm selective renal embolization angiography",
+      imageUrl: "/manus-storage/nefrectomia_parcial_hemorragia_embolizacao_fig3_251e90ff.jpg",
+      credit: "Rajih ES et al. Renal artery pseudoaneurysm after robotic partial nephrectomy. Robot Surg. 2016. Fig. 3. (CC BY 4.0) — PMC6193420",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6193420/",
+    }],
+    "prostatectomia-radical": [{
+      caption: "Reparo robótico de extravasamento anastomótico",
+      description: "Inspeção do defeito da anastomose vesicouretral e reaproximação robótica precoce para controle de extravasamento após prostatectomia.",
+      searchTerms: "robotic radical prostatectomy vesicourethral anastomotic leak repair",
+      imageUrl: "/manus-storage/prostatectomia_extravasamento_reparo_fig4_99de53ce.jpg",
+      credit: "Strauss D et al. Robotic early post-prostatectomy anastomotic repair. Asian J Urol. 2024. Fig. 4. (CC BY-NC-ND) — PMC11318391",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11318391/",
+    }],
+    "ureterolitotripsia-flexivel": [{
+      caption: "Avulsão ureteral: complicação grave da ureteroscopia",
+      description: "Esquema do mecanismo de avulsão ureteral em dois pontos, reforçando reconhecimento precoce e necessidade de reconstrução de resgate.",
+      searchTerms: "ureteroscopy ureteral avulsion scabbard injury reconstruction diagram",
+      imageUrl: "/manus-storage/rirs_avulsao_ureteral_esquema_fig1_f94bdc5c.jpg",
+      credit: "Gaizauskas A et al. Ureteroscopic scabbard avulsion. Case Rep Urol. 2014. Fig. 1. (CC BY 4.0) — PMC4291154",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4291154/",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Fluxo de resgate para sangramento após NLP",
+      description: "Algoritmo de decisão para hemorragia pós-NLP, incluindo observação, angiografia e embolização superseletiva.",
+      searchTerms: "PCNL postoperative bleeding superselective embolization algorithm",
+      imageUrl: "/manus-storage/nlp_sangramento_embolizacao_fig3_9e26072b.jpg",
+      credit: "Ząbkowski T et al. Superselective renal artery embolization for iatrogenic bleeding. Cent European J Urol. 2015. Fig. 3. (CC BY-NC) — PMC4318226",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4318226/",
+    }],
+    "holep": [{
+      caption: "Perfuração capsular após HoLEP",
+      description: "Tomografia demonstrando líquido extravasado após perfuração capsular, achado que orienta interrupção, observação e exclusão de lesão vesical.",
+      searchTerms: "HoLEP capsular perforation irrigation fluid extravasation CT",
+      imageUrl: "/manus-storage/holep_perfuracao_capsular_tc_fig1_fa9c7a31.jpg",
+      credit: "Lwin A et al. Capsular perforation after HoLEP. J Endourol Case Rep. 2018. Fig. 1. (CC BY 4.0) — PMC6014571",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6014571/",
+    }],
+    "rtu-prostata": [{
+      caption: "Enfisema subcutâneo após RTU-P bipolar",
+      description: "Tomografia ilustrando enfisema subcutâneo e ar retroperitoneal relacionados à microperfuração capsular, complicação rara que exige avaliação clínica imediata.",
+      searchTerms: "bipolar TURP capsular perforation subcutaneous emphysema CT",
+      imageUrl: "/manus-storage/rtup_enfisema_subcutaneo_tc_fig1_1fbc8961.jpg",
+      credit: "Bagcioglu M et al. Extensive subcutaneous emphysema after bipolar TURP. Case Rep Urol. 2015. Fig. 1. (CC BY 4.0) — PMC4600862",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4600862/",
+    }],
+    "implante-de-protese-peniana-inflavel-de-3-volumes": [{
+      caption: "Estratégia de salvamento de infecção protética",
+      description: "Diagrama de acessos e drenagem no procedimento de retirada e salvamento de prótese peniana infectada, visando preservar comprimento e espaço corporal.",
+      searchTerms: "inflatable penile prosthesis infection salvage explant malleable replacement diagram",
+      imageUrl: "/manus-storage/protese_peniana_salvage_infeccao_fig1_bb5864fe.jpg",
+      credit: "Razdan S et al. Three-piece penile prosthesis salvage with chlorhexidine. Am J Clin Exp Urol. 2023. Fig. 1. (CC BY-NC) — PMC10165229",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10165229/",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Extravasamento urinário após reconstrução ureteral",
+      description: "Cistograma pós-operatório demonstrando extravasamento, achado de alerta para fístula ou vazamento anastomótico que demanda drenagem e reavaliação.",
+      searchTerms: "ureteral reconstruction postoperative cystogram urinary extravasation leak",
+      imageUrl: "/manus-storage/reimplante_ureteral_extravasamento_cistograma_fig1_fd0f3850.jpg",
+      credit: "Rosenfeld J et al. Complications after ureteral reconstruction. Asian J Urol. 2024. Fig. 1. (CC BY 4.0) — PMC11318449",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11318449/",
+    }],
+  };
+  return [...(additions[entryId] ?? []), ...(complicationAdditions[entryId] ?? [])];
 }
 
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));
