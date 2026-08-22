@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import type { AtlasEntry } from "@/data/atlasData";
 import {
+  getAtlasEvidenceLevel,
+  getAtlasSubspecialty,
   entryMatchesVisualFilter,
+  getFollowUpTimeline,
   getAtlasUrgencyAlert,
   visualFiltersForEntry,
 } from "./atlasVisual";
@@ -43,5 +46,16 @@ describe("atlasVisual", () => {
   it("expõe alertas de urgência apenas para entradas configuradas", () => {
     expect(getAtlasUrgencyAlert("priapismo-isquemico")?.title).toContain("Urgência");
     expect(getAtlasUrgencyAlert("procedimento-inexistente")).toBeUndefined();
+  });
+
+  it("classifica especialidade e evidência para filtros avançados", () => {
+    expect(getAtlasSubspecialty(entry)).toBe("endourology");
+    expect(getAtlasEvidenceLevel({ ...entry, evidence: "Diretriz EAU 2026" })).toBe("guideline");
+    expect(getAtlasEvidenceLevel({ ...entry, evidence: "Revisão sistemática e meta-análise" })).toBe("high");
+  });
+
+  it("fornece linhas do tempo somente para entradas configuradas", () => {
+    expect(getFollowUpTimeline("holep")).toHaveLength(3);
+    expect(getFollowUpTimeline("procedimento-inexistente")).toEqual([]);
   });
 });

@@ -186,3 +186,9 @@
 - [x] Adicionar alertas visuais para priapismo isquêmico, ureteroscopia, NLP, RTU-P e HoLEP
 - [x] Atualizar imagens de seguimento em pieloplastia, reimplante ureteral, HoLEP, varicocelectomia, sling masculino, prótese peniana e NLP
 - [x] Validar TypeScript/Vitest (230/230), atualizar auditoria (148 figuras com imagem) e preparar checkpoint
+
+# Filtros Avançados, Seguimento e Alertas — Lote 09 (Ago 2026)
+- [x] Implementar filtros por subespecialidade e nível de evidência no índice do Atlas
+- [x] Criar linha do tempo visual de seguimento pós-operatório em postectomia, varicocelectomia, prostatectomia radical, pieloplastia, NLP, HoLEP, sling masculino e prótese peniana inflável
+- [x] Expandir alertas de urgência para pós-operatório escrotal e cenários oncológicos (torção/orquidopexia, hidrocelectomia, orquiectomia radical, RTU-B e nefrectomia parcial)
+- [x] Validar TypeScript/Vitest (232/232) e preparar checkpoint do lote avançado

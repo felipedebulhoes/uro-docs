@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/accordion";
 import { BrandLogo } from "@/components/BrandLogo";
 import { AtlasLightbox } from "@/components/AtlasLightbox";
+import { FollowUpTimeline } from "@/components/FollowUpTimeline";
 import {
   buildLightboxFigures,
   positionForFigure,
@@ -53,7 +54,7 @@ import {
   capesArticleUrl,
   openInNewTab,
 } from "@/lib/atlasSearch";
-import { getAtlasUrgencyAlert } from "@/lib/atlasVisual";
+import { getAtlasUrgencyAlert, getFollowUpTimeline } from "@/lib/atlasVisual";
 import {
   Popover,
   PopoverContent,
@@ -146,6 +147,7 @@ export default function AtlasProcedurePage() {
   const cat = categoryMeta(entry.category);
   const ev = evidenceBadge(entry.evidence);
   const urgencyAlert = getAtlasUrgencyAlert(entry.id);
+  const followUpTimeline = getFollowUpTimeline(entry.id);
 
   // a seção de referências é renderizada à parte, no final
   const refIndex = entry.sections.findIndex((s) =>
@@ -287,6 +289,8 @@ export default function AtlasProcedurePage() {
             )}
           </div>
         </div>
+
+        <FollowUpTimeline milestones={followUpTimeline} />
 
         {/* Seções técnicas */}
         <section className="mb-8">

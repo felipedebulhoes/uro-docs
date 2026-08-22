@@ -20,10 +20,18 @@ import {
   Wrench,
   TriangleAlert,
   ScanLine,
+  Layers3,
+  Award,
 } from "lucide-react";
 import {
+  atlasEvidenceFilterMeta,
+  atlasSubspecialtyMeta,
   atlasVisualFilterMeta,
   entryMatchesVisualFilter,
+  getAtlasEvidenceLevel,
+  getAtlasSubspecialty,
+  type AtlasEvidenceFilter,
+  type AtlasSubspecialty,
   type AtlasVisualFilter,
   visualFiltersForEntry,
 } from "@/lib/atlasVisual";
@@ -34,6 +42,8 @@ export default function AtlasIndexPage() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeVisualFilter, setActiveVisualFilter] = useState<AtlasVisualFilter | null>(null);
+  const [activeSubspecialty, setActiveSubspecialty] = useState<AtlasSubspecialty | null>(null);
+  const [activeEvidence, setActiveEvidence] = useState<AtlasEvidenceFilter | null>(null);
 
   const groups = useMemo(() => atlasGroupedByCategory(), []);
   const categories = useMemo(() => groups.map((g) => g.category), [groups]);
@@ -46,17 +56,18 @@ export default function AtlasIndexPage() {
       .map((g) => ({
         category: g.category,
         entries: g.entries.filter((e) => {
-          if (term === "") return true;
-          return (
-            (e.name.toLowerCase().includes(term) ||
-              e.category.toLowerCase().includes(term) ||
-              e.evidence.toLowerCase().includes(term)) &&
-            entryMatchesVisualFilter(e, activeVisualFilter)
-          );
+          const matchesTerm = term === "" ||
+            e.name.toLowerCase().includes(term) ||
+            e.category.toLowerCase().includes(term) ||
+            e.evidence.toLowerCase().includes(term);
+          return matchesTerm &&
+            entryMatchesVisualFilter(e, activeVisualFilter) &&
+            (activeSubspecialty === null || getAtlasSubspecialty(e) === activeSubspecialty) &&
+            (activeEvidence === null || getAtlasEvidenceLevel(e) === activeEvidence);
         }),
       }))
       .filter((g) => g.entries.length > 0);
-  }, [groups, activeCategory, term, activeVisualFilter]);
+  }, [groups, activeCategory, term, activeVisualFilter, activeSubspecialty, activeEvidence]);
 
   const totalShown = filteredGroups.reduce((acc, g) => acc + g.entries.length, 0);
 
@@ -174,6 +185,42 @@ export default function AtlasIndexPage() {
             active={activeVisualFilter === "diagnostic"}
             onClick={() => setActiveVisualFilter("diagnostic")}
           />
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 mb-6 rounded-lg bg-card/50 border border-border/60 p-2.5">
+          <label className="inline-flex items-center gap-2 text-[11px] font-semibold text-muted-foreground">
+            <Layers3 className="w-3.5 h-3.5" />
+            Subespecialidade
+            <select
+              value={activeSubspecialty ?? ""}
+              onChange={(event) => setActiveSubspecialty((event.target.value || null) as AtlasSubspecialty | null)}
+              className="h-8 rounded-md border border-border bg-background px-2 text-xs font-medium text-foreground outline-none focus:border-primary/50"
+              aria-label="Filtrar por subespecialidade"
+            >
+              <option value="">Todas</option>
+              {(Object.keys(atlasSubspecialtyMeta) as AtlasSubspecialty[]).map((key) => (
+                <option key={key} value={key}>{atlasSubspecialtyMeta[key].label}</option>
+              ))}
+            </select>
+          </label>
+          <label className="inline-flex items-center gap-2 text-[11px] font-semibold text-muted-foreground">
+            <Award className="w-3.5 h-3.5" />
+            Evidência
+            <select
+              value={activeEvidence ?? ""}
+              onChange={(event) => setActiveEvidence((event.target.value || null) as AtlasEvidenceFilter | null)}
+              className="h-8 rounded-md border border-border bg-background px-2 text-xs font-medium text-foreground outline-none focus:border-primary/50"
+              aria-label="Filtrar por nível de evidência"
+            >
+              <option value="">Todos os níveis</option>
+              {(Object.keys(atlasEvidenceFilterMeta) as AtlasEvidenceFilter[]).map((key) => (
+                <option key={key} value={key}>{atlasEvidenceFilterMeta[key].label}</option>
+              ))}
+            </select>
+          </label>
+          <span className="ml-auto text-[11px] text-muted-foreground">
+            {totalShown} procedimento{totalShown === 1 ? "" : "s"}
+          </span>
         </div>
 
         {/* Grupos */}
