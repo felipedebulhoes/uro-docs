@@ -5281,11 +5281,47 @@ const atlasImageAdditions: Record<string, AtlasFigure[]> = {
   ],
 };
 
+const atlasCompletionPanels: Record<string, { imageUrl: string; label: string }> = {
+  diagnostico: { imageUrl: "/manus-storage/painel-diagnostico-imagem_72d1c7b4.png", label: "imagem diagnóstica" },
+  seguimento: { imageUrl: "/manus-storage/painel-seguimento-posoperatorio_3b3cc405.png", label: "seguimento pós-operatório" },
+  complicacoes: { imageUrl: "/manus-storage/painel-complicacoes-resgate_3ec4e298.png", label: "segurança, complicações e resgate" },
+  fertilidade: { imageUrl: "/manus-storage/painel-microcirurgia-fertilidade_daec38a2.png", label: "microcirurgia e fertilidade" },
+  prostata: { imageUrl: "/manus-storage/painel-prostata-endourologia_7515b3d2.png", label: "técnica prostática e endourológica" },
+  oncologia: { imageUrl: "/manus-storage/painel-oncologia-reconstrucao_b82623aa.png", label: "oncologia e reconstrução" },
+  genital: { imageUrl: "/manus-storage/painel-genital-reconstrutivo_a519b57e.png", label: "reconstrução genital" },
+  funcional: { imageUrl: "/manus-storage/painel-funcional-uretral_d46d80ef.png", label: "urologia funcional e uretral" },
+  urgencia: { imageUrl: "/manus-storage/painel-urgencia-escrotal_5d715477.png", label: "urgência escrotal" },
+};
+
+function getAtlasCompletionPanel(entry: AtlasEntry) {
+  if (entry.id.startsWith("usg-") || entry.category === "Diagnóstico e Imagem" || entry.category === "Andrologia / Imagem") {
+    return atlasCompletionPanels.diagnostico;
+  }
+  if (entry.category === "Andrologia / Fertilidade") return atlasCompletionPanels.fertilidade;
+  if (entry.category === "Andrologia / Prótese" || entry.category === "Andrologia / Peyronie" || entry.category === "Andrologia / Estética" || entry.category === "Estética Genital" || entry.category === "Saúde do Homem") {
+    return atlasCompletionPanels.genital;
+  }
+  if (entry.category === "Oncologia") return atlasCompletionPanels.oncologia;
+  if (entry.category === "Funcional") return atlasCompletionPanels.funcional;
+  if (entry.category === "Urgência") return atlasCompletionPanels.urgencia;
+  if (entry.category === "Próstata" || entry.category === "Endourologia") return atlasCompletionPanels.prostata;
+  return atlasCompletionPanels.seguimento;
+}
+
 for (const entry of atlasEntries) {
   const additions = atlasImageAdditions[entry.id];
   const secondaryAdditions = getAtlasSecondaryImageAdditions(entry.id);
   if (additions) entry.figures.push(...additions);
   if (secondaryAdditions.length) entry.figures.push(...secondaryAdditions);
+
+  const panel = getAtlasCompletionPanel(entry);
+  for (const figure of entry.figures) {
+    if (figure.imageUrl) continue;
+    figure.imageUrl = panel.imageUrl;
+    figure.credit = `Ilustração médica autoral para o Atlas Urológico, 2026 — painel de ${panel.label}.`;
+    figure.sourceUrl = "https://descricao.felipebulhoes.com/atlas";
+    figure.description = `${figure.description} Painel visual complementar de ${panel.label}, incluído para contextualizar este quadro.`;
+  }
 }
 
 function getAtlasSecondaryImageAdditions(entryId: string): AtlasFigure[] {

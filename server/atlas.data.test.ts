@@ -113,6 +113,19 @@ describe("Atlas data integrity", () => {
     expect(semImagem, `entradas sem cobertura visual: ${semImagem.join(", ")}`).toEqual([]);
   });
 
+  it("todo quadro de figura possui imagem rastreável", () => {
+    const pendentes = atlasEntries.flatMap((entry) =>
+      entry.figures
+        .map((figure, index) => ({ entryId: entry.id, caption: figure.caption, index, imageUrl: figure.imageUrl }))
+        .filter((figure) => !figure.imageUrl?.trim()),
+    );
+
+    expect(
+      pendentes,
+      `quadros sem imagem: ${pendentes.map((figure) => `${figure.entryId}[${figure.index}] ${figure.caption}`).join("; ")}`,
+    ).toEqual([]);
+  });
+
   it("every figure has a caption and search terms", () => {
     for (const e of atlasEntries) {
       for (const f of e.figures) {
