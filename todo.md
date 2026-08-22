@@ -223,6 +223,14 @@
 - [x] Adicionar ação de limpar buscas recentes e ações para remover favoritos individualmente ou em lote
 - [x] Validar TypeScript/Vitest (247/247), confirmar os comandos de limpeza e preparar checkpoint
 
+# Cobertura Completa de Imagens do Atlas (Ago 2026)
+- [ ] Auditar todos os quadros de figura ainda sem imagem e agrupá-los por subespecialidade
+- [ ] Selecionar e revisar imagens ou ilustrações didáticas para todos os quadros pendentes
+- [ ] Atualizar os quadros faltantes com imagem, crédito, fonte e legenda
+- [ ] Confirmar cobertura completa, executar TypeScript/Vitest e salvar checkpoint
+- [x] Preencher o primeiro grupo prioritário com 45 esquemas médicos autorais para procedimentos oncológicos, endourológicos, prostáticos, escrotais, reconstrutivos e de fertilidade
+- [x] Validar o primeiro grupo: TypeScript limpo e 247/247 testes passando
+
 # Didática dos Preenchimentos Penianos (Ago 2026)
 - [x] Auditar as entradas de preenchimento de haste e de glande quanto a conteúdo, imagens e legendas
 - [x] Adicionar comparativo didático de objetivo, plano anatômico, técnica, limitações, riscos e seguimento
