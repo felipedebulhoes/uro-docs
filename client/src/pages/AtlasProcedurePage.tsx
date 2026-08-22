@@ -5,6 +5,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 import { IpssCalculator } from "@/components/IpssCalculator";
 import { ErspcCalculator } from "@/components/ErspcCalculator";
 import {
@@ -40,6 +45,7 @@ import {
   Maximize2,
   Info,
   ClipboardList,
+  CircleAlert,
 } from "lucide-react";
 import {
   clinicalKeySearchUrl,
@@ -47,6 +53,7 @@ import {
   capesArticleUrl,
   openInNewTab,
 } from "@/lib/atlasSearch";
+import { getAtlasUrgencyAlert } from "@/lib/atlasVisual";
 import {
   Popover,
   PopoverContent,
@@ -138,6 +145,7 @@ export default function AtlasProcedurePage() {
 
   const cat = categoryMeta(entry.category);
   const ev = evidenceBadge(entry.evidence);
+  const urgencyAlert = getAtlasUrgencyAlert(entry.id);
 
   // a seção de referências é renderizada à parte, no final
   const refIndex = entry.sections.findIndex((s) =>
@@ -203,6 +211,15 @@ export default function AtlasProcedurePage() {
               {entry.evidence}
             </p>
           </Card>
+          {urgencyAlert && (
+            <Alert variant="destructive" className="mt-3 border-red-500/45 bg-red-500/10 text-foreground">
+              <CircleAlert className="h-4 w-4 text-red-400" />
+              <AlertTitle className="text-red-300">{urgencyAlert.title}</AlertTitle>
+              <AlertDescription className="text-foreground/85">
+                {urgencyAlert.description}
+              </AlertDescription>
+            </Alert>
+          )}
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {linkedProcedure && (

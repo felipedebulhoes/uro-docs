@@ -5421,7 +5421,69 @@ function getAtlasSecondaryImageAdditions(entryId: string): AtlasFigure[] {
       sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11318449/",
     }],
   };
-  return [...(additions[entryId] ?? []), ...(complicationAdditions[entryId] ?? [])];
+  const followUpAdditions: Record<string, AtlasFigure[]> = {
+    "pieloplastia": [{
+      caption: "Imagem funcional e anatômica no seguimento da pieloplastia",
+      description: "Distribuição temporal dos exames de controle após pieloplastia, distinguindo estudos funcionais (renograma/urografia) de ultrassom ou tomografia anatômica.",
+      searchTerms: "adult pyeloplasty follow-up functional imaging MAG3 renogram ultrasound",
+      imageUrl: "/manus-storage/pieloplastia_seguimento_imagem_fig1_a30c78b3.jpg",
+      credit: "Hsi RS et al. Trends in followup imaging after adult pyeloplasty. J Urol. 2014. Fig. 1. (CC BY-NC) — PMC4846359",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4846359/",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Cistograma de controle após reimplante ureterovesical",
+      description: "Cistograma pós-operatório com contorno vesical preservado e ausência de extravasamento, demonstrando integridade do reparo no seguimento.",
+      searchTerms: "ureterovesical reimplantation follow-up cystogram no contrast leak",
+      imageUrl: "/manus-storage/reimplante_ureteral_cistograma_controle_fig5_15440b0a.jpg",
+      credit: "Ravichandran-Chandra A et al. Ureteric reimplantation follow-up cystogram. Cent European J Urol. 2017. Fig. 5. (CC BY-NC) — PMC5791395",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5791395/",
+    }],
+    "holep": [{
+      caption: "Desfechos funcionais sustentados após HoLEP",
+      description: "Séries temporais de IPSS, qualidade de vida, fluxo urinário máximo e resíduo pós-miccional, evidenciando a melhora funcional ao longo do seguimento.",
+      searchTerms: "HoLEP long term follow-up IPSS QoL Qmax postvoid residual outcomes",
+      imageUrl: "/manus-storage/holep_desfecho_funcional_fig2_335e433c.jpg",
+      credit: "Alkan I et al. HoLEP functional and quality-of-life outcomes. Int Braz J Urol. 2016. Fig. 2. (CC BY-NC) — PMC4871390",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4871390/",
+    }],
+    "varicocelectomia-subinguinal-microcirurgica": [{
+      caption: "Seguimento seminal após varicocelectomia",
+      description: "Fluxograma e gráficos de acompanhamento mostrando a evolução dos parâmetros seminais após correção microcirúrgica de varicocele.",
+      searchTerms: "microsurgical varicocelectomy follow-up semen parameters fertility outcomes",
+      imageUrl: "/manus-storage/varicocelectomia_seguimento_seminal_fig1_452ef15b.jpg",
+      credit: "Rochdi C et al. Varicocelectomy and sperm DNA fragmentation follow-up. Int J Fertil Steril. 2024. Fig. 1. (CC BY-NC) — PMC11245582",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11245582/",
+    }],
+    "sling-masculino": [{
+      caption: "Seguimento funcional da continência após sling masculino",
+      description: "Fluxograma de acompanhamento com teste do absorvente, avaliação urodinâmica e critérios de continência após implante de sling masculino.",
+      searchTerms: "male sling follow-up pad test continence urodynamic outcomes",
+      imageUrl: "/manus-storage/sling_masculino_seguimento_continencia_fig1_e2bf94f3.jpg",
+      credit: "Carvalho AP et al. Argus T sling five-year functional follow-up. Int Braz J Urol. 2023. Fig. 1. (CC BY-NC) — PMC10482448",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10482448/",
+    }],
+    "implante-de-protese-peniana-inflavel-de-3-volumes": [{
+      caption: "Componentes e ativação da prótese peniana inflável",
+      description: "Esquema dos cilindros, bomba escrotal e reservatório, útil para orientar a compreensão do mecanismo de ativação no seguimento pós-operatório.",
+      searchTerms: "inflatable penile prosthesis components pump reservoir activation follow-up diagram",
+      imageUrl: "/manus-storage/protese_peniana_ativacao_componentes_fig2_327ca301.jpg",
+      credit: "Patel J et al. Recent technological development of penile prosthesis. Transl Androl Urol. 2024. Fig. 2. (CC BY-NC) — PMC10891389",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10891389/",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Tomografia de controle e fragmentos residuais após NLP",
+      description: "Distribuição de fragmentos residuais detectados por tomografia no controle precoce, apoiando a discussão de taxa livre de cálculos e necessidade de estratégia complementar.",
+      searchTerms: "PCNL postoperative CT residual stone fragments stone free follow-up",
+      imageUrl: "/manus-storage/nlp_controle_tc_fragmentos_fig1_1305bc09.jpg",
+      credit: "Shah C et al. CT stone clearance after percutaneous nephrolithotomy. JNMA. 2020. Fig. 1. (CC BY 4.0) — PMC7580361",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7580361/",
+    }],
+  };
+  return [
+    ...(additions[entryId] ?? []),
+    ...(complicationAdditions[entryId] ?? []),
+    ...(followUpAdditions[entryId] ?? []),
+  ];
 }
 
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));

@@ -11,13 +11,29 @@ import {
   type AtlasEntry,
 } from "@/data/atlasData";
 import { categoryMeta, evidenceBadge } from "@/lib/atlasMeta";
-import { ArrowLeft, BookOpen, Search, ChevronRight } from "lucide-react";
-import { useMemo, useState } from "react";
+import {
+  ArrowLeft,
+  BookOpen,
+  Search,
+  ChevronRight,
+  SlidersHorizontal,
+  Wrench,
+  TriangleAlert,
+  ScanLine,
+} from "lucide-react";
+import {
+  atlasVisualFilterMeta,
+  entryMatchesVisualFilter,
+  type AtlasVisualFilter,
+  visualFiltersForEntry,
+} from "@/lib/atlasVisual";
+import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 
 export default function AtlasIndexPage() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeVisualFilter, setActiveVisualFilter] = useState<AtlasVisualFilter | null>(null);
 
   const groups = useMemo(() => atlasGroupedByCategory(), []);
   const categories = useMemo(() => groups.map((g) => g.category), [groups]);
@@ -32,14 +48,15 @@ export default function AtlasIndexPage() {
         entries: g.entries.filter((e) => {
           if (term === "") return true;
           return (
-            e.name.toLowerCase().includes(term) ||
-            e.category.toLowerCase().includes(term) ||
-            e.evidence.toLowerCase().includes(term)
+            (e.name.toLowerCase().includes(term) ||
+              e.category.toLowerCase().includes(term) ||
+              e.evidence.toLowerCase().includes(term)) &&
+            entryMatchesVisualFilter(e, activeVisualFilter)
           );
         }),
       }))
       .filter((g) => g.entries.length > 0);
-  }, [groups, activeCategory, term]);
+  }, [groups, activeCategory, term, activeVisualFilter]);
 
   const totalShown = filteredGroups.reduce((acc, g) => acc + g.entries.length, 0);
 
@@ -129,6 +146,36 @@ export default function AtlasIndexPage() {
           ))}
         </div>
 
+        <div className="flex flex-wrap items-center gap-2 mb-6 rounded-lg bg-card/50 border border-border/60 p-2.5">
+          <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground mr-1">
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            Conteúdo visual
+          </div>
+          <VisualFilterButton
+            label="Todos"
+            active={activeVisualFilter === null}
+            onClick={() => setActiveVisualFilter(null)}
+          />
+          <VisualFilterButton
+            label={atlasVisualFilterMeta.technique.shortLabel}
+            icon={<Wrench className="w-3 h-3" />}
+            active={activeVisualFilter === "technique"}
+            onClick={() => setActiveVisualFilter("technique")}
+          />
+          <VisualFilterButton
+            label={atlasVisualFilterMeta.complication.shortLabel}
+            icon={<TriangleAlert className="w-3 h-3" />}
+            active={activeVisualFilter === "complication"}
+            onClick={() => setActiveVisualFilter("complication")}
+          />
+          <VisualFilterButton
+            label={atlasVisualFilterMeta.diagnostic.shortLabel}
+            icon={<ScanLine className="w-3 h-3" />}
+            active={activeVisualFilter === "diagnostic"}
+            onClick={() => setActiveVisualFilter("diagnostic")}
+          />
+        </div>
+
         {/* Grupos */}
         {filteredGroups.map((group) => (
           <section key={group.category} className="mb-8">
@@ -170,6 +217,7 @@ export default function AtlasIndexPage() {
 function AtlasCard({ entry }: { entry: AtlasEntry }) {
   const cat = categoryMeta(entry.category);
   const ev = evidenceBadge(entry.evidence);
+  const visualFilters = visualFiltersForEntry(entry);
   return (
     <Link href={`/atlas/${entry.id}`}>
       <Card className="p-4 h-full bg-card border-border hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer group flex flex-col">
@@ -194,8 +242,45 @@ function AtlasCard({ entry }: { entry: AtlasEntry }) {
           <Badge variant="outline" className={`text-[10px] ${ev.className}`}>
             {ev.label}
           </Badge>
+          {visualFilters.map((filter) => (
+            <Badge
+              key={filter}
+              variant="outline"
+              className="text-[9px] text-muted-foreground border-border/70"
+            >
+              {atlasVisualFilterMeta[filter].shortLabel}
+            </Badge>
+          ))}
         </div>
       </Card>
     </Link>
+  );
+}
+
+function VisualFilterButton({
+  label,
+  icon,
+  active,
+  onClick,
+}: {
+  label: string;
+  icon?: ReactNode;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[11px] font-medium transition-all duration-150 ${
+        active
+          ? "border-primary/50 bg-primary/15 text-primary"
+          : "border-border bg-background/30 text-muted-foreground hover:border-primary/40 hover:text-primary"
+      }`}
+    >
+      {icon}
+      {label}
+    </button>
   );
 }

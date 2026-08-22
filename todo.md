@@ -178,3 +178,11 @@
 - [x] Selecionar e revisar oito imagens médicas que ilustram sangramento, extravasamento, avulsão, perfuração, enfisema e salvamento protético
 - [x] Atualizar nefrectomia parcial, prostatectomia radical, RIRS, NLP, HoLEP, RTU-P, prótese peniana inflável e reimplante ureteral com imagens e legendas de segurança clínica
 - [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (141 figuras com imagem) e preparar checkpoint
+
+# Seguimento, Filtros e Alertas — Lote 08 (Ago 2026)
+- [x] Priorizar procedimentos para imagens de seguimento pós-operatório e desfechos funcionais
+- [x] Selecionar e revisar sete imagens complementares de controle, recuperação e resultado funcional; descartar tabela de reabilitação pós-prostatectomia sem legibilidade adequada
+- [x] Adicionar filtros no Atlas por técnica, complicação e imagem diagnóstica, com indicadores por cartão
+- [x] Adicionar alertas visuais para priapismo isquêmico, ureteroscopia, NLP, RTU-P e HoLEP
+- [x] Atualizar imagens de seguimento em pieloplastia, reimplante ureteral, HoLEP, varicocelectomia, sling masculino, prótese peniana e NLP
+- [x] Validar TypeScript/Vitest (230/230), atualizar auditoria (148 figuras com imagem) e preparar checkpoint
