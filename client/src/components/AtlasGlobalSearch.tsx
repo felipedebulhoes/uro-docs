@@ -21,11 +21,13 @@ import {
   appendRecentSearch,
   ATLAS_FAVORITE_RESULTS_KEY,
   ATLAS_RECENT_SEARCHES_KEY,
+  clearFavoriteResults,
+  clearRecentSearches,
   parseStoredFavorites,
   parseStoredSearches,
   toggleFavoriteResult,
 } from "@/lib/atlasSearchHistory";
-import { AlertTriangle, BookOpen, Clock3, Copy, FileText, Search, Star } from "lucide-react";
+import { AlertTriangle, BookOpen, Clock3, Copy, FileText, Search, Star, Trash2, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
 
@@ -99,7 +101,7 @@ export function AtlasGlobalSearch() {
     setFavorites((current) => toggleFavoriteResult(current, result));
   };
 
-  const renderResult = (result: AtlasGlobalResult) => {
+  const renderResult = (result: AtlasGlobalResult, inFavorites = false) => {
     const meta = kindMeta[result.kind];
     const Icon = meta.icon;
     const isFavorite = favorites.some((item) => item.key === result.key);
@@ -124,9 +126,10 @@ export function AtlasGlobalSearch() {
             type="button"
             onClick={(event) => updateFavorite(event, result)}
             aria-label={isFavorite ? "Remover dos favoritos" : "Salvar nos favoritos"}
+            title={isFavorite ? "Remover dos favoritos" : "Salvar nos favoritos"}
             className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-amber-500"
           >
-            <Star className={`h-3.5 w-3.5 ${isFavorite ? "fill-amber-400 text-amber-500" : ""}`} />
+            {inFavorites ? <X className="h-3.5 w-3.5" /> : <Star className={`h-3.5 w-3.5 ${isFavorite ? "fill-amber-400 text-amber-500" : ""}`} />}
           </button>
           <button
             type="button"
@@ -190,7 +193,15 @@ export function AtlasGlobalSearch() {
           <CommandEmpty>Nenhum conteúdo correspondente foi encontrado.</CommandEmpty>
           {!query.trim() && favorites.length > 0 && (
             <CommandGroup heading="Favoritos">
-              {filterAtlasGlobalResults(favorites, resultFilter).map(renderResult)}
+              {filterAtlasGlobalResults(favorites, resultFilter).map((result) => renderResult(result, true))}
+              <CommandItem
+                value="limpar favoritos"
+                onSelect={() => setFavorites(clearFavoriteResults())}
+                className="mt-1 border-t border-border text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive"
+              >
+                <Trash2 className="h-4 w-4" />
+                <span>Limpar favoritos</span>
+              </CommandItem>
             </CommandGroup>
           )}
           {!query.trim() && recentSearches.length > 0 && (
@@ -201,10 +212,18 @@ export function AtlasGlobalSearch() {
                   <span>{recent}</span>
                 </CommandItem>
               ))}
+              <CommandItem
+                value="limpar histórico"
+                onSelect={() => setRecentSearches(clearRecentSearches())}
+                className="mt-1 border-t border-border text-destructive data-[selected=true]:bg-destructive/10 data-[selected=true]:text-destructive"
+              >
+                <Trash2 className="h-4 w-4" />
+                <span>Limpar histórico</span>
+              </CommandItem>
             </CommandGroup>
           )}
           <CommandGroup heading={query.trim() ? "Resultados" : "Procedimentos do Atlas"}>
-            {visibleResults.map(renderResult)}
+            {visibleResults.map((result) => renderResult(result))}
           </CommandGroup>
           <CommandSeparator />
           <div className="flex items-center justify-between px-3 py-2 text-[10px] text-muted-foreground">

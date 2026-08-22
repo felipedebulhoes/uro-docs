@@ -1,5 +1,12 @@
 import type { AtlasGlobalResult } from "./atlasGlobalSearch";
-import { appendRecentSearch, parseStoredFavorites, parseStoredSearches, toggleFavoriteResult } from "./atlasSearchHistory";
+import {
+  appendRecentSearch,
+  clearFavoriteResults,
+  clearRecentSearches,
+  parseStoredFavorites,
+  parseStoredSearches,
+  toggleFavoriteResult,
+} from "./atlasSearchHistory";
 import { describe, expect, it } from "vitest";
 
 const result: AtlasGlobalResult = {
@@ -36,5 +43,10 @@ describe("atlasSearchHistory", () => {
 
   it("descarta favoritos inválidos armazenados", () => {
     expect(parseStoredFavorites(JSON.stringify([result, { key: "bad" }]))).toEqual([result]);
+  });
+
+  it("limpa buscas recentes e favoritos", () => {
+    expect(clearRecentSearches()).toEqual([]);
+    expect(clearFavoriteResults()).toEqual([]);
   });
 });

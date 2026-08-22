@@ -35,6 +35,10 @@ export function appendRecentSearch(searches: string[], query: string): string[] 
   return uniqueBy([normalized, ...searches], (item) => item.toLocaleLowerCase("pt-BR")).slice(0, MAX_RECENT_SEARCHES);
 }
 
+export function clearRecentSearches(): string[] {
+  return [];
+}
+
 function isAtlasGlobalResult(value: unknown): value is AtlasGlobalResult {
   if (!value || typeof value !== "object") return false;
   const item = value as Partial<AtlasGlobalResult>;
@@ -66,4 +70,8 @@ export function toggleFavoriteResult(favorites: AtlasGlobalResult[], result: Atl
   const isSaved = favorites.some((item) => item.key === result.key);
   if (isSaved) return favorites.filter((item) => item.key !== result.key);
   return [result, ...favorites].slice(0, MAX_FAVORITE_RESULTS);
+}
+
+export function clearFavoriteResults(): AtlasGlobalResult[] {
+  return [];
 }

@@ -218,6 +218,11 @@
 - [x] Permitir copiar link direto para uma seção do Atlas a partir do resultado
 - [x] Validar TypeScript/Vitest (246/246), testar favoritos, filtros e cópia de link e preparar checkpoint
 
+# Pesquisa Global — Limpeza de Histórico (Ago 2026)
+- [x] Revisar a gestão local de buscas recentes e favoritos
+- [x] Adicionar ação de limpar buscas recentes e ações para remover favoritos individualmente ou em lote
+- [x] Validar TypeScript/Vitest (247/247), confirmar os comandos de limpeza e preparar checkpoint
+
 # Didática dos Preenchimentos Penianos (Ago 2026)
 - [x] Auditar as entradas de preenchimento de haste e de glande quanto a conteúdo, imagens e legendas
 - [x] Adicionar comparativo didático de objetivo, plano anatômico, técnica, limitações, riscos e seguimento
