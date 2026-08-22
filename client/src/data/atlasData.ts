@@ -14,6 +14,8 @@ export interface AtlasFigure {
   imageUrl?: string; // preenchido quando uma imagem (gerada/open-access) está disponível
   credit?: string;   // fonte/crédito da imagem
   sourceUrl?: string; // link direto para a fonte original (artigo/atlas), uso pessoal
+  sensitive?: boolean; // fotografia genital, intraoperatória ou de complicação
+  sensitiveLabel?: string; // rótulo curto exibido sobre a figura
 }
 
 export interface AtlasEntry {
@@ -1712,7 +1714,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Inverted V-Y plasty penile lengthening; V-Y advancement flap penis base",
         "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_1_beb39bd4.jpg",
         "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
-        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia intraoperatória"
       },
       {
         "caption": "Avaliação Intraoperatória do Comprimento Exposto",
@@ -1720,7 +1724,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Penile length measurement intraoperative suspensory ligament release; exposed penile length documentation",
         "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_2_03419f2f.jpg",
         "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
-        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia intraoperatória"
       }
     ]
   },
@@ -1791,7 +1797,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Dermal fat graft penile augmentation surgical technique; Augmentation phalloplasty dermal fat graft wrapping",
         "imageUrl": "/manus-storage/faloplastia-de-aumento-espessamento-peniano-com-enxerto-derm_2_3486e9a6.jpg",
         "credit": "Penis Girth Augmentation Using SEPA Flap and Dermofat Grafts. (CC BY-NC-SA)",
-        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10768958/"
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10768958/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia intraoperatória"
       }
     ]
   },
@@ -1870,7 +1878,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "hyaluronic acid penile filler clinical result complication photo; penile filler nodule edema",
         "imageUrl": "/manus-storage/final_fig4_complic_6b4043e7.jpg",
         "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
-        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
+        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9",
+        "sensitive": true,
+        "sensitiveLabel": "Fotos clínicas e complicações"
       },
       {
         "caption": "Incidência de Eventos Adversos (Meta-análise)",
@@ -1949,7 +1959,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Glans penis necrosis filler overinjection complication; penile filler pressure necrosis ischemia",
         "imageUrl": "/manus-storage/glande_fig3_necrose_moon2015_41ffc987.jpg",
         "credit": "Moon DG, et al. Penile Girth Enhancement Using Injectable Hyaluronic Acid Gel. World J Mens Health. 2015;33(2):50-61 (CC BY-NC)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/"
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/",
+        "sensitive": true,
+        "sensitiveLabel": "Complicação clínica sensível"
       }
     ]
   },
@@ -2004,7 +2016,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Adult acquired buried penis anatomy sagittal view; Buried penis pathophysiology escutcheon diagram",
         "imageUrl": "/manus-storage/lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a_0_6331b663.jpg",
         "credit": "Wikimedia Commons (CC BY-SA 4.0)",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buried_penis_due_to_obesity.jpg"
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buried_penis_due_to_obesity.jpg",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia clínica sensível"
       },
       {
         "caption": "Reconstrução do Pênis Enterrado — Passos Essenciais",
@@ -2393,7 +2407,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Adult circumcision dorsal slit marking technique; circumcision surgical planning",
         "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_0_eeacdb6e.jpg",
         "credit": "Subcutaneous tissue-sparing dorsal slit with new marking technique: A novel circumcision method (CC BY-NC-ND 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6494260/"
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6494260/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia clínica sensível"
       },
       {
         "caption": "Circuncisão Estética — Ressecção em Sleeve e Síntese",
@@ -2409,7 +2425,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Frenuloplasty with circumcision; circumcision ventral view frenulum; frenulectomy surgical technique",
         "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_4_17ca2a53.jpg",
         "credit": "Before and after frenoloplasty (CC BY-SA 4.0)",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Before_and_after_frenoloplasty.jpg"
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Before_and_after_frenoloplasty.jpg",
+        "sensitive": true,
+        "sensitiveLabel": "Resultado clínico sensível"
       }
     ]
   },

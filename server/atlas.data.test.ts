@@ -79,6 +79,24 @@ describe("Atlas data integrity", () => {
     }
   });
 
+  it("figuras marcadas como sensíveis têm imagem e rótulo claro", () => {
+    const sensitiveFigures = atlasEntries.flatMap((entry) =>
+      entry.figures.map((figure) => ({ entry, figure })).filter(({ figure }) => figure.sensitive),
+    );
+
+    expect(sensitiveFigures.length).toBeGreaterThan(0);
+    for (const { entry, figure } of sensitiveFigures) {
+      expect(
+        Boolean(figure.imageUrl),
+        `figura sensível sem imagem em ${entry.id}: "${figure.caption}"`,
+      ).toBe(true);
+      expect(
+        (figure.sensitiveLabel ?? "").length,
+        `figura sensível sem rótulo em ${entry.id}: "${figure.caption}"`,
+      ).toBeGreaterThan(2);
+    }
+  });
+
   it("o Atlas tem pelo menos 47 figuras com imagem real (andrologia/estética)", () => {
     const comImagem = atlasEntries.reduce(
       (acc, e) => acc + e.figures.filter((f) => f.imageUrl && f.imageUrl !== "").length,

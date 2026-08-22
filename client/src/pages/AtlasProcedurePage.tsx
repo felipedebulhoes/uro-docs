@@ -21,6 +21,7 @@ import {
 import { BrandLogo } from "@/components/BrandLogo";
 import { AtlasLightbox } from "@/components/AtlasLightbox";
 import { FollowUpTimeline } from "@/components/FollowUpTimeline";
+import { AestheticGuidance } from "@/components/AestheticGuidance";
 import {
   buildLightboxFigures,
   positionForFigure,
@@ -45,6 +46,7 @@ import {
   ImagePlus,
   Maximize2,
   Info,
+  EyeOff,
   ClipboardList,
   CircleAlert,
 } from "lucide-react";
@@ -338,6 +340,12 @@ export default function AtlasProcedurePage() {
           </Card>
         </section>
 
+        {entry.category === "Estética Genital" && (
+          <section className="mb-8">
+            <AestheticGuidance entryId={entry.id} />
+          </section>
+        )}
+
         {/* Galeria de figuras */}
         {entry.figures.length > 0 && (
           <section className="mb-8">
@@ -465,6 +473,12 @@ function FigureCard({
           <span className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
             <Maximize2 className="w-3.5 h-3.5" />
           </span>
+          {fig.sensitive && (
+            <Badge className="absolute right-2 top-2 z-10 gap-1 border border-amber-500/30 bg-amber-500/15 px-2 py-1 text-[10px] font-medium text-amber-800 shadow-sm backdrop-blur dark:text-amber-200">
+              <EyeOff className="h-3 w-3" />
+              {fig.sensitiveLabel ?? "Conteúdo clínico sensível"}
+            </Badge>
+          )}
           {/* tooltip de referência bibliográfica */}
           {effectiveCredit && (
             <Popover>

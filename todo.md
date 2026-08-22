@@ -198,3 +198,9 @@
 - [x] Revisar adequação clínica, anatômica e didática de cada imagem; registrar parecer em audit/esthetic-images-visual-review.md
 - [x] Corrigir legendas incoerentes de ligamentólise e circuncisão; substituir imagem pediátrica de escrotoplastia por esquema adulto; adicionar esquemas autorais de enxerto dermogorduroso, reconstrução de pênis enterrado e circuncisão em sleeve
 - [x] Validar TypeScript/Vitest (232/232) e preparar checkpoint da revisão visual
+
+# Segurança Visual e Orientação Estética Genital (Ago 2026)
+- [x] Adicionar etiqueta de conteúdo clínico sensível às fotografias genitais e de complicações pertinentes
+- [x] Criar esquemas visuais de orientação pós-operatória para as sete técnicas estéticas do Atlas
+- [x] Criar comparação visual entre indicações estéticas e reconstrutivas
+- [x] Validar TypeScript/Vitest (235/235) e preparar checkpoint de segurança visual
