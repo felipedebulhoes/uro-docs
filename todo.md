@@ -204,3 +204,15 @@
 - [x] Criar esquemas visuais de orientação pós-operatória para as sete técnicas estéticas do Atlas
 - [x] Criar comparação visual entre indicações estéticas e reconstrutivas
 - [x] Validar TypeScript/Vitest (235/235) e preparar checkpoint de segurança visual
+
+# Pesquisa Global do Atlas (Ago 2026)
+- [ ] Revisar dados e componentes de busca existentes para definir o índice global do Atlas
+- [ ] Implementar pesquisa global por procedimento, seção técnica, complicação e referência
+- [ ] Adicionar atalho de teclado, interface de resultados e navegação contextual
+- [ ] Adicionar testes, validar TypeScript/Vitest e salvar checkpoint
+
+# Didática dos Preenchimentos Penianos (Ago 2026)
+- [x] Auditar as entradas de preenchimento de haste e de glande quanto a conteúdo, imagens e legendas
+- [x] Adicionar comparativo didático de objetivo, plano anatômico, técnica, limitações, riscos e seguimento
+- [x] Ajustar imagens e rótulos com esquema anatômico comparativo e cartões de distinção haste/corpo peniano versus glande
+- [x] Validar TypeScript/Vitest (237/237) e preparar checkpoint da didática dos preenchimentos

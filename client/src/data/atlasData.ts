@@ -1889,6 +1889,14 @@ export const atlasEntries: AtlasEntry[] = [
         "imageUrl": "/manus-storage/final_fig6_forestplot_e2541eed.png",
         "credit": "Salama A, et al. African Journal of Urology 2024;30:34 (CC BY 4.0)",
         "sourceUrl": "https://link.springer.com/article/10.1186/s12301-024-00464-9"
+      },
+      {
+        "caption": "Comparativo anatomotécnico: haste versus glande",
+        "description": "Esquema médico autoral que diferencia o preenchimento de circunferência da haste — no plano superficial entre Dartos e Buck — do preenchimento de glande — no plano subepitelial/lâmina própria. O objetivo, a distribuição e os riscos críticos não são intercambiáveis.",
+        "searchTerms": "penile shaft versus glans hyaluronic acid filler anatomy injection plane comparison",
+        "imageUrl": "/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png",
+        "credit": "Ilustração médica autoral comparativa para o Atlas Urológico, 2026. Base anatômica e técnica: referências do dossiê.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png"
       }
     ]
   },
@@ -1962,6 +1970,14 @@ export const atlasEntries: AtlasEntry[] = [
         "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/",
         "sensitive": true,
         "sensitiveLabel": "Complicação clínica sensível"
+      },
+      {
+        "caption": "Comparativo anatomotécnico: glande versus haste",
+        "description": "Esquema médico autoral que contrasta a deposição superficial, conservadora e simétrica na glande com a distribuição circunferencial no plano de segurança da haste. Destaca meato, corpo esponjoso e risco de isquemia por pressão.",
+        "searchTerms": "glans versus penile shaft hyaluronic acid filler anatomy injection plane comparison",
+        "imageUrl": "/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png",
+        "credit": "Ilustração médica autoral comparativa para o Atlas Urológico, 2026. Base anatômica e técnica: referências do dossiê.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png"
       }
     ]
   },

@@ -22,6 +22,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { AtlasLightbox } from "@/components/AtlasLightbox";
 import { FollowUpTimeline } from "@/components/FollowUpTimeline";
 import { AestheticGuidance } from "@/components/AestheticGuidance";
+import { PenileFillerComparison } from "@/components/PenileFillerComparison";
 import {
   buildLightboxFigures,
   positionForFigure,
@@ -345,6 +346,8 @@ export default function AtlasProcedurePage() {
             <AestheticGuidance entryId={entry.id} />
           </section>
         )}
+
+        <PenileFillerComparison entryId={entry.id} />
 
         {/* Galeria de figuras */}
         {entry.figures.length > 0 && (
