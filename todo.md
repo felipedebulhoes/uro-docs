@@ -206,10 +206,10 @@
 - [x] Validar TypeScript/Vitest (235/235) e preparar checkpoint de segurança visual
 
 # Pesquisa Global do Atlas (Ago 2026)
-- [ ] Revisar dados e componentes de busca existentes para definir o índice global do Atlas
-- [ ] Implementar pesquisa global por procedimento, seção técnica, complicação e referência
-- [ ] Adicionar atalho de teclado, interface de resultados e navegação contextual
-- [ ] Adicionar testes, validar TypeScript/Vitest e salvar checkpoint
+- [x] Revisar dados e componentes de busca existentes para definir o índice global do Atlas
+- [x] Implementar pesquisa global por procedimento, seção técnica, complicação e referência
+- [x] Adicionar atalho ⌘/Ctrl+K, interface de resultados e navegação contextual para a seção encontrada
+- [x] Validar TypeScript/Vitest (240/240), testar busca por complicação e preparar checkpoint da pesquisa global
 
 # Didática dos Preenchimentos Penianos (Ago 2026)
 - [x] Auditar as entradas de preenchimento de haste e de glande quanto a conteúdo, imagens e legendas

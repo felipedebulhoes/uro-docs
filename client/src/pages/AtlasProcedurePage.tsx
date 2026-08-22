@@ -156,12 +156,19 @@ export default function AtlasProcedurePage() {
   const refIndex = entry.sections.findIndex((s) =>
     s.title.toLowerCase().includes("refer")
   );
-  const technicalSections = entry.sections.filter((_, i) => i !== refIndex);
+  const technicalSections = entry.sections
+    .map((section, index) => ({ section, index }))
+    .filter(({ index }) => index !== refIndex);
   const referencesSection =
     refIndex >= 0 ? entry.sections[refIndex] : undefined;
 
   // abrir a primeira seção por padrão
-  const defaultOpen = technicalSections.length > 0 ? "section-0" : undefined;
+  const hashSection = typeof window !== "undefined" ? window.location.hash.replace("#", "") : "";
+  const defaultOpen = technicalSections.some(({ index }) => `section-${index}` === hashSection)
+    ? hashSection
+    : technicalSections.length > 0
+      ? `section-${technicalSections[0].index}`
+      : undefined;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -302,15 +309,17 @@ export default function AtlasProcedurePage() {
           </h3>
           <Card className="bg-card border-border px-4">
             <Accordion
+              key={entry.id}
               type="single"
               collapsible
               defaultValue={defaultOpen}
               className="w-full"
             >
-              {technicalSections.map((section, i) => (
+              {technicalSections.map(({ section, index }) => (
                 <AccordionItem
-                  key={i}
-                  value={`section-${i}`}
+                  key={index}
+                  value={`section-${index}`}
+                  id={`section-${index}`}
                   className="border-border/60"
                 >
                   <AccordionTrigger className="text-foreground hover:no-underline hover:text-primary text-[15px] font-semibold">
