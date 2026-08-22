@@ -192,3 +192,9 @@
 - [x] Criar linha do tempo visual de seguimento pós-operatório em postectomia, varicocelectomia, prostatectomia radical, pieloplastia, NLP, HoLEP, sling masculino e prótese peniana inflável
 - [x] Expandir alertas de urgência para pós-operatório escrotal e cenários oncológicos (torção/orquidopexia, hidrocelectomia, orquiectomia radical, RTU-B e nefrectomia parcial)
 - [x] Validar TypeScript/Vitest (232/232) e preparar checkpoint do lote avançado
+
+# Revisão Visual — Estética Genital (Ago 2026)
+- [x] Inventariar as imagens das sete entradas de estética genital e seus créditos
+- [x] Revisar adequação clínica, anatômica e didática de cada imagem; registrar parecer em audit/esthetic-images-visual-review.md
+- [x] Corrigir legendas incoerentes de ligamentólise e circuncisão; substituir imagem pediátrica de escrotoplastia por esquema adulto; adicionar esquemas autorais de enxerto dermogorduroso, reconstrução de pênis enterrado e circuncisão em sleeve
+- [x] Validar TypeScript/Vitest (232/232) e preparar checkpoint da revisão visual

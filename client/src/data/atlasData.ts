@@ -1715,9 +1715,9 @@ export const atlasEntries: AtlasEntry[] = [
         "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
       },
       {
-        "caption": "Técnica de Ligamentólise e Interposição de Espaçador",
-        "description": "Visão intraoperatória (ilustração cirúrgica) mostrando o afastamento do pênis caudalmente, a secção do ligamento suspensor rente ao osso púbico e a fixação de um espaçador (silicone ou matriz dérmica) no espaço morto criado para evitar a refixação",
-        "searchTerms": "Suspensory ligament release surgical technique; Ligamentolysis penis spacer insertion",
+        "caption": "Avaliação Intraoperatória do Comprimento Exposto",
+        "description": "Fotografias intraoperatórias de mensuração do comprimento peniano exposto durante a liberação do sistema suspensor. A figura ilustra a documentação objetiva do desfecho, e não a interposição de espaçador.",
+        "searchTerms": "Penile length measurement intraoperative suspensory ligament release; exposed penile length documentation",
         "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_2_03419f2f.jpg",
         "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
         "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
@@ -1780,7 +1780,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Colheita e Preparação do Enxerto Dérmico-Gorduroso",
         "description": "A marcação elíptica na prega infraglútea, o processo de desepitelização (deixando a derme intacta) e o enxerto finalizado fora do corpo, mostrando a camada de derme e a camada de gordura subjacente",
-        "searchTerms": "Dermal fat graft harvest infragluteal fold; De-epithelialized dermal fat graft preparation"
+        "searchTerms": "Dermal fat graft harvest infragluteal fold; De-epithelialized dermal fat graft preparation",
+        "imageUrl": "/manus-storage/enxerto-dermogorduroso-preparo_5dcbe4f9.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/enxerto-dermogorduroso-preparo_5dcbe4f9.png"
       },
       {
         "caption": "Posicionamento e Fixação do Enxerto no Pênis",
@@ -1996,32 +1999,20 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia e Fisiopatologia do Pênis Enterrado",
-        "description": "Um corte sagital da pelve masculina demonstrando o pênis retraído sob um grande coxim adiposo suprapúbico (escutcheon). Deve destacar a frouxidão do ligamento fundiforme e a telescopagem da pele peniana",
+        "caption": "Apresentação Clínica do Pênis Enterrado Adquirido",
+        "description": "Fotografia clínica sensível demonstrando o ocultamento da haste pelo coxim adiposo suprapúbico em pênis enterrado adquirido no adulto. Usada para contextualizar a condição, não como guia técnico.",
         "searchTerms": "Adult acquired buried penis anatomy sagittal view; Buried penis pathophysiology escutcheon diagram",
         "imageUrl": "/manus-storage/lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a_0_6331b663.jpg",
         "credit": "Wikimedia Commons (CC BY-SA 4.0)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buried_penis_due_to_obesity.jpg"
       },
       {
-        "caption": "Marcação Cirúrgica e Escutcheonectomia",
-        "description": "Visão anterior da região pélvica com as marcações cirúrgicas para a incisão em losango (diamond-shaped) na região suprapúbica e a incisão subcoronal. Uma segunda imagem mostrando a excisão em bloco do coxim adiposo até a fáscia abdominal",
-        "searchTerms": "Buried penis repair surgical markings; Escutcheonectomy diamond incision technique"
-      },
-      {
-        "caption": "Fixação Penopúbica (Tack Sutures)",
-        "description": "Visão intraoperatória detalhada (close-up) da base do pênis após o degloving. Deve ilustrar a passagem dos fios de sutura inabsorvíveis ancorando a derme da pele peniana/púbica à fáscia de Buck e ao periósteo da sínfise púbica nas posições de 2 e 10 horas",
-        "searchTerms": "Buried penis tacking sutures pubic symphysis; Penopubic fixation sutures buried penis repair"
-      },
-      {
-        "caption": "Aplicação e Fixação do Enxerto de Pele (STSG)",
-        "description": "A haste peniana completamente deglovada sendo coberta por um enxerto de pele de espessura parcial malhado (meshed STSG). Deve mostrar as suturas fixando o enxerto à coroa da glande distalmente e à base do pênis proximalmente",
-        "searchTerms": "Split-thickness skin graft penile shaft application; Meshed STSG buried penis reconstruction"
-      },
-      {
-        "caption": "Curativo Compressivo (Bolster) ou Terapia a Vácuo (VAC)",
-        "description": "O aspecto final da cirurgia com a aplicação do curativo de contenção (tie-over bolster dressing) amarrado sobre o enxerto peniano, ou a aplicação de um sistema de terapia de ferida por pressão negativa (VAC) envolvendo o pênis",
-        "searchTerms": "Penile skin graft bolster dressing; Negative pressure wound therapy VAC penile graft"
+        "caption": "Reconstrução do Pênis Enterrado — Passos Essenciais",
+        "description": "Esquema médico em quatro tempos: marcação suprapúbica e escutcheonectomia, liberação e fixação penopúbica, cobertura com enxerto de pele parcial malhado e curativo de contenção. Complementa a fotografia inicial sem expor imagens intraoperatórias sensíveis.",
+        "searchTerms": "Adult acquired buried penis reconstruction escutcheonectomy penopubic fixation split thickness skin graft bolster diagram",
+        "imageUrl": "/manus-storage/penis-enterrado-reconstrucao_e9173e12.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/penis-enterrado-reconstrucao_e9173e12.png"
       }
     ]
   },
@@ -2071,22 +2062,12 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia e Marcação Pré-operatória",
-        "description": "Uma visão anterior e lateral do escroto com ptose, demonstrando a marcação cirúrgica em formato de elipse vertical ou \"marca de verificação\" (check-mark) na rafe mediana, e a marcação da Z-plastia na junção penoescrotal",
-        "searchTerms": "Scrotal reduction surgery markings; Aesthetic scrotoplasty incision design; Penoscrotal webbing Z-plasty marking"
-      },
-      {
-        "caption": "Dissecção e Plano Cirúrgico",
-        "description": "Uma visão intraoperatória ilustrando a excisão do retalho de pele, demonstrando claramente o plano de dissecção superficial à fáscia de Dartos, com a túnica vaginal e os testículos intactos e não expostos",
-        "searchTerms": "Scrotoplasty Dartos fascia preservation; Scrotal lift surgical plane; Excision of redundant scrotal skin"
-      },
-      {
-        "caption": "Correção do *Webbing* e Fechamento",
-        "description": "O detalhe da transposição dos retalhos da Z-plastia na base do pênis para aprofundar o ângulo penoescrotal, e o aspecto final do fechamento da pele escrotal em formato de \"Y\" invertido ou linha vertical ao longo da rafe",
-        "searchTerms": "Penoscrotal web Z-plasty flap transposition; Ventral phalloplasty closure; Scrotal reduction final suture line",
-        "imageUrl": "/manus-storage/escrotoplastia-scrotal-lift-lifting-escrotal-estetico_2_d13b8ac7.jpg",
-        "credit": "Evaluation of Z-plasty versus Heineke-Mikulicz scrotoplasty in the management of penoscrotal web in pediatric age group (CC BY 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10960422/"
+        "caption": "Escrotoplastia Adulta — Marcação, Plano e Correção de Webbing",
+        "description": "Esquema médico adulto em quatro tempos com marcação de ressecção vertical, preservação superficial à fáscia de Dartos, transposição de retalhos em Z-plastia para webbing penoescrotal e fechamento simétrico. Substitui a imagem pediátrica, que não era representativa do scrotal lift estético no adulto.",
+        "searchTerms": "Adult aesthetic scrotoplasty scrotal lift marking dartos fascia penoscrotal web Z-plasty diagram",
+        "imageUrl": "/manus-storage/escrotoplastia-adulta-tecnica_2edda452.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/escrotoplastia-adulta-tecnica_2edda452.png"
       }
     ]
   },
@@ -2407,31 +2388,24 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Marcação Cirúrgica (Sleeve Technique)",
-        "description": "Pênis em visão dorsal e lateral, ilustrando duas linhas pontilhadas paralelas: uma na pele da haste peniana e outra na mucosa interna (próxima ao sulco coronal), demonstrando a área de prepúcio redundante a ser excisada",
-        "searchTerms": "Sleeve circumcision technique marking; adult circumcision double incision lines; circumcision surgical planning",
+        "caption": "Marcação Cutânea e Incisão Dorsal",
+        "description": "Fotografias clínicas de uma técnica de incisão dorsal com marcação cutânea. A figura é útil para planejamento da ressecção, mas não representa isoladamente uma sleeve resection completa.",
+        "searchTerms": "Adult circumcision dorsal slit marking technique; circumcision surgical planning",
         "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_0_eeacdb6e.jpg",
         "credit": "Subcutaneous tissue-sparing dorsal slit with new marking technique: A novel circumcision method (CC BY-NC-ND 4.0)",
         "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6494260/"
       },
       {
-        "caption": "Dissecção do Colar de Pele (Sleeve Resection)",
-        "description": "O momento cirúrgico em que o anel de pele e tecido subcutâneo (dartos) está sendo dissecado e removido, evidenciando a preservação da fáscia de Buck e dos vasos dorsais subjacentes",
-        "searchTerms": "Sleeve circumcision prepuce excision; circumcision dartos dissection; adult circumcision preserving Buck's fascia"
+        "caption": "Circuncisão Estética — Ressecção em Sleeve e Síntese",
+        "description": "Esquema médico em quatro tempos: dupla marcação circunferencial, ressecção do colar de pele com preservação dos planos profundos, hemostasia e pontos cardeais, seguido de fechamento subcoronal simétrico.",
+        "searchTerms": "Aesthetic sleeve circumcision skin resection cardinal sutures subcoronal closure diagram",
+        "imageUrl": "/manus-storage/circuncisao-estetica-sleeve_abdaccba.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/circuncisao-estetica-sleeve_abdaccba.png"
       },
       {
-        "caption": "Hemostasia e Aproximação",
-        "description": "A ferida cirúrgica aberta após a remoção da pele, com uso de pinça bipolar para hemostasia, e a colocação dos primeiros pontos cardeais (12, 3, 6 e 9 horas) alinhando a pele da haste com a mucosa interna",
-        "searchTerms": "Circumcision hemostasis bipolar; circumcision quadrant sutures; circumcision skin approximation"
-      },
-      {
-        "caption": "Resultado Final e Sutura Estética",
-        "description": "O pênis com a sutura finalizada, demonstrando uma linha de incisão simétrica e limpa logo abaixo da coroa da glande. Idealmente, mostrando uma técnica de sutura subcuticular ou uso de cola cirúrgica para evitar marcas",
-        "searchTerms": "Cosmetic circumcision final result; circumcision subcuticular suture; aesthetic circumcision healing"
-      },
-      {
-        "caption": "Manejo do Frênulo (Frenuloplastia associada)",
-        "description": "Visão ventral do pênis detalhando a incisão transversal do frênulo e o fechamento longitudinal (V-Y ou Y-V) para ganho de comprimento, integrado à linha de sutura da circuncisão",
+        "caption": "Resultado Clínico após Frenuloplastia Associada",
+        "description": "Fotografias clínicas de resultado após frenuloplastia. A imagem demonstra o desfecho cicatricial, e não uma sequência de incisão ou sutura intraoperatória.",
         "searchTerms": "Frenuloplasty with circumcision; circumcision ventral view frenulum; frenulectomy surgical technique",
         "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_4_17ca2a53.jpg",
         "credit": "Before and after frenoloplasty (CC BY-SA 4.0)",
