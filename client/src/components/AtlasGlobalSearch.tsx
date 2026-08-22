@@ -10,8 +10,22 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import { atlasEntries } from "@/data/atlasData";
-import { searchAtlasGlobally, type AtlasGlobalResult, type AtlasGlobalResultKind } from "@/lib/atlasGlobalSearch";
-import { AlertTriangle, BookOpen, FileText, Search } from "lucide-react";
+import {
+  filterAtlasGlobalResults,
+  searchAtlasGlobally,
+  type AtlasGlobalResult,
+  type AtlasGlobalResultFilter,
+  type AtlasGlobalResultKind,
+} from "@/lib/atlasGlobalSearch";
+import {
+  appendRecentSearch,
+  ATLAS_FAVORITE_RESULTS_KEY,
+  ATLAS_RECENT_SEARCHES_KEY,
+  parseStoredFavorites,
+  parseStoredSearches,
+  toggleFavoriteResult,
+} from "@/lib/atlasSearchHistory";
+import { AlertTriangle, BookOpen, Clock3, Copy, FileText, Search, Star } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
 
@@ -22,11 +36,36 @@ const kindMeta: Record<AtlasGlobalResultKind, { label: string; icon: typeof Book
   reference: { label: "Referência", icon: FileText, className: "text-muted-foreground" },
 };
 
+const resultFilters: { value: AtlasGlobalResultFilter; label: string }[] = [
+  { value: "all", label: "Todos" },
+  { value: "procedure", label: "Procedimentos" },
+  { value: "section", label: "Técnica" },
+  { value: "complication", label: "Complicações" },
+  { value: "reference", label: "Referências" },
+];
+
 export function AtlasGlobalSearch() {
   const [, setLocation] = useLocation();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [resultFilter, setResultFilter] = useState<AtlasGlobalResultFilter>("all");
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<AtlasGlobalResult[]>([]);
   const results = useMemo(() => searchAtlasGlobally(atlasEntries, query), [query]);
+  const visibleResults = useMemo(() => filterAtlasGlobalResults(results, resultFilter), [resultFilter, results]);
+
+  useEffect(() => {
+    setRecentSearches(parseStoredSearches(window.localStorage.getItem(ATLAS_RECENT_SEARCHES_KEY)));
+    setFavorites(parseStoredFavorites(window.localStorage.getItem(ATLAS_FAVORITE_RESULTS_KEY)));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(ATLAS_RECENT_SEARCHES_KEY, JSON.stringify(recentSearches));
+  }, [recentSearches]);
+
+  useEffect(() => {
+    window.localStorage.setItem(ATLAS_FAVORITE_RESULTS_KEY, JSON.stringify(favorites));
+  }, [favorites]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -41,9 +80,65 @@ export function AtlasGlobalSearch() {
 
   const selectResult = (result: AtlasGlobalResult) => {
     const hash = result.sectionIndex === null ? "" : `#section-${result.sectionIndex}`;
+    setRecentSearches((current) => appendRecentSearch(current, query));
     setLocation(`/atlas/${result.entryId}${hash}`);
     setOpen(false);
     setQuery("");
+  };
+
+  const copyResultLink = async (event: React.MouseEvent<HTMLButtonElement>, result: AtlasGlobalResult) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const hash = result.sectionIndex === null ? "" : `#section-${result.sectionIndex}`;
+    await navigator.clipboard?.writeText(`${window.location.origin}/atlas/${result.entryId}${hash}`);
+  };
+
+  const updateFavorite = (event: React.MouseEvent<HTMLButtonElement>, result: AtlasGlobalResult) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setFavorites((current) => toggleFavoriteResult(current, result));
+  };
+
+  const renderResult = (result: AtlasGlobalResult) => {
+    const meta = kindMeta[result.kind];
+    const Icon = meta.icon;
+    const isFavorite = favorites.some((item) => item.key === result.key);
+    return (
+      <CommandItem
+        key={result.key}
+        value={`${result.entryName} ${result.sectionTitle ?? ""} ${result.summary}`}
+        onSelect={() => selectResult(result)}
+        className="items-start py-3"
+      >
+        <Icon className={`mt-0.5 h-4 w-4 shrink-0 ${meta.className}`} />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-medium text-foreground">{result.entryName}</span>
+            <span className={`text-[10px] font-semibold uppercase tracking-wide ${meta.className}`}>{meta.label}</span>
+          </div>
+          {result.sectionTitle && <p className="mt-0.5 text-xs font-medium text-foreground/85">{result.sectionTitle}</p>}
+          <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{result.summary}</p>
+        </div>
+        <div className="flex shrink-0 gap-1">
+          <button
+            type="button"
+            onClick={(event) => updateFavorite(event, result)}
+            aria-label={isFavorite ? "Remover dos favoritos" : "Salvar nos favoritos"}
+            className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-amber-500"
+          >
+            <Star className={`h-3.5 w-3.5 ${isFavorite ? "fill-amber-400 text-amber-500" : ""}`} />
+          </button>
+          <button
+            type="button"
+            onClick={(event) => void copyResultLink(event, result)}
+            aria-label="Copiar link direto para este conteúdo"
+            className="rounded p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
+          >
+            <Copy className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      </CommandItem>
+    );
   };
 
   return (
@@ -75,31 +170,41 @@ export function AtlasGlobalSearch() {
           placeholder="Buscar procedimento, complicação, técnica ou referência…"
           autoFocus
         />
+        <div className="flex flex-wrap gap-1 border-b border-border px-3 py-2">
+          {resultFilters.map((filter) => (
+            <button
+              key={filter.value}
+              type="button"
+              onClick={() => setResultFilter(filter.value)}
+              className={`rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                resultFilter === filter.value
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-background text-muted-foreground hover:border-primary/50 hover:text-foreground"
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
         <CommandList>
           <CommandEmpty>Nenhum conteúdo correspondente foi encontrado.</CommandEmpty>
-          <CommandGroup heading={query.trim() ? "Resultados" : "Procedimentos do Atlas"}>
-            {results.map((result) => {
-              const meta = kindMeta[result.kind];
-              const Icon = meta.icon;
-              return (
-                <CommandItem
-                  key={result.key}
-                  value={`${result.entryName} ${result.sectionTitle ?? ""} ${result.summary}`}
-                  onSelect={() => selectResult(result)}
-                  className="items-start py-3"
-                >
-                  <Icon className={`mt-0.5 h-4 w-4 ${meta.className}`} />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-medium text-foreground">{result.entryName}</span>
-                      <span className={`text-[10px] font-semibold uppercase tracking-wide ${meta.className}`}>{meta.label}</span>
-                    </div>
-                    {result.sectionTitle && <p className="mt-0.5 text-xs font-medium text-foreground/85">{result.sectionTitle}</p>}
-                    <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{result.summary}</p>
-                  </div>
+          {!query.trim() && favorites.length > 0 && (
+            <CommandGroup heading="Favoritos">
+              {filterAtlasGlobalResults(favorites, resultFilter).map(renderResult)}
+            </CommandGroup>
+          )}
+          {!query.trim() && recentSearches.length > 0 && (
+            <CommandGroup heading="Buscas recentes">
+              {recentSearches.map((recent) => (
+                <CommandItem key={recent} value={recent} onSelect={() => setQuery(recent)}>
+                  <Clock3 className="h-4 w-4 text-muted-foreground" />
+                  <span>{recent}</span>
                 </CommandItem>
-              );
-            })}
+              ))}
+            </CommandGroup>
+          )}
+          <CommandGroup heading={query.trim() ? "Resultados" : "Procedimentos do Atlas"}>
+            {visibleResults.map(renderResult)}
           </CommandGroup>
           <CommandSeparator />
           <div className="flex items-center justify-between px-3 py-2 text-[10px] text-muted-foreground">

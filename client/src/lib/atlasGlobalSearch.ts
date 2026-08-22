@@ -1,6 +1,7 @@
 import type { AtlasEntry } from "@/data/atlasData";
 
 export type AtlasGlobalResultKind = "procedure" | "complication" | "section" | "reference";
+export type AtlasGlobalResultFilter = "all" | AtlasGlobalResultKind;
 
 export type AtlasGlobalResult = {
   key: string;
@@ -13,6 +14,13 @@ export type AtlasGlobalResult = {
   summary: string;
   score: number;
 };
+
+export function filterAtlasGlobalResults(
+  results: AtlasGlobalResult[],
+  filter: AtlasGlobalResultFilter
+): AtlasGlobalResult[] {
+  return filter === "all" ? results : results.filter((result) => result.kind === filter);
+}
 
 function normalize(value: string): string {
   return value

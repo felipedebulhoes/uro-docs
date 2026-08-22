@@ -211,6 +211,13 @@
 - [x] Adicionar atalho ⌘/Ctrl+K, interface de resultados e navegação contextual para a seção encontrada
 - [x] Validar TypeScript/Vitest (240/240), testar busca por complicação e preparar checkpoint da pesquisa global
 
+# Pesquisa Global — Favoritos e Links (Ago 2026)
+- [x] Revisar o diálogo global e o mecanismo de navegação contextual existente
+- [x] Implementar persistência local de buscas recentes e resultados favoritos
+- [x] Adicionar filtros rápidos por procedimento, técnica, complicação e referência
+- [x] Permitir copiar link direto para uma seção do Atlas a partir do resultado
+- [x] Validar TypeScript/Vitest (246/246), testar favoritos, filtros e cópia de link e preparar checkpoint
+
 # Didática dos Preenchimentos Penianos (Ago 2026)
 - [x] Auditar as entradas de preenchimento de haste e de glande quanto a conteúdo, imagens e legendas
 - [x] Adicionar comparativo didático de objetivo, plano anatômico, técnica, limitações, riscos e seguimento
