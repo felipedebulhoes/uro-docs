@@ -2087,6 +2087,8 @@ ${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "- Sem restri\u00e7\
 - SINAL DE ALERTA: se a ere\u00e7\u00e3o persistir por mais de 3-4 horas ou houver dor importante, procure um pronto-socorro imediatamente.`}`,
     },
   },
+  /* Definição legada substituída pelo laudo estruturado canônico abaixo.
+     Mantida somente como referência histórica e fora do catálogo executável.
   {
     id: "usg-escrotal-doppler-testicular",
     name: "Ultrassonografia escrotal com Doppler testicular",
@@ -2148,6 +2150,7 @@ AP\u00d3S O EXAME:
   // ═══════════════════════════════════════════════════════════════
   // MANEJO DO PRIAPISMO ISQUÊMICO
   // ═══════════════════════════════════════════════════════════════
+  */
   {
     id: "priapismo-isquemico",
     name: "Manejo do Priapismo Isqu\u00eamico",
@@ -3134,7 +3137,7 @@ HIDROCELE: ${c.hidrocele}.
 MASS/LESÃO FOCAL: ${c.massa}.${assimetria}
 
 CONCLUSÃO:
-${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE — SUSPEITA DE TORSÃO: Encaminhar para exploração cirúrgica de urgência imediatamente. Não aguardar exames adicionais.\n" : ""}${c.massa !== "Ausente" ? c.massa + " — correlacionar com marcadores tumorais (AFP, β-hCG, LDH) e considerar orquiectomia radical inguinal.\n" : ""}${c.varicocele !== "Ausente" ? c.varicocele + ".\n" : ""}${c.epididimo_dir.includes("epididimite") || c.epididimo_esq.includes("epididimite") ? "Sinais de epididimite — tratamento clínico (antibioticoterapia).\n" : ""}${c.doppler_dir === "Fluxo intratesticular preservado" && c.doppler_esq === "Fluxo intratesticular preservado" && c.massa === "Ausente" && c.varicocele === "Ausente" && !c.epididimo_dir.includes("epididimite") && !c.epididimo_esq.includes("epididimite") ? "Testículos de volume, ecotextura e vascularização normais. Epidídimos sem alterações." : ""}
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE — SUSPEITA DE TORSÃO: Encaminhar para exploração cirúrgica de urgência imediatamente. Não aguardar exames adicionais.\n" : ""}${c.massa !== "Ausente" ? c.massa + " — correlacionar com marcadores tumorais (AFP, β-hCG, LDH) e considerar orquiectomia radical inguinal.\n" : ""}${c.varicocele !== "Ausente" ? c.varicocele + ".\n" : ""}${(c.epididimo_dir ?? "").includes("epididimite") || (c.epididimo_esq ?? "").includes("epididimite") ? "Sinais de epididimite — tratamento clínico (antibioticoterapia).\n" : ""}${c.doppler_dir === "Fluxo intratesticular preservado" && c.doppler_esq === "Fluxo intratesticular preservado" && c.massa === "Ausente" && c.varicocele === "Ausente" && !(c.epididimo_dir ?? "").includes("epididimite") && !(c.epididimo_esq ?? "").includes("epididimite") ? "Testículos de volume, ecotextura e vascularização normais. Epidídimos sem alterações." : ""}
 
 REFERÊNCIAS: EAU Guidelines on Sexual & Reproductive Health 2024; Consenso EFSUMB/EAA (Lotti F et al. Int Braz J Urol 2026).`;
       },

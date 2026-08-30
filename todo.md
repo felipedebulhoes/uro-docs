@@ -124,9 +124,16 @@
 - [x] Testes e checkpoint (218/218)
 
 # Lote Câncer de Próstata (Jun 2026)
-- [ ] Criar componente ErspcCalculator.tsx com campos PSA, volume prostático, toque retal, histórico familiar, DRE, TRUS e cálculo de risco ERSPC RC4 (câncer clinicamente significativo ≥ Gleason 7)
-- [ ] Integrar ErspcCalculator no AtlasProcedurePage.tsx na entrada de câncer de próstata (seção de rastreamento/diagnóstico)
-- [ ] Criar entrada do Atlas "investigacao-cancer-prostata" com protocolo PSA, PIRADS, biópsia e estadiamento (EAU 2024)
-- [ ] Criar procedimento interativo "investigacao-cancer-prostata" no proceduresExtra.ts com campos e templates de solicitação de biópsia e laudo de estadiamento clínico
-- [ ] Mapear investigacao-cancer-prostata no atlasToProcedure
-- [ ] Testes e checkpoint
+- [x] Criar componente ErspcCalculator.tsx com campos PSA, volume prostático, toque retal, histórico familiar, DRE, TRUS e cálculo de risco ERSPC RC4 (câncer clinicamente significativo ≥ Gleason 7)
+- [x] Integrar ErspcCalculator no AtlasProcedurePage.tsx na entrada de câncer de próstata (seção de rastreamento/diagnóstico)
+- [x] Criar entrada do Atlas "investigacao-cancer-prostata" com protocolo PSA, PIRADS, biópsia e estadiamento (EAU 2024)
+- [x] Criar procedimento interativo "investigacao-cancer-prostata" no proceduresExtra.ts com campos e templates de solicitação de biópsia e laudo de estadiamento clínico
+- [x] Mapear investigacao-cancer-prostata no atlasToProcedure
+- [x] Testes e checkpoint (218/218 na entrega inicial)
+
+# Correção de integridade React (Ago 2026)
+- [x] Corrigir IDs duplicados no catálogo que causam chaves React repetidas na página inicial
+- [x] Adicionar teste de unicidade para os IDs de procedimentos
+- [x] Corrigir a contagem estática desatualizada de procedimentos exibida na página inicial
+- [x] Validar console, TypeScript e testes; salvar checkpoint
+- [x] Remover a definição-fonte duplicada de usg-escrotal-doppler-testicular e validar a integridade dos dados brutos (console atual sem novas advertências; catálogo mostra 64 procedimentos)

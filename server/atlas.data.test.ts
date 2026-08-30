@@ -8,6 +8,7 @@ import {
   atlasGroupedByCategory,
 } from "../client/src/data/atlasData";
 import { procedures } from "../client/src/data/procedures";
+import { proceduresExtra } from "../client/src/data/proceduresExtra";
 
 describe("Atlas data integrity", () => {
   it("has the expected number of entries", () => {
@@ -175,6 +176,16 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
     expect(semAtlas, `procedimentos sem entrada no Atlas: ${semAtlas.join(", ")}`).toEqual([]);
   });
 
+  it("o catálogo exposto não contém IDs de procedimento duplicados", () => {
+    const ids = procedures.map((procedure) => procedure.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("os procedimentos complementares de origem não contêm IDs duplicados", () => {
+    const ids = proceduresExtra.map((procedure) => procedure.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it("toda entrada do Atlas aponta para um procedimento existente no catálogo", () => {
     const procIds = new Set(procedures.map((p) => p.id));
     const semProc = atlasEntries
@@ -187,7 +198,7 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
   });
 
   it("catálogo e Atlas têm contagens esperadas", () => {
-    expect(procedures.length).toBe(65);
+    expect(procedures.length).toBe(64);
     expect(atlasEntries.length).toBe(68);
   });
 

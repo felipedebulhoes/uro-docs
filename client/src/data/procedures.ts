@@ -2286,8 +2286,12 @@ RETORNO: ___ dias.`;
     }
   },
 ];
-
 // Procedimentos do Atlas integrados ao catálogo (AUTO-GERADO em proceduresExtra.ts)
-procedures.push(...proceduresExtra);
-
+// A entrada definida por último é a canônica; isso impede que um ID duplicado no
+// arquivo complementar gere rotas ou chaves React repetidas na interface.
+procedures.push(
+  ...Array.from(
+    new Map(proceduresExtra.map((procedure) => [procedure.id, procedure])).values()
+  )
+);
 export const categories = Array.from(new Set(procedures.map(p => p.category)));
