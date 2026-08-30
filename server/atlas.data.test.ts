@@ -15,6 +15,18 @@ describe("Atlas data integrity", () => {
     expect(atlasEntries.length).toBe(69);
   });
 
+  it("inclui o protocolo de seguimento pós-prostatectomia com recidiva e resgate", () => {
+    const entry = getAtlasEntry("seguimento-pos-prostatectomia");
+    expect(entry).toBeDefined();
+
+    const content = entry!.sections.map((section) => section.body).join("\n");
+    expect(content).toMatch(/PSA.*cada 6 meses/i);
+    expect(content).toMatch(/recidiva bioquímica/i);
+    expect(content).toMatch(/radioterapia de resgate/i);
+    expect(content).toMatch(/EAU.*2026/i);
+    expect(atlasToProcedure[entry!.id]).toBe("seguimento-pos-prostatectomia");
+  });
+
   it("every entry has required, non-empty fields", () => {
     for (const e of atlasEntries) {
       expect(e.id, `id of ${e.name}`).toMatch(/^[a-z0-9-]+$/);

@@ -236,3 +236,7 @@
 - [x] Adicionar comparativo didático de objetivo, plano anatômico, técnica, limitações, riscos e seguimento
 - [x] Ajustar imagens e rótulos com esquema anatômico comparativo e cartões de distinção haste/corpo peniano versus glande
 - [x] Validar TypeScript/Vitest (237/237) e preparar checkpoint da didática dos preenchimentos
+
+# Seguimento pós-prostatectomia (Ago 2026)
+- [x] Verificar e complementar a entrada do Atlas com PSA seriado, recidiva bioquímica e tratamento de resgate — entrada já presente e completa na versão atual
+- [x] Validar conteúdo com diretrizes EAU 2026 e AUA/ASTRO/SUO 2024; adicionar teste de regressão, executar testes e preparar checkpoint
