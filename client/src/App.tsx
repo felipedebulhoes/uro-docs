@@ -11,6 +11,7 @@ import TimersPage from "./pages/TimersPage";
 import AtlasIndexPage from "./pages/AtlasIndexPage";
 import AtlasProcedurePage from "./pages/AtlasProcedurePage";
 import AtlasAdminPage from "./pages/AtlasAdminPage";
+import { AtlasGlobalSearch } from "./components/AtlasGlobalSearch";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -35,6 +36,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <AtlasGlobalSearch />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

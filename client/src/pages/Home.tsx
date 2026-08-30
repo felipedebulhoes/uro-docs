@@ -6,10 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { procedures, categories } from "@/data/procedures";
+import { procedureHasCalculator, searchCatalog } from "@/lib/catalogSearch";
 import { getFavorites, toggleFavorite, getRecents, getDJTimers } from "@/data/surgeryStore";
-import { Search, Star, Clock, History, Timer, AlertTriangle, BookOpen } from "lucide-react";
+import { Search, Star, Clock, History, Timer, AlertTriangle, BookOpen, Calculator, X } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
@@ -19,21 +20,31 @@ export default function Home() {
   const cloud = useCloudSync();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [calculatorsOnly, setCalculatorsOnly] = useState(false);
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const recents = useMemo(() => getRecents(), []);
   const activeTimers = useMemo(() => getDJTimers().filter((t) => !t.completed), []);
+  const calculatorCount = useMemo(
+    () => procedures.filter(procedureHasCalculator).length,
+    []
+  );
 
-  const filtered = useMemo(() => {
-    return procedures.filter((p) => {
-      const matchesSearch =
-        search === "" ||
-        p.name.toLowerCase().includes(search.toLowerCase()) ||
-        p.shortName.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory =
-        activeCategory === null || p.category === activeCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [search, activeCategory]);
+  const filtered = useMemo(
+    () => searchCatalog(procedures, { query: search, category: activeCategory, calculatorsOnly }),
+    [search, activeCategory, calculatorsOnly]
+  );
+
+  useEffect(() => {
+    const focusSearch = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", focusSearch);
+    return () => window.removeEventListener("keydown", focusSearch);
+  }, []);
 
   const favoriteProcedures = useMemo(
     () => procedures.filter((p) => favorites.includes(p.id)),
@@ -184,14 +195,36 @@ export default function Home() {
         )}
 
         {/* Search */}
-        <div className="relative mb-6">
+        <div className="mb-4">
+          <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Buscar procedimento..."
+            ref={searchInputRef}
+            placeholder="Pesquisar procedimento, categoria ou calculadora..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-card border-border h-11 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-primary/20"
+            className="pl-10 pr-20 bg-card border-border h-11 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-primary/20"
+            aria-label="Pesquisar no catálogo"
           />
+          {search ? (
+            <button
+              type="button"
+              onClick={() => setSearch("")}
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+              title="Limpar pesquisa"
+              aria-label="Limpar pesquisa"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          ) : (
+            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center rounded border border-border bg-muted/40 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+              ⌘/Ctrl K
+            </kbd>
+          )}
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground" aria-live="polite">
+            Pesquise por nome, abreviação, categoria ou campo clínico. {calculatorCount} calculadora{calculatorCount === 1 ? "" : "s"} disponíve{calculatorCount === 1 ? "l" : "is"}.
+          </p>
         </div>
 
         {/* Category Filters */}
@@ -205,6 +238,18 @@ export default function Home() {
             }`}
           >
             Todos
+          </button>
+          <button
+            onClick={() => setCalculatorsOnly((current) => !current)}
+            aria-pressed={calculatorsOnly}
+            className={`px-3.5 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all duration-150 flex items-center gap-1.5 ${
+              calculatorsOnly
+                ? "bg-primary text-white"
+                : "bg-card text-foreground/70 border border-border hover:border-primary/40 hover:text-primary"
+            }`}
+          >
+            <Calculator className="w-3.5 h-3.5" />
+            Calculadoras
           </button>
           {categories.map((cat) => (
             <button
@@ -222,6 +267,11 @@ export default function Home() {
         </div>
 
         {/* Procedure Grid */}
+        {(search || activeCategory || calculatorsOnly) && (
+          <p className="mb-3 text-xs text-muted-foreground" aria-live="polite">
+            {filtered.length} resultado{filtered.length === 1 ? "" : "s"} encontrado{filtered.length === 1 ? "" : "s"}.
+          </p>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((procedure) => (
             <Link key={procedure.id} href={`/procedimento/${procedure.id}`}>
@@ -250,12 +300,23 @@ export default function Home() {
                     <p className="text-xs text-muted-foreground mt-0.5 truncate">
                       {procedure.name}
                     </p>
-                    <Badge
-                      variant="outline"
-                      className="mt-2 text-[10px] border-primary/20 text-primary/80 bg-primary/5"
-                    >
-                      {procedure.category}
-                    </Badge>
+                    <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] border-primary/20 text-primary/80 bg-primary/5"
+                      >
+                        {procedure.category}
+                      </Badge>
+                      {procedureHasCalculator(procedure) && (
+                        <Badge
+                          variant="outline"
+                          className="text-[10px] border-emerald-500/30 text-emerald-400 bg-emerald-500/5"
+                        >
+                          <Calculator className="mr-1 w-2.5 h-2.5" />
+                          Calculadora
+                        </Badge>
+                      )}
+                    </div>
                   </div>
                 </div>
               </Card>

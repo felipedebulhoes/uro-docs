@@ -2087,13 +2087,12 @@ ${c.vasoativo === "Sem inje\u00e7\u00e3o (apenas modo-B)" ? "- Sem restri\u00e7\
 - SINAL DE ALERTA: se a ere\u00e7\u00e3o persistir por mais de 3-4 horas ou houver dor importante, procure um pronto-socorro imediatamente.`}`,
     },
   },
-  /* Definição legada substituída pelo laudo estruturado canônico abaixo.
-     Mantida somente como referência histórica e fora do catálogo executável.
+  /* Versão compacta substituída pelo laudo estruturado completo abaixo.
   {
-    id: "usg-escrotal-doppler-testicular",
+    id: "usg-escrotal-doppler-testicular-compact-deprecated",
     name: "Ultrassonografia escrotal com Doppler testicular",
     shortName: "USG escrotal/Doppler",
-    icon: "\uD83D\uDD0A",
+    icon: "🔊",
     category: "Andrologia",
     configFields: [
       { id: "indicacao", label: "Indica\u00e7\u00e3o", type: "select", options: ["Dor escrotal aguda (escroto agudo)", "Investiga\u00e7\u00e3o de infertilidade", "Massa/n\u00f3dulo escrotal", "Trauma escrotal", "Seguimento de microlit\u00edase", "Var\u00edcocele"], defaultValue: "Investiga\u00e7\u00e3o de infertilidade" },
@@ -2146,11 +2145,11 @@ AP\u00d3S O EXAME:
 - Sem restri\u00e7\u00f5es. Retorne ao seu urologista com o laudo para a conduta.`,
     },
   },
+  */
 
   // ═══════════════════════════════════════════════════════════════
   // MANEJO DO PRIAPISMO ISQUÊMICO
   // ═══════════════════════════════════════════════════════════════
-  */
   {
     id: "priapismo-isquemico",
     name: "Manejo do Priapismo Isqu\u00eamico",
@@ -3142,7 +3141,7 @@ ${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠�
 REFERÊNCIAS: EAU Guidelines on Sexual & Reproductive Health 2024; Consenso EFSUMB/EAA (Lotti F et al. Int Braz J Urol 2026).`;
       },
       posOperatorio: (c) => `ORIENTAÇÕES PÓS-EXAME — USG ESCROTAL
-${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE: Encaminhar para cirurgia de urgência imediatamente (torsão testicular).\n" : ""}${c.massa !== "Ausente" ? "⚠️ MASSA TESTICULAR: Solicitar AFP, β-hCG, LDH. Encaminhar para urologista com urgência.\n" : ""}${c.varicocele !== "Ausente" ? "⚠️ VARICOCELE: Correlacionar com espermograma e FSH/LH. Considerar varicocelectomia em casos selecionados.\n" : ""}${c.ecotextura_dir.includes("Microlitíase") || c.ecotextura_esq.includes("Microlitíase") ? "⚠️ MICROLITÍASE: Avaliar fatores de risco (criptorquidia, infertilidade, tumor prévio). Seguimento anual se fatores de risco presentes.\n" : ""}
+${c.doppler_dir === "Fluxo ausente" || c.doppler_esq === "Fluxo ausente" ? "⚠️ FLUXO AUSENTE: Encaminhar para cirurgia de urgência imediatamente (torsão testicular).\n" : ""}${c.massa !== "Ausente" ? "⚠️ MASSA TESTICULAR: Solicitar AFP, β-hCG, LDH. Encaminhar para urologista com urgência.\n" : ""}${c.varicocele !== "Ausente" ? "⚠️ VARICOCELE: Correlacionar com espermograma e FSH/LH. Considerar varicocelectomia em casos selecionados.\n" : ""}${(c.ecotextura_dir ?? "").includes("Microlitíase") || (c.ecotextura_esq ?? "").includes("Microlitíase") ? "⚠️ MICROLITÍASE: Avaliar fatores de risco (criptorquidia, infertilidade, tumor prévio). Seguimento anual se fatores de risco presentes.\n" : ""}
 Encaminhar resultado ao urologista para correlação clínica.`,
       receitaAlta: () => `PRESCRIÇÃO — USG ESCROTAL COM DOPPLER
 Exame de imagem — sem prescrição medicamentosa específica.
@@ -3448,6 +3447,123 @@ IMPORTANTE:
 - Traga todos os exames anteriores na próxima consulta
 
 FONTES: EAU Guidelines 2024 (Prostate Cancer); AUA Early Detection of Prostate Cancer 2023.`,
+    },
+  },
+  {
+    id: "seguimento-pos-prostatectomia",
+    name: "Seguimento Pós-Prostatectomia",
+    shortName: "Pós-Prostatectomia",
+    icon: "📈",
+    category: "Oncologia",
+    configFields: [
+      { id: "paciente", label: "Nome do Paciente", type: "text", defaultValue: "" },
+      { id: "data_consulta", label: "Data da Consulta", type: "text", defaultValue: "" },
+      { id: "data_cirurgia", label: "Data da Prostatectomia", type: "text", defaultValue: "" },
+      { id: "p_t", label: "Estágio Patológico (pT)", type: "select", defaultValue: "Não informado", options: ["Não informado", "pT2", "pT3a", "pT3b", "pT4"] },
+      { id: "p_n", label: "Linfonodos (pN)", type: "select", defaultValue: "Não informado", options: ["Não informado", "pN0", "pN1"] },
+      { id: "isup", label: "ISUP / Gleason Patológico", type: "select", defaultValue: "Não informado", options: ["Não informado", "ISUP 1", "ISUP 2", "ISUP 3", "ISUP 4", "ISUP 5"] },
+      { id: "margens", label: "Margens Cirúrgicas", type: "select", defaultValue: "Não informado", options: ["Não informado", "Livres", "Positivas"] },
+      { id: "vesiculas", label: "Vesículas Seminais", type: "select", defaultValue: "Não informado", options: ["Não informado", "Livres", "Invadidas"] },
+      { id: "psa_primeiro", label: "Primeiro PSA Pós-Operatório (ng/mL)", type: "text", defaultValue: "" },
+      { id: "psa_atual", label: "PSA Atual (ng/mL)", type: "text", defaultValue: "" },
+      { id: "psa_dt", label: "PSA Doubling Time (meses)", type: "text", defaultValue: "" },
+      { id: "status_psa", label: "Situação do PSA", type: "select", defaultValue: "Indetectável", options: ["Indetectável", "Persistente detectável", "Elevação a confirmar", "Recidiva bioquímica confirmada"] },
+      { id: "psma_pet", label: "PSMA-PET/CT", type: "select", defaultValue: "Não realizado", options: ["Não realizado", "Negativo", "Recidiva local", "Linfonodo pélvico positivo", "Metástase não regional"] },
+      { id: "continencia", label: "Continência", type: "select", defaultValue: "Não informado", options: ["Não informado", "Continente", "1 absorvente/dia", "≥ 2 absorventes/dia", "Incontinência importante"] },
+      { id: "funcao_eretil", label: "Função Erétil / Reabilitação", type: "select", defaultValue: "Não informado", options: ["Não informado", "Ereção adequada", "Em reabilitação peniana", "Disfunção erétil persistente"] },
+      { id: "observacoes", label: "Observações Clínicas", type: "text", defaultValue: "" },
+    ],
+    templates: {
+      descricao: (c: Record<string, string>) => {
+        const needsSalvageDiscussion = ["Persistente detectável", "Elevação a confirmar", "Recidiva bioquímica confirmada"].includes(c.status_psa);
+        const highRisk = c.isup === "ISUP 4" || c.isup === "ISUP 5" || c.vesiculas === "Invadidas" || c.psa_dt !== "" && Number(c.psa_dt) <= 12;
+        const plan = c.psma_pet === "Metástase não regional"
+          ? "Encaminhar para discussão multidisciplinar com oncologia clínica e radio-oncologia para estratégia sistêmica e, em casos selecionados, terapia dirigida a metástases."
+          : needsSalvageDiscussion
+            ? `Encaminhar precocemente para radio-oncologia para discutir radioterapia de resgate ao leito prostático${highRisk ? " associada a bloqueio androgênico, conforme fatores de risco e tolerabilidade" : ""}.`
+            : "Manter seguimento programado com PSA e reabilitação funcional.";
+
+        return `SEGUIMENTO ONCOLÓGICO — PÓS-PROSTATECTOMIA RADICAL
+Data da consulta: ${c.data_consulta || "___/___/______"}
+Paciente: ${c.paciente || "_______________________________"}
+Data da cirurgia: ${c.data_cirurgia || "___/___/______"}
+
+ANATOMOPATOLÓGICO:
+- pT: ${c.p_t}
+- pN: ${c.p_n}
+- ISUP / Gleason: ${c.isup}
+- Margens cirúrgicas: ${c.margens}
+- Vesículas seminais: ${c.vesiculas}
+
+MONITORAMENTO DO PSA:
+- Primeiro PSA pós-operatório: ${c.psa_primeiro || "___"} ng/mL
+- PSA atual: ${c.psa_atual || "___"} ng/mL
+- PSA doubling time: ${c.psa_dt || "___"} meses
+- Situação do PSA: ${c.status_psa}
+- PSMA-PET/CT: ${c.psma_pet}
+
+AVALIAÇÃO FUNCIONAL:
+- Continência: ${c.continencia}
+- Função erétil / reabilitação: ${c.funcao_eretil}
+
+OBSERVAÇÕES:
+${c.observacoes || "___"}
+
+CONDUTA:
+${plan}
+
+REFERÊNCIAS: EAU-EANM-ESTRO-ESUR-ISUP-SIOG Guidelines on Prostate Cancer 2026; AUA/ASTRO/SUO Salvage Therapy Guideline 2024.`;
+      },
+      posOperatorio: (c: Record<string, string>) => `ENCAMINHAMENTO À RADIO-ONCOLOGIA — PÓS-PROSTATECTOMIA
+Paciente: ${c.paciente || "_______________________________"}
+Data: ${c.data_consulta || "___/___/______"}
+
+RESUMO ONCOLÓGICO:
+- Data da prostatectomia: ${c.data_cirurgia || "___/___/______"}
+- Patologia: ${c.p_t}, ${c.p_n}, ${c.isup}
+- Margens: ${c.margens}; vesículas seminais: ${c.vesiculas}
+- PSA inicial pós-operatório: ${c.psa_primeiro || "___"} ng/mL
+- PSA atual: ${c.psa_atual || "___"} ng/mL
+- PSA-DT: ${c.psa_dt || "___"} meses
+- Situação: ${c.status_psa}
+- PSMA-PET/CT: ${c.psma_pet}
+
+SOLICITO AVALIAÇÃO PARA:
+[ ] Radioterapia de resgate precoce ao leito prostático
+[ ] Considerar irradiação pélvica conforme achados de imagem/risco
+[ ] Avaliar associação e duração de bloqueio androgênico conforme risco
+
+Observações: ${c.observacoes || "___"}
+
+Dr. Felipe de Bulhões | CRM-SP 202.291 | RQE 146538`,
+      receitaAlta: (c: Record<string, string>) => `SOLICITAÇÃO DE EXAMES — SEGUIMENTO PÓS-PROSTATECTOMIA
+Paciente: ${c.paciente || "_______________________________"}
+
+[ ] PSA total ultrassensível em ${c.status_psa === "Indetectável" ? "6 meses" : "4–8 semanas para confirmar tendência"}
+${["Persistente detectável", "Elevação a confirmar", "Recidiva bioquímica confirmada"].includes(c.status_psa) ? "[ ] Creatinina sérica e TFG estimada\n[ ] PSMA-PET/CT se PSA > 0,2 ng/mL e se o resultado modificar o plano terapêutico\n[ ] RM de pelve / leito prostático conforme planejamento de radioterapia" : ""}
+
+Justificativa clínica: seguimento oncológico após prostatectomia radical.
+
+Dr. Felipe de Bulhões | CRM-SP 202.291 | RQE 146538`,
+      orientacoes: (c: Record<string, string>) => `ORIENTAÇÕES AO PACIENTE — SEGUIMENTO APÓS CIRURGIA DE PRÓSTATA
+
+O PSA é o principal exame de acompanhamento após a prostatectomia. Espera-se que ele fique muito baixo ou indetectável. Um valor detectável isolado não define, por si só, necessidade de novo tratamento: a tendência dos exames, o resultado da cirurgia e exames de imagem orientam a decisão.
+
+SEU PLANO ATUAL:
+- Situação do PSA: ${c.status_psa}
+- Próxima medida de PSA: conforme solicitação médica
+- Continência: ${c.continencia}
+- Função erétil / reabilitação: ${c.funcao_eretil}
+
+PROCURE A EQUIPE ASSISTENTE ANTES DA PRÓXIMA CONSULTA SE HOUVER:
+- Dor óssea ou pélvica persistente
+- Sangue na urina
+- Piora importante para urinar
+- Inchaço progressivo das pernas, perda de peso não intencional ou cansaço persistente
+
+Mantenha atividade física compatível com sua recuperação e reabilitação do assoalho pélvico conforme orientação.
+
+REFERÊNCIA: EAU Guidelines on Prostate Cancer 2026.`,
     },
   },
 ];

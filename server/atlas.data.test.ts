@@ -12,7 +12,7 @@ import { proceduresExtra } from "../client/src/data/proceduresExtra";
 
 describe("Atlas data integrity", () => {
   it("has the expected number of entries", () => {
-    expect(atlasEntries.length).toBe(68);
+    expect(atlasEntries.length).toBe(69);
   });
 
   it("every entry has required, non-empty fields", () => {
@@ -80,12 +80,51 @@ describe("Atlas data integrity", () => {
     }
   });
 
+  it("figuras marcadas como sensíveis têm imagem e rótulo claro", () => {
+    const sensitiveFigures = atlasEntries.flatMap((entry) =>
+      entry.figures.map((figure) => ({ entry, figure })).filter(({ figure }) => figure.sensitive),
+    );
+
+    expect(sensitiveFigures.length).toBeGreaterThan(0);
+    for (const { entry, figure } of sensitiveFigures) {
+      expect(
+        Boolean(figure.imageUrl),
+        `figura sensível sem imagem em ${entry.id}: "${figure.caption}"`,
+      ).toBe(true);
+      expect(
+        (figure.sensitiveLabel ?? "").length,
+        `figura sensível sem rótulo em ${entry.id}: "${figure.caption}"`,
+      ).toBeGreaterThan(2);
+    }
+  });
+
   it("o Atlas tem pelo menos 47 figuras com imagem real (andrologia/estética)", () => {
     const comImagem = atlasEntries.reduce(
       (acc, e) => acc + e.figures.filter((f) => f.imageUrl && f.imageUrl !== "").length,
       0
     );
     expect(comImagem).toBeGreaterThanOrEqual(47);
+  });
+
+  it("todo procedimento tem ao menos uma figura com imagem rastreável", () => {
+    const semImagem = atlasEntries
+      .filter((entry) => !entry.figures.some((figure) => figure.imageUrl && figure.imageUrl !== ""))
+      .map((entry) => entry.id);
+
+    expect(semImagem, `entradas sem cobertura visual: ${semImagem.join(", ")}`).toEqual([]);
+  });
+
+  it("todo quadro de figura possui imagem rastreável", () => {
+    const pendentes = atlasEntries.flatMap((entry) =>
+      entry.figures
+        .map((figure, index) => ({ entryId: entry.id, caption: figure.caption, index, imageUrl: figure.imageUrl }))
+        .filter((figure) => !figure.imageUrl?.trim()),
+    );
+
+    expect(
+      pendentes,
+      `quadros sem imagem: ${pendentes.map((figure) => `${figure.entryId}[${figure.index}] ${figure.caption}`).join("; ")}`,
+    ).toEqual([]);
   });
 
   it("every figure has a caption and search terms", () => {
@@ -176,8 +215,8 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
     expect(semAtlas, `procedimentos sem entrada no Atlas: ${semAtlas.join(", ")}`).toEqual([]);
   });
 
-  it("o catálogo exposto não contém IDs de procedimento duplicados", () => {
-    const ids = procedures.map((procedure) => procedure.id);
+  it("o catálogo não contém IDs duplicados", () => {
+    const ids = procedures.map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
@@ -198,8 +237,8 @@ describe("Cobertura cruzada catálogo <-> Atlas", () => {
   });
 
   it("catálogo e Atlas têm contagens esperadas", () => {
-    expect(procedures.length).toBe(64);
-    expect(atlasEntries.length).toBe(68);
+    expect(procedures.length).toBe(65);
+    expect(atlasEntries.length).toBe(69);
   });
 
   it("o link reverso (catálogo->Atlas) resolve para uma entrada existente em todos os procedimentos", () => {

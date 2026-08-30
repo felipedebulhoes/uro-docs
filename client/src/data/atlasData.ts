@@ -14,6 +14,8 @@ export interface AtlasFigure {
   imageUrl?: string; // preenchido quando uma imagem (gerada/open-access) está disponível
   credit?: string;   // fonte/crédito da imagem
   sourceUrl?: string; // link direto para a fonte original (artigo/atlas), uso pessoal
+  sensitive?: boolean; // fotografia genital, intraoperatória ou de complicação
+  sensitiveLabel?: string; // rótulo curto exibido sobre a figura
 }
 
 export interface AtlasEntry {
@@ -1712,15 +1714,19 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Inverted V-Y plasty penile lengthening; V-Y advancement flap penis base",
         "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_1_beb39bd4.jpg",
         "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
-        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia intraoperatória"
       },
       {
-        "caption": "Técnica de Ligamentólise e Interposição de Espaçador",
-        "description": "Visão intraoperatória (ilustração cirúrgica) mostrando o afastamento do pênis caudalmente, a secção do ligamento suspensor rente ao osso púbico e a fixação de um espaçador (silicone ou matriz dérmica) no espaço morto criado para evitar a refixação",
-        "searchTerms": "Suspensory ligament release surgical technique; Ligamentolysis penis spacer insertion",
+        "caption": "Avaliação Intraoperatória do Comprimento Exposto",
+        "description": "Fotografias intraoperatórias de mensuração do comprimento peniano exposto durante a liberação do sistema suspensor. A figura ilustra a documentação objetiva do desfecho, e não a interposição de espaçador.",
+        "searchTerms": "Penile length measurement intraoperative suspensory ligament release; exposed penile length documentation",
         "imageUrl": "/manus-storage/alongamento-peniano-seccao-do-ligamento-suspensor-ligamentol_2_03419f2f.jpg",
         "credit": "Morphometric Predictors of Penile Length Increase After Division of its Suspensory Ligament. (CC BY)",
-        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/"
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11058788/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia intraoperatória"
       }
     ]
   },
@@ -1780,7 +1786,10 @@ export const atlasEntries: AtlasEntry[] = [
       {
         "caption": "Colheita e Preparação do Enxerto Dérmico-Gorduroso",
         "description": "A marcação elíptica na prega infraglútea, o processo de desepitelização (deixando a derme intacta) e o enxerto finalizado fora do corpo, mostrando a camada de derme e a camada de gordura subjacente",
-        "searchTerms": "Dermal fat graft harvest infragluteal fold; De-epithelialized dermal fat graft preparation"
+        "searchTerms": "Dermal fat graft harvest infragluteal fold; De-epithelialized dermal fat graft preparation",
+        "imageUrl": "/manus-storage/enxerto-dermogorduroso-preparo_5dcbe4f9.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/enxerto-dermogorduroso-preparo_5dcbe4f9.png"
       },
       {
         "caption": "Posicionamento e Fixação do Enxerto no Pênis",
@@ -1788,7 +1797,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Dermal fat graft penile augmentation surgical technique; Augmentation phalloplasty dermal fat graft wrapping",
         "imageUrl": "/manus-storage/faloplastia-de-aumento-espessamento-peniano-com-enxerto-derm_2_3486e9a6.jpg",
         "credit": "Penis Girth Augmentation Using SEPA Flap and Dermofat Grafts. (CC BY-NC-SA)",
-        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10768958/"
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10768958/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia intraoperatória"
       }
     ]
   },
@@ -1867,7 +1878,9 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "hyaluronic acid penile filler clinical result complication photo; penile filler nodule edema",
         "imageUrl": "/manus-storage/final_fig4_complic_6b4043e7.jpg",
         "credit": "Yang DY, et al. BMC Urology 2023;23:71 (CC BY 4.0)",
-        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9"
+        "sourceUrl": "https://bmcurol.biomedcentral.com/articles/10.1186/s12894-023-01214-9",
+        "sensitive": true,
+        "sensitiveLabel": "Fotos clínicas e complicações"
       },
       {
         "caption": "Incidência de Eventos Adversos (Meta-análise)",
@@ -1876,6 +1889,14 @@ export const atlasEntries: AtlasEntry[] = [
         "imageUrl": "/manus-storage/final_fig6_forestplot_e2541eed.png",
         "credit": "Salama A, et al. African Journal of Urology 2024;30:34 (CC BY 4.0)",
         "sourceUrl": "https://link.springer.com/article/10.1186/s12301-024-00464-9"
+      },
+      {
+        "caption": "Comparativo anatomotécnico: haste versus glande",
+        "description": "Esquema médico autoral que diferencia o preenchimento de circunferência da haste — no plano superficial entre Dartos e Buck — do preenchimento de glande — no plano subepitelial/lâmina própria. O objetivo, a distribuição e os riscos críticos não são intercambiáveis.",
+        "searchTerms": "penile shaft versus glans hyaluronic acid filler anatomy injection plane comparison",
+        "imageUrl": "/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png",
+        "credit": "Ilustração médica autoral comparativa para o Atlas Urológico, 2026. Base anatômica e técnica: referências do dossiê.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png"
       }
     ]
   },
@@ -1946,7 +1967,17 @@ export const atlasEntries: AtlasEntry[] = [
         "searchTerms": "Glans penis necrosis filler overinjection complication; penile filler pressure necrosis ischemia",
         "imageUrl": "/manus-storage/glande_fig3_necrose_moon2015_41ffc987.jpg",
         "credit": "Moon DG, et al. Penile Girth Enhancement Using Injectable Hyaluronic Acid Gel. World J Mens Health. 2015;33(2):50-61 (CC BY-NC)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/"
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550597/",
+        "sensitive": true,
+        "sensitiveLabel": "Complicação clínica sensível"
+      },
+      {
+        "caption": "Comparativo anatomotécnico: glande versus haste",
+        "description": "Esquema médico autoral que contrasta a deposição superficial, conservadora e simétrica na glande com a distribuição circunferencial no plano de segurança da haste. Destaca meato, corpo esponjoso e risco de isquemia por pressão.",
+        "searchTerms": "glans versus penile shaft hyaluronic acid filler anatomy injection plane comparison",
+        "imageUrl": "/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png",
+        "credit": "Ilustração médica autoral comparativa para o Atlas Urológico, 2026. Base anatômica e técnica: referências do dossiê.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/penile-filler-shaft-vs-glans-comparison_f02eb1f4.png"
       }
     ]
   },
@@ -1996,32 +2027,22 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia e Fisiopatologia do Pênis Enterrado",
-        "description": "Um corte sagital da pelve masculina demonstrando o pênis retraído sob um grande coxim adiposo suprapúbico (escutcheon). Deve destacar a frouxidão do ligamento fundiforme e a telescopagem da pele peniana",
+        "caption": "Apresentação Clínica do Pênis Enterrado Adquirido",
+        "description": "Fotografia clínica sensível demonstrando o ocultamento da haste pelo coxim adiposo suprapúbico em pênis enterrado adquirido no adulto. Usada para contextualizar a condição, não como guia técnico.",
         "searchTerms": "Adult acquired buried penis anatomy sagittal view; Buried penis pathophysiology escutcheon diagram",
         "imageUrl": "/manus-storage/lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a_0_6331b663.jpg",
         "credit": "Wikimedia Commons (CC BY-SA 4.0)",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buried_penis_due_to_obesity.jpg"
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buried_penis_due_to_obesity.jpg",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia clínica sensível"
       },
       {
-        "caption": "Marcação Cirúrgica e Escutcheonectomia",
-        "description": "Visão anterior da região pélvica com as marcações cirúrgicas para a incisão em losango (diamond-shaped) na região suprapúbica e a incisão subcoronal. Uma segunda imagem mostrando a excisão em bloco do coxim adiposo até a fáscia abdominal",
-        "searchTerms": "Buried penis repair surgical markings; Escutcheonectomy diamond incision technique"
-      },
-      {
-        "caption": "Fixação Penopúbica (Tack Sutures)",
-        "description": "Visão intraoperatória detalhada (close-up) da base do pênis após o degloving. Deve ilustrar a passagem dos fios de sutura inabsorvíveis ancorando a derme da pele peniana/púbica à fáscia de Buck e ao periósteo da sínfise púbica nas posições de 2 e 10 horas",
-        "searchTerms": "Buried penis tacking sutures pubic symphysis; Penopubic fixation sutures buried penis repair"
-      },
-      {
-        "caption": "Aplicação e Fixação do Enxerto de Pele (STSG)",
-        "description": "A haste peniana completamente deglovada sendo coberta por um enxerto de pele de espessura parcial malhado (meshed STSG). Deve mostrar as suturas fixando o enxerto à coroa da glande distalmente e à base do pênis proximalmente",
-        "searchTerms": "Split-thickness skin graft penile shaft application; Meshed STSG buried penis reconstruction"
-      },
-      {
-        "caption": "Curativo Compressivo (Bolster) ou Terapia a Vácuo (VAC)",
-        "description": "O aspecto final da cirurgia com a aplicação do curativo de contenção (tie-over bolster dressing) amarrado sobre o enxerto peniano, ou a aplicação de um sistema de terapia de ferida por pressão negativa (VAC) envolvendo o pênis",
-        "searchTerms": "Penile skin graft bolster dressing; Negative pressure wound therapy VAC penile graft"
+        "caption": "Reconstrução do Pênis Enterrado — Passos Essenciais",
+        "description": "Esquema médico em quatro tempos: marcação suprapúbica e escutcheonectomia, liberação e fixação penopúbica, cobertura com enxerto de pele parcial malhado e curativo de contenção. Complementa a fotografia inicial sem expor imagens intraoperatórias sensíveis.",
+        "searchTerms": "Adult acquired buried penis reconstruction escutcheonectomy penopubic fixation split thickness skin graft bolster diagram",
+        "imageUrl": "/manus-storage/penis-enterrado-reconstrucao_e9173e12.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/penis-enterrado-reconstrucao_e9173e12.png"
       }
     ]
   },
@@ -2071,22 +2092,12 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Anatomia e Marcação Pré-operatória",
-        "description": "Uma visão anterior e lateral do escroto com ptose, demonstrando a marcação cirúrgica em formato de elipse vertical ou \"marca de verificação\" (check-mark) na rafe mediana, e a marcação da Z-plastia na junção penoescrotal",
-        "searchTerms": "Scrotal reduction surgery markings; Aesthetic scrotoplasty incision design; Penoscrotal webbing Z-plasty marking"
-      },
-      {
-        "caption": "Dissecção e Plano Cirúrgico",
-        "description": "Uma visão intraoperatória ilustrando a excisão do retalho de pele, demonstrando claramente o plano de dissecção superficial à fáscia de Dartos, com a túnica vaginal e os testículos intactos e não expostos",
-        "searchTerms": "Scrotoplasty Dartos fascia preservation; Scrotal lift surgical plane; Excision of redundant scrotal skin"
-      },
-      {
-        "caption": "Correção do *Webbing* e Fechamento",
-        "description": "O detalhe da transposição dos retalhos da Z-plastia na base do pênis para aprofundar o ângulo penoescrotal, e o aspecto final do fechamento da pele escrotal em formato de \"Y\" invertido ou linha vertical ao longo da rafe",
-        "searchTerms": "Penoscrotal web Z-plasty flap transposition; Ventral phalloplasty closure; Scrotal reduction final suture line",
-        "imageUrl": "/manus-storage/escrotoplastia-scrotal-lift-lifting-escrotal-estetico_2_d13b8ac7.jpg",
-        "credit": "Evaluation of Z-plasty versus Heineke-Mikulicz scrotoplasty in the management of penoscrotal web in pediatric age group (CC BY 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10960422/"
+        "caption": "Escrotoplastia Adulta — Marcação, Plano e Correção de Webbing",
+        "description": "Esquema médico adulto em quatro tempos com marcação de ressecção vertical, preservação superficial à fáscia de Dartos, transposição de retalhos em Z-plastia para webbing penoescrotal e fechamento simétrico. Substitui a imagem pediátrica, que não era representativa do scrotal lift estético no adulto.",
+        "searchTerms": "Adult aesthetic scrotoplasty scrotal lift marking dartos fascia penoscrotal web Z-plasty diagram",
+        "imageUrl": "/manus-storage/escrotoplastia-adulta-tecnica_2edda452.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/escrotoplastia-adulta-tecnica_2edda452.png"
       }
     ]
   },
@@ -2407,35 +2418,32 @@ export const atlasEntries: AtlasEntry[] = [
     ],
     "figures": [
       {
-        "caption": "Marcação Cirúrgica (Sleeve Technique)",
-        "description": "Pênis em visão dorsal e lateral, ilustrando duas linhas pontilhadas paralelas: uma na pele da haste peniana e outra na mucosa interna (próxima ao sulco coronal), demonstrando a área de prepúcio redundante a ser excisada",
-        "searchTerms": "Sleeve circumcision technique marking; adult circumcision double incision lines; circumcision surgical planning",
+        "caption": "Marcação Cutânea e Incisão Dorsal",
+        "description": "Fotografias clínicas de uma técnica de incisão dorsal com marcação cutânea. A figura é útil para planejamento da ressecção, mas não representa isoladamente uma sleeve resection completa.",
+        "searchTerms": "Adult circumcision dorsal slit marking technique; circumcision surgical planning",
         "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_0_eeacdb6e.jpg",
         "credit": "Subcutaneous tissue-sparing dorsal slit with new marking technique: A novel circumcision method (CC BY-NC-ND 4.0)",
-        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6494260/"
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6494260/",
+        "sensitive": true,
+        "sensitiveLabel": "Fotografia clínica sensível"
       },
       {
-        "caption": "Dissecção do Colar de Pele (Sleeve Resection)",
-        "description": "O momento cirúrgico em que o anel de pele e tecido subcutâneo (dartos) está sendo dissecado e removido, evidenciando a preservação da fáscia de Buck e dos vasos dorsais subjacentes",
-        "searchTerms": "Sleeve circumcision prepuce excision; circumcision dartos dissection; adult circumcision preserving Buck's fascia"
+        "caption": "Circuncisão Estética — Ressecção em Sleeve e Síntese",
+        "description": "Esquema médico em quatro tempos: dupla marcação circunferencial, ressecção do colar de pele com preservação dos planos profundos, hemostasia e pontos cardeais, seguido de fechamento subcoronal simétrico.",
+        "searchTerms": "Aesthetic sleeve circumcision skin resection cardinal sutures subcoronal closure diagram",
+        "imageUrl": "/manus-storage/circuncisao-estetica-sleeve_abdaccba.png",
+        "credit": "Ilustração médica autoral para o Atlas Urológico, 2026.",
+        "sourceUrl": "https://urodocs-dfufvxsc.manus.space/manus-storage/circuncisao-estetica-sleeve_abdaccba.png"
       },
       {
-        "caption": "Hemostasia e Aproximação",
-        "description": "A ferida cirúrgica aberta após a remoção da pele, com uso de pinça bipolar para hemostasia, e a colocação dos primeiros pontos cardeais (12, 3, 6 e 9 horas) alinhando a pele da haste com a mucosa interna",
-        "searchTerms": "Circumcision hemostasis bipolar; circumcision quadrant sutures; circumcision skin approximation"
-      },
-      {
-        "caption": "Resultado Final e Sutura Estética",
-        "description": "O pênis com a sutura finalizada, demonstrando uma linha de incisão simétrica e limpa logo abaixo da coroa da glande. Idealmente, mostrando uma técnica de sutura subcuticular ou uso de cola cirúrgica para evitar marcas",
-        "searchTerms": "Cosmetic circumcision final result; circumcision subcuticular suture; aesthetic circumcision healing"
-      },
-      {
-        "caption": "Manejo do Frênulo (Frenuloplastia associada)",
-        "description": "Visão ventral do pênis detalhando a incisão transversal do frênulo e o fechamento longitudinal (V-Y ou Y-V) para ganho de comprimento, integrado à linha de sutura da circuncisão",
+        "caption": "Resultado Clínico após Frenuloplastia Associada",
+        "description": "Fotografias clínicas de resultado após frenuloplastia. A imagem demonstra o desfecho cicatricial, e não uma sequência de incisão ou sutura intraoperatória.",
         "searchTerms": "Frenuloplasty with circumcision; circumcision ventral view frenulum; frenulectomy surgical technique",
         "imageUrl": "/manus-storage/circuncisao-estetica-revisao-de-circuncisao_4_17ca2a53.jpg",
         "credit": "Before and after frenoloplasty (CC BY-SA 4.0)",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Before_and_after_frenoloplasty.jpg"
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Before_and_after_frenoloplasty.jpg",
+        "sensitive": true,
+        "sensitiveLabel": "Resultado clínico sensível"
       }
     ]
   },
@@ -4655,8 +4663,1235 @@ export const atlasEntries: AtlasEntry[] = [
       }
     ],
     "figures": []
+  },
+  {
+    "id": "seguimento-pos-prostatectomia",
+    "name": "Seguimento Pós-Prostatectomia",
+    "category": "Oncologia",
+    "icon": "📈",
+    "evidence": "EAU-EANM-ESTRO-ESUR-ISUP-SIOG Guidelines on Prostate Cancer 2026 | AUA/ASTRO/SUO Salvage Therapy Guideline 2024",
+    "sections": [
+      {
+        "title": "Objetivos e Cronograma de Seguimento",
+        "body": "## Objetivos do Seguimento\n\nO seguimento após prostatectomia radical combina controle oncológico, reabilitação funcional e apoio psicossocial. Em cada consulta, registrar PSA, sintomas de progressão, continência, função erétil, complicações e preferências do paciente.\n\n### Cronograma orientador (EAU 2026)\n\n| Momento | Avaliação principal |\n|---|---|\n| 6–8 semanas após cirurgia | PSA basal pós-operatório; anatomopatológico definitivo; continência, ereção e recuperação clínica |\n| Até 3 anos | História dirigida + PSA a cada 6 meses |\n| Após 3 anos | História dirigida + PSA anual, enquanto o paciente tiver expectativa de vida e condição clínica para tratamento de resgate |\n\n> O PSA deve se tornar indetectável por volta de dois meses após a prostatectomia. Não há indicação de imagem de rotina em paciente assintomático com PSA indetectável; solicitar imagem apenas se o resultado modificar a conduta.\n\n### Avaliação funcional estruturada\n\n- **Continência:** número de absorventes/dia, urgência e impacto na qualidade de vida.\n- **Função erétil:** EHS/IIEF-5, reabilitação peniana, resposta a iPDE5 ou terapias intracavernosas.\n- **Sintomas e sinais de alerta:** dor óssea/pélvica, hematúria, edema de membros inferiores, piora progressiva de LUTS, fadiga ou perda ponderal requerem avaliação dirigida."
+      },
+      {
+        "title": "PSA Pós-Operatório e Recidiva Bioquímica",
+        "body": "## Como interpretar o PSA após prostatectomia radical\n\n| Situação | Interpretação e conduta inicial |\n|---|---|\n| PSA indetectável | Seguimento programado; sem imagem de rotina se assintomático |\n| PSA persistentemente detectável | Avaliar com repetição, cinética, fatores patológicos e, se o resultado alterar o tratamento, PSMA-PET/CT; discutir tratamento multimodal precoce se sem metástase distante |\n| PSA em ascensão confirmada | Estratificar risco de recidiva, solicitar imagem seletiva e discutir radioterapia de resgate precoce |\n| PSA ≥ 0,2 ng/mL em duas dosagens | Definição operacional de recidiva bioquímica usada pela AUA após prostatectomia |\n| PSA > 0,4 ng/mL e ascendente | Limiar que melhor prediz metástase subsequente no guideline EAU, sem significar que se deva aguardar esse valor para discutir resgate |\n\n**PSA ultrassensível:** pode apoiar a vigilância em pacientes de maior risco, mas valor isolado muito baixo não deve desencadear tratamento. Confirmar tendência de elevação e interpretar junto a margens, pT, ISUP, PSA doubling time (PSA-DT), tempo até a falha e expectativa de vida.\n\n> **Importante:** o critério Phoenix (nadir + 2 ng/mL) é utilizado após radioterapia, não após prostatectomia radical."
+      },
+      {
+        "title": "Estratificação de Risco de Recidiva (EAU)",
+        "body": "## Categorias EAU de risco após prostatectomia\n\n| Categoria | Critérios | Implicação prática |\n|---|---|---|\n| Baixo risco de recidiva bioquímica | PSA-DT > 12 meses **e** ISUP patológico < 4 | Pode permitir confirmação de tendência e planejamento individualizado |\n| Alto risco de recidiva bioquímica | PSA-DT ≤ 12 meses **ou** ISUP patológico 4–5 | Priorizar estadiamento que altere a conduta e discussão precoce de resgate |\n\nFatores associados a pior prognóstico incluem PSA persistentemente detectável, ISUP alto, pT3/4, invasão de vesículas seminais, margens positivas, linfonodos positivos, intervalo curto até elevação do PSA, PSA-DT curto e PSA mais alto antes da radioterapia de resgate.\n\n### Cálculo de cinética\n\nO PSA-DT exige dosagens seriadas e, idealmente, pelo menos três valores obtidos em intervalo ≥ 4 semanas, preferencialmente dentro dos últimos 12 meses. A velocidade de PSA (PSAV) é complementar e não substitui a avaliação da tendência, do PSA-DT e dos dados anatomopatológicos."
+      },
+      {
+        "title": "Imagem na Suspeita de Recidiva",
+        "body": "## Imagem seletiva e estadiamento\n\n- **PSMA-PET/CT:** considerar quando PSA for > 0,2 ng/mL e o resultado puder modificar o plano de tratamento. É a modalidade mais sensível em PSA baixo, especialmente < 0,5 ng/mL.\n- **RM de pelve / leito prostático:** útil para caracterizar recidiva local e planejamento da radioterapia; pode complementar o PSMA-PET/CT.\n- **TC e cintilografia óssea:** reservar para maior carga de doença, sintomas ou quando influenciar decisão terapêutica.\n- **PSMA-PET/CT negativo não exclui doença microscópica no leito prostático** e não deve, isoladamente, impedir radioterapia de resgate se houver indicação clínica.\n\nA indicação e o campo de radioterapia devem ser definidos conjuntamente com radio-oncologia, com incorporação de lesões pélvicas identificadas no planejamento quando apropriado."
+      },
+      {
+        "title": "Tratamento de Resgate: Indicações e Estratégias",
+        "body": "## Radioterapia de resgate precoce (SRT)\n\nA SRT do leito prostático é a estratégia potencialmente curativa para PSA detectável/em ascensão após prostatectomia, desde que não haja doença metastática incompatível com controle local e que haja expectativa de vida suficiente para benefício. Os melhores resultados são observados com PSA baixo.\n\n| Situação | Estratégia a discutir em equipe multidisciplinar |\n|---|---|\n| PSA detectável/em ascensão, sem metástase distante | Encaminhar precocemente à radio-oncologia; não postergar SRT até PSA alto |\n| Candidato à SRT com PSA ≤ 0,5 ng/mL | Oferecer SRT precoce (recomendação AUA/ASTRO/SUO 2024) |\n| Alto risco clínico (PSA persistente, PSA-DT ≤ 6 meses, ISUP 4–5, invasão de vesícula seminal ou PSA pré-SRT ≥ 0,7) | Considerar SRT + bloqueio androgênico; duração mínima usual de 4–6 meses, podendo ser estendida conforme risco e tolerabilidade |\n| PSMA-PET/CT com linfonodo pélvico positivo | Incorporar lesão/cadeias pélvicas ao plano de RT e discutir ADT associada |\n| Metástase não regional ou doença disseminada | Discussão com oncologia clínica/radio-oncologia para estratégia sistêmica e, em casos selecionados, terapia dirigida a metástases |\n\n**Não é rotina indicar radioterapia adjuvante imediata para todos os pacientes com fatores patológicos adversos.** O modelo contemporâneo privilegia vigilância com PSA e SRT precoce quando necessária, individualizando por risco, efeitos funcionais, comorbidades e preferência do paciente."
+      },
+      {
+        "title": "Laudo-Modelo: Consulta de Seguimento Pós-Prostatectomia",
+        "body": "**SEGUIMENTO PÓS-PROSTATECTOMIA RADICAL**\n\nData da cirurgia: ___/___/______  |  Data da consulta: ___/___/______\n\n**Anatomopatológico:** pT___ pN___ | ISUP/Gleason: ___ | Margens: [ ] Livres [ ] Positivas | Vesículas seminais: [ ] Livres [ ] Invadidas\n\n**PSA:**\n- Primeiro PSA pós-operatório: ___ ng/mL em ___/___/______\n- PSA atual: ___ ng/mL em ___/___/______\n- PSA-DT (se disponível): ___ meses\n- Situação: [ ] Indetectável [ ] Persistente [ ] Elevação confirmada [ ] Recidiva bioquímica\n\n**Imagem na recidiva:**\n[ ] Não indicada no momento  [ ] PSMA-PET/CT  [ ] RM de pelve  [ ] TC/cintilografia\nResultado: __________________________________________________\n\n**Avaliação funcional:**\nContinência / absorventes por dia: __________________________\nFunção erétil / reabilitação: ______________________________\n\n**Estratificação e conduta:**\n[ ] Seguimento programado\n[ ] Repetir PSA para confirmar tendência\n[ ] Encaminhar para radio-oncologia para SRT precoce\n[ ] Discutir SRT + ADT\n[ ] Discussão multidisciplinar / oncologia clínica\n\nMédico: __________________________ CRM: __________________"
+      },
+      {
+        "title": "Referências",
+        "body": "1. **EAU-EANM-ESTRO-ESUR-ISUP-SIOG Guidelines on Prostate Cancer 2026.** Capítulos Follow Up e Treatment. European Association of Urology. https://uroweb.org/guidelines/prostate-cancer\n2. **Morgan TM, Boorjian SA, Buyyounouski MK, et al.** Salvage Therapy for Prostate Cancer: AUA/ASTRO/SUO Guideline Part I. *J Urol.* 2024;211(4):509-517. DOI: 10.1097/JU.0000000000003892.\n3. **Morgan TM, Boorjian SA, Buyyounouski MK, et al.** Salvage Therapy for Prostate Cancer: AUA/ASTRO/SUO Guideline Part II. *J Urol.* 2024;211(4):518-525. DOI: 10.1097/JU.0000000000003891.\n4. **Tilki D, et al.** Prostate-specific antigen level at the time of salvage therapy after radical prostatectomy for prostate cancer and the risk of death. *J Clin Oncol.* 2023;41(13):2427-2435. DOI: 10.1200/JCO.22.02480.\n5. **Van den Broeck T, et al.** Biochemical recurrence in prostate cancer: the European Association of Urology prostate cancer guidelines panel recommendations. *Eur Urol Focus.* 2020;6(2):231-234. DOI: 10.1016/j.euf.2019.06.004."
+      }
+    ],
+    "figures": []
   }
 ];
+
+const atlasImageAdditions: Record<string, AtlasFigure[]> = {
+  "postectomia-circuncisao-no-adulto": [
+    {
+      caption: "Etapas da postectomia no adulto",
+      description: "Painel intraoperatório da técnica DGS modificada, incluindo fenda dorsal, marcações, ressecção e síntese do prepúcio.",
+      searchTerms: "adult circumcision DGS dorsal slit guillotine sleeve surgical steps",
+      imageUrl: "/manus-storage/postectomia_adulto_fig2_816fc090.jpg",
+      credit: "Wang D et al. Modified DGS procedure for adult circumcision. Int J Impot Res. 2025. Fig. 2. (CC BY-NC) — PMC12700785",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12700785/",
+    },
+    {
+      caption: "Incisão dorsal na postectomia",
+      description: "Imagem intraoperatória do passo de incisão dorsal para ampliar a exposição da glande durante circuncisão adulta.",
+      searchTerms: "adult circumcision dorsal slit intraoperative technique",
+      imageUrl: "/manus-storage/postectomia_dorsal_slit_fig3_1e1b66a4.jpg",
+      credit: "Abdulwahab-Ahmed A, Mungadi IA. Techniques of male circumcision. J Surg Tech Case Rep. 2013. Fig. 3. (CC BY-NC) — PMC3888996",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3888996/",
+    },
+  ],
+  "frenuloplastia-peniana-correcao-de-freio-curto": [
+    {
+      caption: "Frenuloplastia a laser de CO₂",
+      description: "Sequência clínica mostrando lesão do frênulo, aspecto imediato após frenuloplastia a laser de CO₂ e cicatrização no seguimento.",
+      searchTerms: "penile frenuloplasty CO2 laser frenulum breve clinical result",
+      imageUrl: "/manus-storage/frenuloplastia_laser_fig1_c2f1112e.jpg",
+      credit: "Lodi G et al. CO₂ laser frenuloplasty. AME Case Rep. 2025. Fig. 1. (CC BY-NC) — PMC12053987",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12053987/",
+    },
+  ],
+  "epididimectomia": [
+    {
+      caption: "Epididimectomia assistida por escrotoscopia",
+      description: "Sequência intraoperatória de exposição, inspeção e exérese de lesão epididimária por acesso escrotoscópico.",
+      searchTerms: "epididymectomy scrotoscopy surgical steps epididymal mass excision",
+      imageUrl: "/manus-storage/epididimectomia_escrotoscopia_fig1_6b46fcbe.jpg",
+      credit: "Qin C et al. Scrotoscopy-assisted epididymal mass excision. Front Surg. 2022. Fig. 1. (CC BY 4.0) — PMC8907580",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8907580/",
+    },
+  ],
+  "espermatocelectomia-exerese-de-cisto-de-epididimo": [
+    {
+      caption: "Correlação de cisto epididimário",
+      description: "Painel com ultrassonografia, achado intraoperatório e correlação histológica de cisto epididimário submetido à exérese.",
+      searchTerms: "spermatocelectomy epididymal cyst ultrasound intraoperative pathology",
+      imageUrl: "/manus-storage/espermatocelectomia_fig2_c6c813b6.jpg",
+      credit: "Xu Q et al. Epididymal cyst excision. Front Surg. 2025. Fig. 2. (CC BY 4.0) — PMC12643962",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12643962/",
+    },
+  ],
+  "orquidopexia-na-torcao-testicular-exploracao-escrotal-de-urg": [
+    {
+      caption: "Exploração escrotal na torção testicular",
+      description: "Achado intraoperatório de testículo torcido e congesto durante exploração escrotal de urgência, antes da decisão de viabilidade e fixação.",
+      searchTerms: "testicular torsion emergency scrotal exploration orchiopexy intraoperative",
+      imageUrl: "/manus-storage/orquidopexia_torcao_fig2_c654e2be.jpg",
+      credit: "Bhardwaj R et al. Testicular torsion exploration. Cureus. 2021. Fig. 2. (CC BY 4.0) — PMC8424974",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8424974/",
+    },
+  ],
+  "orquiectomia-radical-inguinal-tumor-de-testiculo": [
+    {
+      caption: "Peça de orquiectomia radical inguinal",
+      description: "Peça cirúrgica após orquiectomia radical por tumor testicular volumoso, ilustrando a apresentação macroscópica do espécime.",
+      searchTerms: "radical inguinal orchiectomy testicular tumor surgical specimen",
+      imageUrl: "/manus-storage/orquiectomia_radical_peca_fig3_47e773bd.jpg",
+      credit: "Ali FH et al. Radical orchiectomy specimen for testicular tumour. J Surg Case Rep. 2026. Fig. 3. (CC BY 4.0) — PMC13132600",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13132600/",
+    },
+  ],
+  "prostatectomia-radical": [
+    {
+      caption: "Posicionamento e portais na prostatectomia robótica",
+      description: "Esquema de posicionamento do paciente e distribuição dos portais para prostatectomia radical assistida por robô.",
+      searchTerms: "robotic radical prostatectomy patient positioning port placement RARP",
+      imageUrl: "/manus-storage/prostatectomia_radical_portais_fig1_d43a7fd7.jpg",
+      credit: "Huynh LM, Ahlering TE. Robotic radical prostatectomy. J Endourol. 2018. Fig. 1. (CC BY 4.0) — PMC6071518",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6071518/",
+    },
+    {
+      caption: "Relações anatômicas na prostatectomia radical",
+      description: "Diagrama anatômico das relações entre próstata, vesículas seminais, bexiga, uretra e feixes neurovasculares relevantes para preservação funcional.",
+      searchTerms: "robotic radical prostatectomy neurovascular bundle anatomy diagram",
+      imageUrl: "/manus-storage/prostatectomia_anatomia_nervos_fig1_a986fd1c.jpg",
+      credit: "Hoeh B et al. Nerve-sparing robotic radical prostatectomy anatomy. Front Surg. 2022. Fig. 1. (CC BY 4.0) — PMC8901727",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8901727/",
+    },
+  ],
+  "reimplante-ureteral": [
+    {
+      caption: "Reimplante ureteral extravesical de Lich-Gregoir",
+      description: "Esquema passo a passo da técnica extravesical de Lich-Gregoir, evidenciando a confecção do túnel submucoso e a reconstrução.",
+      searchTerms: "Lich Gregoir extravesical ureteral reimplantation surgical technique diagram",
+      imageUrl: "/manus-storage/reimplante_ureteral_lich_gregoir_fig1_b7a13e5f.jpg",
+      credit: "Bustangi N et al. Extravesical Lich-Gregoir ureteral reimplantation. Front Pediatr. 2018. Fig. 1. (CC BY 4.0) — PMC6305429",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6305429/",
+    },
+  ],
+  "resseccao-de-condilomas-genitais-hpv-exerese-e-eletrocauteri": [
+    {
+      caption: "Exérese de condiloma genital extenso",
+      description: "Aspecto intraoperatório após exérese ampla de condiloma acuminado, com demonstração das superfícies dorsal e ventral.",
+      searchTerms: "giant condyloma acuminatum wide excision genital surgical technique",
+      imageUrl: "/manus-storage/ressecao_condilomas_fig2_fbb488af.jpg",
+      credit: "Yunir PE et al. Wide excision of giant condyloma acuminatum. Case Rep Urol. 2016. Fig. 2. (CC BY 4.0) — PMC5128710",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5128710/",
+    },
+  ],
+  "rtu-prostata": [
+    {
+      caption: "Marcos apicais na enucleação bipolar transuretral",
+      description: "Visão endoscópica de marcações mucosas no ápice prostático para orientação da ressecção/enucleação bipolar.",
+      searchTerms: "bipolar transurethral prostate resection apical landmarks endoscopic view",
+      imageUrl: "/manus-storage/rtup_bipolar_marcos_fig2_991e8def.jpg",
+      credit: "Mallikarjuna C et al. Bipolar transurethral prostate enucleation. Indian J Urol. 2018. Fig. 2. (CC BY-NC) — PMC6034404",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6034404/",
+    },
+    {
+      caption: "Anatomia zonal após RTU-P na ressonância",
+      description: "Ressonância magnética demonstrando anatomia zonal e alteração da uretra prostática após ressecção transuretral.",
+      searchTerms: "TURP postoperative MRI prostate zonal anatomy",
+      imageUrl: "/manus-storage/rtup_rm_pos_operatoria_fig2_4cc54993.jpg",
+      credit: "Bhat A et al. MRI after TURP and HoLEP. Indian J Urol. 2022. Fig. 2. (CC BY-NC) — PMC9730261",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9730261/",
+    },
+  ],
+  "cistoscopia": [
+    {
+      caption: "Retirada cistoscópica de cateter duplo J",
+      description: "Painel endoscópico demonstrando a apreensão e retirada de cateter ureteral duplo J durante cistoscopia.",
+      searchTerms: "cystoscopic ureteral stent removal double J grasping technique",
+      imageUrl: "/manus-storage/cistoscopia_retirada_duplo_j_fig1_71d6c86f.jpg",
+      credit: "Oswal AT et al. Cystoscopic double-J stent removal. Indian J Urol. 2017. Fig. 1. (CC BY-NC) — PMC5508442",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5508442/",
+    },
+  ],
+  "bipolep": [
+    {
+      caption: "Sequência endoscópica da enucleação bipolar",
+      description: "Painel de passos da técnica en bloc com liberação apical precoce, incluindo incisão, desenvolvimento do plano capsular e morcelação.",
+      searchTerms: "bipolar prostate enucleation BipoLEP mushroom technique endoscopic steps",
+      imageUrl: "/manus-storage/bipolep_mushroom_fig1_f1e011dd.jpg",
+      credit: "Kiss Z et al. En bloc bipolar prostate enucleation mushroom technique. Medicina (Kaunas). 2025. Fig. 1. (CC BY 4.0) — PMC12566086",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12566086/",
+    },
+  ],
+  "adrenalectomia": [
+    {
+      caption: "Adrenalectomia laparoscópica para massa adrenal",
+      description: "Painel com imagem pré-operatória, posicionamento, acesso laparoscópico, dissecção e peça cirúrgica após adrenalectomia.",
+      searchTerms: "laparoscopic adrenalectomy adrenal mass surgical steps specimen",
+      imageUrl: "/manus-storage/adrenalectomia_laparoscopica_fig2_493f15d6.jpg",
+      credit: "Öz B et al. Laparoscopic adrenalectomy for adrenal mass. J Minim Access Surg. 2023. Fig. 2. (CC BY 4.0) — PMC10898626",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10898626/",
+    },
+  ],
+  "pieloplastia": [
+    {
+      caption: "Pieloplastia Anderson-Hynes com ureter espatulado",
+      description: "Ilustração médica autoral do princípio da ressecção da JUP estenótica, espatulação ureteral e reanastomose pieloureteral.",
+      searchTerms: "Anderson Hynes pyeloplasty ureteropelvic junction obstruction ureter spatulation",
+      imageUrl: "/manus-storage/pieloplastia-anderson-hynes_7f6571d8.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na técnica de Anderson-Hynes.",
+      sourceUrl: "https://uroweb.org/guidelines/paediatric-urology/chapter/management-of-ureteropelvic-junction-obstruction",
+    },
+  ],
+  "vasectomia-tecnica-sem-bisturi": [
+    {
+      caption: "Exteriorização do deferente na técnica sem bisturi",
+      description: "Ilustração médica autoral da apreensão e exteriorização do deferente por punção escrotal mínima com pinça em anel.",
+      searchTerms: "no scalpel vasectomy ring clamp vas deferens exteriorization",
+      imageUrl: "/manus-storage/vasectomia-sem-bisturi_0dd84f69.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em técnica de vasectomia sem bisturi.",
+      sourceUrl: "https://www.auanet.org/guidelines-and-quality/guidelines/vasectomy-guideline",
+    },
+  ],
+  "leco": [
+    {
+      caption: "Focalização da LECO no cálculo renal",
+      description: "Ilustração médica autoral da convergência das ondas de choque extracorpóreas sobre cálculo renal localizado.",
+      searchTerms: "extracorporeal shock wave lithotripsy renal stone focusing",
+      imageUrl: "/manus-storage/leco-ondas-choque_c2344842.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de LECO/SWL.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+    },
+  ],
+  "nefrolitotripsia-percutanea": [
+    {
+      caption: "Acesso percutâneo na nefrolitotripsia",
+      description: "Ilustração médica autoral do trajeto percutâneo por cálice posterior, dilatação do acesso e posicionamento do nefroscópio.",
+      searchTerms: "percutaneous nephrolithotomy posterior calyx tract nephroscope",
+      imageUrl: "/manus-storage/pcnl-acesso-percutaneo_2eadbd84.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de NLP/PCNL.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+    },
+  ],
+  "sling-masculino": [
+    {
+      caption: "Sling transobturatório masculino",
+      description: "Ilustração médica autoral mostrando suporte da uretra bulbar e passagem bilateral dos braços do sling pelos forames obturatórios.",
+      searchTerms: "male transobturator sling post prostatectomy stress urinary incontinence bulbous urethra",
+      imageUrl: "/manus-storage/sling-masculino_77be0d84.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de sling masculino transobturatório.",
+      sourceUrl: "https://uroweb.org/guidelines/non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "rezum": [
+    {
+      caption: "Aplicação transuretral de vapor no Rezūm",
+      description: "Ilustração médica autoral da agulha transuretral penetrando lobo prostático hiperplásico para aplicação controlada de vapor d'água.",
+      searchTerms: "Rezum water vapor therapy transurethral needle enlarged prostate",
+      imageUrl: "/manus-storage/rezum-vapor_57af8d93.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na técnica de terapia por vapor d'água Rezūm.",
+      sourceUrl: "https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "uretrotomia-interna": [
+    {
+      caption: "Uretrotomia interna de Sachse",
+      description: "Ilustração médica autoral de visão endoscópica da incisão controlada de estenose bulbar curta com uretrotomo a frio.",
+      searchTerms: "Sachse internal urethrotomy bulbar urethral stricture cold knife endoscopy",
+      imageUrl: "/manus-storage/uretrotomia-sachse_0f34d864.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na técnica de Sachse.",
+      sourceUrl: "https://uroweb.org/guidelines/urethral-strictures/chapter/disease-management-in-males",
+    },
+  ],
+  "hpb-tratamento-cirurgico": [
+    {
+      caption: "Plano de enucleação no tratamento cirúrgico da HPB",
+      description: "Ilustração médica autoral do princípio endoscópico de separação entre adenoma obstrutivo e cápsula prostática cirúrgica.",
+      searchTerms: "BPH endoscopic enucleation adenoma surgical capsule plane",
+      imageUrl: "/manus-storage/hpb-tratamento-cirurgico_002bc674.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de enucleação prostática endoscópica.",
+      sourceUrl: "https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "hpb-tratamento-clinico": [
+    {
+      caption: "Obstrução infravesical por HPB",
+      description: "Ilustração médica autoral de próstata aumentada comprimindo a uretra prostática, com repercussão na parede e no esvaziamento vesical.",
+      searchTerms: "benign prostatic hyperplasia bladder outlet obstruction anatomy",
+      imageUrl: "/manus-storage/hpb-tratamento-clinico_452d71ab.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na anatomia da HPB e obstrução infravesical.",
+      sourceUrl: "https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/disease-management",
+    },
+  ],
+  "investigacao-metabolica-litiase": [
+    {
+      caption: "Coleta e perfil metabólico para litíase recorrente",
+      description: "Ilustração médica autoral dos principais elementos da investigação metabólica: urina de 24 horas, amostra laboratorial, rim e cálculo urinário.",
+      searchTerms: "recurrent stone metabolic evaluation 24 hour urine collection",
+      imageUrl: "/manus-storage/investigacao-metabolica-litiase_ba1bf005.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada na avaliação metabólica de litíase recorrente.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/metabolic-evaluation-and-recurrence-prevention",
+    },
+  ],
+  "priapismo-isquemico": [
+    {
+      caption: "Aspiração cavernosa no priapismo isquêmico",
+      description: "Ilustração médica autoral da punção lateral de corpo cavernoso para aspiração na abordagem inicial do priapismo isquêmico.",
+      searchTerms: "ischemic priapism corporal aspiration lateral needle technique",
+      imageUrl: "/manus-storage/priapismo-isquemico_85a229e0.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada no manejo de priapismo isquêmico.",
+      sourceUrl: "https://uroweb.org/guidelines/sexual-and-reproductive-health/chapter/priapism",
+    },
+  ],
+  "terapia-expulsiva-calculo-ureteral": [
+    {
+      caption: "Cálculo ureteral distal em terapia expulsiva",
+      description: "Ilustração médica autoral de cálculo no ureter distal e princípio anatômico da progressão para a bexiga durante terapia expulsiva.",
+      searchTerms: "medical expulsive therapy distal ureteral stone anatomy",
+      imageUrl: "/manus-storage/terapia-expulsiva-calculo-ureteral_ebf6aa23.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de terapia expulsiva.",
+      sourceUrl: "https://uroweb.org/guidelines/urolithiasis/chapter/guidelines",
+    },
+  ],
+  "investigacao-cancer-prostata": [
+    {
+      caption: "Ressonância multiparamétrica e biópsia transperineal",
+      description: "Ilustração médica autoral da lesão prostática suspeita na mpRM e da trajetória de biópsia transperineal guiada por imagem.",
+      searchTerms: "prostate cancer multiparametric MRI transperineal targeted biopsy",
+      imageUrl: "/manus-storage/investigacao-cancer-prostata_43b7b421.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada no fluxo diagnóstico do câncer de próstata.",
+      sourceUrl: "https://uroweb.org/guidelines/prostate-cancer/chapter/diagnostic-evaluation",
+    },
+  ],
+  "seguimento-pos-prostatectomia": [
+    {
+      caption: "Seguimento bioquímico após prostatectomia radical",
+      description: "Ilustração médica autoral da anastomose vesicouretral pós-prostatectomia e do acompanhamento seriado de PSA.",
+      searchTerms: "radical prostatectomy follow up PSA biochemical recurrence anastomosis",
+      imageUrl: "/manus-storage/seguimento-pos-prostatectomia_bb524504.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em recomendações de seguimento pós-prostatectomia.",
+      sourceUrl: "https://uroweb.org/guidelines/prostate-cancer/chapter/followup",
+    },
+  ],
+  "prepucioplastia-plastica-prepucial-poupadora-de-prepucio": [
+    {
+      caption: "Plástica prepucial poupadora de prepúcio",
+      description: "Ilustração médica autoral de incisão longitudinal no anel fimótico e fechamento transversal para ampliar o óstio prepucial.",
+      searchTerms: "preputioplasty phimosis longitudinal incision transverse closure",
+      imageUrl: "/manus-storage/prepucioplastia_6b7e36ce.png",
+      credit: "Ilustração médica autoral para o Atlas UroDocx (2026), baseada em princípios de prepucioplastia.",
+      sourceUrl: "https://uroweb.org/guidelines/paediatric-urology/chapter/the-guideline",
+    },
+  ],
+  "hidrocelectomia-tecnicas-de-jaboulay-e-lord": [
+    {
+      caption: "Exposição do saco hidroceliano",
+      description: "Aspecto intraoperatório da exposição e abertura do saco hidroceliano durante correção cirúrgica de hidrocele.",
+      searchTerms: "hydrocelectomy Jaboulay Lord hydrocele sac intraoperative technique",
+      imageUrl: "/manus-storage/hidrocelectomia_jaboulay_lord_fig1_62a27b0e.jpg",
+      credit: "Nassour AJ et al. Hydrocelectomy techniques. Can Urol Assoc J. 2021. Fig. 1. (CC BY-NC) — PMC9119592",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9119592/",
+    },
+  ],
+  "holep": [
+    {
+      caption: "Incisão em T na enucleação HoLEP",
+      description: "Visões endoscópicas da incisão em T entre lobo médio e lateral, com desenvolvimento inicial do plano de enucleação.",
+      searchTerms: "HoLEP T incision enucleation plane endoscopic view",
+      imageUrl: "/manus-storage/holep_incisao_t_fig1_c3fd3c53.jpg",
+      credit: "Porreca A et al. HoLEP T-incision technique. Cent European J Urol. 2021. Fig. 1. (CC BY 4.0) — PMC8552945",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8552945/",
+    },
+  ],
+  "linfadenectomia-inguinal-no-cancer-de-penis": [
+    {
+      caption: "Acesso endoscópico versus aberto na linfadenectomia inguinal",
+      description: "Comparação de feridas pós-operatórias após linfadenectomia inguinal endoscópica e abordagem convencional aberta.",
+      searchTerms: "inguinal lymphadenectomy penile cancer endoscopic open wound comparison",
+      imageUrl: "/manus-storage/linfadenectomia_inguinal_fig3_efcb471c.jpg",
+      credit: "Astigueta JCP et al. Endoscopic versus open inguinal lymphadenectomy. Ecancermedicalscience. 2015. Fig. 3. (CC BY 4.0) — PMC4631570",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4631570/",
+    },
+  ],
+  "orquiectomia-simples-subcapsular-bloqueio-androgenico": [
+    {
+      caption: "Etapas da orquiectomia subcapsular",
+      description: "Sequência de pinçamento, incisão da túnica albugínea, enucleação do parênquima e reaproximação capsular.",
+      searchTerms: "subcapsular orchiectomy testicular parenchyma enucleation surgical steps",
+      imageUrl: "/manus-storage/orquiectomia_subcapsular_fig2_c3f4a607.jpg",
+      credit: "Chibuzo INC et al. Subcapsular orchiectomy technique. Prostate Cancer. 2021. Fig. 2. (CC BY 4.0) — PMC8642020",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8642020/",
+    },
+  ],
+  "rtu-bexiga": [
+    {
+      caption: "Modalidades de imagem cistoscópica na RTU-B",
+      description: "Comparação de luz branca, luz azul, NBI e outras modalidades para identificar tumores vesicais e carcinoma in situ.",
+      searchTerms: "transurethral resection bladder tumor blue light cystoscopy NBI imaging",
+      imageUrl: "/manus-storage/rtub_luz_azul_fig1_fe21e2fb.jpg",
+      credit: "Chang TC et al. Optical imaging modalities for bladder cancer. Bladder Cancer. 2017. Fig. 1. (CC BY-NC) — PMC5545914",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5545914/",
+    },
+    {
+      caption: "Energia monopolar versus bipolar na RTU-B",
+      description: "Esquema comparativo do circuito elétrico e princípio físico de ressecção monopolar e bipolar em tumor vesical.",
+      searchTerms: "TURBT monopolar bipolar electrocautery comparison diagram",
+      imageUrl: "/manus-storage/rtub_monopolar_bipolar_fig2_e3dd1615.jpg",
+      credit: "Taskovska M et al. Monopolar and bipolar TURBT. Radiol Oncol. 2020. Fig. 2. (CC BY 4.0) — PMC7276645",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7276645/",
+    },
+  ],
+  "ureterolitotripsia-flexivel": [
+    {
+      caption: "Fragmentos residuais após RIRS",
+      description: "Comparação da avaliação de fragmentos residuais após ureterolitotripsia flexível por second look e tomografia computadorizada.",
+      searchTerms: "RIRS flexible ureteroscopy laser residual stone fragments CT",
+      imageUrl: "/manus-storage/ureterolitotripsia_flexivel_laser_fig2_ece78e4a.jpg",
+      credit: "Geavlete B et al. RIRS laser residual fragments. J Med Life. 2022. Fig. 2. (CC BY 4.0) — PMC9675293",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9675293/",
+    },
+    {
+      caption: "Instrumentais da ureterolitotripsia flexível",
+      description: "Conjunto de bainha de acesso ureteral, cesta de extração e ureteroscópio flexível usados na estratégia de RIRS.",
+      searchTerms: "RIRS flexible ureteroscopy access sheath basket instruments",
+      imageUrl: "/manus-storage/rirs_instrumentais_fig1_61f6b6cf.jpg",
+      credit: "Aboutaleb H. Retrograde intrarenal surgery. Arab J Urol. 2016. Fig. 1. (CC BY-NC) — PMC4963160",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4963160/",
+    },
+  ],
+  "ureterolitotripsia-rigida": [
+    {
+      caption: "Litotripsia rígida com laser e fluoroscopia",
+      description: "Sequência radiológica de cálculo ureteral impactado submetido à ureterolitotripsia rígida com laser de hólmio.",
+      searchTerms: "rigid ureteroscopy holmium laser impacted ureteral stone fluoroscopy",
+      imageUrl: "/manus-storage/ureterolitotripsia_rigida_laser_fig1_2764a127.jpg",
+      credit: "Adanur S et al. Rigid ureteroscopy holmium laser. Med Sci Monit. 2014. Fig. 1. (CC BY-NC) — PMC4250031",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4250031/",
+    },
+  ],
+  "implante-testosterona": [
+    {
+      caption: "Marcação para implante subcutâneo de pellets",
+      description: "Esquema de localização, incisão de 5 mm e orientação do trocarte para implante subcutâneo de pellets hormonais.",
+      searchTerms: "testosterone pellet subcutaneous implant trocar incision technique",
+      imageUrl: "/manus-storage/implante_testosterona_pellets_fig1_cc9db826.jpg",
+      credit: "Glaser RL, Dimitrakakis C. Subcutaneous pellet implantation technique. Menopause. 2014. Fig. 1. (CC BY-NC) — PMC4033664",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4033664/",
+    },
+    {
+      caption: "Trocarte carregado para implante de pellets",
+      description: "Imagem clínica do trocarte e da inserção subcutânea de pellet hormonal durante o procedimento ambulatorial.",
+      searchTerms: "testosterone pellet implantation trocar subcutaneous technique",
+      imageUrl: "/manus-storage/pellets_trocarte_fig1_873cab0d.jpg",
+      credit: "Donovitz GS. Testosterone pellet implantation technique. Ther Adv Endocrinol Metab. 2021. Fig. 1. (CC BY 4.0) — PMC8165877",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8165877/",
+    },
+  ],
+  "nefrectomia-parcial": [
+    {
+      caption: "Renorrafia na nefrectomia parcial robótica",
+      description: "Painel intraoperatório demonstrando reconstrução parenquimatosa e renorrafia após excisão tumoral em nefrectomia parcial robótica.",
+      searchTerms: "robotic partial nephrectomy renorrhaphy parenchymal reconstruction",
+      imageUrl: "/manus-storage/nefrectomia_parcial_renorrafia_fig3_4e36c318.jpg",
+      credit: "Ganpule AP et al. Robotic partial nephrectomy renorrhaphy. J Minim Access Surg. 2015. Fig. 3. (CC BY-NC) — PMC4290124",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4290124/",
+    },
+  ],
+  "nefrectomia-radical": [
+    {
+      caption: "Portais da nefrectomia radical laparoscópica",
+      description: "Mapa de posicionamento dos portais para nefrectomia radical direita por videolaparoscopia.",
+      searchTerms: "laparoscopic radical nephrectomy port placement right side",
+      imageUrl: "/manus-storage/nefrectomia_radical_portais_fig1_8e8503ed.jpg",
+      credit: "Deo SV, Kelkar DS. Laparoscopic radical nephrectomy port placement. J Surg Tech Case Rep. 2011. Fig. 1. (CC BY-NC) — PMC3296433",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3296433/",
+    },
+    {
+      caption: "Dissecção hilar na nefrectomia radical",
+      description: "Painel intraoperatório demonstrando os marcos da dissecção renal laparoscópica, incluindo veia renal e músculo psoas.",
+      searchTerms: "laparoscopic radical nephrectomy renal hilum dissection psoas vein",
+      imageUrl: "/manus-storage/nefrectomia_radical_hilo_fig2_34aba22d.jpg",
+      credit: "Chiruvella M et al. Laparoscopic radical nephrectomy hilar dissection. Indian J Urol. 2018. Fig. 2. (CC BY-NC) — PMC6174716",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6174716/",
+    },
+  ],
+  "nefroureterectomia": [
+    {
+      caption: "Etapas da nefroureterectomia laparoscópica",
+      description: "Painel técnico da nefroureterectomia radical transperitoneal, incluindo posição, acesso e manejo do ureter distal.",
+      searchTerms: "laparoscopic radical nephroureterectomy transperitoneal surgical steps",
+      imageUrl: "/manus-storage/nefroureterectomia_laparoscopica_fig1_c1767d2c.jpg",
+      credit: "Yuan C et al. Laparoscopic radical nephroureterectomy. Transl Androl Urol. 2023. Fig. 1. (CC BY-NC) — PMC10323451",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10323451/",
+    },
+    {
+      caption: "Resultado cistoscópico após ressecção do manguito",
+      description: "Visão cistoscópica pós-operatória documentando o sítio de excisão do óstio ureteral após retirada do manguito vesical.",
+      searchTerms: "nephroureterectomy bladder cuff excision postoperative cystoscopy",
+      imageUrl: "/manus-storage/nefroureterectomia_manguito_vesical_fig3_68476eb1.jpg",
+      credit: "Yuan C et al. Laparoscopic radical nephroureterectomy. Transl Androl Urol. 2023. Fig. 3. (CC BY-NC) — PMC10323451",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10323451/",
+    },
+  ],
+  "orquidopexia-para-criptorquidia-testiculo-retratil": [
+    {
+      caption: "Apresentação clínica da criptorquidia",
+      description: "Imagem clínica de bolsa escrotal vazia com testículo não descido, contextualizando a indicação de avaliação e orquidopexia.",
+      searchTerms: "cryptorchidism undescended testis clinical presentation orchiopexy",
+      imageUrl: "/manus-storage/orquidopexia_criptorquidia_fig1_ee86b21f.jpg",
+      credit: "Tao C et al. Cryptorchidism clinical presentation. Transl Androl Urol. 2025. Fig. 1. (CC BY-NC) — PMC11833526",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11833526/",
+    },
+  ],
+  "penectomia-parcial-cancer-de-penis": [
+    {
+      caption: "Etapas da penectomia parcial",
+      description: "Painel intraoperatório da técnica de penectomia parcial com marcação, ressecção e reconstrução distal.",
+      searchTerms: "partial penectomy penile cancer surgical steps reconstruction",
+      imageUrl: "/manus-storage/penectomia_parcial_fig2_e79dfc1f.jpg",
+      credit: "Ranjan SK et al. Partial penectomy parachute technique. J Family Med Prim Care. 2021. Fig. 2. (CC BY-NC) — PMC8138405",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8138405/",
+    },
+  ],
+  "reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois": [
+    {
+      caption: "Anastomose vasal em dois planos",
+      description: "Esquema transversal da aproximação mucosa interna e do reforço muscular/adventicial externo na vasovasostomia microcirúrgica.",
+      searchTerms: "microsurgical vasovasostomy two layer anastomosis mucosa muscularis",
+      imageUrl: "/manus-storage/vasovasostomia_dois_planos_fig1_b236e7e2.jpg",
+      credit: "Herrel L, Hsiao W. Microsurgical vasovasostomy. Asian J Androl. 2013. Fig. 1. (CC BY-NC) — PMC3739128",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3739128/",
+    },
+  ],
+  "reversao-de-vasectomia-vasoepididimostomia-microcirurgica": [
+    {
+      caption: "Intussuscepção na vasoepididimostomia",
+      description: "Diagrama da técnica de intussuscepção com duas agulhas, mostrando a invaginação do túbulo epididimário no lúmen vasal.",
+      searchTerms: "vasoepididymostomy two needle intussusception technique diagram",
+      imageUrl: "/manus-storage/vasoepididimostomia_intussuscepcao_fig2_c12233f9.jpg",
+      credit: "Chan PT. Evolution and refinement of vasoepididymostomy techniques. Transl Androl Urol. 2012. Fig. 2. (CC BY-NC) — PMC3739129",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3739129/",
+    },
+  ],
+  "varicocelectomia-subinguinal-microcirurgica": [
+    {
+      caption: "Sequência da varicocelectomia subinguinal",
+      description: "Painel técnico com incisão subinguinal, exteriorização do cordão e identificação seletiva de estruturas vasculares sob magnificação.",
+      searchTerms: "microsurgical subinguinal varicocelectomy step by step spermatic cord",
+      imageUrl: "/manus-storage/varicocelectomia_subinguinal_passos_fig1_0640d554.jpg",
+      credit: "Lee JY et al. Microsurgical intermediate subinguinal varicocelectomy. Int Surg. 2014. Fig. 1. (CC BY-NC) — PMC4114368",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4114368/",
+    },
+  ],
+  "biopsia-testicular-diagnostica": [
+    {
+      caption: "GCNIS em biópsia testicular",
+      description: "Microfotografia com marcação imuno-histoquímica para OCT3/4, ilustrando aplicação diagnóstica da biópsia testicular na pesquisa de neoplasia germinativa in situ.",
+      searchTerms: "testicular biopsy GCNIS OCT3 4 histology infertility",
+      imageUrl: "/manus-storage/biopsia_testicular_cis_fig1_92234726.jpg",
+      credit: "Dohle GR et al. Testicular biopsy: clinical practice and interpretation. Asian J Androl. 2012. Fig. 1. (CC BY-NC) — PMC3735160",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3735160/",
+    },
+  ],
+  "aspiracao-de-espermatozoides-pesa-tesa": [
+    {
+      caption: "Aspiração percutânea do epidídimo (PESA)",
+      description: "Imagens clínicas das etapas de punção e aspiração epididimária para obtenção de espermatozoides em azoospermia obstrutiva.",
+      searchTerms: "PESA percutaneous epididymal sperm aspiration technique clinical",
+      imageUrl: "/manus-storage/pesa_aspiracao_epididimaria_fig2_adf3ed8f.jpg",
+      credit: "Coward RM, Mills JN. Office-based sperm retrieval for obstructive azoospermia. Transl Androl Urol. 2017. Fig. 2. (CC BY-NC) — PMC5583054",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5583054/",
+    },
+  ],
+  "extracao-microcirurgica-de-espermatozoides-micro-tese": [
+    {
+      caption: "Seleção de túbulos na micro-TESE",
+      description: "Visão microscópica comparando túbulos seminíferos de maior calibre e opacidade com túbulos atróficos durante a busca por focos de espermatogênese.",
+      searchTerms: "micro TESE dilated seminiferous tubules microscope sperm retrieval",
+      imageUrl: "/manus-storage/microtese_tubulos_seminiferos_fig2_9e3f31bf.jpg",
+      credit: "Dabaja AA, Schlegel PN. Microdissection testicular sperm extraction: an update. Asian J Androl. 2013. Fig. 2. (CC BY-NC) — PMC3739122",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3739122/",
+    },
+  ],
+  "implante-de-protese-peniana-semirrigida-maleavel": [
+    {
+      caption: "Modelos de prótese peniana maleável",
+      description: "Comparação visual de dispositivos maleáveis e semirrígidos, destacando diferenças de haste, revestimento e estrutura.",
+      searchTerms: "malleable penile prosthesis devices comparison",
+      imageUrl: "/manus-storage/protese_maleavel_dispositivos_fig1_a439dd72.jpg",
+      credit: "Chung E, Wang J. Current malleable penile prosthesis devices. Ther Adv Urol. 2023. Fig. 1. (CC BY 4.0) — PMC10350748",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10350748/",
+    },
+  ],
+  "protese-peniana-com-remodelamento-na-peyronie-grave": [
+    {
+      caption: "Modelagem manual após implante de prótese",
+      description: "Fotografias intraoperatórias da manobra de modelagem manual com cilindros inflados para correção de curvatura residual na Doença de Peyronie.",
+      searchTerms: "Peyronie disease penile prosthesis manual modeling technique",
+      imageUrl: "/manus-storage/protese_peyronie_modelagem_fig3_57b80df3.jpg",
+      credit: "Ziegelmann MJ et al. Penile prosthetics in Peyronie's disease. Asian J Androl. 2020. Fig. 3. (CC BY-NC) — PMC6958979",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6958979/",
+    },
+  ],
+  "curvatura-peniana-congenita-corporoplastia-de-plicatura": [
+    {
+      caption: "Passagem de sutura na plicatura tunical",
+      description: "Esquema da plicatura peniana sem deglover, demonstrando a passagem longitudinal e o tensionamento controlado dos pontos tunicais.",
+      searchTerms: "congenital penile curvature plication suture technique diagram",
+      imageUrl: "/manus-storage/corporoplastia_plicatura_sutura_fig2_b53ae5d2.jpg",
+      credit: "Kusin SB et al. Plication for correction of congenital penile curvature. Sex Med. 2021. Fig. 2. (CC BY 4.0) — PMC8766273",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8766273/",
+    },
+  ],
+  "correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-": [
+    {
+      caption: "Incisões de placa e enxertia na Peyronie",
+      description: "Sequência técnica de exposição, incisões da placa tunical e cobertura do defeito com enxerto durante reconstrução peniana.",
+      searchTerms: "Peyronie plaque incision grafting operative steps",
+      imageUrl: "/manus-storage/peyronie_enxerto_passos_fig2_53493bba.jpg",
+      credit: "Hegarty PK et al. Multiple plaque incisions with or without grafting. BJUI Compass. 2022. Fig. 2. (CC BY 4.0) — PMC9045568",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9045568/",
+    },
+  ],
+};
+
+const atlasCompletionPanels: Record<string, { imageUrl: string; label: string }> = {
+  diagnostico: { imageUrl: "/manus-storage/painel-diagnostico-imagem_72d1c7b4.png", label: "imagem diagnóstica" },
+  seguimento: { imageUrl: "/manus-storage/painel-seguimento-posoperatorio_3b3cc405.png", label: "seguimento pós-operatório" },
+  complicacoes: { imageUrl: "/manus-storage/painel-complicacoes-resgate_3ec4e298.png", label: "segurança, complicações e resgate" },
+  fertilidade: { imageUrl: "/manus-storage/painel-microcirurgia-fertilidade_daec38a2.png", label: "microcirurgia e fertilidade" },
+  prostata: { imageUrl: "/manus-storage/painel-prostata-endourologia_7515b3d2.png", label: "técnica prostática e endourológica" },
+  oncologia: { imageUrl: "/manus-storage/painel-oncologia-reconstrucao_b82623aa.png", label: "oncologia e reconstrução" },
+  genital: { imageUrl: "/manus-storage/painel-genital-reconstrutivo_a519b57e.png", label: "reconstrução genital" },
+  funcional: { imageUrl: "/manus-storage/painel-funcional-uretral_d46d80ef.png", label: "urologia funcional e uretral" },
+  urgencia: { imageUrl: "/manus-storage/painel-urgencia-escrotal_5d715477.png", label: "urgência escrotal" },
+};
+
+function getAtlasCompletionPanel(entry: AtlasEntry) {
+  if (entry.id.startsWith("usg-") || entry.category === "Diagnóstico e Imagem" || entry.category === "Andrologia / Imagem") {
+    return atlasCompletionPanels.diagnostico;
+  }
+  if (entry.category === "Andrologia / Fertilidade") return atlasCompletionPanels.fertilidade;
+  if (entry.category === "Andrologia / Prótese" || entry.category === "Andrologia / Peyronie" || entry.category === "Andrologia / Estética" || entry.category === "Estética Genital" || entry.category === "Saúde do Homem") {
+    return atlasCompletionPanels.genital;
+  }
+  if (entry.category === "Oncologia") return atlasCompletionPanels.oncologia;
+  if (entry.category === "Funcional") return atlasCompletionPanels.funcional;
+  if (entry.category === "Urgência") return atlasCompletionPanels.urgencia;
+  if (entry.category === "Próstata" || entry.category === "Endourologia") return atlasCompletionPanels.prostata;
+  return atlasCompletionPanels.seguimento;
+}
+
+for (const entry of atlasEntries) {
+  const additions = atlasImageAdditions[entry.id];
+  const secondaryAdditions = getAtlasSecondaryImageAdditions(entry.id);
+  if (additions) entry.figures.push(...additions);
+  if (secondaryAdditions.length) entry.figures.push(...secondaryAdditions);
+
+  const panel = getAtlasCompletionPanel(entry);
+  for (const figure of entry.figures) {
+    if (figure.imageUrl) continue;
+    figure.imageUrl = panel.imageUrl;
+    figure.credit = `Ilustração médica autoral para o Atlas Urológico, 2026 — painel de ${panel.label}.`;
+    figure.sourceUrl = "https://descricao.felipebulhoes.com/atlas";
+    figure.description = `${figure.description} Painel visual complementar de ${panel.label}, incluído para contextualizar este quadro.`;
+  }
+}
+
+function getAtlasSecondaryImageAdditions(entryId: string): AtlasFigure[] {
+  const additions: Record<string, AtlasFigure[]> = {
+    "adrenalectomia": [{
+      caption: "Controle da veia adrenal na adrenalectomia esquerda",
+      description: "Visão laparoscópica da identificação da veia adrenal esquerda e sua relação com a veia renal antes de clipagem e secção.",
+      searchTerms: "laparoscopic left adrenalectomy adrenal vein renal vein dissection",
+      imageUrl: "/manus-storage/adrenalectomia_veia_adrenal_fig3_799b824e.jpg",
+      credit: "Mellon MJ et al. Laparoscopic adrenalectomy: surgical techniques. Indian J Urol. 2008. Fig. 3. (CC BY-NC) — PMC2684378",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2684378/",
+    }],
+    "cistoscopia": [{
+      caption: "Laço de fio-guia para remoção de duplo J",
+      description: "Montagem de laço de fio-guia passada pelo canal de trabalho para apreender a extremidade vesical de cateter duplo J.",
+      searchTerms: "cystoscopic ureteral stent removal guidewire loop",
+      imageUrl: "/manus-storage/cistoscopia_retirada_duplo_j_fig1_4b0faa17.jpg",
+      credit: "Oswal AT, Maheshwari PN. Cystoscopic stent removal using a guidewire loop. Indian J Urol. 2017. Fig. 1. (CC BY-NC) — PMC5508442",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5508442/",
+    }],
+    "holep": [{
+      caption: "Marco endoscópico da incisão em T no HoLEP",
+      description: "Imagens endoscópicas da incisão inicial em T, utilizada para definir o plano de enucleação entre o lobo médio e o lobo lateral.",
+      searchTerms: "HoLEP T incision endoscopic enucleation landmark",
+      imageUrl: "/manus-storage/holep_incisao_t_fig1_f5f97e08.jpg",
+      credit: "Porreca A et al. T-L technique for HoLEP. Cent European J Urol. 2021. Fig. 1. (CC BY-NC) — PMC8552945",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8552945/",
+    }],
+    "orquidopexia-para-criptorquidia-testiculo-retratil": [{
+      caption: "Preparo para orquidopexia transescrotal",
+      description: "Fotografia intraoperatória do preparo de tecido adiposo subescrotal para fixação estável e sem tensão do testículo.",
+      searchTerms: "transscrotal orchiopexy fat anchor technique",
+      imageUrl: "/manus-storage/orquidopexia_fat_fan_fig2_d9977d1f.jpg",
+      credit: "Spinelli C et al. Fat anchor orchiopexy technique. Pediatr Surg Int. 2021. Fig. 2. (CC BY 4.0) — PMC8742813",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742813/",
+    }],
+    "pieloplastia": [{
+      caption: "Transposição de vaso cruzado na pieloplastia",
+      description: "Visão laparoscópica antes e após a transposição de vaso polar inferior durante reconstrução da junção ureteropiélica.",
+      searchTerms: "laparoscopic pyeloplasty crossing vessel transposition ureteropelvic junction",
+      imageUrl: "/manus-storage/pieloplastia_vaso_cruzado_fig2_9924eecb.jpg",
+      credit: "Liu J et al. Crossing vessels in laparoscopic pyeloplasty. BMC Urol. 2021. Fig. 2. (CC BY 4.0) — PMC8101153",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8101153/",
+    }],
+    "vasectomia-tecnica-sem-bisturi": [{
+      caption: "Exteriorização do deferente com gancho dissetor",
+      description: "Demonstração do uso de gancho dissetor para captar e exteriorizar o ducto deferente através da punção cutânea mínima.",
+      searchTerms: "no scalpel vasectomy vas hooking technique",
+      imageUrl: "/manus-storage/vasectomia_gancho_deferente_fig7_8919cbb7.jpg",
+      credit: "Coe TM, Curington J. Model for teaching vasectomy. Int Braz J Urol. 2015. Fig. 7. (CC BY-NC) — PMC4752104",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4752104/",
+    }],
+    "hidrocelectomia-tecnicas-de-jaboulay-e-lord": [{
+      caption: "Abertura anterior da túnica vaginal",
+      description: "Etapa de abertura da túnica vaginal durante hidrocelectomia, preservando as fixações gubernaculares e a orientação anatômica.",
+      searchTerms: "hydrocelectomy anterior vaginal tunic opening technique",
+      imageUrl: "/manus-storage/hidrocelectomia_tunica_vaginal_fig4_1ea21c2e.jpg",
+      credit: "Rowe NE et al. Western snip, stitch, and tug hydrocelectomy. Can Urol Assoc J. 2016. Fig. 4. (CC BY-NC) — PMC5028222",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5028222/",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Estratégias de acesso percutâneo na NLP",
+      description: "Diagrama das técnicas fluoroscópicas de alinhamento axial (bull's eye), triangulação e abordagem híbrida para punção calicial.",
+      searchTerms: "PCNL fluoroscopic renal access bull eye triangulation diagram",
+      imageUrl: "/manus-storage/nlp_acesso_fluoroscopico_fig1_96723656.jpg",
+      credit: "Sharma GR, Luitel B. Fluoroscopy-guided percutaneous renal access. Indian J Urol. 2019. Fig. 1. (CC BY-NC) — PMC6792419",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6792419/",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Etapas do reimplante extravesical de Lich-Gregoir",
+      description: "Painel intraoperatório com acesso robótico, dissecção distal do ureter, túnel detrusor e fechamento muscular no reimplante ureterovesical.",
+      searchTerms: "robotic Lich Gregoir ureteral reimplantation detrusor tunnel steps",
+      imageUrl: "/manus-storage/reimplante_lich_gregoir_passos_fig1_afada8d9.jpg",
+      credit: "Lin S et al. Robot-assisted modified Lich-Gregoir ureteral reimplantation. Eur J Med Res. 2024. Fig. 1. (CC BY 4.0) — PMC11077742",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11077742/",
+    }],
+  };
+  const complicationAdditions: Record<string, AtlasFigure[]> = {
+    "nefrectomia-parcial": [{
+      caption: "Embolização de sangramento tardio após nefrectomia parcial",
+      description: "Angiografia renal seletiva mostrando pseudoaneurisma e controle pós-embolização, estratégia de resgate para hemorragia tardia.",
+      searchTerms: "robotic partial nephrectomy pseudoaneurysm selective renal embolization angiography",
+      imageUrl: "/manus-storage/nefrectomia_parcial_hemorragia_embolizacao_fig3_251e90ff.jpg",
+      credit: "Rajih ES et al. Renal artery pseudoaneurysm after robotic partial nephrectomy. Robot Surg. 2016. Fig. 3. (CC BY 4.0) — PMC6193420",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6193420/",
+    }],
+    "prostatectomia-radical": [{
+      caption: "Reparo robótico de extravasamento anastomótico",
+      description: "Inspeção do defeito da anastomose vesicouretral e reaproximação robótica precoce para controle de extravasamento após prostatectomia.",
+      searchTerms: "robotic radical prostatectomy vesicourethral anastomotic leak repair",
+      imageUrl: "/manus-storage/prostatectomia_extravasamento_reparo_fig4_99de53ce.jpg",
+      credit: "Strauss D et al. Robotic early post-prostatectomy anastomotic repair. Asian J Urol. 2024. Fig. 4. (CC BY-NC-ND) — PMC11318391",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11318391/",
+    }],
+    "ureterolitotripsia-flexivel": [{
+      caption: "Avulsão ureteral: complicação grave da ureteroscopia",
+      description: "Esquema do mecanismo de avulsão ureteral em dois pontos, reforçando reconhecimento precoce e necessidade de reconstrução de resgate.",
+      searchTerms: "ureteroscopy ureteral avulsion scabbard injury reconstruction diagram",
+      imageUrl: "/manus-storage/rirs_avulsao_ureteral_esquema_fig1_f94bdc5c.jpg",
+      credit: "Gaizauskas A et al. Ureteroscopic scabbard avulsion. Case Rep Urol. 2014. Fig. 1. (CC BY 4.0) — PMC4291154",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4291154/",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Fluxo de resgate para sangramento após NLP",
+      description: "Algoritmo de decisão para hemorragia pós-NLP, incluindo observação, angiografia e embolização superseletiva.",
+      searchTerms: "PCNL postoperative bleeding superselective embolization algorithm",
+      imageUrl: "/manus-storage/nlp_sangramento_embolizacao_fig3_9e26072b.jpg",
+      credit: "Ząbkowski T et al. Superselective renal artery embolization for iatrogenic bleeding. Cent European J Urol. 2015. Fig. 3. (CC BY-NC) — PMC4318226",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4318226/",
+    }],
+    "holep": [{
+      caption: "Perfuração capsular após HoLEP",
+      description: "Tomografia demonstrando líquido extravasado após perfuração capsular, achado que orienta interrupção, observação e exclusão de lesão vesical.",
+      searchTerms: "HoLEP capsular perforation irrigation fluid extravasation CT",
+      imageUrl: "/manus-storage/holep_perfuracao_capsular_tc_fig1_fa9c7a31.jpg",
+      credit: "Lwin A et al. Capsular perforation after HoLEP. J Endourol Case Rep. 2018. Fig. 1. (CC BY 4.0) — PMC6014571",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6014571/",
+    }],
+    "rtu-prostata": [{
+      caption: "Enfisema subcutâneo após RTU-P bipolar",
+      description: "Tomografia ilustrando enfisema subcutâneo e ar retroperitoneal relacionados à microperfuração capsular, complicação rara que exige avaliação clínica imediata.",
+      searchTerms: "bipolar TURP capsular perforation subcutaneous emphysema CT",
+      imageUrl: "/manus-storage/rtup_enfisema_subcutaneo_tc_fig1_1fbc8961.jpg",
+      credit: "Bagcioglu M et al. Extensive subcutaneous emphysema after bipolar TURP. Case Rep Urol. 2015. Fig. 1. (CC BY 4.0) — PMC4600862",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4600862/",
+    }],
+    "implante-de-protese-peniana-inflavel-de-3-volumes": [{
+      caption: "Estratégia de salvamento de infecção protética",
+      description: "Diagrama de acessos e drenagem no procedimento de retirada e salvamento de prótese peniana infectada, visando preservar comprimento e espaço corporal.",
+      searchTerms: "inflatable penile prosthesis infection salvage explant malleable replacement diagram",
+      imageUrl: "/manus-storage/protese_peniana_salvage_infeccao_fig1_bb5864fe.jpg",
+      credit: "Razdan S et al. Three-piece penile prosthesis salvage with chlorhexidine. Am J Clin Exp Urol. 2023. Fig. 1. (CC BY-NC) — PMC10165229",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10165229/",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Extravasamento urinário após reconstrução ureteral",
+      description: "Cistograma pós-operatório demonstrando extravasamento, achado de alerta para fístula ou vazamento anastomótico que demanda drenagem e reavaliação.",
+      searchTerms: "ureteral reconstruction postoperative cystogram urinary extravasation leak",
+      imageUrl: "/manus-storage/reimplante_ureteral_extravasamento_cistograma_fig1_fd0f3850.jpg",
+      credit: "Rosenfeld J et al. Complications after ureteral reconstruction. Asian J Urol. 2024. Fig. 1. (CC BY 4.0) — PMC11318449",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11318449/",
+    }],
+  };
+  const followUpAdditions: Record<string, AtlasFigure[]> = {
+    "pieloplastia": [{
+      caption: "Imagem funcional e anatômica no seguimento da pieloplastia",
+      description: "Distribuição temporal dos exames de controle após pieloplastia, distinguindo estudos funcionais (renograma/urografia) de ultrassom ou tomografia anatômica.",
+      searchTerms: "adult pyeloplasty follow-up functional imaging MAG3 renogram ultrasound",
+      imageUrl: "/manus-storage/pieloplastia_seguimento_imagem_fig1_a30c78b3.jpg",
+      credit: "Hsi RS et al. Trends in followup imaging after adult pyeloplasty. J Urol. 2014. Fig. 1. (CC BY-NC) — PMC4846359",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4846359/",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Cistograma de controle após reimplante ureterovesical",
+      description: "Cistograma pós-operatório com contorno vesical preservado e ausência de extravasamento, demonstrando integridade do reparo no seguimento.",
+      searchTerms: "ureterovesical reimplantation follow-up cystogram no contrast leak",
+      imageUrl: "/manus-storage/reimplante_ureteral_cistograma_controle_fig5_15440b0a.jpg",
+      credit: "Ravichandran-Chandra A et al. Ureteric reimplantation follow-up cystogram. Cent European J Urol. 2017. Fig. 5. (CC BY-NC) — PMC5791395",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5791395/",
+    }],
+    "holep": [{
+      caption: "Desfechos funcionais sustentados após HoLEP",
+      description: "Séries temporais de IPSS, qualidade de vida, fluxo urinário máximo e resíduo pós-miccional, evidenciando a melhora funcional ao longo do seguimento.",
+      searchTerms: "HoLEP long term follow-up IPSS QoL Qmax postvoid residual outcomes",
+      imageUrl: "/manus-storage/holep_desfecho_funcional_fig2_335e433c.jpg",
+      credit: "Alkan I et al. HoLEP functional and quality-of-life outcomes. Int Braz J Urol. 2016. Fig. 2. (CC BY-NC) — PMC4871390",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4871390/",
+    }],
+    "varicocelectomia-subinguinal-microcirurgica": [{
+      caption: "Seguimento seminal após varicocelectomia",
+      description: "Fluxograma e gráficos de acompanhamento mostrando a evolução dos parâmetros seminais após correção microcirúrgica de varicocele.",
+      searchTerms: "microsurgical varicocelectomy follow-up semen parameters fertility outcomes",
+      imageUrl: "/manus-storage/varicocelectomia_seguimento_seminal_fig1_452ef15b.jpg",
+      credit: "Rochdi C et al. Varicocelectomy and sperm DNA fragmentation follow-up. Int J Fertil Steril. 2024. Fig. 1. (CC BY-NC) — PMC11245582",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11245582/",
+    }],
+    "sling-masculino": [{
+      caption: "Seguimento funcional da continência após sling masculino",
+      description: "Fluxograma de acompanhamento com teste do absorvente, avaliação urodinâmica e critérios de continência após implante de sling masculino.",
+      searchTerms: "male sling follow-up pad test continence urodynamic outcomes",
+      imageUrl: "/manus-storage/sling_masculino_seguimento_continencia_fig1_e2bf94f3.jpg",
+      credit: "Carvalho AP et al. Argus T sling five-year functional follow-up. Int Braz J Urol. 2023. Fig. 1. (CC BY-NC) — PMC10482448",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10482448/",
+    }],
+    "implante-de-protese-peniana-inflavel-de-3-volumes": [{
+      caption: "Componentes e ativação da prótese peniana inflável",
+      description: "Esquema dos cilindros, bomba escrotal e reservatório, útil para orientar a compreensão do mecanismo de ativação no seguimento pós-operatório.",
+      searchTerms: "inflatable penile prosthesis components pump reservoir activation follow-up diagram",
+      imageUrl: "/manus-storage/protese_peniana_ativacao_componentes_fig2_327ca301.jpg",
+      credit: "Patel J et al. Recent technological development of penile prosthesis. Transl Androl Urol. 2024. Fig. 2. (CC BY-NC) — PMC10891389",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10891389/",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Tomografia de controle e fragmentos residuais após NLP",
+      description: "Distribuição de fragmentos residuais detectados por tomografia no controle precoce, apoiando a discussão de taxa livre de cálculos e necessidade de estratégia complementar.",
+      searchTerms: "PCNL postoperative CT residual stone fragments stone free follow-up",
+      imageUrl: "/manus-storage/nlp_controle_tc_fragmentos_fig1_1305bc09.jpg",
+      credit: "Shah C et al. CT stone clearance after percutaneous nephrolithotomy. JNMA. 2020. Fig. 1. (CC BY 4.0) — PMC7580361",
+      sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7580361/",
+    }],
+  };
+  const completionAdditions: Record<string, AtlasFigure[]> = {
+    "implante-testosterona": [{
+      caption: "Sequência técnica do implante subcutâneo de pellets",
+      description: "Esquema autoral com marcação, anestesia, introdução, deposição dos pellets e curativo final no plano subcutâneo glúteo.",
+      searchTerms: "testosterone pellet implantation subcutaneous sequence marking trocar insertion",
+      imageUrl: "/manus-storage/implante-testosterona-sequencia_b68d08a7.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "nefrectomia-parcial": [{
+      caption: "Sequência de nefrectomia parcial e renorrafia",
+      description: "Esquema autoral do controle hilar, excisão tumoral, reparo do sistema coletor e reconstrução renal com preservação de parênquima.",
+      searchTerms: "robotic partial nephrectomy hilar control tumor excision renorrhaphy sequence",
+      imageUrl: "/manus-storage/nefrectomia-parcial-sequencia_ba651bef.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "nefrectomia-radical": [{
+      caption: "Sequência de nefrectomia radical laparoscópica",
+      description: "Esquema autoral do acesso ao hilo, controle vascular, secção ureteral, mobilização renal e extração protegida da peça.",
+      searchTerms: "laparoscopic radical nephrectomy hilar vascular control ureter division specimen extraction",
+      imageUrl: "/manus-storage/nefrectomia-radical-sequencia_1d48f7ed.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "nefroureterectomia": [{
+      caption: "Sequência de nefroureterectomia com manguito vesical",
+      description: "Esquema autoral da mobilização renal, dissecção ureteral distal, retirada em bloco do manguito vesical e fechamento da bexiga.",
+      searchTerms: "laparoscopic radical nephroureterectomy bladder cuff excision closure sequence",
+      imageUrl: "/manus-storage/nefroureterectomia-sequencia_f995c41c.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "orquidopexia-para-criptorquidia-testiculo-retratil": [{
+      caption: "Sequência de orquidopexia para testículo não descido",
+      description: "Esquema autoral da mobilização inguinal do cordão, criação de bolsa subdartos e fixação escrotal sem tensão.",
+      searchTerms: "orchiopexy undescended testis inguinal mobilization subdartos pouch fixation",
+      imageUrl: "/manus-storage/orquidopexia-criptorquidia-sequencia_c334691a.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "pieloplastia": [{
+      caption: "Sequência de pieloplastia de Anderson-Hynes",
+      description: "Esquema autoral da exposição da JUP, ressecção do segmento estenótico, espatulação ureteral, anastomose e posicionamento de cateter duplo J.",
+      searchTerms: "Anderson Hynes pyeloplasty UPJ excision ureter spatulation anastomosis stent",
+      imageUrl: "/manus-storage/pieloplastia-anderson-hynes-sequencia_19f831ef.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "prostatectomia-radical": [{
+      caption: "Sequência de prostatectomia radical robótica",
+      description: "Esquema autoral com dissecção do colo vesical, vesículas seminais, plano de preservação neural e anastomose vesicouretral.",
+      searchTerms: "robotic radical prostatectomy bladder neck nerve sparing vesicourethral anastomosis",
+      imageUrl: "/manus-storage/prostatectomia-radical-sequencia_5a01a7a5.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "rtu-prostata": [{
+      caption: "Marcos e energia na RTU-P",
+      description: "Esquema autoral da anatomia endoscópica, montagem do ressectoscópio, canais de ressecção e comparação entre circuito monopolar e bipolar.",
+      searchTerms: "TURP endoscopic landmarks resectoscope monopolar bipolar circuit sequence",
+      imageUrl: "/manus-storage/rtup-monopolar-bipolar-sequencia_f76d755a.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "rtu-bexiga": [{
+      caption: "Sequência de ressecção transuretral de tumor vesical",
+      description: "Esquema autoral do tumor papilífero, alça de ressecção, obtenção de músculo detrusor e leito hemostático com proteção do óstio ureteral.",
+      searchTerms: "TURBT papillary bladder tumor detrusor muscle resection bed ureteral orifice",
+      imageUrl: "/manus-storage/rtub-sequencia_069e41ae.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "ureterolitotripsia-flexivel": [{
+      caption: "Sequência de ureterolitotripsia flexível (RIRS)",
+      description: "Esquema autoral com bainha de acesso, navegação calicial, dusting com laser, recuperação com basket e posicionamento de duplo J.",
+      searchTerms: "RIRS ureteral access sheath laser dusting nitinol basket double J sequence",
+      imageUrl: "/manus-storage/rirs-flexivel-sequencia_e26318f5.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "vasectomia-tecnica-sem-bisturi": [{
+      caption: "Sequência da vasectomia sem bisturi",
+      description: "Esquema autoral da punção mínima, exteriorização do deferente, oclusão com cautério e interposição fascial.",
+      searchTerms: "no scalpel vasectomy puncture vasal ring clamp cautery fascial interposition",
+      imageUrl: "/manus-storage/vasectomia-sem-bisturi-sequencia_a34bbeba.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "cistoscopia": [{
+      caption: "Sequência de retirada cistoscópica do duplo J",
+      description: "Esquema autoral da identificação da alça vesical, apreensão com pinça ou laço e inspeção final após retirada do cateter.",
+      searchTerms: "cystoscopy double J stent removal grasping forceps guidewire loop sequence",
+      imageUrl: "/manus-storage/cistoscopia-duploj-sequencia_dec8b7e1.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "holep": [{
+      caption: "Sequência de enucleação no HoLEP",
+      description: "Esquema autoral do plano capsular, enucleação lobar, deslocamento para bexiga e morcelação segura do adenoma.",
+      searchTerms: "HoLEP capsular plane laser enucleation morcellation sequence",
+      imageUrl: "/manus-storage/holep-enucleacao-sequencia_7e3e6600.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "bipolep": [{
+      caption: "Sequência de enucleação bipolar (BipoLEP)",
+      description: "Esquema autoral do desenvolvimento do plano capsular com eletrodo bipolar, enucleação e morcelação do adenoma.",
+      searchTerms: "BipoLEP bipolar enucleation capsular plane morcellation sequence",
+      imageUrl: "/manus-storage/bipolep-enucleacao-sequencia_62644d76.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "leco": [{
+      caption: "Sequência da litotripsia extracorpórea por ondas de choque",
+      description: "Esquema autoral do alinhamento do cálculo, foco das ondas de choque, fragmentação e eliminação dos fragmentos urinários.",
+      searchTerms: "extracorporeal shock wave lithotripsy stone targeting fragmentation passage sequence",
+      imageUrl: "/manus-storage/leco-ondas-choque-sequencia_101f544b.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "postectomia-circuncisao-no-adulto": [{
+      caption: "Sequência da postectomia em manga no adulto",
+      description: "Esquema autoral do bloqueio dorsal, marcações de pele e mucosa, exérese do manguito e reconstrução mucocutânea/frenular.",
+      searchTerms: "adult sleeve circumcision dorsal block sleeve resection mucocutaneous closure",
+      imageUrl: "/manus-storage/postectomia-adulto-sleeve-sequencia_e1f2b49f.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "adrenalectomia": [{
+      caption: "Sequência da adrenalectomia laparoscópica",
+      description: "Esquema autoral do acesso retroperitoneal, controle precoce da veia adrenal, mobilização da glândula e extração protegida.",
+      searchTerms: "laparoscopic adrenalectomy adrenal vein clipping gland mobilization extraction sequence",
+      imageUrl: "/manus-storage/adrenalectomia-laparoscopica-sequencia_eed82bd2.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "epididimectomia": [{
+      caption: "Sequência da epididimectomia",
+      description: "Esquema autoral da exposição escrotal, preservação da vascularização testicular, ressecção epididimária e hemostasia final.",
+      searchTerms: "epididymectomy scrotal exposure testicular vascular preservation sequence",
+      imageUrl: "/manus-storage/epididimectomia-sequencia_cf18abbc.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "hidrocelectomia-tecnicas-de-jaboulay-e-lord": [{
+      caption: "Comparação das técnicas de Jaboulay e Lord",
+      description: "Esquema autoral com abertura do saco, eversão da túnica vaginal (Jaboulay) e plicatura da túnica vaginal (Lord).",
+      searchTerms: "hydrocelectomy Jaboulay eversion Lord plication comparison sequence",
+      imageUrl: "/manus-storage/hidrocelectomia-jaboulay-lord-sequencia_95de68cf.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "linfadenectomia-inguinal-no-cancer-de-penis": [{
+      caption: "Sequência da linfadenectomia inguinal",
+      description: "Esquema autoral da marcação do triângulo inguinal, elevação de retalhos, dissecção linfonodal e drenagem final.",
+      searchTerms: "inguinal lymphadenectomy penile cancer flap elevation nodal dissection drain sequence",
+      imageUrl: "/manus-storage/linfadenectomia-inguinal-sequencia_adecabe3.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "lipoaspiracao-suprapubica-e-correcao-de-penis-enterrado-no-a": [{
+      caption: "Sequência de reconstrução de pênis enterrado no adulto",
+      description: "Esquema autoral da redução do coxim suprapúbico, desluvamento, fixação da base e reconstrução do ângulo penopúbico.",
+      searchTerms: "adult buried penis reconstruction suprapubic lipectomy degloving penile fixation sequence",
+      imageUrl: "/manus-storage/penis-enterrado-reconstrucao-sequencia_6501ec33.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "nefrolitotripsia-percutanea": [{
+      caption: "Sequência da nefrolitotripsia percutânea",
+      description: "Esquema autoral do posicionamento, punção calicial, dilatação do trajeto, fragmentação e drenagem pós-procedimento.",
+      searchTerms: "percutaneous nephrolithotomy calyceal puncture tract dilation nephroscope drainage sequence",
+      imageUrl: "/manus-storage/nlp-percutanea-sequencia_af298d2a.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "orquiectomia-radical-inguinal-tumor-de-testiculo": [{
+      caption: "Sequência da orquiectomia radical inguinal",
+      description: "Esquema autoral da incisão inguinal, isolamento precoce do cordão, exteriorização testicular e ligadura alta do cordão.",
+      searchTerms: "radical inguinal orchiectomy cord isolation Penrose high ligation sequence",
+      imageUrl: "/manus-storage/orquiectomia-radical-inguinal-sequencia_85c0cde9.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "orquiectomia-simples-subcapsular-bloqueio-androgenico": [{
+      caption: "Sequência da orquiectomia subcapsular",
+      description: "Esquema autoral da incisão escrotal, abertura da albugínea, enucleação do parênquima e preservação da túnica como invólucro.",
+      searchTerms: "subcapsular orchiectomy tunica albuginea parenchyma enucleation sequence",
+      imageUrl: "/manus-storage/orquiectomia-simples-subcapsular-sequencia_066342f4.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "penectomia-parcial-cancer-de-penis": [{
+      caption: "Sequência da penectomia parcial com neomeato",
+      description: "Esquema autoral da marcação de margens, secção corporal, espatulação uretral e reconstrução de neomeato funcional.",
+      searchTerms: "partial penectomy margin corporal division urethral spatulation neomeatus sequence",
+      imageUrl: "/manus-storage/penectomia-parcial-sequencia_c7d3d6d6.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "sling-masculino": [{
+      caption: "Sequência do sling masculino transobturatório",
+      description: "Esquema autoral da exposição bulbar, passagem dos trocartes, posicionamento/tensionamento da malha e confirmação de coaptação.",
+      searchTerms: "male transobturator sling bulbar urethra trocar mesh tension cystoscopy sequence",
+      imageUrl: "/manus-storage/sling-masculino-sequencia_ee487cbf.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "uretrotomia-interna": [{
+      caption: "Sequência da uretrotomia interna de Sachse",
+      description: "Esquema autoral da estenose bulbar, passagem do uretrotomo, incisão em 12 horas e manutenção de lúmen uretral calibrado.",
+      searchTerms: "Sachse internal urethrotomy bulbar stricture cold knife 12 oclock incision sequence",
+      imageUrl: "/manus-storage/uretrotomia-sachse-sequencia_e1dffd8b.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "resseccao-de-condilomas-genitais-hpv-exerese-e-eletrocauteri": [{
+      caption: "Sequência de exérese e eletrocauterização de condilomas",
+      description: "Esquema autoral de marcação, exérese tangencial, hemostasia por eletrocautério e cicatrização sem lesão residual.",
+      searchTerms: "genital condyloma excision electrocautery local anesthesia healing sequence",
+      imageUrl: "/manus-storage/condilomas-genitais-sequencia_1db012a9.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "espermatocelectomia-exerese-de-cisto-de-epididimo": [{
+      caption: "Sequência da espermatocelectomia",
+      description: "Esquema autoral da exposição escrotal, dissecção do cisto epididimário, ressecção com preservação vascular e reposicionamento testicular.",
+      searchTerms: "spermatocelectomy epididymal cyst dissection testicular preservation sequence",
+      imageUrl: "/manus-storage/espermatocelectomia-sequencia_ebc5b14e.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "frenuloplastia-peniana-correcao-de-freio-curto": [{
+      caption: "Sequência da frenuloplastia peniana",
+      description: "Esquema autoral do freio curto, incisão transversa, alongamento tipo Z e fechamento longitudinal sem tensão.",
+      searchTerms: "penile frenuloplasty short frenulum transverse incision Z plasty sequence",
+      imageUrl: "/manus-storage/frenuloplastia-sequencia_bf00f538.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "reimplante-ureteral": [{
+      caption: "Sequência do reimplante ureterovesical de Lich-Gregoir",
+      description: "Esquema autoral da mobilização ureteral, espatulação, ureteroneocistostomia sobre duplo J e túnel detrusor antirrefluxo.",
+      searchTerms: "Lich Gregoir ureteral reimplantation ureteroneocystostomy detrusor tunnel double J sequence",
+      imageUrl: "/manus-storage/reimplante-ureteral-sequencia_7af79135.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "rezum": [{
+      caption: "Sequência da termoterapia por vapor (Rezūm)",
+      description: "Esquema autoral da visualização endoscópica, posicionamento da agulha, injeções de vapor e remodelamento posterior do canal prostático.",
+      searchTerms: "Rezum water vapor therapy needle steam injection prostate channel sequence",
+      imageUrl: "/manus-storage/rezum-vapor-sequencia_d25e548e.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "ureterolitotripsia-rigida": [{
+      caption: "Sequência da ureterolitotripsia rígida",
+      description: "Esquema autoral do acesso semirrígido, fragmentação com energia, recuperação com basket e posicionamento final de duplo J.",
+      searchTerms: "semi rigid ureteroscopy stone laser fragmentation basket double J sequence",
+      imageUrl: "/manus-storage/ureterolitotripsia-rigida-sequencia_ab492750.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "reversao-de-vasectomia-vasovasostomia-microcirurgica-em-dois": [{
+      caption: "Sequência da vasovasostomia microcirúrgica",
+      description: "Esquema autoral da marcação microdot, anastomose mucosa fina e reforço externo em dois planos para restaurar a patência vasal.",
+      searchTerms: "two layer microsurgical vasovasostomy microdot mucosal muscularis anastomosis sequence",
+      imageUrl: "/manus-storage/vasovasostomia-microcirurgica-sequencia_967f63e6.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "reversao-de-vasectomia-vasoepididimostomia-microcirurgica": [{
+      caption: "Sequência da vasoepididimostomia microcirúrgica",
+      description: "Esquema autoral da seleção tubular, técnica de intussuscepção com duas agulhas e reforço da anastomose vasoepididimária.",
+      searchTerms: "microsurgical vasoepididymostomy double needle intussusception epididymal tubule sequence",
+      imageUrl: "/manus-storage/vasoepididimostomia-microcirurgica-sequencia_5bf2b4b3.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "biopsia-testicular-diagnostica": [{
+      caption: "Sequência da biópsia testicular diagnóstica",
+      description: "Esquema autoral da exposição da albugínea, coleta em cunha, acondicionamento do material e fechamento por planos.",
+      searchTerms: "diagnostic testicular biopsy tunica albuginea wedge specimen closure sequence",
+      imageUrl: "/manus-storage/biopsia-testicular-sequencia_a9c788c5.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "aspiracao-de-espermatozoides-pesa-tesa": [{
+      caption: "Comparação entre PESA e TESA",
+      description: "Esquema autoral das vias epididimária e testicular de aspiração, com leitura microscópica e envio para reprodução assistida.",
+      searchTerms: "PESA TESA sperm retrieval epididymal testicular aspiration microscope comparison",
+      imageUrl: "/manus-storage/pesa-tesa-sequencia_87ffe802.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "extracao-microcirurgica-de-espermatozoides-micro-tese": [{
+      caption: "Sequência da micro-TESE",
+      description: "Esquema autoral da abertura ampla sob microscopia, seleção de túbulos promissores e encaminhamento do material ao laboratório.",
+      searchTerms: "micro TESE operating microscope dilated seminiferous tubules sperm retrieval sequence",
+      imageUrl: "/manus-storage/microtese-sequencia_a1b6e1c2.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "varicocelectomia-subinguinal-microcirurgica": [{
+      caption: "Sequência da varicocelectomia subinguinal microcirúrgica",
+      description: "Esquema autoral da exposição do cordão, identificação seletiva ao microscópio, preservação arterial/linfática e ligadura venosa.",
+      searchTerms: "microsurgical subinguinal varicocelectomy spermatic cord artery lymphatic preservation sequence",
+      imageUrl: "/manus-storage/varicocelectomia-sequencia_1320570b.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "implante-de-protese-peniana-semirrigida-maleavel": [{
+      caption: "Sequência do implante de prótese peniana maleável",
+      description: "Esquema autoral da exposição, dilatação e mensuração corporal, inserção bilateral de hastes e fechamento corporal.",
+      searchTerms: "malleable penile prosthesis corporal dilation Furlow measurement rod insertion sequence",
+      imageUrl: "/manus-storage/protese-peniana-maleavel-sequencia_1f50e485.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "curvatura-peniana-congenita-corporoplastia-de-plicatura": [{
+      caption: "Sequência da plicatura para curvatura congênita",
+      description: "Esquema autoral da ereção artificial, marcação do lado convexo, plicatura tunical e retificação final.",
+      searchTerms: "congenital penile curvature artificial erection tunical plication inverted knot sequence",
+      imageUrl: "/manus-storage/curvatura-congenita-plicatura-sequencia_19ab73d2.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "correcao-de-doenca-de-peyronie-incisao-excisao-de-placa-com-": [{
+      caption: "Sequência de incisão de placa e enxertia na Peyronie",
+      description: "Esquema autoral da placa, elevação neurovascular, incisão tunical, sutura do enxerto e retificação do eixo peniano.",
+      searchTerms: "Peyronie plaque incision graft neurovascular bundle tunical defect sequence",
+      imageUrl: "/manus-storage/peyronie-enxerto-sequencia_e6eac9cd.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "protese-peniana-com-remodelamento-na-peyronie-grave": [{
+      caption: "Sequência de prótese e modelagem na Peyronie grave",
+      description: "Esquema autoral da inserção dos cilindros, insuflação, modelagem manual controlada e correção da curvatura residual.",
+      searchTerms: "Peyronie inflatable penile prosthesis manual modeling residual curvature sequence",
+      imageUrl: "/manus-storage/protese-peyronie-remodelamento-sequencia_bdf7fc26.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "escrotoplastia-scrotal-lift-lifting-escrotal-estetico": [{
+      caption: "Sequência da escrotoplastia estética",
+      description: "Esquema autoral da marcação de pele redundante, ressecção, plicatura do dartos e novo contorno escrotal elevado.",
+      searchTerms: "adult scrotoplasty scrotal lift redundant skin excision dartos plication sequence",
+      imageUrl: "/manus-storage/escrotoplastia-sequencia_3461979e.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+    "implante-de-protese-testicular": [{
+      caption: "Sequência do implante de prótese testicular",
+      description: "Esquema autoral da confecção de bolsa subdartos, inserção/ancoragem da prótese e restauração de simetria escrotal.",
+      searchTerms: "testicular prosthesis subdartos pocket insertion fixation scrotal symmetry sequence",
+      imageUrl: "/manus-storage/protese-testicular-sequencia_ba0c3b30.png",
+      credit: "Ilustração médica autoral para o Atlas Urológico, 2026.",
+      sourceUrl: "https://descricao.felipebulhoes.com/atlas",
+    }],
+  };
+  return [
+    ...(additions[entryId] ?? []),
+    ...(complicationAdditions[entryId] ?? []),
+    ...(followUpAdditions[entryId] ?? []),
+    ...(completionAdditions[entryId] ?? []),
+  ];
+}
 
 export const atlasCategories: string[] = Array.from(new Set(atlasEntries.map((e) => e.category)));
 
@@ -4769,5 +6004,5 @@ export const atlasToProcedure: Record<string, string> = {
   "usg-vias-urinarias-inferiores": "usg-vias-urinarias-inferiores",
   "investigacao-hematuria": "investigacao-hematuria",
   "investigacao-cancer-prostata": "investigacao-cancer-prostata",
+  "seguimento-pos-prostatectomia": "seguimento-pos-prostatectomia",
 };
-

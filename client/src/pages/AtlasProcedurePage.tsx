@@ -5,6 +5,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 import { IpssCalculator } from "@/components/IpssCalculator";
 import { ErspcCalculator } from "@/components/ErspcCalculator";
 import {
@@ -15,6 +20,9 @@ import {
 } from "@/components/ui/accordion";
 import { BrandLogo } from "@/components/BrandLogo";
 import { AtlasLightbox } from "@/components/AtlasLightbox";
+import { FollowUpTimeline } from "@/components/FollowUpTimeline";
+import { AestheticGuidance } from "@/components/AestheticGuidance";
+import { PenileFillerComparison } from "@/components/PenileFillerComparison";
 import {
   buildLightboxFigures,
   positionForFigure,
@@ -39,7 +47,9 @@ import {
   ImagePlus,
   Maximize2,
   Info,
+  EyeOff,
   ClipboardList,
+  CircleAlert,
 } from "lucide-react";
 import {
   clinicalKeySearchUrl,
@@ -47,6 +57,7 @@ import {
   capesArticleUrl,
   openInNewTab,
 } from "@/lib/atlasSearch";
+import { getAtlasUrgencyAlert, getFollowUpTimeline } from "@/lib/atlasVisual";
 import {
   Popover,
   PopoverContent,
@@ -138,17 +149,26 @@ export default function AtlasProcedurePage() {
 
   const cat = categoryMeta(entry.category);
   const ev = evidenceBadge(entry.evidence);
+  const urgencyAlert = getAtlasUrgencyAlert(entry.id);
+  const followUpTimeline = getFollowUpTimeline(entry.id);
 
   // a seção de referências é renderizada à parte, no final
   const refIndex = entry.sections.findIndex((s) =>
     s.title.toLowerCase().includes("refer")
   );
-  const technicalSections = entry.sections.filter((_, i) => i !== refIndex);
+  const technicalSections = entry.sections
+    .map((section, index) => ({ section, index }))
+    .filter(({ index }) => index !== refIndex);
   const referencesSection =
     refIndex >= 0 ? entry.sections[refIndex] : undefined;
 
   // abrir a primeira seção por padrão
-  const defaultOpen = technicalSections.length > 0 ? "section-0" : undefined;
+  const hashSection = typeof window !== "undefined" ? window.location.hash.replace("#", "") : "";
+  const defaultOpen = technicalSections.some(({ index }) => `section-${index}` === hashSection)
+    ? hashSection
+    : technicalSections.length > 0
+      ? `section-${technicalSections[0].index}`
+      : undefined;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -203,6 +223,15 @@ export default function AtlasProcedurePage() {
               {entry.evidence}
             </p>
           </Card>
+          {urgencyAlert && (
+            <Alert variant="destructive" className="mt-3 border-red-500/45 bg-red-500/10 text-foreground">
+              <CircleAlert className="h-4 w-4 text-red-400" />
+              <AlertTitle className="text-red-300">{urgencyAlert.title}</AlertTitle>
+              <AlertDescription className="text-foreground/85">
+                {urgencyAlert.description}
+              </AlertDescription>
+            </Alert>
+          )}
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {linkedProcedure && (
@@ -271,6 +300,8 @@ export default function AtlasProcedurePage() {
           </div>
         </div>
 
+        <FollowUpTimeline milestones={followUpTimeline} />
+
         {/* Seções técnicas */}
         <section className="mb-8">
           <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
@@ -278,15 +309,17 @@ export default function AtlasProcedurePage() {
           </h3>
           <Card className="bg-card border-border px-4">
             <Accordion
+              key={entry.id}
               type="single"
               collapsible
               defaultValue={defaultOpen}
               className="w-full"
             >
-              {technicalSections.map((section, i) => (
+              {technicalSections.map(({ section, index }) => (
                 <AccordionItem
-                  key={i}
-                  value={`section-${i}`}
+                  key={index}
+                  value={`section-${index}`}
+                  id={`section-${index}`}
                   className="border-border/60"
                 >
                   <AccordionTrigger className="text-foreground hover:no-underline hover:text-primary text-[15px] font-semibold">
@@ -316,6 +349,14 @@ export default function AtlasProcedurePage() {
             </Accordion>
           </Card>
         </section>
+
+        {entry.category === "Estética Genital" && (
+          <section className="mb-8">
+            <AestheticGuidance entryId={entry.id} />
+          </section>
+        )}
+
+        <PenileFillerComparison entryId={entry.id} />
 
         {/* Galeria de figuras */}
         {entry.figures.length > 0 && (
@@ -444,6 +485,12 @@ function FigureCard({
           <span className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-background/70 backdrop-blur border border-border flex items-center justify-center text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
             <Maximize2 className="w-3.5 h-3.5" />
           </span>
+          {fig.sensitive && (
+            <Badge className="absolute right-2 top-2 z-10 gap-1 border border-amber-500/30 bg-amber-500/15 px-2 py-1 text-[10px] font-medium text-amber-800 shadow-sm backdrop-blur dark:text-amber-200">
+              <EyeOff className="h-3 w-3" />
+              {fig.sensitiveLabel ?? "Conteúdo clínico sensível"}
+            </Badge>
+          )}
           {/* tooltip de referência bibliográfica */}
           {effectiveCredit && (
             <Popover>

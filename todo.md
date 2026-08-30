@@ -129,11 +129,110 @@
 - [x] Criar entrada do Atlas "investigacao-cancer-prostata" com protocolo PSA, PIRADS, biópsia e estadiamento (EAU 2024)
 - [x] Criar procedimento interativo "investigacao-cancer-prostata" no proceduresExtra.ts com campos e templates de solicitação de biópsia e laudo de estadiamento clínico
 - [x] Mapear investigacao-cancer-prostata no atlasToProcedure
-- [x] Testes e checkpoint (218/218 na entrega inicial)
+- [x] Testes e checkpoint (218/218; checkpoint fb29e174)
 
-# Correção de integridade React (Ago 2026)
-- [x] Corrigir IDs duplicados no catálogo que causam chaves React repetidas na página inicial
-- [x] Adicionar teste de unicidade para os IDs de procedimentos
-- [x] Corrigir a contagem estática desatualizada de procedimentos exibida na página inicial
-- [x] Validar console, TypeScript e testes; salvar checkpoint
-- [x] Remover a definição-fonte duplicada de usg-escrotal-doppler-testicular e validar a integridade dos dados brutos (console atual sem novas advertências; catálogo mostra 64 procedimentos)
+# Seguimento Pós-Prostatectomia e ERSPC (Ago 2026)
+- [x] Adicionar cálculo automático de PSA Density (PSA ÷ volume prostático) na calculadora ERSPC
+- [x] Adicionar cálculo automático de PSA Velocity a partir de dois valores de PSA e suas respectivas datas na calculadora ERSPC
+- [x] Criar entrada do Atlas "seguimento-pos-prostatectomia" com cronograma de PSA, critérios de recidiva bioquímica e abordagem de tratamento de resgate, baseada na EAU 2026
+- [x] Criar procedimento interativo "seguimento-pos-prostatectomia" com campos de PSA seriado, patologia, estadiamento e templates de seguimento/encaminhamento
+- [x] Mapear a nova entrada do Atlas ao procedimento de seguimento pós-prostatectomia
+- [x] Validar TypeScript e Vitest (222/222) e preparar checkpoint do lote
+
+# Correção de Integridade do Catálogo (Ago 2026)
+- [x] Localizar e eliminar a duplicação do ID `usg-escrotal-doppler-testicular` que gera chave React duplicada na página inicial
+- [x] Adicionar teste de regressão para garantir unicidade dos IDs de procedimentos do catálogo
+- [x] Validar TypeScript/Vitest (223/223) e preparar checkpoint da correção
+
+# Pesquisa Rápida do Catálogo (Ago 2026)
+- [x] Revisar e aprimorar a barra de busca inicial para localizar procedimentos, categorias e calculadoras
+- [x] Adicionar lógica testável de pesquisa com correspondência por nome, abreviação, categoria e indicadores de calculadora
+- [x] Validar TypeScript/Vitest (226/226) e preparar checkpoint da busca rápida
+
+# Auditoria e Complementação de Imagens do Atlas (Ago 2026)
+- [x] Auditar as figuras por entrada: cobertura, relevância clínica, crédito e fonte bibliográfica (69 entradas; relatório reprodutível em audit/atlas-images-audit.md)
+- [x] Priorizar procedimentos sem imagem e selecionar figuras de literatura e ilustrações médicas autorais conforme adequação clínica
+- [x] Atualizar créditos, fontes e descrições no Atlas (106 figuras com imagem e rastreabilidade completa; cobertura mínima de todas as 69 entradas)
+- [x] Validar TypeScript/Vitest (227/227) e preparar checkpoint da auditoria visual
+
+# Enriquecimento de Quadros Secundários do Atlas (Ago 2026)
+- [x] Priorizar procedimentos com quatro ou mais quadros secundários vazios, começando por técnicas oncológicas, endourológicas e andrológicas
+- [x] Selecionar e revisar oito imagens médicas complementares, evitando repetição de conteúdo e mantendo créditos e fontes
+- [x] Preencher oito quadros secundários priorizados no Atlas com descrições didáticas (pellets, nefrectomias, nefroureterectomia, postectomia, prostatectomia, RTU-P, RTU-B e RIRS)
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (114 figuras com imagem) e preparar checkpoint
+
+# Quadros Secundários — Andrologia e Fertilidade (Ago 2026)
+- [x] Priorizar procedimentos de andrologia e fertilidade com maior número de quadros vazios
+- [x] Selecionar e revisar dez imagens médicas complementares de anatomia, técnica, diagnóstico e seguimento
+- [x] Atualizar quadros secundários de vasovasostomia, vasoepididimostomia, varicocelectomia, biópsia testicular, PESA/TESA, micro-TESE, próteses penianas e correções de curvatura/Peyronie
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (124 figuras com imagem) e preparar checkpoint
+
+# Enriquecimento Didático Contínuo — Lote 06 (Ago 2026)
+- [x] Priorizar os quadros secundários remanescentes por ganho didático: anatomia, acesso, técnica, imagem diagnóstica, complicações e seguimento
+- [x] Selecionar e revisar nove imagens clínicas, técnicas e esquemáticas complementares; descartar foto de pós-orquiectomia sem valor técnico suficiente
+- [x] Atualizar adrenalectomia, cistoscopia, HoLEP, orquidopexia, pieloplastia, vasectomia, hidrocelectomia, NLP e reimplante ureteral com novas imagens e legendas didáticas
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (133 figuras com imagem) e preparar checkpoint
+
+# Complicações e Revisão Cirúrgica — Lote 07 (Ago 2026)
+- [x] Priorizar procedimentos sem quadro visual de complicação, falha terapêutica ou revisão cirúrgica
+- [x] Selecionar e revisar oito imagens médicas que ilustram sangramento, extravasamento, avulsão, perfuração, enfisema e salvamento protético
+- [x] Atualizar nefrectomia parcial, prostatectomia radical, RIRS, NLP, HoLEP, RTU-P, prótese peniana inflável e reimplante ureteral com imagens e legendas de segurança clínica
+- [x] Validar TypeScript/Vitest (227/227), atualizar auditoria (141 figuras com imagem) e preparar checkpoint
+
+# Seguimento, Filtros e Alertas — Lote 08 (Ago 2026)
+- [x] Priorizar procedimentos para imagens de seguimento pós-operatório e desfechos funcionais
+- [x] Selecionar e revisar sete imagens complementares de controle, recuperação e resultado funcional; descartar tabela de reabilitação pós-prostatectomia sem legibilidade adequada
+- [x] Adicionar filtros no Atlas por técnica, complicação e imagem diagnóstica, com indicadores por cartão
+- [x] Adicionar alertas visuais para priapismo isquêmico, ureteroscopia, NLP, RTU-P e HoLEP
+- [x] Atualizar imagens de seguimento em pieloplastia, reimplante ureteral, HoLEP, varicocelectomia, sling masculino, prótese peniana e NLP
+- [x] Validar TypeScript/Vitest (230/230), atualizar auditoria (148 figuras com imagem) e preparar checkpoint
+
+# Filtros Avançados, Seguimento e Alertas — Lote 09 (Ago 2026)
+- [x] Implementar filtros por subespecialidade e nível de evidência no índice do Atlas
+- [x] Criar linha do tempo visual de seguimento pós-operatório em postectomia, varicocelectomia, prostatectomia radical, pieloplastia, NLP, HoLEP, sling masculino e prótese peniana inflável
+- [x] Expandir alertas de urgência para pós-operatório escrotal e cenários oncológicos (torção/orquidopexia, hidrocelectomia, orquiectomia radical, RTU-B e nefrectomia parcial)
+- [x] Validar TypeScript/Vitest (232/232) e preparar checkpoint do lote avançado
+
+# Revisão Visual — Estética Genital (Ago 2026)
+- [x] Inventariar as imagens das sete entradas de estética genital e seus créditos
+- [x] Revisar adequação clínica, anatômica e didática de cada imagem; registrar parecer em audit/esthetic-images-visual-review.md
+- [x] Corrigir legendas incoerentes de ligamentólise e circuncisão; substituir imagem pediátrica de escrotoplastia por esquema adulto; adicionar esquemas autorais de enxerto dermogorduroso, reconstrução de pênis enterrado e circuncisão em sleeve
+- [x] Validar TypeScript/Vitest (232/232) e preparar checkpoint da revisão visual
+
+# Segurança Visual e Orientação Estética Genital (Ago 2026)
+- [x] Adicionar etiqueta de conteúdo clínico sensível às fotografias genitais e de complicações pertinentes
+- [x] Criar esquemas visuais de orientação pós-operatória para as sete técnicas estéticas do Atlas
+- [x] Criar comparação visual entre indicações estéticas e reconstrutivas
+- [x] Validar TypeScript/Vitest (235/235) e preparar checkpoint de segurança visual
+
+# Pesquisa Global do Atlas (Ago 2026)
+- [x] Revisar dados e componentes de busca existentes para definir o índice global do Atlas
+- [x] Implementar pesquisa global por procedimento, seção técnica, complicação e referência
+- [x] Adicionar atalho ⌘/Ctrl+K, interface de resultados e navegação contextual para a seção encontrada
+- [x] Validar TypeScript/Vitest (240/240), testar busca por complicação e preparar checkpoint da pesquisa global
+
+# Pesquisa Global — Favoritos e Links (Ago 2026)
+- [x] Revisar o diálogo global e o mecanismo de navegação contextual existente
+- [x] Implementar persistência local de buscas recentes e resultados favoritos
+- [x] Adicionar filtros rápidos por procedimento, técnica, complicação e referência
+- [x] Permitir copiar link direto para uma seção do Atlas a partir do resultado
+- [x] Validar TypeScript/Vitest (246/246), testar favoritos, filtros e cópia de link e preparar checkpoint
+
+# Pesquisa Global — Limpeza de Histórico (Ago 2026)
+- [x] Revisar a gestão local de buscas recentes e favoritos
+- [x] Adicionar ação de limpar buscas recentes e ações para remover favoritos individualmente ou em lote
+- [x] Validar TypeScript/Vitest (247/247), confirmar os comandos de limpeza e preparar checkpoint
+
+# Cobertura Completa de Imagens do Atlas (Ago 2026)
+- [x] Auditar todos os quadros de figura ainda sem imagem e agrupá-los por subespecialidade
+- [x] Selecionar e revisar imagens ou ilustrações didáticas para todos os quadros pendentes
+- [x] Atualizar os quadros faltantes com imagem, crédito, fonte e legenda, usando figuras específicas e painéis didáticos autorais contextualizados
+- [x] Confirmar cobertura integral (388/388 figuras com imagem), TypeScript limpo e 248/248 testes passando; preparar checkpoint
+- [x] Preencher o primeiro grupo prioritário com 45 esquemas médicos autorais para procedimentos oncológicos, endourológicos, prostáticos, escrotais, reconstrutivos e de fertilidade
+- [x] Validar o primeiro grupo: TypeScript limpo e 248/248 testes passando
+
+# Didática dos Preenchimentos Penianos (Ago 2026)
+- [x] Auditar as entradas de preenchimento de haste e de glande quanto a conteúdo, imagens e legendas
+- [x] Adicionar comparativo didático de objetivo, plano anatômico, técnica, limitações, riscos e seguimento
+- [x] Ajustar imagens e rótulos com esquema anatômico comparativo e cartões de distinção haste/corpo peniano versus glande
+- [x] Validar TypeScript/Vitest (237/237) e preparar checkpoint da didática dos preenchimentos
