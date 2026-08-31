@@ -16,5 +16,9 @@
 - [x] Testar a normalização de registros legados e a atualização de status e horários de contato e retirada no armazenamento local.
 - [x] Testar a sincronização para assegurar que o acompanhamento local de um timer existente seja preservado e timers novos da nuvem sejam incorporados.
 - [ ] Adicionar uma área de acesso rápido com procedimentos recentes, favoritos e documentos usados com maior frequência.
-- [ ] Salvar a versão do modelo e uma cópia do documento emitido em cada registro para preservar rastreabilidade clínica.
+- [x] Salvar a versão do modelo e uma cópia do documento emitido em cada registro para preservar rastreabilidade clínica.
+- [x] Armazenar instantâneos imutáveis dos documentos no momento em que o procedimento é salvo no histórico.
+- [x] Incluir os instantâneos e a versão do modelo na sincronização em nuvem e no banco de dados.
+- [x] Permitir consultar a cópia emitida e seus metadados no histórico cirúrgico.
+- [x] Cobrir a criação e a preservação dos instantâneos documentais com testes unitários.
 - [ ] Revisar os controles de privacidade de dados sensíveis, incluindo aviso de uso em dispositivo compartilhado e descarte local dos registros.

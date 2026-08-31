@@ -63,6 +63,7 @@ import {
   getMissingFieldsForDocuments,
   type RequiredDocumentField,
 } from "@/lib/documentValidation";
+import { createDocumentSnapshot } from "@/lib/documentSnapshot";
 
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
@@ -323,12 +324,22 @@ export default function ProcedurePage() {
 
   const saveToHistory = useCallback(() => {
     if (!procedure) return;
+    const documentSnapshot = createDocumentSnapshot(
+      Object.fromEntries(
+        Object.keys(documents ?? {}).map((documentId) => [
+          documentId,
+          getDocText(documentId),
+        ])
+      )
+    );
     addToHistory({
       procedureId: procedure.id,
       procedureName: procedure.name,
       patientName: config.paciente || "Sem nome",
       date: config.data_cirurgia || todayLocalISO(),
       config: { ...config },
+      templateVersion: documentSnapshot.templateVersion,
+      documentSnapshot,
     });
     toast.success("Salvo no histórico!");
 
@@ -346,7 +357,7 @@ export default function ProcedurePage() {
       toast.info("Timer de DJ criado (retirada em 3 semanas).");
     }
     cloud.syncSurgeries();
-  }, [procedure, config, cloud]);
+  }, [procedure, config, cloud, documents, getDocText]);
 
   // Edit functionality
   const startEditing = useCallback(

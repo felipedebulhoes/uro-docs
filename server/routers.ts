@@ -18,6 +18,8 @@ const surgerySchema = z.object({
   patientName: z.string().nullable().optional(),
   surgeryDate: z.string().nullable().optional(),
   config: z.any().optional(),
+  templateVersion: z.string().nullable().optional(),
+  documentSnapshot: z.any().optional(),
 });
 
 const timerSchema = z.object({

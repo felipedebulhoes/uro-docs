@@ -35,6 +35,8 @@ export const surgeryHistory = mysqlTable("surgery_history", {
   patientName: text("patientName"),
   surgeryDate: varchar("surgeryDate", { length: 32 }),
   config: json("config"),
+  templateVersion: varchar("templateVersion", { length: 32 }),
+  documentSnapshot: json("documentSnapshot"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

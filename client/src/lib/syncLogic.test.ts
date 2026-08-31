@@ -69,6 +69,18 @@ describe("surgeryDiverges", () => {
       surgeryDiverges(surgery(), surgery({ config: { lateralidade: "Esquerda" } }))
     ).toBe(true);
   });
+
+  it("detects an altered document snapshot", () => {
+    const local = surgery({
+      templateVersion: "2026.08.31",
+      documentSnapshot: { documents: [{ id: "descricao", content: "Versão A" }] },
+    });
+    const cloud = surgery({
+      templateVersion: "2026.08.31",
+      documentSnapshot: { documents: [{ id: "descricao", content: "Versão B" }] },
+    });
+    expect(surgeryDiverges(local, cloud)).toBe(true);
+  });
 });
 
 describe("presetDiverges", () => {

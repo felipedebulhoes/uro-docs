@@ -14,6 +14,8 @@ export interface SurgeryLike {
   patientName: string;
   date: string;
   config: Record<string, string>;
+  templateVersion?: string;
+  documentSnapshot?: unknown;
   createdAt: string;
 }
 
@@ -72,7 +74,10 @@ export function surgeryDiverges(local: SurgeryLike, cloud: SurgeryLike): boolean
     local.patientName !== cloud.patientName ||
     local.date !== cloud.date ||
     local.procedureId !== cloud.procedureId ||
-    !sameConfig(local.config, cloud.config)
+    !sameConfig(local.config, cloud.config) ||
+    local.templateVersion !== cloud.templateVersion ||
+    JSON.stringify(local.documentSnapshot ?? null) !==
+      JSON.stringify(cloud.documentSnapshot ?? null)
   );
 }
 

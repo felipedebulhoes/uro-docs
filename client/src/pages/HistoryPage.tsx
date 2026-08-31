@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { getHistory, removeFromHistory, clearHistory, type SurgeryRecord } from "@/data/surgeryStore";
 import { procedures } from "@/data/procedures";
-import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown, BarChart3 } from "lucide-react";
+import { ArrowLeft, Trash2, Search, Calendar, User, ClipboardList, FileSpreadsheet, FileDown, BarChart3, FileText, Clock3 } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { useState, useMemo } from "react";
 import {
@@ -24,6 +24,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { useCloudSync } from "@/hooks/useCloudSync";
@@ -49,6 +56,7 @@ export default function HistoryPage() {
   const [search, setSearch] = useState("");
   const [clearOpen, setClearOpen] = useState(false);
   const [showStats, setShowStats] = useState(false);
+  const [selectedSnapshot, setSelectedSnapshot] = useState<SurgeryRecord | null>(null);
   const [filterMode, setFilterMode] = useState<"month" | "range">("month");
   const [periodYear, setPeriodYear] = useState("all");
   const [periodMonth, setPeriodMonth] = useState("all");
@@ -151,6 +159,19 @@ export default function HistoryPage() {
     } catch {
       return dateStr;
     }
+  };
+
+  const formatTimestamp = (timestamp: string) => {
+    const date = new Date(timestamp);
+    return Number.isNaN(date.getTime())
+      ? timestamp
+      : date.toLocaleString("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
   };
 
   return (
@@ -412,14 +433,34 @@ export default function HistoryPage() {
                         )}
                       </div>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive"
-                      onClick={() => handleDelete(record.id)}
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </Button>
+                    <div className="flex shrink-0 gap-1">
+                      {record.documentSnapshot ? (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-7 text-[11px] border-primary/30 text-primary hover:bg-primary/10"
+                          onClick={() => setSelectedSnapshot(record)}
+                          title="Consultar cópia dos documentos salvos"
+                        >
+                          <FileText className="mr-1 w-3 h-3" />
+                          Docs
+                        </Button>
+                      ) : (
+                        <Badge variant="outline" className="h-7 border-border text-[10px] text-muted-foreground">
+                          Registro legado
+                        </Badge>
+                      )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive"
+                        onClick={() => handleDelete(record.id)}
+                        title="Remover registro"
+                        aria-label="Remover registro"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </Button>
+                    </div>
                   </div>
                 </Card>
               );
@@ -447,6 +488,38 @@ export default function HistoryPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={Boolean(selectedSnapshot)} onOpenChange={(open) => !open && setSelectedSnapshot(null)}>
+        <DialogContent className="max-w-3xl bg-card text-card-foreground border-border">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-primary">
+              <FileText className="h-4 w-4" />
+              Cópia documental salva
+            </DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              {selectedSnapshot?.procedureName} — modelo {selectedSnapshot?.templateVersion ?? selectedSnapshot?.documentSnapshot?.templateVersion}
+            </DialogDescription>
+          </DialogHeader>
+          {selectedSnapshot?.documentSnapshot && (
+            <div className="space-y-4">
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Clock3 className="h-3.5 w-3.5" />
+                Capturado em {formatTimestamp(selectedSnapshot.documentSnapshot.capturedAt)}
+              </p>
+              <div className="max-h-[60vh] space-y-3 overflow-y-auto pr-1">
+                {selectedSnapshot.documentSnapshot.documents.map((document) => (
+                  <section key={document.id} className="rounded-lg border border-border bg-secondary/40 p-3">
+                    <h3 className="mb-2 text-xs font-semibold text-primary">{document.label}</h3>
+                    <pre className="whitespace-pre-wrap font-[family-name:var(--font-mono)] text-xs leading-relaxed text-foreground/90">
+                      {document.content}
+                    </pre>
+                  </section>
+                ))}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -95,6 +95,12 @@ describe("sync push mutations", () => {
         patientName: "Paciente B",
         surgeryDate: "2026-06-10",
         config: { lado: "Esquerdo" },
+        templateVersion: "2026.08.31",
+        documentSnapshot: {
+          templateVersion: "2026.08.31",
+          capturedAt: "2026-06-10T10:00:00.000Z",
+          documents: [{ id: "descricao", label: "Descrição", content: "Texto emitido" }],
+        },
       },
     ];
     const result = await caller.sync.pushSurgeries({ rows });

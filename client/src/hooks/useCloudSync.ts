@@ -78,6 +78,8 @@ export function useCloudSync() {
       patientName: r.patientName,
       surgeryDate: r.date,
       config: r.config,
+      templateVersion: r.templateVersion,
+      documentSnapshot: r.documentSnapshot,
     }));
     pushSurgeries.mutate({ rows });
   }, [isAuthenticated, pushSurgeries]);
@@ -148,6 +150,8 @@ export function useCloudSync() {
           patientName: c.patientName ?? "",
           date: c.surgeryDate ?? "",
           config: (c.config as Record<string, string>) ?? {},
+          templateVersion: c.templateVersion ?? undefined,
+          documentSnapshot: c.documentSnapshot ?? undefined,
           createdAt: c.createdAt
             ? new Date(c.createdAt).toISOString()
             : new Date().toISOString(),

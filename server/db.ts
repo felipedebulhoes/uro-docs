@@ -109,6 +109,8 @@ type SurgeryRow = {
   patientName?: string | null;
   surgeryDate?: string | null;
   config?: unknown;
+  templateVersion?: string | null;
+  documentSnapshot?: unknown;
 };
 
 export async function getSurgeryHistory(userId: number) {
@@ -131,6 +133,8 @@ export async function replaceSurgeryHistory(userId: number, rows: SurgeryRow[]) 
       patientName: r.patientName ?? null,
       surgeryDate: r.surgeryDate ?? null,
       config: r.config ?? null,
+      templateVersion: r.templateVersion ?? null,
+      documentSnapshot: r.documentSnapshot ?? null,
     }))
   );
 }

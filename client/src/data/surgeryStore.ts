@@ -1,4 +1,5 @@
 // Store para histórico de cirurgias e timers de DJ (localStorage)
+import type { DocumentSnapshot } from "@/lib/documentSnapshot";
 
 export interface SurgeryRecord {
   id: string;
@@ -7,6 +8,8 @@ export interface SurgeryRecord {
   patientName: string;
   date: string;
   config: Record<string, string>;
+  templateVersion?: string;
+  documentSnapshot?: DocumentSnapshot;
   createdAt: string;
 }
 
