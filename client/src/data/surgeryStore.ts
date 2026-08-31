@@ -18,6 +18,9 @@ export interface DJTimer {
   lateralidade: string;
   procedureId: string;
   completed: boolean;
+  followUpStatus: "pending" | "contacted" | "removed";
+  contactedAt?: string;
+  removalConfirmedAt?: string;
 }
 
 const HISTORY_KEY = "urodocx_history";
@@ -69,18 +72,30 @@ export function clearHistory(): void {
 export function getDJTimers(): DJTimer[] {
   try {
     const data = localStorage.getItem(TIMERS_KEY);
-    return data ? JSON.parse(data) : [];
+    const timers = data ? JSON.parse(data) : [];
+    if (!Array.isArray(timers)) return [];
+    return timers.map((timer) => ({
+      ...timer,
+      followUpStatus: timer.completed
+        ? "removed"
+        : timer.followUpStatus === "contacted"
+          ? "contacted"
+          : "pending",
+    }));
   } catch {
     return [];
   }
 }
 
-export function addDJTimer(timer: Omit<DJTimer, "id" | "completed">): DJTimer {
+export function addDJTimer(
+  timer: Omit<DJTimer, "id" | "completed" | "followUpStatus" | "contactedAt" | "removalConfirmedAt">
+): DJTimer {
   const timers = getDJTimers();
   const newTimer: DJTimer = {
     ...timer,
     id: crypto.randomUUID(),
     completed: false,
+    followUpStatus: "pending",
   };
   timers.unshift(newTimer);
   localStorage.setItem(TIMERS_KEY, JSON.stringify(timers));
@@ -89,7 +104,27 @@ export function addDJTimer(timer: Omit<DJTimer, "id" | "completed">): DJTimer {
 
 export function completeDJTimer(id: string): void {
   const timers = getDJTimers().map((t) =>
-    t.id === id ? { ...t, completed: true } : t
+    t.id === id
+      ? {
+          ...t,
+          completed: true,
+          followUpStatus: "removed" as const,
+          removalConfirmedAt: t.removalConfirmedAt ?? new Date().toISOString(),
+        }
+      : t
+  );
+  localStorage.setItem(TIMERS_KEY, JSON.stringify(timers));
+}
+
+export function markDJTimerContacted(id: string): void {
+  const timers = getDJTimers().map((t) =>
+    t.id === id && !t.completed
+      ? {
+          ...t,
+          followUpStatus: "contacted" as const,
+          contactedAt: t.contactedAt ?? new Date().toISOString(),
+        }
+      : t
   );
   localStorage.setItem(TIMERS_KEY, JSON.stringify(timers));
 }

@@ -28,6 +28,9 @@ const timerSchema = z.object({
   lateralidade: z.string().nullable().optional(),
   procedureId: z.string().nullable().optional(),
   completed: z.boolean().optional(),
+  followUpStatus: z.enum(["pending", "contacted", "removed"]).optional(),
+  contactedAt: z.string().nullable().optional(),
+  removalConfirmedAt: z.string().nullable().optional(),
 });
 
 const presetSchema = z.object({

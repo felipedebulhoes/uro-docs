@@ -122,6 +122,9 @@ describe("sync push mutations", () => {
         lateralidade: "Direito",
         procedureId: "rtu-p",
         completed: false,
+        followUpStatus: "contacted",
+        contactedAt: "2026-06-18T12:00:00.000Z",
+        removalConfirmedAt: null,
       },
     ];
     const result = await caller.sync.pushTimers({ rows });

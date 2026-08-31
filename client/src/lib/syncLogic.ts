@@ -24,6 +24,10 @@ export interface PresetLike {
   createdAt: string;
 }
 
+export interface DJTimerLike {
+  id: string;
+}
+
 export type SyncConflictKind = "surgery" | "preset";
 
 export interface SyncConflict {
@@ -149,4 +153,16 @@ export function detectPresetConflicts(
 /** Union merge of two string lists, preserving first-seen order. */
 export function mergeFavorites(local: string[], cloud: string[]): string[] {
   return Array.from(new Set([...(local || []), ...(cloud || [])]));
+}
+
+/**
+ * Combina timers entre dispositivos sem substituir um registro já modificado
+ * localmente. Registros presentes apenas na nuvem são acrescentados ao fim.
+ */
+export function mergeDJTimers<T extends DJTimerLike>(
+  local: T[],
+  cloud: T[]
+): T[] {
+  const localIds = new Set(local.map((timer) => timer.id));
+  return [...local, ...cloud.filter((timer) => !localIds.has(timer.id))];
 }

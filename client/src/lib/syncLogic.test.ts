@@ -6,6 +6,7 @@ import {
   detectSurgeryConflicts,
   detectPresetConflicts,
   mergeFavorites,
+  mergeDJTimers,
   type SurgeryLike,
   type PresetLike,
 } from "./syncLogic";
@@ -145,5 +146,30 @@ describe("mergeFavorites", () => {
   it("handles empty inputs", () => {
     expect(mergeFavorites([], ["x"])).toEqual(["x"]);
     expect(mergeFavorites(["x"], [])).toEqual(["x"]);
+  });
+});
+
+describe("mergeDJTimers", () => {
+  it("preserva a atualização local de acompanhamento e importa timers novos da nuvem", () => {
+    const local = [
+      {
+        id: "timer-1",
+        followUpStatus: "contacted",
+        contactedAt: "2026-08-30T10:00:00.000Z",
+      },
+    ];
+    const cloud = [
+      { id: "timer-1", followUpStatus: "pending" },
+      { id: "timer-2", followUpStatus: "pending" },
+    ];
+
+    expect(mergeDJTimers(local, cloud)).toEqual([
+      {
+        id: "timer-1",
+        followUpStatus: "contacted",
+        contactedAt: "2026-08-30T10:00:00.000Z",
+      },
+      { id: "timer-2", followUpStatus: "pending" },
+    ]);
   });
 });

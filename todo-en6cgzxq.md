@@ -9,7 +9,12 @@
 - [x] Implementar uma checagem prévia à exportação com os campos essenciais por documento e aviso de campos ausentes.
 - [x] Bloquear cópia, compartilhamento e exportação quando dados essenciais estiverem ausentes, com lista clara dos campos a preencher.
 - [x] Salvar um novo checkpoint publicado após a implementação da validação prévia de documentos e anexar a versão correspondente na entrega.
-- [ ] Criar uma central de pendências para Duplo J com status de contato, confirmação de retirada e filtros por vencimento.
+- [x] Criar uma central de pendências para Duplo J com status de contato, confirmação de retirada e filtros por vencimento.
+- [x] Incluir registro de status de acompanhamento e data de confirmação de retirada em cada timer de Duplo J.
+- [x] Adicionar indicadores e filtros para timers atrasados, com retirada próxima, aguardando contato e concluídos.
+- [x] Cobrir a lógica de classificação e atualização de status dos timers de Duplo J com testes unitários.
+- [x] Testar a normalização de registros legados e a atualização de status e horários de contato e retirada no armazenamento local.
+- [x] Testar a sincronização para assegurar que o acompanhamento local de um timer existente seja preservado e timers novos da nuvem sejam incorporados.
 - [ ] Adicionar uma área de acesso rápido com procedimentos recentes, favoritos e documentos usados com maior frequência.
 - [ ] Salvar a versão do modelo e uma cópia do documento emitido em cada registro para preservar rastreabilidade clínica.
 - [ ] Revisar os controles de privacidade de dados sensíveis, incluindo aviso de uso em dispositivo compartilhado e descarte local dos registros.

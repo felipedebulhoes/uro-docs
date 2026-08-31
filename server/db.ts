@@ -143,6 +143,9 @@ type TimerRow = {
   lateralidade?: string | null;
   procedureId?: string | null;
   completed?: boolean;
+  followUpStatus?: "pending" | "contacted" | "removed";
+  contactedAt?: string | null;
+  removalConfirmedAt?: string | null;
 };
 
 export async function getDjTimers(userId: number) {
@@ -166,6 +169,9 @@ export async function replaceDjTimers(userId: number, rows: TimerRow[]) {
       lateralidade: r.lateralidade ?? null,
       procedureId: r.procedureId ?? null,
       completed: r.completed ?? false,
+      followUpStatus: r.followUpStatus ?? (r.completed ? "removed" : "pending"),
+      contactedAt: r.contactedAt ?? null,
+      removalConfirmedAt: r.removalConfirmedAt ?? null,
     }))
   );
 }

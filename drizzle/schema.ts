@@ -53,6 +53,9 @@ export const djTimers = mysqlTable("dj_timers", {
   lateralidade: varchar("lateralidade", { length: 32 }),
   procedureId: varchar("procedureId", { length: 128 }),
   completed: boolean("completed").default(false).notNull(),
+  followUpStatus: varchar("followUpStatus", { length: 32 }).default("pending").notNull(),
+  contactedAt: varchar("contactedAt", { length: 40 }),
+  removalConfirmedAt: varchar("removalConfirmedAt", { length: 40 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

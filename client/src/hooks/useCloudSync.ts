@@ -17,6 +17,7 @@ import {
   detectSurgeryConflicts,
   detectPresetConflicts,
   mergeFavorites,
+  mergeDJTimers,
   type SyncConflict as PureSyncConflict,
 } from "@/lib/syncLogic";
 
@@ -91,6 +92,9 @@ export function useCloudSync() {
       lateralidade: t.lateralidade,
       procedureId: t.procedureId,
       completed: t.completed,
+      followUpStatus: t.followUpStatus,
+      contactedAt: t.contactedAt,
+      removalConfirmedAt: t.removalConfirmedAt,
     }));
     pushTimers.mutate({ rows });
   }, [isAuthenticated, pushTimers]);
@@ -165,9 +169,7 @@ export function useCloudSync() {
 
       // ---- Timers (union by localId, last-write wins, no conflict UI) -----
       const localTimers = getDJTimers();
-      const localTimerIds = new Set(localTimers.map((t) => t.id));
       const cloudTimers: DJTimer[] = (cloud.timers || [])
-        .filter((c: any) => !localTimerIds.has(c.localId))
         .map((c: any) => ({
           id: c.localId,
           patientName: c.patientName ?? "",
@@ -176,10 +178,17 @@ export function useCloudSync() {
           lateralidade: c.lateralidade ?? "",
           procedureId: c.procedureId ?? "",
           completed: Boolean(c.completed),
+          followUpStatus: c.completed
+            ? "removed"
+            : c.followUpStatus === "contacted"
+              ? "contacted"
+              : "pending",
+          contactedAt: c.contactedAt ?? undefined,
+          removalConfirmedAt: c.removalConfirmedAt ?? undefined,
         }));
       localStorage.setItem(
         TIMERS_KEY,
-        JSON.stringify([...localTimers, ...cloudTimers])
+        JSON.stringify(mergeDJTimers(localTimers, cloudTimers))
       );
 
       // ---- Favorites (union) ---------------------------------------------

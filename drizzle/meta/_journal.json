@@ -29,6 +29,13 @@
       "when": 1781320653555,
       "tag": "0003_mute_saracen",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1788141530844,
+      "tag": "0004_productive_rockslide",
+      "breakpoints": true
     }
   ]
 }
