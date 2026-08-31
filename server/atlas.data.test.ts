@@ -19,10 +19,13 @@ describe("Atlas data integrity", () => {
     const entry = getAtlasEntry("seguimento-pos-prostatectomia");
     expect(entry).toBeDefined();
 
-    const content = entry!.sections.map((section) => section.body).join("\n");
+    const content = entry!
+      .sections.map((section) => `${section.title}\n${section.body}`)
+      .join("\n");
     expect(content).toMatch(/PSA.*cada 6 meses/i);
     expect(content).toMatch(/recidiva bioquímica/i);
     expect(content).toMatch(/radioterapia de resgate/i);
+    expect(content).toMatch(/continência e reabilitação erétil/i);
     expect(content).toMatch(/EAU.*2026/i);
     expect(atlasToProcedure[entry!.id]).toBe("seguimento-pos-prostatectomia");
   });

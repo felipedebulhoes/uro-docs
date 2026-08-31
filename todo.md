@@ -240,3 +240,9 @@
 # Seguimento pós-prostatectomia (Ago 2026)
 - [x] Verificar e complementar a entrada do Atlas com PSA seriado, recidiva bioquímica e tratamento de resgate — entrada já presente e completa na versão atual
 - [x] Validar conteúdo com diretrizes EAU 2026 e AUA/ASTRO/SUO 2024; adicionar teste de regressão, executar testes e preparar checkpoint
+
+# Seguimento pós-prostatectomia — calculadoras e reabilitação (Ago 2026)
+- [x] Criar calculadora de PSA-DT com três dosagens datadas e interpretação clínica
+- [x] Exibir alerta visual de PSA persistentemente detectável na entrada do Atlas
+- [x] Adicionar material educativo ao paciente sobre continência e reabilitação erétil
+- [x] Adicionar testes, validar interface e salvar checkpoint (TypeScript sem erros; 253/253 testes passando)

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/alert";
 import { IpssCalculator } from "@/components/IpssCalculator";
 import { ErspcCalculator } from "@/components/ErspcCalculator";
+import { PsaDoublingTimeCalculator } from "@/components/PsaDoublingTimeCalculator";
 import {
   Accordion,
   AccordionContent,
@@ -343,6 +344,10 @@ export default function AtlasProcedurePage() {
                     ) && (
                       <ErspcCalculator />
                     )}
+                    {entry.id === "seguimento-pos-prostatectomia" &&
+                      section.title.toLowerCase().includes("recidiva bioquímica") && (
+                        <PsaDoublingTimeCalculator />
+                      )}
                   </AccordionContent>
                 </AccordionItem>
               ))}
