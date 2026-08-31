@@ -40,6 +40,7 @@ const TIMERS_KEY = "urodocx_dj_timers";
 const FAVORITES_KEY = "urodocx_favorites";
 const RECENTS_KEY = "urodocx_recents";
 const DOCUMENT_USAGE_KEY = "urodocx_document_usage";
+const CLOUD_RESTORE_PAUSED_KEY = "urodocx_cloud_restore_paused";
 
 // History
 export function getHistory(): SurgeryRecord[] {
@@ -235,4 +236,28 @@ export function recordDocumentUse(input: Omit<DocumentUsage, "key" | "count" | "
 
 export function getMostUsedDocuments(limit = 6): DocumentUsage[] {
   return getDocumentUsage().slice(0, Math.max(0, limit));
+}
+
+/**
+ * Remove deste navegador os dados que podem identificar pacientes. O histórico,
+ * os timers e o uso de documentos são apagados; preferências de navegação e
+ * presets não clínicos permanecem disponíveis.
+ */
+export function clearLocalClinicalData(): void {
+  [HISTORY_KEY, TIMERS_KEY, DOCUMENT_USAGE_KEY].forEach((key) =>
+    localStorage.removeItem(key)
+  );
+  localStorage.setItem(CLOUD_RESTORE_PAUSED_KEY, "true");
+}
+
+export function isCloudRestorePaused(): boolean {
+  try {
+    return localStorage.getItem(CLOUD_RESTORE_PAUSED_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+export function resumeCloudRestore(): void {
+  localStorage.removeItem(CLOUD_RESTORE_PAUSED_KEY);
 }

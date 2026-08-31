@@ -7,6 +7,8 @@ import {
   Check,
   AlertTriangle,
   LogIn,
+  ShieldAlert,
+  Trash2,
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -23,6 +25,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { clearLocalClinicalData } from "@/data/surgeryStore";
 
 /**
  * Header control that shows cloud sync status, a manual "Sincronizar agora"
@@ -33,6 +36,7 @@ export function CloudSyncMenu() {
   const cloud = useCloudSync();
   const [open, setOpen] = useState(false);
   const [conflictOpen, setConflictOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
 
   const syncing = cloud.status === "syncing";
   const hasConflicts = cloud.conflicts.length > 0;
@@ -67,20 +71,9 @@ export function CloudSyncMenu() {
     }
   };
 
-  // Not authenticated → invite to log in for cross-device backup.
-  if (!cloud.isAuthenticated) {
-    return (
-      <button
-        onClick={() => (window.location.href = getLoginUrl())}
-        className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150"
-        title="Entrar para sincronizar na nuvem"
-      >
-        <CloudOff className="w-4 h-4 text-muted-foreground" />
-      </button>
-    );
-  }
-
   const StatusIcon = () => {
+    if (!cloud.isAuthenticated)
+      return <CloudOff className="w-4 h-4 text-muted-foreground" />;
     if (syncing)
       return <RefreshCw className="w-4 h-4 text-primary animate-spin" />;
     if (hasConflicts)
@@ -96,7 +89,7 @@ export function CloudSyncMenu() {
         <PopoverTrigger asChild>
           <button
             className="relative w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary/40 hover:bg-primary/10 transition-all duration-150"
-            title="Sincronização na nuvem"
+            title={cloud.isAuthenticated ? "Sincronização na nuvem" : "Privacidade e sincronização"}
           >
             <StatusIcon />
             {hasConflicts && (
@@ -110,14 +103,16 @@ export function CloudSyncMenu() {
           <div className="space-y-3">
             <div>
               <p className="text-sm font-semibold text-foreground">
-                Sincronização na nuvem
+                {cloud.isAuthenticated ? "Sincronização na nuvem" : "Dados neste aparelho"}
               </p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Última sincronização: {formatTime(cloud.lastSyncedAt)}
+                {cloud.isAuthenticated
+                  ? `Última sincronização: ${formatTime(cloud.lastSyncedAt)}`
+                  : "Entre para manter um backup na nuvem."}
               </p>
             </div>
 
-            {hasConflicts && (
+            {cloud.isAuthenticated && hasConflicts && (
               <button
                 onClick={() => {
                   setOpen(false);
@@ -132,25 +127,52 @@ export function CloudSyncMenu() {
               </button>
             )}
 
-            <Button
-              onClick={handleSyncNow}
-              disabled={syncing}
-              className="w-full bg-primary text-white hover:bg-primary/90"
-              size="sm"
-            >
-              {syncing ? (
-                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-              ) : (
-                <RefreshCw className="w-4 h-4 mr-2" />
-              )}
-              {syncing ? "Sincronizando..." : "Sincronizar agora"}
-            </Button>
+            {cloud.isAuthenticated ? (
+              <Button
+                onClick={handleSyncNow}
+                disabled={syncing}
+                className="w-full bg-primary text-white hover:bg-primary/90"
+                size="sm"
+              >
+                {syncing ? (
+                  <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                )}
+                {syncing ? "Sincronizando..." : "Sincronizar agora"}
+              </Button>
+            ) : (
+              <Button
+                onClick={() => (window.location.href = getLoginUrl())}
+                className="w-full bg-primary text-white hover:bg-primary/90"
+                size="sm"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Entrar para sincronizar
+              </Button>
+            )}
 
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
-              Seus dados ficam salvos neste aparelho e são copiados para a nuvem
-              quando você está conectado, permitindo acesso em outros
-              dispositivos.
-            </p>
+            <div className="rounded-md border border-amber-400/25 bg-amber-400/5 p-2.5">
+              <div className="flex gap-2">
+                <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
+                <div>
+                  <p className="text-[11px] font-medium text-amber-100">Dispositivo compartilhado?</p>
+                  <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                    Dados clínicos ficam neste navegador. Ao terminar, apague os dados locais para reduzir a exposição indevida.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      setPrivacyOpen(true);
+                    }}
+                    className="mt-2 text-[11px] font-medium text-primary hover:text-primary/80"
+                  >
+                    Revisar privacidade deste aparelho
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </PopoverContent>
       </Popover>
@@ -169,7 +191,72 @@ export function CloudSyncMenu() {
           setConflictOpen(false);
         }}
       />
+      <DevicePrivacyDialog open={privacyOpen} onOpenChange={setPrivacyOpen} />
     </>
+  );
+}
+
+function DevicePrivacyDialog({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (value: boolean) => void;
+}) {
+  const [confirming, setConfirming] = useState(false);
+
+  const handleClear = () => {
+    clearLocalClinicalData();
+    setConfirming(false);
+    onOpenChange(false);
+    toast.success("Dados clínicos deste navegador foram apagados.");
+  };
+
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(value) => {
+        if (!value) setConfirming(false);
+        onOpenChange(value);
+      }}
+    >
+      <DialogContent className="max-w-md bg-card border-border text-card-foreground">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-foreground">
+            <ShieldAlert className="h-5 w-5 text-amber-300" />
+            Privacidade deste aparelho
+          </DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            Use este recurso ao trabalhar em computador compartilhado ou ao encerrar um atendimento fora do seu dispositivo habitual.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="space-y-3 text-xs leading-relaxed text-muted-foreground">
+          <p>
+            A exclusão remove deste navegador o histórico cirúrgico, os timers de Duplo J e os registros de uso de documentos. Favoritos e presets são mantidos por não conterem identificação do paciente.
+          </p>
+          <p>
+            Após a exclusão, a restauração automática da nuvem fica pausada neste aparelho. Uma sincronização manual volta a baixar os dados da conta.
+          </p>
+        </div>
+        {confirming ? (
+          <div className="rounded-md border border-destructive/40 bg-destructive/10 p-3">
+            <p className="text-xs font-medium text-destructive">Confirmar exclusão dos dados clínicos locais?</p>
+            <div className="mt-3 flex justify-end gap-2">
+              <Button size="sm" variant="outline" onClick={() => setConfirming(false)}>Cancelar</Button>
+              <Button size="sm" className="bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={handleClear}>
+                <Trash2 className="mr-1.5 h-3.5 w-3.5" />
+                Apagar deste aparelho
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <Button variant="outline" className="w-full border-destructive/40 text-destructive hover:bg-destructive/10" onClick={() => setConfirming(true)}>
+            <Trash2 className="mr-2 h-4 w-4" />
+            Apagar dados clínicos locais
+          </Button>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 }
 

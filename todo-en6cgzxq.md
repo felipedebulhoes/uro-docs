@@ -24,4 +24,7 @@
 - [x] Incluir os instantâneos e a versão do modelo na sincronização em nuvem e no banco de dados.
 - [x] Permitir consultar a cópia emitida e seus metadados no histórico cirúrgico.
 - [x] Cobrir a criação e a preservação dos instantâneos documentais com testes unitários.
-- [ ] Revisar os controles de privacidade de dados sensíveis, incluindo aviso de uso em dispositivo compartilhado e descarte local dos registros.
+- [x] Revisar os controles de privacidade de dados sensíveis, incluindo aviso de uso em dispositivo compartilhado e descarte local dos registros.
+- [x] Exibir orientações claras para uso do UroDocx em dispositivos compartilhados.
+- [x] Permitir apagar, mediante confirmação explícita, os dados clínicos armazenados localmente neste navegador.
+- [x] Cobrir o descarte local de dados clínicos com testes unitários.

@@ -5,6 +5,8 @@ import {
   getHistory,
   getDJTimers,
   getFavorites,
+  isCloudRestorePaused,
+  resumeCloudRestore,
   type SurgeryRecord,
   type DJTimer,
 } from "@/data/surgeryStore";
@@ -319,6 +321,7 @@ export function useCloudSync() {
     if (!isAuthenticated) return { ok: false, conflicts: 0 };
     setStatus("syncing");
     try {
+      resumeCloudRestore();
       const detected = await mergeFromCloud(true);
       setConflicts(detected);
       setStatus("synced");
@@ -333,6 +336,10 @@ export function useCloudSync() {
   // ---- Initial pull + merge (runs once per session) ----------------------
   useEffect(() => {
     if (loading || !isAuthenticated || pulledRef.current) return;
+    if (isCloudRestorePaused()) {
+      setStatus("idle");
+      return;
+    }
     pulledRef.current = true;
     setStatus("syncing");
     (async () => {

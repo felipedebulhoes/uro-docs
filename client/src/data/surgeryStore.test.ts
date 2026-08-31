@@ -1,10 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  clearLocalClinicalData,
   completeDJTimer,
   getMostUsedDocuments,
   getDJTimers,
+  isCloudRestorePaused,
   markDJTimerContacted,
   recordDocumentUse,
+  resumeCloudRestore,
 } from "@/data/surgeryStore";
 
 const TIMERS_KEY = "urodocx_dj_timers";
@@ -18,6 +21,10 @@ class LocalStorageMock {
 
   setItem(key: string, value: string) {
     this.values.set(key, value);
+  }
+
+  removeItem(key: string) {
+    this.values.delete(key);
   }
 }
 
@@ -111,5 +118,25 @@ describe("surgeryStore — uso de documentos", () => {
         lastUsedAt: "2026-08-30T10:01:00.000Z",
       }),
     ]);
+  });
+});
+
+describe("surgeryStore — descarte de dados clínicos", () => {
+  it("remove registros identificáveis e pausa a restauração automática da nuvem", () => {
+    localStorage.setItem("urodocx_history", JSON.stringify([{ patientName: "Paciente" }]));
+    localStorage.setItem("urodocx_dj_timers", JSON.stringify([{ patientName: "Paciente" }]));
+    localStorage.setItem("urodocx_document_usage", JSON.stringify([{ documentLabel: "Receita" }]));
+    localStorage.setItem("urodocx_favorites", JSON.stringify(["ult"]));
+
+    clearLocalClinicalData();
+
+    expect(localStorage.getItem("urodocx_history")).toBeNull();
+    expect(localStorage.getItem("urodocx_dj_timers")).toBeNull();
+    expect(localStorage.getItem("urodocx_document_usage")).toBeNull();
+    expect(localStorage.getItem("urodocx_favorites")).toBe(JSON.stringify(["ult"]));
+    expect(isCloudRestorePaused()).toBe(true);
+
+    resumeCloudRestore();
+    expect(isCloudRestorePaused()).toBe(false);
   });
 });
