@@ -50,6 +50,7 @@ import {
   Phone,
   CopyPlus,
   FileSignature,
+  AlertTriangle,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
@@ -58,6 +59,10 @@ import { useSpeechDictation } from "@/hooks/useSpeechDictation";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { PrescriptionTemplates } from "@/components/PrescriptionTemplates";
 import { todayLocalISO, addDaysISO, formatBR } from "@/lib/dateLocal";
+import {
+  getMissingFieldsForDocuments,
+  type RequiredDocumentField,
+} from "@/lib/documentValidation";
 
 export default function ProcedurePage() {
   const params = useParams<{ id: string }>();
@@ -106,6 +111,7 @@ export default function ProcedurePage() {
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
   const [editingTab, setEditingTab] = useState<string | null>(null);
   const [editedTexts, setEditedTexts] = useState<Record<string, string>>({});
+  const [missingFields, setMissingFields] = useState<RequiredDocumentField[]>([]);
   const editTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [presets, setPresets] = useState<HospitalPreset[]>(() => getPresets());
   const [showPresetSave, setShowPresetSave] = useState(false);
@@ -164,7 +170,27 @@ export default function ProcedurePage() {
 
   const updateConfig = useCallback((fieldId: string, value: string) => {
     setConfig((prev) => ({ ...prev, [fieldId]: value }));
+    setMissingFields((prev) => prev.filter((field) => field.id !== fieldId));
   }, []);
+
+  const validateOutput = useCallback(
+    (documentIds: readonly string[]): boolean => {
+      const missing = getMissingFieldsForDocuments(documentIds, config);
+      setMissingFields(missing);
+
+      if (missing.length === 0) return true;
+
+      toast.error("Emissão bloqueada: complete os dados essenciais.", {
+        description: missing.map((field) => field.label).join(", "),
+      });
+      document.getElementById("validacao-documentos")?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      return false;
+    },
+    [config]
+  );
 
   // Documents that are handed directly to the patient should carry a clear
   // patient-identification header at the top (name + date), so the printed/
@@ -219,6 +245,7 @@ export default function ProcedurePage() {
 
   const copyToClipboard = useCallback(
     (tabId: string) => {
+      if (!validateOutput([tabId])) return;
       const text = getDocText(tabId);
       navigator.clipboard.writeText(text).then(() => {
         setCopiedTab(tabId);
@@ -226,7 +253,7 @@ export default function ProcedurePage() {
         setTimeout(() => setCopiedTab(null), 2000);
       });
     },
-    [getDocText]
+    [getDocText, validateOutput]
   );
 
   // Voice dictation
@@ -269,6 +296,7 @@ export default function ProcedurePage() {
   // WhatsApp share (patient instructions)
   const shareWhatsApp = useCallback(
     (tabId: string) => {
+      if (!validateOutput([tabId])) return;
       const text = getDocText(tabId);
       if (!text) {
         toast.error("Nenhum conteúdo para compartilhar.");
@@ -280,17 +308,18 @@ export default function ProcedurePage() {
       window.open(`https://wa.me/?text=${message}`, "_blank");
       toast.success("Abrindo WhatsApp...");
     },
-    [getDocText, procedure, config.paciente]
+    [getDocText, procedure, config.paciente, validateOutput]
   );
 
   const copyAll = useCallback(() => {
     if (!documents) return;
     const allTabs = Object.keys(documents);
+    if (!validateOutput(allTabs)) return;
     const allText = allTabs.map((tabId) => getDocText(tabId)).join("\n\n" + "═".repeat(60) + "\n\n");
     navigator.clipboard.writeText(allText).then(() => {
       toast.success("Todos os documentos copiados!");
     });
-  }, [documents, getDocText]);
+  }, [documents, getDocText, validateOutput]);
 
   const saveToHistory = useCallback(() => {
     if (!procedure) return;
@@ -348,6 +377,7 @@ export default function ProcedurePage() {
   // PDF Export
   const exportPDF = useCallback(
     (tabId: string) => {
+      if (!validateOutput([tabId])) return;
       const text = getDocText(tabId);
       const tabLabel =
         allTabs.find((t) => t.id === tabId)?.label || tabId;
@@ -459,11 +489,12 @@ export default function ProcedurePage() {
       printWindow.document.close();
       toast.success("PDF aberto para impressão!");
     },
-    [getDocText, procedure, config]
+    [getDocText, procedure, config, validateOutput]
   );
 
   // Exporta o laudo preenchido (aba descricao) com formatação especial para laudos médicos
   const exportLaudoPDF = useCallback(() => {
+    if (!validateOutput(["descricao"])) return;
     const text = getDocText("descricao");
     if (!text.trim()) {
       toast.error("Laudo vazio — preencha os campos antes de exportar.");
@@ -532,12 +563,13 @@ export default function ProcedurePage() {
     printWindow.document.write(htmlContent);
     printWindow.document.close();
     toast.success("Laudo aberto para impressão/PDF!");
-  }, [getDocText, procedure, config]);
+  }, [getDocText, procedure, config, validateOutput]);
 
   const exportAllPDF = useCallback(() => {
     if (!documents || !procedure) return;
 
     const allTabsList = Object.keys(documents);
+    if (!validateOutput(allTabsList)) return;
     const allContent = allTabsList
       .map((tabId) => {
         const label = allTabs.find((t) => t.id === tabId)?.label || tabId;
@@ -659,7 +691,7 @@ export default function ProcedurePage() {
     printWindow.document.write(htmlContent);
     printWindow.document.close();
     toast.success("PDF com todos os documentos aberto!");
-  }, [documents, procedure, config, getDocText]);
+  }, [documents, procedure, config, getDocText, validateOutput]);
 
   if (!procedure) {
     return (
@@ -1009,6 +1041,17 @@ export default function ProcedurePage() {
                         className="h-9 text-xs bg-secondary border-border text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
+                    {extraDocs && (
+                      <div className="space-y-1.5">
+                        <Label className="text-xs text-muted-foreground font-medium">Data da Evolução</Label>
+                        <Input
+                          type="date"
+                          value={config.data_evolucao || ""}
+                          onChange={(e) => updateConfig("data_evolucao", e.target.value)}
+                          className="h-9 text-xs bg-secondary border-border text-foreground"
+                        />
+                      </div>
+                    )}
                   </div>
                 </details>
               </div>
@@ -1060,6 +1103,25 @@ export default function ProcedurePage() {
                 </p>
               )}
             </Card>
+            {missingFields.length > 0 && (
+              <Card
+                id="validacao-documentos"
+                role="alert"
+                className="p-3 mb-3 border-amber-400/40 bg-amber-400/10"
+              >
+                <div className="flex items-start gap-2">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
+                  <div>
+                    <p className="text-xs font-semibold text-amber-200">
+                      Documento não emitido: complete os campos essenciais antes de copiar, enviar ou gerar PDF.
+                    </p>
+                    <p className="mt-1 text-xs text-amber-100/80">
+                      Pendentes: {missingFields.map((field) => field.label).join(" · ")}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            )}
             <Tabs defaultValue="descricao" className="w-full">
               <TabsList className="w-full bg-card border border-border h-auto p-1 flex flex-wrap gap-1">
                 {allTabs.map((tab) => (
