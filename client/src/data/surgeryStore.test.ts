@@ -1,8 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   completeDJTimer,
+  getMostUsedDocuments,
   getDJTimers,
   markDJTimerContacted,
+  recordDocumentUse,
 } from "@/data/surgeryStore";
 
 const TIMERS_KEY = "urodocx_dj_timers";
@@ -73,5 +75,41 @@ describe("surgeryStore — acompanhamento de Duplo J", () => {
       followUpStatus: "removed",
       removalConfirmedAt: "2026-08-30T10:00:00.000Z",
     });
+  });
+});
+
+describe("surgeryStore — uso de documentos", () => {
+  it("ordena documentos por frequência e usa a data como critério de desempate", () => {
+    recordDocumentUse({
+      procedureId: "ult",
+      documentId: "receitaAlta",
+      documentLabel: "Receita",
+    });
+    vi.setSystemTime(new Date("2026-08-30T10:01:00.000Z"));
+    recordDocumentUse({
+      procedureId: "rtu-p",
+      documentId: "orientacoes",
+      documentLabel: "Orientações",
+    });
+    vi.setSystemTime(new Date("2026-08-30T10:02:00.000Z"));
+    recordDocumentUse({
+      procedureId: "ult",
+      documentId: "receitaAlta",
+      documentLabel: "Receita de alta",
+    });
+
+    expect(getMostUsedDocuments()).toEqual([
+      expect.objectContaining({
+        key: "ult:receitaAlta",
+        documentLabel: "Receita de alta",
+        count: 2,
+        lastUsedAt: "2026-08-30T10:02:00.000Z",
+      }),
+      expect.objectContaining({
+        key: "rtu-p:orientacoes",
+        count: 1,
+        lastUsedAt: "2026-08-30T10:01:00.000Z",
+      }),
+    ]);
   });
 });

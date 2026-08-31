@@ -15,7 +15,10 @@
 - [x] Cobrir a lógica de classificação e atualização de status dos timers de Duplo J com testes unitários.
 - [x] Testar a normalização de registros legados e a atualização de status e horários de contato e retirada no armazenamento local.
 - [x] Testar a sincronização para assegurar que o acompanhamento local de um timer existente seja preservado e timers novos da nuvem sejam incorporados.
-- [ ] Adicionar uma área de acesso rápido com procedimentos recentes, favoritos e documentos usados com maior frequência.
+- [x] Adicionar uma área de acesso rápido com procedimentos recentes, favoritos e documentos usados com maior frequência.
+- [x] Registrar contagem e último uso ao copiar, enviar ou exportar cada documento clínico.
+- [x] Exibir na página inicial uma área de acesso rápido com favoritos, procedimentos recentes e documentos mais utilizados.
+- [x] Cobrir a ordenação de documentos por frequência e data de uso com testes unitários.
 - [x] Salvar a versão do modelo e uma cópia do documento emitido em cada registro para preservar rastreabilidade clínica.
 - [x] Armazenar instantâneos imutáveis dos documentos no momento em que o procedimento é salvo no histórico.
 - [x] Incluir os instantâneos e a versão do modelo na sincronização em nuvem e no banco de dados.

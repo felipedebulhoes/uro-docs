@@ -7,8 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { procedures, categories } from "@/data/procedures";
 import { procedureHasCalculator, searchCatalog } from "@/lib/catalogSearch";
-import { getFavorites, toggleFavorite, getRecents, getDJTimers } from "@/data/surgeryStore";
-import { Search, Star, Clock, History, Timer, AlertTriangle, BookOpen, Calculator, X } from "lucide-react";
+import { getFavorites, toggleFavorite, getRecents, getDJTimers, getMostUsedDocuments } from "@/data/surgeryStore";
+import { Search, Star, Clock, History, Timer, AlertTriangle, BookOpen, Calculator, X, FileText } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { useState, useMemo, useEffect, useRef } from "react";
 import { Link } from "wouter";
@@ -24,6 +24,7 @@ export default function Home() {
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
   const searchInputRef = useRef<HTMLInputElement>(null);
   const recents = useMemo(() => getRecents(), []);
+  const frequentDocuments = useMemo(() => getMostUsedDocuments(), []);
   const activeTimers = useMemo(() => getDJTimers().filter((t) => !t.completed), []);
   const calculatorCount = useMemo(
     () => procedures.filter(procedureHasCalculator).length,
@@ -153,45 +154,57 @@ export default function Home() {
           </Link>
         )}
 
-        {/* Favorites */}
-        {favoriteProcedures.length > 0 && !search && !activeCategory && (
-          <div className="mb-6">
+        {(favoriteProcedures.length > 0 || recentProcedures.length > 0 || frequentDocuments.length > 0) && !search && !activeCategory && (
+          <section className="mb-6">
             <h2 className="text-xs font-semibold text-primary uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <Star className="w-3.5 h-3.5" />
-              Favoritos
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-              {favoriteProcedures.map((proc) => (
-                <Link key={proc.id} href={`/procedimento/${proc.id}`}>
-                  <Card className="p-2.5 bg-card border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 cursor-pointer">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{proc.icon}</span>
-                      <span className="text-xs font-medium text-foreground truncate">{proc.shortName}</span>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Recents */}
-        {recentProcedures.length > 0 && !search && !activeCategory && (
-          <div className="mb-6">
-            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5" />
-              Recentes
+              Acesso rápido
             </h2>
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              {recentProcedures.map((proc) => proc && (
-                <Link key={proc.id} href={`/procedimento/${proc.id}`}>
-                  <Card className="p-2 px-3 bg-card border-border hover:border-primary/30 transition-all duration-150 cursor-pointer whitespace-nowrap">
-                    <span className="text-xs text-foreground">{proc.icon} {proc.shortName}</span>
-                  </Card>
-                </Link>
-              ))}
+            <div className="grid gap-3 lg:grid-cols-3">
+              {favoriteProcedures.length > 0 && (
+                <Card className="p-3 bg-card border-primary/20">
+                  <h3 className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-primary"><Star className="h-3.5 w-3.5" />Favoritos</h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {favoriteProcedures.slice(0, 6).map((proc) => (
+                      <Link key={proc.id} href={`/procedimento/${proc.id}`}>
+                        <span className="inline-flex cursor-pointer items-center gap-1 rounded-md border border-primary/20 bg-primary/5 px-2 py-1 text-[11px] text-foreground transition-colors hover:border-primary/40 hover:text-primary">{proc.icon} {proc.shortName}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </Card>
+              )}
+              {recentProcedures.length > 0 && (
+                <Card className="p-3 bg-card border-border">
+                  <h3 className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground"><History className="h-3.5 w-3.5" />Recentes</h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {recentProcedures.slice(0, 6).map((proc) => proc && (
+                      <Link key={proc.id} href={`/procedimento/${proc.id}`}>
+                        <span className="inline-flex cursor-pointer items-center gap-1 rounded-md border border-border bg-secondary/40 px-2 py-1 text-[11px] text-foreground transition-colors hover:border-primary/40 hover:text-primary">{proc.icon} {proc.shortName}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </Card>
+              )}
+              {frequentDocuments.length > 0 && (
+                <Card className="p-3 bg-card border-border">
+                  <h3 className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground"><FileText className="h-3.5 w-3.5" />Documentos mais usados</h3>
+                  <div className="space-y-1.5">
+                    {frequentDocuments.map((document) => {
+                      const procedure = procedures.find((item) => item.id === document.procedureId);
+                      return (
+                        <Link key={document.key} href={`/procedimento/${document.procedureId}`}>
+                          <span className="flex cursor-pointer items-center justify-between gap-2 rounded-md border border-border bg-secondary/40 px-2 py-1.5 text-[11px] transition-colors hover:border-primary/40">
+                            <span className="min-w-0 truncate text-foreground">{document.documentLabel}<span className="text-muted-foreground"> · {procedure?.shortName ?? "Procedimento"}</span></span>
+                            <span className="shrink-0 text-primary">{document.count}×</span>
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </Card>
+              )}
             </div>
-          </div>
+          </section>
         )}
 
         {/* Search */}

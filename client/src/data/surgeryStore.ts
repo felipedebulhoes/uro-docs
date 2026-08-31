@@ -26,10 +26,20 @@ export interface DJTimer {
   removalConfirmedAt?: string;
 }
 
+export interface DocumentUsage {
+  key: string;
+  procedureId: string;
+  documentId: string;
+  documentLabel: string;
+  count: number;
+  lastUsedAt: string;
+}
+
 const HISTORY_KEY = "urodocx_history";
 const TIMERS_KEY = "urodocx_dj_timers";
 const FAVORITES_KEY = "urodocx_favorites";
 const RECENTS_KEY = "urodocx_recents";
+const DOCUMENT_USAGE_KEY = "urodocx_document_usage";
 
 // History
 export function getHistory(): SurgeryRecord[] {
@@ -176,4 +186,53 @@ export function addToRecents(procedureId: string): void {
   recents.unshift(procedureId);
   recents = recents.slice(0, 10);
   localStorage.setItem(RECENTS_KEY, JSON.stringify(recents));
+}
+
+function sortDocumentUsage(a: DocumentUsage, b: DocumentUsage): number {
+  if (b.count !== a.count) return b.count - a.count;
+  return b.lastUsedAt.localeCompare(a.lastUsedAt);
+}
+
+export function getDocumentUsage(): DocumentUsage[] {
+  try {
+    const data = localStorage.getItem(DOCUMENT_USAGE_KEY);
+    const usage = data ? JSON.parse(data) : [];
+    if (!Array.isArray(usage)) return [];
+    return usage
+      .filter(
+        (item): item is DocumentUsage =>
+          typeof item?.key === "string" &&
+          typeof item?.procedureId === "string" &&
+          typeof item?.documentId === "string" &&
+          typeof item?.documentLabel === "string" &&
+          typeof item?.count === "number" &&
+          typeof item?.lastUsedAt === "string"
+      )
+      .sort(sortDocumentUsage);
+  } catch {
+    return [];
+  }
+}
+
+export function recordDocumentUse(input: Omit<DocumentUsage, "key" | "count" | "lastUsedAt">): void {
+  const usage = getDocumentUsage();
+  const key = `${input.procedureId}:${input.documentId}`;
+  const existing = usage.find((item) => item.key === key);
+  const now = new Date().toISOString();
+  const next = existing
+    ? usage.map((item) =>
+        item.key === key
+          ? { ...item, documentLabel: input.documentLabel, count: item.count + 1, lastUsedAt: now }
+          : item
+      )
+    : [...usage, { ...input, key, count: 1, lastUsedAt: now }];
+
+  localStorage.setItem(
+    DOCUMENT_USAGE_KEY,
+    JSON.stringify(next.sort(sortDocumentUsage).slice(0, 40))
+  );
+}
+
+export function getMostUsedDocuments(limit = 6): DocumentUsage[] {
+  return getDocumentUsage().slice(0, Math.max(0, limit));
 }

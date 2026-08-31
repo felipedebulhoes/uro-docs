@@ -18,7 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { procedures } from "@/data/procedures";
 import { atlasToProcedure } from "@/data/atlasData";
 import { getExtraDocs } from "@/data/extraDocuments";
-import { addToHistory, addDJTimer, addToRecents, getLastRecordForProcedure } from "@/data/surgeryStore";
+import { addToHistory, addDJTimer, addToRecents, getLastRecordForProcedure, recordDocumentUse } from "@/data/surgeryStore";
 import { getPresets, savePreset, deletePreset, type HospitalPreset } from "@/data/hospitalPresets";
 import { LOGO_SVG } from "@/lib/institution";
 import {
@@ -174,6 +174,30 @@ export default function ProcedurePage() {
     setMissingFields((prev) => prev.filter((field) => field.id !== fieldId));
   }, []);
 
+  const trackDocumentUse = useCallback(
+    (documentId: string) => {
+      if (!procedure) return;
+      const labels: Record<string, string> = {
+        descricao: "Descrição",
+        posOperatorio: "PO Imediato",
+        receitaAlta: "Receita",
+        orientacoes: "Orientações",
+        preOperatorio: "Pré-Op",
+        tcle: "TCLE",
+        evolucaoD1: "Evolução D1",
+        materiaisOPME: "OPME",
+        examesPosOp: "Exames",
+        relatorioConvenio: "Convênio",
+      };
+      recordDocumentUse({
+        procedureId: procedure.id,
+        documentId,
+        documentLabel: labels[documentId] ?? documentId,
+      });
+    },
+    [procedure]
+  );
+
   const validateOutput = useCallback(
     (documentIds: readonly string[]): boolean => {
       const missing = getMissingFieldsForDocuments(documentIds, config);
@@ -249,12 +273,13 @@ export default function ProcedurePage() {
       if (!validateOutput([tabId])) return;
       const text = getDocText(tabId);
       navigator.clipboard.writeText(text).then(() => {
+        trackDocumentUse(tabId);
         setCopiedTab(tabId);
         toast.success("Copiado!");
         setTimeout(() => setCopiedTab(null), 2000);
       });
     },
-    [getDocText, validateOutput]
+    [getDocText, trackDocumentUse, validateOutput]
   );
 
   // Voice dictation
@@ -307,9 +332,10 @@ export default function ProcedurePage() {
       const footer = `\n\n_Dr. Felipe de Bulhões — Urologia & Andrologia_\n_CRM-SP 202.291 — RQE 146538_`;
       const message = encodeURIComponent(header + text + footer);
       window.open(`https://wa.me/?text=${message}`, "_blank");
+      trackDocumentUse(tabId);
       toast.success("Abrindo WhatsApp...");
     },
-    [getDocText, procedure, config.paciente, validateOutput]
+    [getDocText, procedure, config.paciente, trackDocumentUse, validateOutput]
   );
 
   const copyAll = useCallback(() => {
@@ -318,9 +344,10 @@ export default function ProcedurePage() {
     if (!validateOutput(allTabs)) return;
     const allText = allTabs.map((tabId) => getDocText(tabId)).join("\n\n" + "═".repeat(60) + "\n\n");
     navigator.clipboard.writeText(allText).then(() => {
+      allTabs.forEach(trackDocumentUse);
       toast.success("Todos os documentos copiados!");
     });
-  }, [documents, getDocText, validateOutput]);
+  }, [documents, getDocText, trackDocumentUse, validateOutput]);
 
   const saveToHistory = useCallback(() => {
     if (!procedure) return;
@@ -498,9 +525,10 @@ export default function ProcedurePage() {
 
       printWindow.document.write(htmlContent);
       printWindow.document.close();
+      trackDocumentUse(tabId);
       toast.success("PDF aberto para impressão!");
     },
-    [getDocText, procedure, config, validateOutput]
+    [getDocText, procedure, config, trackDocumentUse, validateOutput]
   );
 
   // Exporta o laudo preenchido (aba descricao) com formatação especial para laudos médicos
@@ -573,8 +601,9 @@ export default function ProcedurePage() {
 </html>`;
     printWindow.document.write(htmlContent);
     printWindow.document.close();
+    trackDocumentUse("descricao");
     toast.success("Laudo aberto para impressão/PDF!");
-  }, [getDocText, procedure, config, validateOutput]);
+  }, [getDocText, procedure, config, trackDocumentUse, validateOutput]);
 
   const exportAllPDF = useCallback(() => {
     if (!documents || !procedure) return;
@@ -701,8 +730,9 @@ export default function ProcedurePage() {
 
     printWindow.document.write(htmlContent);
     printWindow.document.close();
+    allTabsList.forEach(trackDocumentUse);
     toast.success("PDF com todos os documentos aberto!");
-  }, [documents, procedure, config, getDocText, validateOutput]);
+  }, [documents, procedure, config, getDocText, trackDocumentUse, validateOutput]);
 
   if (!procedure) {
     return (
