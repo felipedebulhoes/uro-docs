@@ -246,3 +246,7 @@
 - [x] Exibir alerta visual de PSA persistentemente detectável na entrada do Atlas
 - [x] Adicionar material educativo ao paciente sobre continência e reabilitação erétil
 - [x] Adicionar testes, validar interface e salvar checkpoint (TypeScript sem erros; 253/253 testes passando)
+
+# Correção Vite HMR/WebSocket (Set 2026)
+- [x] Diagnosticar e corrigir a falha de conexão WebSocket da pré-visualização Vite — falha transitória durante reinício; a configuração vigente está adequada
+- [x] Validar a reinicialização sem erro no console e salvar checkpoint — sessões subsequentes registraram "[vite] connected"
