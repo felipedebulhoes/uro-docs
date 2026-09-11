@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { notifyOwner } from "./notification";
 import { adminProcedure, publicProcedure, router } from "./trpc";
+import { getServerHealth } from "../health";
 
 export const systemRouter = router({
   health: publicProcedure
@@ -12,6 +13,8 @@ export const systemRouter = router({
     .query(() => ({
       ok: true,
     })),
+
+  adminHealth: adminProcedure.query(() => getServerHealth()),
 
   notifyOwner: adminProcedure
     .input(

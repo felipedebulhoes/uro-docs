@@ -250,3 +250,9 @@
 # Correção Vite HMR/WebSocket (Set 2026)
 - [x] Diagnosticar e corrigir a falha de conexão WebSocket da pré-visualização Vite — falha transitória durante reinício; a configuração vigente está adequada
 - [x] Validar a reinicialização sem erro no console e salvar checkpoint — sessões subsequentes registraram "[vite] connected"
+
+# Painel de saúde do servidor sob demanda (Set 2026)
+- [x] Criar endpoint administrativo protegido para disponibilidade do processo, banco, latência e uptime
+- [x] Adicionar painel de saúde à interface administrativa com atualização automática a cada 10 segundos enquanto aberto
+- [x] Cobrir autorização e estados saudável/degradado com testes unitários
+- [x] Validar visualmente, executar TypeScript/Vitest e salvar checkpoint (277/277 testes passando)

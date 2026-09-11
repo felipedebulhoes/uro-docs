@@ -19,6 +19,12 @@ import {
   ImageIcon,
   Lock,
   Check,
+  Activity,
+  Database,
+  RefreshCw,
+  Server,
+  Timer,
+  TriangleAlert,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "wouter";
@@ -45,6 +51,11 @@ export default function AtlasAdminPage() {
   );
 
   const utils = trpc.useUtils();
+  const health = trpc.system.adminHealth.useQuery(undefined, {
+    enabled: isAuthenticated && user?.role === "admin",
+    refetchInterval: 10_000,
+    refetchOnWindowFocus: true,
+  });
   const { data: images } = trpc.atlas.images.useQuery(undefined, {
     enabled: isAuthenticated && user?.role === "admin",
   });
@@ -125,6 +136,13 @@ export default function AtlasAdminPage() {
       </header>
 
       <main className="container py-6 max-w-3xl">
+        <ServerHealthPanel
+          health={health.data}
+          isLoading={health.isLoading}
+          isRefreshing={health.isFetching}
+          onRefresh={() => health.refetch()}
+        />
+
         <div className="mb-5">
           <Label className="text-xs text-muted-foreground mb-1.5 block">
             Procedimento
@@ -162,6 +180,148 @@ export default function AtlasAdminPage() {
           </div>
         )}
       </main>
+    </div>
+  );
+}
+
+function formatUptime(totalSeconds: number): string {
+  const days = Math.floor(totalSeconds / 86_400);
+  const hours = Math.floor((totalSeconds % 86_400) / 3_600);
+  const minutes = Math.floor((totalSeconds % 3_600) / 60);
+  if (days > 0) return `${days}d ${hours}h`;
+  if (hours > 0) return `${hours}h ${minutes}min`;
+  return `${minutes} min`;
+}
+
+function formatMegabytes(bytes: number): string {
+  return `${Math.max(0, Math.round(bytes / 1_048_576))} MB`;
+}
+
+function ServerHealthPanel({
+  health,
+  isLoading,
+  isRefreshing,
+  onRefresh,
+}: {
+  health:
+    | {
+        status: "healthy" | "degraded";
+        checkedAt: string;
+        uptimeSeconds: number;
+        memoryRssBytes: number;
+        database: { status: "connected" | "unavailable"; latencyMs: number | null };
+      }
+    | undefined;
+  isLoading: boolean;
+  isRefreshing: boolean;
+  onRefresh: () => void;
+}) {
+  const healthy = health?.status === "healthy";
+  const statusLabel = isLoading
+    ? "Verificando…"
+    : healthy
+      ? "Operacional"
+      : "Degradado";
+
+  return (
+    <Card className="mb-6 overflow-hidden border-border bg-card">
+      <div className="flex flex-col gap-3 border-b border-border/70 bg-muted/20 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-start gap-3">
+          <div
+            className={`mt-0.5 rounded-md p-2 ${
+              healthy ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
+            }`}
+          >
+            {healthy ? <Activity className="h-5 w-5" /> : <TriangleAlert className="h-5 w-5" />}
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-foreground">Saúde do servidor</h2>
+              <Badge
+                variant="outline"
+                className={
+                  healthy
+                    ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
+                    : "border-amber-500/40 bg-amber-500/10 text-amber-400"
+                }
+              >
+                {statusLabel}
+              </Badge>
+            </div>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Atualização automática a cada 10 segundos enquanto este painel estiver aberto.
+            </p>
+          </div>
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={onRefresh}
+          disabled={isRefreshing}
+          className="gap-1.5 self-start sm:self-auto"
+        >
+          <RefreshCw className={`h-3.5 w-3.5 ${isRefreshing ? "animate-spin" : ""}`} />
+          Atualizar
+        </Button>
+      </div>
+
+      <div className="grid grid-cols-1 divide-y divide-border/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <HealthMetric
+          icon={<Server className="h-4 w-4" />}
+          label="Processo"
+          value={health ? "Ativo" : "Aguardando"}
+          detail={health ? `Uptime: ${formatUptime(health.uptimeSeconds)}` : "Consultando serviço"}
+          healthy={Boolean(health)}
+        />
+        <HealthMetric
+          icon={<Database className="h-4 w-4" />}
+          label="Banco de dados"
+          value={health?.database.status === "connected" ? "Conectado" : health ? "Indisponível" : "Aguardando"}
+          detail={
+            health?.database.latencyMs !== null && health?.database.latencyMs !== undefined
+              ? `Latência: ${health.database.latencyMs} ms`
+              : health
+                ? "Sem resposta ao teste"
+                : "Consultando serviço"
+          }
+          healthy={health?.database.status === "connected"}
+        />
+        <HealthMetric
+          icon={<Timer className="h-4 w-4" />}
+          label="Memória"
+          value={health ? formatMegabytes(health.memoryRssBytes) : "—"}
+          detail={health ? `Verificado às ${new Date(health.checkedAt).toLocaleTimeString("pt-BR")}` : "Consultando serviço"}
+          healthy={Boolean(health)}
+        />
+      </div>
+    </Card>
+  );
+}
+
+function HealthMetric({
+  icon,
+  label,
+  value,
+  detail,
+  healthy,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  detail: string;
+  healthy: boolean;
+}) {
+  return (
+    <div className="p-4">
+      <div className="flex items-center gap-2 text-muted-foreground">
+        {icon}
+        <span className="text-xs font-medium">{label}</span>
+      </div>
+      <p className={`mt-2 text-sm font-semibold ${healthy ? "text-foreground" : "text-amber-400"}`}>
+        {value}
+      </p>
+      <p className="mt-1 text-[11px] text-muted-foreground">{detail}</p>
     </div>
   );
 }
